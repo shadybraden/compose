@@ -5,44 +5,12 @@ The idea here is a single node server. With more than 40 containers, organizatio
 Remember; if there is a file (for example `settings.json`) in the volumes section of any docker-compose.yml, then that file has to already exist.
 So make sure to run `touch settings.json` first, or docker will make the *FOLDER* `settings.json` instead of the file.
 
+See each folder's README for details on what each thing is and what it does.
+
 ## My Dashy Dashboard:
 
 ![dashy](dashy/dashy.png "dashy")
 
-What is here:
-
-- ADSB
-- Ollama + OpenWebUI
-- Arr Stack
-- AudioBookShelf
-- Crafty Controller
-- Dashy
-- FileBrowser
-- Forgejo
-- Glances
-- Home Assistant
-- Pi-Hole
-- Immich
-- Jellyfin
-- Jellyseerr
-- Kiwix
-- Mealie
-- Navidrome
-- Nginx
-- NetAlertX
-- NextCloud
-- NTFY
-- Paperless-NGX
-- Portainer
-- Proxy (http, socks5)
-- rclone/restic (backups)
-- Scrutiny
-- StirlingPDF
-- Syncthing
-- UpTimeKuma
-- VaultWarden
-- WatchTower
-- WireGuard
 
 
 # How to use this repo:
