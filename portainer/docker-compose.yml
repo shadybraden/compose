@@ -1,0 +1,11 @@
+services:
+    portainer-ce:
+        ports:
+            - 9000:9000
+        container_name: portainer
+        restart: unless-stopped
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - ${CONFIG_STORAGE_LOCATION}/portainer:/data
+            - /etc/localtime:/etc/localtime:ro
+        image: portainer/portainer-ce

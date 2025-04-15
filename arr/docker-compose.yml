@@ -1,0 +1,101 @@
+services:
+  gluetun_arr: # the vpn part
+      container_name: gluetun_arr
+      cap_add:
+          - NET_ADMIN
+      devices:
+          - /dev/net/tun:/dev/net/tun
+      environment:
+          - VPN_SERVICE_PROVIDER=${arr_provider}
+          - VPN_TYPE=wireguard
+          - WIREGUARD_PRIVATE_KEY=${arr_private_key}
+          - WIREGUARD_ADDRESSES=${arr_address}
+          - SERVER_CITIES=Adelaide,Amsterdam,"Ashburn VA",Athens,"Atlanta GA",Auckland,Belgrade,Berlin,Bogota,Bratislava,Brisbane,Brussels,Bucharest,Budapest,Calgary,"Chicago IL",Chisinau,Copenhagen,"Dallas TX","Denver CO",Dubai,Dublin,Dusseldorf,Frankfurt,Gothenburg,Helsinki,"Hong Kong","Houston TX",Johannesburg,Kyiv,Lisbon,London,"Los Angeles CA",Luxembourg,Madrid,Malmö,Manchester,Marseille,Melbourne,"Miami FL",Milan,Montreal,"New York NY",Osaka,Oslo,Paris,Perth,"Phoenix AZ",Prague,"Raleigh NC",Riga,"Salt Lake City UT","San Jose CA","Sao Paulo","Seattle WA","Secaucus NJ",Singapore,Skopje,Sofia,Stavanger,Stockholm,Sydney,Tallinn,"Tel Aviv",Tirana,Tokyo,Toronto,Vancouver,Vienna,Warsaw,Zagreb,Zurich
+      ports:
+          - 8081:8081 # qbittorrent_shows
+          - 8082:8082 # qbittorrent_movies
+          - 9117:9117 # jackett
+      image: qmcgaw/gluetun
+      restart: on-failure
+  radarr: # the movie download part
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    ports:
+      - 7878:7878 # radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+      - PORT=7878 #optional
+    volumes: # idea is a torrents folder for live downloads, and a media folder for radarr to copy the files to once finished
+      - ${CONFIG_STORAGE_LOCATION}/arr/radarr:/config
+      - ${arr_movies_dir}/torrents:/downloads/torrents
+      - ${arr_movies_dir}/media:/movies
+    restart: on-failure
+#    network_mode: service:gluetun_arr
+#    depends_on:
+#      gluetun_arr:
+#        condition: service_healthy
+  sonarr: # the show download part
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    ports:
+      - 8989:8989
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+    volumes: # idea is a torrents folder for live downloads, and a media folder for sonarr to copy the files to once finished
+      - ${CONFIG_STORAGE_LOCATION}/arr/sonarr:/config
+      - ${arr_shows_dir}/torrents:/downloads/torrents
+      - ${arr_shows_dir}/media:/shows
+    restart: on-failure
+#    network_mode: service:gluetun_arr
+#    depends_on:
+#      gluetun_arr:
+#        condition: service_healthy
+  jackett: # mega indexer for the arr's above
+    image: linuxserver/jackett:latest
+    container_name: jackett
+    restart: on-failure
+    volumes:
+      - ${CONFIG_STORAGE_LOCATION}/arr/jackett:/config
+    network_mode: service:gluetun_arr
+    depends_on:
+      gluetun_arr:
+        condition: service_healthy
+
+  qbittorrent_shows:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent_shows
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - WEBUI_PORT=8081
+      - TORRENTING_PORT=${arr_qbittorrent_shows_port}
+    volumes:
+      - ${CONFIG_STORAGE_LOCATION}/arr/qbittorrent_shows:/config
+      - ${arr_shows_dir}/torrents:/downloads/torrents
+    restart: on-failure
+    network_mode: service:gluetun_arr
+    depends_on:
+      gluetun_arr:
+        condition: service_healthy
+  qbittorrent_movies:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent_movies
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - WEBUI_PORT=8082
+      - TORRENTING_PORT=${arr_qbittorrent_movies_port}
+    volumes:
+      - ${CONFIG_STORAGE_LOCATION}/arr/qbittorrent_movies:/config
+      - ${arr_movies_dir}/torrents:/downloads/torrents
+    restart: on-failure
+    network_mode: service:gluetun_arr
+    depends_on:
+      gluetun_arr:
+        condition: service_healthy

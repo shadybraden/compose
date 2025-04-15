@@ -1,0 +1,16 @@
+services:
+    jellyfin:
+        network_mode: host
+        container_name: jellyfin
+#        ports:
+#            - 8096:8096
+        volumes:
+            - ${CONFIG_STORAGE_LOCATION}/jellyfin/config:/config
+            - ${CONFIG_STORAGE_LOCATION}/jellyfin/cache:/cache
+            - ${jellyfin_media}:/media
+        restart: on-failure
+        image: lscr.io/linuxserver/jellyfin:latest
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - TZ=Etc

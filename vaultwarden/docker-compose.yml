@@ -1,0 +1,12 @@
+services:
+    server:
+        container_name: vaultwarden
+        volumes:
+            - ${CONFIG_STORAGE_LOCATION}/vaultwarden:/data
+        restart: unless-stopped
+        environment:
+            - LOG_FILE=/data/vaultwarden.log
+            - LOG_LEVEL=info
+        ports:
+            - 58527:80
+        image: vaultwarden/server:latest

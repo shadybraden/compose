@@ -1,0 +1,11 @@
+services:
+    kiwix-serve:
+        volumes:
+            - ${kiwix_files}:/data:ro
+        container_name: kiwix
+        restart: on-failure
+        ports:
+            - 8080:8080
+        image: ghcr.io/kiwix/kiwix-serve
+        command: archlinux_en_all_maxi_2022-12.zim
+                 *.zim

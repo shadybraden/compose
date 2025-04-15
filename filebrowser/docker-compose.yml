@@ -1,0 +1,16 @@
+services:
+    filebrowser:
+        container_name: filebrowser
+        restart: unless-stopped
+        volumes:
+            - ${filebrowser_dir1}:/srv/home
+            - ${filebrowser_dir2}:/srv/mounted
+            - ${CONFIG_STORAGE_LOCATION}/filebrowser/database:/database
+            - ${CONFIG_STORAGE_LOCATION}/filebrowser/settings.json:/config/settings.json
+        environment:
+            - PUID=1000
+            - PGID=1000
+        ports:
+            - 8060:80
+        command: ["-c", "/config/settings.json"] # required, see https://github.com/filebrowser/filebrowser/issues/1898
+        image: filebrowser/filebrowser:latest

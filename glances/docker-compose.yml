@@ -1,0 +1,16 @@
+services:
+  glances:
+    container_name: glances
+#    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    ports:
+      - 61208:61208
+#    pid: host
+    privileged: true
+    environment:
+      - "GLANCES_OPT=-C /glances/conf/glances.conf -w"
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+    image: nicolargo/glances

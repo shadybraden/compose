@@ -1,0 +1,19 @@
+services:
+  macos:
+    image: dockurr/macos
+    container_name: macos
+    environment:
+      VERSION: "13"
+    devices:
+      - /dev/kvm
+      - /dev/net/tun
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 8066:8006
+      - 5900:5900/tcp
+      - 5900:5900/udp
+    volumes:
+      - ${CONFIG_STORAGE_LOCATION}/macos:/storage
+    restart: on-failure
+    stop_grace_period: 2m

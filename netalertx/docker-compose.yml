@@ -1,0 +1,13 @@
+services:
+    netalertx:
+        network_mode: host
+        volumes:
+            - ${CONFIG_STORAGE_LOCATION}/netalertx/config:/app/config
+            - ${CONFIG_STORAGE_LOCATION}/netalertx/db:/app/db
+            - ${pihole_piholeFTLdb}:/etc/pihole/pihole-FTL.db:ro
+        environment:
+            - TZ=America/New_York
+            - PORT=20211
+        container_name: netalertx
+        restart: unless-stopped
+        image: jokobsk/netalertx:latest

@@ -1,0 +1,36 @@
+services:
+  broker:
+    image: docker.io/library/redis:7
+    restart: unless-stopped
+    volumes:
+      - ${CONFIG_STORAGE_LOCATION}/paperless/redisdata:/data
+
+  db:
+    image: docker.io/library/postgres:16
+    restart: unless-stopped
+    volumes:
+      - ${CONFIG_STORAGE_LOCATION}/paperless/pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: paperless
+      POSTGRES_USER: ${paperless_db_user}
+      POSTGRES_PASSWORD: ${paperless_db_password}
+
+  webserver:
+    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    restart: unless-stopped
+    depends_on:
+      - db
+      - broker
+    ports:
+      - "8047:8000"
+    volumes:
+      - ${CONFIG_STORAGE_LOCATION}/paperless/data:/usr/src/paperless/data
+      - ${CONFIG_STORAGE_LOCATION}/paperless/media:/usr/src/paperless/media
+      - ${CONFIG_STORAGE_LOCATION}/paperless/export:/usr/src/paperless/export
+      - ${CONFIG_STORAGE_LOCATION}/paperless/consume:/usr/src/paperless/consume
+    environment:
+      PAPERLESS_REDIS: redis://broker:6379
+      PAPERLESS_DBHOST: db
+      PAPERLESS_DBPASS: ${paperless_db_password}
+      PAPERLESS_URL: ${paperless_url}
+      PAPERLESS_CSRF_TRUSTED_ORIGINS: ${paperless_url}

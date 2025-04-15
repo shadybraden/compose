@@ -1,0 +1,16 @@
+services:
+    freshrss:
+        restart: unless-stopped
+        logging:
+            options:
+                max-size: 10m
+        ports:
+            - 8062:80
+        environment:
+            - TZ=America/New_York
+            - CRON_MIN=1,31 # this is minute 1 and 31
+        volumes:
+            - ${CONFIG_STORAGE_LOCATION}/freshrss/data:/var/www/FreshRSS/data
+            - ${CONFIG_STORAGE_LOCATION}/freshrss/extensions:/var/www/FreshRSS/extensions
+        container_name: freshrss
+        image: freshrss/freshrss

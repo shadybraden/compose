@@ -1,0 +1,15 @@
+services:
+  server:
+    image: codeberg.org/forgejo/forgejo:10
+    container_name: forgejo
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+    restart: unless-stopped
+    volumes:
+      - ${CONFIG_STORAGE_LOCATION}/filebrowser/forgejo:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - 3003:3000
+      - 222:22

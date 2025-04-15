@@ -1,0 +1,15 @@
+services:
+  watchtower:
+    container_name: watchtower
+    volumes:
+        - ${CONFIG_STORAGE_LOCATION}/watchtower/config.json:/config.json
+        - /var/run/docker.sock:/var/run/docker.sock
+    image: containrrr/watchtower
+    environment:
+      - TZ=America/New_York
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_SCHEDULE=0 0 6 * * 1
+      - WATCHTOWER_NOTIFICATIONS=shoutrrr
+      - WATCHTOWER_NOTIFICATION_URL=ntfy://${ntfy_host}/${watchtower_topic}
+      - WATCHTOWER_NOTIFICATION_TITLE_TAG=updated!
+    restart: unless-stopped

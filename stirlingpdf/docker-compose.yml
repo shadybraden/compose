@@ -1,0 +1,15 @@
+services:
+  stirling-pdf:
+    image: stirlingtools/stirling-pdf
+    container_name: stirlingpdf
+    ports:
+      - '8087:8080'
+    volumes:
+      - ${CONFIG_STORAGE_LOCATION}/stirlingpdf/trainingData:/usr/share/tessdata # Required for extra OCR languages
+      - ${CONFIG_STORAGE_LOCATION}/stirlingpdf/extraConfigs:/configs
+#      - ./customFiles:/customFiles/
+#      - ./logs:/logs/
+    environment:
+      - DOCKER_ENABLE_SECURITY=false
+      - INSTALL_BOOK_AND_ADVANCED_HTML_OPS=false
+      - LANGS=en_GB

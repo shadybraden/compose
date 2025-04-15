@@ -1,0 +1,21 @@
+services:
+  mealie:
+    container_name: mealie
+    image: ghcr.io/mealie-recipes/mealie:nightly
+    restart: unless-stopped
+    volumes:
+      - ${CONFIG_STORAGE_LOCATION}/mealie:/app/data/
+    ports:
+      - 9091:9000
+    environment:
+      ALLOW_SIGNUP: "false"
+      LOG_LEVEL: "DEBUG"
+
+      DB_ENGINE: sqlite # Optional: 'sqlite', 'postgres'
+      # =====================================
+      # Postgres Config
+      POSTGRES_USER: mealie
+      POSTGRES_PASSWORD: ${mealie_db_password}
+      POSTGRES_SERVER: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: mealie

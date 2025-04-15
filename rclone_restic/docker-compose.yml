@@ -1,0 +1,87 @@
+services:
+  rclone:
+    image: rclone/rclone:latest
+    container_name: rclone
+    security_opt:
+      - no-new-privileges:true
+    restart: on-failure
+#    command: rcd --rc-web-gui --rc-addr 0.0.0.0:5572 --rc-web-fetch-url=https://api.github.com/repos/rclone/rclone-webui-react/releases/latest --rc-web-gui-update --rc-user admin --rc-pass password -vv --checksum --transfers=4 --checkers=4 --contimeout=60s --timeout=300s --retries=3 --low-level-retries=10 --stats=1s --stats-file-name-length=0
+    ports:
+      - "5572:5572" # add this port if you're not using a proxy
+    volumes:
+      - ${CONFIG_STORAGE_LOCATION}/rclone/rclone.conf:/config/rclone/rclone.conf # location of your rclone config file (i.e., where the remote and secrets are stored)
+#      - ./sync_script:/sync_script # script to allow remote execution of backups (e.g., rclone copy --checksum --verbose --transfers 1 --checkers 4 --contimeout 60s --timeout 300s --retries 3 --low-level-retries 10 --stats 1s /YOUR_FOLDER YOUR_REMOTE:REMOTE_FOLDER/sync_script)
+      - ${rclone_restic_backups}:/data/restic # data to upload
+    environment:
+      - PHP_TZ=America/New_York
+  restic:
+    image: mazzolino/restic
+    container_name: restic
+    restart: on-failure
+    hostname: ${rclone_restic_hostname}
+    environment:
+      RUN_ON_STARTUP: "true" # change as you wish
+      BACKUP_CRON: "0 */12 * * *" # this is twice daily, i.e., every 12 hours
+      RESTIC_REPOSITORY: /restic
+      RESTIC_PASSWORD: ${rclone_restic_password}
+      RESTIC_BACKUP_SOURCES: /mnt/volumes # this should be the top dir of the below internal dir's
+      RESTIC_COMPRESSION: auto
+      RESTIC_BACKUP_ARGS: >-
+        --tag ${rclone_restic_tag}
+        --verbose
+      RESTIC_FORGET_ARGS: >- # change as required
+        --keep-last 10
+        --keep-daily 7
+        --keep-weekly 5
+        --keep-monthly 12
+      TZ: America/New_York
+      POST_COMMANDS_SUCCESS: |-
+        curl -H "Title: ${rclone_restic_hostname} restic backups success" -H "Priority: min" -H "Tags: house" -d "done" https://${ntfy_host}/${rclone_restic_ntfy_topic}
+      POST_COMMANDS_FAILURE: |-
+        curl -H "Title: ${rclone_restic_hostname} restic backups FAILURE" -H "Priority: high" -H "Tags: rotating_light" -d "SEE LOGS" https://${ntfy_host}/${rclone_restic_ntfy_topic}
+      POST_COMMANDS_INCOMPLETE: |-
+        curl -H "Title: ${rclone_restic_hostname} restic INCOMPLETE" -H "Priority: default" -H "Tags: warning" -d "SEE LOGS" https://${ntfy_host}/${rclone_restic_ntfy_topic}
+    volumes:
+      - ${rclone_restic_backups}:/restic # BACKUP STORAGE - actual backups here
+      - /tmp-for-restore:/tmp-for-restore # USE THIS FOLDER FOR RESTORE - CAN VIEW EACH CONTAINER
+      - ${rclone_restic_data_to_backup1}:/mnt/volumes/home:ro # DATA TO BACKUP
+      - ${rclone_restic_data_to_backup2}:/mnt/volumes/immich:ro # DATA TO BACKUP
+      - ${rclone_restic_data_to_backup3}:/mnt/volumes/torrents:ro # DATA TO BACKUP
+    security_opt:
+      - no-new-privileges:true
+
+  prune:
+    image: mazzolino/restic
+    container_name: restic-prune
+    hostname: ${rclone_restic_hostname}
+    restart: on-failure
+    environment:
+      RUN_ON_STARTUP: "true"
+      PRUNE_CRON: "0 0 4 * * *" # this is 4am
+      RESTIC_REPOSITORY: /restic
+      RESTIC_PASSWORD: ${rclone_restic_password}
+      TZ: America/New_York
+    security_opt:
+      - no-new-privileges:true
+
+  check:
+    image: mazzolino/restic
+    container_name: restic-check
+    restart: on-failure
+    hostname: ${rclone_restic_hostname}
+    environment:
+      RUN_ON_STARTUP: "false"
+      CHECK_CRON: "0 15 5 * * *" # this is 5:15am. so should be running after update (watchtower), and after backup (first container here)
+      RESTIC_CHECK_ARGS: >-
+        --read-data-subset=10%
+      RESTIC_REPOSITORY: /restic
+      RESTIC_PASSWORD: ${rclone_restic_password}
+      TZ: America/New_York
+    security_opt:
+      - no-new-privileges:true
+
+
+# from here:
+# https://github.com/JamesTurland/JimsGarage/blob/main/restic/docker-compose.yml
+# https://invidious.nerdvpn.de/watch?v=WBBTC5WfGis
+# https://youtu.be/WBBTC5WfGis

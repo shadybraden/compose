@@ -1,0 +1,17 @@
+services:
+    ollama:
+        volumes:
+            - ${CONFIG_STORAGE_LOCATION}/ai/ollama:/root/.ollama
+        ports:
+            - 11434:11434
+        container_name: ollama
+        restart: unless-stopped
+        image: ollama/ollama
+    open-webui:
+        ports:
+            - 3001:8080
+        volumes:
+            - ${CONFIG_STORAGE_LOCATION}/ai/open-webui:/app/backend/data
+        container_name: open-webui
+        image: ghcr.io/open-webui/open-webui:main
+        restart: unless-stopped

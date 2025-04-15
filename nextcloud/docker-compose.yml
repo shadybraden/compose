@@ -1,0 +1,15 @@
+services:
+    nextcloud:
+        container_name: nextcloud
+        ports:
+            - 8286:80
+        restart: unless-stopped
+        volumes:
+            - ${CONFIG_STORAGE_LOCATION}/nextcloud/html:/var/www/html
+            - ${CONFIG_STORAGE_LOCATION}/nextcloud/apps:/var/www/html/custom_apps
+            - ${CONFIG_STORAGE_LOCATION}/nextcloud/config:/var/www/html/config
+            - ${CONFIG_STORAGE_LOCATION}/nextcloud/data:/var/www/html/data
+        image: nextcloud:latest
+# the nextcloud folder wants to be in the group www-data
+# sudo chown -R www-data:www-data nextcloud/
+# but cd into /home/skynet/config first (assuming nextcloud the folder is inside config
