@@ -21,8 +21,9 @@ See each folder's README for details on what each thing is and what it does.
 
 ### Roadmap:
 
+- komodo
+- renovate
+- traefik
 - figure out how to use bitwarden cli or hashicorp vaults to fetch secrets on container start
-- use [renovate](https://nickcunningh.am/blog/how-to-automate-version-updates-for-your-self-hosted-docker-containers-with-gitea-renovate-and-komodo) (and komodo) to automate updates instead of watchtower
 - use some sso authentication method
-- use traefik
 - migrate away from monolish .env file
