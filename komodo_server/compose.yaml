@@ -19,8 +19,8 @@ services:
     # ports:
     #   - 27017:27017
     volumes:
-      - mongo-data:/data/db
-      - mongo-config:/data/configdb
+      - ${CONFIG_STORAGE_LOCATION}/komodo/mongo-data:/data/db
+      - ${CONFIG_STORAGE_LOCATION}/komodo/mongo-config:/data/configdb
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${KOMODO_DB_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${KOMODO_DB_PASSWORD}
@@ -43,7 +43,7 @@ services:
       KOMODO_DATABASE_PASSWORD: ${KOMODO_DB_PASSWORD}
     volumes:
       ## Core cache for repos for latest commit hash / contents
-      - repo-cache:/repo-cache
+      - ${CONFIG_STORAGE_LOCATION}/komodo/repo-cache:/repo-cache
       ## Store sync files on server
       # - /path/to/syncs:/syncs
       ## Optionally mount a custom core.config.toml
@@ -74,10 +74,3 @@ services:
       ## or docker will get confused. See https://github.com/moghtech/komodo/discussions/180.
       ## Default: /etc/komodo.
       - ${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}:${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}
-
-volumes:
-  # Mongo
-  mongo-data:
-  mongo-config:
-  # Core
-  repo-cache:
