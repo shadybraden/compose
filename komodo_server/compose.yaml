@@ -21,10 +21,10 @@ services:
     volumes:
       - ${CONFIG_STORAGE_LOCATION}/komodo/mongo-data:/data/db
       - ${CONFIG_STORAGE_LOCATION}/komodo/mongo-config:/data/configdb
+    env_file: ./compose.env
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${KOMODO_DB_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${KOMODO_DB_PASSWORD}
-    env_file: ./compose.env
 
   core:
     image: ghcr.io/moghtech/komodo-core:${COMPOSE_KOMODO_IMAGE_TAG:-latest}
