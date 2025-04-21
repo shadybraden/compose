@@ -8,8 +8,8 @@ services:
       - TZ=America/New_York
       - FTLCONF_dns_listeningMode=all
     volumes:
-      - ./etc-pihole:/etc/pihole
-      - ./etc-dnsmasq.d:/etc/dnsmasq.d
+      - /home/holmie/pihole/etc-pihole:/etc/pihole
+      - /home/holmie/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
     ports:
       - "53:53/tcp"
       - "53:53/udp"
