@@ -7,7 +7,7 @@ services:
       - FTLCONF_dns_upstreams=9.9.9.9;1.1.1.1
       - TZ=America/New_York
       - FTLCONF_dns_listeningMode=all
-      - USER=${USER}
+      - USER=${SUDO_USER}
     volumes:
       - /home/${USER}/pihole/etc-pihole:/etc/pihole
       - /home/${USER}/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
