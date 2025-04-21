@@ -12,9 +12,9 @@ services:
       - /data/config_storage/traefik/traefik.yml:/etc/traefik/traefik.yml:ro
       - /data/config_storage/traefik/config.yml:/etc/traefik/config.yml:ro
     enviroment:
-      - TRAEFIK_DASHBOARD_CREDENTIALS: ${TRAEFIK_DASHBOARD_CREDENTIALS}
-      - CF_DNS_API_TOKEN_FILE: ${cf-token}
-      - CF_API_EMAIL: ${cf-email}
+      TRAEFIK_DASHBOARD_CREDENTIALS: ${TRAEFIK_DASHBOARD_CREDENTIALS}
+      CF_DNS_API_TOKEN_FILE: ${cf-token}
+      CF_API_EMAIL: ${cf-email}
     image: traefik:v3.3
     container_name: traefik
     restart: unless-stopped
