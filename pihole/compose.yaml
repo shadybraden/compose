@@ -7,10 +7,9 @@ services:
       - FTLCONF_dns_upstreams=9.9.9.9;1.1.1.1
       - TZ=America/New_York
       - FTLCONF_dns_listeningMode=all
-      - USER=${SUDO_USER}
     volumes:
-      - /home/${USER}/pihole/etc-pihole:/etc/pihole
-      - /home/${USER}/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
+      - /home/data/pihole/etc-pihole:/etc/pihole
+      - /home/data/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
     ports:
       - "53:53/tcp"
       - "53:53/udp"
