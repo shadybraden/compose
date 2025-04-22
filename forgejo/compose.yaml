@@ -7,7 +7,7 @@ services:
       - USER_GID=1000
     restart: unless-stopped
     volumes:
-      - ${CONFIG_STORAGE_LOCATION}/filebrowser/forgejo:/data
+      - /data/config_storage/forgejo:/data
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
