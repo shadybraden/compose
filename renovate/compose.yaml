@@ -1,0 +1,11 @@
+services:
+    renovate:
+        stdin_open: true
+        tty: true
+        volumes:
+            - /data/config_storage/renovate/config.js:/usr/src/app/config.js
+            - /tmp:/tmp
+        environment:
+            - LOG_LEVEL=debug
+        image: renovate/renovate
+        command: --include-forks=true renovate-tests/gomod1
