@@ -2,7 +2,7 @@
 services:
   traefik:
     ports:
-      # - 8080:8080 # ro web ui
+      - 8080:8080 # ro web ui
       - 80:80   # http
       - 443:443 # https
     volumes:
