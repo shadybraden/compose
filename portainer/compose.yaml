@@ -9,6 +9,8 @@ services:
             - /data/config_storage/portainer:/data
             - /etc/localtime:/etc/localtime:ro
         image: portainer/portainer-ce
+        networks:
+          intranet:
         labels:
         - "traefik.enable=true"
         - "traefik.http.routers.portainer.entrypoints=http"
@@ -21,6 +23,6 @@ services:
         - "traefik.http.routers.portainer-secure.service=portainer"
         - "traefik.http.services.portainer.loadbalancer.server.port=7777"
         - "traefik.docker.network=intranet"
-networks:
-  intranet:
-    external: true
+#networks:
+#  intranet:
+#    external: true
