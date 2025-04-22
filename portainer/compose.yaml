@@ -9,6 +9,8 @@ services:
         image: portainer/portainer-ce
 #        ports:
 #            - 9000:9000
+        security_opt:
+          - no-new-privileges:true # helps to increase security
         networks:
           - intranet
         labels:
