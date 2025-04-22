@@ -1,4 +1,4 @@
-# touch traefik.yml config.yml acme.json
+# touch traefik.yml config.yml acme.json dynamic_conf.yml
 services:
   traefik:
     ports:
@@ -12,6 +12,7 @@ services:
       - /data/config_storage/traefik/acme.json:/acme.json
       - /data/config_storage/traefik/traefik.yml:/etc/traefik/traefik.yml:ro
       - /data/config_storage/traefik/config.yml:/etc/traefik/config.yml:ro
+      - /data/config_storage/traefik/dynamic_conf.yml:/etc/traefik/dynamic_conf.yml
     environment:
       TRAEFIK_DASHBOARD_CREDENTIALS: ${TRAEFIK_DASHBOARD_CREDENTIALS}
       CF_DNS_API_TOKEN: ${CF_DNS_API_TOKEN}
