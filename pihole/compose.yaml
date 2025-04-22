@@ -8,8 +8,8 @@ services:
       - TZ=America/New_York
       - FTLCONF_dns_listeningMode=all
     volumes:
-      - /home/data/pihole/etc-pihole:/etc/pihole
-      - /home/data/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
+      - /data/config_storage/pihole/etc-pihole:/etc/pihole
+      - /data/config_storage/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
     restart: unless-stopped
     cap_add:
       - SYS_NICE
