@@ -15,7 +15,7 @@ services:
     environment:
       TRAEFIK_DASHBOARD_CREDENTIALS: ${TRAEFIK_DASHBOARD_CREDENTIALS}
       # CF_DNS_API_TOKEN_FILE: ${cf-token}
-      CF_API_KEY: ${cf-token}
+      CF_DNS_API_TOKEN: ${cf-token}
       CF_API_EMAIL: ${cf-email}
     image: traefik:v3.3
     container_name: traefik
