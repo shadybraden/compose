@@ -1,5 +1,5 @@
 services:
-    portainer-ce:
+    portainer:
         container_name: portainer
         restart: unless-stopped
         volumes:
