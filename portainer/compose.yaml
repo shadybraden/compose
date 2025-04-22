@@ -21,3 +21,6 @@ services:
         - "traefik.http.routers.trilium-secure.service=trilium"
         - "traefik.http.services.trilium.loadbalancer.server.port=8080"
         - "traefik.docker.network=intranet"
+        networks:
+            intranet: # docker network create intranet
+                external: true # or comment this line to auto create the network

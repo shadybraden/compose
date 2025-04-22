@@ -41,4 +41,5 @@ services:
       - "traefik.http.routers.traefik-secure.service=api@internal"
 
 networks:
-  intranet:
+  intranet: # docker network create intranet
+    external: true # or comment this line to auto create the network
