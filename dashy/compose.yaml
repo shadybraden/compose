@@ -1,10 +1,30 @@
 services:
     dashy:
-        ports:
-            - 48888:8080
+#        ports:
+#            - 48888:8080
         volumes:
             - ${CONFIG_STORAGE_LOCATION}/dashy/conf.yml:/app/user-data/conf.yml
             - ./icons:/app/user-data/item-icons
         container_name: dashy
         restart: unless-stopped
         image: lissy93/dashy
+        security_opt:
+        - no-new-privileges:true # helps to increase security
+        networks:
+        - intranet
+        labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.dashy.entrypoints=http"
+        - "traefik.http.routers.dashy.rule=Host(`dashy.holmlab.org`)"
+        - "traefik.http.middlewares.dashy-https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.dashy.middlewares=dashy-https-redirect"
+        - "traefik.http.routers.dashy-secure.entrypoints=https"
+        - "traefik.http.routers.dashy-secure.rule=Host(`dashy.holmlab.org`)"
+        - "traefik.http.routers.dashy-secure.tls=true"
+        - "traefik.http.routers.dashy-secure.service=dashy"
+        - "traefik.http.services.dashy.loadbalancer.server.port=48888" # port of the service. i.e. dashy likes 9000
+        - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true
