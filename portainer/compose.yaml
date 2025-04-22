@@ -23,4 +23,3 @@ services:
         - "traefik.docker.network=intranet"
         networks:
             intranet: # docker network create intranet
-                external: true # or comment this line to auto create the network
