@@ -22,5 +22,5 @@ services:
         - "traefik.http.services.portainer.loadbalancer.server.port=8080"
         - "traefik.docker.network=intranet"
 networks:
-  proxy:
+  intranet:
     external: true
