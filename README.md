@@ -1,6 +1,12 @@
 # Docker compose.yaml based homelab
 
-The idea here is a single node server. With lots of containers, organization is key. This directory is where the config is. Have a poke around. Inside each folder is a `compose.yaml` file. Areas where editing is needed will be marked, but the files should be able to just be ran with `docker compose up -d`
+re-write coming...
+
+This is an opinionated homelab. It is a single server that is GitOps'ed and version controlled
+
+Read
+
+Inside each folder is a `compose.yaml` file. Areas where editing is needed will be marked, but the files should be able to just be ran with `docker compose up -d`
 
 Remember; if there is a file (for example `settings.json`) in the volumes section of any docker-compose.yml, then that file has to already exist.
 So make sure to run `touch settings.json` first, or docker will make the *FOLDER* `settings.json` instead of the file.
@@ -26,4 +32,5 @@ See each folder's README for details on what each thing is and what it does.
 - traefik
 - figure out how to use bitwarden cli or hashicorp vaults to fetch secrets on container start
 - use some sso authentication method
-- migrate away from monolish .env file
+- migrate away from monolith .env file
+- doc on order of setup. (pihole, traefik auth etc)
