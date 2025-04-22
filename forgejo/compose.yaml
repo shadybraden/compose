@@ -11,5 +11,25 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
-      - 3003:3000
+#      - 3003:3000
       - 222:22
+    security_opt:
+    - no-new-privileges:true # helps to increase security
+    networks:
+    - intranet
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.forgejo.entrypoints=http"
+    - "traefik.http.routers.forgejo.rule=Host(`git.holmlab.org`)"
+    - "traefik.http.middlewares.forgejo-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.forgejo.middlewares=forgejo-https-redirect"
+    - "traefik.http.routers.forgejo-secure.entrypoints=https"
+    - "traefik.http.routers.forgejo-secure.rule=Host(`git.holmlab.org`)"
+    - "traefik.http.routers.forgejo-secure.tls=true"
+    - "traefik.http.routers.forgejo-secure.service=forgejo"
+    - "traefik.http.services.forgejo.loadbalancer.server.port=3003" # port of the service. i.e. forgejo likes 9000
+    - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true
