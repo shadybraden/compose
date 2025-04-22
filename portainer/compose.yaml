@@ -23,6 +23,6 @@ services:
         - "traefik.http.routers.portainer-secure.service=portainer"
         - "traefik.http.services.portainer.loadbalancer.server.port=7777"
         - "traefik.docker.network=intranet"
-#networks:
-#  intranet:
-#    external: true
+networks:
+  intranet:
+    external: true
