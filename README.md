@@ -1,6 +1,6 @@
 # Docker compose.yaml based homelab
 
-re-write coming...ssh edit
+re-write coming...
 
 This is an opinionated homelab. It is a single server that is GitOps'ed and version controlled
 
