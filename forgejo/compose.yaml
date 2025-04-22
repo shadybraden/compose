@@ -27,7 +27,7 @@ services:
     - "traefik.http.routers.forgejo-secure.rule=Host(`git.holmlab.org`)"
     - "traefik.http.routers.forgejo-secure.tls=true"
     - "traefik.http.routers.forgejo-secure.service=forgejo"
-    - "traefik.http.services.forgejo.loadbalancer.server.port=3003" # port of the service. i.e. forgejo likes 9000
+    - "traefik.http.services.forgejo.loadbalancer.server.port=3000" # port of the service. i.e. forgejo likes 9000
     - "traefik.docker.network=intranet"
 
 networks:
