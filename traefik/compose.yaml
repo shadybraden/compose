@@ -2,7 +2,7 @@
 services:
   traefik:
     ports:
-      - 8288:8080
+      - 7777:8080
       - 80:80   # http
       - 443:443 # https
     volumes:
@@ -26,13 +26,13 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.traefik.entrypoints=http"
-      - "traefik.http.routers.traefik.rule=Host(`traefik-docker.holmlab.org`)"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.holmlab.org`)"
       - "traefik.http.middlewares.traefik-auth.basicauth.users=${TRAEFIK_DASHBOARD_CREDENTIALS}"
       - "traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https"
       - "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https"
       - "traefik.http.routers.traefik.middlewares=traefik-https-redirect"
       - "traefik.http.routers.traefik-secure.entrypoints=https"
-      - "traefik.http.routers.traefik-secure.rule=Host(`traefik-docker.holmlab.org`)"
+      - "traefik.http.routers.traefik-secure.rule=Host(`traefik.holmlab.org`)"
       - "traefik.http.routers.traefik-secure.middlewares=traefik-auth"
       - "traefik.http.routers.traefik-secure.tls=true"
       - "traefik.http.routers.traefik-secure.tls.certresolver=cloudflare"
