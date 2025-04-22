@@ -8,6 +8,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /data/config_storage/traefik/logs:/var/log/traefik
       - /data/config_storage/traefik/acme.json:/acme.json
       - /data/config_storage/traefik/traefik.yml:/etc/traefik/traefik.yml:ro
       - /data/config_storage/traefik/config.yml:/etc/traefik/config.yml:ro
