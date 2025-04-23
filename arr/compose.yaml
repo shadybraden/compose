@@ -42,7 +42,7 @@ services:
     - "traefik.http.routers.qbittorrent_movies-secure.rule=Host(`qbittorrent_movies.holmlab.org`)"
     - "traefik.http.routers.qbittorrent_movies-secure.tls=true"
     - "traefik.http.routers.qbittorrent_movies-secure.service=qbittorrent_movies"
-    - "traefik.http.services.qbittorrent_movies.loadbalancer.server.port=8081" # port of the service. i.e. qbittorrent_movies likes 9000
+    - "traefik.http.services.qbittorrent_movies.loadbalancer.server.port=8082" # port of the service. i.e. qbittorrent_movies likes 9000
 
     - "traefik.http.routers.jackett.entrypoints=http"
     - "traefik.http.routers.jackett.rule=Host(`jackett.holmlab.org`)"
@@ -52,7 +52,7 @@ services:
     - "traefik.http.routers.jackett-secure.rule=Host(`jackett.holmlab.org`)"
     - "traefik.http.routers.jackett-secure.tls=true"
     - "traefik.http.routers.jackett-secure.service=jackett"
-    - "traefik.http.services.jackett.loadbalancer.server.port=8081" # port of the service. i.e. jackett likes 9000
+    - "traefik.http.services.jackett.loadbalancer.server.port=9117" # port of the service. i.e. jackett likes 9000
 
 
 
