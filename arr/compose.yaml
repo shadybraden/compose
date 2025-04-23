@@ -123,6 +123,7 @@ services:
     security_opt:
       - no-new-privileges:true # helps to increase security
 
+# in the ui, set "Default Save Path:" to "Default Save Path:"
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
     container_name: qbittorrent
