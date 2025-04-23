@@ -32,7 +32,7 @@ services:
     - "traefik.http.routers.immich-secure.service=immich"
     - "traefik.http.services.immich.loadbalancer.server.port=8080" # port of the service. i.e. immich likes 9000
     - "traefik.docker.network=intranet"
-    - "traefik.http.middlewares.add-api.stripprefix.prefixes=/api"
+    - "traefik.http.routers.media-immich-api.rule=Host(`immich.holmlab.org`) && Pathprefix(`/api`)"
 
   immich-machine-learning:
     container_name: immich_machine_learning
