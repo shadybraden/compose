@@ -21,7 +21,7 @@ services:
         labels:
         - "com.centurylinklabs.watchtower.enable=false" # disable auto updates via watchtower
         - "traefik.enable=true"
-        - traefik.docker.network=web
+        - traefik.docker.network=web # https://www.reddit.com/r/Traefik/comments/190ps04/502_bad_gateway_connection_refused/
         - "traefik.http.routers.homeassistant.entrypoints=http"
         - "traefik.http.routers.homeassistant.rule=Host(`homeassistant.holmlab.org`)"
         - "traefik.http.middlewares.homeassistant-https-redirect.redirectscheme.scheme=https"
