@@ -3,18 +3,18 @@ services:
 #        network_mode: host
         container_name: jellyfin
 #        ports:
-#            - 8096:8096
+#        - 8096:8096
         volumes:
-            - /data/config_storage/jellyfin/config:/config
-            - /data/config_storage/jellyfin/cache:/cache
-            - /mnt/4tb/arr:/arr
-            - /mnt/4tb/MOVIES_jellyfin:/media
+        - /data/config_storage/jellyfin/config:/config
+        - /data/config_storage/jellyfin/cache:/cache
+        - /mnt/4tb/arr:/arr
+        - /mnt/4tb/MOVIES_jellyfin:/media
         restart: on-failure
         image: lscr.io/linuxserver/jellyfin:latest
         environment:
-            - PUID=1000
-            - PGID=1000
-            - TZ=Etc
+        - PUID=1000
+        - PGID=1000
+        - TZ=Etc
         security_opt:
         - no-new-privileges:true # helps to increase security
         networks:
