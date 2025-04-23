@@ -25,24 +25,14 @@ services:
     - "traefik.enable=true"
     - "traefik.docker.network=intranet"
     - "traefik.http.routers.qbittorrent_shows.entrypoints=http"
-    - "traefik.http.routers.qbittorrent_shows.rule=Host(`qbittorrent-shows.holmlab.org`)"
+    - "traefik.http.routers.qbittorrent_shows.rule=Host(`qbittorrent.holmlab.org`)"
     - "traefik.http.middlewares.qbittorrent_shows-https-redirect.redirectscheme.scheme=https"
     - "traefik.http.routers.qbittorrent_shows.middlewares=qbittorrent_shows-https-redirect"
     - "traefik.http.routers.qbittorrent_shows-secure.entrypoints=https"
-    - "traefik.http.routers.qbittorrent_shows-secure.rule=Host(`qbittorrent-shows.holmlab.org`)"
+    - "traefik.http.routers.qbittorrent_shows-secure.rule=Host(`qbittorrent.holmlab.org`)"
     - "traefik.http.routers.qbittorrent_shows-secure.tls=true"
     - "traefik.http.routers.qbittorrent_shows-secure.service=qbittorrent_shows"
     - "traefik.http.services.qbittorrent_shows.loadbalancer.server.port=8080" # port of the service. i.e. qbittorrent_shows likes 9000
-
-    - "traefik.http.routers.qbittorrent_movies.entrypoints=http"
-    - "traefik.http.routers.qbittorrent_movies.rule=Host(`qbittorrent-movies.holmlab.org`)"
-    - "traefik.http.middlewares.qbittorrent_movies-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.qbittorrent_movies.middlewares=qbittorrent_movies-https-redirect"
-    - "traefik.http.routers.qbittorrent_movies-secure.entrypoints=https"
-    - "traefik.http.routers.qbittorrent_movies-secure.rule=Host(`qbittorrent-movies.holmlab.org`)"
-    - "traefik.http.routers.qbittorrent_movies-secure.tls=true"
-    - "traefik.http.routers.qbittorrent_movies-secure.service=qbittorrent_movies"
-    - "traefik.http.services.qbittorrent_movies.loadbalancer.server.port=8080" # port of the service. i.e. qbittorrent_movies likes 9000
 
     - "traefik.http.routers.jackett.entrypoints=http"
     - "traefik.http.routers.jackett.rule=Host(`jackett.holmlab.org`)"
@@ -130,38 +120,17 @@ services:
     security_opt:
       - no-new-privileges:true # helps to increase security
 
-  qbittorrent_shows:
+  qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
-    container_name: qbittorrent_shows
+    container_name: qbittorrent
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
-#      - WEBUI_PORT=8081
-      - TORRENTING_PORT=${arr_qbittorrent_shows_port}
+      - TORRENTING_PORT=${arr_qbittorrent_port}
     volumes:
-      - /data/config_storage/arr/qbittorrent_shows:/config
-      - /mnt/4tb/arr/shows/torrents:/downloads/torrents
-    restart: on-failure
-    network_mode: service:gluetun_arr
-    depends_on:
-      gluetun_arr:
-        condition: service_healthy
-    security_opt:
-      - no-new-privileges:true # helps to increase security
-
-  qbittorrent_movies:
-    image: lscr.io/linuxserver/qbittorrent:latest
-    container_name: qbittorrent_movies
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Etc/UTC
-#      - WEBUI_PORT=8082
-      - TORRENTING_PORT=${arr_qbittorrent_movies_port}
-    volumes:
-      - /data/config_storage/arr/qbittorrent_movies:/config
-      - /mnt/4tb/arr/movies/torrents:/downloads/torrents
+      - /data/config_storage/arr/qbittorrent:/config
+      - /mnt/4tb/arr/torrents:/downloads/torrents
     restart: on-failure
     network_mode: service:gluetun_arr
     depends_on:
