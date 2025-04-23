@@ -14,3 +14,23 @@ services:
         image: ghcr.io/home-assistant/home-assistant:stable
         labels:
             - "com.centurylinklabs.watchtower.enable=false" # disable auto updates via watchtower
+        security_opt:
+        - no-new-privileges:true # helps to increase security
+        networks:
+        - intranet
+        labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.homeassistant.entrypoints=http"
+        - "traefik.http.routers.homeassistant.rule=Host(`homeassistant.holmlab.org`)"
+        - "traefik.http.middlewares.homeassistant-https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.homeassistant.middlewares=homeassistant-https-redirect"
+        - "traefik.http.routers.homeassistant-secure.entrypoints=https"
+        - "traefik.http.routers.homeassistant-secure.rule=Host(`homeassistant.holmlab.org`)"
+        - "traefik.http.routers.homeassistant-secure.tls=true"
+        - "traefik.http.routers.homeassistant-secure.service=homeassistant"
+        - "traefik.http.services.homeassistant.loadbalancer.server.port=8124" # port of the service. i.e. homeassistant likes 9000
+        - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true
