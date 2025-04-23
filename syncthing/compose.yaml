@@ -12,8 +12,28 @@ services:
       - /data/config_storage/syncthing/syncthing:/var/syncthing
       - /mnt/syncthing:/syncthing
     ports:
-      - 8384:8384
+#      - 8384:8384 # web ui
       - 22000:22000/tcp
       - 22000:22000/udp
       - 21027:21027/udp
     restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true # helps to increase security
+    networks:
+      - intranet
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.syncthing-holmie.entrypoints=http"
+    - "traefik.http.routers.syncthing-holmie.rule=Host(`syncthing-holmie.holmlab.org`)"
+    - "traefik.http.middlewares.syncthing-holmie-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.syncthing-holmie.middlewares=syncthing-holmie-https-redirect"
+    - "traefik.http.routers.syncthing-holmie-secure.entrypoints=https"
+    - "traefik.http.routers.syncthing-holmie-secure.rule=Host(`syncthing-holmie.holmlab.org`)"
+    - "traefik.http.routers.syncthing-holmie-secure.tls=true"
+    - "traefik.http.routers.syncthing-holmie-secure.service=syncthing-holmie"
+    - "traefik.http.services.syncthing-holmie.loadbalancer.server.port=80" # port of the service. i.e. syncthing-holmie likes 9000
+    - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true
