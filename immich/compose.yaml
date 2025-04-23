@@ -15,22 +15,6 @@ services:
       - redis
       - database
     restart: on-failure
-    security_opt:
-      - no-new-privileges:true # helps to increase security
-    networks:
-      - intranet
-    labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.immich.entrypoints=http"
-    - "traefik.http.routers.immich.rule=Host(`immich.holmlab.org`)"
-    - "traefik.http.middlewares.immich-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.immich.middlewares=immich-https-redirect"
-    - "traefik.http.routers.immich-secure.entrypoints=https"
-    - "traefik.http.routers.immich-secure.rule=Host(`immich.holmlab.org`)"
-    - "traefik.http.routers.immich-secure.tls=true"
-    - "traefik.http.routers.immich-secure.service=immich"
-    - "traefik.http.services.immich.loadbalancer.server.port=2283" # port of the service. i.e. immich likes 9000
-    - "traefik.docker.network=intranet"
 
   immich-machine-learning:
     container_name: immich_machine_learning
@@ -61,7 +45,3 @@ services:
 
 volumes:
   model-cache:
-
-networks:
-  intranet:
-    external: true
