@@ -2,8 +2,8 @@ services:
   stirling-pdf:
     image: stirlingtools/stirling-pdf
     container_name: stirlingpdf
-    ports:
-      - '8087:8080'
+#    ports:
+#      - '8087:8080'
     volumes:
       - ${CONFIG_STORAGE_LOCATION}/stirlingpdf/trainingData:/usr/share/tessdata # Required for extra OCR languages
       - ${CONFIG_STORAGE_LOCATION}/stirlingpdf/extraConfigs:/configs
@@ -13,3 +13,23 @@ services:
       - DOCKER_ENABLE_SECURITY=false
       - INSTALL_BOOK_AND_ADVANCED_HTML_OPS=false
       - LANGS=en_GB
+    security_opt:
+      - no-new-privileges:true # helps to increase security
+    networks:
+      - intranet
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.pdf.entrypoints=http"
+    - "traefik.http.routers.pdf.rule=Host(`pdf.holmlab.org`)"
+    - "traefik.http.middlewares.pdf-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.pdf.middlewares=pdf-https-redirect"
+    - "traefik.http.routers.pdf-secure.entrypoints=https"
+    - "traefik.http.routers.pdf-secure.rule=Host(`pdf.holmlab.org`)"
+    - "traefik.http.routers.pdf-secure.tls=true"
+    - "traefik.http.routers.pdf-secure.service=pdf"
+    - "traefik.http.services.pdf.loadbalancer.server.port=8080" # port of the service. i.e. pdf likes 9000
+    - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true
