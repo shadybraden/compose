@@ -59,7 +59,7 @@ services:
       - PORT=7878
     volumes:
       - /data/config_storage/arr/radarr:/config
-      - /mnt/4tb/arr/movies/torrents:/downloads/torrents
+      - //mnt/4tb/arr/torrents:/downloads/torrents
       - /mnt/4tb/arr/movies/media:/movies
     restart: on-failure
     security_opt:
@@ -90,7 +90,7 @@ services:
       - TZ=America/New_York
     volumes: # idea is a torrents folder for live downloads, and a media folder for sonarr to copy the files to once finished
       - /data/config_storage/arr/sonarr:/config
-      - /mnt/4tb/arr/shows/torrents:/downloads/torrents
+      - /mnt/4tb/arr/torrents:/downloads/torrents
       - /mnt/4tb/arr/shows/media:/shows
     restart: on-failure
     security_opt:
