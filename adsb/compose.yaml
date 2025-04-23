@@ -7,8 +7,6 @@ services:
     restart: unless-stopped
     device_cgroup_rules:
       - "c 189:* rwm"
-    ports:
-      - 8078:80
     environment:
       - LOGLEVEL=error
       - TZ=${time_zone}
@@ -108,6 +106,8 @@ services:
       - /run:exec,size=256M
       - /tmp:size=128M
       - /var/log:size=32M
+#    ports:
+#      - 8078:80
     security_opt:
       - no-new-privileges:true # helps to increase security
     networks:
