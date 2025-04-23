@@ -1,7 +1,7 @@
 services:
     home-assistant:
-        ports:
-          - 8124:8123
+#        ports:
+#          - 8124:8123
         container_name: homeassistant
         privileged: true
         volumes:
