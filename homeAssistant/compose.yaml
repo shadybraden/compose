@@ -27,7 +27,7 @@ services:
         - "traefik.http.routers.homeassistant-secure.rule=Host(`homeassistant.holmlab.org`)"
         - "traefik.http.routers.homeassistant-secure.tls=true"
         - "traefik.http.routers.homeassistant-secure.service=homeassistant"
-        - "traefik.http.services.homeassistant.loadbalancer.server.port=8124" # port of the service. i.e. homeassistant likes 9000
+        - "traefik.http.services.homeassistant.loadbalancer.server.port=8123" # port of the service. i.e. homeassistant likes 9000
         - "traefik.docker.network=intranet"
 
 networks:
