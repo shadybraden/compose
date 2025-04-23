@@ -3,7 +3,7 @@ services:
 #        ports:
 #          - 8124:8123
         container_name: homeassistant
-        privileged: true
+#        privileged: true
         volumes:
             - /data/config_storage/homeAssistant:/config
             - /etc/localtime:/etc/localtime:ro
