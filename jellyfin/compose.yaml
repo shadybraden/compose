@@ -1,16 +1,37 @@
 services:
     jellyfin:
-        network_mode: host
+#        network_mode: host
         container_name: jellyfin
 #        ports:
 #            - 8096:8096
         volumes:
-            - ${CONFIG_STORAGE_LOCATION}/jellyfin/config:/config
-            - ${CONFIG_STORAGE_LOCATION}/jellyfin/cache:/cache
-            - ${jellyfin_media}:/media
+            - /data/config_storage/jellyfin/config:/config
+            - /data/config_storage/jellyfin/cache:/cache
+            - /mnt/4tb/arr:/arr
+            - /mnt/4tb/MOVIES_jellyfin:/media
         restart: on-failure
         image: lscr.io/linuxserver/jellyfin:latest
         environment:
             - PUID=1000
             - PGID=1000
             - TZ=Etc
+        security_opt:
+        - no-new-privileges:true # helps to increase security
+        networks:
+        - intranet
+        labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.jellyfin.entrypoints=http"
+        - "traefik.http.routers.jellyfin.rule=Host(`jellyfin.holmlab.org`)"
+        - "traefik.http.middlewares.jellyfin-https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.jellyfin.middlewares=jellyfin-https-redirect"
+        - "traefik.http.routers.jellyfin-secure.entrypoints=https"
+        - "traefik.http.routers.jellyfin-secure.rule=Host(`jellyfin.holmlab.org`)"
+        - "traefik.http.routers.jellyfin-secure.tls=true"
+        - "traefik.http.routers.jellyfin-secure.service=jellyfin"
+        - "traefik.http.services.jellyfin.loadbalancer.server.port=8096" # port of the service. i.e. jellyfin likes 9000
+        - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true
