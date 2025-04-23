@@ -1,11 +1,31 @@
 services:
     kiwix-serve:
         volumes:
-            - ${kiwix_files}:/data:ro
+            - /mnt/4tb/kiwix/zim:/data:ro
         container_name: kiwix
         restart: on-failure
-        ports:
-            - 8080:8080
+#        ports:
+#            - 8080:8080
         image: ghcr.io/kiwix/kiwix-serve
         command: archlinux_en_all_maxi_2022-12.zim
                  *.zim
+        security_opt:
+        - no-new-privileges:true # helps to increase security
+        networks:
+        - intranet
+        labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.kiwix.entrypoints=http"
+        - "traefik.http.routers.kiwix.rule=Host(`kiwix.holmlab.org`)"
+        - "traefik.http.middlewares.kiwix-https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.kiwix.middlewares=kiwix-https-redirect"
+        - "traefik.http.routers.kiwix-secure.entrypoints=https"
+        - "traefik.http.routers.kiwix-secure.rule=Host(`kiwix.holmlab.org`)"
+        - "traefik.http.routers.kiwix-secure.tls=true"
+        - "traefik.http.routers.kiwix-secure.service=kiwix"
+        - "traefik.http.services.kiwix.loadbalancer.server.port=8080" # port of the service. i.e. kiwix likes 9000
+        - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true
