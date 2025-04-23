@@ -12,13 +12,12 @@ services:
         environment:
             - TZ=America/New_York
         image: ghcr.io/home-assistant/home-assistant:stable
-        labels:
-            - "com.centurylinklabs.watchtower.enable=false" # disable auto updates via watchtower
         security_opt:
         - no-new-privileges:true # helps to increase security
         networks:
         - intranet
         labels:
+        - "com.centurylinklabs.watchtower.enable=false" # disable auto updates via watchtower
         - "traefik.enable=true"
         - "traefik.http.routers.homeassistant.entrypoints=http"
         - "traefik.http.routers.homeassistant.rule=Host(`homeassistant.holmlab.org`)"
