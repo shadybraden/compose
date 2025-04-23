@@ -20,7 +20,7 @@ services:
     container_name: traefik
     restart: unless-stopped
     env_file:
-      - /data/config_storage/.secrets/traefik.env
+      - ../../../../data/config_storage/.secrets/traefik.env
     security_opt:
       - no-new-privileges:true # helps to increase security
     networks:
