@@ -3,14 +3,34 @@ services:
         container_name: filebrowser
         restart: unless-stopped
         volumes:
-            - ${filebrowser_dir1}:/srv/home
-            - ${filebrowser_dir2}:/srv/mounted
-            - ${CONFIG_STORAGE_LOCATION}/filebrowser/database:/database
-            - ${CONFIG_STORAGE_LOCATION}/filebrowser/settings.json:/config/settings.json
+            - /data:/srv/home
+            - /mnt/4tb:/srv/mounted
+            - /data/config_storage/filebrowser/database:/database
+            - /data/config_storage/filebrowser/settings.json:/config/settings.json
         environment:
             - PUID=1000
             - PGID=1000
-        ports:
-            - 8060:80
+#        ports:
+#            - 8060:80
         command: ["-c", "/config/settings.json"] # required, see https://github.com/filebrowser/filebrowser/issues/1898
         image: filebrowser/filebrowser:latest
+        security_opt:
+        - no-new-privileges:true # helps to increase security
+        networks:
+        - intranet
+        labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.files-holmie.entrypoints=http"
+        - "traefik.http.routers.files-holmie.rule=Host(`files-holmie.holmlab.org`)"
+        - "traefik.http.middlewares.files-holmie-https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.files-holmie.middlewares=files-holmie-https-redirect"
+        - "traefik.http.routers.files-holmie-secure.entrypoints=https"
+        - "traefik.http.routers.files-holmie-secure.rule=Host(`files-holmie.holmlab.org`)"
+        - "traefik.http.routers.files-holmie-secure.tls=true"
+        - "traefik.http.routers.files-holmie-secure.service=files-holmie"
+        - "traefik.http.services.files-holmie.loadbalancer.server.port=80" # port of the service. i.e. files-holmie likes 9000
+        - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true
