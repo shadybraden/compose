@@ -14,8 +14,8 @@ services:
     image: qmcgaw/gluetun
     restart: on-failure
     ports:
-      - 8081:8081 # qbittorrent_shows
-      - 8082:8082 # qbittorrent_movies
+      - 8081:8081 # qbittorrent
+#      - 8082:8082 # qbittorrent_movies
       - 9117:9117 # jackett
     security_opt:
       - no-new-privileges:true # helps to increase security
@@ -24,15 +24,15 @@ services:
     labels:
     - "traefik.enable=true"
     - "traefik.docker.network=intranet"
-    - "traefik.http.routers.qbittorrent_shows.entrypoints=http"
-    - "traefik.http.routers.qbittorrent_shows.rule=Host(`qbittorrent.holmlab.org`)"
-    - "traefik.http.middlewares.qbittorrent_shows-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.qbittorrent_shows.middlewares=qbittorrent_shows-https-redirect"
-    - "traefik.http.routers.qbittorrent_shows-secure.entrypoints=https"
-    - "traefik.http.routers.qbittorrent_shows-secure.rule=Host(`qbittorrent.holmlab.org`)"
-    - "traefik.http.routers.qbittorrent_shows-secure.tls=true"
-    - "traefik.http.routers.qbittorrent_shows-secure.service=qbittorrent_shows"
-    - "traefik.http.services.qbittorrent_shows.loadbalancer.server.port=8080" # port of the service. i.e. qbittorrent_shows likes 9000
+    - "traefik.http.routers.qbittorrent.entrypoints=http"
+    - "traefik.http.routers.qbittorrent.rule=Host(`qbittorrent.holmlab.org`)"
+    - "traefik.http.middlewares.qbittorrent-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.qbittorrent.middlewares=qbittorrent-https-redirect"
+    - "traefik.http.routers.qbittorrent-secure.entrypoints=https"
+    - "traefik.http.routers.qbittorrent-secure.rule=Host(`qbittorrent.holmlab.org`)"
+    - "traefik.http.routers.qbittorrent-secure.tls=true"
+    - "traefik.http.routers.qbittorrent-secure.service=qbittorrent"
+    - "traefik.http.services.qbittorrent.loadbalancer.server.port=8080" # port of the service. i.e. qbittorrent likes 9000
 
     - "traefik.http.routers.jackett.entrypoints=http"
     - "traefik.http.routers.jackett.rule=Host(`jackett.holmlab.org`)"
