@@ -15,6 +15,26 @@ services:
       - redis
       - database
     restart: on-failure
+    security_opt:
+      - no-new-privileges:true # helps to increase security
+    networks:
+      - intranet
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.immich.entrypoints=http"
+    - "traefik.http.routers.immich.rule=Host(`immich.holmlab.org`)"
+    - "traefik.http.middlewares.immich-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.immich.middlewares=immich-https-redirect"
+    - "traefik.http.routers.immich-secure.entrypoints=https"
+    - "traefik.http.routers.immich-secure.rule=Host(`immich.holmlab.org`)"
+    - "traefik.http.routers.immich-secure.tls=true"
+    - "traefik.http.routers.immich-secure.service=immich"
+    - "traefik.http.services.immich.loadbalancer.server.port=2283" # port of the service. i.e. immich likes 9000
+    - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true
 
   immich-machine-learning:
     container_name: immich_machine_learning
@@ -25,7 +45,7 @@ services:
     #   file: hwaccel.ml.yml
     #   service: cpu # set to one of [armnn, cuda, openvino, openvino-wsl] for accelerated inference - use the `-wsl` version for WSL2 where applicable
     volumes:
-      - model-cache:/cache
+      - /data/config_storage/immich/model-cache:/cache
 #    env_file:
 #      - .env
     restart: on-failure
@@ -47,6 +67,3 @@ services:
       - ${immich_db_location}:/var/lib/postgresql/data
     restart: on-failure
     command: ["postgres", "-c" ,"shared_preload_libraries=vectors.so", "-c", 'search_path="$$user", public, vectors', "-c", "logging_collector=on", "-c", "max_wal_size=2GB", "-c", "shared_buffers=512MB", "-c", "wal_compression=on"]
-
-volumes:
-  model-cache:
