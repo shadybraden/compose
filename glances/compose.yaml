@@ -1,11 +1,11 @@
 services:
   glances:
     container_name: glances
-#    restart: unless-stopped
+    restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-    ports:
-      - 61208:61208
+#    ports:
+#      - 61208:61208
 #    pid: host
     privileged: true
     environment:
@@ -14,3 +14,23 @@ services:
       - PGID=1000
       - TZ=America/New_York
     image: nicolargo/glances
+    security_opt:
+      - no-new-privileges:true # helps to increase security
+    networks:
+      - intranet
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.glances-holmie.entrypoints=http"
+    - "traefik.http.routers.glances-holmie.rule=Host(`glances-holmie.holmlab.org`)"
+    - "traefik.http.middlewares.glances-holmie-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.glances-holmie.middlewares=glances-holmie-https-redirect"
+    - "traefik.http.routers.glances-holmie-secure.entrypoints=https"
+    - "traefik.http.routers.glances-holmie-secure.rule=Host(`glances-holmie.holmlab.org`)"
+    - "traefik.http.routers.glances-holmie-secure.tls=true"
+    - "traefik.http.routers.glances-holmie-secure.service=glances-holmie"
+    - "traefik.http.services.glances-holmie.loadbalancer.server.port=61208" # port of the service. i.e. glances-holmie likes 9000
+    - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true
