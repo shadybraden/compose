@@ -2,11 +2,31 @@ services:
     server:
         container_name: vaultwarden
         volumes:
-            - ${CONFIG_STORAGE_LOCATION}/vaultwarden:/data
+            - /data/config_storage/vaultwarden:/data
         restart: unless-stopped
         environment:
             - LOG_FILE=/data/vaultwarden.log
             - LOG_LEVEL=info
-        ports:
-            - 58527:80
         image: vaultwarden/server:latest
+#        ports:
+#            - 58527:80
+        security_opt:
+        - no-new-privileges:true # helps to increase security
+        networks:
+        - intranet
+        labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.bitwarden.entrypoints=http"
+        - "traefik.http.routers.bitwarden.rule=Host(`bitwarden.holmlab.org`)"
+        - "traefik.http.middlewares.bitwarden-https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.bitwarden.middlewares=bitwarden-https-redirect"
+        - "traefik.http.routers.bitwarden-secure.entrypoints=https"
+        - "traefik.http.routers.bitwarden-secure.rule=Host(`bitwarden.holmlab.org`)"
+        - "traefik.http.routers.bitwarden-secure.tls=true"
+        - "traefik.http.routers.bitwarden-secure.service=bitwarden"
+        - "traefik.http.services.bitwarden.loadbalancer.server.port=58527" # port of the service. i.e. bitwarden likes 9000
+        - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true

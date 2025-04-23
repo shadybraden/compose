@@ -9,3 +9,23 @@ services:
             - LOG_LEVEL=debug
         image: renovate/renovate
         command: --include-forks=true renovate-tests/gomod1
+        security_opt:
+          - no-new-privileges:true # helps to increase security
+        networks:
+          - intranet
+        labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.renovate.entrypoints=http"
+        - "traefik.http.routers.renovate.rule=Host(`renovate.holmlab.org`)"
+        - "traefik.http.middlewares.renovate-https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.renovate.middlewares=renovate-https-redirect"
+        - "traefik.http.routers.renovate-secure.entrypoints=https"
+        - "traefik.http.routers.renovate-secure.rule=Host(`renovate.holmlab.org`)"
+        - "traefik.http.routers.renovate-secure.tls=true"
+        - "traefik.http.routers.renovate-secure.service=renovate"
+        - "traefik.http.services.renovate.loadbalancer.server.port=80" # port of the service. i.e. renovate likes 9000
+        - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true
