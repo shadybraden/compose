@@ -5,8 +5,8 @@ services:
 #    ports:
 #      - '8087:8080'
     volumes:
-      - ${CONFIG_STORAGE_LOCATION}/stirlingpdf/trainingData:/usr/share/tessdata # Required for extra OCR languages
-      - ${CONFIG_STORAGE_LOCATION}/stirlingpdf/extraConfigs:/configs
+      - /data/dont_backup/stirlingpdf/trainingData:/usr/share/tessdata # Required for extra OCR languages
+      - /data/dont_backup/stirlingpdf/extraConfigs:/configs
 #      - ./customFiles:/customFiles/
 #      - ./logs:/logs/
     environment:
