@@ -1,13 +1,33 @@
 services:
     netalertx:
-        network_mode: host
+#        network_mode: host
         volumes:
-            - ${CONFIG_STORAGE_LOCATION}/netalertx/config:/app/config
-            - ${CONFIG_STORAGE_LOCATION}/netalertx/db:/app/db
-            - ${pihole_piholeFTLdb}:/etc/pihole/pihole-FTL.db:ro
+            - /data/config_storage/netalertx/config:/app/config
+            - /data/config_storage/netalertx/db:/app/db
+            - /data/config_storage/pihole/etc-pihole/pihole-FTL.db:/etc/pihole/pihole-FTL.db:ro
         environment:
             - TZ=America/New_York
             - PORT=20211
         container_name: netalertx
         restart: unless-stopped
         image: jokobsk/netalertx:latest
+        security_opt:
+        - no-new-privileges:true # helps to increase security
+        networks:
+        - intranet
+        labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.netalertx.entrypoints=http"
+        - "traefik.http.routers.netalertx.rule=Host(`netalertx.holmlab.org`)"
+        - "traefik.http.middlewares.netalertx-https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.netalertx.middlewares=netalertx-https-redirect"
+        - "traefik.http.routers.netalertx-secure.entrypoints=https"
+        - "traefik.http.routers.netalertx-secure.rule=Host(`netalertx.holmlab.org`)"
+        - "traefik.http.routers.netalertx-secure.tls=true"
+        - "traefik.http.routers.netalertx-secure.service=netalertx"
+        - "traefik.http.services.netalertx.loadbalancer.server.port=20211" # port of the service. i.e. netalertx likes 9000
+        - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true
