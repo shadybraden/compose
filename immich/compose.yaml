@@ -32,6 +32,7 @@ services:
     - "traefik.http.routers.immich-secure.service=immich"
     - "traefik.http.services.immich.loadbalancer.server.port=2283" # port of the service. i.e. immich likes 9000
     - "traefik.docker.network=intranet"
+    - "traefik.http.routers.immich.entrypoints=websecure"
 
   immich-machine-learning:
     container_name: immich_machine_learning
