@@ -8,9 +8,9 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - ${CONFIG_STORAGE_LOCATION}/syncthing/config:/config
-      - ${CONFIG_STORAGE_LOCATION}/syncthing/syncthing:/var/syncthing
-      - ${syncthing_dir}:/syncthing
+      - /data/config_storage/syncthing/config:/config
+      - /data/config_storage/syncthing/syncthing:/var/syncthing
+      - /mnt/syncthing:/syncthing
     ports:
       - 8384:8384
       - 22000:22000/tcp
