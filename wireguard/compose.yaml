@@ -9,7 +9,7 @@ services:
     image: ghcr.io/wg-easy/wg-easy
     container_name: wireguard
     volumes:
-      - ${CONFIG_STORAGE_LOCATION}/wg-easy:/etc/wireguard
+      - /data/config_storage/wg-easy:/etc/wireguard
     ports:
       - "${wireguard_external_port}:${wireguard_external_port}/udp"
 #      - "51821:51821/tcp" # web ui port
