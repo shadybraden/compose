@@ -122,7 +122,7 @@ services:
     - "traefik.http.routers.adsb-secure.rule=Host(`adsb.holmlab.org`)"
     - "traefik.http.routers.adsb-secure.tls=true"
     - "traefik.http.routers.adsb-secure.service=adsb"
-    - "traefik.http.services.adsb.loadbalancer.server.port=30004" # port of the service. i.e. adsb likes 9000
+    - "traefik.http.services.adsb.loadbalancer.server.port=8080" # port of the service. i.e. adsb likes 9000
     - "traefik.docker.network=intranet"
 
 networks:
