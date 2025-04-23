@@ -32,10 +32,6 @@ services:
     - "traefik.http.services.immich.loadbalancer.server.port=2283" # port of the service. i.e. immich likes 9000
     - "traefik.docker.network=intranet"
 
-networks:
-  intranet:
-    external: true
-
   immich-machine-learning:
     container_name: immich_machine_learning
     # For hardware acceleration, add one of -[armnn, cuda, openvino] to the image tag.
@@ -67,3 +63,7 @@ networks:
       - ${immich_db_location}:/var/lib/postgresql/data
     restart: on-failure
     command: ["postgres", "-c" ,"shared_preload_libraries=vectors.so", "-c", 'search_path="$$user", public, vectors', "-c", "logging_collector=on", "-c", "max_wal_size=2GB", "-c", "shared_buffers=512MB", "-c", "wal_compression=on"]
+
+networks:
+  intranet:
+    external: true
