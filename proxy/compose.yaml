@@ -38,6 +38,3 @@ services:
 
 # see .restart_proxy.sh to auto rotate IP's using cron
 # also, the curl command can be used to ensure it is running
-
-networks:
-  intranet:
