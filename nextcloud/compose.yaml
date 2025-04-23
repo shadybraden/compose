@@ -24,7 +24,7 @@ services:
         - "traefik.http.routers.nextcloud-secure.rule=Host(`nextcloud.holmlab.org`)"
         - "traefik.http.routers.nextcloud-secure.tls=true"
         - "traefik.http.routers.nextcloud-secure.service=nextcloud"
-        - "traefik.http.services.nextcloud.loadbalancer.server.port=8286" # port of the service. i.e. nextcloud likes 9000
+        - "traefik.http.services.nextcloud.loadbalancer.server.port=80" # port of the service. i.e. nextcloud likes 9000
         - "traefik.docker.network=intranet"
 
 networks:
