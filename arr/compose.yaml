@@ -54,11 +54,6 @@ services:
     - "traefik.http.routers.jackett-secure.service=jackett"
     - "traefik.http.services.jackett.loadbalancer.server.port=9117" # port of the service. i.e. jackett likes 9000
 
-
-
-
-
-
   radarr: # the movie searching part
     image: lscr.io/linuxserver/radarr:latest
     container_name: radarr
