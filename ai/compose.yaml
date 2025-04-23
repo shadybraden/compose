@@ -48,7 +48,7 @@ services:
         - "traefik.http.routers.ai-secure.rule=Host(`ai.holmlab.org`)"
         - "traefik.http.routers.ai-secure.tls=true"
         - "traefik.http.routers.ai-secure.service=ai"
-        - "traefik.http.services.ai.loadbalancer.server.port=3000" # port of the service. i.e. pihole likes 9000
+        - "traefik.http.services.ai.loadbalancer.server.port=8080" # port of the service. i.e. pihole likes 9000
         - "traefik.docker.network=intranet"
 
 networks:
