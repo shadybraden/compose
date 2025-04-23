@@ -11,12 +11,12 @@ services:
           - WIREGUARD_PRIVATE_KEY=${arr_private_key}
           - WIREGUARD_ADDRESSES=${arr_address}
           - SERVER_CITIES=Adelaide,Amsterdam,"Ashburn VA",Athens,"Atlanta GA",Auckland,Belgrade,Berlin,Bogota,Bratislava,Brisbane,Brussels,Bucharest,Budapest,Calgary,"Chicago IL",Chisinau,Copenhagen,"Dallas TX","Denver CO",Dubai,Dublin,Dusseldorf,Frankfurt,Gothenburg,Helsinki,"Hong Kong","Houston TX",Johannesburg,Kyiv,Lisbon,London,"Los Angeles CA",Luxembourg,Madrid,Malmö,Manchester,Marseille,Melbourne,"Miami FL",Milan,Montreal,"New York NY",Osaka,Oslo,Paris,Perth,"Phoenix AZ",Prague,"Raleigh NC",Riga,"Salt Lake City UT","San Jose CA","Sao Paulo","Seattle WA","Secaucus NJ",Singapore,Skopje,Sofia,Stavanger,Stockholm,Sydney,Tallinn,"Tel Aviv",Tirana,Tokyo,Toronto,Vancouver,Vienna,Warsaw,Zagreb,Zurich
+      image: qmcgaw/gluetun
+      restart: on-failure
       ports:
           - 8081:8081 # qbittorrent_shows
           - 8082:8082 # qbittorrent_movies
           - 9117:9117 # jackett
-      image: qmcgaw/gluetun
-      restart: on-failure
   radarr: # the movie download part
     image: lscr.io/linuxserver/radarr:latest
     container_name: radarr
@@ -28,9 +28,9 @@ services:
       - TZ=America/New_York
       - PORT=7878 #optional
     volumes: # idea is a torrents folder for live downloads, and a media folder for radarr to copy the files to once finished
-      - ${CONFIG_STORAGE_LOCATION}/arr/radarr:/config
-      - ${arr_movies_dir}/torrents:/downloads/torrents
-      - ${arr_movies_dir}/media:/movies
+      - /data/config_storage/arr/radarr:/config
+      - /mnt/4tb/arr/movies/torrents:/downloads/torrents
+      - /mnt/4tb/arr/movies/media:/movies
     restart: on-failure
 #    network_mode: service:gluetun_arr
 #    depends_on:
@@ -46,9 +46,9 @@ services:
       - PGID=1000
       - TZ=America/New_York
     volumes: # idea is a torrents folder for live downloads, and a media folder for sonarr to copy the files to once finished
-      - ${CONFIG_STORAGE_LOCATION}/arr/sonarr:/config
-      - ${arr_shows_dir}/torrents:/downloads/torrents
-      - ${arr_shows_dir}/media:/shows
+      - /data/config_storage/arr/sonarr:/config
+      - /mnt/4tb/arr/shows/torrents:/downloads/torrents
+      - /mnt/4tb/arr/shows/media:/shows
     restart: on-failure
 #    network_mode: service:gluetun_arr
 #    depends_on:
@@ -59,7 +59,7 @@ services:
     container_name: jackett
     restart: on-failure
     volumes:
-      - ${CONFIG_STORAGE_LOCATION}/arr/jackett:/config
+      - /data/config_storage/arr/jackett:/config
     network_mode: service:gluetun_arr
     depends_on:
       gluetun_arr:
@@ -75,8 +75,8 @@ services:
       - WEBUI_PORT=8081
       - TORRENTING_PORT=${arr_qbittorrent_shows_port}
     volumes:
-      - ${CONFIG_STORAGE_LOCATION}/arr/qbittorrent_shows:/config
-      - ${arr_shows_dir}/torrents:/downloads/torrents
+      - /data/config_storage/arr/qbittorrent_shows:/config
+      - /mnt/4tb/arr/shows/torrents:/downloads/torrents
     restart: on-failure
     network_mode: service:gluetun_arr
     depends_on:
@@ -92,8 +92,8 @@ services:
       - WEBUI_PORT=8082
       - TORRENTING_PORT=${arr_qbittorrent_movies_port}
     volumes:
-      - ${CONFIG_STORAGE_LOCATION}/arr/qbittorrent_movies:/config
-      - ${arr_movies_dir}/torrents:/downloads/torrents
+      - /data/config_storage/arr/qbittorrent_movies:/config
+      - /mnt/4tb/arr/movies/torrents:/downloads/torrents
     restart: on-failure
     network_mode: service:gluetun_arr
     depends_on:
