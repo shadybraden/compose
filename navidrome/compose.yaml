@@ -4,12 +4,32 @@ services:
         restart: on-failure
         user: 1000:1000
         volumes:
-            - ${navidrome_music}:/music:ro
-            - ${CONFIG_STORAGE_LOCATION}/navidrome:/data
-        ports:
-            - 4533:4533
+            - /mnt/4tb/music:/music:ro
+            - /data/config_storage/navidrome:/data
+#        ports:
+#            - 4533:4533
         environment:
             - ND_LOGLEVEL=info
             - ND_SCANSCHEDULE=100m
             - ND_ENABLEINSIGHTSCOLLECTOR=false # turn off telemetry
         image: deluan/navidrome:latest
+        security_opt:
+        - no-new-privileges:true # helps to increase security
+        networks:
+        - intranet
+        labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.pihole.entrypoints=http"
+        - "traefik.http.routers.pihole.rule=Host(`pihole.holmlab.org`)"
+        - "traefik.http.middlewares.pihole-https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.pihole.middlewares=pihole-https-redirect"
+        - "traefik.http.routers.pihole-secure.entrypoints=https"
+        - "traefik.http.routers.pihole-secure.rule=Host(`pihole.holmlab.org`)"
+        - "traefik.http.routers.pihole-secure.tls=true"
+        - "traefik.http.routers.pihole-secure.service=pihole"
+        - "traefik.http.services.pihole.loadbalancer.server.port=4533" # port of the service. i.e. pihole likes 9000
+        - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true
