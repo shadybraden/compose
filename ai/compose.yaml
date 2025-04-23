@@ -1,17 +1,54 @@
 services:
     ollama:
         volumes:
-            - ${CONFIG_STORAGE_LOCATION}/ai/ollama:/root/.ollama
+            - /data/config_storage/ai/ollama:/root/.ollama
         ports:
             - 11434:11434
         container_name: ollama
         restart: unless-stopped
         image: ollama/ollama
+        security_opt:
+        - no-new-privileges:true # helps to increase security
+        networks:
+        - intranet
+        labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.ollama.entrypoints=http"
+        - "traefik.http.routers.ollama.rule=Host(`ollama.holmlab.org`)"
+        - "traefik.http.middlewares.ollama-https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.ollama.middlewares=ollama-https-redirect"
+        - "traefik.http.routers.ollama-secure.entrypoints=https"
+        - "traefik.http.routers.ollama-secure.rule=Host(`ollama.holmlab.org`)"
+        - "traefik.http.routers.ollama-secure.tls=true"
+        - "traefik.http.routers.ollama-secure.service=ollama"
+        - "traefik.http.services.ollama.loadbalancer.server.port=11434" # port of the service. i.e. pihole likes 9000
+        - "traefik.docker.network=intranet"
+
     open-webui:
-        ports:
-            - 3001:8080
+#        ports:
+#            - 3001:8080
         volumes:
-            - ${CONFIG_STORAGE_LOCATION}/ai/open-webui:/app/backend/data
+            - /data/config_storage/ai/open-webui:/app/backend/data
         container_name: open-webui
         image: ghcr.io/open-webui/open-webui:main
         restart: unless-stopped
+        security_opt:
+        - no-new-privileges:true # helps to increase security
+        networks:
+        - intranet
+        labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.ai.entrypoints=http"
+        - "traefik.http.routers.ai.rule=Host(`ai.holmlab.org`)"
+        - "traefik.http.middlewares.ai-https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.ai.middlewares=ai-https-redirect"
+        - "traefik.http.routers.ai-secure.entrypoints=https"
+        - "traefik.http.routers.ai-secure.rule=Host(`ai.holmlab.org`)"
+        - "traefik.http.routers.ai-secure.tls=true"
+        - "traefik.http.routers.ai-secure.service=ai"
+        - "traefik.http.services.ai.loadbalancer.server.port=3000" # port of the service. i.e. pihole likes 9000
+        - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true
