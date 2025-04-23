@@ -36,5 +36,5 @@ services:
           gluetun:
             condition: service_healthy
 
-# see restart_proxy.sh to auto rotate IP's using cron
+# see .restart_proxy.sh to auto rotate IP's using cron
 # also, the curl command can be used to ensure it is running
