@@ -4,7 +4,6 @@ services:
 #          - 8124:8123
         container_name: homeassistant
 #        privileged: true
-        network_mode: host
         volumes:
             - /data/config_storage/homeAssistant:/config
             - /etc/localtime:/etc/localtime:ro
