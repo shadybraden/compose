@@ -5,11 +5,31 @@ services:
     cap_add:
       - SYS_RAWIO
     ports:
-      - "8181:8080" # webapp
+#      - "8181:8080" # webapp
       - "8085:8086" # influxDB admin
     volumes:
       - /run/udev:/run/udev:ro
-      - ${CONFIG_STORAGE_LOCATION}/scrutiny/config:/opt/scrutiny/config
-      - ${CONFIG_STORAGE_LOCATION}/scrutiny/influxdb:/opt/scrutiny/influxdb
+      - /data/config_storage/scrutiny/config:/opt/scrutiny/config
+      - /data/config_storage/scrutiny/influxdb:/opt/scrutiny/influxdb
     devices:
       - "/dev/sda"
+    security_opt:
+      - no-new-privileges:true # helps to increase security
+    networks:
+      - intranet
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.scrutiny.entrypoints=http"
+    - "traefik.http.routers.scrutiny.rule=Host(`scrutiny.holmlab.org`)"
+    - "traefik.http.middlewares.scrutiny-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.scrutiny.middlewares=scrutiny-https-redirect"
+    - "traefik.http.routers.scrutiny-secure.entrypoints=https"
+    - "traefik.http.routers.scrutiny-secure.rule=Host(`scrutiny.holmlab.org`)"
+    - "traefik.http.routers.scrutiny-secure.tls=true"
+    - "traefik.http.routers.scrutiny-secure.service=scrutiny"
+    - "traefik.http.services.scrutiny.loadbalancer.server.port=8080" # port of the service. i.e. scrutiny likes 9000
+    - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true
