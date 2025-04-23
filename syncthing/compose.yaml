@@ -10,8 +10,9 @@ services:
     volumes:
       - /data/config_storage/syncthing/config:/config
       - /data/config_storage/syncthing/syncthing:/var/syncthing
-      - /mnt:/syncthing
+      - /mnt:/mnt
       - /data/config_storage/seedvault:/seedvault
+      - /mnt/4tb/music:/music
     ports:
 #      - 8384:8384 # web ui
       - 22000:22000/tcp
