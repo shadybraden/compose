@@ -1,15 +1,35 @@
 services:
     nextcloud:
         container_name: nextcloud
-        ports:
-            - 8286:80
+#        ports:
+#            - 8286:80
         restart: unless-stopped
         volumes:
-            - ${CONFIG_STORAGE_LOCATION}/nextcloud/html:/var/www/html
-            - ${CONFIG_STORAGE_LOCATION}/nextcloud/apps:/var/www/html/custom_apps
-            - ${CONFIG_STORAGE_LOCATION}/nextcloud/config:/var/www/html/config
-            - ${CONFIG_STORAGE_LOCATION}/nextcloud/data:/var/www/html/data
+            - /data/config_storage/nextcloud/html:/var/www/html
+            - /data/config_storage/nextcloud/apps:/var/www/html/custom_apps
+            - /data/config_storage/nextcloud/config:/var/www/html/config
+            - /data/config_storage/nextcloud/data:/var/www/html/data
         image: nextcloud:latest
+        security_opt:
+        - no-new-privileges:true # helps to increase security
+        networks:
+        - intranet
+        labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.nextcloud.entrypoints=http"
+        - "traefik.http.routers.nextcloud.rule=Host(`nextcloud.holmlab.org`)"
+        - "traefik.http.middlewares.nextcloud-https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.nextcloud.middlewares=nextcloud-https-redirect"
+        - "traefik.http.routers.nextcloud-secure.entrypoints=https"
+        - "traefik.http.routers.nextcloud-secure.rule=Host(`nextcloud.holmlab.org`)"
+        - "traefik.http.routers.nextcloud-secure.tls=true"
+        - "traefik.http.routers.nextcloud-secure.service=nextcloud"
+        - "traefik.http.services.nextcloud.loadbalancer.server.port=8080" # port of the service. i.e. nextcloud likes 9000
+        - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true
 # the nextcloud folder wants to be in the group www-data
 # sudo chown -R www-data:www-data nextcloud/
 # but cd into /home/skynet/config first (assuming nextcloud the folder is inside config
