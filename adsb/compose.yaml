@@ -108,3 +108,23 @@ services:
       - /run:exec,size=256M
       - /tmp:size=128M
       - /var/log:size=32M
+    security_opt:
+      - no-new-privileges:true # helps to increase security
+    networks:
+      - intranet
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.adsb.entrypoints=http"
+    - "traefik.http.routers.adsb.rule=Host(`adsb.holmlab.org`)"
+    - "traefik.http.middlewares.adsb-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.adsb.middlewares=adsb-https-redirect"
+    - "traefik.http.routers.adsb-secure.entrypoints=https"
+    - "traefik.http.routers.adsb-secure.rule=Host(`adsb.holmlab.org`)"
+    - "traefik.http.routers.adsb-secure.tls=true"
+    - "traefik.http.routers.adsb-secure.service=adsb"
+    - "traefik.http.services.adsb.loadbalancer.server.port=8080" # port of the service. i.e. adsb likes 9000
+    - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true
