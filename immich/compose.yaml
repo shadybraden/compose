@@ -44,11 +44,15 @@ services:
     env_file:
       - .env
     restart: on-failure
+    networks:
+      - intranet
 
   redis:
     container_name: immich_redis
     image: registry.hub.docker.com/library/redis:6.2-alpine@sha256:84882e87b54734154586e5f8abd4dce69fe7311315e2fc6d67c29614c8de2672
     restart: on-failure
+    networks:
+      - intranet
 
   database:
     container_name: immich_postgres
@@ -62,6 +66,8 @@ services:
       - /data/config_storage/immich/postgres:/var/lib/postgresql/data
     restart: on-failure
     command: ["postgres", "-c" ,"shared_preload_libraries=vectors.so", "-c", 'search_path="$$user", public, vectors', "-c", "logging_collector=on", "-c", "max_wal_size=2GB", "-c", "shared_buffers=512MB", "-c", "wal_compression=on"]
+    networks:
+      - intranet
 
 volumes:
   model-cache:
