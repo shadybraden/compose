@@ -3,12 +3,15 @@ services:
         stdin_open: true
         tty: true
         volumes:
-            - /data/config_storage/renovate/config.js:/usr/src/app/config.js
+            - /data/config_storage/renovate/config.js:/usr/src/app/config.js # global configuration file
             - /tmp:/tmp
         environment:
             - LOG_LEVEL=debug
+            - RENOVATE_CONFIG_FILE=config.yaml # per-repository configuration
+            - RENOVATE_TOKEN=${TOKEN}
+            - RENOVATE_PLATFORM=forgejo
         image: renovate/renovate
-        command: --include-forks=true renovate-tests/gomod1
+#        command: --include-forks=true renovate-tests/gomod1
         security_opt:
           - no-new-privileges:true # helps to increase security
         networks:
