@@ -71,8 +71,8 @@ services:
   ## https://github.com/moghtech/komodo/tree/main/scripts
   periphery:
     image: ghcr.io/moghtech/komodo-periphery:latest
-    labels:
-      komodo.skip: # Prevent Komodo from stopping with StopAllContainers
+#    labels:
+#      komodo.skip: # Prevent Komodo from stopping with StopAllContainers
     restart: unless-stopped
     logging:
       driver: local
@@ -92,6 +92,7 @@ services:
     networks:
       - intranet
     labels:
+    - "komodo.skip"
     - "traefik.enable=true"
     - "traefik.http.routers.periphery.entrypoints=http"
     - "traefik.http.routers.periphery.rule=Host(`periphery.holmlab.org`)"
