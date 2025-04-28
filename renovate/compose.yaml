@@ -13,8 +13,7 @@ services:
             - RENOVATE_ENDPOINT=https://git.holmlab.org
             - RENOVATE_GIT_PRIVATE_KEY=${RENOVATE_GIT_PRIVATE_KEY}
             - RENOVATE_AUTODISCOVER=true
-            - RENOVATE_GIT_AUTHOR_NAME=Renovate Bot
-            - RENOVATE_GIT_AUTHOR_EMAIL=renovate@example.com
+            - RENOVATE_GIT_AUTHOR=Development Bot ${RENOVATE_GIT_AUTHOR_EMAIL}
         image: renovate/renovate
 #        command: --include-forks=true renovate-tests/gomod1
         security_opt:
