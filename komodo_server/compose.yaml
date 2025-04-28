@@ -66,8 +66,6 @@ services:
     - "traefik.http.services.komodo.loadbalancer.server.port=9120" # port of the service. i.e. komodo likes 9000
     - "traefik.docker.network=intranet"
 
-
-
   ## Deploy Periphery container using this block,
   ## or deploy the Periphery binary with systemd using 
   ## https://github.com/moghtech/komodo/tree/main/scripts
@@ -89,8 +87,26 @@ services:
       ## or docker will get confused. See https://github.com/moghtech/komodo/discussions/180.
       ## Default: /etc/komodo.
       - ${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}:${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}
+    security_opt:
+      - no-new-privileges:true # helps to increase security
     networks:
       - intranet
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.periphery.entrypoints=http"
+    - "traefik.http.routers.periphery.rule=Host(`periphery.holmlab.org`)"
+    - "traefik.http.middlewares.periphery-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.periphery.middlewares=periphery-https-redirect"
+    - "traefik.http.routers.periphery-secure.entrypoints=https"
+    - "traefik.http.routers.periphery-secure.rule=Host(`periphery.holmlab.org`)"
+    - "traefik.http.routers.periphery-secure.tls=true"
+    - "traefik.http.routers.periphery-secure.service=periphery"
+    - "traefik.http.services.periphery.loadbalancer.server.port=80" # port of the service. i.e. periphery likes 9000
+    - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true
 
 volumes:
   # Mongo
