@@ -7,7 +7,7 @@ services:
             - /tmp:/tmp
         environment:
             - LOG_LEVEL=debug
-            - RENOVATE_CONFIG_FILE=config.yaml # per-repository configuration
+#            - RENOVATE_CONFIG_FILE=config.yaml # per-repository configuration
             - RENOVATE_TOKEN=${RENOVATE_TOKEN} #
             - RENOVATE_PLATFORM=gitea
             - RENOVATE_ENDPOINT="https://git.holmlab.org/"
