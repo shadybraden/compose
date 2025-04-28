@@ -2,9 +2,9 @@ services:
     renovate:
         stdin_open: true
         tty: true
-        volumes:
-            - /data/config_storage/renovate/config.js:/usr/src/app/config.js # global configuration file
-            - /tmp:/tmp
+#        volumes:
+#            - /data/config_storage/renovate/config.js:/usr/src/app/config.js # global configuration file
+#            - /tmp:/tmp
         environment:
             - LOG_LEVEL=debug
 #            - RENOVATE_CONFIG_FILE=config.yaml # per-repository configuration
