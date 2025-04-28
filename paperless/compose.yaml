@@ -8,7 +8,7 @@ services:
       - intranet
 
   db:
-    image: docker.io/library/postgres:16
+    image: docker.io/library/postgres:17
     restart: unless-stopped
     volumes:
       - /data/config_storage/paperless/pgdata:/var/lib/postgresql/data
