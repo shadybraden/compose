@@ -10,7 +10,7 @@ services:
 #            - RENOVATE_CONFIG_FILE=config.yaml # per-repository configuration
             - RENOVATE_TOKEN=${RENOVATE_TOKEN} #
             - RENOVATE_PLATFORM=gitea
-            - RENOVATE_ENDPOINT="https://git.holmlab.org/api/v1/settings/api"
+            - RENOVATE_ENDPOINT="https://git.holmlab.org"
             - RENOVATE_GIT_PRIVATE_KEY=${RENOVATE_GIT_PRIVATE_KEY}
         image: renovate/renovate
 #        command: --include-forks=true renovate-tests/gomod1
