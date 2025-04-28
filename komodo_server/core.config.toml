@@ -26,7 +26,7 @@ title = "Komodo"
 ## Eg https://komodo.example.com or http://12.34.56.78:9120. This should match the address configured in your Oauth app.
 ## Env: KOMODO_HOST
 ## Required, no default.
-host = "https://demo.komo.do"
+host = "https://komodo.holmlab.org/"
 
 ## The port the core system will run on.
 ## Env: KOMODO_PORT
@@ -44,7 +44,7 @@ bind_ip = "[::]"
 ## If the periphery servers don't have passkeys configured, this doesn't need to be changed.
 ## Env: KOMODO_PASSKEY or KOMODO_PASSKEY_FILE
 ## Required, no default
-passkey = "a_random_passkey"
+# passkey = "a_random_passkey"
 
 ## Ensure a server with this address exists on Core
 ## upon first startup. Example: `https://periphery:8120`
