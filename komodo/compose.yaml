@@ -36,6 +36,7 @@ services:
       KOMODO_DATABASE_ADDRESS: mongo:27017
       KOMODO_DATABASE_USERNAME: admin
       KOMODO_DATABASE_PASSWORD: ${KOMODO_DB_PASSWORD}
+      KOMODO_HOST: https://komodo.holmlab.org
       KOMODO_LOCAL_AUTH: true
     volumes:
       ## Core cache for repos for latest commit hash / contents
