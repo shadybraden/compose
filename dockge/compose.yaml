@@ -2,8 +2,8 @@ services:
   dockge:
     image: louislam/dockge:1
     restart: unless-stopped
-    ports:
-      - 5001:5001
+#    ports:
+#      - 5001:5001
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /data/config_storage/dockge/data:/app/data
