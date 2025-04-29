@@ -5,7 +5,7 @@ services:
     environment:
       - USER_UID=1000
       - USER_GID=1000
-      - ALLOWED_HOST_LIST=komodo.holmlab.org
+      - ALLOWED_HOST_LIST=*
     restart: unless-stopped
     volumes:
       - /data/config_storage/forgejo:/data
