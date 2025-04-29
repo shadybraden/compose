@@ -4,7 +4,7 @@ services:
 #            - 48888:8080
         volumes:
             - /data/config_storage/dashy/conf.yml:/app/user-data/conf.yml
-            - ./icons:/app/user-data/item-icons
+            - /data/config_storage/komodo/etc_komodo/stacks/dashy/dashy/icons:/app/user-data/item-icons
         container_name: dashy
         restart: unless-stopped
         image: lissy93/dashy
