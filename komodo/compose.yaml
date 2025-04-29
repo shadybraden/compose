@@ -29,8 +29,8 @@ services:
       - mongo
     logging:
       driver: local
-#    ports:
-#      - 9120:9120
+    ports:
+      - 9120:9120
 #    env_file: ./compose.env
     environment:
       KOMODO_DATABASE_ADDRESS: mongo:27017
