@@ -87,7 +87,7 @@ services:
       ## Must be the same inside and outside the container,
       ## or docker will get confused. See https://github.com/moghtech/komodo/discussions/180.
       ## Default: /etc/komodo.
-      - /etc/komodo:/etc/komodo
+      - /data/config_storage/komodo/etc_komodo:/etc/komodo
     security_opt:
       - no-new-privileges:true # helps to increase security
     networks:
