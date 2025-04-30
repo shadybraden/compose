@@ -214,6 +214,66 @@ run_directory = "navidrome"
 ##
 
 [[stack]]
+name = "netalertx"
+[stack.config]
+server = "holmie"
+project_name = "netalertx"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+run_directory = "netalertx"
+
+##
+
+[[stack]]
+name = "nextcloud"
+[stack.config]
+server = "holmie"
+project_name = "nextcloud"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+run_directory = "nextcloud"
+
+##
+
+[[stack]]
+name = "ntfy"
+[stack.config]
+server = "holmie"
+project_name = "ntfy"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+run_directory = "ntfy"
+
+##
+
+[[stack]]
+name = "portainer"
+[stack.config]
+server = "holmie"
+project_name = "portainer"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+run_directory = "portainer"
+
+##
+
+[[stack]]
+name = "proxy"
+[stack.config]
+server = "holmie"
+project_name = "proxy"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+run_directory = "proxy"
+
+##
+
+[[stack]]
 name = "renovate"
 [stack.config]
 server = "holmie"
@@ -222,3 +282,75 @@ git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
 run_directory = "renovate"
+
+##
+
+[[stack]]
+name = "scrutiny"
+[stack.config]
+server = "holmie"
+project_name = "scrutiny"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+run_directory = "scrutiny"
+
+##
+
+[[stack]]
+name = "stirlingpdf"
+[stack.config]
+server = "holmie"
+project_name = "stirlingpdf"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+run_directory = "stirlingpdf"
+
+##
+
+[[stack]]
+name = "syncthing"
+[stack.config]
+server = "holmie"
+project_name = "syncthing"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+run_directory = "syncthing"
+
+##
+
+[[stack]]
+name = "uptime-kuma"
+[stack.config]
+server = "holmie"
+project_name = "uptime-kuma"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+run_directory = "uptime-kuma"
+
+##
+
+[[stack]]
+name = "vaultwarden"
+[stack.config]
+server = "holmie"
+project_name = "vaultwarden"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+run_directory = "vaultwarden"
+
+##
+
+[[stack]]
+name = "wireguard"
+[stack.config]
+server = "holmie"
+project_name = "wireguard"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+run_directory = "wireguard"
