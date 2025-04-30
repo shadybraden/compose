@@ -8,7 +8,7 @@ services:
 #      - "8181:8080" # webapp
       - "8085:8086" # influxDB admin
     volumes:
-#      - /run/udev:/run/udev:ro
+      - /run/udev:/run/udev:ro
       - /data/config_storage/scrutiny/config:/opt/scrutiny/config
       - /data/config_storage/scrutiny/influxdb:/opt/scrutiny/influxdb
     devices:
