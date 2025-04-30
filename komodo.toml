@@ -100,3 +100,15 @@ git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
 run_directory = "freshrss"
+
+##
+
+[[stack]]
+name = "glances"
+[stack.config]
+server = "holmie"
+project_name = "glances"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+run_directory = "glances"
