@@ -7,6 +7,15 @@ send_unreachable_alerts = false
 
 ##
 
+[[alerter]]
+name = "ntfy"
+[alerter.config]
+enabled = true
+endpoint.type = "Ntfy"
+endpoint.params.url = "https://ntfy.holmlab.org/komodoQLKho7Ad7yV8w9tfmvA9Nl8"
+
+##
+
 [[resource_sync]]
 name = "komodogit"
 [resource_sync.config]
