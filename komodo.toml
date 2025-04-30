@@ -41,6 +41,17 @@ git_account = "komodo"
 repo = "shady/compose"
 run_directory = "audiobookshelf"
 
+##
+
+[[stack]]
+name = "dockge"
+[stack.config]
+server = "holmie"
+project_name = "dockge"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+run_directory = "dockge"
 
 ##
 
