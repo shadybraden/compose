@@ -1,0 +1,40 @@
+services:
+  periphery:
+    image: ghcr.io/moghtech/komodo-periphery:latest
+#    labels:
+#      komodo.skip: # Prevent Komodo from stopping with StopAllContainers
+    restart: unless-stopped
+    logging:
+      driver: local
+#    env_file: ./compose.env
+    volumes:
+      ## Mount external docker socket
+      - /var/run/docker.sock:/var/run/docker.sock
+      ## Allow Periphery to see processes outside of container
+      - /proc:/proc
+      ## Specify the Periphery agent root directory.
+      ## Must be the same inside and outside the container,
+      ## or docker will get confused. See https://github.com/moghtech/komodo/discussions/180.
+      ## Default: /etc/komodo.
+      - /data/config_storage/komodo/etc_komodo:/etc/komodo
+    security_opt:
+      - no-new-privileges:true # helps to increase security
+    networks:
+      - intranet
+    labels:
+    - "komodo.skip"
+    - "traefik.enable=true"
+    - "traefik.http.routers.peripheryshady.entrypoints=http"
+    - "traefik.http.routers.peripheryshady.rule=Host(`peripheryshady.holmlab.org`)"
+    - "traefik.http.middlewares.peripheryshady-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.peripheryshady.middlewares=peripheryshady-https-redirect"
+    - "traefik.http.routers.peripheryshady-secure.entrypoints=https"
+    - "traefik.http.routers.peripheryshady-secure.rule=Host(`peripheryshady.holmlab.org`)"
+    - "traefik.http.routers.peripheryshady-secure.tls=true"
+    - "traefik.http.routers.peripheryshady-secure.service=peripheryshady"
+    - "traefik.http.services.peripheryshady.loadbalancer.server.port=8120" # port of the service. i.e. peripheryshady likes 9000
+    - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true
