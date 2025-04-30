@@ -7,6 +7,18 @@ send_unreachable_alerts = false
 
 ##
 
+[[resource_sync]]
+name = "komodogit"
+[resource_sync.config]
+git_provider = "git.holmlab.org"
+repo = "shady/compose"
+git_account = "komodo"
+resource_path = ["komodo.toml"]
+delete = true
+include_user_groups = true
+
+##
+
 [[stack]]
 name = "adsb"
 [stack.config]
@@ -76,15 +88,3 @@ git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
 run_directory = "freshrss"
-
-##
-
-[[resource_sync]]
-name = "komodogit"
-[resource_sync.config]
-git_provider = "git.holmlab.org"
-repo = "shady/compose"
-git_account = "komodo"
-resource_path = ["komodo.toml"]
-delete = true
-include_user_groups = true
