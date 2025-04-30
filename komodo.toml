@@ -67,6 +67,18 @@ run_directory = "filebrowser"
 
 ##
 
+[[stack]]
+name = "freshrss"
+[stack.config]
+server = "holmie"
+project_name = "freshrss"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+run_directory = "freshrss"
+
+##
+
 [[resource_sync]]
 name = "komodogit"
 [resource_sync.config]
