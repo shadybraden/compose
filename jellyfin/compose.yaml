@@ -10,7 +10,7 @@ services:
         - /mnt/4tb/arr:/arr
         - /mnt/4tb/MOVIES_jellyfin:/media
         restart: on-failure
-        image: lscr.io/linuxserver/jellyfin:latest
+        image: lscr.io/linuxserver/jellyfin:10.10.6
         environment:
         - PUID=1000
         - PGID=1000
