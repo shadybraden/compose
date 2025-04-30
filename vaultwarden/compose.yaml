@@ -7,7 +7,7 @@ services:
         environment:
             - LOG_FILE=/data/vaultwarden.log
             - LOG_LEVEL=info
-        image: vaultwarden/server:latest
+        image: vaultwarden/server:1.33.2
 #        ports:
 #            - 58527:80
         security_opt:
