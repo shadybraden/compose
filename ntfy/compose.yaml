@@ -10,7 +10,7 @@ services:
 #        stdin_open: true
 #        tty: true
         restart: unless-stopped
-        image: binwiederhier/ntfy
+        image: binwiederhier/ntfy:v2.11.0
         command: serve --cache-file /var/cache/ntfy/cache.db
         security_opt:
         - no-new-privileges:true # helps to increase security
