@@ -23,7 +23,7 @@ services:
             - 8388:8388/tcp # Shadowsocks
             - 8388:8388/udp # Shadowsocks
             - 1080:1080 # socks5
-        image: qmcgaw/gluetun
+        image: qmcgaw/gluetun:v3.40
     socks5:
         container_name: socks5
         environment:
