@@ -7,7 +7,7 @@ services:
         container_name: homeassistant
         privileged: true
         volumes:
-            - /data/config_storage/homeAssistant:/config
+            - /data/config_storage/homeassistant:/config
             - /etc/localtime:/etc/localtime:ro
             - /run/dbus:/run/dbus
         restart: on-failure
