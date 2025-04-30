@@ -190,6 +190,18 @@ run_directory = "jellyseerr"
 ##
 
 [[stack]]
+name = "kiwix"
+[stack.config]
+server = "holmie"
+project_name = "kiwix"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+run_directory = "kiwix"
+
+##
+
+[[stack]]
 name = "renovate"
 [stack.config]
 server = "holmie"
