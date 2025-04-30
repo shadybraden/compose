@@ -142,6 +142,18 @@ run_directory = "glances"
 ##
 
 [[stack]]
+name = "homeassistant"
+[stack.config]
+server = "holmie"
+project_name = "homeassistant"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+run_directory = "homeassistant"
+
+##
+
+[[stack]]
 name = "immich"
 [stack.config]
 server = "holmie"
