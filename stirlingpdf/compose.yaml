@@ -4,9 +4,9 @@ services:
     container_name: stirlingpdf
 #    ports:
 #      - '8087:8080'
-#    volumes:
-#      - /data/dont_backup/stirlingpdf/trainingData:/usr/share/tessdata # Required for extra OCR languages
-#      - /data/dont_backup/stirlingpdf/extraConfigs:/configs
+    volumes:
+      - /data/dont_backup/stirlingpdf/trainingData:/usr/share/tessdata # Required for extra OCR languages
+      - /data/dont_backup/stirlingpdf/extraConfigs:/configs
 #      - ./customFiles:/customFiles/
 #      - ./logs:/logs/
     environment:
