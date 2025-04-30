@@ -1,6 +1,6 @@
 services:
   syncthing:
-    image: lscr.io/linuxserver/syncthing
+    image: lscr.io/linuxserver/syncthing:v1.29.5-ls180
     container_name: syncthing
     hostname: syncthing
     environment:
