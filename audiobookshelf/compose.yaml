@@ -1,7 +1,7 @@
 services:
     audiobookshelf:
-        ports:
-            - 13378:80
+#        ports:
+#            - 13378:80
         container_name: audiobookshelf
         volumes:
             - /mnt/4tb/audiobooks:/audiobooks:ro
