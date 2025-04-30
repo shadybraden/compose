@@ -10,7 +10,7 @@ services:
             - PORT=20211
         container_name: netalertx
         restart: unless-stopped
-        image: jokobsk/netalertx:latest
+        image: jokobsk/netalertx:v25.4.14
         security_opt:
         - no-new-privileges:true # helps to increase security
         networks:
