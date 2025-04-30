@@ -9,7 +9,7 @@ services:
             - /data/config_storage/nextcloud/apps:/var/www/html/custom_apps
             - /data/config_storage/nextcloud/config:/var/www/html/config
             - /data/config_storage/nextcloud/data:/var/www/html/data
-        image: nextcloud:latest
+        image: nextcloud:31.0.4
         security_opt:
         - no-new-privileges:true # helps to increase security
         networks:
