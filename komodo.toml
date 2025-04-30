@@ -18,8 +18,12 @@ run_directory = "adsb"
 
 ##
 
-[[user_group]]
-name = "standard_group"
-users = ["shady"]
-all.Stack = "Execute"
-permissions = []
+[[resource_sync]]
+name = "komodogit"
+[resource_sync.config]
+git_provider = "git.holmlab.org"
+repo = "shady/compose"
+git_account = "komodo"
+resource_path = ["komodo.toml"]
+delete = true
+include_user_groups = true
