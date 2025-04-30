@@ -48,7 +48,6 @@ git_provider = "git.holmlab.org"
 repo = "shady/compose"
 git_account = "komodo"
 resource_path = ["komodo.toml"]
-delete = true
 include_user_groups = true
 
 ##
