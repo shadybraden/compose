@@ -1,0 +1,25 @@
+[[server]]
+name = "holmie"
+[server.config]
+address = "https://periphery.holmlab.org"
+enabled = true
+send_unreachable_alerts = false
+
+##
+
+[[stack]]
+name = "adsb"
+[stack.config]
+project_name = "adsb"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+run_directory = "adsb"
+
+##
+
+[[user_group]]
+name = "standard_group"
+users = ["shady"]
+all.Stack = "Execute"
+permissions = []
