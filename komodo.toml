@@ -20,7 +20,7 @@ endpoint.params.url = "https://ntfy.holmlab.org/komodoQLKho7Ad7yV8w9tfmvA9Nl8"
 name = "schedule_renovate"
 config.webhook_enabled = false
 config.schedule_format = "Cron"
-config.schedule = "0 12 * * * *"
+config.schedule = "0 12 12 * * *"
 config.schedule_timezone = "America/New_York"
 config.schedule_alert = false
 
