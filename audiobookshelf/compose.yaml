@@ -11,7 +11,7 @@ services:
         environment:
             - TZ=America/New_York
         restart: on-failure
-        image: ghcr.io/advplyr/audiobookshelf
+        image: ghcr.io/advplyr/audiobookshelf:v2.21.0
         security_opt:
         - no-new-privileges:true # helps to increase security
         networks:
