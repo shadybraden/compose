@@ -61,7 +61,7 @@ services:
       - /data/config_storage/arr/radarr:/config
       - //mnt/4tb/arr/torrents:/downloads/torrents
       - /mnt/4tb/arr/movies/media:/movies
-    restart: on-failure
+#    restart: on-failure
     security_opt:
       - no-new-privileges:true # helps to increase security
     networks:
