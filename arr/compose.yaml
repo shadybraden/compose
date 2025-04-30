@@ -125,7 +125,7 @@ services:
 
 # in the ui, set "Default Save Path:" to "Default Save Path:"
   qbittorrent:
-    image: lscr.io/linuxserver/qbittorrent:v.5.0.4
+    image: lscr.io/linuxserver/qbittorrent:5.0.4-r0-ls390
     container_name: qbittorrent
     environment:
       - PUID=1000
