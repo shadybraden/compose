@@ -10,6 +10,7 @@ send_unreachable_alerts = false
 [[stack]]
 name = "adsb"
 [stack.config]
+server = "holmie"
 project_name = "adsb"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
