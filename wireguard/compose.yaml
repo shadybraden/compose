@@ -6,7 +6,7 @@ services:
       - PASSWORD_HASH=${wireguard_password_hash}
       - WG_DEFAULT_DNS=${wireguard_dns_to_use}
       - WG_DEFAULT_ADDRESS=10.8.0.x # range of ips for wg users
-    image: ghcr.io/wg-easy/wg-easy
+    image: ghcr.io/wg-easy/wg-easy:v14.0.0
     container_name: wireguard
     volumes:
       - /data/config_storage/wg-easy:/etc/wireguard
