@@ -7,6 +7,14 @@ send_unreachable_alerts = false
 
 ##
 
+[[server]]
+name = "shady_desktop"
+[server.config]
+address = "https://peripheryshady.holmlab.org"
+enabled = true
+
+##
+
 [[alerter]]
 name = "ntfy"
 [alerter.config]
