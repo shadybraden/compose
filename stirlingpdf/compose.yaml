@@ -13,6 +13,7 @@ services:
       - DOCKER_ENABLE_SECURITY=false
       - INSTALL_BOOK_AND_ADVANCED_HTML_OPS=false
       - LANGS=en_GB
+      - SHOW_SURVEY=false
     security_opt:
       - no-new-privileges:true # helps to increase security
     networks:
