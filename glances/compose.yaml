@@ -21,11 +21,11 @@ services:
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.glances-holmie.entrypoints=http"
-    - "traefik.http.routers.glances-holmie.rule=Host(`glances.holmie.holmlab.org`)"
+    - "traefik.http.routers.glances-holmie.rule=Host(`glances-holmie.holmlab.org`)"
     - "traefik.http.middlewares.glances-holmie-https-redirect.redirectscheme.scheme=https"
     - "traefik.http.routers.glances-holmie.middlewares=glances-holmie-https-redirect"
     - "traefik.http.routers.glances-holmie-secure.entrypoints=https"
-    - "traefik.http.routers.glances-holmie-secure.rule=Host(`glances.holmie.holmlab.org`)"
+    - "traefik.http.routers.glances-holmie-secure.rule=Host(`glances-holmie.holmlab.org`)"
     - "traefik.http.routers.glances-holmie-secure.tls=true"
     - "traefik.http.routers.glances-holmie-secure.service=glances-holmie"
     - "traefik.http.services.glances-holmie.loadbalancer.server.port=61208" # port of the service. i.e. glances-holmie likes 9000
