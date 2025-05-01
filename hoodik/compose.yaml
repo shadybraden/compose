@@ -7,6 +7,7 @@ services:
             - DATA_DIR=/data
             - APP_URL=https://hoodik.holmlab.org/
             - APP_CLIENT_URL=https://hoodik.holmlab.org/
+            - SSL_DISABLED=true
 #            - SSL_CERT_FILE=/data/my-cert-file.crt.pem
 #            - SSL_KEY_FILE=/data/my-key-file.key.pem
 #            - MAILER_TYPE=smtp
