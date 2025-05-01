@@ -361,3 +361,15 @@ git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
 run_directory = "wireguard"
+
+##
+
+[[stack]]
+name = "hoodik"
+[stack.config]
+server = "holmie"
+project_name = "hoodik"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+run_directory = "hoodik"
