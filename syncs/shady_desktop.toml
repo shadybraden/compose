@@ -11,7 +11,7 @@ resource_path = ["syncs/shady_desktop.toml"]
 [[stack]]
 name = "glances-shady"
 [stack.config]
-server = "holmie"
+server = "shady_desktop"
 project_name = "glances-shady"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
