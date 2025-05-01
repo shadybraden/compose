@@ -33,7 +33,7 @@ services:
         - "traefik.http.routers.hoodik-secure.rule=Host(`hoodik.holmlab.org`)"
         - "traefik.http.routers.hoodik-secure.tls=true"
         - "traefik.http.routers.hoodik-secure.service=hoodik"
-        - "traefik.http.services.hoodik.loadbalancer.server.port=80" # port of the service. i.e. hoodik likes 9000
+        - "traefik.http.services.hoodik.loadbalancer.server.port=5443" # port of the service. i.e. hoodik likes 9000
         - "traefik.docker.network=intranet"
 
 networks:
