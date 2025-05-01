@@ -42,7 +42,7 @@ executions = [
 ##
 
 [[resource_sync]]
-name = "komodogit"
+name = "Main"
 [resource_sync.config]
 git_provider = "git.holmlab.org"
 repo = "shady/compose"
