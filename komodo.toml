@@ -11,7 +11,7 @@ send_unreachable_alerts = false
 name = "shady_desktop"
 [server.config]
 address = "https://peripheryshady.holmlab.org"
-enabled = true
+enabled = false
 
 ##
 
