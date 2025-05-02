@@ -1,0 +1,45 @@
+# touch traefik.yml config.yml acme.json
+services:
+  traefik:
+    ports:
+      - 8080:8080 # ro web ui
+      - 80:80   # http
+      - 443:443 # https
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /data/config_storage/traefik/logs:/var/log/traefik # there are no docker logs, so they will be in this folder
+      - /data/config_storage/traefik/acme.json:/acme.json
+      - /data/config_storage/traefik/traefik.yml:/etc/traefik/traefik.yml:ro
+      - /data/config_storage/traefik/config.yml:/etc/traefik/config.yml:ro
+    environment:
+      TRAEFIK_DASHBOARD_CREDENTIALS: ${TRAEFIK_DASHBOARD_CREDENTIALS}
+      CF_DNS_API_TOKEN: ${CF_DNS_API_TOKEN}
+      CF_API_EMAIL: ${CF_API_EMAIL}
+    image: traefik:v3.3
+    container_name: traefik
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true # helps to increase security
+    networks:
+      intranet:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.entrypoints=http"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.shady.holmlab.org`)"
+      - "traefik.http.middlewares.traefik-auth.basicauth.users=${TRAEFIK_DASHBOARD_CREDENTIALS}"
+      - "traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https"
+      - "traefik.http.routers.traefik.middlewares=traefik-https-redirect"
+      - "traefik.http.routers.traefik-secure.entrypoints=https"
+      - "traefik.http.routers.traefik-secure.rule=Host(`traefik.shady.holmlab.org`)"
+      - "traefik.http.routers.traefik-secure.middlewares=traefik-auth"
+      - "traefik.http.routers.traefik-secure.tls=true"
+      - "traefik.http.routers.traefik-secure.tls.certresolver=cloudflare"
+      - "traefik.http.routers.traefik-secure.tls.domains[0].main=shady.holmlab.org"
+      - "traefik.http.routers.traefik-secure.tls.domains[0].sans=*.shady.holmlab.org"
+      - "traefik.http.routers.traefik-secure.service=api@internal"
+
+networks:
+  intranet: # docker network create intranet
+    external: true # or comment this line to auto create the network

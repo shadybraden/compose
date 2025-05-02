@@ -21,11 +21,11 @@ services:
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.glances-shady.entrypoints=http"
-    - "traefik.http.routers.glances-shady.rule=Host(`glances-shady.holmlab.org`)"
+    - "traefik.http.routers.glances-shady.rule=Host(`glances.shady.holmlab.org`)"
     - "traefik.http.middlewares.glances-shady-https-redirect.redirectscheme.scheme=https"
     - "traefik.http.routers.glances-shady.middlewares=glances-shady-https-redirect"
     - "traefik.http.routers.glances-shady-secure.entrypoints=https"
-    - "traefik.http.routers.glances-shady-secure.rule=Host(`glances-shady.holmlab.org`)"
+    - "traefik.http.routers.glances-shady-secure.rule=Host(`glances.shady.holmlab.org`)"
     - "traefik.http.routers.glances-shady-secure.tls=true"
     - "traefik.http.routers.glances-shady-secure.service=glances-shady"
     - "traefik.http.services.glances-shady.loadbalancer.server.port=61208" # port of the service. i.e. glances-shady likes 9000

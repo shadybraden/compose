@@ -2,20 +2,6 @@
 
 https://doc.traefik.io/traefik/getting-started/install-traefik/#use-the-official-docker-image
 
-## Vars to change:
-
-TRAEFIK_DASHBOARD_CREDENTIALS
-CF_DNS_API_TOKEN
-CF_API_EMAIL
-
-traefik.yml and config.yml are set as hidden files. run `cp .traefik.yml.sample traefik.yml` & `cp .config.yml.sample config.yml`
-
----
-
-## Sample yaml to add to a container.
-
-Find and replace STACKNAME
-
 ```yaml
     security_opt:
       - no-new-privileges:true # helps to increase security
