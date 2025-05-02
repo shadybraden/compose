@@ -13,3 +13,15 @@ git_provider = "git.holmlab.org"
 repo = "shady/compose"
 git_account = "komodo"
 resource_path = ["syncs/shady_desktop.toml"]
+
+##
+
+[[stack]]
+name = "glances"
+[stack.config]
+server = "shady_desktop"
+project_name = "glances"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+run_directory = "hosts/shady/glances-shady"
