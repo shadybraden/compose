@@ -1,8 +1,8 @@
 [[server]]
 name = "shady_desktop"
 [server.config]
-address = "https://peripheryshady.holmlab.org"
-enabled = false
+address = "https://shady-desktop.tail7c3e51.ts.net:8120"
+enabled = true
 
 ##
 
