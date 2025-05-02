@@ -22,14 +22,14 @@ entryPoints:
    # address: ":10000"
   # apis:
    # address: ":33073"
-  websecure: # for immich. see immich's readme.md
-    address: :443
+#  websecure: # for immich. see immich's readme.md
+#    address: :443
     # this section needs to be added
-    transport:
-      respondingTimeouts:
-        readTimeout: 600s
-        idleTimeout: 600s
-        writeTimeout: 600s
+#    transport:
+#      respondingTimeouts:
+#        readTimeout: 600s
+#        idleTimeout: 600s
+#        writeTimeout: 600s
 serversTransport:
   insecureSkipVerify: true
 providers:
