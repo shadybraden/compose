@@ -1,3 +1,11 @@
+[[server]]
+name = "shady_desktop"
+[server.config]
+address = "https://peripheryshady.holmlab.org"
+enabled = false
+
+##
+
 [[resource_sync]]
 name = "shady_desktop"
 [resource_sync.config]
