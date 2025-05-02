@@ -1,7 +1,7 @@
 [[server]]
 name = "shady_desktop"
 [server.config]
-address = "https://shady-desktop.tail7c3e51.ts.net:8120"
+address = "http://192.168.50.16:8120"
 enabled = true
 
 ##
