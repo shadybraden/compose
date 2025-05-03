@@ -13,6 +13,21 @@ name = "ntfy"
 enabled = true
 endpoint.type = "Ntfy"
 endpoint.params.url = "https://ntfy.holmlab.org/komodoQLKho7Ad7yV8w9tfmvA9Nl8"
+alert_types = [
+  "ServerUnreachable",
+  "ServerMem",
+  "ServerDisk",
+  "StackStateChange",
+  "StackImageUpdateAvailable",
+  "StackAutoUpdated",
+  "ContainerStateChange",
+  "RepoBuildFailed",
+  "BuildFailed",
+  "DeploymentImageUpdateAvailable",
+  "DeploymentAutoUpdated",
+  "AwsBuilderTerminationFailed",
+  "ResourceSyncPendingUpdates"
+]
 
 ##
 
