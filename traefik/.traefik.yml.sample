@@ -37,7 +37,7 @@ providers:
     endpoint: "unix:///var/run/docker.sock"
     exposedByDefault: false
   file:
-    filename: ./config.yaml # example provided gives A+ rating https://www.ssllabs.com/ssltest/
+    filename: ./config.yml # example provided gives A+ rating https://www.ssllabs.com/ssltest/
 certificatesResolvers:
   cloudflare:
     acme:
