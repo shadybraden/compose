@@ -9,7 +9,7 @@ services:
     container_name: paperless_broker
 
   db:
-    image: docker.io/library/postgres:17
+    image: docker.io/library/postgres:16
     restart: unless-stopped
     volumes:
       - /data/config_storage/paperless/pgdata:/var/lib/postgresql/data
