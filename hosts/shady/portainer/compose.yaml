@@ -17,10 +17,3 @@ services:
 networks:
   intranet:
     external: true
-
-# add the following to traefik.yml
-#  services:
-#    portainer-shady:
-#      loadBalancer:
-#        servers:
-#          - url: "http://192.168.50.16:9000"
