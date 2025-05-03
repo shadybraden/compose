@@ -3,6 +3,9 @@ services:
         stdin_open: true
         tty: true
         volumes:
-            - /data/config_storage/komodo/etc_komodo/stacks/skywatch/skywatch:/app
+            - /data/config_storage/komodo/etc_komodo/stacks/skywatch/skywatch/skywatch.py:/app/skywatch.py
+            - /data/config_storage/komodo/etc_komodo/stacks/skywatch/skywatch/watchlist.txt:/app/watchlist.txt
+            - /data/config_storage/komodo/etc_komodo/stacks/skywatch/skywatch/data.json:/app/data.json
+            - /data/config_storage/recents.txt:/app/recents.txt
         container_name: skywatch
         image: skywatch
