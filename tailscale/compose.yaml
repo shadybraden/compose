@@ -1,0 +1,33 @@
+version: "3.7"
+services:
+  tailscale-nginx:
+    image: tailscale/tailscale:1.82.5
+    hostname: tailscale_holmie
+    container_name: tailscale_holmie
+    environment:
+      - TS_AUTHKEY=${TS_AUTHKEY}
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    cap_add:
+      - net_admin
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true # helps to increase security
+    networks:
+      - intranet
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.pihole.entrypoints=http"
+    - "traefik.http.routers.pihole.rule=Host(`pihole.holmlab.org`)"
+    - "traefik.http.middlewares.pihole-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.pihole.middlewares=pihole-https-redirect"
+    - "traefik.http.routers.pihole-secure.entrypoints=https"
+    - "traefik.http.routers.pihole-secure.rule=Host(`pihole.holmlab.org`)"
+    - "traefik.http.routers.pihole-secure.tls=true"
+    - "traefik.http.routers.pihole-secure.service=pihole"
+    - "traefik.http.services.pihole.loadbalancer.server.port=80" # port of the service. i.e. pihole likes 9000
+    - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true
