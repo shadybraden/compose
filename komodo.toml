@@ -48,6 +48,23 @@ executions = [
 
 ##
 
+[[procedure]]
+name = "restart_proxy"
+config.webhook_enabled = false
+config.schedule_format = "Cron"
+config.schedule = "0 0 * * * *"
+config.schedule_timezone = "America/New_York"
+config.schedule_alert = false
+
+[[procedure.config.stage]]
+name = "Stage 1"
+enabled = true
+executions = [
+  { execution.type = "DeployStack", execution.params.stack = "renovate", execution.params.services = [], enabled = true }
+]
+
+##
+
 [[resource_sync]]
 name = "main"
 [resource_sync.config]
