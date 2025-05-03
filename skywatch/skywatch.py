@@ -83,14 +83,15 @@ for ac in data.get('aircraft', []):
         print("An error occurred:", str(e))
 
     # Current timestamp in the desired format
-    timestamp = datetime.now().strftime("%Y-%m-%d %HH:%M:%S")
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     # Write to file
     if send_message == 1:
         with open("recents.txt", "a") as file:
             file.write(f"{hex_value} {timestamp}\n")
 
     if send_message == 0:
-        print(timestamp, ":", hex_value, "no ntfy")
+        printTime = datetime.now().strftime("%HH:%M:%S")
+        print(printTime, ":", hex_value, "no ntfy")
 
     if send_message == 1:
         print(title)
