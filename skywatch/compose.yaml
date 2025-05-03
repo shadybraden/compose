@@ -3,6 +3,6 @@ services:
         stdin_open: true
         tty: true
         volumes:
-            - /home/shady/skywatch:/app
+            - /data/config_storage/komodo/etc_komodo/stacks/skywatch/skywatch:/app
         container_name: skywatch
         image: skywatch
