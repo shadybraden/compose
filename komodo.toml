@@ -404,15 +404,3 @@ git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
 run_directory = "paperless"
-
-##
-
-[[stack]]
-name = "tailscale"
-[stack.config]
-server = "holmie"
-project_name = "tailscale"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-run_directory = "tailscale"
