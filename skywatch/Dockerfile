@@ -1,5 +1,7 @@
 FROM python:3.13-slim
 
+ENV TZ="America/New_York"
+
 WORKDIR /app
 
 COPY . /app
