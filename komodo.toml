@@ -342,9 +342,8 @@ git_account = "komodo"
 repo = "shady/compose"
 run_directory = "proxy"
 post_deploy.command = """
-#!/bin/bash
-IP_DATA=$(curl --socks5 localhost:1080 ifconfig.co/json)
-curl -H "Priority: min" -d "proxy ip now in: $IP_DATA" https://ntfy.holmlab.org/ip6yoEKIni20WOCTzG8hw4E8zRsdpk
+sleep 10
+curl -H "Priority: min" -d "proxy ip now in: $(curl --socks5 localhost:1080 ifconfig.co/json)" https://ntfy.holmlab.org/ip6yoEKIni20WOCTzG8hw4E8zRsdpk
 """
 
 ##
