@@ -40,8 +40,8 @@ for ac in data.get('aircraft', []):
     desc_value = ac.get('desc', 'unknown') # long description of aircraft
     short_type_value = ac.get('t', 'unknown') # short description of aircraft
     registration = ac.get('r', 'unknown')
-    ownOp_value = ac.get('ownOp', 'unknown') # owner
-    r_dst_value = ac.get('r_dst', 'unknown') # distance form antenna
+    ownOp_value = ac.get('ownOp', 'NA') # owner
+    r_dst_value = ac.get('r_dst', 'NA') # distance form antenna
     r_dst_value = str(r_dst_value)
     dbFlags = ac.get('dbFlags', '0') # 1=MILLITARY 8=LADD 0=rando
     dbFlags = int(dbFlags)
