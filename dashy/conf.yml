@@ -185,192 +185,192 @@ sections:
     items:
       - title: Kiwix
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/kiwix-light.png
+          kiwix-light.png
         url: https://kiwix.holmlab.org
         statusCheck: true
         id: 0_606_kiwix
       - title: Home Assistant
         description: ''
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/home-assistant.png
+          home-assistant.png
         url: https://homeassistant.holmlab.org/
         statusCheck: true
         id: 1_606_homeassistant
       - title: ADS-B
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/adsb.png
+          adsb.png
         url: https://adsb.holmlab.org
         statusCheck: true
         id: 2_606_adsb
       - title: ntfy
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/ntfy-light.png
+          ntfy-light.png
         url: https://ntfy.holmlab.org
         statusCheck: true
         id: 3_606_ntfy
       - title: Jellyfin
         description: ''
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/jellyfin.png
+          jellyfin.png
         url: https://jellyfin.holmlab.org
         statusCheck: true
         id: 4_606_jellyfin
       - title: Immich
         description: ''
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/immich.png
+          immich.png
         url: https://immich.holmlab.org
         statusCheck: true
         id: 5_606_immich
       - title: AudioBookShelf
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/audiobookshelf.png
+          audiobookshelf.png
         url: https://audiobookshelf.holmlab.org
         statusCheck: true
         id: 6_606_audiobookshelf
       - title: VaultWarden
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/bitwarden.png
+          bitwarden.png
         url: https://bitwarden.holmlab.org
         statusCheck: true
         id: 7_606_vaultwarden
       - title: NextCloud
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/nextcloud.png
+          nextcloud.png
         url: https://nextcloud.holmlab.org/
         statusCheck: true
         id: 8_606_nextcloud
       - title: Portainer
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/portainer.png
+          portainer.png
         url: https://portainer-holmie.holmlab.org/#!/3/docker/containers
         statusCheck: true
         id: 9_606_portainer
       - title: Navidrome
         description: ''
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/navidrome.png
+          navidrome.png
         url: https://navidrome.holmlab.org
         statusCheck: true
         id: 10_606_navidrome
       - title: Glances
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/glances.png
+          glances.png
         url: https://glances-holmie.holmlab.org
         statusCheck: true
         id: 11_606_glances
       - title: Webmin
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/webmin.png
+          webmin.png
         url: https://192.168.50.65:10000/
         statusCheck: true
         statusCheckAllowInsecure: true
         id: 12_606_webmin
       - title: Files
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/folder.png
+          folder.png
         url: https://files-holmie.holmlab.org
         statusCheck: true
         id: 13_606_files
       - title: Jellyseerr
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/jellyseerr.png
+          jellyseerr.png
         url: https://jellyseerr.holmlab.org
         statusCheck: true
         id: 14_606_jellyseerr
       - title: Syncthing
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/syncthing.png
+          syncthing.png
         url: https://syncthing-holmie.holmlab.org/
         statusCheck: true
         id: 15_606_syncthing
       - title: Paperless
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/paperless.png
+          paperless.png
         url: https://paperless.holmlab.org
         statusCheck: false
         id: 16_606_paperless
       - title: Deezer-DL
         description: ''
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/deezer.png
+          deezer.png
         url: https://deezerdl.holmlab.org/
         id: 17_606_deezerdl
       - title: Scrutiny
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/scrutiny.png
+          scrutiny.png
         url: https://scrutiny.holmlab.org
         statusCheck: true
         id: 18_606_scrutiny
       - title: FreshRSS
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/freshrss.png
+          freshrss.png
         url: https://rss.holmlab.org
         statusCheck: true
         id: 19_606_freshrss
       - title: Dockge
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/dockge.png
+          dockge.png
         url: https://dockge.holmlab.org/
         statusCheck: true
         id: 20_606_dockge
       - title: Forgejo
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/forgejo.png
+          forgejo.png
         url: https://git.holmlab.org/shady/compose
         statusCheck: true
         id: 21_606_forgejo
       - title: Traefik
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/traefik.png
+          traefik.png
         url: https://traefik.holmlab.org/dashboard/#/http/routers
         statusCheck: true
         statusCheckAcceptCodes: '401'
         id: 22_606_traefik
       - title: NetAlertX
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/NetAlertX.png
+          NetAlertX.png
         url: https://netalertx.holmlab.org
         statusCheck: true
         id: 23_606_netalertx
       - title: Wireguard
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/wireguard.png
+          wireguard.png
         url: https://wireguard.holmlab.org
         statusCheck: true
         id: 24_606_wireguard
       - title: Pi-Hole
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/pi-hole.png
+          pi-hole.png
         url: https://pihole.holmlab.org/admin/login
         statusCheck: true
         id: 25_606_pihole
       - title: AI
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/open-webui-light.png
+          open-webui-light.png
         url: https://ai.holmlab.org/
         statusCheck: true
         id: 26_606_ai
       - title: Uptime-Kuma
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/uptimekuma.png
+          uptimekuma.png
         url: https://uptime-kuma.holmlab.org
         statusCheck: true
         id: 27_606_uptimekuma
       - title: Komodo
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/komodo.png
+          komodo.png
         url: https://komodo.holmlab.org
         statusCheck: true
         id: 28_606_komodo
       - title: Hoodik
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/hoodik.png
+          hoodik.png
         url: https://hoodik.holmlab.org
         statusCheck: true
         id: 29_606_hoodik
     icon: >-
-      https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/server.png
+      server.png
   - name: Shady/Misc
     displayData:
       sortBy: alphabetical
@@ -381,108 +381,108 @@ sections:
     items:
       - title: Portainer
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/portainer.png
+          portainer.png
         url: https://portainer-shady.holmlab.org/#!/2/docker/containers
         statusCheck: true
         id: 0_948_portainer
       - title: Crafty
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/crafty-controller.png
+          crafty-controller.png
         url: https://crafty-shady.holmlab.org/panel/dashboard
         statusCheck: true
         statusCheckAllowInsecure: true
         id: 1_948_crafty
       - title: pfSense
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/pfsense.png
+          pfsense.png
         url: https://192.168.50.1/
         statusCheckAllowInsecure: true
         id: 2_948_pfsense
       - title: Syncthing
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/syncthing.png
+          syncthing.png
         url: https://syncthing-shady.holmlab.org/
         statusCheck: true
         id: 3_948_syncthing
       - title: Glances
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/glances.png
+          glances.png
         url: https://glances-shady.holmlab.org/
         statusCheck: true
         id: 4_948_glances
       - title: Asus WAP
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/asus-light.png
+          asus-light.png
         url: http://192.168.50.4
         id: 5_948_asuswap
     icon: >-
-      https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/desktop.png
+      desktop.png
   - name: Holmlab
     icon: >-
-      https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/server.png
+      server.png
     items:
       - title: Bitwarden
         description: >-
           bitwarden, but on this server, not bitwarden's (also like a paid
           account)
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/bitwarden.png
+          bitwarden.png
         url: https://bitwarden.holmlab.org
         statusCheck: true
         id: 0_703_bitwarden
       - title: Immich
         description: photo backups + viewing
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/immich.png
+          immich.png
         url: https://immich.holmlab.org
         statusCheck: true
         id: 1_703_immich
       - title: Jellyfin
         description: like netflix, but ya gotta say "arrg" to get in
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/jellyfin.png
+          jellyfin.png
         url: https://jellyfin.holmlab.org
         statusCheck: true
         id: 2_703_jellyfin
       - title: AudioBookShelf
         description: audiobooks!
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/audiobookshelf.png
+          audiobookshelf.png
         url: https://audiobookshelf.holmlab.org
         statusCheck: true
         id: 3_703_audiobookshelf
       - title: NextCloud
         description: storage, shared docs, messaging...and more
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/nextcloud.png
+          nextcloud.png
         url: https://nextcloud.holmlab.org
         statusCheck: true
         id: 4_703_nextcloud
       - title: Kiwix
         description: Private Wikis
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/kiwix-light.png
+          kiwix-light.png
         url: https://kiwix.holmlab.org
         statusCheck: true
         id: 5_703_kiwix
       - title: ADS-B
         description: Plane Tracking
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/adsb.png
+          adsb.png
         url: https://adsb.holmlab.org
         statusCheck: true
         id: 6_703_adsb
       - title: PDF
         description: PDF editor
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/pdf.png
+          pdf.png
         url: https://pdf.holmlab.org/
         statusCheck: true
         id: 7_703_pdf
       - title: Minecraft Map
         description: Live minecraft map
         icon: >-
-          https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/minecraft.png
+          minecraft.png
         url: https://mcmap.holmlab.org/
         statusCheck: true
         id: 8_703_minecraftmap
@@ -494,7 +494,7 @@ sections:
       hideForGuests: false
   - name: Holmie Stats
     icon: >-
-      https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/chart.png
+      chart.png
     displayData:
       sortBy: default
       rows: 1
