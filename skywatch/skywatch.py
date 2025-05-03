@@ -3,11 +3,11 @@ import requests
 from datetime import datetime, timedelta
 
 # download data
-#url = 'https://adsb.holmlab.org/data/aircraft.json'
-#response = requests.get(url)
+url = 'https://adsb.holmlab.org/data/aircraft.json'
+response = requests.get(url)
 # Save the content to a file
-#with open('data.json', 'w') as f:
-#    f.write(response.text)
+with open('data.json', 'w') as f:
+    f.write(response.text)
 
 # CHECK recents.txt for old hexes
 now = datetime.now()
