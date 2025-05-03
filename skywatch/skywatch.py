@@ -89,6 +89,9 @@ for ac in data.get('aircraft', []):
         with open("recents.txt", "a") as file:
             file.write(f"{hex_value} {timestamp}\n")
 
+    if send_message == 0:
+        print("no ntfy")
+
     if send_message == 1:
         print(title)
         print(message)
