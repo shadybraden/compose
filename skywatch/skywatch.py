@@ -48,7 +48,7 @@ for ac in data.get('aircraft', []):
 
     # set vars for message:
     title = "watchlist | " + r_dst_value + " away"
-    message = ownOp_value + '\n' + desc_value + " | " + short_type_value + '\n' + "https://adsb.holmlab.org/?icao=" + hex_value
+    message = ownOp_value + '\n' + short_type_value + " | " + desc_value + '\n' + "https://adsb.holmlab.org/?icao=" + hex_value
     click = "https://adsb.lol/?zoom=11&SiteLat=42.587&SiteLon=-71.377&icao=" + hex_value
 
     if dbFlags == 0: # if not millitary, check watchlist.txt
