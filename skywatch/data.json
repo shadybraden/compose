@@ -1,0 +1,11 @@
+{ "now" : 1746294600.000,
+  "messages" : 863510,
+  "aircraft" : [
+{"hex":"ab324a","type":"adsb_icao","r":"N820QS","t":"C700","desc":"CESSNA 700 Citation Longitude",
+"ownOp":"NETJETS SALES INC, COBBS CAPITAL INC, COSELLI ENTERPRISES LP, DR",
+"year":"2021","alt_baro":2125,"calc_track":45,"lat":42.565318,"lon":-71.386158,"nic":8,"rc":186,"seen_pos":1.060,"r_dst":1.435,"r_dir":198.9,"version":0,"nac_p":8,"sil":2,"sil_type":"unknown","alert":0,"spi":0,"mlat":[],"tisb":[],"messages":5,"seen":1.1,"rssi":-23.3},
+{"hex":"a210c5","type":"mode_s","r":"N232JQ","t":"E75L","desc":"EMBRAER ERJ-170-200 (long wing)",
+"ownOp":"DELTA AIR LINES INC",
+"year":"2008","alt_baro":10050,"nac_p":8,"sil":2,"sil_type":"unknown","alert":0,"spi":0,"mlat":[],"tisb":[],"messages":19,"seen":58.2,"rssi":-28.5}
+  ]
+}

@@ -1,0 +1,8 @@
+services:
+    skywatch:
+        stdin_open: true
+        tty: true
+        volumes:
+            - /home/shady/skywatch:/app
+        container_name: skywatch
+        image: skywatch
