@@ -90,7 +90,7 @@ for ac in data.get('aircraft', []):
             file.write(f"{hex_value} {timestamp}\n")
 
     if send_message == 0:
-        printTime = datetime.now().strftime("%H:%M:%S")
+        printTime = datetime.now().strftime("%I:%M %p")
         print(printTime, ":", hex_value, "no ntfy")
 
     if send_message == 1:
