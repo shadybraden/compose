@@ -56,7 +56,7 @@ executions = [
 name = "restart_proxy"
 config.webhook_enabled = false
 config.schedule_format = "Cron"
-config.schedule = "0 0 * * * *"
+config.schedule = "0 0 */3 * * *"
 config.schedule_timezone = "America/New_York"
 config.schedule_alert = false
 
