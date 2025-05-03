@@ -6,6 +6,7 @@ services:
       - /data/config_storage/paperless/redisdata:/data
     networks:
       - intranet
+    container_name: paperless_broker
 
   db:
     image: docker.io/library/postgres:17
@@ -18,10 +19,12 @@ services:
       POSTGRES_PASSWORD: ${paperless_db_password}
     networks:
       - intranet
+    container_name: paperless_db
 
   webserver:
     image: ghcr.io/paperless-ngx/paperless-ngx:latest
     restart: unless-stopped
+    container_name: paperless_web
     depends_on:
       - db
       - broker
