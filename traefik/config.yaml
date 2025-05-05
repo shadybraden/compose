@@ -22,8 +22,8 @@ http:
     portainer:
       entryPoints: ["https"]
       rule: "Host(`portainer-shady.holmlab.org`)"
-      middlewares:
-        - default-security-headers
+#      middlewares:
+#        - default-security-headers
 #        - https-redirectscheme
       tls: {}
       service: portainer
