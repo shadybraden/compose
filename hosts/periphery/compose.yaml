@@ -21,19 +21,6 @@ services:
       - no-new-privileges:true # helps to increase security
     networks:
       - intranet
-    labels:
-    - "komodo.skip"
-    - "traefik.enable=true"
-    - "traefik.http.routers.peripheryshady.entrypoints=http"
-    - "traefik.http.routers.peripheryshady.rule=Host(`peripheryshady.holmlab.org`)"
-    - "traefik.http.middlewares.peripheryshady-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.peripheryshady.middlewares=peripheryshady-https-redirect"
-    - "traefik.http.routers.peripheryshady-secure.entrypoints=https"
-    - "traefik.http.routers.peripheryshady-secure.rule=Host(`peripheryshady.holmlab.org`)"
-    - "traefik.http.routers.peripheryshady-secure.tls=true"
-    - "traefik.http.routers.peripheryshady-secure.service=peripheryshady"
-    - "traefik.http.services.peripheryshady.loadbalancer.server.port=8120" # port of the service. i.e. peripheryshady likes 9000
-    - "traefik.docker.network=intranet"
     ports:
       - 8120:8120
 
