@@ -81,7 +81,7 @@ http:
     crafty:
       loadBalancer:
         servers:
-          - url: "http://192.168.50.16:8443"
+          - url: "https://192.168.50.16:8443"
         passHostHeader: true
     mcmap:
       loadBalancer:
