@@ -466,7 +466,7 @@ run_build = false
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
-reclone = true
+reclone = false
 run_directory = "skywatch"
 pre_deploy.command = """
   # Add multiple commands on new lines. Supports comments.
