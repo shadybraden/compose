@@ -7,7 +7,7 @@ services:
 #            - /tmp:/tmp
         environment:
             - LOG_LEVEL=debug
-            - RENOVATE_CONFIG_FILE=renovate.json # per-repository configuration
+            - RENOVATE_CONFIG_FILE=/renovate.json # per-repository configuration
             - RENOVATE_TOKEN=${RENOVATE_TOKEN}
             - RENOVATE_GITHUB_COM_TOKEN=${RENOVATE_GITHUB_COM_TOKEN} # optional, for release notes # make minimum permission PAT
             - RENOVATE_PLATFORM=gitea
