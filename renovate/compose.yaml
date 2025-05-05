@@ -2,8 +2,8 @@ services:
     renovate:
         stdin_open: true
         tty: true
-#        volumes:
-#            - /data/config_storage/renovate/config.js:/usr/src/app/config.js # global configuration file
+        volumes:
+            - /home/holmie/compose/renovate/config.json:/usr/src/app/config.json # global configuration file
 #            - /tmp:/tmp
         environment:
             - LOG_LEVEL=debug
