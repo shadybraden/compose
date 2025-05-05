@@ -1,3 +1,8 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json"
+  "packageRules": [
+    {
+      "matchPackageNames": ["latest-build-712"],
+      "versioning": "regex:^(?.*)-v?(?\\\\d+)\\\\.(?\\\\d+)\\\\.(?\\\\d+)?$"
+    }
+  ]
 }
