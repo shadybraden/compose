@@ -7,7 +7,7 @@
       "matchDatasources": ["docker"],
       "matchManagers": ["dockerfile"],
       "matchPackagePatterns": ["^ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder$"],
-      "extractVersion": "^latest-build-(\\d+)$"
+      "extractVersion": "^latest-build-(\d+)$"
     }
   ]
 }
