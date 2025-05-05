@@ -46,6 +46,15 @@ http:
         - https-redirectscheme
       tls: {}
       service: syncthing
+    crafty:
+      entryPoints:
+        - "https"
+      rule: "Host(`crafty-shady.holmlab.org`)"
+      middlewares:
+        - default-security-headers
+        - https-redirectscheme
+      tls: {}
+      service: crafty
 
   services:
     portainer:
@@ -62,4 +71,9 @@ http:
       loadBalancer:
         servers:
           - url: "http://192.168.50.16:8384"
+        passHostHeader: true
+    crafty:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.50.16:8443"
         passHostHeader: true
