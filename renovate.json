@@ -3,7 +3,9 @@
   "packageRules": [
     {
       "matchPackagePatterns": ["^ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder"],
-      "versioning": "regex:^latest-build-(\\d+)$"
+      "versioning": "regex:^latest-build-(\\d+)$",
+      "datasource": "docker",
+      "manager": "dockerfile"
     }
   ]
 }
