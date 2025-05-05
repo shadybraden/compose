@@ -1,9 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "logLevel": "debug",
   "packageRules": [
     {
       "matchPackagePatterns": ["^ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder"],
-      "versioning": "regex:^latest-build-(\\d+)$"
+      "versioning": "regex:^latest-build-(\\d+)$",
+      "datasource": "docker",
+      "manager": "dockerfile"
     }
   ]
 }
