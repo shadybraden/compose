@@ -17,7 +17,6 @@ all together:
 ```shell
 mkdir /data/config_storage/traefik
 cp .traefik.yml.sample /data/config_storage/traefik/traefik.yml && \
-cp .config.yml.sample /data/config_storage/traefik/config.yml && \
 touch /data/config_storage/traefik/acme.json
 chmod 600 /data/config_storage/traefik/acme.json
 ls -Al /data/config_storage/traefik

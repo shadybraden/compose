@@ -11,7 +11,7 @@ services:
       - /data/config_storage/traefik/logs:/var/log/traefik # there are no docker logs, so they will be in this folder
       - /data/config_storage/traefik/acme.json:/acme.json
       - /data/config_storage/traefik/traefik.yaml:/etc/traefik/traefik.yaml:ro
-      - /data/config_storage/traefik/config.yaml:/etc/traefik/config.yaml:ro
+      - /home/holmie/compose/traefik/config.yaml:/etc/traefik/config.yaml:ro # so this iac can control routers and services
     environment:
       TRAEFIK_DASHBOARD_CREDENTIALS: ${TRAEFIK_DASHBOARD_CREDENTIALS}
       CF_DNS_API_TOKEN: ${CF_DNS_API_TOKEN}
