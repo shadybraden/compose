@@ -3,11 +3,11 @@ services:
         stdin_open: true
         tty: true
         volumes:
-            - /home/holmie/compose/renovate/config.json:/usr/src/app/config.json # global configuration file
+            - /home/holmie/compose/renovate/renovate.json:/usr/src/app/renovate.json # global configuration file
 #            - /tmp:/tmp
         environment:
             - LOG_LEVEL=debug
-#            - RENOVATE_CONFIG_FILE=config.yaml # per-repository configuration
+            - RENOVATE_CONFIG_FILE=renovate.json # per-repository configuration
             - RENOVATE_TOKEN=${RENOVATE_TOKEN}
             - RENOVATE_GITHUB_COM_TOKEN=${RENOVATE_GITHUB_COM_TOKEN} # optional, for release notes # make minimum permission PAT
             - RENOVATE_PLATFORM=gitea
