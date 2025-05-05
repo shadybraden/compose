@@ -20,48 +20,43 @@ http:
 
   routers:
     portainer:
-      entryPoints:
-        - "https"
+      entryPoints: ["https"]
       rule: "Host(`portainer-shady.holmlab.org`)"
       middlewares:
         - default-security-headers
-        - https-redirectscheme
+#        - https-redirectscheme
       tls: {}
       service: portainer
     glances:
-      entryPoints:
-        - "https"
+      entryPoints: ["https"]
       rule: "Host(`glances-shady.holmlab.org`)"
       middlewares:
         - default-security-headers
-        - https-redirectscheme
+#        - https-redirectscheme
       tls: {}
       service: glances
     syncthing:
-      entryPoints:
-        - "https"
+      entryPoints: ["https"]
       rule: "Host(`syncthing-shady.holmlab.org`)"
       middlewares:
         - default-security-headers
-        - https-redirectscheme
+#        - https-redirectscheme
       tls: {}
       service: syncthing
     crafty:
-      entryPoints:
-        - "https"
+      entryPoints: ["https"]
       rule: "Host(`crafty-shady.holmlab.org`)"
       middlewares:
         - default-security-headers
-        - https-redirectscheme
+#        - https-redirectscheme
       tls: {}
       service: crafty
     mcmap:
-      entryPoints:
-        - "https"
+      entryPoints: ["https"]
       rule: "Host(`mcmap.holmlab.org`)"
       middlewares:
         - default-security-headers
-        - https-redirectscheme
+#        - https-redirectscheme
       tls: {}
       service: mcmap
 
