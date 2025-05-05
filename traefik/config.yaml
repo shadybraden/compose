@@ -24,7 +24,6 @@ http:
       rule: "Host(`portainer-shady.holmlab.org`)"
 #      middlewares:
 #        - default-security-headers
-#        - https-redirectscheme
       tls: {}
       service: portainer
     glances:
@@ -32,7 +31,6 @@ http:
       rule: "Host(`glances-shady.holmlab.org`)"
       middlewares:
         - default-security-headers
-#        - https-redirectscheme
       tls: {}
       service: glances
     syncthing:
@@ -40,7 +38,6 @@ http:
       rule: "Host(`syncthing-shady.holmlab.org`)"
       middlewares:
         - default-security-headers
-#        - https-redirectscheme
       tls: {}
       service: syncthing
     crafty:
@@ -48,7 +45,6 @@ http:
       rule: "Host(`crafty-shady.holmlab.org`)"
       middlewares:
         - default-security-headers
-#        - https-redirectscheme
       tls: {}
       service: crafty
     mcmap:
@@ -56,7 +52,6 @@ http:
       rule: "Host(`mcmap.holmlab.org`)"
       middlewares:
         - default-security-headers
-#        - https-redirectscheme
       tls: {}
       service: mcmap
 
