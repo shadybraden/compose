@@ -28,10 +28,24 @@ http:
         - https-redirectscheme
       tls: {}
       service: portainer
+    glances:
+      entryPoints:
+        - "https"
+      rule: "Host(`glances-shady.holmlab.org`)"
+      middlewares:
+        - default-security-headers
+        - https-redirectscheme
+      tls: {}
+      service: glances
 
   services:
     portainer:
       loadBalancer:
         servers:
           - url: "http://192.168.50.16:9000"
+        passHostHeader: true
+    glances:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.50.16:61208"
         passHostHeader: true
