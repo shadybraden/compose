@@ -1,6 +1,6 @@
 services:
   ultrafeeder:
-    image: ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder:latest-build-706@sha256:336d921fa30a67d3fe359e3c29e35551af716f1e8a3d0fdb6f4d4c00d7ceff2f
+    image: ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder:latest-build-712
     tty: true
     container_name: ultrafeeder
     hostname: ultrafeeder
