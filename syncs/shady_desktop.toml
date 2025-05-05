@@ -17,7 +17,7 @@ resource_path = ["syncs/shady_desktop.toml"]
 ##
 
 [[stack]]
-name = "portainer"
+name = "portainer-shady"
 [stack.config]
 server = "shady_desktop"
 project_name = "portainer"
