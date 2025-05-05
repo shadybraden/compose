@@ -356,6 +356,7 @@ project_name = "renovate"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+reclone = true
 run_directory = "renovate"
 
 ##
