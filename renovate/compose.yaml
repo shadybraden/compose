@@ -3,7 +3,7 @@ services:
         stdin_open: true
         tty: true
         volumes:
-            - /data/config_storage/komodo/etc_komodo/stacks/renovate:/renovate.json # global configuration file
+            - /data/config_storage/komodo/etc_komodo/stacks/renovate/renovate.json:/renovate.json # global configuration file
 #            - /tmp:/tmp
         environment:
             - LOG_LEVEL=debug
