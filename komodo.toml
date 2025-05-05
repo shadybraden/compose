@@ -343,7 +343,7 @@ repo = "shady/compose"
 run_directory = "proxy"
 post_deploy.command = """
 sleep 10
-curl -H "Priority: min" -d "proxy ip now in: $(curl --socks5 192.168.50.65:1080 ifconfig.co/json)" https://ntfy.holmlab.org/ip6yoEKIni20WOCTzG8hw4E8zRsdpk
+curl -H "Priority: min" -d "proxy ip now in: $(curl --socks5 192.168.50.65:1080 ifconfig.co/country)" https://ntfy.holmlab.org/ip6yoEKIni20WOCTzG8hw4E8zRsdpk
 """
 
 ##
