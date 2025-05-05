@@ -43,8 +43,8 @@ http:
     crafty:
       entryPoints: ["https"]
       rule: "Host(`crafty-shady.holmlab.org`)"
-      middlewares:
-        - default-security-headers
+#      middlewares:
+#        - default-security-headers
       tls: {}
       service: crafty
     mcmap:
