@@ -29,8 +29,8 @@ http:
     glances:
       entryPoints: ["https"]
       rule: "Host(`glances-shady.holmlab.org`)"
-      middlewares:
-        - default-security-headers
+#      middlewares:
+#        - default-security-headers
       tls: {}
       service: glances
     syncthing:
