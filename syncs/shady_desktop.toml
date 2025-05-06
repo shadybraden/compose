@@ -58,7 +58,7 @@ periphery
 name = "periphery-shady"
 [stack.config]
 server = "shady_desktop"
-project_name = "periphery"
+project_name = "periphery-shady"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
