@@ -48,7 +48,7 @@ services:
 
   redis:
     container_name: immich_redis
-    image: docker.io/valkey/valkey:8-bookworm@sha256:4a9f847af90037d59b34cd4d4ad14c6e055f46540cf4ff757aaafb266060fa28
+    image: docker.io/valkey/valkey:8.1.1
     restart: on-failure
     networks:
       - intranet
