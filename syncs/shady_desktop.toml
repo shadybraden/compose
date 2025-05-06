@@ -50,3 +50,16 @@ git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
 run_directory = "hosts/glances"
+periphery
+
+##
+
+[[stack]]
+name = "periphery-shady"
+[stack.config]
+server = "shady_desktop"
+project_name = "periphery"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+run_directory = "hosts/periphery"
