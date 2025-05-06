@@ -20,7 +20,7 @@ services:
             - /data/config_storage/hoodik/data:/data
 #        ports:
 #            - 4554:5443
-        image: hudik/hoodik:latest
+        image: hudik/hoodik:v1.5.1
         security_opt:
           - no-new-privileges:true # helps to increase security
         networks:
