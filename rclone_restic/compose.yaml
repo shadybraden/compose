@@ -15,7 +15,7 @@ services:
     environment:
       - PHP_TZ=America/New_York
   restic:
-    image: mazzolino/restic
+    image: mazzolino/restic:1.8.0
     container_name: restic
     restart: on-failure
     hostname: ${rclone_restic_hostname}
@@ -51,7 +51,7 @@ services:
       - no-new-privileges:true
 
   prune:
-    image: mazzolino/restic
+    image: mazzolino/restic:1.8.0
     container_name: restic-prune
     hostname: ${rclone_restic_hostname}
     restart: on-failure
@@ -65,7 +65,7 @@ services:
       - no-new-privileges:true
 
   check:
-    image: mazzolino/restic
+    image: mazzolino/restic:1.8.0
     container_name: restic-check
     restart: on-failure
     hostname: ${rclone_restic_hostname}
