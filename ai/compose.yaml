@@ -6,7 +6,7 @@ services:
             - 11434:11434
         container_name: ollama
         restart: unless-stopped
-        image: ollama/ollama:0.6.7
+        image: ollama/ollama:0.6.8
         security_opt:
         - no-new-privileges:true # helps to increase security
         networks:
