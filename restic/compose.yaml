@@ -22,7 +22,6 @@ services:
       TZ: America/New_York
       POST_COMMANDS_SUCCESS: |-
         curl -H "Title: HOLMIE restic backups success" -H "Priority: min" -H "Tags: house" -d "done" https://ntfy.holmlab.org/${rclone_restic_ntfy_topic}
-#        du -sh /data/backups
       POST_COMMANDS_FAILURE: |-
         curl -H "Title: HOLMIE restic backups FAILURE" -H "Priority: high" -H "Tags: rotating_light" -d "SEE LOGS" https://ntfy.holmlab.org/${rclone_restic_ntfy_topic}
       POST_COMMANDS_INCOMPLETE: |-
