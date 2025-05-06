@@ -30,7 +30,7 @@ services:
 #            - PROXY_USER=user
 #            - PROXY_PASSWORD=pass
             - PROXY_PORT=1080
-        image: serjs/go-socks5-proxy
+        image: serjs/go-socks5-proxy:v0.0.3
         network_mode: service:gluetun
         depends_on:
           gluetun:
