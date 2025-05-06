@@ -2,7 +2,7 @@
 name = "holmie"
 [server.config]
 address = "https://periphery.holmlab.org"
-enabled = false
+enabled = true
 send_unreachable_alerts = false
 
 ##
