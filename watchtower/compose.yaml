@@ -4,7 +4,7 @@ services:
     volumes:
         - ${CONFIG_STORAGE_LOCATION}/watchtower/config.json:/config.json
         - /var/run/docker.sock:/var/run/docker.sock
-    image: containrrr/watchtower
+    image: containrrr/watchtower:1.7.1
     environment:
       - TZ=America/New_York
       - WATCHTOWER_CLEANUP=true
