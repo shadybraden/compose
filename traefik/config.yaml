@@ -61,6 +61,13 @@ http:
         - default-security-headers
       tls: {}
       service: periphery-shady
+    immich-ml-shady:
+      entryPoints: ["https"]
+      rule: "Host(`immich-ml-shady.holmlab.org`)"
+      middlewares:
+        - default-security-headers
+      tls: {}
+      service: immich-ml-shady
 
   services:
     portainer:
@@ -92,4 +99,9 @@ http:
       loadBalancer:
         servers:
           - url: "http://192.168.50.16:8120"
+        passHostHeader: true
+    immich-ml-shady:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.50.16:3003"
         passHostHeader: true
