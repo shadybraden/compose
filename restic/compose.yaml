@@ -1,0 +1,71 @@
+services:
+  restic:
+    image: mazzolino/restic:1.8.0
+    container_name: restic
+    restart: on-failure
+    hostname: HOLMIE
+    environment:
+      RUN_ON_STARTUP: "true"
+      BACKUP_CRON: "15 */1 * * *" # https://crontab.guru/
+      RESTIC_REPOSITORY: /restic
+      RESTIC_PASSWORD: ${rclone_restic_password}
+      RESTIC_BACKUP_SOURCES: /mnt/volumes # this should be the top dir of the below internal dir's
+      RESTIC_COMPRESSION: auto
+      RESTIC_BACKUP_ARGS: >-
+        --tag restic-HOLMIE
+        --verbose
+      RESTIC_FORGET_ARGS: >-
+        --keep-last 10
+        --keep-daily 7
+        --keep-weekly 5
+        --keep-monthly 12
+      TZ: America/New_York
+      POST_COMMANDS_SUCCESS: |-
+        curl -H "Title: HOLMIE restic backups success" -H "Priority: min" -H "Tags: house" -d "done" https://ntfy.holmlab.org/${rclone_restic_ntfy_topic}
+#        du -sh /data/backups
+      POST_COMMANDS_FAILURE: |-
+        curl -H "Title: HOLMIE restic backups FAILURE" -H "Priority: high" -H "Tags: rotating_light" -d "SEE LOGS" https://ntfy.holmlab.org/${rclone_restic_ntfy_topic}
+      POST_COMMANDS_INCOMPLETE: |-
+        curl -H "Title: HOLMIE restic INCOMPLETE" -H "Priority: default" -H "Tags: warning" -d "SEE LOGS" https://ntfy.holmlab.org/${rclone_restic_ntfy_topic}
+    volumes:
+      - /data/backups:/restic # backed up data
+      - /data/tmp-for-restic-restore:/tmp-for-restore # if you run a restore, data goes here
+      - /data/config_storage:/mnt/volumes/config_storage:ro # DATA TO BACKUP
+    security_opt:
+      - no-new-privileges:true
+
+  prune:
+    image: mazzolino/restic:1.8.0
+    container_name: restic-prune
+    hostname: HOLMIE
+    restart: on-failure
+    environment:
+      RUN_ON_STARTUP: "true"
+      PRUNE_CRON: "0 0 4 * * *" # this is 4am
+      RESTIC_REPOSITORY: /restic
+      RESTIC_PASSWORD: ${rclone_restic_password}
+      TZ: America/New_York
+    security_opt:
+      - no-new-privileges:true
+
+  check:
+    image: mazzolino/restic:1.8.0
+    container_name: restic-check
+    restart: on-failure
+    hostname: HOLMIE
+    environment:
+      RUN_ON_STARTUP: "false"
+      CHECK_CRON: "0 15 5 * * *" # this is 5:15am. so should be running after update (watchtower), and after backup (first container here)
+      RESTIC_CHECK_ARGS: >-
+        --read-data-subset=10%
+      RESTIC_REPOSITORY: /restic
+      RESTIC_PASSWORD: ${rclone_restic_password}
+      TZ: America/New_York
+    security_opt:
+      - no-new-privileges:true
+
+
+# from here:
+# https://github.com/JamesTurland/JimsGarage/blob/main/restic/docker-compose.yml
+# https://invidious.nerdvpn.de/watch?v=WBBTC5WfGis
+# https://youtu.be/WBBTC5WfGis

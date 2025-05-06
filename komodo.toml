@@ -463,3 +463,15 @@ pre_deploy.command = """
   # docker build -t skywatch .
 """
 build_extra_args = []
+
+##
+
+[[stack]]
+name = "restic"
+[stack.config]
+server = "holmie"
+project_name = "restic"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+run_directory = "restic"
