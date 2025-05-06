@@ -1,6 +1,6 @@
 services:
   tunarr:
-    image: chrisbenincasa/tunarr
+    image: chrisbenincasa/tunarr:v0.19.0
     container_name: tunarr
     ports:
       - 8409:8000
