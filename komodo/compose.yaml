@@ -90,6 +90,8 @@ services:
       ## or docker will get confused. See https://github.com/moghtech/komodo/discussions/180.
       ## Default: /etc/komodo.
       - /data/config_storage/komodo/etc_komodo:/etc/komodo
+    environment:
+      PERIPHERY_SSL_ENABLED: false
     security_opt:
       - no-new-privileges:true # helps to increase security
     networks:

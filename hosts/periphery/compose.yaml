@@ -24,6 +24,8 @@ services:
       - intranet
     ports:
       - 8120:8120
+    environment:
+      PERIPHERY_SSL_ENABLED: false
 
 networks:
   intranet:
