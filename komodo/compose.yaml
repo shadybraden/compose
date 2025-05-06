@@ -39,7 +39,7 @@ services:
       KOMODO_HOST: https://komodo.holmlab.org
       KOMODO_LOCAL_AUTH: true
       KOMODO_WEBHOOK_SECRET: ${KOMODO_WEBHOOK_SECRET}
-      KOMODO_DISABLE_WEBSOCKET_RECONNECT: false
+      PERIPHERY_SSL_ENABLED: false
     volumes:
       ## Core cache for repos for latest commit hash / contents
       - /data/config_storage/komodo/repo-cache:/repo-cache
