@@ -7,8 +7,8 @@ services:
             - /data/config_storage/portainer:/data
             - /etc/localtime:/etc/localtime:ro
         image: portainer/portainer-ce:2.29.2
-#        ports:
-#            - 9000:9000
+        ports:
+            - 9000:9000
         security_opt:
           - no-new-privileges:true # helps to increase security
         networks:
