@@ -26,4 +26,19 @@ project_name = "glances"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "test"
 run_directory = "hosts/glances"
+
+##
+
+[[stack]]
+name = "portainer-skynet"
+tags = ["skynet"]
+[stack.config]
+server = "skynet"
+project_name = "portainer"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "test"
+run_directory = "hosts/portainer"
