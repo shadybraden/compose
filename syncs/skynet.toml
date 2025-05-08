@@ -1,0 +1,29 @@
+[[server]]
+name = "skynet"
+[server.config]
+address = "https://periphery-skynet.holmlab.org"
+enabled = true
+send_unreachable_alerts = true
+
+##
+
+[[resource_sync]]
+name = "skynet"
+[resource_sync.config]
+git_provider = "git.holmlab.org"
+repo = "skynet/compose"
+git_account = "komodo"
+resource_path = ["syncs/skynet.toml"]
+
+##
+
+[[stack]]
+name = "glances-skynet"
+tags = ["skynet"]
+[stack.config]
+server = "skynet"
+project_name = "glances"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "skynet/compose"
+run_directory = "hosts/glances"
