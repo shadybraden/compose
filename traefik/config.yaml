@@ -33,6 +33,13 @@ http:
 #        - default-security-headers
       tls: {}
       service: glances
+    glances-skynet:
+      entryPoints: ["https"]
+      rule: "Host(`glances-skynet.holmlab.org`)"
+#      middlewares:
+#        - default-security-headers
+      tls: {}
+      service: glances
     syncthing:
       entryPoints: ["https"]
       rule: "Host(`syncthing-shady.holmlab.org`)"
@@ -86,6 +93,11 @@ http:
       loadBalancer:
         servers:
           - url: "http://192.168.50.16:61208"
+        passHostHeader: true
+    glances-skynet:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.50.45:61208"
         passHostHeader: true
     syncthing:
       loadBalancer:
