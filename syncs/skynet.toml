@@ -1,6 +1,7 @@
 [[server]]
 name = "skynet"
 [server.config]
+tags = ["skynet"]
 address = "https://periphery-skynet.holmlab.org"
 enabled = true
 send_unreachable_alerts = true
