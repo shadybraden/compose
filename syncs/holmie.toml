@@ -369,3 +369,17 @@ git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
 run_directory = "restic"
+
+##
+
+[[stack]]
+name = "plex-skynet"
+tags = ["skynet"]
+[stack.config]
+server = "skynet"
+project_name = "plex"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "plex"
