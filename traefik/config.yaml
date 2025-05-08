@@ -61,6 +61,13 @@ http:
         - default-security-headers
       tls: {}
       service: periphery-shady
+    periphery-skynet:
+      entryPoints: ["https"]
+      rule: "Host(`periphery-skynet.holmlab.org`)"
+      middlewares:
+        - default-security-headers
+      tls: {}
+      service: periphery-skynet
     immich-ml-shady:
       entryPoints: ["https"]
       rule: "Host(`immich-ml-shady.holmlab.org`)"
@@ -99,6 +106,11 @@ http:
       loadBalancer:
         servers:
           - url: "http://192.168.50.16:8120"
+        passHostHeader: true
+    periphery-skynet:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.50.45:8120"
         passHostHeader: true
     immich-ml-shady:
       loadBalancer:
