@@ -14,18 +14,18 @@ services:
         networks:
           - intranet
         environment:
-          - SUB_DOMAIN=portainer
+          - CONTAINER_NAME=portainer
         labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.${SUB_DOMAIN}.entrypoints=http"
-        - "traefik.http.routers.${SUB_DOMAIN}.rule=Host(`${SUB_DOMAIN}.holmlab.org`)"
-        - "traefik.http.middlewares.${SUB_DOMAIN}-https-redirect.redirectscheme.scheme=https"
-        - "traefik.http.routers.${SUB_DOMAIN}.middlewares=${SUB_DOMAIN}-https-redirect"
-        - "traefik.http.routers.${SUB_DOMAIN}-secure.entrypoints=https"
-        - "traefik.http.routers.${SUB_DOMAIN}-secure.rule=Host(`${SUB_DOMAIN}.holmlab.org`)"
-        - "traefik.http.routers.${SUB_DOMAIN}-secure.tls=true"
-        - "traefik.http.routers.${SUB_DOMAIN}-secure.service=${SUB_DOMAIN}"
-        - "traefik.http.services.${SUB_DOMAIN}.loadbalancer.server.port=9000" # port of the service. i.e. ${SUB_DOMAIN} likes 9000
+        - "traefik.http.routers.${CONTAINER_NAME}.entrypoints=http"
+        - "traefik.http.routers.${CONTAINER_NAME}.rule=Host(`${CONTAINER_NAME}.holmlab.org`)"
+        - "traefik.http.middlewares.${CONTAINER_NAME}-https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.${CONTAINER_NAME}.middlewares=${CONTAINER_NAME}-https-redirect"
+        - "traefik.http.routers.${CONTAINER_NAME}-secure.entrypoints=https"
+        - "traefik.http.routers.${CONTAINER_NAME}-secure.rule=Host(`${CONTAINER_NAME}.holmlab.org`)"
+        - "traefik.http.routers.${CONTAINER_NAME}-secure.tls=true"
+        - "traefik.http.routers.${CONTAINER_NAME}-secure.service=${CONTAINER_NAME}"
+        - "traefik.http.services.${CONTAINER_NAME}.loadbalancer.server.port=9000" # port of the service. i.e. ${CONTAINER_NAME} likes 9000
         - "traefik.docker.network=intranet"
 
 networks:
