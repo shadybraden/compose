@@ -9,9 +9,9 @@ services:
       - TZ=Etc/UTC
       - VERSION=docker
     volumes:
-      - ${CONFIG_STORAGE_LOCATION}/plex/config:/config
-      - ${plex_movies}/shows:/tv
-      - ${plex_shows}/movies:/movies
+      - /data/config_storage/plex/config:/config
+      - /mnt/4tb/mcc/shows:/tv
+      - /mnt/4tb/mcc/movies:/movies
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true # helps to increase security
