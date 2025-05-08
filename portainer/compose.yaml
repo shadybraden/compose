@@ -14,7 +14,7 @@ services:
         networks:
           - intranet
         environment:
-          - SUB_DOMAIN=portainer-holmie
+          - SUB_DOMAIN=portainer
         labels:
         - "traefik.enable=true"
         - "traefik.http.routers.${SUB_DOMAIN}.entrypoints=http"
