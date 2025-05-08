@@ -1,0 +1,25 @@
+[[alerter]]
+name = "ntfy"
+[alerter.config]
+enabled = true
+endpoint.type = "Ntfy"
+endpoint.params.url = "https://ntfy.holmlab.org/komodoQLKho7Ad7yV8w9tfmvA9Nl8"
+alert_types = [
+  "ServerUnreachable",
+  "ServerMem",
+  "ServerDisk",
+  "StackStateChange",
+  "StackImageUpdateAvailable",
+  "StackAutoUpdated",
+  "ContainerStateChange",
+  "RepoBuildFailed",
+  "BuildFailed",
+  "DeploymentImageUpdateAvailable",
+  "DeploymentAutoUpdated",
+  "AwsBuilderTerminationFailed",
+  "ResourceSyncPendingUpdates"
+]
+except_resources = [
+  { type = "Stack", id = "681657ce336c0fdc2aca583c" },
+  { type = "Stack", id = "681293e219f9998a4fbec436" }
+]

@@ -1,22 +1,3 @@
-[[server]]
-name = "shady_desktop"
-[server.config]
-address = "https://periphery-shady.holmlab.org"
-enabled = true
-send_unreachable_alerts = false
-
-##
-
-[[resource_sync]]
-name = "shady_desktop"
-[resource_sync.config]
-git_provider = "git.holmlab.org"
-repo = "shady/compose"
-git_account = "komodo"
-resource_path = ["syncs/shady_desktop.toml"]
-
-##
-
 [[stack]]
 name = "portainer-shady"
 tags = ["shady"]

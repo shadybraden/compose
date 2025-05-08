@@ -1,0 +1,55 @@
+[[procedure]]
+name = "schedule_renovate"
+config.webhook_enabled = false
+config.schedule_format = "Cron"
+config.schedule = "0 6 6 * * *"
+config.schedule_timezone = "America/New_York"
+config.schedule_alert = false
+
+[[procedure.config.stage]]
+name = "Stage 1"
+enabled = true
+executions = [
+  { execution.type = "DeployStack", execution.params.stack = "renovate", execution.params.services = [], enabled = true }
+]
+
+##
+
+[[procedure]]
+name = "restart_proxy"
+config.webhook_enabled = false
+config.schedule_format = "Cron"
+config.schedule = "0 0 */3 * * *"
+config.schedule_timezone = "America/New_York"
+config.schedule_alert = false
+
+[[procedure.config.stage]]
+name = "Stage 1"
+enabled = true
+executions = [
+  { execution.type = "StopStack", execution.params.stack = "proxy", execution.params.services = [], enabled = true }
+]
+
+[[procedure.config.stage]]
+name = "Stage 2"
+enabled = true
+executions = [
+  { execution.type = "DeployStack", execution.params.stack = "proxy", execution.params.services = [], enabled = true }
+]
+
+##
+
+[[procedure]]
+name = "skywatch"
+config.webhook_enabled = false
+config.schedule_format = "Cron"
+config.schedule = "0 * * * * *"
+config.schedule_timezone = "America/New_York"
+config.schedule_alert = false
+
+[[procedure.config.stage]]
+name = "Stage 1"
+enabled = true
+executions = [
+  { execution.type = "DeployStack", execution.params.stack = "skywatch", execution.params.services = [], enabled = true }
+]

@@ -1,0 +1,25 @@
+[[server]]
+name = "holmie"
+[server.config]
+address = "https://periphery.holmlab.org"
+enabled = true
+send_unreachable_alerts = false
+
+##
+
+[[server]]
+name = "shady_desktop"
+[server.config]
+address = "https://periphery-shady.holmlab.org"
+enabled = true
+send_unreachable_alerts = false
+
+##
+
+[[server]]
+name = "skynet"
+[server.config]
+tags = ["skynet"]
+address = "https://periphery-skynet.holmlab.org"
+enabled = true
+send_unreachable_alerts = true

@@ -1,0 +1,67 @@
+[[resource_sync]]
+name = "syncs"
+[resource_sync.config]
+git_provider = "git.holmlab.org"
+repo = "shady/compose"
+git_account = "komodo"
+resource_path = ["syncs/syncs.toml"]
+
+##
+
+[[resource_sync]]
+name = "servers"
+[resource_sync.config]
+git_provider = "git.holmlab.org"
+repo = "shady/compose"
+git_account = "komodo"
+resource_path = ["syncs/servers.toml"]
+
+##
+
+[[resource_sync]]
+name = "holmie"
+[resource_sync.config]
+git_provider = "git.holmlab.org"
+repo = "shady/compose"
+git_account = "komodo"
+resource_path = ["syncs/holmie.toml"]
+
+##
+
+[[resource_sync]]
+name = "skynet"
+[resource_sync.config]
+git_provider = "git.holmlab.org"
+repo = "shady/compose"
+git_account = "komodo"
+resource_path = ["syncs/skynet.toml"]
+
+##
+
+[[resource_sync]]
+name = "shady_desktop"
+[resource_sync.config]
+git_provider = "git.holmlab.org"
+repo = "shady/compose"
+git_account = "komodo"
+resource_path = ["syncs/shady_desktop.toml"]
+
+##
+
+[[resource_sync]]
+name = "alert"
+[resource_sync.config]
+git_provider = "git.holmlab.org"
+repo = "shady/compose"
+git_account = "komodo"
+resource_path = ["syncs/alert.toml"]
+
+##
+
+[[resource_sync]]
+name = "procedure"
+[resource_sync.config]
+git_provider = "git.holmlab.org"
+repo = "shady/compose"
+git_account = "komodo"
+resource_path = ["syncs/procedure.toml"]
