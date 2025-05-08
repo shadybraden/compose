@@ -17,15 +17,15 @@ services:
           - CONTAINER_NAME=portainer
         labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.${CONTAINER_NAME:-default}.entrypoints=http"
-        - "traefik.http.routers.${CONTAINER_NAME:-default}.rule=Host(`${CONTAINER_NAME:-default}.holmlab.org`)"
-        - "traefik.http.middlewares.${CONTAINER_NAME:-default}-https-redirect.redirectscheme.scheme=https"
-        - "traefik.http.routers.${CONTAINER_NAME:-default}.middlewares=${CONTAINER_NAME:-default}-https-redirect"
-        - "traefik.http.routers.${CONTAINER_NAME:-default}-secure.entrypoints=https"
-        - "traefik.http.routers.${CONTAINER_NAME:-default}-secure.rule=Host(`${CONTAINER_NAME:-default}.holmlab.org`)"
-        - "traefik.http.routers.${CONTAINER_NAME:-default}-secure.tls=true"
-        - "traefik.http.routers.${CONTAINER_NAME:-default}-secure.service=${CONTAINER_NAME:-default}"
-        - "traefik.http.services.${CONTAINER_NAME:-default}.loadbalancer.server.port=9000" # port of the service. i.e. ${CONTAINER_NAME:-default} likes 9000
+        - "traefik.http.routers.$${CONTAINER_NAME:-default}.entrypoints=http"
+        - "traefik.http.routers.$${CONTAINER_NAME:-default}.rule=Host(`$${CONTAINER_NAME:-default}.holmlab.org`)"
+        - "traefik.http.middlewares.$${CONTAINER_NAME:-default}-https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.$${CONTAINER_NAME:-default}.middlewares=$${CONTAINER_NAME:-default}-https-redirect"
+        - "traefik.http.routers.$${CONTAINER_NAME:-default}-secure.entrypoints=https"
+        - "traefik.http.routers.$${CONTAINER_NAME:-default}-secure.rule=Host(`$${CONTAINER_NAME:-default}.holmlab.org`)"
+        - "traefik.http.routers.$${CONTAINER_NAME:-default}-secure.tls=true"
+        - "traefik.http.routers.$${CONTAINER_NAME:-default}-secure.service=$${CONTAINER_NAME:-default}"
+        - "traefik.http.services.$${CONTAINER_NAME:-default}.loadbalancer.server.port=9000" # port of the service. i.e. $${CONTAINER_NAME:-default} likes 9000
         - "traefik.docker.network=intranet"
 
 networks:
