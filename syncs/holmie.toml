@@ -373,10 +373,10 @@ run_directory = "restic"
 ##
 
 [[stack]]
-name = "plex-skynet"
+name = "plex"
 tags = ["skynet"]
 [stack.config]
-server = "skynet"
+server = "holmie"
 project_name = "plex"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
