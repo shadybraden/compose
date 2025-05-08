@@ -3,8 +3,8 @@ services:
     image: lscr.io/linuxserver/plex:1.41.6
     container_name: plex
 #    network_mode: host
-#    ports:
-#      - 32400:32400
+    ports:
+      - 32400:32400
     environment:
       - PUID=1000
       - PGID=1000
@@ -17,19 +17,3 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true # helps to increase security
-    labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.plex.entrypoints=http"
-    - "traefik.http.routers.plex.rule=Host(`plex.holmlab.org`)"
-    - "traefik.http.middlewares.plex-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.plex.middlewares=plex-https-redirect"
-    - "traefik.http.routers.plex-secure.entrypoints=https"
-    - "traefik.http.routers.plex-secure.rule=Host(`plex.holmlab.org`)"
-    - "traefik.http.routers.plex-secure.tls=true"
-    - "traefik.http.routers.plex-secure.service=plex"
-    - "traefik.http.services.plex.loadbalancer.server.port=32400" # port of the service. i.e. plex likes 9000
-    - "traefik.docker.network=intranet"
-
-networks:
-  intranet:
-    external: true
