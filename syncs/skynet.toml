@@ -11,7 +11,7 @@ send_unreachable_alerts = true
 name = "skynet"
 [resource_sync.config]
 git_provider = "git.holmlab.org"
-repo = "skynet/compose"
+repo = "shady/compose"
 git_account = "komodo"
 resource_path = ["syncs/skynet.toml"]
 
