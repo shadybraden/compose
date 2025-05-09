@@ -34,6 +34,7 @@ project_name = "adsbtest"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "adsb"
 environment = """
 SUBDOMAIN=adsb
