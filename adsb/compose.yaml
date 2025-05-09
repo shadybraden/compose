@@ -30,6 +30,7 @@ services:
       - TAR1090_USEROUTEAPI=true
       - GRAPHS1090_DARKMODE=true
       - GRAPHS1090_DISABLE=true
+      - SUBDOMAIN=adsbvar
     volumes:
       - /data/config_storage/adsb/globe_history:/var/globe_history
       - /data/config_storage/adsb/graphs1090:/var/lib/collectd
@@ -47,15 +48,15 @@ services:
       - intranet
     labels:
     - "traefik.enable=true"
-    - "traefik.http.routers.adsb.entrypoints=http"
-    - "traefik.http.routers.adsb.rule=Host(`adsb.holmlab.org`)"
-    - "traefik.http.middlewares.adsb-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.adsb.middlewares=adsb-https-redirect"
-    - "traefik.http.routers.adsb-secure.entrypoints=https"
-    - "traefik.http.routers.adsb-secure.rule=Host(`adsb.holmlab.org`)"
-    - "traefik.http.routers.adsb-secure.tls=true"
-    - "traefik.http.routers.adsb-secure.service=adsb"
-    - "traefik.http.services.adsb.loadbalancer.server.port=80" # port of the service. i.e. adsb likes 9000
+    - "traefik.http.routers.${SUBDOMAIN?Variable not set}.entrypoints=http"
+    - "traefik.http.routers.${SUBDOMAIN?Variable not set}.rule=Host(`${SUBDOMAIN?Variable not set}.holmlab.org`)"
+    - "traefik.http.middlewares.${SUBDOMAIN?Variable not set}-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.${SUBDOMAIN?Variable not set}.middlewares=${SUBDOMAIN?Variable not set}-https-redirect"
+    - "traefik.http.routers.${SUBDOMAIN?Variable not set}-secure.entrypoints=https"
+    - "traefik.http.routers.${SUBDOMAIN?Variable not set}-secure.rule=Host(`${SUBDOMAIN?Variable not set}.holmlab.org`)"
+    - "traefik.http.routers.${SUBDOMAIN?Variable not set}-secure.tls=true"
+    - "traefik.http.routers.${SUBDOMAIN?Variable not set}-secure.service=${SUBDOMAIN?Variable not set}"
+    - "traefik.http.services.${SUBDOMAIN?Variable not set}.loadbalancer.server.port=80" # port of the service. i.e. adsb likes 9000
     - "traefik.docker.network=intranet"
 
 networks:
