@@ -27,10 +27,10 @@ run_directory = "portainer"
 ##
 
 [[stack]]
-name = "adsb"
+name = "adsbtest"
 [stack.config]
 server = "holmie"
-project_name = "adsb"
+project_name = "adsbtest"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
