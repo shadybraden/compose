@@ -30,7 +30,6 @@ services:
       - TAR1090_USEROUTEAPI=true
       - GRAPHS1090_DARKMODE=true
       - GRAPHS1090_DISABLE=true
-      - SUBDOMAIN=adsbvar
     volumes:
       - /data/config_storage/adsb/globe_history:/var/globe_history
       - /data/config_storage/adsb/graphs1090:/var/lib/collectd
@@ -49,11 +48,11 @@ services:
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.${SUBDOMAIN}.entrypoints=http"
-    - "traefik.http.routers.${SUBDOMAIN}.rule=Host(`${SUBDOMAIN}.holmlab.org`)"
+    - "traefik.http.routers.${SUBDOMAIN}.rule=Host(`${SUBDOMAIN}.${DOMAIN}`)"
     - "traefik.http.middlewares.${SUBDOMAIN}-https-redirect.redirectscheme.scheme=https"
     - "traefik.http.routers.${SUBDOMAIN}.middlewares=${SUBDOMAIN}-https-redirect"
     - "traefik.http.routers.${SUBDOMAIN}-secure.entrypoints=https"
-    - "traefik.http.routers.${SUBDOMAIN}-secure.rule=Host(`${SUBDOMAIN}.holmlab.org`)"
+    - "traefik.http.routers.${SUBDOMAIN}-secure.rule=Host(`${SUBDOMAIN}.${DOMAIN}`)"
     - "traefik.http.routers.${SUBDOMAIN}-secure.tls=true"
     - "traefik.http.routers.${SUBDOMAIN}-secure.service=${SUBDOMAIN}"
     - "traefik.http.services.${SUBDOMAIN}.loadbalancer.server.port=80" # port of the service. i.e. adsb likes 9000
