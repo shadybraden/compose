@@ -37,15 +37,15 @@ Find and replace STACKNAME
       - intranet
     labels:
     - "traefik.enable=true"
-    - "traefik.http.routers.pihole.entrypoints=http"
-    - "traefik.http.routers.pihole.rule=Host(`pihole.holmlab.org`)"
-    - "traefik.http.middlewares.pihole-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.pihole.middlewares=pihole-https-redirect"
-    - "traefik.http.routers.pihole-secure.entrypoints=https"
-    - "traefik.http.routers.pihole-secure.rule=Host(`pihole.holmlab.org`)"
-    - "traefik.http.routers.pihole-secure.tls=true"
-    - "traefik.http.routers.pihole-secure.service=pihole"
-    - "traefik.http.services.pihole.loadbalancer.server.port=80" # port of the service. i.e. pihole likes 9000
+    - "traefik.http.routers.${SUBDOMAIN}.entrypoints=http"
+    - "traefik.http.routers.${SUBDOMAIN}.rule=Host(`${SUBDOMAIN}.${DOMAIN}`)"
+    - "traefik.http.middlewares.${SUBDOMAIN}-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.${SUBDOMAIN}.middlewares=${SUBDOMAIN}-https-redirect"
+    - "traefik.http.routers.${SUBDOMAIN}-secure.entrypoints=https"
+    - "traefik.http.routers.${SUBDOMAIN}-secure.rule=Host(`${SUBDOMAIN}.${DOMAIN}`)"
+    - "traefik.http.routers.${SUBDOMAIN}-secure.tls=true"
+    - "traefik.http.routers.${SUBDOMAIN}-secure.service=${SUBDOMAIN}"
+    - "traefik.http.services.${SUBDOMAIN}.loadbalancer.server.port=80" # port of the service.
     - "traefik.docker.network=intranet"
 
 networks:
