@@ -29,7 +29,7 @@ run_directory = "portainer"
 [[stack]]
 name = "adsbtest"
 [stack.config]
-server = "holmie"
+server = "skynet"
 project_name = "adsbtest"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
