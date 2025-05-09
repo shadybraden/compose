@@ -5,24 +5,16 @@ https://doc.traefik.io/traefik/getting-started/install-traefik/#use-the-official
 ## Vars to change:
 
 TRAEFIK_DASHBOARD_CREDENTIALS
+
 CF_DNS_API_TOKEN
+
 CF_API_EMAIL
 
-traefik.yml and config.yml are set as hidden files. run `cp .traefik.yml.sample /data/config_storage/traefik/traefik.yml` & `cp .config.yml.sample /data/config_storage/traefik/config.yml`
+`cp .traefik.yml.sample /data/config_storage/traefik/traefik.yml`
 
-also `touch /data/config_storage/traefik/acme.json`
+`touch /data/config_storage/traefik/acme.json && chmod 600 /data/config_storage/traefik/acme.json`
 
-all together:
-
-```shell
-mkdir /data/config_storage/traefik
-cp .traefik.yml.sample /data/config_storage/traefik/traefik.yml && \
-touch /data/config_storage/traefik/acme.json
-chmod 600 /data/config_storage/traefik/acme.json
-ls -Al /data/config_storage/traefik
-```
-
-Then edit `/data/config_storage/traefik/traefik.yml`
+Then edit `/data/config_storage/traefik/traefik.yml` as needed (should be just email)
 
 ---
 
