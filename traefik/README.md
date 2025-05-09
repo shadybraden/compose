@@ -28,7 +28,7 @@ Then edit `/data/config_storage/traefik/traefik.yml`
 
 ## Sample yaml to add to a container.
 
-Find and replace STACKNAME
+Change port as needed
 
 ```yaml
     security_opt:
