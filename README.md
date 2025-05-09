@@ -9,5 +9,6 @@ As the guide says, installing OS's, using Git and using Docker are prerequisites
 
 ### todo:
 
+- https://github.com/renovatebot/renovate/discussions/13052 fix linuxserver.io image versioning
 - https://github.com/almeidapaulopt/tsdproxy for multi device managment
 - swap subdomain and domain with vars. see adsb
