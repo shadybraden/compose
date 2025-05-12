@@ -1,5 +1,6 @@
 [[server]]
 name = "holmie"
+tags = ["holmie"]
 [server.config]
 address = "https://periphery.holmlab.org"
 enabled = true
@@ -9,6 +10,7 @@ send_unreachable_alerts = false
 
 [[server]]
 name = "shady_desktop"
+tags = ["shady_desktop"]
 [server.config]
 address = "https://periphery-shady.holmlab.org"
 enabled = true
@@ -18,6 +20,7 @@ send_unreachable_alerts = false
 
 [[server]]
 name = "skynet"
+tags = ["skynet"]
 [server.config]
 tags = ["skynet"]
 address = "http://100.84.68.110:8120"
