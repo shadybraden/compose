@@ -40,11 +40,11 @@ run_directory = "skynet/filebrowser"
 ##
 
 [[stack]]
-name = "plex-skynet"
+name = "plex"
 tags = ["skynet","hooked"]
 [stack.config]
 server = "skynet"
-project_name = "plex-skynet"
+project_name = "plex"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
