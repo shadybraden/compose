@@ -11,8 +11,8 @@ services:
       - VERSION=docker
     volumes:
       - /data/config_storage/plex/config:/config
-      - /mnt/4tb/mcc/shows:/tv
-      - /mnt/4tb/mcc/movies:/movies
+      - /data/mcc/shows:/tv
+      - /data/mcc/movies:/movies
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true # helps to increase security

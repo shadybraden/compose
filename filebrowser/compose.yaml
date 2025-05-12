@@ -4,15 +4,15 @@ services:
         restart: unless-stopped
         volumes:
             - /data:/srv/data
-#            - /mnt/4tb:/srv/mounted
-            - /home:/srv/home
+            - /mnt/4tb:/srv/mounted
+            - /home/holmie:/srv/home
             - /data/config_storage/filebrowser/database:/database
             - /data/config_storage/filebrowser/config:/config
         environment:
             - PUID=1000
             - PGID=1000
         ports:
-            - 8060:8080
+            - 8060:80
         command: ["-c", "/config/settings.json"] # required, see https://github.com/filebrowser/filebrowser/issues/1898
         image: filebrowser/filebrowser:v2.32.0
         security_opt:
