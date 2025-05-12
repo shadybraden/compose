@@ -16,8 +16,7 @@ alert_types = [
   "BuildFailed",
   "DeploymentImageUpdateAvailable",
   "DeploymentAutoUpdated",
-  "AwsBuilderTerminationFailed",
-  "ResourceSyncPendingUpdates"
+  "AwsBuilderTerminationFailed"
 ]
 except_resources = [
   { type = "Stack", id = "681657ce336c0fdc2aca583c" },
