@@ -20,6 +20,6 @@ send_unreachable_alerts = false
 name = "skynet"
 [server.config]
 tags = ["skynet"]
-address = "https://periphery-skynet.holmlab.org"
+address = "http://100.84.68.110:8120"
 enabled = true
 send_unreachable_alerts = true
