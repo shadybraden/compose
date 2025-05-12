@@ -3,7 +3,7 @@ name = "glances-skynet"
 tags = ["skynet"]
 [stack.config]
 server = "skynet"
-project_name = "glances"
+project_name = "glances-skynet"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
