@@ -28,7 +28,7 @@ run_directory = "portainer"
 
 [[stack]]
 name = "filebrowser-skynet"
-tags = ["hooked"]
+tags = ["skynet,hooked"]
 [stack.config]
 server = "skynet"
 project_name = "filebrowser-skynet"
@@ -40,11 +40,11 @@ run_directory = "filebrowser"
 ##
 
 [[stack]]
-name = "plex"
-tags = ["skynet"]
+name = "plex-skynet"
+tags = ["skynet,hooked"]
 [stack.config]
 server = "skynet"
-project_name = "plex"
+project_name = "plex-skynet"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
