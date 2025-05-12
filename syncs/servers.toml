@@ -23,6 +23,6 @@ name = "skynet"
 tags = ["skynet"]
 [server.config]
 tags = ["skynet"]
-address = "http://skynet:8120"
+address = "https://skynet:8120"
 enabled = true
 send_unreachable_alerts = true
