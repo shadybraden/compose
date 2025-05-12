@@ -12,8 +12,7 @@ services:
       - PLEX_CLAIM=${PLEX_CLAIM}
     volumes:
       - /data/config_storage/plex/config:/config
-      - /data/mcc/shows:/tv
-      - /data/mcc/movies:/movies
+      - /data/mcc/media:/media
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true # helps to increase security
