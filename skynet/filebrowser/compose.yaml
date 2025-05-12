@@ -10,6 +10,6 @@ services:
             - PUID=1000
             - PGID=1000
         ports:
-            - 8080:8080
+            - 9001:80
         command: ["-c", "/config/settings.json"] # required, see https://github.com/filebrowser/filebrowser/issues/1898
         image: filebrowser/filebrowser:v2.32.0
