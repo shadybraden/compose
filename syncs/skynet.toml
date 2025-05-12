@@ -28,7 +28,7 @@ run_directory = "portainer"
 
 [[stack]]
 name = "filebrowser-skynet"
-tags = ["skynet,hooked"]
+tags = ["skynet","hooked"]
 [stack.config]
 server = "skynet"
 project_name = "filebrowser-skynet"
@@ -41,7 +41,7 @@ run_directory = "filebrowser"
 
 [[stack]]
 name = "plex-skynet"
-tags = ["skynet,hooked"]
+tags = ["skynet","hooked"]
 [stack.config]
 server = "skynet"
 project_name = "plex-skynet"
