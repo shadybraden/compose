@@ -378,6 +378,7 @@ run_directory = "restic"
 
 [[stack]]
 name = "deezer"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "deezer"
