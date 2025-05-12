@@ -9,7 +9,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "test"
 run_directory = "hosts/glances"
-ignore_services = ["glances-skynet"]
+ignore_services = ["glances"]
 
 ##
 
@@ -37,7 +37,7 @@ git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
 run_directory = "skynet/filebrowser"
-ignore_services = ["filebrowser-skynet"]
+ignore_services = ["filebrowser"]
 
 ##
 
