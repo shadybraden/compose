@@ -6,9 +6,9 @@ services:
             - /home:/srv/home
             - /data/config_storage/filebrowser/database/filebrowser.db:/database/filebrowser.db
             - /data/config_storage/filebrowser/settings.json:/config/settings.json
-        environment:
-            - PUID=1000
-            - PGID=1000
+#        environment:
+#            - PUID=1000
+#            - PGID=1000
         ports:
             - 9001:80
         command: ["-c", "/config/settings.json"] # required, see https://github.com/filebrowser/filebrowser/issues/1898
