@@ -3,7 +3,7 @@ services:
         container_name: filebrowser
         restart: unless-stopped
         volumes:
-            - /:/srv/root
+            - /home/k3s_user/mcc:/srv/mcc
             - /data/config_storage/filebrowser/database/filebrowser.db:/database/filebrowser.db
             - /data/config_storage/filebrowser/settings.json:/config/settings.json
 #        environment:
