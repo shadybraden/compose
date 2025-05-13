@@ -1,6 +1,7 @@
 import json
 import requests
 from datetime import datetime, timedelta
+send_message = 0
 
 # download data
 url = 'https://adsb.holmlab.org/data/aircraft.json'
