@@ -11,7 +11,7 @@ with open('data.json', 'w') as f:
 
 # CHECK recents.txt for old hexes
 now = datetime.now()
-time_threshold = now - timedelta(minutes=5) # old > 5 minutes
+time_threshold = now - timedelta(minutes=10) # old > 5 minutes
 # Read and filter lines
 filtered_lines = []
 with open('recents.txt', 'r') as file:
