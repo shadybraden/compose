@@ -16,7 +16,7 @@ services:
     ports:
       - "53:53/tcp"
       - "53:53/udp"
-#      - "5353:80/tcp" # web ui
+      - "5353:80/tcp" # web ui
     security_opt:
       - no-new-privileges:true # helps to increase security
     networks:
