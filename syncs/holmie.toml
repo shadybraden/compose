@@ -385,3 +385,15 @@ git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
 run_directory = "pihole"
+
+##
+
+[[stack]]
+name = "forgejo"
+[stack.config]
+server = "holmie"
+project_name = "forgejo"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+run_directory = "forgejo"
