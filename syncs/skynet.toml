@@ -15,7 +15,7 @@ ignore_services = ["glances"]
 
 [[stack]]
 name = "portainer-skynet"
-tags = ["skynet"]
+tags = ["skynet","hooked"]
 [stack.config]
 server = "skynet"
 project_name = "portainer"

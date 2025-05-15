@@ -1,6 +1,6 @@
 [[stack]]
 name = "portainer-shady"
-tags = ["shady"]
+tags = ["shady","hooked"]
 [stack.config]
 server = "shady_desktop"
 project_name = "portainer"
@@ -13,7 +13,7 @@ run_directory = "hosts/portainer"
 
 [[stack]]
 name = "crafty-shady"
-tags = ["shady"]
+tags = ["shady","hooked"]
 [stack.config]
 server = "shady_desktop"
 project_name = "crafty"
@@ -26,7 +26,7 @@ run_directory = "hosts/crafty"
 
 [[stack]]
 name = "glances-shady"
-tags = ["shady"]
+tags = ["shady","hooked"]
 [stack.config]
 server = "shady_desktop"
 project_name = "glances"
