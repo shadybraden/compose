@@ -1,6 +1,6 @@
 [[resource_sync]]
 name = "syncs"
-tags = ["syncs"]
+tags = ["syncs","hooked"]
 [resource_sync.config]
 git_provider = "git.holmlab.org"
 repo = "shady/compose"
@@ -11,7 +11,7 @@ resource_path = ["syncs/syncs.toml"]
 
 [[resource_sync]]
 name = "servers"
-tags = ["servers"]
+tags = ["servers","hooked"]
 [resource_sync.config]
 git_provider = "git.holmlab.org"
 repo = "shady/compose"
@@ -22,7 +22,7 @@ resource_path = ["syncs/servers.toml"]
 
 [[resource_sync]]
 name = "holmie"
-tags = ["holmie"]
+tags = ["holmie","hooked"]
 [resource_sync.config]
 git_provider = "git.holmlab.org"
 repo = "shady/compose"
@@ -33,7 +33,7 @@ resource_path = ["syncs/holmie.toml"]
 
 [[resource_sync]]
 name = "skynet"
-tags = ["skynet"]
+tags = ["skynet","hooked"]
 [resource_sync.config]
 git_provider = "git.holmlab.org"
 repo = "shady/compose"
@@ -44,7 +44,7 @@ resource_path = ["syncs/skynet.toml"]
 
 [[resource_sync]]
 name = "shady_desktop"
-tags = ["shady_desktop"]
+tags = ["shady_desktop","hooked"]
 [resource_sync.config]
 git_provider = "git.holmlab.org"
 repo = "shady/compose"
@@ -55,7 +55,7 @@ resource_path = ["syncs/shady_desktop.toml"]
 
 [[resource_sync]]
 name = "alert"
-tags = ["alert"]
+tags = ["alert","hooked"]
 [resource_sync.config]
 git_provider = "git.holmlab.org"
 repo = "shady/compose"
@@ -66,7 +66,7 @@ resource_path = ["syncs/alert.toml"]
 
 [[resource_sync]]
 name = "procedure"
-tags = ["procedure"]
+tags = ["procedure","hooked"]
 [resource_sync.config]
 git_provider = "git.holmlab.org"
 repo = "shady/compose"
