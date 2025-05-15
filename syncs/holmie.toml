@@ -1,5 +1,6 @@
 [[stack]]
 name = "adsb"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "adsb"
@@ -16,6 +17,7 @@ DOMAIN=holmlab.org
 
 [[stack]]
 name = "ai"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "ai"
@@ -28,6 +30,7 @@ run_directory = "ai"
 
 [[stack]]
 name = "arr"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "arr"
@@ -40,6 +43,7 @@ run_directory = "arr"
 
 [[stack]]
 name = "audiobookshelf"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "audiobookshelf"
@@ -52,6 +56,7 @@ run_directory = "audiobookshelf"
 
 [[stack]]
 name = "dashy"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "dashy"
@@ -64,6 +69,7 @@ run_directory = "dashy"
 
 [[stack]]
 name = "dockge"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "dockge"
@@ -76,6 +82,7 @@ run_directory = "dockge"
 
 [[stack]]
 name = "filebrowser"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "filebrowser"
@@ -88,6 +95,7 @@ run_directory = "filebrowser"
 
 [[stack]]
 name = "freshrss"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "freshrss"
@@ -100,6 +108,7 @@ run_directory = "freshrss"
 
 [[stack]]
 name = "glances"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "glances"
@@ -112,6 +121,7 @@ run_directory = "glances"
 
 [[stack]]
 name = "homeassistant"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "homeassistant"
@@ -124,6 +134,7 @@ run_directory = "homeassistant"
 
 [[stack]]
 name = "immich"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "immich"
@@ -136,6 +147,7 @@ run_directory = "immich"
 
 [[stack]]
 name = "jellyfin"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "jellyfin"
@@ -148,6 +160,7 @@ run_directory = "jellyfin"
 
 [[stack]]
 name = "jellyseerr"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "jellyseerr"
@@ -160,6 +173,7 @@ run_directory = "jellyseerr"
 
 [[stack]]
 name = "kiwix"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "kiwix"
@@ -172,6 +186,7 @@ run_directory = "kiwix"
 
 [[stack]]
 name = "navidrome"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "navidrome"
@@ -184,6 +199,7 @@ run_directory = "navidrome"
 
 [[stack]]
 name = "netalertx"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "netalertx"
@@ -196,6 +212,7 @@ run_directory = "netalertx"
 
 [[stack]]
 name = "nextcloud"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "nextcloud"
@@ -208,6 +225,7 @@ run_directory = "nextcloud"
 
 [[stack]]
 name = "ntfy"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "ntfy"
@@ -220,6 +238,7 @@ run_directory = "ntfy"
 
 [[stack]]
 name = "portainer"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "portainer"
@@ -232,6 +251,7 @@ run_directory = "portainer"
 
 [[stack]]
 name = "proxy"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "proxy"
@@ -248,6 +268,7 @@ curl -H "Priority: min" -d "proxy ip now in: $(curl --socks5 192.168.50.65:1080 
 
 [[stack]]
 name = "renovate"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "renovate"
@@ -261,6 +282,7 @@ ignore_services = ["renovate"] # this is so it shows nicer in the dashboard
 
 [[stack]]
 name = "scrutiny"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "scrutiny"
@@ -273,6 +295,7 @@ run_directory = "scrutiny"
 
 [[stack]]
 name = "stirlingpdf"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "stirlingpdf"
@@ -285,6 +308,7 @@ run_directory = "stirlingpdf"
 
 [[stack]]
 name = "syncthing"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "syncthing"
@@ -297,6 +321,7 @@ run_directory = "syncthing"
 
 [[stack]]
 name = "uptime-kuma"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "uptime-kuma"
@@ -309,6 +334,7 @@ run_directory = "uptime-kuma"
 
 [[stack]]
 name = "vaultwarden"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "vaultwarden"
@@ -321,6 +347,7 @@ run_directory = "vaultwarden"
 
 [[stack]]
 name = "wireguard"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "wireguard"
@@ -333,6 +360,7 @@ run_directory = "wireguard"
 
 [[stack]]
 name = "hoodik"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "hoodik"
@@ -345,6 +373,7 @@ run_directory = "hoodik"
 
 [[stack]]
 name = "skywatch"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "skywatch"
@@ -366,6 +395,7 @@ build_extra_args = []
 
 [[stack]]
 name = "restic"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "restic"
@@ -378,6 +408,7 @@ run_directory = "restic"
 
 [[stack]]
 name = "pihole"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "pihole"
@@ -390,6 +421,7 @@ run_directory = "pihole"
 
 [[stack]]
 name = "forgejo"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "forgejo"
@@ -402,6 +434,7 @@ run_directory = "forgejo"
 
 [[stack]]
 name = "traefik"
+tags = ["holmie","hooked"]
 [stack.config]
 server = "holmie"
 project_name = "traefik"
