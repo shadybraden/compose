@@ -8,7 +8,7 @@
   "packageRules": [
     {
       "matchDatasources": ["docker"],
-      "matchPackageNames": ["^lscr.io/linuxserver/.*$"],
+      "matchPackageNames": ["lscr.io/linuxserver/syncthing"],
       "versioning": "regex:^(?<major>\\d{1,2})\\.(?<minor>\\d{1,2})\\.(?<patch>\\d{1,2})\\.(?<build>\\d+)(?:-(?<compatibility>ls)(?<revision>\\d+))?$"
     }
   ]
