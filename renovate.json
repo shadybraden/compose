@@ -7,7 +7,7 @@
   "commitMessagePrefix": ":arrow_up:",
   "packageRules": [
     {
-      "packagePatterns": ["^ghcr.io\\/linuxserver\\/"],
+      "packagePatterns": ["^lscr.io\\/linuxserver\\/"],
       "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)_p(?<patch>\\d+)-r(?<build>\\d)-ls(?<revision>\\d+)"
     }
   ]
