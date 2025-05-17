@@ -9,7 +9,8 @@
     {
       "matchDatasources": ["docker"],
       "matchPackageNames": ["^lscr.io/linuxserver/.*$"],
-      "versioning": "regex:^v(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-ls(?<build>.+)$"
+      "versioning": "regex:^(?<major>\\d{1,2})\\.(?<minor>\\d{1,2})\\.(?<patch>\\d{1,2})\\.(?<build>\\d+)(?:-(?<compatibility>ls)(?<revision>\\d+))?$",
+      "allowedVersions": "/^\\d{1,2}\\.\\d{1,2}\\.\\d{1,2}\\.\\d+-ls\\d+$/"
     }
   ]
 }
