@@ -4,11 +4,13 @@ from datetime import datetime, timedelta
 send_message = 0
 
 # download data
-url = 'https://adsb.holmlab.org/data/aircraft.json'
-response = requests.get(url)
-# Save the content to a file
-with open('data.json', 'w') as f:
-    f.write(response.text)
+do_live_download = 0 # set to 0 to use testing data
+if do_live_download == 1: 
+    url = 'https://adsb.holmlab.org/data/aircraft.json'
+    response = requests.get(url)
+    # Save the content to a file
+    with open('data.json', 'w') as f:
+        f.write(response.text)
 
 # CHECK recents.txt for old hexes
 now = datetime.now()
@@ -48,7 +50,7 @@ for ac in data.get('aircraft', []):
     dbFlags = int(dbFlags)
 
     # set vars for message:
-    title = "watchlist | " + r_dst_value + " away"
+    title = "Watchlist | " + r_dst_value + " away"
     message = ownOp_value + '\n' + short_type_value + " | " + desc_value + '\n' + "https://adsb.holmlab.org/?icao=" + hex_value
     click = "https://adsb.lol/?zoom=11&SiteLat=42.587&SiteLon=-71.377&icao=" + hex_value
 
@@ -67,6 +69,17 @@ for ac in data.get('aircraft', []):
         send_message = 1
     if dbFlags == 8:
         title = "LADD | " + r_dst_value + " away"
+
+    # check for distance away remotely if no distance found
+    if r_dst_value == NA
+        lat_value = ac.get('lat', 'NA') # distance form antenna
+        lat_value = str(lat_value)
+        lon_value = ac.get('lon', 'NA') # distance form antenna
+        lon_value = str(lon_value)
+        if lat_value == NA
+            print("curl https://opendata.adsb.fi/api/v2/hex/ICAOHERE and fill in lat and lon from that")
+        
+        print("use our lat_value and lon_value and adsb_lat and adsb_lon (from .env) to calculate distance")
 
     # check recents.txt for current hex
     # if match, send_message = 0
