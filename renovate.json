@@ -1,4 +1,10 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "commitMessagePrefix": ":label:"
+  "commitMessagePrefix": ":label:",
+  "packageRules": [
+    {
+      "matchPackageNames": ["quay.io/linuxserver/qbittorrent"],
+      "ignoredVersions": ["20.04.1"]
+    }
+  ]
 }
