@@ -125,7 +125,7 @@ services:
 
 # in the ui, set "Default Save Path:" to "Default Save Path:"
   qbittorrent:
-    image: quay.io/linuxserver.io/qbittorrent:5.1.0
+    image: registry.gitlab.com/linuxserver.io/docker-qbittorrent/qbittorrent:5.1.0
     container_name: qbittorrent
     environment:
       - PUID=1000
