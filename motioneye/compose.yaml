@@ -8,9 +8,9 @@ services:
             - /etc/localtime:/etc/localtime:ro
             - /data/config_storage/etc/motioneye:/etc/motioneye
             - /data/config_storage/var/lib/motioneye:/var/lib/motioneye
-            - /dev/bus/usb/003/006:/dev/video0
+            - /dev/ttyUSB0:/dev/video0
         devices:
-            - /dev/bus/usb/003/006
+            - /dev/ttyUSB0
         restart: on-failure
         image: ccrisan/motioneye:master-amd64
         security_opt:
