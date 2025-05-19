@@ -442,3 +442,16 @@ git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
 run_directory = "traefik"
+
+##
+
+[[stack]]
+name = "motioneye"
+tags = ["holmie"]
+[stack.config]
+server = "holmie"
+project_name = "motioneye"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+run_directory = "motioneye"
