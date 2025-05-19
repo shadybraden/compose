@@ -9,7 +9,7 @@ services:
             - /data/config_storage/etc/motioneye:/etc/motioneye
             - /data/config_storage/var/lib/motioneye:/var/lib/motioneye
         devices:
-            - /dev/ttyUSB0:/dev/video0
+            - /dev/video0:/dev/video0
         restart: on-failure
         image: ccrisan/motioneye:master-amd64
         security_opt:
