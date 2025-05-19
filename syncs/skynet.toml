@@ -58,7 +58,7 @@ run_directory = "plex"
 
 [[stack]]
 name = "syncthing-skynet"
-tags = ["skynet"]
+tags = ["skynet","hooked"]
 [stack.config]
 server = "skynet"
 project_name = "syncthing"
