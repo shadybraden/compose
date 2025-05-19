@@ -455,3 +455,7 @@ git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
 run_directory = "motioneye"
+environment = """
+SUBDOMAIN=motioneye
+DOMAIN=holmlab.org
+"""
