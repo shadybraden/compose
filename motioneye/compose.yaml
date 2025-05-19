@@ -8,6 +8,7 @@ services:
             - /etc/localtime:/etc/localtime:ro
             - /data/config_storage/etc/motioneye:/etc/motioneye
             - /data/config_storage/var/lib/motioneye:/var/lib/motioneye
+            - /dev/bus/usb/003/006:/dev/video0
         devices:
             - /dev/bus/usb/003/006
         restart: on-failure
