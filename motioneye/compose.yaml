@@ -15,3 +15,21 @@ services:
         image: ccrisan/motioneye:master-amd64
         security_opt:
           - no-new-privileges:true # helps to increase security
+        networks:
+          - intranet
+        labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.${SUBDOMAIN}.entrypoints=http"
+        - "traefik.http.routers.${SUBDOMAIN}.rule=Host(`${SUBDOMAIN}.${DOMAIN}`)"
+        - "traefik.http.middlewares.${SUBDOMAIN}-https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.${SUBDOMAIN}.middlewares=${SUBDOMAIN}-https-redirect"
+        - "traefik.http.routers.${SUBDOMAIN}-secure.entrypoints=https"
+        - "traefik.http.routers.${SUBDOMAIN}-secure.rule=Host(`${SUBDOMAIN}.${DOMAIN}`)"
+        - "traefik.http.routers.${SUBDOMAIN}-secure.tls=true"
+        - "traefik.http.routers.${SUBDOMAIN}-secure.service=${SUBDOMAIN}"
+        - "traefik.http.services.${SUBDOMAIN}.loadbalancer.server.port=8081" # port of the service.
+        - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true
