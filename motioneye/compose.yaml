@@ -3,7 +3,7 @@ services:
         container_name: motioneye
         ports:
             - 8765:8765
-            - 8081:8081
+#            - 8081:8081
         hostname: motioneye
         volumes:
             - /etc/localtime:/etc/localtime:ro
