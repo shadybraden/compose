@@ -4,6 +4,8 @@ services:
     container_name: syncthing
     hostname: syncthing
     environment:
+      - PUID=1000
+      - PGID=1000
       - TZ=Etc/UTC
     volumes:
       - /data/config_storage/syncthing/config:/config
