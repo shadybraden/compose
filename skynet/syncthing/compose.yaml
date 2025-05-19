@@ -6,6 +6,8 @@ services:
     environment:
       - TZ=Etc/UTC
     volumes:
+      - /data/config_storage/syncthing/config:/config
+      - /data/config_storage/syncthing/syncthing:/var/syncthing
       - /data/mcc/media:/video
     ports:
       - 8384:8384 # web ui
