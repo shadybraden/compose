@@ -53,3 +53,18 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "plex"
+
+##
+
+[[stack]]
+name = "syncthing-skynet"
+tags = ["skynet","hooked"]
+[stack.config]
+server = "skynet"
+project_name = "syncthing"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "skynet/syncthing"
+ignore_services = ["syncthing"]
