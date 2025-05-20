@@ -2,6 +2,7 @@ import json
 import requests
 from datetime import datetime, timedelta
 send_message = 0
+priority = 'low'
 
 # download data
 url = 'https://adsb.holmlab.org/data/aircraft.json'
@@ -46,6 +47,8 @@ for ac in data.get('aircraft', []):
     r_dst_value = str(r_dst_value)
     dbFlags = ac.get('dbFlags', '0') # 1=MILLITARY 8=LADD 0=rando
     dbFlags = int(dbFlags)
+    alt_baro= ac.get('alt_baro', '0')
+    alt_baro = int(alt_baro)
 
     # set vars for message:
     title = "watchlist | " + r_dst_value + " away"
@@ -67,6 +70,15 @@ for ac in data.get('aircraft', []):
         send_message = 1
     if dbFlags == 8:
         title = "LADD | " + r_dst_value + " away"
+    
+    # set ntfy priority based on altitiude
+    if alt_baro >= 2000:
+        priority = 'low'
+    if alt_baro <= 2000:
+        priority = 'default'
+    #print("alt:", alt_baro, priority)
+    if alt_baro == 0: # if it didn't recieve altitude, dont send.
+        send_message = 0
 
     # check recents.txt for current hex
     # if match, send_message = 0
@@ -103,5 +115,5 @@ for ac in data.get('aircraft', []):
                 headers={
                     "Title": title,
                     "Click": click,
-                    "Priority": "low",
+                    "Priority": priority,
         })
