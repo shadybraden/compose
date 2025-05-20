@@ -34,7 +34,7 @@ services:
       - /data/config_storage/adsb/globe_history:/var/globe_history
       - /data/config_storage/adsb/graphs1090:/var/lib/collectd
       - /proc/diskstats:/proc/diskstats:ro
-      - /dev:/dev
+      - /dev/bus/usb:/dev/bus/usb
     tmpfs:
       - /run:exec,size=256M
       - /tmp:size=128M
