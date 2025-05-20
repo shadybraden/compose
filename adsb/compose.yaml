@@ -31,6 +31,7 @@ services:
       - GRAPHS1090_DARKMODE=true
       - GRAPHS1090_DISABLE=true
       - HEYWHATSTHAT_PANORAMA_ID${HEYWHATSTHAT_PANORAMA_ID}
+      - TAR1090_ACTUAL_RANGE_OUTLINE_COLOR='#00596b'
     volumes:
       - /data/config_storage/adsb/globe_history:/var/globe_history
       - /data/config_storage/adsb/graphs1090:/var/lib/collectd
