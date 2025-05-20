@@ -11,13 +11,13 @@ services:
       - LOGLEVEL=error
       - TZ=America/New_York
       - READSB_DEVICE_TYPE=rtlsdr
-      - READSB_LAT=${adsb_lat}
-      - READSB_LON=${adsb_lon}
+      - READSB_LAT=${READSB_LAT}
+      - READSB_LON=${READSB_LON}
       - READSB_RX_LOCATION_ACCURACY=2
       - READSB_STATS_RANGE=true
       - UPDATE_TAR1090=true
-      - TAR1090_DEFAULTCENTERLAT=${adsb_lat}
-      - TAR1090_DEFAULTCENTERLON=${adsb_lon}
+      - TAR1090_DEFAULTCENTERLAT=${READSB_LAT}
+      - TAR1090_DEFAULTCENTERLON=${READSB_LON}
       - TAR1090_MESSAGERATEINTITLE=true
       - TAR1090_PLANECOUNTINTITLE=true
       - TAR1090_ENABLE_AC_DB=true
