@@ -61,13 +61,6 @@ http:
 #        - default-security-headers
       tls: {}
       service: mcmap
-    mc:
-      entryPoints: ["https"]
-      rule: "Host(`mc.holmlab.org`)"
-#      middlewares:
-#        - default-security-headers
-      tls: {}
-      service: mc
     periphery-shady:
       entryPoints: ["https"]
       rule: "Host(`periphery-shady.holmlab.org`)"
@@ -121,11 +114,6 @@ http:
         servers:
           - url: "http://192.168.50.16:25566"
         passHostHeader: true
-    mc:
-      loadBalancer:
-        servers:
-          - url: "http://192.168.50.16:25565"
-        passHostHeader: true
     periphery-shady:
       loadBalancer:
         servers:
@@ -141,3 +129,17 @@ http:
         servers:
           - url: "http://192.168.50.16:3003"
         passHostHeader: true
+
+tcp:
+  routers:
+    forward:
+      entrypoints:
+        - mc
+      rule: HostSNI(`*`)
+      service: forward
+
+  services:
+    forward:
+      loadBalancer:
+        servers:
+          - address: 192.168.50.16:25565
