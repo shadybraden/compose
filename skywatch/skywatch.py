@@ -42,16 +42,16 @@ for ac in data.get('aircraft', []):
     desc_value = ac.get('desc', 'unknown') # long description of aircraft
     short_type_value = ac.get('t', 'unknown') # short description of aircraft
     registration = ac.get('r', 'unknown')
-    ownOp_value = ac.get('ownOp', 'NA') # owner
-    r_dst_value = ac.get('r_dst', 'NA') # distance form antenna
+    ownOp_value = ac.get('ownOp', 'na') # owner
+    r_dst_value = ac.get('r_dst', 'na') # distance form antenna
     r_dst_value = str(r_dst_value)
     dbFlags = ac.get('dbFlags', '0') # 1=MILLITARY 8=LADD 0=rando
     dbFlags = int(dbFlags)
     alt_baro= ac.get('alt_baro', '0')
-    alt_baro = int(alt_baro)
+    alt_baro = str(alt_baro)
 
     # set vars for message:
-    title = "watchlist | " + r_dst_value + " away"
+    title = "WATCH | " + r_dst_value + " mi | " + "alt:" + alt_baro
     message = ownOp_value + '\n' + short_type_value + " | " + desc_value + '\n' + "https://adsb.holmlab.org/?icao=" + hex_value
     click = "https://adsb.lol/?zoom=11&SiteLat=42.587&SiteLon=-71.377&icao=" + hex_value
 
@@ -66,16 +66,19 @@ for ac in data.get('aircraft', []):
                 #print("NOT on watchlist")
                 send_message = 0
     if dbFlags == 1:
-        title = "MILLITARY | " + r_dst_value + " away"
+        title = "MILL | " + r_dst_value + " mi | " + "alt:" + alt_baro
         send_message = 1
     if dbFlags == 8:
-        title = "LADD | " + r_dst_value + " away"
+        title = "LADD | " + r_dst_value + " mi | " + "alt:" + alt_baro
     
     # set ntfy priority based on altitiude
+    alt_baro = int(alt_baro)
     if alt_baro >= 2000:
         priority = 'low'
     if alt_baro <= 2000:
         priority = 'default'
+    if alt_baro >= 10000:
+        priority = 'min'
     print("alt:", alt_baro, priority)
     if alt_baro == 0: # if it didn't recieve altitude, dont send.
         send_message = 0
