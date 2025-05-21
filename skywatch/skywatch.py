@@ -76,7 +76,7 @@ for ac in data.get('aircraft', []):
         priority = 'low'
     if alt_baro <= 2000:
         priority = 'default'
-    #print("alt:", alt_baro, priority)
+    print("alt:", alt_baro, priority)
     if alt_baro == 0: # if it didn't recieve altitude, dont send.
         send_message = 0
 
