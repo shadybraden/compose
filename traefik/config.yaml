@@ -132,14 +132,14 @@ http:
 
 tcp:
   routers:
-    forward:
+    minecraft:
       entrypoints:
-        - mc
-      rule: HostSNI(`mc.holmlab.org`)
-      service: forward
+        - minecraft
+      rule: HostSNI(`*`)
+      service: minecraft-service
 
   services:
-    forward:
+    minecraft:
       loadBalancer:
         servers:
-          - address: 192.168.50.16:25565
+          - address: "192.168.50.16:25565"
