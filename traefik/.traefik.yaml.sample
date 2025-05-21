@@ -4,8 +4,6 @@ api:
   dashboard: true
   debug: true
 entryPoints:
-  minecraft:
-    address: ":25565"
   http:
     address: ":80"
     http:

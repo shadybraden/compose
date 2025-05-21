@@ -82,7 +82,6 @@ http:
         - default-security-headers
       tls: {}
       service: immich-ml-shady
-
   services:
     portainer:
       loadBalancer:
@@ -130,16 +129,3 @@ http:
           - url: "http://192.168.50.16:3003"
         passHostHeader: true
 
-tcp:
-  routers:
-    minecraft:
-      entryPoints:
-        - minecraft
-      rule: HostSNI(`mc.holmlab.org`)
-      service: minecraft-service
-
-  services:
-    minecraft-service:
-      loadBalancer:
-        servers:
-          - address: "192.168.50.16:25565"
