@@ -133,13 +133,13 @@ http:
 tcp:
   routers:
     minecraft:
-      entrypoints:
+      entryPoints:
         - minecraft
       rule: HostSNI(`mc.holmlab.org`)
       service: minecraft-service
 
   services:
-    minecraft:
+    minecraft-service:
       loadBalancer:
         servers:
           - address: "192.168.50.16:25565"
