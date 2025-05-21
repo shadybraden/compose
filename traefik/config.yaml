@@ -135,7 +135,7 @@ tcp:
     forward:
       entrypoints:
         - mc
-      rule: HostSNI(`*`)
+      rule: HostSNI(`mc.holmlab.org`)
       service: forward
 
   services:
