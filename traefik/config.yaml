@@ -135,7 +135,7 @@ tcp:
     minecraft:
       entrypoints:
         - minecraft
-      rule: HostSNI(`*`)
+      rule: HostSNI(`mc.holmlab.org`)
       service: minecraft-service
 
   services:
