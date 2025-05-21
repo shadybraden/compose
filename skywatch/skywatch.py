@@ -86,7 +86,7 @@ for ac in data.get('aircraft', []):
         with open("recents.txt", "r") as file:
             #send_message = 1  # default to sending unless a match is found
             for line in file:
-                if line[:6].lower() == hex_value.lower():
+                if line[:6].lower() == hex_value.lower(): # only check first 6 characters of the line
                     # Match found
                     send_message = 0
                     break
