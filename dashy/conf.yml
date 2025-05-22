@@ -194,7 +194,7 @@ sections:
           mealie.png
         url: https://mealie.holmlab.org
         statusCheck: true
-      - title: Mealie
+      - title: Home Assistant
         description: ''
         icon: >-
           home-assistant.png
