@@ -120,12 +120,3 @@ for ac in data.get('aircraft', []):
                     "Click": click,
                     "Priority": priority,
         })
-
-ntfy_url="https://ntfy.holmlab.org/adsbGMzCPurvWR4ZSE8u98EQWGj6Eezdw4fr"
-envpriority = "min"
-requests.post(ntfy_url,
-    data=("message"),
-        headers={
-            "Title": "title",
-            "Priority": envpriority,
-})

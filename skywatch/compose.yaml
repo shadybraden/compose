@@ -9,5 +9,3 @@ services:
             - /data/config_storage/recents.txt:/app/recents.txt # note that this is out of the stack folder. this is so we can do a full reclone. see komodo.toml
         container_name: skywatch
         image: skywatch
-        environment:
-        - envpriority=${envpriority}
