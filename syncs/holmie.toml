@@ -459,3 +459,20 @@ environment = """
 SUBDOMAIN=motioneye
 DOMAIN=holmlab.org
 """
+
+##
+
+[[stack]]
+name = "mealie"
+tags = ["holmie","hooked"]
+[stack.config]
+server = "holmie"
+project_name = "mealie"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+run_directory = "mealie"
+environment = """
+SUBDOMAIN=mealie
+DOMAIN=holmlab.org
+"""

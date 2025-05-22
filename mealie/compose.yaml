@@ -4,18 +4,30 @@ services:
     image: ghcr.io/mealie-recipes/mealie:v2.8.0
     restart: unless-stopped
     volumes:
-      - ${CONFIG_STORAGE_LOCATION}/mealie:/app/data/
-    ports:
-      - 9091:9000
+      - /data/config_storage/mealie:/app/data/
+#    ports:
+#      - 9091:9000
     environment:
       ALLOW_SIGNUP: "false"
       LOG_LEVEL: "DEBUG"
+      DB_ENGINE: sqlite
+    security_opt:
+      - no-new-privileges:true # helps to increase security
+    networks:
+      - intranet
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.${SUBDOMAIN}.entrypoints=http"
+    - "traefik.http.routers.${SUBDOMAIN}.rule=Host(`${SUBDOMAIN}.${DOMAIN}`)"
+    - "traefik.http.middlewares.${SUBDOMAIN}-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.${SUBDOMAIN}.middlewares=${SUBDOMAIN}-https-redirect"
+    - "traefik.http.routers.${SUBDOMAIN}-secure.entrypoints=https"
+    - "traefik.http.routers.${SUBDOMAIN}-secure.rule=Host(`${SUBDOMAIN}.${DOMAIN}`)"
+    - "traefik.http.routers.${SUBDOMAIN}-secure.tls=true"
+    - "traefik.http.routers.${SUBDOMAIN}-secure.service=${SUBDOMAIN}"
+    - "traefik.http.services.${SUBDOMAIN}.loadbalancer.server.port=9000" # port of the service.
+    - "traefik.docker.network=intranet"
 
-      DB_ENGINE: sqlite # Optional: 'sqlite', 'postgres'
-      # =====================================
-      # Postgres Config
-      POSTGRES_USER: mealie
-      POSTGRES_PASSWORD: ${mealie_db_password}
-      POSTGRES_SERVER: postgres
-      POSTGRES_PORT: 5432
-      POSTGRES_DB: mealie
+networks:
+  intranet:
+    external: true
