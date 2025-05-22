@@ -11,6 +11,8 @@ services:
       - SEARXNG_BASE_URL=https://search.holmlab.org/
       - UWSGI_WORKERS=4
       - UWSGI_THREADS=4
+      - SEARXNG_BIND_ADDRESS=0.0.0.0
+      - SEARXNG_PORT=8080
     logging:
       driver: "json-file"
       options:
@@ -30,7 +32,7 @@ services:
     - "traefik.http.routers.${SUBDOMAIN}-secure.rule=Host(`${SUBDOMAIN}.${DOMAIN}`)"
     - "traefik.http.routers.${SUBDOMAIN}-secure.tls=true"
     - "traefik.http.routers.${SUBDOMAIN}-secure.service=${SUBDOMAIN}"
-    - "traefik.http.services.${SUBDOMAIN}.loadbalancer.server.port=8888" # port of the service.
+    - "traefik.http.services.${SUBDOMAIN}.loadbalancer.server.port=8080" # port of the service.
     - "traefik.docker.network=intranet"
 
 networks:
