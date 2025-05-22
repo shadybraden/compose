@@ -10,4 +10,4 @@ services:
         container_name: skywatch
         image: skywatch
         environment:
-        - envpriority=min
+        - envpriority=${envpriority}
