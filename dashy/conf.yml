@@ -189,7 +189,12 @@ sections:
         url: https://kiwix.holmlab.org
         statusCheck: true
         id: 0_606_kiwix
-      - title: Home Assistant
+      - title: Mealie
+        icon: >-
+          mealie.png
+        url: https://mealie.holmlab.org
+        statusCheck: true
+      - title: Mealie
         description: ''
         icon: >-
           home-assistant.png
