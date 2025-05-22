@@ -476,3 +476,20 @@ environment = """
 SUBDOMAIN=mealie
 DOMAIN=holmlab.org
 """
+
+##
+
+[[stack]]
+name = "searxng"
+tags = ["holmie","searxng"]
+[stack.config]
+server = "holmie"
+project_name = "searxng"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+run_directory = "searxng"
+environment = """
+SUBDOMAIN=search
+DOMAIN=holmlab.org
+"""
