@@ -435,6 +435,13 @@ sections:
         url: https://bitwarden.holmlab.org
         statusCheck: true
         id: 0_703_bitwarden
+      - title: Search
+        description: >-
+          Private, no logs Search Engine
+        icon: >-
+          searxng.png
+        url: https://search.holmlab.org
+        statusCheck: true
       - title: Immich
         description: photo backups + viewing
         icon: >-
