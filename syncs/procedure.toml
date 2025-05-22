@@ -53,3 +53,22 @@ enabled = true
 executions = [
   { execution.type = "DeployStack", execution.params.stack = "skywatch", execution.params.services = [], enabled = true }
 ]
+
+##
+
+[[procedure]]
+name = "rebuild_dashy"
+
+[[procedure.config.stage]]
+name = "stop dashy"
+enabled = true
+executions = [
+  { execution.type = "StopStack", execution.params.stack = "dashy", execution.params.services = [], enabled = true }
+]
+
+[[procedure.config.stage]]
+name = "deploy dashy"
+enabled = true
+executions = [
+  { execution.type = "DeployStack", execution.params.stack = "dashy", execution.params.services = [], enabled = true }
+]
