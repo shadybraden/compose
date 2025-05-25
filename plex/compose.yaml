@@ -2,8 +2,9 @@ services:
   plex:
     image: quay.io/linuxserver.io/plex:1.41.7
     container_name: plex
-    ports:
-      - 32400:32400
+    #ports:
+      #- 32400:32400
+    network_mode: host
     environment:
       - PUID=1000
       - PGID=1000
