@@ -48,7 +48,7 @@ services:
     - "traefik.http.services.jackett.loadbalancer.server.port=9117" # port of the service. i.e. jackett likes 9000
 
   radarr: # the movie searching part
-    image: quay.io/linuxserver.io/radarr:5.24.1
+    image: quay.io/linuxserver.io/radarr:5.25.0
     container_name: radarr
 #    ports:
 #      - 7878:7878 # radarr
