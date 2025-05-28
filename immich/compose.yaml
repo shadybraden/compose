@@ -15,6 +15,8 @@ services:
       - redis
       - database
     restart: on-failure
+    healthcheck:
+      disable: false
     environment:
       - IMMICH_TRUSTED_PROXIES=192.168.50.65,172.27.0.0/16
     security_opt:
@@ -45,11 +47,15 @@ services:
     restart: on-failure
     networks:
       - intranet
+    healthcheck:
+      disable: false
 
   redis:
     container_name: immich_redis
     image: docker.io/valkey/valkey:8.1.1
     restart: on-failure
+    healthcheck:
+      test: redis-cli ping || exit 1
     networks:
       - intranet
 
@@ -64,7 +70,6 @@ services:
     volumes:
       - /data/config_storage/immich/postgres:/var/lib/postgresql/data
     restart: on-failure
-    command: ["postgres", "-c" ,"shared_preload_libraries=vectors.so", "-c", 'search_path="$$user", public, vectors', "-c", "logging_collector=on", "-c", "max_wal_size=2GB", "-c", "shared_buffers=512MB", "-c", "wal_compression=on"]
     networks:
       - intranet
 
