@@ -59,8 +59,8 @@ services:
       - PORT=7878
     volumes:
       - /data/config_storage/arr/radarr:/config
-      - //mnt/4tb/arr/torrents:/downloads/torrents
-      - /mnt/4tb/arr/movies/media:/movies
+      - /mnt/4tb/torrents:/downloads/torrents
+      - /mnt/4tb/movies:/movies
     restart: on-failure
     security_opt:
       - no-new-privileges:true # helps to increase security
@@ -90,8 +90,8 @@ services:
       - TZ=America/New_York
     volumes: # idea is a torrents folder for live downloads, and a media folder for sonarr to copy the files to once finished
       - /data/config_storage/arr/sonarr:/config
-      - /mnt/4tb/arr/torrents:/downloads/torrents
-      - /mnt/4tb/arr/shows/media:/shows
+      - /mnt/4tb/torrents:/downloads/torrents
+      - /mnt/4tb/shows:/shows
     restart: on-failure
     security_opt:
       - no-new-privileges:true # helps to increase security
@@ -134,7 +134,7 @@ services:
       - TORRENTING_PORT=${arr_qbittorrent_port}
     volumes:
       - /data/config_storage/arr/qbittorrent:/config
-      - /mnt/4tb/arr/torrents:/downloads/torrents
+      - /mnt/4tb/torrents:/downloads/torrents
     restart: on-failure
     network_mode: service:gluetun_arr
     depends_on:
