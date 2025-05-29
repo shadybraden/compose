@@ -493,3 +493,20 @@ environment = """
 SUBDOMAIN=search
 DOMAIN=holmlab.org
 """
+
+##
+
+[[stack]]
+name = "speedtest"
+tags = ["holmie","hooked"]
+[stack.config]
+server = "holmie"
+project_name = "speedtest"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+run_directory = "speedtest"
+environment = """
+SUBDOMAIN=speedtest
+DOMAIN=holmlab.org
+"""
