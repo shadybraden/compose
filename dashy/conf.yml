@@ -183,6 +183,11 @@ sections:
       collapsed: false
       hideForGuests: true
     items:
+      - title: Speedtest
+        icon: >-
+          librespeed.png
+        url: https://speedtest.holmlab.org
+        statusCheck: true
       - title: Kiwix
         icon: >-
           kiwix-light.png
