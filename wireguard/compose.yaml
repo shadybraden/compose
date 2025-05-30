@@ -17,7 +17,7 @@ services:
       - /data/config_storage/wg-easy:/etc/wireguard
       - /lib/modules:/lib/modules:ro
     ports:
-      - "51820:51820/udp"
+      - "${PORT}:${PORT}/udp"
       - "51821:51821/tcp"
     restart: unless-stopped
     cap_add:
