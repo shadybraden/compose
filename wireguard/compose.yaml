@@ -1,19 +1,19 @@
+volumes:
+  etc_wireguard:
+
 services:
-  wireguard:
-    environment:
-      - HOST=${wireguard_host} # ip or domain
-      - PORT=51821
-      #- PASSWORD_HASH=${wireguard_password_hash}
-      - DNS=${wireguard_dns_to_use}
-      - INSECURE=true
-    image: ghcr.io/wg-easy/wg-easy:15.0.0
-    container_name: wireguard
+  wg-easy:
+    image: ghcr.io/wg-easy/wg-easy:15
+    container_name: wg-easy
+    networks:
+      wg:
+        ipv4_address: 10.42.42.42
     volumes:
       - /data/config_storage/wg-easy:/etc/wireguard
       - /lib/modules:/lib/modules:ro
     ports:
-      - "${wireguard_external_port}:${wireguard_external_port}/udp"
-      - "51821:51821/tcp" # web ui port
+      - "51820:51820/udp"
+      - "51821:51821/tcp"
     restart: unless-stopped
     cap_add:
       - NET_ADMIN
@@ -21,23 +21,13 @@ services:
     sysctls:
       - net.ipv4.ip_forward=1
       - net.ipv4.conf.all.src_valid_mark=1
-    security_opt:
-      - no-new-privileges:true # helps to increase security
-    networks:
-      - intranet
-    labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.wireguard.entrypoints=http"
-    - "traefik.http.routers.wireguard.rule=Host(`wireguard.holmlab.org`)"
-    - "traefik.http.middlewares.wireguard-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.wireguard.middlewares=wireguard-https-redirect"
-    - "traefik.http.routers.wireguard-secure.entrypoints=https"
-    - "traefik.http.routers.wireguard-secure.rule=Host(`wireguard.holmlab.org`)"
-    - "traefik.http.routers.wireguard-secure.tls=true"
-    - "traefik.http.routers.wireguard-secure.service=wireguard"
-    - "traefik.http.services.wireguard.loadbalancer.server.port=51821" # port of the service. i.e. wireguard likes 9000
-    - "traefik.docker.network=intranet"
 
 networks:
-  intranet:
-    external: true
+  wg:
+    driver: bridge
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.42.42.0/24
+        - subnet: fdcc:ad94:bacf:61a3::/64
