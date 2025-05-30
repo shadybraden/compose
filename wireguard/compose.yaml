@@ -1,6 +1,3 @@
-volumes:
-  etc_wireguard:
-
 services:
   wg-easy:
     environment:
