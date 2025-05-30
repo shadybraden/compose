@@ -2,7 +2,7 @@ services:
   wg-easy:
     environment:
       #- PORT=${PORT}
-      - HOST=${HOST}
+      #- HOST=${HOST}
       - DNS=${DNS}
       - INSECURE=true
     image: ghcr.io/wg-easy/wg-easy:15
