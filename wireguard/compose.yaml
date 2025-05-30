@@ -2,11 +2,15 @@ services:
   wg-easy:
     image: ghcr.io/wg-easy/wg-easy:15.0.0
     container_name: wg-easy
+    environment:
+      WG_DEVICE: enp2s0 # https://github.com/wg-easy/wg-easy/issues/1795#issuecomment-2900911182
     networks:
       wg:
         ipv4_address: 10.42.42.42
         ipv6_address: fdcc:ad94:bacf:61a3::2a
-      intranet: {}
+      intranet:
+        driver_opts:
+          com.docker.network.endpoint.ifname: enp2s0
     volumes:
       - /data/config_storage/wg-easy:/etc/wireguard
       - /lib/modules:/lib/modules:ro
