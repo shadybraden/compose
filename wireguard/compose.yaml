@@ -2,7 +2,7 @@ services:
   wireguard:
     environment:
       - HOST=${wireguard_host} # ip or domain
-      - PORT=${wireguard_external_port}
+      - PORT=51821
       #- PASSWORD_HASH=${wireguard_password_hash}
       - DNS=${wireguard_dns_to_use}
       - INSECURE=true
