@@ -1,10 +1,5 @@
 services:
   wg-easy:
-    environment:
-      #- PORT=${PORT}
-      #- HOST=${HOST}
-      - DNS=${DNS}
-      - INSECURE=true
     image: ghcr.io/wg-easy/wg-easy:15
     container_name: wg-easy
     networks:
@@ -15,7 +10,7 @@ services:
       - /data/config_storage/wg-easy:/etc/wireguard
       - /lib/modules:/lib/modules:ro
     ports:
-      - "51820:51820/udp"
+      - "${EXTERNAL_PORT}:${EXTERNAL_PORT}/udp" # public port. remember to port forward this
       - "51821:51821/tcp"
     restart: unless-stopped
     cap_add:
