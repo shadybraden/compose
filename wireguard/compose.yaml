@@ -1,7 +1,7 @@
 services:
   wg-easy:
     environment:
-      - PORT=${PORT}
+      #- PORT=${PORT}
       - HOST=${HOST}
       - DNS=${DNS}
       - INSECURE=true
