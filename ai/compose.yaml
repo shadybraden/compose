@@ -6,7 +6,7 @@ services:
             - 11434:11434
         container_name: ollama
         restart: unless-stopped
-        image: ollama/ollama:0.8.0
+        image: ollama/ollama:0.9.0
         security_opt:
         - no-new-privileges:true # helps to increase security
         networks:
@@ -30,7 +30,7 @@ services:
         volumes:
             - /data/config_storage/ai/open-webui:/app/backend/data
         container_name: open-webui
-        image: ghcr.io/open-webui/open-webui:0.6.12
+        image: ghcr.io/open-webui/open-webui:0.6.13
         restart: unless-stopped
         environment:
         - OLLAMA_BASE_URL=https://ollama.holmlab.org
