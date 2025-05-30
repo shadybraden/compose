@@ -6,7 +6,7 @@ services:
       #- PASSWORD_HASH=${wireguard_password_hash}
       - DNS=${wireguard_dns_to_use}
       - INSECURE=true
-    image: ghcr.io/wg-easy/wg-easy:15
+    image: ghcr.io/wg-easy/wg-easy:15.0.0
     container_name: wireguard
     volumes:
       - /data/config_storage/wg-easy:/etc/wireguard
