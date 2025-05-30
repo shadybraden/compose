@@ -3,7 +3,7 @@ services:
     environment:
       - HOST=${wireguard_host} # ip or domain
       - PORT=${wireguard_external_port}
-      - PASSWORD_HASH=${wireguard_password_hash}
+      #- PASSWORD_HASH=${wireguard_password_hash}
       - DNS=${wireguard_dns_to_use}
       - INSECURE=false
     image: ghcr.io/wg-easy/wg-easy:15
