@@ -30,7 +30,7 @@ services:
 networks:
   wg:
     driver: bridge
-    enable_ipv6: true
+    enable_ipv6: false
     ipam:
       driver: default
       config:
