@@ -3,6 +3,11 @@ volumes:
 
 services:
   wg-easy:
+    environment:
+    #  Optional:
+    #  - PORT=51821
+    #  - HOST=0.0.0.0
+      - INSECURE=true
     image: ghcr.io/wg-easy/wg-easy:15
     container_name: wg-easy
     networks:
