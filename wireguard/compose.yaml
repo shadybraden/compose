@@ -11,7 +11,7 @@ services:
       - /data/config_storage/wg-easy:/etc/wireguard
       - /lib/modules:/lib/modules:ro
     ports:
-      - "${EXTERNAL_PORT}:${EXTERNAL_PORT}/udp" # public port. remember to port forward this
+      - "49504:49504/udp" # public port. remember to port forward this
       - "51821:51821/tcp"
     restart: unless-stopped
     cap_add:
