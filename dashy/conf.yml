@@ -321,7 +321,7 @@ sections:
       - title: Dockge
         icon: >-
           dockge.png
-        url: https://dockge.holmlab.org/
+        url: https://dockge.holmlab.org/compose/renovate
         statusCheck: true
         id: 20_606_dockge
       - title: Forgejo
