@@ -7,6 +7,7 @@ project_name = "adsb"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "adsb"
 environment = """
 SUBDOMAIN=adsb
@@ -24,6 +25,7 @@ project_name = "ai"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "ai"
 
 ##
@@ -37,6 +39,7 @@ project_name = "arr"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "arr"
 
 ##
@@ -50,6 +53,7 @@ project_name = "audiobookshelf"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "audiobookshelf"
 
 ##
@@ -63,6 +67,7 @@ project_name = "dashy"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "dashy"
 
 ##
@@ -76,6 +81,7 @@ project_name = "dockge"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "dockge"
 
 ##
@@ -89,6 +95,7 @@ project_name = "filebrowser"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "filebrowser"
 
 ##
@@ -102,6 +109,7 @@ project_name = "freshrss"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "freshrss"
 
 ##
@@ -115,6 +123,7 @@ project_name = "glances"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "glances"
 
 ##
@@ -128,6 +137,7 @@ project_name = "homeassistant"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "homeassistant"
 
 ##
@@ -141,6 +151,7 @@ project_name = "immich"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "immich"
 
 ##
@@ -154,6 +165,7 @@ project_name = "jellyfin"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "jellyfin"
 
 ##
@@ -167,6 +179,7 @@ project_name = "jellyseerr"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "jellyseerr"
 
 ##
@@ -180,6 +193,7 @@ project_name = "kiwix"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "kiwix"
 
 ##
@@ -193,6 +207,7 @@ project_name = "navidrome"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "navidrome"
 
 ##
@@ -206,6 +221,7 @@ project_name = "netalertx"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "netalertx"
 
 ##
@@ -219,6 +235,7 @@ project_name = "nextcloud"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "nextcloud"
 
 ##
@@ -232,6 +249,7 @@ project_name = "ntfy"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "ntfy"
 
 ##
@@ -245,6 +263,7 @@ project_name = "portainer"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "portainer"
 
 ##
@@ -258,6 +277,7 @@ project_name = "proxy"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "proxy"
 post_deploy.command = """
 # sleep 10
@@ -275,6 +295,7 @@ project_name = "renovate"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "renovate"
 ignore_services = ["renovate"] # this is so it shows nicer in the dashboard
 
@@ -289,6 +310,7 @@ project_name = "scrutiny"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "scrutiny"
 
 ##
@@ -302,6 +324,7 @@ project_name = "stirlingpdf"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "stirlingpdf"
 
 ##
@@ -315,6 +338,7 @@ project_name = "syncthing"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "syncthing"
 
 ##
@@ -328,6 +352,7 @@ project_name = "uptime-kuma"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "uptime-kuma"
 
 ##
@@ -341,6 +366,7 @@ project_name = "vaultwarden"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "vaultwarden"
 
 ##
@@ -354,6 +380,7 @@ project_name = "wireguard"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "wireguard"
 
 ##
@@ -367,6 +394,7 @@ project_name = "hoodik"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "hoodik"
 
 ##
@@ -382,6 +410,7 @@ run_build = false
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 reclone = false
 run_directory = "skywatch"
 ignore_services = ["skywatch"] # this is so it shows nicer in the dashboard 
@@ -402,6 +431,7 @@ project_name = "restic"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "restic"
 
 ##
@@ -415,6 +445,7 @@ project_name = "pihole"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "pihole"
 
 ##
@@ -428,6 +459,7 @@ project_name = "forgejo"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "forgejo"
 
 ##
@@ -441,6 +473,7 @@ project_name = "traefik"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "traefik"
 
 ##
@@ -454,6 +487,7 @@ project_name = "motioneye"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "motioneye"
 environment = """
 SUBDOMAIN=motioneye
@@ -471,6 +505,7 @@ project_name = "mealie"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "mealie"
 environment = """
 SUBDOMAIN=mealie
@@ -488,6 +523,7 @@ project_name = "searxng"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "searxng"
 environment = """
 SUBDOMAIN=search
@@ -505,6 +541,7 @@ project_name = "speedtest"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
+branch = "main"
 run_directory = "speedtest"
 environment = """
 SUBDOMAIN=speedtest
