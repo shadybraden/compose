@@ -38,7 +38,7 @@ services:
     - "traefik.http.routers.${SUBDOMAIN}-secure.rule=Host(`${SUBDOMAIN}.${DOMAIN}`)"
     - "traefik.http.routers.${SUBDOMAIN}-secure.tls=true"
     - "traefik.http.routers.${SUBDOMAIN}-secure.service=${SUBDOMAIN}"
-    - "traefik.http.services.${SUBDOMAIN}.loadbalancer.server.port=80" # port of the service.
+    - "traefik.http.services.${SUBDOMAIN}.loadbalancer.server.port=3000" # port of the service.
     - "traefik.docker.network=intranet"
   meilisearch:
     image: getmeili/meilisearch:v1.12.8
