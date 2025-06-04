@@ -324,6 +324,11 @@ sections:
         url: https://dockge.holmlab.org/compose/renovate
         statusCheck: true
         id: 20_606_dockge
+      - title: Linkwarden
+        icon: >-
+          linkwarden.png
+        url: https://links.holmlab.org/dashboard
+        statusCheck: true
       - title: Forgejo
         icon: >-
           forgejo.png
