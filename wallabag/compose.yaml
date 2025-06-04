@@ -49,7 +49,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=${password}
     volumes:
-      - /opt/wallabag/data:/var/lib/mysql
+      - /data/config_storage/wallabag/mariadb:/var/lib/mysql
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       interval: 20s
