@@ -1,6 +1,6 @@
 services:
   wallabag:
-    image: wallabag/wallabag
+    image: wallabag/wallabag:2.6.12
     restart: unless-stopped
     environment:
       - MYSQL_ROOT_PASSWORD=${password}
@@ -14,7 +14,7 @@ services:
       - SYMFONY__ENV__DATABASE_TABLE_PREFIX="wallabag_"
       #- SYMFONY__ENV__MAILER_DSN=smtp://127.0.0.1
       #- SYMFONY__ENV__FROM_EMAIL=wallabag@example.com
-      #- SYMFONY__ENV__DOMAIN_NAME=https://links.holmlab.org
+      - SYMFONY__ENV__DOMAIN_NAME=https://links.holmlab.org
       - SYMFONY__ENV__SERVER_NAME="Wallabag"
 #    ports:
 #      - "80"
