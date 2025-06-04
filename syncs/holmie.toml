@@ -547,3 +547,21 @@ environment = """
 SUBDOMAIN=speedtest
 DOMAIN=holmlab.org
 """
+
+##
+
+[[stack]]
+name = "wallabag"
+tags = ["holmie","hooked"]
+[stack.config]
+server = "holmie"
+project_name = "wallabag"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "wallabag"
+environment = """
+SUBDOMAIN=links
+DOMAIN=holmlab.org
+"""
