@@ -12,6 +12,7 @@ services:
   linkwarden:
     environment:
       - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/postgres
+    env_file: .env
     restart: unless-stopped
     image: ghcr.io/linkwarden/linkwarden:v2.10.2
     container_name: linkwarden
