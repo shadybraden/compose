@@ -2,6 +2,7 @@ services:
   postgres:
     image: postgres:16-alpine
     container_name: linkwarden_postgres
+    env_file: .env
     restart: unless-stopped
     volumes:
       - /data/config_storage/linkwarden/pgdata:/var/lib/postgresql/data
@@ -42,6 +43,8 @@ services:
   meilisearch:
     image: getmeili/meilisearch:v1.12.8
     container_name: linkwarden_meilisearch
+    env_file:
+      - .env
     restart: unless-stopped
     volumes:
       - /data/config_storage/linkwarden/meili_data:/meili_data
