@@ -111,7 +111,7 @@ services:
     - "traefik.docker.network=intranet"
 
   jackett: # mega indexer for the arr's above
-    image: quay.io/linuxserver.io/jackett:0.22.1984
+    image: quay.io/linuxserver.io/jackett:0.22.1987
     container_name: jackett
     restart: on-failure
     volumes:
