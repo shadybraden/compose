@@ -54,6 +54,10 @@ services:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       interval: 20s
       timeout: 3s
+    security_opt:
+      - no-new-privileges:true # helps to increase security
+    networks:
+      - intranet
   redis:
     image: redis:alpine
     restart: unless-stopped    
@@ -61,6 +65,10 @@ services:
       test: ["CMD", "redis-cli", "ping"]
       interval: 20s
       timeout: 3s
+    security_opt:
+      - no-new-privileges:true # helps to increase security
+    networks:
+      - intranet
 
 networks:
   intranet:
