@@ -1,0 +1,54 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: linkwarden_postgres
+    restart: unless-stopped
+    volumes:
+      - /data/config_storage/linkwarden/pgdata:/var/lib/postgresql/data
+    security_opt:
+      - no-new-privileges:true # helps to increase security
+    networks:
+      - intranet
+  linkwarden:
+    environment:
+      - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/postgres
+    restart: unless-stopped
+    image: ghcr.io/linkwarden/linkwarden:v2.10.2
+    container_name: linkwarden
+    ports:
+      - 3000:3000
+    volumes:
+      - /data/config_storage/linkwarden/data:/data/data
+    depends_on:
+      - postgres
+      - meilisearch
+    security_opt:
+      - no-new-privileges:true # helps to increase security
+    networks:
+      - intranet
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.${SUBDOMAIN}.entrypoints=http"
+    - "traefik.http.routers.${SUBDOMAIN}.rule=Host(`${SUBDOMAIN}.${DOMAIN}`)"
+    - "traefik.http.middlewares.${SUBDOMAIN}-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.${SUBDOMAIN}.middlewares=${SUBDOMAIN}-https-redirect"
+    - "traefik.http.routers.${SUBDOMAIN}-secure.entrypoints=https"
+    - "traefik.http.routers.${SUBDOMAIN}-secure.rule=Host(`${SUBDOMAIN}.${DOMAIN}`)"
+    - "traefik.http.routers.${SUBDOMAIN}-secure.tls=true"
+    - "traefik.http.routers.${SUBDOMAIN}-secure.service=${SUBDOMAIN}"
+    - "traefik.http.services.${SUBDOMAIN}.loadbalancer.server.port=80" # port of the service.
+    - "traefik.docker.network=intranet"
+  meilisearch:
+    image: getmeili/meilisearch:v1.12.8
+    container_name: linkwarden_meilisearch
+    restart: unless-stopped
+    volumes:
+      - /data/config_storage/linkwarden/meili_data:/meili_data
+    security_opt:
+      - no-new-privileges:true # helps to increase security
+    networks:
+      - intranet
+
+networks:
+  intranet:
+    external: true
