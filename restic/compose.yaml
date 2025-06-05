@@ -15,7 +15,7 @@ services:
         --tag restic-HOLMIE
         --verbose
       RESTIC_FORGET_ARGS: >-
-        --keep-last 10
+        --keep-last 5
         --keep-daily 5
         --keep-weekly 3
         --keep-monthly 8
