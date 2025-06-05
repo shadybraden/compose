@@ -16,9 +16,9 @@ services:
         --verbose
       RESTIC_FORGET_ARGS: >-
         --keep-last 10
-        --keep-daily 7
-        --keep-weekly 5
-        --keep-monthly 12
+        --keep-daily 5
+        --keep-weekly 3
+        --keep-monthly 8
       TZ: America/New_York
 #      POST_COMMANDS_SUCCESS: |-
 #        curl -H "Title: HOLMIE restic backups success" -H "Priority: min" -H "Tags: house" -d "done" https://ntfy.holmlab.org/backupsqY5CmNgp0cHv9UjeEzrnTT8qORA5M1qWUn
@@ -40,7 +40,7 @@ services:
     restart: on-failure
     environment:
       RUN_ON_STARTUP: "true"
-      PRUNE_CRON: "0 0 4 * * *" # this is 4am
+      PRUNE_CRON: "0 0 13 * * *" # this is 4am
       RESTIC_REPOSITORY: /restic
       RESTIC_PASSWORD: ${rclone_restic_password}
       TZ: America/New_York
