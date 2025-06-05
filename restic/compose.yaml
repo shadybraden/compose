@@ -38,6 +38,8 @@ services:
     container_name: restic-prune
     hostname: HOLMIE
     restart: on-failure
+    volumes:
+      - /data/backups:/restic # backed up data
     environment:
       RUN_ON_STARTUP: "true"
       PRUNE_CRON: "0 0 4 * * *" # this is 4am
@@ -52,6 +54,8 @@ services:
     container_name: restic-check
     restart: on-failure
     hostname: HOLMIE
+    volumes:
+      - /data/backups:/restic # backed up data
     environment:
       RUN_ON_STARTUP: "false"
       CHECK_CRON: "0 15 5 * * *" # this is 5:15am. so should be running after update (watchtower), and after backup (first container here)
