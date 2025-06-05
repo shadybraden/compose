@@ -42,7 +42,7 @@ services:
       - /data/backups:/restic # backed up data
     environment:
       RUN_ON_STARTUP: "true"
-      PRUNE_CRON: "0 0 4 * * *" # this is 4am
+      PRUNE_CRON: "0 11 17 * * *" # this is 4am
       RESTIC_REPOSITORY: /restic
       RESTIC_PASSWORD: ${rclone_restic_password}
       TZ: America/New_York
