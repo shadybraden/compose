@@ -16,9 +16,9 @@ services:
         --verbose
       RESTIC_FORGET_ARGS: >-
         --keep-last 10
-        --keep-daily 7
-        --keep-weekly 5
-        --keep-monthly 12
+        --keep-daily 5
+        --keep-weekly 3
+        --keep-monthly 8
       TZ: America/New_York
 #      POST_COMMANDS_SUCCESS: |-
 #        curl -H "Title: HOLMIE restic backups success" -H "Priority: min" -H "Tags: house" -d "done" https://ntfy.holmlab.org/backupsqY5CmNgp0cHv9UjeEzrnTT8qORA5M1qWUn
