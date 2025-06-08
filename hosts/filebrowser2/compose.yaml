@@ -16,6 +16,11 @@ services:
         - no-new-privileges:true # helps to increase security
         networks:
         - intranet
+    cloudflared:
+        environment:
+            - token=${token}
+        image: cloudflare/cloudflared:latest
+        command: tunnel --no-autoupdate run --token ${token}
 
 networks:
   intranet:
