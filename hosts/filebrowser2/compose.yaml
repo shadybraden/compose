@@ -15,7 +15,5 @@ services:
         security_opt:
         - no-new-privileges:true # helps to increase security
     cloudflared:
-        environment:
-            - token=${token}
         image: cloudflare/cloudflared:2025.5.0
         command: tunnel --no-autoupdate run --token ${token}
