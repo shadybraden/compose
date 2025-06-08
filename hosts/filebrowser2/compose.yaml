@@ -16,3 +16,7 @@ services:
         - no-new-privileges:true # helps to increase security
         networks:
         - intranet
+
+networks:
+  intranet:
+    external: true
