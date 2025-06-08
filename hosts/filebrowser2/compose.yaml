@@ -14,14 +14,8 @@ services:
         image: filebrowser/filebrowser:v2.32.0
         security_opt:
         - no-new-privileges:true # helps to increase security
-        networks:
-        - intranet
     cloudflared:
         environment:
             - token=${token}
         image: cloudflare/cloudflared:latest
         command: tunnel --no-autoupdate run --token ${token}
-
-networks:
-  intranet:
-    external: true
