@@ -1,6 +1,6 @@
 services:
-    filebrowser:
-        container_name: filebrowser
+    filebrowser2:
+        container_name: filebrowser2
         restart: unless-stopped
         volumes:
             - /data/dont_backup/mcc/media:/srv/mcc
