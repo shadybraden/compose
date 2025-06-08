@@ -565,3 +565,17 @@ environment = """
 SUBDOMAIN=links
 DOMAIN=holmlab.org
 """
+
+##
+
+[[stack]]
+name = "filebrowser2"
+tags = ["holmie","hooked"]
+[stack.config]
+server = "holmie"
+project_name = "filebrowser2"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "hosts/filebrowser2"
