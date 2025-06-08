@@ -14,3 +14,5 @@ services:
         image: filebrowser/filebrowser:v2.32.0
         security_opt:
         - no-new-privileges:true # helps to increase security
+        networks:
+        - intranet
