@@ -11,7 +11,7 @@ services:
             - PUID=1000
             - PGID=1000
         ports:
-            - 34417:80
+            - 34417:8080
         image: filebrowser/filebrowser:v2.32.0
         security_opt:
         - no-new-privileges:true # helps to increase security
