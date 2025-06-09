@@ -4,8 +4,8 @@ services:
         restart: unless-stopped
         volumes:
             - /data/dont_backup/mcc/media:/srv
-            - /data/dont_backup/mcc/config/filebrowser.db/filebrowser.db
-            - /data/dont_backup/mcc/config/.filebrowser.json/.filebrowser.json
+            - /data/dont_backup/mcc/config/filebrowser.db:/filebrowser.db
+            - /data/dont_backup/mcc/config/.filebrowser.json:/.filebrowser.json
         environment:
             - PUID=1000
             - PGID=1000
