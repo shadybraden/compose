@@ -5,6 +5,7 @@ services:
         volumes:
             - /data/dont_backup/mcc/media:/srv
             - /data/dont_backup/mcc/config/filebrowser.db:/filebrowser.db
+            - /data/dont_backup/mcc/config/database.db:/database.db
             - /data/dont_backup/mcc/config/.filebrowser.json:/.filebrowser.json
         environment:
             - PUID=1000
