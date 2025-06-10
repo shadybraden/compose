@@ -593,3 +593,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "wedding-share"
+environment = """
+SUBDOMAIN=pr2
+DOMAIN=holmlab.org
+"""
