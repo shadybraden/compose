@@ -7,10 +7,10 @@ services:
     environment:
       TITLE: 'WeddingShare'
       ACCOUNT_OWNER_USERNAME: 'admin'
-      ACCOUNT_OWNER_PASSWORD: 'admin'
+      ACCOUNT_OWNER_PASSWORD: ${ACCOUNT_OWNER_PASSWORD}
       DATABASE_TYPE: 'sqlite'
-      ENCRYPTION_KEY: 'ChangeMe'
-      ENCRYPTION_SALT: 'ChangeMe'
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY}
+      ENCRYPTION_SALT: ${ENCRYPTION_SALT}
     volumes:
       - /data/config_storage/wedding-share/config:/app/config
       - /data/config_storage/wedding-share/thumbnails:/app/wwwroot/thumbnails
