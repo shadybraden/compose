@@ -3,7 +3,7 @@ services:
     container_name: WeddingShare
     image: cirx08/wedding_share:1.6.7
     ports:
-      - '${HTTP_PORT:-8080}:5000/tcp'
+      - '${HTTP_PORT:-34418}:5000/tcp'
     environment:
       TITLE: 'WeddingShare'
       ACCOUNT_OWNER_USERNAME: 'admin'
