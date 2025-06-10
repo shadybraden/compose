@@ -18,7 +18,7 @@ appConfig:
     searchEngine: duckduckgo
     openingMethod: newtab
     searchBangs: {}
-  enableFontAwesome: true
+  enableFontAwesome: false
   enableMaterialDesignIcons: false
   hideComponents:
     hideHeading: true
