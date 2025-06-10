@@ -594,6 +594,6 @@ repo = "shady/compose"
 branch = "main"
 run_directory = "wedding-share"
 environment = """
-SUBDOMAIN=pr
+SUBDOMAIN=mcc
 DOMAIN=holmlab.org
 """
