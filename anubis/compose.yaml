@@ -1,0 +1,33 @@
+services:
+  anubis:
+    image: anubisplatform/anubis:v1.19.1
+    container_name: anubis
+    restart: unless-stopped
+#    ports:
+#      - "8080:5000"
+    environment:
+      - FLASK_ENV=production
+      - ANUBIS_CONFIG=/config/config.py
+    volumes:
+      - /data/config_storage/anubis/config:/config
+      - /data/config_storage/anubis/data:/data
+    security_opt:
+      - no-new-privileges:true # helps to increase security
+    networks:
+      - intranet
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.anubis.entrypoints=http"
+    - "traefik.http.routers.anubis.rule=Host(`anubis.holmlab.org`)"
+    - "traefik.http.middlewares.anubis-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.anubis.middlewares=anubis-https-redirect"
+    - "traefik.http.routers.anubis-secure.entrypoints=https"
+    - "traefik.http.routers.anubis-secure.rule=Host(`anubis.holmlab.org`)"
+    - "traefik.http.routers.anubis-secure.tls=true"
+    - "traefik.http.routers.anubis-secure.service=anubis"
+    - "traefik.http.services.anubis.loadbalancer.server.port=3923" # port of the service.
+    - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true
