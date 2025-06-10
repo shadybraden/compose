@@ -3,7 +3,7 @@ services:
     container_name: WeddingShare
     image: cirx08/wedding_share:1.6.7
     ports:
-      - '${HTTP_PORT:-34418}:5000/tcp'
+      - '${HTTP_PORT:-34417}:5000/tcp'
     environment:
       TITLE: 'WeddingShare'
       ACCOUNT_OWNER_USERNAME: 'admin'
@@ -34,6 +34,11 @@ services:
     - "traefik.http.routers.mcc-secure.service=mcc"
     - "traefik.http.services.mcc.loadbalancer.server.port=5000" # port of the service.
     - "traefik.docker.network=intranet"
+  cloudflared:
+      image: cloudflare/cloudflared:2025.5.0
+      command: tunnel --no-autoupdate run --token ${token}
+      networks:
+      - intranet
 
 networks:
   intranet:
