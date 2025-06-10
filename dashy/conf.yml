@@ -335,13 +335,6 @@ sections:
         url: https://git.holmlab.org/shady/compose
         statusCheck: true
         id: 21_606_forgejo
-      - title: Traefik
-        icon: >-
-          traefik.png
-        url: https://traefik.holmlab.org/dashboard/#/http/routers
-        statusCheck: true
-        statusCheckAcceptCodes: '401'
-        id: 22_606_traefik
       - title: NetAlertX
         icon: >-
           NetAlertX.png
