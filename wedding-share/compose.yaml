@@ -17,6 +17,7 @@ services:
       - /data/config_storage/wedding-share/uploads:/app/wwwroot/uploads
       - /data/config_storage/wedding-share/custom-resources:/app/wwwroot/custom_resources
     restart: unless-stopped
+    hostname: mcc.holmlab.org
     security_opt:
       - no-new-privileges:true # helps to increase security
     networks:
