@@ -561,10 +561,6 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "linkwarden"
-environment = """
-SUBDOMAIN=links
-DOMAIN=holmlab.org
-"""
 
 ##
 

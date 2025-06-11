@@ -30,15 +30,15 @@ services:
       - intranet
     labels:
     - "traefik.enable=true"
-    - "traefik.http.routers.${SUBDOMAIN}.entrypoints=http"
-    - "traefik.http.routers.${SUBDOMAIN}.rule=Host(`${SUBDOMAIN}.${DOMAIN}`)"
-    - "traefik.http.middlewares.${SUBDOMAIN}-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.${SUBDOMAIN}.middlewares=${SUBDOMAIN}-https-redirect"
-    - "traefik.http.routers.${SUBDOMAIN}-secure.entrypoints=https"
-    - "traefik.http.routers.${SUBDOMAIN}-secure.rule=Host(`${SUBDOMAIN}.${DOMAIN}`)"
-    - "traefik.http.routers.${SUBDOMAIN}-secure.tls=true"
-    - "traefik.http.routers.${SUBDOMAIN}-secure.service=${SUBDOMAIN}"
-    - "traefik.http.services.${SUBDOMAIN}.loadbalancer.server.port=3000" # port of the service.
+    - "traefik.http.routers.links.entrypoints=http"
+    - "traefik.http.routers.links.rule=Host(`links.holmlab.org`)"
+    - "traefik.http.middlewares.links-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.links.middlewares=links-https-redirect"
+    - "traefik.http.routers.links-secure.entrypoints=https"
+    - "traefik.http.routers.links-secure.rule=Host(`links.holmlab.org`)"
+    - "traefik.http.routers.links-secure.tls=true"
+    - "traefik.http.routers.links-secure.service=links"
+    - "traefik.http.services.links.loadbalancer.server.port=3000" # port of the service.
     - "traefik.docker.network=intranet"
   meilisearch:
     image: getmeili/meilisearch:v1.12.8
