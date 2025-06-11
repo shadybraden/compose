@@ -23,7 +23,7 @@ services:
       - /data/config_storage/linkwarden/data:/data/data
     depends_on:
       - postgres
-      - meilisearch
+#      - meilisearch
     security_opt:
       - no-new-privileges:true # helps to increase security
     networks:
