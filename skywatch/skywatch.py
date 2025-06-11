@@ -72,9 +72,6 @@ for ac in data.get('aircraft', []):
     if dbFlags == 8:
         title = "LADD | " + r_dst_value + " mi | " + "alt:" + alt_baro
     
-    if short_type_value in ["A339", "A124", "A140", "A148", "A158", "A225", "A225", "BLCF", "CL2T", "AN12", "AN24", "AN26", "AN28", "AN30", "AN32", "AN72", "B52", "PRTS", "F35", "U2", "HRON", "SLCH", "WB57", "Q9", "Q4", "C2", "B70", "W135", "B1", "B742", "R135", "E2", "3B4", "E6", "F16", "E3TF"]: # https://en.wikipedia.org/wiki/List_of_aircraft_type_designators
-        send_message = 1
-
     # set ntfy priority based on altitiude
     alt_baro = int(alt_baro)
     if alt_baro >= 2000:
@@ -84,6 +81,10 @@ for ac in data.get('aircraft', []):
     if alt_baro >= 10000:
         priority = 'min'
     print("alt:", alt_baro, priority)
+
+    if short_type_value in ["A124", "A140", "A148", "A158", "A225", "A225", "BLCF", "CL2T", "AN12", "AN24", "AN26", "AN28", "AN30", "AN32", "AN72", "B52", "PRTS", "F35", "U2", "HRON", "SLCH", "WB57", "Q9", "Q4", "C2", "B70", "W135", "B1", "B742", "R135", "E2", "3B4", "E6", "F16", "E3TF"]: # https://en.wikipedia.org/wiki/List_of_aircraft_type_designators
+        send_message = 1
+        priority = 'default'
 
     # check recents.txt for current hex
     # if match, send_message = 0
