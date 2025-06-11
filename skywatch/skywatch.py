@@ -50,6 +50,8 @@ for ac in data.get('aircraft', []):
     dbFlags = int(dbFlags)
     alt_baro= ac.get('alt_baro', '0')
     alt_baro = str(alt_baro)
+    squawk = ac.get('squawk', 'unknown')
+    squawk = str(squawk)
 
     # set vars for message:
     title = "WATCH | " + r_dst_value + " mi | " + "alt:" + alt_baro
@@ -85,6 +87,19 @@ for ac in data.get('aircraft', []):
     if short_type_value in ["A124", "A140", "A148", "A158", "A225", "A225", "BLCF", "CL2T", "AN12", "AN24", "AN26", "AN28", "AN30", "AN32", "AN72", "B52", "PRTS", "F35", "U2", "HRON", "SLCH", "WB57", "Q9", "Q4", "C2", "B70", "W135", "B1", "B742", "R135", "E2", "3B4", "E6", "F16", "E3TF"]: # https://en.wikipedia.org/wiki/List_of_aircraft_type_designators
         send_message = 1
         priority = 'default'
+    
+    if squawk == "7500":
+        send_message = 1
+        priority = 'max'
+        title = "HIJACK | " + r_dst_value + " mi | " + "alt:" + alt_baro
+    if squawk == "7600":
+        send_message = 1
+        priority = 'default'
+        title = "Radio Failure | " + r_dst_value + " mi | " + "alt:" + alt_baro
+    if squawk == "7700":
+        send_message = 1
+        priority = 'default'
+        title = "Emergency | " + r_dst_value + " mi | " + "alt:" + alt_baro
 
     # check recents.txt for current hex
     # if match, send_message = 0
