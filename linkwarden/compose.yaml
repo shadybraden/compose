@@ -40,18 +40,7 @@ services:
     - "traefik.http.routers.links-secure.service=links"
     - "traefik.http.services.links.loadbalancer.server.port=3000" # port of the service.
     - "traefik.docker.network=intranet"
-  meilisearch:
-    image: getmeili/meilisearch:v1.12.8
-    container_name: linkwarden_meilisearch
-    env_file:
-      - .env
-    restart: unless-stopped
-    volumes:
-      - /data/config_storage/linkwarden/meili_data:/meili_data
-    security_opt:
-      - no-new-privileges:true # helps to increase security
-    networks:
-      - intranet
+
 
 networks:
   intranet:
