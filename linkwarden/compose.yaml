@@ -23,7 +23,6 @@ services:
       - /data/config_storage/linkwarden/data:/data/data
     depends_on:
       - postgres
-#      - meilisearch
     security_opt:
       - no-new-privileges:true # helps to increase security
     networks:
@@ -40,7 +39,6 @@ services:
     - "traefik.http.routers.links-secure.service=links"
     - "traefik.http.services.links.loadbalancer.server.port=3000" # port of the service.
     - "traefik.docker.network=intranet"
-
 
 networks:
   intranet:
