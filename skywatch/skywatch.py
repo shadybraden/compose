@@ -80,8 +80,6 @@ for ac in data.get('aircraft', []):
     if alt_baro >= 10000:
         priority = 'min'
     print("alt:", alt_baro, priority)
-    if alt_baro == 0: # if it didn't recieve altitude, dont send.
-        send_message = 0
 
     # check recents.txt for current hex
     # if match, send_message = 0
