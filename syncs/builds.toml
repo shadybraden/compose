@@ -1,0 +1,5 @@
+[[build]]
+name = "build_skynet"
+[build.config]
+files_on_host = true
+build_path = "skywatch/"
