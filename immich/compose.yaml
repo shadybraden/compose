@@ -52,7 +52,7 @@ services:
 
   redis:
     container_name: immich_redis
-    image: docker.io/valkey/valkey:8.1.1
+    image: docker.io/valkey/valkey:8.1.2
     restart: on-failure
     healthcheck:
       test: redis-cli ping || exit 1
