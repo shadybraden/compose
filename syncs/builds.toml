@@ -1,5 +1,6 @@
 [[build]]
 name = "build_skywatch"
+description = "Goal: to get this to trigger on commits to skywatch.py"
 [build.config]
 builder = "holmie"
 files_on_host = true
