@@ -147,4 +147,4 @@ for ac in data.get('aircraft', []):
                     "Click": click,
                     "Priority": priority,
         })
-print("done at latest")
+print("\n")
