@@ -1,5 +1,5 @@
 [[build]]
-name = "build_skynet"
+name = "build_skywatch"
 [build.config]
 builder = "holmie"
 files_on_host = true
