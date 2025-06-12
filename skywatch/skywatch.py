@@ -68,6 +68,7 @@ for ac in data.get('aircraft', []):
             else:
                 #print("NOT on watchlist")
                 send_message = 0
+
     if dbFlags == 1:
         title = "MILL | " + r_dst_value + " mi | " + "alt:" + alt_baro
         send_message = 1
@@ -115,6 +116,14 @@ for ac in data.get('aircraft', []):
         print("Error: recents.txt not found.")
     except Exception as e:
         print("An error occurred:", str(e))
+
+    if send_message == 1: # if we are planning on sending, check ignorelist
+        with open("ignorelist.txt", "r") as file:
+            for line in file:
+                if line.strip()[:6].lower() == hex_value:
+                    print(line.strip(), "On ignorelist")
+                    send_message = 0
+                    break
 
     # Current timestamp in the desired format
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
