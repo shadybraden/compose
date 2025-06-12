@@ -4,6 +4,8 @@ from datetime import datetime, timedelta
 send_message = 0
 priority = 'low'
 
+print("\n")
+
 # download data
 url = 'https://adsb.holmlab.org/data/aircraft.json'
 response = requests.get(url)
@@ -147,4 +149,3 @@ for ac in data.get('aircraft', []):
                     "Click": click,
                     "Priority": priority,
         })
-print("\n")
