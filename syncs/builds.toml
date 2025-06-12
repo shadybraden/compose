@@ -1,5 +1,6 @@
 [[build]]
 name = "build_skynet"
 [build.config]
+builder = "holmie"
 files_on_host = true
 build_path = "skywatch/"
