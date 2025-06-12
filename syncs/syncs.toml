@@ -77,7 +77,7 @@ resource_path = ["syncs/procedure.toml"]
 
 [[resource_sync]]
 name = "builders"
-tags = ["builders","unhooked"]
+tags = ["builders","hooked"]
 [resource_sync.config]
 git_provider = "git.holmlab.org"
 repo = "shady/compose"
@@ -88,7 +88,7 @@ resource_path = ["syncs/builders.toml"]
 
 [[resource_sync]]
 name = "builds"
-tags = ["builds","unhooked"]
+tags = ["builds","hooked"]
 [resource_sync.config]
 git_provider = "git.holmlab.org"
 repo = "shady/compose"
