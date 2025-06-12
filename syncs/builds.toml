@@ -3,4 +3,4 @@ name = "build_skywatch"
 [build.config]
 builder = "holmie"
 files_on_host = true
-build_path = "skywatch/"
+build_path = "/etc/komodo/stacks/skywatch/skywatch"
