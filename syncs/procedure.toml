@@ -27,13 +27,8 @@ config.schedule_alert = false
 name = "Stage 1"
 enabled = true
 executions = [
-  { execution.type = "StopStack", execution.params.stack = "proxy", execution.params.services = [], enabled = true }
-]
-
-[[procedure.config.stage]]
-name = "Stage 2"
-enabled = true
-executions = [
+  { execution.type = "StopStack", execution.params.stack = "proxy", execution.params.services = [], enabled = true },
+  { execution.type = "Sleep", execution.params.duration_ms = 5, enabled = true },
   { execution.type = "DeployStack", execution.params.stack = "proxy", execution.params.services = [], enabled = true }
 ]
 
