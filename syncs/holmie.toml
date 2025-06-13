@@ -9,10 +9,6 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "adsb"
-environment = """
-SUBDOMAIN=adsb
-DOMAIN=holmlab.org
-"""
 
 ##
 
