@@ -1,7 +1,7 @@
 services:
   wedding-share:
     container_name: WeddingShare
-    image: cirx08/wedding_share:1.6.7
+    image: cirx08/wedding_share:1.6.8
     ports:
       - '${HTTP_PORT:-34417}:5000/tcp'
     environment:
