@@ -27,7 +27,7 @@ services:
         - "traefik.http.routers.navidrome-secure.rule=Host(`navidrome.holmlab.org`)"
         - "traefik.http.routers.navidrome-secure.tls=true"
         - "traefik.http.routers.navidrome-secure.service=navidrome"
-        - "traefik.http.services.navidrome.loadbalancer.server.port=4533" # port of the service. i.e. navidrome likes 9000
+        - "traefik.http.services.navidrome.loadbalancer.server.port=4533" # port of the service
         - "traefik.docker.network=intranet"
 
 networks:

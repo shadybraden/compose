@@ -34,7 +34,7 @@ services:
     - "traefik.http.routers.qbittorrent-secure.rule=Host(`qbittorrent.holmlab.org`)"
     - "traefik.http.routers.qbittorrent-secure.tls=true"
     - "traefik.http.routers.qbittorrent-secure.service=qbittorrent"
-    - "traefik.http.services.qbittorrent.loadbalancer.server.port=8080" # port of the service. i.e. qbittorrent likes 9000
+    - "traefik.http.services.qbittorrent.loadbalancer.server.port=8080" # port of the service
 
     - "traefik.http.routers.jackett.service=jackett" # for multi-port - https://github.com/traefik/traefik/issues/4807
     - "traefik.http.routers.jackett.entrypoints=http"
@@ -45,7 +45,7 @@ services:
     - "traefik.http.routers.jackett-secure.rule=Host(`jackett.holmlab.org`)"
     - "traefik.http.routers.jackett-secure.tls=true"
     - "traefik.http.routers.jackett-secure.service=jackett"
-    - "traefik.http.services.jackett.loadbalancer.server.port=9117" # port of the service. i.e. jackett likes 9000
+    - "traefik.http.services.jackett.loadbalancer.server.port=9117" # port of the service
 
   radarr: # the movie searching part
     image: quay.io/linuxserver.io/radarr:5.25.0
@@ -76,7 +76,7 @@ services:
     - "traefik.http.routers.radarr-secure.rule=Host(`radarr.holmlab.org`)"
     - "traefik.http.routers.radarr-secure.tls=true"
     - "traefik.http.routers.radarr-secure.service=radarr"
-    - "traefik.http.services.radarr.loadbalancer.server.port=7878" # port of the service. i.e. radarr likes 9000
+    - "traefik.http.services.radarr.loadbalancer.server.port=7878" # port of the service
     - "traefik.docker.network=intranet"
 
   sonarr: # the show searching part
@@ -107,7 +107,7 @@ services:
     - "traefik.http.routers.sonarr-secure.rule=Host(`sonarr.holmlab.org`)"
     - "traefik.http.routers.sonarr-secure.tls=true"
     - "traefik.http.routers.sonarr-secure.service=sonarr"
-    - "traefik.http.services.sonarr.loadbalancer.server.port=8989" # port of the service. i.e. sonarr likes 9000
+    - "traefik.http.services.sonarr.loadbalancer.server.port=8989" # port of the service
     - "traefik.docker.network=intranet"
 
   jackett: # mega indexer for the arr's above

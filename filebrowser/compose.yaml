@@ -29,7 +29,7 @@ services:
         - "traefik.http.routers.files-holmie-secure.rule=Host(`files-holmie.holmlab.org`)"
         - "traefik.http.routers.files-holmie-secure.tls=true"
         - "traefik.http.routers.files-holmie-secure.service=files-holmie"
-        - "traefik.http.services.files-holmie.loadbalancer.server.port=80" # port of the service. i.e. files-holmie likes 9000
+        - "traefik.http.services.files-holmie.loadbalancer.server.port=80" # port of the service
         - "traefik.docker.network=intranet"
 
 networks:

@@ -26,7 +26,7 @@ services:
         - "traefik.http.routers.audiobookshelf-secure.rule=Host(`audiobookshelf.holmlab.org`)"
         - "traefik.http.routers.audiobookshelf-secure.tls=true"
         - "traefik.http.routers.audiobookshelf-secure.service=audiobookshelf"
-        - "traefik.http.services.audiobookshelf.loadbalancer.server.port=80" # port of the service. i.e. audiobookshelf likes 9000
+        - "traefik.http.services.audiobookshelf.loadbalancer.server.port=80" # port of the service
         - "traefik.docker.network=intranet"
 
 networks:

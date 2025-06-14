@@ -29,7 +29,7 @@ services:
         - "traefik.http.routers.jellyfin-secure.rule=Host(`jellyfin.holmlab.org`)"
         - "traefik.http.routers.jellyfin-secure.tls=true"
         - "traefik.http.routers.jellyfin-secure.service=jellyfin"
-        - "traefik.http.services.jellyfin.loadbalancer.server.port=8096" # port of the service. i.e. jellyfin likes 9000
+        - "traefik.http.services.jellyfin.loadbalancer.server.port=8096" # port of the service
         - "traefik.docker.network=intranet"
 
 networks:

@@ -27,7 +27,7 @@ services:
     - "traefik.http.routers.scrutiny-secure.rule=Host(`scrutiny.holmlab.org`)"
     - "traefik.http.routers.scrutiny-secure.tls=true"
     - "traefik.http.routers.scrutiny-secure.service=scrutiny"
-    - "traefik.http.services.scrutiny.loadbalancer.server.port=8080" # port of the service. i.e. scrutiny likes 9000
+    - "traefik.http.services.scrutiny.loadbalancer.server.port=8080" # port of the service
     - "traefik.docker.network=intranet"
 
 networks:

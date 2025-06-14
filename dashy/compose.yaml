@@ -22,7 +22,7 @@ services:
         - "traefik.http.routers.dashy-secure.rule=Host(`holmlab.org`)"
         - "traefik.http.routers.dashy-secure.tls=true"
         - "traefik.http.routers.dashy-secure.service=dashy"
-        - "traefik.http.services.dashy.loadbalancer.server.port=8080" # port of the service. i.e. dashy likes 9000
+        - "traefik.http.services.dashy.loadbalancer.server.port=8080" # port of the service
         - "traefik.docker.network=intranet"
 
 networks:

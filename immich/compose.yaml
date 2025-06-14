@@ -34,7 +34,7 @@ services:
     - "traefik.http.routers.immich-secure.rule=Host(`immich.holmlab.org`)"
     - "traefik.http.routers.immich-secure.tls=true"
     - "traefik.http.routers.immich-secure.service=immich"
-    - "traefik.http.services.immich.loadbalancer.server.port=2283" # port of the service. i.e. immich likes 9000
+    - "traefik.http.services.immich.loadbalancer.server.port=2283" # port of the service
     - "traefik.docker.network=intranet"
 
   immich-machine-learning:

@@ -28,7 +28,7 @@ services:
     - "traefik.http.routers.glances-holmie-secure.rule=Host(`glances-holmie.holmlab.org`)"
     - "traefik.http.routers.glances-holmie-secure.tls=true"
     - "traefik.http.routers.glances-holmie-secure.service=glances-holmie"
-    - "traefik.http.services.glances-holmie.loadbalancer.server.port=61208" # port of the service. i.e. glances-holmie likes 9000
+    - "traefik.http.services.glances-holmie.loadbalancer.server.port=61208" # port of the service
     - "traefik.docker.network=intranet"
 
 networks:

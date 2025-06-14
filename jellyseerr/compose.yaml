@@ -26,7 +26,7 @@ services:
     - "traefik.http.routers.jellyseerr-secure.rule=Host(`jellyseerr.holmlab.org`)"
     - "traefik.http.routers.jellyseerr-secure.tls=true"
     - "traefik.http.routers.jellyseerr-secure.service=jellyseerr"
-    - "traefik.http.services.jellyseerr.loadbalancer.server.port=5055" # port of the service. i.e. jellyseerr likes 9000
+    - "traefik.http.services.jellyseerr.loadbalancer.server.port=5055" # port of the service
     - "traefik.docker.network=intranet"
 
 networks:
