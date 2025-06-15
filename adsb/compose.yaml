@@ -11,6 +11,7 @@ services:
       - LOGLEVEL=error
       - TZ=America/New_York
       - READSB_DEVICE_TYPE=rtlsdr
+      - READSB_GAIN=auto
       - READSB_LAT=${READSB_LAT}
       - READSB_LON=${READSB_LON}
       - READSB_ALT=${FEEDER_ALT_M}m
