@@ -46,8 +46,8 @@ services:
       - /run:exec,size=256M
       - /tmp:size=128M
       - /var/log:size=32M
-    ports:
-      - 8078:80
+#    ports:
+#      - 8078:80
     security_opt:
       - no-new-privileges:true # helps to increase security
     networks:
