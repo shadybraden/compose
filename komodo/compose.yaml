@@ -21,7 +21,7 @@ services:
       - intranet
 
   core:
-    image: ghcr.io/moghtech/komodo-core:1.18.1
+    image: ghcr.io/moghtech/komodo-core:1.18.3
 #    labels:
 #      komodo.skip: # Prevent Komodo from stopping with StopAllContainers
     restart: unless-stopped
