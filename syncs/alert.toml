@@ -4,7 +4,7 @@ tags = ["ntfy","alert","alerter"]
 [alerter.config]
 enabled = true
 endpoint.type = "Ntfy"
-endpoint.params.url = "https://ntfy.holmlab.org/komodoQLKho7Ad7yV8w9tfmvA9Nl8"
+endpoint.params.url = "https://ntfy.holmlab.org/komodoQLKho7Ad7yV8w9tfmvA9Nl8?p=low"
 alert_types = [
   "ServerUnreachable",
   "ServerMem",
