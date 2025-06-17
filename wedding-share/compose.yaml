@@ -3,7 +3,7 @@ services:
     container_name: WeddingShare
     image: cirx08/wedding_share:1.6.8
     ports:
-      - '${HTTP_PORT:-34417}:5000/tcp'
+      - '34417:5000/tcp'
     environment:
       TITLE: 'WeddingShare'
       ACCOUNT_OWNER_USERNAME: 'admin'
@@ -35,11 +35,27 @@ services:
     - "traefik.http.services.mcc.loadbalancer.server.port=5000" # port of the service.
     - "traefik.docker.network=intranet"
   silverbullet:
-      ports:
-          - 3000:3000
-      volumes:
-          - /data/config_storage/silverbullet:/space
-      image: ghcr.io/silverbulletmd/silverbullet:v2
+    ports:
+        - 3000:3000
+    volumes:
+      - /data/config_storage/silverbullet:/space
+    image: ghcr.io/silverbulletmd/silverbullet:v2
+    security_opt:
+      - no-new-privileges:true # helps to increase security
+    networks:
+      - intranet
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.vbs.entrypoints=http"
+    - "traefik.http.routers.vbs.rule=Host(`vbs.holmlab.org`)"
+    - "traefik.http.middlewares.vbs-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.vbs.middlewares=vbs-https-redirect"
+    - "traefik.http.routers.vbs-secure.entrypoints=https"
+    - "traefik.http.routers.vbs-secure.rule=Host(`vbs.holmlab.org`)"
+    - "traefik.http.routers.vbs-secure.tls=true"
+    - "traefik.http.routers.vbs-secure.service=vbs"
+    - "traefik.http.services.vbs.loadbalancer.server.port=3000" # port of the service.
+    - "traefik.docker.network=intranet"
   cloudflared:
       image: cloudflare/cloudflared:2025.6.1
       command: tunnel --no-autoupdate run --token ${token}
