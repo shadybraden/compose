@@ -34,6 +34,12 @@ services:
     - "traefik.http.routers.mcc-secure.service=mcc"
     - "traefik.http.services.mcc.loadbalancer.server.port=5000" # port of the service.
     - "traefik.docker.network=intranet"
+  silverbullet:
+      ports:
+          - 3000:3000
+      volumes:
+          - /data/config_storage/silverbullet:/space
+      image: ghcr.io/silverbulletmd/silverbullet:v2
   cloudflared:
       image: cloudflare/cloudflared:2025.6.1
       command: tunnel --no-autoupdate run --token ${token}
