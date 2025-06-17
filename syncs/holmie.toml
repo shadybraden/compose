@@ -485,10 +485,6 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "motioneye"
-environment = """
-SUBDOMAIN=motioneye
-DOMAIN=holmlab.org
-"""
 
 ##
 
@@ -503,10 +499,6 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "mealie"
-environment = """
-SUBDOMAIN=mealie
-DOMAIN=holmlab.org
-"""
 
 ##
 
@@ -521,10 +513,6 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "searxng"
-environment = """
-SUBDOMAIN=search
-DOMAIN=holmlab.org
-"""
 
 ##
 
@@ -539,10 +527,6 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "speedtest"
-environment = """
-SUBDOMAIN=speedtest
-DOMAIN=holmlab.org
-"""
 
 ##
 

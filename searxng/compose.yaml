@@ -24,15 +24,15 @@ services:
       - intranet
     labels:
     - "traefik.enable=true"
-    - "traefik.http.routers.${SUBDOMAIN}.entrypoints=http"
-    - "traefik.http.routers.${SUBDOMAIN}.rule=Host(`${SUBDOMAIN}.${DOMAIN}`)"
-    - "traefik.http.middlewares.${SUBDOMAIN}-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.${SUBDOMAIN}.middlewares=${SUBDOMAIN}-https-redirect"
-    - "traefik.http.routers.${SUBDOMAIN}-secure.entrypoints=https"
-    - "traefik.http.routers.${SUBDOMAIN}-secure.rule=Host(`${SUBDOMAIN}.${DOMAIN}`)"
-    - "traefik.http.routers.${SUBDOMAIN}-secure.tls=true"
-    - "traefik.http.routers.${SUBDOMAIN}-secure.service=${SUBDOMAIN}"
-    - "traefik.http.services.${SUBDOMAIN}.loadbalancer.server.port=8080" # port of the service.
+    - "traefik.http.routers.search.entrypoints=http"
+    - "traefik.http.routers.search.rule=Host(`search.holmlab.org`)"
+    - "traefik.http.middlewares.search-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.search.middlewares=search-https-redirect"
+    - "traefik.http.routers.search-secure.entrypoints=https"
+    - "traefik.http.routers.search-secure.rule=Host(`search.holmlab.org`)"
+    - "traefik.http.routers.search-secure.tls=true"
+    - "traefik.http.routers.search-secure.service=search"
+    - "traefik.http.services.search.loadbalancer.server.port=8080" # port of the service.
     - "traefik.docker.network=intranet"
 
 networks:
