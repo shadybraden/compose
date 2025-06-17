@@ -17,8 +17,8 @@ services:
     restart: unless-stopped
     image: ghcr.io/linkwarden/linkwarden:v2.10.2
     container_name: linkwarden
-    ports:
-      - 3000:3000
+#    ports:
+#      - 3000:3000
     volumes:
       - /data/config_storage/linkwarden/data:/data/data
     depends_on:
