@@ -1,0 +1,23 @@
+services:
+  silverbullet:
+    ports:
+        - 3000:3000
+    volumes:
+      - /data/config_storage/silverbullet:/space
+    image: ghcr.io/silverbulletmd/silverbullet:v2
+    security_opt:
+      - no-new-privileges:true # helps to increase security
+    networks:
+      - intranet
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.vbs.entrypoints=http"
+    - "traefik.http.routers.vbs.rule=Host(`vbs.holmlab.org`)"
+    - "traefik.http.middlewares.vbs-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.vbs.middlewares=vbs-https-redirect"
+    - "traefik.http.routers.vbs-secure.entrypoints=https"
+    - "traefik.http.routers.vbs-secure.rule=Host(`vbs.holmlab.org`)"
+    - "traefik.http.routers.vbs-secure.tls=true"
+    - "traefik.http.routers.vbs-secure.service=vbs"
+    - "traefik.http.services.vbs.loadbalancer.server.port=3000" # port of the service.
+    - "traefik.docker.network=intranet"
