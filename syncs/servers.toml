@@ -19,7 +19,7 @@ send_unreachable_alerts = false
 ##
 
 [[server]]
-name = "MCC"
+name = "skynet"
 description = "192.168.1.24"
 tags = ["skynet", "MCC"]
 [server.config]
