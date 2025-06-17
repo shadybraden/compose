@@ -19,9 +19,9 @@ send_unreachable_alerts = false
 ##
 
 [[server]]
-name = "skynet"
+name = "MCC"
 description = "192.168.1.24"
-tags = ["skynet"]
+tags = ["skynet", "MCC"]
 [server.config]
 tags = ["skynet"]
 address = "http://100.84.68.110:8120"
