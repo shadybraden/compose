@@ -14,7 +14,7 @@ services:
         ports:
             - 8060:80
         command: ["-c", "/config/settings.json"] # required, see https://github.com/filebrowser/filebrowser/issues/1898
-        image: filebrowser/filebrowser:v2.32.0
+        image: filebrowser/filebrowser:v2.32.1
         security_opt:
         - no-new-privileges:true # helps to increase security
         networks:
