@@ -1,6 +1,6 @@
 services:
   rclone:
-    image: rclone/rclone:1.69.3
+    image: rclone/rclone:1.70.0
     container_name: rclone
     security_opt:
       - no-new-privileges:true
