@@ -1,0 +1,6 @@
+services:
+    nut:
+      stdin_open: true
+      tty: true
+      container_name: nut
+      image: quicknut

@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# this runs when the battery is at 50%
+# this sends shutdown when the battery is at 50%
 
 # check ups status and battery %
-BATTERY_LEVEL=$(upsc pi3@192.168.50.61 battery.charge)
-UPS_STATUS=$(upsc pi3@192.168.50.61 ups.status)
+BATTERY_LEVEL=$(upsc holmie@192.168.50.65 battery.charge)
+UPS_STATUS=$(upsc holmie@192.168.50.65 ups.status)
 SHUTDOWN_PERCENT=50
 DEVICE_TAG=house
 

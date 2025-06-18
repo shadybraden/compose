@@ -4,10 +4,10 @@ FROM alpine:latest
 ENV TZ="America/New_York"
 
 # Copy the shell script into the image
-COPY nut.sh /nut.sh
+COPY ups_monitor.sh /ups_monitor.sh
 
 # Make the script executable
-RUN chmod +x /nut.sh
+RUN chmod +x /ups_monitor.sh
 
 # Specify the command to run the script
-CMD ["/nut.sh"]
+CMD ["/ups_monitor.sh"]

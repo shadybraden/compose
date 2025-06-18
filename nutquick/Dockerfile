@@ -4,10 +4,10 @@ FROM alpine:latest
 ENV TZ="America/New_York"
 
 # Copy the shell script into the image
-COPY nut.sh /nut.sh
+COPY quicknut.sh /quicknut.sh
 
 # Make the script executable
-RUN chmod +x /nut.sh
+RUN chmod +x /quicknut.sh
 
 # Specify the command to run the script
-CMD ["/nut.sh"]
+CMD ["/quicknut.sh"]

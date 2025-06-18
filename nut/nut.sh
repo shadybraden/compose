@@ -1,19 +1,24 @@
 #!/bin/bash
 
-# this runs when the battery is at 90%
+# this sends shutdown when the battery is at 90%
 
 # check ups status and battery %
-BATTERY_LEVEL=$(upsc pi3@192.168.50.61 battery.charge)
-UPS_STATUS=$(upsc pi3@192.168.50.61 ups.status)
+BATTERY_LEVEL=$(upsc holmie@192.168.50.65 battery.charge)
+echo "BATTERY_LEVEL: $BATTERY_LEVEL"
+UPS_STATUS=$(upsc holmie@192.168.50.65 ups.status)
+echo "UPS_STATUS: $UPS_STATUS"
 SHUTDOWN_PERCENT=90
-DEVICE_TAG=desktop_computer
+DEVICE_NAME=$(uname -n)
 
-if [ "$UPS_STATUS" != OL ]; then # if not online
-        # Check if UPS is on battery and if battery charge is less than 90 and isnt charging
-        if [ "$UPS_STATUS" != "OL CHRG" ]; then # if not charging
-                if [ "$BATTERY_LEVEL" -lt "$SHUTDOWN_PERCENT" ]; then
-                        # if less than the number, ntfy then shutdown in 1 minute
-                        curl -H "Tags: $DEVICE_TAG,bangbang" -H "Priority: high" -H "X-Title: SHADYPC SHUTTING DOWN" -d "" https://ntfy.holmlab.org/UPSuWd9jG23WS ; /sbin/shutdown -h +1
-                fi
+if [ "$UPS_STATUS" == OL ]; then # if online
+        echo "$(date): ups online"
+else
+        echo "OFFLINE!"
+        if [ "$BATTERY_LEVEL" -lt "$SHUTDOWN_PERCENT" ]; then
+                echo "SHUTDOWN SOON sending ntfy"
+                curl -H "Tags: bangbang" -H "Priority: high" -H "X-Title: 90% SHUTDOWN" -d "${DEVICE_NAME}" https://ntfy.holmlab.org/UPSuWd9jG23WS
+                echo "ntfy sent. SHUTTING DOWN IN 1 MINUTE"
+                /sbin/shutdown -h +1 # shutdown in ***1 MINUTE***
+                # cancel with: sudo shutdown -c
         fi
 fi

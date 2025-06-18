@@ -15,3 +15,13 @@ description = "build the NUT monitoring container"
 builder = "holmie"
 files_on_host = true
 build_path = "/etc/komodo/stacks/nut/nut"
+
+##
+
+[[build]]
+name = "build_quicknut"
+description = "build the quickNUT monitoring container"
+[build.config]
+builder = "holmie"
+files_on_host = true
+build_path = "/etc/komodo/stacks/quicknut/quicknut"
