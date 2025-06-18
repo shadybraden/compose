@@ -2,5 +2,7 @@ services:
     nut:
       stdin_open: true
       tty: true
+      volumes:
+        - /data/config_storage/komodo/etc_komodo/stacks/nut/nut/nut.sh:/nut.sh
       container_name: nut
       image: nut
