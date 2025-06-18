@@ -5,4 +5,4 @@ services:
       volumes:
         - /data/config_storage/komodo/etc_komodo/stacks/nut/nut/nut.sh:/nut.sh
       container_name: nut
-      image: nut
+      image: localhost/nut
