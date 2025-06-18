@@ -9,7 +9,7 @@ build_path = "/etc/komodo/stacks/skywatch/skywatch"
 ##
 
 [[build]]
-name = "build_nut"
+name = "nut"
 description = "build the NUT monitoring container"
 [build.config]
 builder = "holmie"
