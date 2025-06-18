@@ -5,4 +5,4 @@ services:
       volumes:
         - /data/config_storage/komodo/etc_komodo/stacks/nut/nut/nut.sh:/app/nut.sh
       container_name: nut
-      image: nut
+      image: docker.io/library/nut:latest
