@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . /app
 
 # Copy the shell script into the image
-COPY nut.sh /app/nut.sh
+#COPY nut.sh /app/nut.sh
 
 # Make the script executable
 RUN chmod +x /app/nut.sh
