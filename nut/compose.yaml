@@ -3,6 +3,6 @@ services:
       stdin_open: true
       tty: true
       volumes:
-        - /data/config_storage/komodo/etc_komodo/stacks/nut/nut/nut.sh:/app/nut.sh
+        - /data/config_storage/nut/nut.sh:/app/nut.sh
       container_name: nut
       image: nut
