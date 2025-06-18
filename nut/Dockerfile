@@ -10,4 +10,4 @@ COPY nut.sh /nut.sh
 RUN chmod +x /nut.sh
 
 # Specify the command to run the script
-CMD ["./nut.sh"]
+CMD ["/nut.sh"]
