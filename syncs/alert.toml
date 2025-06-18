@@ -1,6 +1,6 @@
 [[alerter]]
 name = "ntfy"
-tags = ["ntfy","alert","alerter"]
+tags = ["ntfy", "alert", "alerter"]
 [alerter.config]
 enabled = true
 endpoint.type = "Ntfy"
