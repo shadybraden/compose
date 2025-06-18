@@ -5,3 +5,13 @@ description = "Goal: to get this to trigger on commits to skywatch.py"
 builder = "holmie"
 files_on_host = true
 build_path = "/etc/komodo/stacks/skywatch/skywatch"
+
+##
+
+[[build]]
+name = "build_nut"
+description = "build the NUT monitoring container"
+[build.config]
+builder = "holmie"
+files_on_host = true
+build_path = "/etc/komodo/stacks/nut/nut"
