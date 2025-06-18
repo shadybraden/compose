@@ -1,8 +1,0 @@
-services:
-    nut:
-      stdin_open: true
-      tty: true
-      volumes:
-        - /data/config_storage/nut/nut.sh:/app/nut.sh
-      container_name: nut
-      image: nut
