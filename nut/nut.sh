@@ -4,14 +4,12 @@
 
 # check ups status and battery %
 BATTERY_LEVEL=$(upsc holmie@192.168.50.65 battery.charge)
-echo "BATTERY_LEVEL: $BATTERY_LEVEL"
 UPS_STATUS=$(upsc holmie@192.168.50.65 ups.status)
-echo "UPS_STATUS: $UPS_STATUS"
 SHUTDOWN_PERCENT=90
 DEVICE_NAME=$(uname -n)
 
 if [ "$UPS_STATUS" == OL ]; then # if online
-        echo "$(date): ups online"
+        echo "$(date): ups online, at ${BATTERY_LEVEL}%"
 else
         echo "OFFLINE!"
         if [ "$BATTERY_LEVEL" -lt "$SHUTDOWN_PERCENT" ]; then
