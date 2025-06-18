@@ -20,6 +20,5 @@ alert_types = [
   "AwsBuilderTerminationFailed"
 ]
 except_resources = [
-  { type = "Stack", id = "681657ce336c0fdc2aca583c" },
-  { type = "Stack", id = "681293e219f9998a4fbec436" }
+  { type = "Stack", id = "685194364df5648a01135113" }
 ]
