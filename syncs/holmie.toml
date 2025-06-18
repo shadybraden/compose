@@ -585,9 +585,9 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "nut"
-ignore_services = ["nut"] # this is so it shows nicer in the dashboard 
-pre_deploy.command = """
+#ignore_services = ["nut"] # this is so it shows nicer in the dashboard 
+#pre_deploy.command = """
   # Add multiple commands on new lines. Supports comments.
   # docker build -t nut .
-"""
+#"""
 build_extra_args = []
