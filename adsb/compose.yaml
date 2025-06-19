@@ -37,6 +37,14 @@ services:
       - GRAPHS1090_DISABLE=true
       - TAR1090_ENABLE_ACTUALRANGE=true
       - TAR1090_ACTUAL_RANGE_OUTLINE_COLOR='#00596b'
+      # --------------------------------------------------
+      - ULTRAFEEDER_CONFIG=
+        adsb,feed.adsb.fi,30004,beast_reduce_plus_out;
+        adsb,in.adsb.lol,30004,beast_reduce_plus_out;
+        adsb,feed.theairtraffic.com,30004,beast_reduce_plus_out;
+        mlat,feed.adsb.fi,31090,39000;
+        mlat,in.adsb.lol,31090,39001;
+        mlat,feed.theairtraffic.com,31090,39004
     volumes:
       - /data/config_storage/adsb/globe_history:/var/globe_history
       - /data/config_storage/adsb/graphs1090:/var/lib/collectd
@@ -68,3 +76,9 @@ services:
 networks:
   intranet:
     external: true
+
+# | service                                           | feeders | will i feed | check my feeding status url          |
+# | ------------------------------------------------- | ------- | ----------- | ------------------------------------ |
+# | [adsb.lol](https://adsb.lol/)                     | 2800    | yes         | https://my.adsb.lol/                 |
+# | [adsb.fi](https://globe.adsb.fi/)                 | 3516    | yes         | https://adsb.fi/                     |
+# | [theairtraffic](https://globe.theairtraffic.com/) | 2059    | yes         | https://theairtraffic.com/feed/myip/ |
