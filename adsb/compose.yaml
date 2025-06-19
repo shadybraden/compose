@@ -77,8 +77,8 @@ networks:
   intranet:
     external: true
 
-# | service                                           | feeders | will i feed | check my feeding status url          |
-# | ------------------------------------------------- | ------- | ----------- | ------------------------------------ |
-# | [adsb.lol](https://adsb.lol/)                     | 2800    | yes         | https://my.adsb.lol/                 |
-# | [adsb.fi](https://globe.adsb.fi/)                 | 3516    | yes         | https://adsb.fi/                     |
-# | [theairtraffic](https://globe.theairtraffic.com/) | 2059    | yes         | https://theairtraffic.com/feed/myip/ |
+# | service                                           | check my feeding status url          |
+# | ------------------------------------------------- | ------------------------------------ |
+# | [adsb.lol](https://adsb.lol/)                     | https://my.adsb.lol/                 |
+# | [adsb.fi](https://globe.adsb.fi/)                 | https://adsb.fi/                     |
+# | [theairtraffic](https://globe.theairtraffic.com/) | https://theairtraffic.com/feed/myip/ |
