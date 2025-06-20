@@ -1,6 +1,6 @@
 services:
   mullvad-browser:
-    image: lscr.io/linuxserver/mullvad-browser:28.08.24
+    image: quay.io/linuxserver.io/mullvad-browser:14.5.3
     container_name: mullvad-browser
     cap_add:
       - NET_ADMIN
