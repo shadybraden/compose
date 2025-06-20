@@ -1,0 +1,36 @@
+services:
+  mullvad-browser:
+    image: quay.io/linuxserver.io/mullvad-browser:28.08.24
+    container_name: mullvad-browser
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /data/config_storage/mullvad-browser/:/config
+#    ports:
+#      - 3000:3000
+    shm_size: "1gb"
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true # helps to increase security
+    networks:
+      - intranet
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.mullvad.entrypoints=http"
+    - "traefik.http.routers.mullvad.rule=Host(`mullvad.holmlab.org`)"
+    - "traefik.http.middlewares.mullvad-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.mullvad.middlewares=mullvad-https-redirect"
+    - "traefik.http.routers.mullvad-secure.entrypoints=https"
+    - "traefik.http.routers.mullvad-secure.rule=Host(`mullvad.holmlab.org`)"
+    - "traefik.http.routers.mullvad-secure.tls=true"
+    - "traefik.http.routers.mullvad-secure.service=mullvad"
+    - "traefik.http.services.mullvad.loadbalancer.server.port=3000" # port of the service.
+    - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true
