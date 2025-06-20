@@ -80,7 +80,7 @@ services:
     - "traefik.docker.network=intranet"
 
   sonarr: # the show searching part
-    image: quay.io/linuxserver.io/sonarr:4.0.14
+    image: quay.io/linuxserver.io/sonarr:4.0.15
     container_name: sonarr
 #    ports:
 #      - 8989:8989 # sonarr
