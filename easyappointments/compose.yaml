@@ -1,0 +1,59 @@
+services:
+  easyapointments:
+    image: alextselegidis/easyappointments:1.5.1
+    restart: always
+#    ports:
+#      - '80:80'
+    environment:
+      - BASE_URL=https://appointments.holmlab.org
+      - DEBUG_MODE=TRUE
+      - DB_HOST=mysql
+      - DB_NAME=easyappointments
+      - DB_USERNAME=root
+      - DB_PASSWORD=${DB_PASSWORD}
+      - MAIL_PROTOCOL=mail
+      - MAIL_SMTP_DEBUG=0
+      - MAIL_SMTP_AUTH=0
+      - MAIL_SMTP_HOST=${MAIL_SMTP_HOST}
+      - MAIL_SMTP_USER=${MAIL_SMTP_USER}
+      - MAIL_SMTP_PASS=${MAIL_SMTP_PASS}
+      - MAIL_SMTP_CRYPTO=tls
+      - MAIL_SMTP_PORT=587
+      - MAIL_FROM_ADDRESS=${MAIL_FROM_ADDRESS}
+      - MAIL_FROM_NAME=${MAIL_FROM_NAME}
+      - MAIL_REPLY_TO_ADDRESS=${MAIL_REPLY_TO_ADDRESS}
+    volumes:
+      - /data/config_storage/easyappointments/html:/var/www/html
+    security_opt:
+      - no-new-privileges:true # helps to increase security
+    networks:
+      - intranet
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.appointments.entrypoints=http"
+    - "traefik.http.routers.appointments.rule=Host(`appointments.holmlab.org`)"
+    - "traefik.http.middlewares.appointments-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.appointments.middlewares=appointments-https-redirect"
+    - "traefik.http.routers.appointments-secure.entrypoints=https"
+    - "traefik.http.routers.appointments-secure.rule=Host(`appointments.holmlab.org`)"
+    - "traefik.http.routers.appointments-secure.tls=true"
+    - "traefik.http.routers.appointments-secure.service=appointments"
+    - "traefik.http.services.appointments.loadbalancer.server.port=80" # port of the service.
+    - "traefik.docker.network=intranet"
+
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=easyappointments
+    volumes:
+      - /data/config_storage/easyappointments/mysql:/var/lib/mysql
+    security_opt:
+      - no-new-privileges:true # helps to increase security
+    networks:
+      - intranet
+
+networks:
+  intranet:
+    external: true
