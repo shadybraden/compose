@@ -282,6 +282,16 @@ sections:
         url: https://files.holmlab.org
         statusCheck: true
         id: 13_606_files
+      - title: Assets
+        icon: >-
+          dumbassets.png
+        url: https://assets.holmlab.org/
+        statusCheck: true
+      - title: lubelogger
+        icon: >-
+          lubelogger.png
+        url: https://lubelogger.holmlab.org/
+        statusCheck: true
       - title: Jellyseerr
         icon: >-
           jellyseerr.png
