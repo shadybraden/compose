@@ -569,17 +569,3 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "silverbullet"
-
-##
-
-[[stack]]
-name = "mullvad_browser"
-tags = ["holmie","hooked"]
-[stack.config]
-server = "holmie"
-project_name = "mullvad_browser"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
-run_directory = "mullvad_browser"
