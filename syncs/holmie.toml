@@ -583,3 +583,17 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "filebrowserquantum"
+
+##
+
+[[stack]]
+name = "dumbassets"
+tags = ["holmie","hooked"]
+[stack.config]
+server = "holmie"
+project_name = "dumbassets"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "dumbassets"
