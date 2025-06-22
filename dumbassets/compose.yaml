@@ -7,6 +7,7 @@ services:
     image: dumbwareio/dumbassets:1.0.11
     environment:
       - TZ:America/New_York
+      - DUMBASSETS_PIN=${DUMBASSETS_PIN}
     security_opt:
       - no-new-privileges:true # helps to increase security
     networks:
