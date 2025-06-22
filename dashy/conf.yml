@@ -279,7 +279,7 @@ sections:
       - title: Files
         icon: >-
           folder.png
-        url: https://files-holmie.holmlab.org
+        url: https://files.holmlab.org
         statusCheck: true
         id: 13_606_files
       - title: Jellyseerr
