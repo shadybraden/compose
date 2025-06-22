@@ -8,7 +8,7 @@ services:
 #    ports:
 #      - 80:80
     image: gtstef/filebrowser:0.7.10-beta
-    enviroment:
+    environment:
       - FILEBROWSER_ADMIN_PASSWORD=${FILEBROWSER_ADMIN_PASSWORD}
     security_opt:
       - no-new-privileges:true # helps to increase security
