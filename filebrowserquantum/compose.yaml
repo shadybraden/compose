@@ -1,0 +1,29 @@
+services:
+  filebrowser:
+    volumes:
+      - /data:/srv/data
+      - /mnt/4tb:/srv/mounted
+      - /home/holmie:/srv/home
+#    ports:
+#      - 80:80
+    image: gtstef/filebrowser:0.7.10
+    security_opt:
+      - no-new-privileges:true # helps to increase security
+    networks:
+      - intranet
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.files.entrypoints=http"
+    - "traefik.http.routers.files.rule=Host(`files.holmlab.org`)"
+    - "traefik.http.middlewares.files-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.files.middlewares=files-https-redirect"
+    - "traefik.http.routers.files-secure.entrypoints=https"
+    - "traefik.http.routers.files-secure.rule=Host(`files.holmlab.org`)"
+    - "traefik.http.routers.files-secure.tls=true"
+    - "traefik.http.routers.files-secure.service=files"
+    - "traefik.http.services.files.loadbalancer.server.port=80" # port of the service.
+    - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true
