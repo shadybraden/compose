@@ -1,6 +1,6 @@
 services:
   app:
-    image: ghcr.io/hargata/lubelogger:1.4.7
+    image: ghcr.io/hargata/lubelogger:v1.4.7
     restart: unless-stopped
     volumes:
       - /data/config_storage/lubelogger/data:/App/data
