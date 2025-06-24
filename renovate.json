@@ -2,7 +2,7 @@
   "extends": ["config:base"],
   "regexManagers": [
     {
-      "description": "Match searxng images in compose files, ignore Git hash",
+      "description": "Track searxng image updates by date (ignore hash)",
       "fileMatch": [".*compose\\.ya?ml$"],
       "matchStrings": [
         "image:\\s*docker\\.io/searxng/searxng:(?<currentValue>\\d{4}\\.\\d{1,2}\\.\\d{1,2})-[a-zA-Z0-9]+"
@@ -10,6 +10,7 @@
       "datasourceTemplate": "docker",
       "packageNameTemplate": "searxng/searxng",
       "versioningTemplate": "loose",
+      "extractVersionTemplate": "{{version | regexFind('^\\d{4}\\.\\d{1,2}\\.\\d{1,2}')}}",
       "debug": true
     }
   ],
