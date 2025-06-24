@@ -26,6 +26,13 @@ http:
 #        - default-security-headers
       tls: {}
       service: portainer
+    imessage:
+      entryPoints: ["https"]
+      rule: "Host(`imessage.holmlab.org`)"
+#      middlewares:
+#        - default-security-headers
+      tls: {}
+      service: imessage
     glances:
       entryPoints: ["https"]
       rule: "Host(`glances-shady.holmlab.org`)"
@@ -87,6 +94,11 @@ http:
       loadBalancer:
         servers:
           - url: "http://192.168.50.16:9000"
+        passHostHeader: true
+    imessage:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.50.20:1234"
         passHostHeader: true
     glances:
       loadBalancer:
