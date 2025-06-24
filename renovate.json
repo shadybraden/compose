@@ -1,19 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base"],
-  "regexManagers": [
+  "extends": ["config:base", "docker:enableMajor"],
+  
+  "packageRules": [
     {
-      "description": "Track searxng image updates by date (ignore hash)",
-      "fileMatch": [".*compose\\.ya?ml$"],
-      "matchStrings": [
-        "image:\\s*docker\\.io/searxng/searxng:(?<currentValue>\\d{4}\\.\\d{1,2}\\.\\d{1,2})-[a-zA-Z0-9]+"
-      ],
-      "datasourceTemplate": "docker",
-      "packageNameTemplate": "searxng/searxng",
-      "versioningTemplate": "loose",
-      "extractVersionTemplate": "{{version | regexFind('^\\d{4}\\.\\d{1,2}\\.\\d{1,2}')}}",
-      "debug": true
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["searxng/searxng", "docker.io/searxng/searxng"],
+      "versioning": "regex:^(?<major>\\d{4})\\.(?<minor>\\d{1,2})\\.(?<patch>\\d{1,2})(?:-[\\w]+)?$"
     }
-  ],
-  "commitMessagePrefix": ":label:"
+  ]
 }
