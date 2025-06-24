@@ -9,7 +9,8 @@
       ],
       "datasourceTemplate": "docker",
       "packageNameTemplate": "searxng/searxng",
-      "versioningTemplate": "loose"
+      "versioningTemplate": "loose",
+      "debug": true
     }
   ],
   "commitMessagePrefix": ":label:"
