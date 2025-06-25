@@ -92,7 +92,7 @@ services:
       CHROME_URL: ws://chrome:3001
 
       # -- Database (Postgres) --
-      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
+      DATABASE_URL: postgresql://postgres:${password}@postgres:5432/postgres
 
       # -- Auth --
       ACCESS_TOKEN_SECRET: ${password}
