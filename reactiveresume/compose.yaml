@@ -6,6 +6,7 @@ services:
   # Database (Postgres)
   postgres:
     image: postgres:16-alpine
+    container_name: postgres
     restart: unless-stopped
     volumes:
       - /data/config_storage/reactiveresume/postgres_data:/var/lib/postgresql/data
@@ -26,6 +27,7 @@ services:
   # Storage (for image uploads)
   minio:
     image: minio/minio:RELEASE.2025-06-13T11-33-47Z
+    container_name: minio
     restart: unless-stopped
     command: server /data
     ports:
@@ -55,6 +57,7 @@ services:
   # Chrome Browser (for printing and previews)
   chrome:
     image: ghcr.io/browserless/chromium:v2.18.0 # Upgrading to newer versions causes issues
+    container_name: chrome
     restart: unless-stopped
     extra_hosts:
       - "host.docker.internal:host-gateway"
@@ -71,6 +74,7 @@ services:
 
   app:
     image: amruthpillai/reactive-resume:v4.4.5
+    container_name: app
     restart: unless-stopped
     ports:
       - "3001:3001"
@@ -85,7 +89,7 @@ services:
 
       # -- URLs --
       PUBLIC_URL: http://app:3000 # https://github.com/AmruthPillai/Reactive-Resume/issues/2190
-      STORAGE_URL: http://minio:9000/default
+      STORAGE_URL: http://minio:9000/default # https://github.com/AmruthPillai/Reactive-Resume/issues/2190
 
       # -- Printer (Chrome) --
       CHROME_TOKEN: chrome_token
