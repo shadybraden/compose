@@ -69,7 +69,7 @@ services:
     image: amruthpillai/reactive-resume:v4.4.4
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "3001:3000"
     depends_on:
       - postgres
       - minio
