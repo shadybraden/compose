@@ -54,7 +54,7 @@ services:
 
   # Chrome Browser (for printing and previews)
   chrome:
-    image: ghcr.io/browserless/chromium:latest
+    image: ghcr.io/browserless/chromium:v2.32.0
     restart: unless-stopped
     extra_hosts:
       - "host.docker.internal:host-gateway"
