@@ -84,7 +84,7 @@ services:
       NODE_ENV: production
 
       # -- URLs --
-      PUBLIC_URL: https://resume.holmlab.org
+      PUBLIC_URL: http://app:3000 # https://github.com/AmruthPillai/Reactive-Resume/issues/2190
       STORAGE_URL: https://resume-minio.holmlab.org/default
 
       # -- Printer (Chrome) --
