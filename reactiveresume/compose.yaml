@@ -1,0 +1,158 @@
+# In this Docker Compose example, it assumes that you maintain a reverse proxy externally (or chose not to).
+# The only two exposed ports here are from minio (:9000) and the app itself (:3000).
+# If these ports are changed, ensure that the env vars passed to the app are also changed accordingly.
+
+services:
+  # Database (Postgres)
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    volumes:
+      - /data/config_storage/reactiveresume/postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - intranet
+
+  # Storage (for image uploads)
+  minio:
+    image: minio/minio:latest
+    restart: unless-stopped
+    command: server /data
+#    ports:
+#      - "9000:9000"
+    volumes:
+      - /data/config_storage/reactiveresume/minio_data:/data
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+    security_opt:
+      - no-new-privileges:true # helps to increase security
+    networks:
+      - intranet
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.resume-minio.entrypoints=http"
+    - "traefik.http.routers.resume-minio.rule=Host(`resume-minio.holmlab.org`)"
+    - "traefik.http.middlewares.resume-minio-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.resume-minio.middlewares=resume-minio-https-redirect"
+    - "traefik.http.routers.resume-minio-secure.entrypoints=https"
+    - "traefik.http.routers.resume-minio-secure.rule=Host(`resume-minio.holmlab.org`)"
+    - "traefik.http.routers.resume-minio-secure.tls=true"
+    - "traefik.http.routers.resume-minio-secure.service=resume-minio"
+    - "traefik.http.services.resume-minio.loadbalancer.server.port=9000" # port of the service.
+    - "traefik.docker.network=intranet"
+
+  # Chrome Browser (for printing and previews)
+  chrome:
+    image: ghcr.io/browserless/chromium:v2.18.0 # Upgrading to newer versions causes issues
+    restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      TIMEOUT: 10000
+      CONCURRENT: 10
+      TOKEN: chrome_token
+      EXIT_ON_HEALTH_FAILURE: "true"
+      PRE_REQUEST_HEALTH_CHECK: "true"
+    networks:
+      - intranet
+
+  app:
+    image: amruthpillai/reactive-resume:4.4.4
+    restart: unless-stopped
+#    ports:
+#      - "3000:3000"
+    depends_on:
+      - postgres
+      - minio
+      - chrome
+    environment:
+      # -- Environment Variables --
+      PORT: 3000
+      NODE_ENV: production
+
+      # -- URLs --
+      PUBLIC_URL: https://resume.holmlab.org
+      STORAGE_URL: https://resume-minio.holmlab.org/default
+
+      # -- Printer (Chrome) --
+      CHROME_TOKEN: ${CHROME_TOKEN}
+      CHROME_URL: ws://chrome:3000
+
+      # -- Database (Postgres) --
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
+
+      # -- Auth --
+      ACCESS_TOKEN_SECRET: ${ACCESS_TOKEN_SECRET}
+      REFRESH_TOKEN_SECRET: ${REFRESH_TOKEN_SECRET}
+
+      # -- Emails --
+      MAIL_FROM: noreply@localhost
+      # SMTP_URL: smtp://user:pass@smtp:587 # Optional
+
+      # -- Storage (Minio) --
+      STORAGE_ENDPOINT: minio
+      STORAGE_PORT: 9000
+      STORAGE_REGION: us-east-1 # Optional
+      STORAGE_BUCKET: default
+      STORAGE_ACCESS_KEY: ${STORAGE_ACCESS_KEY}
+      STORAGE_SECRET_KEY: ${STORAGE_SECRET_KEY}
+      STORAGE_USE_SSL: "false"
+      STORAGE_SKIP_BUCKET_CHECK: "false"
+
+      # -- Crowdin (Optional) --
+      # CROWDIN_PROJECT_ID:
+      # CROWDIN_PERSONAL_TOKEN:
+
+      # -- Email (Optional) --
+      # DISABLE_SIGNUPS: "false"
+      # DISABLE_EMAIL_AUTH: "false"
+
+      # -- GitHub (Optional) --
+      # GITHUB_CLIENT_ID: github_client_id
+      # GITHUB_CLIENT_SECRET: github_client_secret
+      # GITHUB_CALLBACK_URL: http://localhost:3000/api/auth/github/callback
+
+      # -- Google (Optional) --
+      # GOOGLE_CLIENT_ID: google_client_id
+      # GOOGLE_CLIENT_SECRET: google_client_secret
+      # GOOGLE_CALLBACK_URL: http://localhost:3000/api/auth/google/callback
+
+      # -- OpenID (Optional) --
+      # VITE_OPENID_NAME: OpenID
+      # OPENID_AUTHORIZATION_URL:
+      # OPENID_CALLBACK_URL: http://localhost:3000/api/auth/openid/callback
+      # OPENID_CLIENT_ID:
+      # OPENID_CLIENT_SECRET:
+      # OPENID_ISSUER:
+      # OPENID_SCOPE: openid profile email
+      # OPENID_TOKEN_URL:
+      # OPENID_USER_INFO_URL:
+    security_opt:
+      - no-new-privileges:true # helps to increase security
+    networks:
+      - intranet
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.resume.entrypoints=http"
+    - "traefik.http.routers.resume.rule=Host(`resume.holmlab.org`)"
+    - "traefik.http.middlewares.resume-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.resume.middlewares=resume-https-redirect"
+    - "traefik.http.routers.resume-secure.entrypoints=https"
+    - "traefik.http.routers.resume-secure.rule=Host(`resume.holmlab.org`)"
+    - "traefik.http.routers.resume-secure.tls=true"
+    - "traefik.http.routers.resume-secure.service=resume"
+    - "traefik.http.services.resume.loadbalancer.server.port=3000" # port of the service.
+    - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true

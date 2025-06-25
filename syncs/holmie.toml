@@ -611,3 +611,17 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "lubelogger"
+
+##
+
+[[stack]]
+name = "reactiveresume"
+tags = ["holmie","hooked"]
+[stack.config]
+server = "holmie"
+project_name = "reactiveresume"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "reactiveresume"
