@@ -287,6 +287,11 @@ sections:
           dumbassets.png
         url: https://assets.holmlab.org/
         statusCheck: true
+      - title: Reactive-Resume
+        icon: >-
+          reactive-resume.png
+        url: https://resume.holmlab.org/
+        statusCheck: true
       - title: lubelogger
         icon: >-
           lubelogger.png
