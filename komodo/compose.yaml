@@ -21,7 +21,7 @@ services:
       - intranet
 
   core:
-    image: ghcr.io/moghtech/komodo-core:1.18.3
+    image: ghcr.io/moghtech/komodo-core:1.18.4
 #    labels:
 #      komodo.skip: # Prevent Komodo from stopping with StopAllContainers
     restart: unless-stopped
@@ -63,7 +63,7 @@ services:
     - "traefik.docker.network=intranet"
 
   periphery:
-    image: ghcr.io/moghtech/komodo-periphery:1.18.3
+    image: ghcr.io/moghtech/komodo-periphery:1.18.4
 #    labels:
 #      komodo.skip: # Prevent Komodo from stopping with StopAllContainers
     restart: unless-stopped
