@@ -66,7 +66,7 @@ services:
       - intranet
 
   app:
-    image: amruthpillai/reactive-resume:4.4.4
+    image: amruthpillai/reactive-resume:v4.4.4
     restart: unless-stopped
 #    ports:
 #      - "3000:3000"
