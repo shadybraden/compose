@@ -28,8 +28,8 @@ services:
     image: minio/minio:latest
     restart: unless-stopped
     command: server /data
-    ports:
-      - "9000:9000"
+#    ports:
+#      - "9000:9000"
     volumes:
       - /data/config_storage/reactiveresume/minio_data:/data
     environment:
@@ -72,8 +72,8 @@ services:
   app:
     image: amruthpillai/reactive-resume:latest
     restart: unless-stopped
-    ports:
-      - "3001:3001"
+#    ports:
+#      - "3001:3001"
     depends_on:
       - postgres
       - minio
