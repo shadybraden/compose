@@ -12,7 +12,7 @@ services:
     environment:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: ${password}
+      POSTGRES_PASSWORD: postgres
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
       interval: 10s
@@ -28,13 +28,13 @@ services:
     image: minio/minio:latest
     restart: unless-stopped
     command: server /data
-    ports:
-      - "9000:9000"
+#    ports:
+#      - "9000:9000"
     volumes:
       - /data/config_storage/reactiveresume/minio_data:/data
     environment:
       MINIO_ROOT_USER: minioadmin
-      MINIO_ROOT_PASSWORD: ${password}
+      MINIO_ROOT_PASSWORD: minioadmin
     security_opt:
       - no-new-privileges:true # helps to increase security
     networks:
@@ -60,7 +60,7 @@ services:
       - "host.docker.internal:host-gateway"
     environment:
       HEALTH: "true"
-      TOKEN: ${password}
+      TOKEN: chrome_token
       PROXY_HOST: "chrome"
       PROXY_PORT: 3001
       PROXY_SSL: "false"
@@ -72,8 +72,8 @@ services:
   app:
     image: amruthpillai/reactive-resume:latest
     restart: unless-stopped
-    ports:
-      - "3001:3001"
+#    ports:
+#      - "3001:3001"
     depends_on:
       - postgres
       - minio
@@ -88,15 +88,15 @@ services:
       STORAGE_URL: https://resume-minio.holmlab.org/default
 
       # -- Printer (Chrome) --
-      CHROME_TOKEN: ${password}
+      CHROME_TOKEN: chrome_token
       CHROME_URL: ws://chrome:3001
 
       # -- Database (Postgres) --
-      DATABASE_URL: postgresql://postgres:${password}@postgres:5432/postgres
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
 
       # -- Auth --
-      ACCESS_TOKEN_SECRET: ${password}
-      REFRESH_TOKEN_SECRET: ${password}
+      ACCESS_TOKEN_SECRET: access_token_secret
+      REFRESH_TOKEN_SECRET: refresh_token_secret
 
       # -- Emails --
       MAIL_FROM: noreply@localhost
@@ -107,8 +107,8 @@ services:
       STORAGE_PORT: 9000
       STORAGE_REGION: us-east-1 # Optional
       STORAGE_BUCKET: default
-      STORAGE_ACCESS_KEY: ${password}
-      STORAGE_SECRET_KEY: ${password}
+      STORAGE_ACCESS_KEY: minioadmin
+      STORAGE_SECRET_KEY: minioadmin
       STORAGE_USE_SSL: "false"
       STORAGE_SKIP_BUCKET_CHECK: "false"
 
