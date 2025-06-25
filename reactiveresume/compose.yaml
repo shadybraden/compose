@@ -70,7 +70,7 @@ services:
       - intranet
 
   app:
-    image: amruthpillai/reactive-resume:latest
+    image: amruthpillai/reactive-resume:v4.4.4
     restart: unless-stopped
 #    ports:
 #      - "3001:3001"
