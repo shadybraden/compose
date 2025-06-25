@@ -26,8 +26,8 @@ services:
     image: minio/minio:latest
     restart: unless-stopped
     command: server /data
-#    ports:
-#      - "9000:9000"
+    ports:
+      - "9000:9000"
     volumes:
       - /data/config_storage/reactiveresume/minio_data:/data
     environment:
@@ -68,8 +68,8 @@ services:
   app:
     image: amruthpillai/reactive-resume:v4.4.4
     restart: unless-stopped
-#    ports:
-#      - "3000:3000"
+    ports:
+      - "3000:3000"
     depends_on:
       - postgres
       - minio
@@ -81,7 +81,7 @@ services:
 
       # -- URLs --
       PUBLIC_URL: https://resume.holmlab.org
-      STORAGE_URL: https://resume-minio.holmlab.org/default
+      STORAGE_URL: http://192.168.50.65:9000/default
 
       # -- Printer (Chrome) --
       CHROME_TOKEN: ${CHROME_TOKEN}
