@@ -309,18 +309,6 @@ sections:
         url: https://syncthing-holmie.holmlab.org/
         statusCheck: true
         id: 15_606_syncthing
-      - title: Paperless
-        icon: >-
-          paperless.png
-        url: https://paperless.holmlab.org
-        statusCheck: false
-        id: 16_606_paperless
-      - title: Deezer-DL
-        description: ''
-        icon: >-
-          deezer.png
-        url: https://deezerdl.holmlab.org/
-        id: 17_606_deezerdl
       - title: Scrutiny
         icon: >-
           scrutiny.png
