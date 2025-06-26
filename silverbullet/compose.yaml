@@ -1,7 +1,7 @@
 services:
   silverbullet:
     ports:
-        - 3000:3000
+        - 3005:3000
     container_name: silverbullet
     volumes:
       - /data/config_storage/silverbullet:/space
