@@ -1,6 +1,6 @@
 [[stack]]
 name = "adsb"
-tags = ["holmie","hooked", "criticality: 3"]
+tags = ["holmie", "hooked", "criticality: 3"]
 [stack.config]
 server = "holmie"
 project_name = "adsb"
@@ -14,7 +14,7 @@ run_directory = "adsb"
 
 [[stack]]
 name = "ai"
-tags = ["holmie","hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "ai"
@@ -28,7 +28,7 @@ run_directory = "ai"
 
 [[stack]]
 name = "arr"
-tags = ["holmie","hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "arr"
@@ -42,7 +42,7 @@ run_directory = "arr"
 
 [[stack]]
 name = "audiobookshelf"
-tags = ["holmie","hooked", "criticality: 3"]
+tags = ["holmie", "hooked", "criticality: 3"]
 [stack.config]
 server = "holmie"
 project_name = "audiobookshelf"
@@ -56,7 +56,7 @@ run_directory = "audiobookshelf"
 
 [[stack]]
 name = "dashy"
-tags = ["holmie","hooked", "criticality: 2"]
+tags = ["holmie", "hooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "dashy"
@@ -70,7 +70,7 @@ run_directory = "dashy"
 
 [[stack]]
 name = "dockge"
-tags = ["holmie","hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "dockge"
@@ -84,7 +84,7 @@ run_directory = "dockge"
 
 [[stack]]
 name = "filebrowser"
-tags = ["holmie","hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "filebrowser"
@@ -98,7 +98,7 @@ run_directory = "filebrowser"
 
 [[stack]]
 name = "freshrss"
-tags = ["holmie","hooked", "criticality: 2"]
+tags = ["holmie", "hooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "freshrss"
@@ -112,7 +112,7 @@ run_directory = "freshrss"
 
 [[stack]]
 name = "glances"
-tags = ["holmie","hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "glances"
@@ -126,7 +126,7 @@ run_directory = "glances"
 
 [[stack]]
 name = "homeassistant"
-tags = ["holmie","hooked", "criticality: 1"]
+tags = ["holmie", "hooked", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "homeassistant"
@@ -140,7 +140,7 @@ run_directory = "homeassistant"
 
 [[stack]]
 name = "immich"
-tags = ["holmie","hooked", "criticality: 2"]
+tags = ["holmie", "hooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "immich"
@@ -154,7 +154,7 @@ run_directory = "immich"
 
 [[stack]]
 name = "jellyfin"
-tags = ["holmie","hooked", "criticality: 2"]
+tags = ["holmie", "hooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "jellyfin"
@@ -168,7 +168,7 @@ run_directory = "jellyfin"
 
 [[stack]]
 name = "jellyseerr"
-tags = ["holmie","hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "jellyseerr"
@@ -182,7 +182,7 @@ run_directory = "jellyseerr"
 
 [[stack]]
 name = "kiwix"
-tags = ["holmie","hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "kiwix"
@@ -196,7 +196,7 @@ run_directory = "kiwix"
 
 [[stack]]
 name = "navidrome"
-tags = ["holmie","hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "navidrome"
@@ -210,7 +210,7 @@ run_directory = "navidrome"
 
 [[stack]]
 name = "netalertx"
-tags = ["holmie","hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "netalertx"
@@ -224,7 +224,7 @@ run_directory = "netalertx"
 
 [[stack]]
 name = "nextcloud"
-tags = ["holmie","hooked", "criticality: 2"]
+tags = ["holmie", "hooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "nextcloud"
@@ -238,7 +238,7 @@ run_directory = "nextcloud"
 
 [[stack]]
 name = "ntfy"
-tags = ["holmie","hooked", "criticality: 1"]
+tags = ["holmie", "hooked", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "ntfy"
@@ -252,7 +252,7 @@ run_directory = "ntfy"
 
 [[stack]]
 name = "portainer"
-tags = ["holmie","hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "portainer"
@@ -266,7 +266,7 @@ run_directory = "portainer"
 
 [[stack]]
 name = "proxy"
-tags = ["holmie","hooked", "criticality: 1"]
+tags = ["holmie", "hooked", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "proxy"
@@ -284,7 +284,7 @@ post_deploy.command = """
 
 [[stack]]
 name = "renovate"
-tags = ["holmie","hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "renovate"
@@ -299,7 +299,7 @@ ignore_services = ["renovate"] # this is so it shows nicer in the dashboard
 
 [[stack]]
 name = "scrutiny"
-tags = ["holmie","hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "scrutiny"
@@ -313,7 +313,7 @@ run_directory = "scrutiny"
 
 [[stack]]
 name = "stirlingpdf"
-tags = ["holmie","hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "stirlingpdf"
@@ -327,7 +327,7 @@ run_directory = "stirlingpdf"
 
 [[stack]]
 name = "syncthing"
-tags = ["holmie","hooked", "criticality: 2"]
+tags = ["holmie", "hooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "syncthing"
@@ -341,7 +341,7 @@ run_directory = "syncthing"
 
 [[stack]]
 name = "uptime-kuma"
-tags = ["holmie","hooked", "criticality: 2"]
+tags = ["holmie", "hooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "uptime-kuma"
@@ -355,7 +355,7 @@ run_directory = "uptime-kuma"
 
 [[stack]]
 name = "vaultwarden"
-tags = ["holmie","hooked", "criticality: 1"]
+tags = ["holmie", "hooked", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "vaultwarden"
@@ -369,7 +369,7 @@ run_directory = "vaultwarden"
 
 [[stack]]
 name = "wireguard"
-tags = ["holmie","hooked", "criticality: 1"]
+tags = ["holmie", "hooked", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "wireguard"
@@ -383,7 +383,7 @@ run_directory = "wireguard"
 
 [[stack]]
 name = "hoodik"
-tags = ["holmie","hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "hoodik"
@@ -397,7 +397,7 @@ run_directory = "hoodik"
 
 [[stack]]
 name = "skywatch"
-tags = ["holmie","hooked", "criticality: 3"]
+tags = ["holmie", "hooked", "criticality: 3"]
 [stack.config]
 server = "holmie"
 project_name = "skywatch"
@@ -420,7 +420,7 @@ build_extra_args = []
 
 [[stack]]
 name = "restic"
-tags = ["holmie","hooked", "criticality: 1"]
+tags = ["holmie", "hooked", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "restic"
@@ -434,7 +434,7 @@ run_directory = "restic"
 
 [[stack]]
 name = "pihole"
-tags = ["holmie","hooked", "criticality: 1"]
+tags = ["holmie", "hooked", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "pihole"
@@ -448,7 +448,7 @@ run_directory = "pihole"
 
 [[stack]]
 name = "forgejo"
-tags = ["holmie","hooked", "criticality: 2"]
+tags = ["holmie", "hooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "forgejo"
@@ -462,7 +462,7 @@ run_directory = "forgejo"
 
 [[stack]]
 name = "traefik"
-tags = ["holmie","hooked", "criticality: 1"]
+tags = ["holmie", "hooked", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "traefik"
@@ -476,7 +476,7 @@ run_directory = "traefik"
 
 [[stack]]
 name = "motioneye"
-tags = ["holmie","hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "motioneye"
@@ -490,7 +490,7 @@ run_directory = "motioneye"
 
 [[stack]]
 name = "mealie"
-tags = ["holmie","hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "mealie"
@@ -504,7 +504,7 @@ run_directory = "mealie"
 
 [[stack]]
 name = "searxng"
-tags = ["holmie","hooked", "criticality: 2"]
+tags = ["holmie", "hooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "searxng"
@@ -518,7 +518,7 @@ run_directory = "searxng"
 
 [[stack]]
 name = "speedtest"
-tags = ["holmie","hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "speedtest"
@@ -532,7 +532,7 @@ run_directory = "speedtest"
 
 [[stack]]
 name = "linkwarden"
-tags = ["holmie","hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "linkwarden"
@@ -546,7 +546,7 @@ run_directory = "linkwarden"
 
 [[stack]]
 name = "wedding-share"
-tags = ["holmie","hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "wedding-share"
@@ -560,7 +560,7 @@ run_directory = "wedding-share"
 
 [[stack]]
 name = "silverbullet"
-tags = ["holmie","hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "silverbullet"
@@ -574,7 +574,7 @@ run_directory = "silverbullet"
 
 [[stack]]
 name = "filebrowserquantum"
-tags = ["holmie","hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "filebrowserquantum"
@@ -588,7 +588,7 @@ run_directory = "filebrowserquantum"
 
 [[stack]]
 name = "dumbassets"
-tags = ["holmie","hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "dumbassets"
@@ -602,7 +602,7 @@ run_directory = "dumbassets"
 
 [[stack]]
 name = "lubelogger"
-tags = ["holmie","hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "lubelogger"
@@ -616,7 +616,7 @@ run_directory = "lubelogger"
 
 [[stack]]
 name = "reactiveresume"
-tags = ["holmie","hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "reactiveresume"
