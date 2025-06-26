@@ -41,18 +41,18 @@ services:
       - no-new-privileges:true # helps to increase security
     networks:
       - intranet
-    labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.resume-minio.entrypoints=http"
-    - "traefik.http.routers.resume-minio.rule=Host(`resume-minio.holmlab.org`)"
-    - "traefik.http.middlewares.resume-minio-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.resume-minio.middlewares=resume-minio-https-redirect"
-    - "traefik.http.routers.resume-minio-secure.entrypoints=https"
-    - "traefik.http.routers.resume-minio-secure.rule=Host(`resume-minio.holmlab.org`)"
-    - "traefik.http.routers.resume-minio-secure.tls=true"
-    - "traefik.http.routers.resume-minio-secure.service=resume-minio"
-    - "traefik.http.services.resume-minio.loadbalancer.server.port=9000" # port of the service.
-    - "traefik.docker.network=intranet"
+#    labels:
+#    - "traefik.enable=true"
+#    - "traefik.http.routers.resume-minio.entrypoints=http"
+#    - "traefik.http.routers.resume-minio.rule=Host(`resume-minio.holmlab.org`)"
+#    - "traefik.http.middlewares.resume-minio-https-redirect.redirectscheme.scheme=https"
+#    - "traefik.http.routers.resume-minio.middlewares=resume-minio-https-redirect"
+#    - "traefik.http.routers.resume-minio-secure.entrypoints=https"
+#    - "traefik.http.routers.resume-minio-secure.rule=Host(`resume-minio.holmlab.org`)"
+#    - "traefik.http.routers.resume-minio-secure.tls=true"
+#    - "traefik.http.routers.resume-minio-secure.service=resume-minio"
+#    - "traefik.http.services.resume-minio.loadbalancer.server.port=9000" # port of the service.
+#    - "traefik.docker.network=intranet"
 
   # Chrome Browser (for printing and previews)
   chrome:
@@ -88,7 +88,7 @@ services:
       NODE_ENV: production
 
       # -- URLs --
-      PUBLIC_URL: http://app:3000 # https://github.com/AmruthPillai/Reactive-Resume/issues/2190
+      PUBLIC_URL: http://app:3001 # https://github.com/AmruthPillai/Reactive-Resume/issues/2190
       STORAGE_URL: http://minio:9000/default # https://github.com/AmruthPillai/Reactive-Resume/issues/2190
 
       # -- Printer (Chrome) --
@@ -116,50 +116,22 @@ services:
       STORAGE_USE_SSL: "false"
       STORAGE_SKIP_BUCKET_CHECK: "false"
 
-      # -- Crowdin (Optional) --
-      # CROWDIN_PROJECT_ID:
-      # CROWDIN_PERSONAL_TOKEN:
-
-      # -- Email (Optional) --
-      # DISABLE_SIGNUPS: "false"
-      # DISABLE_EMAIL_AUTH: "false"
-
-      # -- GitHub (Optional) --
-      # GITHUB_CLIENT_ID: github_client_id
-      # GITHUB_CLIENT_SECRET: github_client_secret
-      # GITHUB_CALLBACK_URL: http://localhost:3000/api/auth/github/callback
-
-      # -- Google (Optional) --
-      # GOOGLE_CLIENT_ID: google_client_id
-      # GOOGLE_CLIENT_SECRET: google_client_secret
-      # GOOGLE_CALLBACK_URL: http://localhost:3000/api/auth/google/callback
-
-      # -- OpenID (Optional) --
-      # VITE_OPENID_NAME: OpenID
-      # OPENID_AUTHORIZATION_URL:
-      # OPENID_CALLBACK_URL: http://localhost:3000/api/auth/openid/callback
-      # OPENID_CLIENT_ID:
-      # OPENID_CLIENT_SECRET:
-      # OPENID_ISSUER:
-      # OPENID_SCOPE: openid profile email
-      # OPENID_TOKEN_URL:
-      # OPENID_USER_INFO_URL:
     security_opt:
       - no-new-privileges:true # helps to increase security
     networks:
       - intranet
-    labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.resume.entrypoints=http"
-    - "traefik.http.routers.resume.rule=Host(`resume.holmlab.org`)"
-    - "traefik.http.middlewares.resume-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.resume.middlewares=resume-https-redirect"
-    - "traefik.http.routers.resume-secure.entrypoints=https"
-    - "traefik.http.routers.resume-secure.rule=Host(`resume.holmlab.org`)"
-    - "traefik.http.routers.resume-secure.tls=true"
-    - "traefik.http.routers.resume-secure.service=resume"
-    - "traefik.http.services.resume.loadbalancer.server.port=3001" # port of the service.
-    - "traefik.docker.network=intranet"
+#    labels:
+#    - "traefik.enable=true"
+#    - "traefik.http.routers.resume.entrypoints=http"
+#    - "traefik.http.routers.resume.rule=Host(`resume.holmlab.org`)"
+#    - "traefik.http.middlewares.resume-https-redirect.redirectscheme.scheme=https"
+#    - "traefik.http.routers.resume.middlewares=resume-https-redirect"
+#    - "traefik.http.routers.resume-secure.entrypoints=https"
+#    - "traefik.http.routers.resume-secure.rule=Host(`resume.holmlab.org`)"
+#    - "traefik.http.routers.resume-secure.tls=true"
+#    - "traefik.http.routers.resume-secure.service=resume"
+#    - "traefik.http.services.resume.loadbalancer.server.port=3001" # port of the service.
+#    - "traefik.docker.network=intranet"
 
 networks:
   intranet:
