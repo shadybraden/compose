@@ -88,7 +88,7 @@ services:
       NODE_ENV: production
 
       # -- URLs --
-      PUBLIC_URL: http2://resume.holmlab.org
+      PUBLIC_URL: https://resume.holmlab.org
       STORAGE_URL: https://resume-minio.holmlab.org/default
 
       # -- Printer (Chrome) --
