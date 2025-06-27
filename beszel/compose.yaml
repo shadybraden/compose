@@ -1,0 +1,47 @@
+services:
+  beszel:
+    image: henrygd/beszel:latest
+    container_name: beszel
+    restart: unless-stopped
+#    ports:
+#      - 8090:8090
+    volumes:
+      - /data/config_storage/beszel_data:/beszel_data
+      - ./beszel_socket:/beszel_socket
+    security_opt:
+      - no-new-privileges:true # helps to increase security
+    networks:
+      - intranet
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.beszel.entrypoints=http"
+    - "traefik.http.routers.beszel.rule=Host(`beszel.holmlab.org`)"
+    - "traefik.http.middlewares.beszel-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.beszel.middlewares=beszel-https-redirect"
+    - "traefik.http.routers.beszel-secure.entrypoints=https"
+    - "traefik.http.routers.beszel-secure.rule=Host(`beszel.holmlab.org`)"
+    - "traefik.http.routers.beszel-secure.tls=true"
+    - "traefik.http.routers.beszel-secure.service=beszel"
+    - "traefik.http.services.beszel.loadbalancer.server.port=8090" # port of the service.
+    - "traefik.docker.network=intranet"
+
+  beszel-agent:
+    image: henrygd/beszel-agent:latest
+    container_name: beszel-agent
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /data/config_storage/beszel_socket:/beszel_socket
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      LISTEN: /beszel_socket/beszel.sock
+      # Do not remove quotes around the key
+      KEY: 'UPDATE WITH YOUR PUBLIC KEY (copy from "Add system" dialog)'
+    security_opt:
+      - no-new-privileges:true # helps to increase security
+    networks:
+      - intranet
+
+networks:
+  intranet:
+    external: true
