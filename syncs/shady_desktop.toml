@@ -51,13 +51,13 @@ run_directory = "hosts/immich_remote_machine_learning"
 ##
 
 [[stack]]
-name = "quicknut"
-tags = ["holmie","hooked"]
+name = "jellyfin-shady"
+tags = ["shady", "hooked", "criticality: 2"]
 [stack.config]
-server = "holmie"
-project_name = "quicknut"
+server = "shady_desktop"
+project_name = "jellyfin-shady"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
-run_directory = "nut"
+run_directory = "jellyfin-shady"
