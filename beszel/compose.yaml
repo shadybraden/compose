@@ -39,8 +39,6 @@ services:
       KEY: 'UPDATE WITH YOUR PUBLIC KEY (copy from "Add system" dialog)'
     security_opt:
       - no-new-privileges:true # helps to increase security
-    networks:
-      - intranet
 
 networks:
   intranet:
