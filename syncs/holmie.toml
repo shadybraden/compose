@@ -643,11 +643,11 @@ run_directory = "beszel"
 ##
 
 [[stack]]
-name = "beszelagent"
+name = "beszelagent-holmie"
 tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
-project_name = "beszelagent"
+project_name = "beszelagent-holmie"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"

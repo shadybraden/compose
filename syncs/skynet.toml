@@ -64,3 +64,17 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "skynet/syncthing"
+
+##
+
+[[stack]]
+name = "beszelagent-skynet"
+tags = ["shady", "hooked", "criticality: 4"]
+[stack.config]
+server = "skynet"
+project_name = "beszelagent-skynet"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "beszelagent"

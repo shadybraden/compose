@@ -61,3 +61,17 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "jellyfin"
+
+##
+
+[[stack]]
+name = "beszelagent-shady"
+tags = ["shady", "hooked", "criticality: 4"]
+[stack.config]
+server = "shady_desktop"
+project_name = "beszelagent-shady"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "beszelagent"
