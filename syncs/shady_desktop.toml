@@ -25,19 +25,6 @@ run_directory = "hosts/crafty"
 ##
 
 [[stack]]
-name = "glances-shady"
-tags = ["shady","hooked"]
-[stack.config]
-server = "shady_desktop"
-project_name = "glances"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-run_directory = "hosts/glances"
-
-##
-
-[[stack]]
 name = "immich-ml-shady"
 tags = ["shady","hooked"]
 [stack.config]

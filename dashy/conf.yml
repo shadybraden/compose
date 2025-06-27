@@ -263,12 +263,6 @@ sections:
         url: https://navidrome.holmlab.org
         statusCheck: true
         id: 10_606_navidrome
-      - title: Glances
-        icon: >-
-          glances.png
-        url: https://glances-holmie.holmlab.org
-        statusCheck: true
-        id: 11_606_glances
       - title: Webmin
         icon: >-
           webmin.png
@@ -313,6 +307,12 @@ sections:
         icon: >-
           scrutiny.png
         url: https://scrutiny.holmlab.org
+        statusCheck: true
+        id: 18_606_scrutiny
+      - title: Beszel
+        icon: >-
+          beszel.png
+        url: https://beszel.holmlab.org/
         statusCheck: true
         id: 18_606_scrutiny
       - title: FreshRSS
@@ -415,12 +415,6 @@ sections:
         url: https://syncthing-shady.holmlab.org/
         statusCheck: true
         id: 3_948_syncthing
-      - title: Glances
-        icon: >-
-          glances.png
-        url: https://glances-shady.holmlab.org/
-        statusCheck: true
-        id: 4_948_glances
       - title: Asus WAP
         icon: >-
           asus-light.png
@@ -510,26 +504,3 @@ sections:
       cols: 4
       collapsed: false
       hideForGuests: false
-  - name: Holmie Stats
-    icon: >-
-      chart.png
-    displayData:
-      sortBy: default
-      rows: 1
-      cols: 4
-      collapsed: true
-      hideForGuests: true
-    widgets:
-      - type: gl-cpu-history
-        options:
-          hostname: https://glances-holmie.holmlab.org/
-          apiVersion: 4
-        id: 0_1165_glcpuhistory
-      - type: gl-mem-history
-        options:
-          hostname: https://glances-holmie.holmlab.org/
-        id: 1_1165_glmemhistory
-      - type: gl-disk-space
-        options:
-          hostname: https://glances-holmie.holmlab.org/
-        id: 2_1165_gldiskspace

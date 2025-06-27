@@ -6,8 +6,8 @@ services:
 #    ports:
 #      - 8090:8090
     volumes:
-      - /data/config_storage/beszel_data:/beszel_data
-      - ./beszel_socket:/beszel_socket
+      - /data/config_storage/beszel/beszel_data:/beszel_data
+      - /data/config_storage/beszel/beszel_socket:/beszel_socket
     security_opt:
       - no-new-privileges:true # helps to increase security
     networks:
