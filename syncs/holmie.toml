@@ -14,7 +14,7 @@ run_directory = "adsb"
 
 [[stack]]
 name = "ai"
-tags = ["holmie", "hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "ai"
@@ -70,7 +70,7 @@ run_directory = "dashy"
 
 [[stack]]
 name = "dockge"
-tags = ["holmie", "hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "dockge"
@@ -84,7 +84,7 @@ run_directory = "dockge"
 
 [[stack]]
 name = "filebrowser"
-tags = ["holmie", "hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "filebrowser"
@@ -182,7 +182,7 @@ run_directory = "jellyseerr"
 
 [[stack]]
 name = "kiwix"
-tags = ["holmie", "hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "kiwix"
@@ -383,7 +383,7 @@ run_directory = "wireguard"
 
 [[stack]]
 name = "hoodik"
-tags = ["holmie", "hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "hoodik"
@@ -490,7 +490,7 @@ run_directory = "motioneye"
 
 [[stack]]
 name = "mealie"
-tags = ["holmie", "hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "mealie"
@@ -518,7 +518,7 @@ run_directory = "searxng"
 
 [[stack]]
 name = "speedtest"
-tags = ["holmie", "hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "speedtest"
@@ -546,7 +546,7 @@ run_directory = "linkwarden"
 
 [[stack]]
 name = "wedding-share"
-tags = ["holmie", "hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "wedding-share"
@@ -574,7 +574,7 @@ run_directory = "silverbullet"
 
 [[stack]]
 name = "filebrowserquantum"
-tags = ["holmie", "hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "filebrowserquantum"
@@ -588,7 +588,7 @@ run_directory = "filebrowserquantum"
 
 [[stack]]
 name = "dumbassets"
-tags = ["holmie", "hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "dumbassets"
@@ -602,7 +602,7 @@ run_directory = "dumbassets"
 
 [[stack]]
 name = "lubelogger"
-tags = ["holmie", "hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "lubelogger"
@@ -616,7 +616,7 @@ run_directory = "lubelogger"
 
 [[stack]]
 name = "reactiveresume"
-tags = ["holmie", "hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "reactiveresume"
