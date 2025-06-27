@@ -1,13 +1,11 @@
 services:
   beszel-agent:
-    image: henrygd/beszel-agent:latest
+    image: henrygd/beszel-agent
     container_name: beszel-agent
     restart: unless-stopped
     network_mode: host
     volumes:
-      - ./beszel_socket:/beszel_socket
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
-      LISTEN: /beszel_socket/beszel.sock
-      # Do not remove quotes around the key
-      KEY: 'UPDATE WITH YOUR PUBLIC KEY (copy from "Add system" dialog)'
+      LISTEN: 45876
+      KEY: ${KEY} # FORMAT (include quotes): KEY="key_here"
