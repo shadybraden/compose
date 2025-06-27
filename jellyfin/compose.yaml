@@ -2,8 +2,8 @@ services:
     jellyfin:
 #        network_mode: host
         container_name: jellyfin
-#        ports:
-#        - 8096:8096
+        ports:
+        - 8096:8096
         volumes:
         - /data/config_storage/jellyfin/config:/config
         - /data/config_storage/jellyfin/cache:/cache
