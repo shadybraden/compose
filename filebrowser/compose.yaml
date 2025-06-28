@@ -8,6 +8,7 @@ services:
             - /home/holmie:/srv/home
             - /data/config_storage/filebrowser/database:/database
             - /data/config_storage/filebrowser/config:/config
+            - /data/config_storage/filebrowser/database/filebrowser.db:/database/filebrowser.db
         environment:
             - PUID=1000
             - PGID=1000
