@@ -1,6 +1,6 @@
 [[stack]]
 name = "adsb"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 3"]
 [stack.config]
 server = "holmie"
 project_name = "adsb"
@@ -9,16 +9,12 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "adsb"
-environment = """
-SUBDOMAIN=adsb
-DOMAIN=holmlab.org
-"""
 
 ##
 
 [[stack]]
 name = "ai"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "ai"
@@ -32,7 +28,7 @@ run_directory = "ai"
 
 [[stack]]
 name = "arr"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "arr"
@@ -46,7 +42,7 @@ run_directory = "arr"
 
 [[stack]]
 name = "audiobookshelf"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 3"]
 [stack.config]
 server = "holmie"
 project_name = "audiobookshelf"
@@ -60,7 +56,7 @@ run_directory = "audiobookshelf"
 
 [[stack]]
 name = "dashy"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "dashy"
@@ -74,7 +70,7 @@ run_directory = "dashy"
 
 [[stack]]
 name = "dockge"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "dockge"
@@ -88,7 +84,7 @@ run_directory = "dockge"
 
 [[stack]]
 name = "filebrowser"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "filebrowser"
@@ -102,7 +98,7 @@ run_directory = "filebrowser"
 
 [[stack]]
 name = "freshrss"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "freshrss"
@@ -115,22 +111,8 @@ run_directory = "freshrss"
 ##
 
 [[stack]]
-name = "glances"
-tags = ["holmie","hooked"]
-[stack.config]
-server = "holmie"
-project_name = "glances"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
-run_directory = "glances"
-
-##
-
-[[stack]]
 name = "homeassistant"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "homeassistant"
@@ -144,7 +126,7 @@ run_directory = "homeassistant"
 
 [[stack]]
 name = "immich"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "immich"
@@ -158,7 +140,7 @@ run_directory = "immich"
 
 [[stack]]
 name = "jellyfin"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "jellyfin"
@@ -172,7 +154,7 @@ run_directory = "jellyfin"
 
 [[stack]]
 name = "jellyseerr"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "jellyseerr"
@@ -186,7 +168,7 @@ run_directory = "jellyseerr"
 
 [[stack]]
 name = "kiwix"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "kiwix"
@@ -200,7 +182,7 @@ run_directory = "kiwix"
 
 [[stack]]
 name = "navidrome"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "navidrome"
@@ -214,7 +196,7 @@ run_directory = "navidrome"
 
 [[stack]]
 name = "netalertx"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "netalertx"
@@ -228,7 +210,7 @@ run_directory = "netalertx"
 
 [[stack]]
 name = "nextcloud"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "nextcloud"
@@ -242,7 +224,7 @@ run_directory = "nextcloud"
 
 [[stack]]
 name = "ntfy"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "ntfy"
@@ -256,7 +238,7 @@ run_directory = "ntfy"
 
 [[stack]]
 name = "portainer"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "portainer"
@@ -270,7 +252,7 @@ run_directory = "portainer"
 
 [[stack]]
 name = "proxy"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "proxy"
@@ -288,7 +270,7 @@ post_deploy.command = """
 
 [[stack]]
 name = "renovate"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "renovate"
@@ -303,7 +285,7 @@ ignore_services = ["renovate"] # this is so it shows nicer in the dashboard
 
 [[stack]]
 name = "scrutiny"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "scrutiny"
@@ -317,7 +299,7 @@ run_directory = "scrutiny"
 
 [[stack]]
 name = "stirlingpdf"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "stirlingpdf"
@@ -331,7 +313,7 @@ run_directory = "stirlingpdf"
 
 [[stack]]
 name = "syncthing"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "syncthing"
@@ -345,7 +327,7 @@ run_directory = "syncthing"
 
 [[stack]]
 name = "uptime-kuma"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "uptime-kuma"
@@ -359,7 +341,7 @@ run_directory = "uptime-kuma"
 
 [[stack]]
 name = "vaultwarden"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "vaultwarden"
@@ -373,7 +355,7 @@ run_directory = "vaultwarden"
 
 [[stack]]
 name = "wireguard"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "wireguard"
@@ -387,7 +369,7 @@ run_directory = "wireguard"
 
 [[stack]]
 name = "hoodik"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "hoodik"
@@ -401,7 +383,7 @@ run_directory = "hoodik"
 
 [[stack]]
 name = "skywatch"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 3"]
 [stack.config]
 server = "holmie"
 project_name = "skywatch"
@@ -424,7 +406,7 @@ build_extra_args = []
 
 [[stack]]
 name = "restic"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "restic"
@@ -438,7 +420,7 @@ run_directory = "restic"
 
 [[stack]]
 name = "pihole"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "pihole"
@@ -452,7 +434,7 @@ run_directory = "pihole"
 
 [[stack]]
 name = "forgejo"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "forgejo"
@@ -466,7 +448,7 @@ run_directory = "forgejo"
 
 [[stack]]
 name = "traefik"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "traefik"
@@ -480,7 +462,7 @@ run_directory = "traefik"
 
 [[stack]]
 name = "motioneye"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "motioneye"
@@ -489,16 +471,12 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "motioneye"
-environment = """
-SUBDOMAIN=motioneye
-DOMAIN=holmlab.org
-"""
 
 ##
 
 [[stack]]
 name = "mealie"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "mealie"
@@ -507,16 +485,12 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "mealie"
-environment = """
-SUBDOMAIN=mealie
-DOMAIN=holmlab.org
-"""
 
 ##
 
 [[stack]]
 name = "searxng"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "searxng"
@@ -525,16 +499,12 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "searxng"
-environment = """
-SUBDOMAIN=search
-DOMAIN=holmlab.org
-"""
 
 ##
 
 [[stack]]
 name = "speedtest"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "speedtest"
@@ -543,16 +513,12 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "speedtest"
-environment = """
-SUBDOMAIN=speedtest
-DOMAIN=holmlab.org
-"""
 
 ##
 
 [[stack]]
 name = "linkwarden"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "linkwarden"
@@ -561,16 +527,12 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "linkwarden"
-environment = """
-SUBDOMAIN=links
-DOMAIN=holmlab.org
-"""
 
 ##
 
 [[stack]]
 name = "wedding-share"
-tags = ["holmie","hooked"]
+tags = ["holmie", "hooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "wedding-share"
@@ -579,3 +541,101 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "wedding-share"
+
+##
+
+[[stack]]
+name = "silverbullet"
+tags = ["holmie", "hooked", "criticality: 4"]
+[stack.config]
+server = "holmie"
+project_name = "silverbullet"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "silverbullet"
+
+##
+
+[[stack]]
+name = "filebrowserquantum"
+tags = ["holmie", "hooked", "criticality: 5"]
+[stack.config]
+server = "holmie"
+project_name = "filebrowserquantum"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "filebrowserquantum"
+
+##
+
+[[stack]]
+name = "dumbassets"
+tags = ["holmie", "hooked", "criticality: 5"]
+[stack.config]
+server = "holmie"
+project_name = "dumbassets"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "dumbassets"
+
+##
+
+[[stack]]
+name = "lubelogger"
+tags = ["holmie", "hooked", "criticality: 5"]
+[stack.config]
+server = "holmie"
+project_name = "lubelogger"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "lubelogger"
+
+##
+
+[[stack]]
+name = "reactiveresume"
+tags = ["holmie", "hooked", "criticality: 5"]
+[stack.config]
+server = "holmie"
+project_name = "reactiveresume"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "reactiveresume"
+
+##
+
+[[stack]]
+name = "beszel"
+tags = ["holmie", "hooked", "criticality: 4"]
+[stack.config]
+server = "holmie"
+project_name = "beszel"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "beszel"
+
+##
+
+[[stack]]
+name = "beszelagent-holmie"
+tags = ["holmie", "hooked", "criticality: 4"]
+[stack.config]
+server = "holmie"
+project_name = "beszelagent-holmie"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "beszelagent"

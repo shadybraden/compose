@@ -1,6 +1,6 @@
 services:
   pihole:
-    image: pihole/pihole:2025.05.1
+    image: pihole/pihole:2025.06.2
     container_name: pihole
     environment:
       - FTLCONF_webserver_api_password=${pihole_password}
@@ -31,7 +31,7 @@ services:
     - "traefik.http.routers.pihole-secure.rule=Host(`pihole.holmlab.org`)"
     - "traefik.http.routers.pihole-secure.tls=true"
     - "traefik.http.routers.pihole-secure.service=pihole"
-    - "traefik.http.services.pihole.loadbalancer.server.port=80" # port of the service. i.e. pihole likes 9000
+    - "traefik.http.services.pihole.loadbalancer.server.port=80" # port of the service
     - "traefik.docker.network=intranet"
 
 networks:

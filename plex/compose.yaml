@@ -1,6 +1,6 @@
 services:
   plex:
-    image: quay.io/linuxserver.io/plex:1.41.7
+    image: quay.io/linuxserver.io/plex:1.41.8
     container_name: plex
     ports:
       - 32400:32400

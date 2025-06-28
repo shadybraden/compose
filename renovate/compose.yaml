@@ -18,7 +18,7 @@ services:
             - timezone=America/New_York
             - schedule="* 8-18 * * 1-5" # not for auto-running. use cron for that
             - RENOVATE_PR_HOURLY_LIMIT=10
-        image: renovate/renovate:40.48.4
+        image: renovate/renovate:41.16.1
         container_name: renovate
 #        command: --include-forks=true renovate-tests/gomod1
         security_opt:
@@ -35,7 +35,7 @@ services:
         - "traefik.http.routers.renovate-secure.rule=Host(`renovate.holmlab.org`)"
         - "traefik.http.routers.renovate-secure.tls=true"
         - "traefik.http.routers.renovate-secure.service=renovate"
-        - "traefik.http.services.renovate.loadbalancer.server.port=80" # port of the service. i.e. renovate likes 9000
+        - "traefik.http.services.renovate.loadbalancer.server.port=80" # port of the service
         - "traefik.docker.network=intranet"
 
 networks:

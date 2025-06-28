@@ -14,7 +14,7 @@ services:
         ports:
             - 8060:80
         command: ["-c", "/config/settings.json"] # required, see https://github.com/filebrowser/filebrowser/issues/1898
-        image: filebrowser/filebrowser:v2.32.0
+        image: filebrowser/filebrowser:v2.32.3
         security_opt:
         - no-new-privileges:true # helps to increase security
         networks:
@@ -29,7 +29,7 @@ services:
         - "traefik.http.routers.files-holmie-secure.rule=Host(`files-holmie.holmlab.org`)"
         - "traefik.http.routers.files-holmie-secure.tls=true"
         - "traefik.http.routers.files-holmie-secure.service=files-holmie"
-        - "traefik.http.services.files-holmie.loadbalancer.server.port=80" # port of the service. i.e. files-holmie likes 9000
+        - "traefik.http.services.files-holmie.loadbalancer.server.port=80" # port of the service
         - "traefik.docker.network=intranet"
 
 networks:

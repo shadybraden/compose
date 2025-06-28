@@ -21,7 +21,7 @@ services:
       - intranet
 
   core:
-    image: ghcr.io/moghtech/komodo-core:1.18.0
+    image: ghcr.io/moghtech/komodo-core:1.18.4
 #    labels:
 #      komodo.skip: # Prevent Komodo from stopping with StopAllContainers
     restart: unless-stopped
@@ -31,26 +31,19 @@ services:
       driver: local
     ports:
       - 9120:9120
-#    env_file: ./compose.env
-    environment:
+    environment: # https://github.com/moghtech/komodo/blob/main/config/core.config.toml
       KOMODO_DATABASE_ADDRESS: mongo:27017
       KOMODO_DATABASE_USERNAME: admin
       KOMODO_DATABASE_PASSWORD: ${KOMODO_DB_PASSWORD}
       KOMODO_HOST: https://komodo.holmlab.org
       KOMODO_LOCAL_AUTH: true
+      KOMODO_DISABLE_USER_REGISTRATION: true # default true
+      KOMODO_ENABLE_NEW_USERS: false # default false
       KOMODO_WEBHOOK_SECRET: ${KOMODO_WEBHOOK_SECRET}
       PERIPHERY_SSL_ENABLED: false
+      KOMODO_DISABLE_CONFIRM_DIALOG: true
     volumes:
-      ## Core cache for repos for latest commit hash / contents
       - /data/config_storage/komodo/repo-cache:/repo-cache
-      ## Store sync files on server
-      # - /path/to/syncs:/syncs
-      ## Optionally mount a custom core.config.toml
-      # - /path/to/core.config.toml:/config/config.toml
-    ## Allows for systemd Periphery connection at 
-    ## "http://host.docker.internal:8120"
-    # extra_hosts:
-    #   - host.docker.internal:host-gateway
     security_opt:
       - no-new-privileges:true # helps to increase security
     networks:
@@ -66,29 +59,19 @@ services:
     - "traefik.http.routers.komodo-secure.rule=Host(`komodo.holmlab.org`)"
     - "traefik.http.routers.komodo-secure.tls=true"
     - "traefik.http.routers.komodo-secure.service=komodo"
-    - "traefik.http.services.komodo.loadbalancer.server.port=9120" # port of the service. i.e. komodo likes 9000
+    - "traefik.http.services.komodo.loadbalancer.server.port=9120" # port of the service
     - "traefik.docker.network=intranet"
 
-  ## Deploy Periphery container using this block,
-  ## or deploy the Periphery binary with systemd using 
-  ## https://github.com/moghtech/komodo/tree/main/scripts
   periphery:
-    image: ghcr.io/moghtech/komodo-periphery:1.18.0
+    image: ghcr.io/moghtech/komodo-periphery:1.18.4
 #    labels:
 #      komodo.skip: # Prevent Komodo from stopping with StopAllContainers
     restart: unless-stopped
     logging:
       driver: local
-#    env_file: ./compose.env
     volumes:
-      ## Mount external docker socket
       - /var/run/docker.sock:/var/run/docker.sock
-      ## Allow Periphery to see processes outside of container
       - /proc:/proc
-      ## Specify the Periphery agent root directory.
-      ## Must be the same inside and outside the container,
-      ## or docker will get confused. See https://github.com/moghtech/komodo/discussions/180.
-      ## Default: /etc/komodo.
       - /data/config_storage/komodo/etc_komodo:/etc/komodo
     environment:
       PERIPHERY_SSL_ENABLED: false
@@ -107,14 +90,12 @@ services:
     - "traefik.http.routers.periphery-secure.rule=Host(`periphery.holmlab.org`)"
     - "traefik.http.routers.periphery-secure.tls=true"
     - "traefik.http.routers.periphery-secure.service=periphery"
-    - "traefik.http.services.periphery.loadbalancer.server.port=8120" # port of the service. i.e. periphery likes 9000
+    - "traefik.http.services.periphery.loadbalancer.server.port=8120" # port of the service
     - "traefik.docker.network=intranet"
 
 volumes:
-  # Mongo
   mongo-data:
   mongo-config:
-  # Core
   repo-cache:
 networks:
   intranet:

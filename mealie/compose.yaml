@@ -17,15 +17,15 @@ services:
       - intranet
     labels:
     - "traefik.enable=true"
-    - "traefik.http.routers.${SUBDOMAIN}.entrypoints=http"
-    - "traefik.http.routers.${SUBDOMAIN}.rule=Host(`${SUBDOMAIN}.${DOMAIN}`)"
-    - "traefik.http.middlewares.${SUBDOMAIN}-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.${SUBDOMAIN}.middlewares=${SUBDOMAIN}-https-redirect"
-    - "traefik.http.routers.${SUBDOMAIN}-secure.entrypoints=https"
-    - "traefik.http.routers.${SUBDOMAIN}-secure.rule=Host(`${SUBDOMAIN}.${DOMAIN}`)"
-    - "traefik.http.routers.${SUBDOMAIN}-secure.tls=true"
-    - "traefik.http.routers.${SUBDOMAIN}-secure.service=${SUBDOMAIN}"
-    - "traefik.http.services.${SUBDOMAIN}.loadbalancer.server.port=9000" # port of the service.
+    - "traefik.http.routers.mealie.entrypoints=http"
+    - "traefik.http.routers.mealie.rule=Host(`mealie.holmlab.org`)"
+    - "traefik.http.middlewares.mealie-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.mealie.middlewares=mealie-https-redirect"
+    - "traefik.http.routers.mealie-secure.entrypoints=https"
+    - "traefik.http.routers.mealie-secure.rule=Host(`mealie.holmlab.org`)"
+    - "traefik.http.routers.mealie-secure.tls=true"
+    - "traefik.http.routers.mealie-secure.service=mealie"
+    - "traefik.http.services.mealie.loadbalancer.server.port=9000" # port of the service.
     - "traefik.docker.network=intranet"
 
 networks:

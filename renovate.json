@@ -1,4 +1,13 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "commitMessagePrefix": ":label:"
+  "extends": ["config:base", "docker:enableMajor"],
+  "commitMessagePrefix": ":label:",
+  
+  "packageRules": [
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["searxng/searxng", "docker.io/searxng/searxng"],
+      "versioning": "regex:^(?<major>\\d{4})\\.(?<minor>\\d{1,2})\\.(?<patch>\\d{1,2})(?:-[\\w]+)?$"
+    }
+  ]
 }

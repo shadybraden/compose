@@ -25,7 +25,7 @@ services:
     - "traefik.http.routers.dockge-secure.rule=Host(`dockge.holmlab.org`)"
     - "traefik.http.routers.dockge-secure.tls=true"
     - "traefik.http.routers.dockge-secure.service=dockge"
-    - "traefik.http.services.dockge.loadbalancer.server.port=5001" # port of the service. i.e. dockge likes 9000
+    - "traefik.http.services.dockge.loadbalancer.server.port=5001" # port of the service
     - "traefik.docker.network=intranet"
 
 networks:

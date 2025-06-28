@@ -2,7 +2,7 @@ name: immich
 services:
   immich-server:
     container_name: immich_server
-    image: ghcr.io/immich-app/immich-server:v1.134.0
+    image: ghcr.io/immich-app/immich-server:v1.135.3
     volumes:
       - /mnt/4tb/immich/UPLOAD_LOCATION/UPLOAD_LOCATION:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
@@ -34,12 +34,12 @@ services:
     - "traefik.http.routers.immich-secure.rule=Host(`immich.holmlab.org`)"
     - "traefik.http.routers.immich-secure.tls=true"
     - "traefik.http.routers.immich-secure.service=immich"
-    - "traefik.http.services.immich.loadbalancer.server.port=2283" # port of the service. i.e. immich likes 9000
+    - "traefik.http.services.immich.loadbalancer.server.port=2283" # port of the service
     - "traefik.docker.network=intranet"
 
   immich-machine-learning:
     container_name: immich_machine_learning
-    image: ghcr.io/immich-app/immich-machine-learning:v1.134.0
+    image: ghcr.io/immich-app/immich-machine-learning:v1.135.3
     volumes:
       - model-cache:/cache
     env_file:
@@ -52,7 +52,7 @@ services:
 
   redis:
     container_name: immich_redis
-    image: docker.io/valkey/valkey:8.1.1
+    image: docker.io/valkey/valkey:8.1.2
     restart: on-failure
     healthcheck:
       test: redis-cli ping || exit 1

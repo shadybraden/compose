@@ -14,15 +14,15 @@ services:
           - intranet
         labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.${SUBDOMAIN}.entrypoints=http"
-        - "traefik.http.routers.${SUBDOMAIN}.rule=Host(`${SUBDOMAIN}.${DOMAIN}`)"
-        - "traefik.http.middlewares.${SUBDOMAIN}-https-redirect.redirectscheme.scheme=https"
-        - "traefik.http.routers.${SUBDOMAIN}.middlewares=${SUBDOMAIN}-https-redirect"
-        - "traefik.http.routers.${SUBDOMAIN}-secure.entrypoints=https"
-        - "traefik.http.routers.${SUBDOMAIN}-secure.rule=Host(`${SUBDOMAIN}.${DOMAIN}`)"
-        - "traefik.http.routers.${SUBDOMAIN}-secure.tls=true"
-        - "traefik.http.routers.${SUBDOMAIN}-secure.service=${SUBDOMAIN}"
-        - "traefik.http.services.${SUBDOMAIN}.loadbalancer.server.port=5000" # port of the service.
+        - "traefik.http.routers.deezerdl.entrypoints=http"
+        - "traefik.http.routers.deezerdl.rule=Host(`deezerdl.holmlab.org`)"
+        - "traefik.http.middlewares.deezerdl-https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.deezerdl.middlewares=deezerdl-https-redirect"
+        - "traefik.http.routers.deezerdl-secure.entrypoints=https"
+        - "traefik.http.routers.deezerdl-secure.rule=Host(`deezerdl.holmlab.org`)"
+        - "traefik.http.routers.deezerdl-secure.tls=true"
+        - "traefik.http.routers.deezerdl-secure.service=deezerdl"
+        - "traefik.http.services.deezerdl.loadbalancer.server.port=5000" # port of the service.
         - "traefik.docker.network=intranet"
 
 networks:

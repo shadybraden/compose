@@ -13,15 +13,15 @@ services:
           - intranet
         labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.${SUBDOMAIN}.entrypoints=http"
-        - "traefik.http.routers.${SUBDOMAIN}.rule=Host(`${SUBDOMAIN}.${DOMAIN}`)"
-        - "traefik.http.middlewares.${SUBDOMAIN}-https-redirect.redirectscheme.scheme=https"
-        - "traefik.http.routers.${SUBDOMAIN}.middlewares=${SUBDOMAIN}-https-redirect"
-        - "traefik.http.routers.${SUBDOMAIN}-secure.entrypoints=https"
-        - "traefik.http.routers.${SUBDOMAIN}-secure.rule=Host(`${SUBDOMAIN}.${DOMAIN}`)"
-        - "traefik.http.routers.${SUBDOMAIN}-secure.tls=true"
-        - "traefik.http.routers.${SUBDOMAIN}-secure.service=${SUBDOMAIN}"
-        - "traefik.http.services.${SUBDOMAIN}.loadbalancer.server.port=8080" # port of the service.
+        - "traefik.http.routers.speedtest.entrypoints=http"
+        - "traefik.http.routers.speedtest.rule=Host(`speedtest.holmlab.org`)"
+        - "traefik.http.middlewares.speedtest-https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.speedtest.middlewares=speedtest-https-redirect"
+        - "traefik.http.routers.speedtest-secure.entrypoints=https"
+        - "traefik.http.routers.speedtest-secure.rule=Host(`speedtest.holmlab.org`)"
+        - "traefik.http.routers.speedtest-secure.tls=true"
+        - "traefik.http.routers.speedtest-secure.service=speedtest"
+        - "traefik.http.services.speedtest.loadbalancer.server.port=8080" # port of the service.
         - "traefik.docker.network=intranet"
 
 networks:

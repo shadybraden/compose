@@ -1,0 +1,5 @@
+[[builder]]
+name = "holmie"
+[builder.config]
+type = "Server"
+params.server_id = "holmie"

@@ -1,6 +1,6 @@
 services:
   server:
-    image: codeberg.org/forgejo/forgejo:11.0.1
+    image: codeberg.org/forgejo/forgejo:11.0.2
     container_name: forgejo
     environment:
       - USER_UID=1000
@@ -28,7 +28,7 @@ services:
     - "traefik.http.routers.forgejo-secure.rule=Host(`git.holmlab.org`)"
     - "traefik.http.routers.forgejo-secure.tls=true"
     - "traefik.http.routers.forgejo-secure.service=forgejo"
-    - "traefik.http.services.forgejo.loadbalancer.server.port=3000" # port of the service. i.e. forgejo likes 9000
+    - "traefik.http.services.forgejo.loadbalancer.server.port=3000" # port of the service
     - "traefik.docker.network=intranet"
 
 networks:

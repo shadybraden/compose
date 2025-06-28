@@ -1,18 +1,4 @@
 [[stack]]
-name = "glances-skynet"
-tags = ["skynet","hooked"]
-[stack.config]
-server = "skynet"
-project_name = "glances-skynet"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "test"
-run_directory = "hosts/glances"
-
-##
-
-[[stack]]
 name = "portainer-skynet"
 tags = ["skynet","hooked"]
 [stack.config]
@@ -64,3 +50,17 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "skynet/syncthing"
+
+##
+
+[[stack]]
+name = "beszelagent-skynet"
+tags = ["shady", "hooked", "criticality: 4"]
+[stack.config]
+server = "skynet"
+project_name = "beszelagent-skynet"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "beszelagent"

@@ -1,6 +1,6 @@
 services:
   ultrafeeder:
-    image: ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder:latest-build-727 # https://github.com/sdr-enthusiasts/docker-adsb-ultrafeeder/pkgs/container/docker-adsb-ultrafeeder
+    image: ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder:latest-build-739 # https://github.com/sdr-enthusiasts/docker-adsb-ultrafeeder/pkgs/container/docker-adsb-ultrafeeder
     tty: true
     container_name: ultrafeeder
     hostname: ultrafeeder
@@ -11,11 +11,15 @@ services:
       - LOGLEVEL=error
       - TZ=America/New_York
       - READSB_DEVICE_TYPE=rtlsdr
+      - READSB_GAIN=auto
       - READSB_LAT=${READSB_LAT}
       - READSB_LON=${READSB_LON}
-      - READSB_RX_LOCATION_ACCURACY=2
+      - READSB_ALT=${FEEDER_ALT_M}m
       - READSB_STATS_RANGE=true
-      - UPDATE_TAR1090=true
+      - READSB_RTLSDR_DEVICE=${ADSB_SDR_SERIAL}
+      - READSB_RTLSDR_PPM=${ADSB_SDR_PPM}
+      - READSB_RX_LOCATION_ACCURACY=2
+      - UPDATE_TAR1090=false
       - TAR1090_DEFAULTCENTERLAT=${READSB_LAT}
       - TAR1090_DEFAULTCENTERLON=${READSB_LON}
       - TAR1090_MESSAGERATEINTITLE=true
@@ -25,14 +29,22 @@ services:
       - TAR1090_SITESHOW=true
       - TAR1090_RANGE_OUTLINE_COLORED_BY_ALTITUDE=true
       - TAR1090_RANGE_OUTLINE_WIDTH=2.0
-      - TAR1090_RANGERINGSDISTANCES=50,100
-      - TAR1090_RANGERINGSCOLORS='#1A237E','#0D47A1'
+      - TAR1090_RANGERINGS=true
+      - TAR1090_RANGERINGSDISTANCES=50,100,150,200
+      - TAR1090_RANGERINGSCOLORS='#1A237E','#0D47A1','#42A5F5','#64B5F6'
       - TAR1090_USEROUTEAPI=true
       - GRAPHS1090_DARKMODE=true
       - GRAPHS1090_DISABLE=true
-      - HEYWHATSTHAT_PANORAMA_ID${HEYWHATSTHAT_PANORAMA_ID}
       - TAR1090_ENABLE_ACTUALRANGE=true
       - TAR1090_ACTUAL_RANGE_OUTLINE_COLOR='#00596b'
+      # --------------------------------------------------
+      - ULTRAFEEDER_CONFIG=
+        adsb,feed.adsb.fi,30004,beast_reduce_plus_out;
+        adsb,in.adsb.lol,30004,beast_reduce_plus_out;
+        adsb,feed.theairtraffic.com,30004,beast_reduce_plus_out;
+        mlat,feed.adsb.fi,31090,39000;
+        mlat,in.adsb.lol,31090,39001;
+        mlat,feed.theairtraffic.com,31090,39004
     volumes:
       - /data/config_storage/adsb/globe_history:/var/globe_history
       - /data/config_storage/adsb/graphs1090:/var/lib/collectd
@@ -50,17 +62,23 @@ services:
       - intranet
     labels:
     - "traefik.enable=true"
-    - "traefik.http.routers.${SUBDOMAIN}.entrypoints=http"
-    - "traefik.http.routers.${SUBDOMAIN}.rule=Host(`${SUBDOMAIN}.${DOMAIN}`)"
-    - "traefik.http.middlewares.${SUBDOMAIN}-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.${SUBDOMAIN}.middlewares=${SUBDOMAIN}-https-redirect"
-    - "traefik.http.routers.${SUBDOMAIN}-secure.entrypoints=https"
-    - "traefik.http.routers.${SUBDOMAIN}-secure.rule=Host(`${SUBDOMAIN}.${DOMAIN}`)"
-    - "traefik.http.routers.${SUBDOMAIN}-secure.tls=true"
-    - "traefik.http.routers.${SUBDOMAIN}-secure.service=${SUBDOMAIN}"
-    - "traefik.http.services.${SUBDOMAIN}.loadbalancer.server.port=80" # port of the service.
+    - "traefik.http.routers.adsb.entrypoints=http"
+    - "traefik.http.routers.adsb.rule=Host(`adsb.holmlab.org`)"
+    - "traefik.http.middlewares.adsb-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.adsb.middlewares=adsb-https-redirect"
+    - "traefik.http.routers.adsb-secure.entrypoints=https"
+    - "traefik.http.routers.adsb-secure.rule=Host(`adsb.holmlab.org`)"
+    - "traefik.http.routers.adsb-secure.tls=true"
+    - "traefik.http.routers.adsb-secure.service=adsb"
+    - "traefik.http.services.adsb.loadbalancer.server.port=80" # port of the service.
     - "traefik.docker.network=intranet"
 
 networks:
   intranet:
     external: true
+
+# | service                                           | check my feeding status url          |
+# | ------------------------------------------------- | ------------------------------------ |
+# | [adsb.lol](https://adsb.lol/)                     | https://my.adsb.lol/                 |
+# | [adsb.fi](https://globe.adsb.fi/)                 | https://adsb.fi/                     |
+# | [theairtraffic](https://globe.theairtraffic.com/) | https://theairtraffic.com/feed/myip/ |

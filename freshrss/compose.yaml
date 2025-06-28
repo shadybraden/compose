@@ -28,7 +28,7 @@ services:
         - "traefik.http.routers.rss-secure.rule=Host(`rss.holmlab.org`)"
         - "traefik.http.routers.rss-secure.tls=true"
         - "traefik.http.routers.rss-secure.service=rss"
-        - "traefik.http.services.rss.loadbalancer.server.port=80" # port of the service. i.e. rss likes 9000
+        - "traefik.http.services.rss.loadbalancer.server.port=80" # port of the service
         - "traefik.docker.network=intranet"
 
 networks:

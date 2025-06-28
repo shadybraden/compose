@@ -24,7 +24,7 @@ services:
         - "traefik.http.routers.bitwarden-secure.rule=Host(`bitwarden.holmlab.org`)"
         - "traefik.http.routers.bitwarden-secure.tls=true"
         - "traefik.http.routers.bitwarden-secure.service=bitwarden"
-        - "traefik.http.services.bitwarden.loadbalancer.server.port=80" # port of the service. i.e. bitwarden likes 9000
+        - "traefik.http.services.bitwarden.loadbalancer.server.port=80" # port of the service
         - "traefik.docker.network=intranet"
 
 networks:

@@ -18,7 +18,7 @@ appConfig:
     searchEngine: duckduckgo
     openingMethod: newtab
     searchBangs: {}
-  enableFontAwesome: true
+  enableFontAwesome: false
   enableMaterialDesignIcons: false
   hideComponents:
     hideHeading: true
@@ -263,12 +263,6 @@ sections:
         url: https://navidrome.holmlab.org
         statusCheck: true
         id: 10_606_navidrome
-      - title: Glances
-        icon: >-
-          glances.png
-        url: https://glances-holmie.holmlab.org
-        statusCheck: true
-        id: 11_606_glances
       - title: Webmin
         icon: >-
           webmin.png
@@ -279,9 +273,24 @@ sections:
       - title: Files
         icon: >-
           folder.png
-        url: https://files-holmie.holmlab.org
+        url: https://files.holmlab.org
         statusCheck: true
         id: 13_606_files
+      - title: Assets
+        icon: >-
+          dumbassets.png
+        url: https://assets.holmlab.org/
+        statusCheck: true
+      - title: Resume
+        icon: >-
+          reactive-resume.png
+        url: https://resume.holmlab.org/
+        statusCheck: true
+      - title: lubelogger
+        icon: >-
+          lubelogger.png
+        url: https://lubelogger.holmlab.org/
+        statusCheck: true
       - title: Jellyseerr
         icon: >-
           jellyseerr.png
@@ -294,22 +303,16 @@ sections:
         url: https://syncthing-holmie.holmlab.org/
         statusCheck: true
         id: 15_606_syncthing
-      - title: Paperless
-        icon: >-
-          paperless.png
-        url: https://paperless.holmlab.org
-        statusCheck: false
-        id: 16_606_paperless
-      - title: Deezer-DL
-        description: ''
-        icon: >-
-          deezer.png
-        url: https://deezerdl.holmlab.org/
-        id: 17_606_deezerdl
       - title: Scrutiny
         icon: >-
           scrutiny.png
         url: https://scrutiny.holmlab.org
+        statusCheck: true
+        id: 18_606_scrutiny
+      - title: Beszel
+        icon: >-
+          beszel.png
+        url: https://beszel.holmlab.org/
         statusCheck: true
         id: 18_606_scrutiny
       - title: FreshRSS
@@ -412,12 +415,6 @@ sections:
         url: https://syncthing-shady.holmlab.org/
         statusCheck: true
         id: 3_948_syncthing
-      - title: Glances
-        icon: >-
-          glances.png
-        url: https://glances-shady.holmlab.org/
-        statusCheck: true
-        id: 4_948_glances
       - title: Asus WAP
         icon: >-
           asus-light.png
@@ -507,26 +504,3 @@ sections:
       cols: 4
       collapsed: false
       hideForGuests: false
-  - name: Holmie Stats
-    icon: >-
-      chart.png
-    displayData:
-      sortBy: default
-      rows: 1
-      cols: 4
-      collapsed: true
-      hideForGuests: true
-    widgets:
-      - type: gl-cpu-history
-        options:
-          hostname: https://glances-holmie.holmlab.org/
-          apiVersion: 4
-        id: 0_1165_glcpuhistory
-      - type: gl-mem-history
-        options:
-          hostname: https://glances-holmie.holmlab.org/
-        id: 1_1165_glmemhistory
-      - type: gl-disk-space
-        options:
-          hostname: https://glances-holmie.holmlab.org/
-        id: 2_1165_gldiskspace
