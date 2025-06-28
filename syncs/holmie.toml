@@ -196,7 +196,7 @@ run_directory = "navidrome"
 
 [[stack]]
 name = "netalertx"
-tags = ["holmie", "hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 3"]
 [stack.config]
 server = "holmie"
 project_name = "netalertx"
