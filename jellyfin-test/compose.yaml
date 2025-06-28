@@ -4,6 +4,8 @@ services:
         container_name: jellyfin-test
 #        ports:
 #        - 8096:8096
+        devices:
+            - /dev/dri:/dev/dri
         volumes:
         - /data/config_storage/jellyfin-test/config:/config
         - /data/config_storage/jellyfin-test/cache:/cache
