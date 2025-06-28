@@ -11,8 +11,8 @@ services:
         ports:
             - 8060:80
         environment:
-            - PUID=$(id -u)
-            - PGID=$(id -g)
+            - PUID=1000
+            - PGID=1000
         image: filebrowser/filebrowser:v2.33.10
         security_opt:
         - no-new-privileges:true # helps to increase security
