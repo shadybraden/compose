@@ -7,7 +7,7 @@ services:
             - /mnt/4tb:/srv/mounted
             - /home/holmie:/srv/home
             - /data/config_storage/filebrowser/database/filebrowser.db:/database/filebrowser.db
-            - /data/config_storage/filebrowser/settings.json:/config/settings.json
+            - /data/config_storage/filebrowser/settings.json:/config
         environment:
             - PUID=1000
             - PGID=1000
