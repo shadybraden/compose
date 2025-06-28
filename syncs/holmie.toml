@@ -616,7 +616,7 @@ run_directory = "reactiveresume"
 
 [[stack]]
 name = "beszel"
-tags = ["holmie", "hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 3"]
 [stack.config]
 server = "holmie"
 project_name = "beszel"

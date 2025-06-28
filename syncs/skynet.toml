@@ -55,7 +55,7 @@ run_directory = "skynet/syncthing"
 
 [[stack]]
 name = "beszelagent-skynet"
-tags = ["shady", "hooked", "criticality: 4"]
+tags = ["shady", "hooked", "criticality: 3"]
 [stack.config]
 server = "skynet"
 project_name = "beszelagent-skynet"

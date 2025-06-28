@@ -39,7 +39,7 @@ run_directory = "hosts/immich_remote_machine_learning"
 
 [[stack]]
 name = "beszelagent-shady"
-tags = ["shady", "hooked", "criticality: 4"]
+tags = ["shady", "hooked", "criticality: 3"]
 [stack.config]
 server = "shady_desktop"
 project_name = "beszelagent-shady"
