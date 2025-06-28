@@ -630,7 +630,7 @@ run_directory = "beszel"
 
 [[stack]]
 name = "beszelagent-holmie"
-tags = ["holmie", "hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 3"]
 [stack.config]
 server = "holmie"
 project_name = "beszelagent-holmie"
