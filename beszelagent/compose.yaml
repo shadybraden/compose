@@ -8,4 +8,4 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
       LISTEN: 45876
-      KEY: ${KEY} # FORMAT (include quotes): KEY="key_here"
+      KEY: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHjPsgtvbD+dgzGl/rK3kK82YRy35RlS4SWRow+v3YGq'
