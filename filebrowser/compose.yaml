@@ -10,7 +10,9 @@ services:
             - /data/config_storage/filebrowser/config:/config
         ports:
             - 8060:80
-        command: ["-c", "/config/settings.json"] # required, see https://github.com/filebrowser/filebrowser/issues/1898
+        environment:
+            - PUID=$(id -u)
+            - PGID=$(id -g)
         image: filebrowser/filebrowser:v2.33.10
         security_opt:
         - no-new-privileges:true # helps to increase security
