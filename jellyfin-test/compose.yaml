@@ -1,0 +1,37 @@
+services:
+    jellyfin-test:
+#        network_mode: host
+        container_name: jellyfin-test
+        ports:
+        - 8096:8096
+        volumes:
+        - /data/config_storage/jellyfin-test/config:/config
+        - /data/config_storage/jellyfin-test/cache:/cache
+        - /mnt/4tb/shows:/shows
+        - /mnt/4tb/movies:/movies
+        restart: on-failure
+        image: quay.io/linuxserver.io/jellyfin:10.10.7
+        environment:
+        - PUID=1000
+        - PGID=1000
+        - TZ=Etc
+        security_opt:
+        - no-new-privileges:true # helps to increase security
+        networks:
+        - intranet
+        labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.jellyfin-test.entrypoints=http"
+        - "traefik.http.routers.jellyfin-test.rule=Host(`jellyfin-test.holmlab.org`)"
+        - "traefik.http.middlewares.jellyfin-test-https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.jellyfin-test.middlewares=jellyfin-test-https-redirect"
+        - "traefik.http.routers.jellyfin-test-secure.entrypoints=https"
+        - "traefik.http.routers.jellyfin-test-secure.rule=Host(`jellyfin-test.holmlab.org`)"
+        - "traefik.http.routers.jellyfin-test-secure.tls=true"
+        - "traefik.http.routers.jellyfin-test-secure.service=jellyfin-test"
+        - "traefik.http.services.jellyfin-test.loadbalancer.server.port=8096" # port of the service
+        - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true
