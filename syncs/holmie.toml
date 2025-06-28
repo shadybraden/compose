@@ -644,7 +644,7 @@ run_directory = "beszelagent"
 
 [[stack]]
 name = "jellyfin-test"
-tags = ["holmie", "hooked", "criticality: 5"]
+tags = ["holmie", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "jeljellyfin-testlyfin"
