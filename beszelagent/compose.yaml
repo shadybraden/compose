@@ -9,5 +9,6 @@ services:
       # monitor other disks / partitions by mounting a folder in /extra-filesystems
       # - /mnt/disk/.beszel:/extra-filesystems/sda1:ro
     environment:
+      LOG_LEVEL: debug
       LISTEN: 45876
       KEY: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHjPsgtvbD+dgzGl/rK3kK82YRy35RlS4SWRow+v3YGq"
