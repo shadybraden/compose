@@ -11,7 +11,7 @@ services:
     environment:
       # LOG_LEVEL: debug
       LISTEN: 45876
-      KEY: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHjPsgtvbD+dgzGl/rK3kK82YRy35RlS4SWRow+v3YGq"
+      KEY: ${KEY}
 
 # Fedora firewall commands:
 # sudo firewall-cmd --permanent --add-port=45876/tcp && sudo firewall-cmd --reload
