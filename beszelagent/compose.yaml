@@ -11,7 +11,7 @@ services:
     environment:
       # LOG_LEVEL: debug
       LISTEN: 45876
-      KEY: ${KEY}
+      KEY: ${KEY} # format: `KEY="key"`
 
 # Fedora firewall commands:
 # sudo firewall-cmd --permanent --add-port=45876/tcp && sudo firewall-cmd --reload
