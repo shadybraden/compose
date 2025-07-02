@@ -13,7 +13,7 @@ services:
         environment: # chown user:group config/ database/
             - PUID=1000
             - PGID=1000
-        image: filebrowser/filebrowser:v2.35.0
+        image: filebrowser/filebrowser:v2.36.0
         security_opt:
         - no-new-privileges:true # helps to increase security
         networks:
