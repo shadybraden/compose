@@ -1,8 +1,0 @@
-services:
-    openstreetmap-tile-server:
-        volumes:
-            - /data/config_storage/tiles/us-northeast-latest.osm.pbf:/data/region.osm.pbf
-            - /data/config_storage/tiles/osm-data:/data/database/
-        image: overv/openstreetmap-tile-server:2.3.0
-        container_name: osm
-        command: import ## first do `import` then do `run`

@@ -639,17 +639,3 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "beszelagent"
-
-##
-
-[[stack]]
-name = "osm"
-tags = ["holmie", "hooked", "criticality: 5"]
-[stack.config]
-server = "holmie"
-project_name = "osm"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
-run_directory = "osm"
