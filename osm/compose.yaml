@@ -1,7 +1,5 @@
 services:
     openstreetmap-tile-server:
-        ports:
-            - 8089:80
         volumes:
             - /data/config_storage/tiles/us-northeast-latest.osm.pbf:/data/region.osm.pbf
             - /data/config_storage/tiles/osm-data:/data/database/
