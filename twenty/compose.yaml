@@ -3,7 +3,7 @@ services:
     image: twentycrm/twenty:v1.0
     container_name: twenty
     volumes:
-      - server-local-data:/app/packages/twenty-server/.local-storage
+      - /data/config_storage/twenty/server-local-data:/app/packages/twenty-server/.local-storage
     ports:
       - "3000:3000"
     environment:
