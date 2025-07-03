@@ -111,7 +111,7 @@ services:
     - "traefik.docker.network=intranet"
 
   jackett: # mega indexer for the arr's above
-    image: quay.io/linuxserver.io/jackett:0.22.2107
+    image: quay.io/linuxserver.io/jackett:0.22.2111
     container_name: jackett
     restart: on-failure
     volumes:
@@ -125,7 +125,7 @@ services:
 
 # in the ui, set "Default Save Path:" to "Default Save Path:"
   qbittorrent:
-    image: quay.io/linuxserver.io/qbittorrent:5.1.1
+    image: quay.io/linuxserver.io/qbittorrent:5.1.2
     container_name: qbittorrent
     environment:
       - PUID=1000
