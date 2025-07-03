@@ -30,7 +30,7 @@ services:
       - /data/config_storage/twenty/server-local-data:/app/packages/twenty-server/.local-storage
     command: ["yarn", "worker:prod"]
     environment:
-      PG_DATABASE_URL: postgres://postgres:${PG_DATABASE_PASSWORD:-postgres}@db:5432/default
+      PG_DATABASE_URL: postgres://postgres:${PG_DATABASE_PASSWORD}@db:5432/default
       SERVER_URL: http://localhost:3000
       REDIS_URL: redis://redis:6379
       DISABLE_DB_MIGRATIONS: "true" # it already runs on the server
