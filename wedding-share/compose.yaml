@@ -35,7 +35,7 @@ services:
     - "traefik.http.services.mcc.loadbalancer.server.port=5000" # port of the service.
     - "traefik.docker.network=intranet"
   cloudflared:
-      image: cloudflare/cloudflared:2025.6.1
+      image: cloudflare/cloudflared:2025.7.0
       command: tunnel --no-autoupdate run --token ${token}
       networks:
       - intranet
