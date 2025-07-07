@@ -380,6 +380,12 @@ sections:
         url: https://hoodik.holmlab.org
         statusCheck: true
         id: 29_606_hoodik
+      - title: SilverBullet
+        icon: >-
+          silverbullet.png
+        url: https://notes.holmlab.org/
+        statusCheck: true
+        id: 29_606_hoodik
     icon: >-
       server.png
   - name: Shady/Misc
