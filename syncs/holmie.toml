@@ -640,3 +640,18 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "beszelagent"
+
+##
+
+[[stack]]
+name = "loggifly"
+tags = ["holmie", "hooked", "criticality: 3"]
+[stack.config]
+server = "holmie"
+project_name = "loggifly"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "loggifly"
+additional_env_files = ["/etc/komodo/holmlaborg.env"]
