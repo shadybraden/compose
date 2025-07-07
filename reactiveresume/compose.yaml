@@ -73,7 +73,7 @@ services:
       - intranet
 
   app:
-    image: amruthpillai/reactive-resume:v4.4.5
+    image: amruthpillai/reactive-resume:v4.4.6
     container_name: app
     restart: unless-stopped
     ports:
