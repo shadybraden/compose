@@ -555,6 +555,9 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "silverbullet"
+environment = """
+DOMAIN=holmlab.org
+"""
 
 ##
 
