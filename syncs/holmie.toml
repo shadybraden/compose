@@ -555,6 +555,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "silverbullet"
+additional_env_files = ["pw.env"]
 environment = """
 DOMAIN=holmlab.org
 """
