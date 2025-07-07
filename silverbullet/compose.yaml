@@ -7,7 +7,7 @@ services:
       - /data/config_storage/silverbullet:/space
     image: ghcr.io/silverbulletmd/silverbullet:v2
     environment:
-      - SB_USER=notes:${password}
+      - SB_USER=shady:${password}
     security_opt:
       - no-new-privileges:true # helps to increase security
     networks:
