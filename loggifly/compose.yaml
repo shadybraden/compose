@@ -10,4 +10,5 @@ services:
       CONTAINERS: ${CONTAINERS}
       GLOBAL_KEYWORDS: ${GLOBAL_KEYWORDS}
       GLOBAL_KEYWORDS_WITH_ATTACHMENT: "critical" # Attaches a log file to the notification
+      NTFY_PRIORITY: 3
     restart: unless-stopped
