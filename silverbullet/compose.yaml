@@ -7,22 +7,22 @@ services:
       - /data/config_storage/silverbullet:/space
     image: ghcr.io/silverbulletmd/silverbullet:v2
     environment:
-      - SB_USER=vbs:${password}
+      - SB_USER=notes:${password}
     security_opt:
       - no-new-privileges:true # helps to increase security
     networks:
       - intranet
     labels:
     - "traefik.enable=true"
-    - "traefik.http.routers.vbs.entrypoints=http"
-    - "traefik.http.routers.vbs.rule=Host(`vbs.holmlab.org`)"
-    - "traefik.http.middlewares.vbs-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.vbs.middlewares=vbs-https-redirect"
-    - "traefik.http.routers.vbs-secure.entrypoints=https"
-    - "traefik.http.routers.vbs-secure.rule=Host(`vbs.holmlab.org`)"
-    - "traefik.http.routers.vbs-secure.tls=true"
-    - "traefik.http.routers.vbs-secure.service=vbs"
-    - "traefik.http.services.vbs.loadbalancer.server.port=3000" # port of the service.
+    - "traefik.http.routers.notes.entrypoints=http"
+    - "traefik.http.routers.notes.rule=Host(`notes.${DOMAIN}`)"
+    - "traefik.http.middlewares.notes-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.notes.middlewares=notes-https-redirect"
+    - "traefik.http.routers.notes-secure.entrypoints=https"
+    - "traefik.http.routers.notes-secure.rule=Host(`notes.${DOMAIN}`)"
+    - "traefik.http.routers.notes-secure.tls=true"
+    - "traefik.http.routers.notes-secure.service=notes"
+    - "traefik.http.services.notes.loadbalancer.server.port=3000" # port of the service.
     - "traefik.docker.network=intranet"
 
 networks:
