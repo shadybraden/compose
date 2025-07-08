@@ -33,7 +33,7 @@ services:
         - "traefik.http.routers.jellyfin-secure.service=jellyfin"
         - "traefik.http.services.jellyfin.loadbalancer.server.port=8096" # port of the service
         - "traefik.docker.network=intranet"
-        - "traefik.http.routers.pdf-secure.middlewares=tinyauth"
+        - "traefik.http.routers.jellyfin-secure.middlewares=tinyauth"
 
 networks:
   intranet:
