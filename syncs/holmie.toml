@@ -546,7 +546,7 @@ run_directory = "wedding-share"
 
 [[stack]]
 name = "silverbullet"
-tags = ["holmie", "hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "silverbullet"
