@@ -31,7 +31,6 @@ services:
     - "traefik.http.routers.pdf-secure.service=pdf"
     - "traefik.http.services.pdf.loadbalancer.server.port=8080" # port of the service
     - "traefik.docker.network=intranet"
-    - "traefik.http.routers.pdf-secure.middlewares=tinyauth"
 
 networks:
   intranet:
