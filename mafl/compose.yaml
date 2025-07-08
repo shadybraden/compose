@@ -13,11 +13,11 @@ services:
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.dash.entrypoints=http"
-    - "traefik.http.routers.dash.rule=Host(`dash.holmlab.org`)"
+    - "traefik.http.routers.dash.rule=Host(`dash.${DOMAIN}`)"
     - "traefik.http.middlewares.dash-https-redirect.redirectscheme.scheme=https"
     - "traefik.http.routers.dash.middlewares=dash-https-redirect"
     - "traefik.http.routers.dash-secure.entrypoints=https"
-    - "traefik.http.routers.dash-secure.rule=Host(`dash.holmlab.org`)"
+    - "traefik.http.routers.dash-secure.rule=Host(`dash.${DOMAIN}`)"
     - "traefik.http.routers.dash-secure.tls=true"
     - "traefik.http.routers.dash-secure.service=dash"
     - "traefik.http.services.dash.loadbalancer.server.port=3000" # port of the service.
