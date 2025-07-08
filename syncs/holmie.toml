@@ -675,7 +675,7 @@ additional_env_files = ["/etc/komodo/holmlaborg.env"]
 
 [[stack]]
 name = "mafl"
-tags = ["holmie", "hooked", "criticality: 1"]
+tags = ["holmie", "hooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "mafl"
