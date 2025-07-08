@@ -1,5 +1,5 @@
 [[stack]]
-name = "portainer-shady"
+name = "portainer"
 tags = ["shady","hooked"]
 [stack.config]
 server = "shady_desktop"
