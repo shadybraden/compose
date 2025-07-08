@@ -1,11 +1,9 @@
 title: My Home Page
 services:
   - title: Home Assistant
-    description: Home automation
     link: https://homeassistant.holmlab.org/dashboard-dashboard/0
     icon:
-      name: simple-icons:homeassistant
-      wrap: true
+      name: icons/home-assistant.png
       color: '#3dbcf3'
     status:
       enabled: true
