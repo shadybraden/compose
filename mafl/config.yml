@@ -3,7 +3,7 @@ services:
   - title: Home Assistant
     link: https://homeassistant.holmlab.org/
     icon:
-      url: /data/config_storage/komodo/etc_komodo/stacks/mafl/dashy/icons/home-assistant.png
+      url: icons/home-assistant.png
     status:
       enabled: true
   - title: NAS
