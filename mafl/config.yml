@@ -3,7 +3,7 @@ services:
   - title: Home Assistant
     link: https://homeassistant.holmlab.org/dashboard-dashboard/0
     icon:
-      url: icons/home-assistant.png
+      url: home-assistant.png
     status:
       enabled: true
   - title: NAS
