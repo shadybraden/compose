@@ -5,11 +5,11 @@ services:
     restart: unless-stopped
     environment:
       - SECRET=${SECRET} # openssl rand -base64 32 | tr -dc 'a-zA-Z0-9' | head -c 32 && echo
-      - APP_URL=https://auth.${DOMAIN}
+      - APP_URL=https://tinyauth.${DOMAIN}
       - USERS=${USERS} # docker run -i -t --rm ghcr.io/steveiliop56/tinyauth:v3 user create --interactive
     labels:
       traefik.enable: true
-      traefik.http.routers.tinyauth.rule: Host(`auth.${DOMAIN}`)
+      traefik.http.routers.tinyauth.rule: Host(`tinyauth.${DOMAIN}`)
       traefik.http.middlewares.tinyauth.forwardauth.address: http://tinyauth:3000/api/auth/traefik
 
 # add the following to any container to make it use tinyauth:
