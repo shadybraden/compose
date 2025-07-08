@@ -44,3 +44,8 @@ networks:
   intranet:
     external: true
 ```
+
+To include something to TinyAuth:
+```
+    - "traefik.http.routers.pdf-secure.middlewares=tinyauth"
+```
