@@ -7,7 +7,6 @@ services:
       - /data/config_storage/silverbullet:/space
     image: ghcr.io/silverbulletmd/silverbullet:v2
     environment:
-      - SB_USER=shady:${password}
       - TZ=America/New_York
     security_opt:
       - no-new-privileges:true # helps to increase security
@@ -25,6 +24,7 @@ services:
     - "traefik.http.routers.notes-secure.service=notes"
     - "traefik.http.services.notes.loadbalancer.server.port=3000" # port of the service.
     - "traefik.docker.network=intranet"
+    - "traefik.http.routers.jellyfin-secure.middlewares=tinyauth"
 
 networks:
   intranet:
