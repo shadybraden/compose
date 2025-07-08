@@ -670,18 +670,3 @@ repo = "shady/compose"
 branch = "main"
 run_directory = "tinyauth"
 additional_env_files = ["/etc/komodo/holmlaborg.env"]
-
-##
-
-[[stack]]
-name = "mafl"
-tags = ["holmie", "hooked", "criticality: 5"]
-[stack.config]
-server = "holmie"
-project_name = "mafl"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
-run_directory = "mafl"
-additional_env_files = ["/etc/komodo/holmlaborg.env"]
