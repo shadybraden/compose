@@ -10,5 +10,5 @@ services:
       CONTAINERS: "vaultwarden,audiobookshelf,pihole,restic,wg-easy,forgejo,jellyfin,immich_server,nextcloud,searxng,syncthing,silverbullet"
       GLOBAL_KEYWORDS: "error,failed login,password,Authentication failed,Failed authentication attempt,Wrong credentials"
       GLOBAL_KEYWORDS_WITH_ATTACHMENT: "critical" # Attaches a log file to the notification
-      NTFY_PRIORITY: 3
+      NTFY_PRIORITY: 4
     restart: unless-stopped
