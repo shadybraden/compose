@@ -47,5 +47,5 @@ networks:
 
 To include something to TinyAuth:
 ```
-    - "traefik.http.routers.SERVICENAME-secure.middlewares=tinyauth"
+- "traefik.http.routers.SERVICENAME-secure.middlewares=tinyauth"
 ```
