@@ -7,7 +7,7 @@ services:
       - SECRET=${SECRET} # openssl rand -base64 32 | tr -dc 'a-zA-Z0-9' | head -c 32 && echo
       - APP_URL=https://tinyauth.${DOMAIN}
       - USERS=${USERS} # docker run -i -t --rm ghcr.io/steveiliop56/tinyauth:v3 user create --interactive
-      - DISABLE_CONTINUE=false
+      - DISABLE_CONTINUE=true
     security_opt:
       - no-new-privileges:true # helps to increase security
     networks:
