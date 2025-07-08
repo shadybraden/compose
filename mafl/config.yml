@@ -1,7 +1,7 @@
 title: My Home Page
 services:
   - title: Home Assistant
-    link: https://homeassistant.holmlab.org/dashboard-dashboard/0
+    link: https://homeassistant.holmlab.org/
     icon:
       url: /app/public/icons/home-assistant.png
     status:
