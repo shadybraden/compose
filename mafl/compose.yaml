@@ -7,7 +7,7 @@ services:
     volumes:
 #      - /data/config_storage/mafl/:/app/data/
       - /data/config_storage/komodo/etc_komodo/stacks/mafl/mafl/config.yml:/app/data/config.yml
-      - /data/config_storage/komodo/etc_komodo/stacks/dashy/dashy/icons:/app/public/icons:ro # using dashy's icons
+      - /data/config_storage/komodo/etc_komodo/stacks/mafl/dashy/icons:/app/public/icons:ro
     security_opt:
       - no-new-privileges:true # helps to increase security
     networks:
