@@ -1,15 +1,16 @@
-tinyauth:
-  image: ghcr.io/steveiliop56/tinyauth:v3.4.1
-  container_name: tinyauth
-  restart: unless-stopped
-  environment:
-    - SECRET=${SECRET} # openssl rand -base64 32 | tr -dc 'a-zA-Z0-9' | head -c 32 && echo
-    - APP_URL=https://auth.${DOMAIN}
-    - USERS=${USERS} # docker run -i -t --rm ghcr.io/steveiliop56/tinyauth:v3 user create --interactive
-  labels:
-    traefik.enable: true
-    traefik.http.routers.tinyauth.rule: Host(`auth.${DOMAIN}`)
-    traefik.http.middlewares.tinyauth.forwardauth.address: http://tinyauth:3000/api/auth/traefik
+services:
+  tinyauth:
+    image: ghcr.io/steveiliop56/tinyauth:v3.4.1
+    container_name: tinyauth
+    restart: unless-stopped
+    environment:
+      - SECRET=${SECRET} # openssl rand -base64 32 | tr -dc 'a-zA-Z0-9' | head -c 32 && echo
+      - APP_URL=https://auth.${DOMAIN}
+      - USERS=${USERS} # docker run -i -t --rm ghcr.io/steveiliop56/tinyauth:v3 user create --interactive
+    labels:
+      traefik.enable: true
+      traefik.http.routers.tinyauth.rule: Host(`auth.${DOMAIN}`)
+      traefik.http.middlewares.tinyauth.forwardauth.address: http://tinyauth:3000/api/auth/traefik
 
 # add the following to any container to make it use tinyauth:
 # - "traefik.http.routers.[SERVICENAME].middlewares: tinyauth"
