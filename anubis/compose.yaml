@@ -1,0 +1,42 @@
+services:
+  anubis:
+    image: ghcr.io/techarohq/anubis:v1.21.0-pre1
+    container_name: anubis
+    environment:
+      BIND: ":8080"
+      DIFFICULTY: "4"
+      METRICS_BIND: ":9090"
+      SERVE_ROBOTS_TXT: "true"
+      TARGET: http://traefik:3923
+      POLICY_FNAME: "/data/cfg/botPolicy.yaml"
+      OG_PASSTHROUGH: "true"
+      OG_EXPIRY_TIME: "24h"
+    ports:
+      - 8080:8080
+    volumes:
+      - /home/holmie/compose/anubis/botPolicy.yaml:/data/cfg/botPolicy.yaml:ro # so this iac can control routers and services
+    security_opt:
+      - no-new-privileges:true # helps to increase security
+    networks:
+      - intranet
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.anubis.entrypoints=http"
+    - "traefik.http.routers.anubis.rule=Host(`anubis.holmlab.org`)"
+    - "traefik.http.middlewares.anubis-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.anubis.middlewares=anubis-https-redirect"
+    - "traefik.http.routers.anubis-secure.entrypoints=https"
+    - "traefik.http.routers.anubis-secure.rule=Host(`anubis.holmlab.org`)"
+    - "traefik.http.routers.anubis-secure.tls=true"
+    - "traefik.http.routers.anubis-secure.service=anubis"
+    - "traefik.http.services.anubis.loadbalancer.server.port=8080" # port of the service.
+    - "traefik.docker.network=intranet"
+    - "traefik.http.routers.anubis.priority=1" # Setting Anubis to the lowest priority, so it only takes the slack
+    - "traefik.http.routers.anubis.rule=PathRegexp(`.*`)" # Wildcard match every path
+    - "traefik.http.routers.anubis.entrypoints=websecure" # Listen on HTTPS
+    - "traefik.http.routers.anubis.service=anubis" # Telling Traefik to use the above specified port
+    - "traefik.http.routers.anubis.tls.certresolver=le" # Telling Traefik to resolve a Cert for Anubis
+
+networks:
+  intranet:
+    external: true
