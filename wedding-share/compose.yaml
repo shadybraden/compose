@@ -11,6 +11,10 @@ services:
       DATABASE_TYPE: 'sqlite'
       ENCRYPTION_KEY: ${ENCRYPTION_KEY}
       ENCRYPTION_SALT: ${ENCRYPTION_SALT}
+      NTFY_ENABLED: true
+      NTFY_ENDPOINT: https://ntfy.${DOMAIN}
+      NTFY_TOPIC: ${NTFY_TOPIC}
+      NTFY_PRIORITY: 5
     volumes:
       - /data/config_storage/wedding-share/config:/app/config
       - /data/config_storage/wedding-share/thumbnails:/app/wwwroot/thumbnails

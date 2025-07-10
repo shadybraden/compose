@@ -541,6 +541,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "wedding-share"
+additional_env_files = ["/etc/komodo/holmlaborg.env"]
 
 ##
 

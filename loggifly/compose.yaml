@@ -7,7 +7,7 @@ services:
     environment:
       NTFY_URL: "https://ntfy.${DOMAIN}"
       NTFY_TOPIC: ${topic}
-      CONTAINERS: "vaultwarden,audiobookshelf,pihole,restic,wg-easy,forgejo,jellyfin,immich_server,nextcloud,syncthing,silverbullet,tinyauth"
+      CONTAINERS: "vaultwarden,WeddingShare,audiobookshelf,pihole,restic,wg-easy,forgejo,jellyfin,immich_server,nextcloud,syncthing,silverbullet,tinyauth"
       GLOBAL_KEYWORDS: "error,failed login,password,Authentication failed,Failed authentication attempt,Wrong credentials"
       GLOBAL_KEYWORDS_WITH_ATTACHMENT: "critical" # Attaches a log file to the notification
       NTFY_PRIORITY: 1
