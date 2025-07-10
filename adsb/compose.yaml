@@ -63,11 +63,11 @@ services:
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.adsb.entrypoints=http"
-    - "traefik.http.routers.adsb.rule=Host(`adsb.holmlab.org`)"
+    - "traefik.http.routers.adsb.rule=Host(`adsb.${DOMAIN}`)"
     - "traefik.http.middlewares.adsb-https-redirect.redirectscheme.scheme=https"
     - "traefik.http.routers.adsb.middlewares=adsb-https-redirect"
     - "traefik.http.routers.adsb-secure.entrypoints=https"
-    - "traefik.http.routers.adsb-secure.rule=Host(`adsb.holmlab.org`)"
+    - "traefik.http.routers.adsb-secure.rule=Host(`adsb.${DOMAIN}`)"
     - "traefik.http.routers.adsb-secure.tls=true"
     - "traefik.http.routers.adsb-secure.service=adsb"
     - "traefik.http.services.adsb.loadbalancer.server.port=80" # port of the service.
