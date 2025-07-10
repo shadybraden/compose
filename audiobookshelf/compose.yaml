@@ -19,11 +19,11 @@ services:
         labels:
         - "traefik.enable=true"
         - "traefik.http.routers.audiobookshelf.entrypoints=http"
-        - "traefik.http.routers.audiobookshelf.rule=Host(`audiobookshelf.holmlab.org`)"
+        - "traefik.http.routers.audiobookshelf.rule=Host(`audiobookshelf.${DOMAIN}`)"
         - "traefik.http.middlewares.audiobookshelf-https-redirect.redirectscheme.scheme=https"
         - "traefik.http.routers.audiobookshelf.middlewares=audiobookshelf-https-redirect"
         - "traefik.http.routers.audiobookshelf-secure.entrypoints=https"
-        - "traefik.http.routers.audiobookshelf-secure.rule=Host(`audiobookshelf.holmlab.org`)"
+        - "traefik.http.routers.audiobookshelf-secure.rule=Host(`audiobookshelf.${DOMAIN}`)"
         - "traefik.http.routers.audiobookshelf-secure.tls=true"
         - "traefik.http.routers.audiobookshelf-secure.service=audiobookshelf"
         - "traefik.http.services.audiobookshelf.loadbalancer.server.port=80" # port of the service
