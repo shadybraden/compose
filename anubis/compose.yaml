@@ -22,11 +22,11 @@ services:
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.anubis.entrypoints=http"
-    - "traefik.http.routers.anubis.rule=Host(`anubis.holmlab.org`)"
+    - "traefik.http.routers.anubis.rule=Host(`anubis.${DOMAIN}`)"
     - "traefik.http.middlewares.anubis-https-redirect.redirectscheme.scheme=https"
     - "traefik.http.routers.anubis.middlewares=anubis-https-redirect"
     - "traefik.http.routers.anubis-secure.entrypoints=https"
-    - "traefik.http.routers.anubis-secure.rule=Host(`anubis.holmlab.org`)"
+    - "traefik.http.routers.anubis-secure.rule=Host(`anubis.${DOMAIN}`)"
     - "traefik.http.routers.anubis-secure.tls=true"
     - "traefik.http.routers.anubis-secure.service=anubis"
     - "traefik.http.services.anubis.loadbalancer.server.port=8080" # port of the service.
