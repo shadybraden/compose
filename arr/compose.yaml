@@ -27,22 +27,22 @@ services:
 
     - "traefik.http.routers.qbittorrent.service=qbittorrent" # for multi-port - https://github.com/traefik/traefik/issues/4807
     - "traefik.http.routers.qbittorrent.entrypoints=http"
-    - "traefik.http.routers.qbittorrent.rule=Host(`qbittorrent.holmlab.org`)"
+    - "traefik.http.routers.qbittorrent.rule=Host(`qbittorrent.${DOMAIN}`)"
     - "traefik.http.middlewares.qbittorrent-https-redirect.redirectscheme.scheme=https"
     - "traefik.http.routers.qbittorrent.middlewares=qbittorrent-https-redirect"
     - "traefik.http.routers.qbittorrent-secure.entrypoints=https"
-    - "traefik.http.routers.qbittorrent-secure.rule=Host(`qbittorrent.holmlab.org`)"
+    - "traefik.http.routers.qbittorrent-secure.rule=Host(`qbittorrent.${DOMAIN}`)"
     - "traefik.http.routers.qbittorrent-secure.tls=true"
     - "traefik.http.routers.qbittorrent-secure.service=qbittorrent"
     - "traefik.http.services.qbittorrent.loadbalancer.server.port=8080" # port of the service
 
     - "traefik.http.routers.jackett.service=jackett" # for multi-port - https://github.com/traefik/traefik/issues/4807
     - "traefik.http.routers.jackett.entrypoints=http"
-    - "traefik.http.routers.jackett.rule=Host(`jackett.holmlab.org`)"
+    - "traefik.http.routers.jackett.rule=Host(`jackett.${DOMAIN}`)"
     - "traefik.http.middlewares.jackett-https-redirect.redirectscheme.scheme=https"
     - "traefik.http.routers.jackett.middlewares=jackett-https-redirect"
     - "traefik.http.routers.jackett-secure.entrypoints=https"
-    - "traefik.http.routers.jackett-secure.rule=Host(`jackett.holmlab.org`)"
+    - "traefik.http.routers.jackett-secure.rule=Host(`jackett.${DOMAIN}`)"
     - "traefik.http.routers.jackett-secure.tls=true"
     - "traefik.http.routers.jackett-secure.service=jackett"
     - "traefik.http.services.jackett.loadbalancer.server.port=9117" # port of the service
@@ -69,11 +69,11 @@ services:
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.radarr.entrypoints=http"
-    - "traefik.http.routers.radarr.rule=Host(`radarr.holmlab.org`)"
+    - "traefik.http.routers.radarr.rule=Host(`radarr.${DOMAIN}`)"
     - "traefik.http.middlewares.radarr-https-redirect.redirectscheme.scheme=https"
     - "traefik.http.routers.radarr.middlewares=radarr-https-redirect"
     - "traefik.http.routers.radarr-secure.entrypoints=https"
-    - "traefik.http.routers.radarr-secure.rule=Host(`radarr.holmlab.org`)"
+    - "traefik.http.routers.radarr-secure.rule=Host(`radarr.${DOMAIN}`)"
     - "traefik.http.routers.radarr-secure.tls=true"
     - "traefik.http.routers.radarr-secure.service=radarr"
     - "traefik.http.services.radarr.loadbalancer.server.port=7878" # port of the service
@@ -100,11 +100,11 @@ services:
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.sonarr.entrypoints=http"
-    - "traefik.http.routers.sonarr.rule=Host(`sonarr.holmlab.org`)"
+    - "traefik.http.routers.sonarr.rule=Host(`sonarr.${DOMAIN}`)"
     - "traefik.http.middlewares.sonarr-https-redirect.redirectscheme.scheme=https"
     - "traefik.http.routers.sonarr.middlewares=sonarr-https-redirect"
     - "traefik.http.routers.sonarr-secure.entrypoints=https"
-    - "traefik.http.routers.sonarr-secure.rule=Host(`sonarr.holmlab.org`)"
+    - "traefik.http.routers.sonarr-secure.rule=Host(`sonarr.${DOMAIN}`)"
     - "traefik.http.routers.sonarr-secure.tls=true"
     - "traefik.http.routers.sonarr-secure.service=sonarr"
     - "traefik.http.services.sonarr.loadbalancer.server.port=8989" # port of the service
