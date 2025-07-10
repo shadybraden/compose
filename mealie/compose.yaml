@@ -18,11 +18,11 @@ services:
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.mealie.entrypoints=http"
-    - "traefik.http.routers.mealie.rule=Host(`mealie.holmlab.org`)"
+    - "traefik.http.routers.mealie.rule=Host(`mealie.${DOMAIN}`)"
     - "traefik.http.middlewares.mealie-https-redirect.redirectscheme.scheme=https"
     - "traefik.http.routers.mealie.middlewares=mealie-https-redirect"
     - "traefik.http.routers.mealie-secure.entrypoints=https"
-    - "traefik.http.routers.mealie-secure.rule=Host(`mealie.holmlab.org`)"
+    - "traefik.http.routers.mealie-secure.rule=Host(`mealie.${DOMAIN}`)"
     - "traefik.http.routers.mealie-secure.tls=true"
     - "traefik.http.routers.mealie-secure.service=mealie"
     - "traefik.http.services.mealie.loadbalancer.server.port=9000" # port of the service.

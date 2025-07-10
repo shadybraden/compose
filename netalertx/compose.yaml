@@ -18,11 +18,11 @@ services:
         labels:
         - "traefik.enable=true"
         - "traefik.http.routers.netalertx.entrypoints=http"
-        - "traefik.http.routers.netalertx.rule=Host(`netalertx.holmlab.org`)"
+        - "traefik.http.routers.netalertx.rule=Host(`netalertx.${DOMAIN}`)"
         - "traefik.http.middlewares.netalertx-https-redirect.redirectscheme.scheme=https"
         - "traefik.http.routers.netalertx.middlewares=netalertx-https-redirect"
         - "traefik.http.routers.netalertx-secure.entrypoints=https"
-        - "traefik.http.routers.netalertx-secure.rule=Host(`netalertx.holmlab.org`)"
+        - "traefik.http.routers.netalertx-secure.rule=Host(`netalertx.${DOMAIN}`)"
         - "traefik.http.routers.netalertx-secure.tls=true"
         - "traefik.http.routers.netalertx-secure.service=netalertx"
         - "traefik.http.services.netalertx.loadbalancer.server.port=20211" # port of the service

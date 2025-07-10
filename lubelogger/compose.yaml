@@ -14,11 +14,11 @@ services:
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.lubelogger.entrypoints=http"
-    - "traefik.http.routers.lubelogger.rule=Host(`lubelogger.holmlab.org`)"
+    - "traefik.http.routers.lubelogger.rule=Host(`lubelogger.${DOMAIN}`)"
     - "traefik.http.middlewares.lubelogger-https-redirect.redirectscheme.scheme=https"
     - "traefik.http.routers.lubelogger.middlewares=lubelogger-https-redirect"
     - "traefik.http.routers.lubelogger-secure.entrypoints=https"
-    - "traefik.http.routers.lubelogger-secure.rule=Host(`lubelogger.holmlab.org`)"
+    - "traefik.http.routers.lubelogger-secure.rule=Host(`lubelogger.${DOMAIN}`)"
     - "traefik.http.routers.lubelogger-secure.tls=true"
     - "traefik.http.routers.lubelogger-secure.service=lubelogger"
     - "traefik.http.services.lubelogger.loadbalancer.server.port=8080" # port of the service.

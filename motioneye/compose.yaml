@@ -20,11 +20,11 @@ services:
         labels:
         - "traefik.enable=true"
         - "traefik.http.routers.motioneye.entrypoints=http"
-        - "traefik.http.routers.motioneye.rule=Host(`motioneye.holmlab.org`)"
+        - "traefik.http.routers.motioneye.rule=Host(`motioneye.${DOMAIN}`)"
         - "traefik.http.middlewares.motioneye-https-redirect.redirectscheme.scheme=https"
         - "traefik.http.routers.motioneye.middlewares=motioneye-https-redirect"
         - "traefik.http.routers.motioneye-secure.entrypoints=https"
-        - "traefik.http.routers.motioneye-secure.rule=Host(`motioneye.holmlab.org`)"
+        - "traefik.http.routers.motioneye-secure.rule=Host(`motioneye.${DOMAIN}`)"
         - "traefik.http.routers.motioneye-secure.tls=true"
         - "traefik.http.routers.motioneye-secure.service=motioneye"
         - "traefik.http.services.motioneye.loadbalancer.server.port=8081" # port of the service.

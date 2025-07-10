@@ -20,11 +20,11 @@ services:
         labels:
         - "traefik.enable=true"
         - "traefik.http.routers.navidrome.entrypoints=http"
-        - "traefik.http.routers.navidrome.rule=Host(`navidrome.holmlab.org`)"
+        - "traefik.http.routers.navidrome.rule=Host(`navidrome.${DOMAIN}`)"
         - "traefik.http.middlewares.navidrome-https-redirect.redirectscheme.scheme=https"
         - "traefik.http.routers.navidrome.middlewares=navidrome-https-redirect"
         - "traefik.http.routers.navidrome-secure.entrypoints=https"
-        - "traefik.http.routers.navidrome-secure.rule=Host(`navidrome.holmlab.org`)"
+        - "traefik.http.routers.navidrome-secure.rule=Host(`navidrome.${DOMAIN}`)"
         - "traefik.http.routers.navidrome-secure.tls=true"
         - "traefik.http.routers.navidrome-secure.service=navidrome"
         - "traefik.http.services.navidrome.loadbalancer.server.port=4533" # port of the service

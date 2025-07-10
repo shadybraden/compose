@@ -17,11 +17,11 @@ services:
         labels:
         - "traefik.enable=true"
         - "traefik.http.routers.nextcloud.entrypoints=http"
-        - "traefik.http.routers.nextcloud.rule=Host(`nextcloud.holmlab.org`)"
+        - "traefik.http.routers.nextcloud.rule=Host(`nextcloud.${DOMAIN}`)"
         - "traefik.http.middlewares.nextcloud-https-redirect.redirectscheme.scheme=https"
         - "traefik.http.routers.nextcloud.middlewares=nextcloud-https-redirect"
         - "traefik.http.routers.nextcloud-secure.entrypoints=https"
-        - "traefik.http.routers.nextcloud-secure.rule=Host(`nextcloud.holmlab.org`)"
+        - "traefik.http.routers.nextcloud-secure.rule=Host(`nextcloud.${DOMAIN}`)"
         - "traefik.http.routers.nextcloud-secure.tls=true"
         - "traefik.http.routers.nextcloud-secure.service=nextcloud"
         - "traefik.http.services.nextcloud.loadbalancer.server.port=80" # port of the service
