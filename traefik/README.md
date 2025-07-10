@@ -30,11 +30,11 @@ Change port and SUBDOMAIN as needed
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.SUBDOMAIN.entrypoints=http"
-    - "traefik.http.routers.SUBDOMAIN.rule=Host(`SUBDOMAIN.holmlab.org`)"
+    - "traefik.http.routers.SUBDOMAIN.rule=Host(`SUBDOMAIN.${DOMAIN}`)"
     - "traefik.http.middlewares.SUBDOMAIN-https-redirect.redirectscheme.scheme=https"
     - "traefik.http.routers.SUBDOMAIN.middlewares=SUBDOMAIN-https-redirect"
     - "traefik.http.routers.SUBDOMAIN-secure.entrypoints=https"
-    - "traefik.http.routers.SUBDOMAIN-secure.rule=Host(`SUBDOMAIN.holmlab.org`)"
+    - "traefik.http.routers.SUBDOMAIN-secure.rule=Host(`SUBDOMAIN.${DOMAIN}`)"
     - "traefik.http.routers.SUBDOMAIN-secure.tls=true"
     - "traefik.http.routers.SUBDOMAIN-secure.service=SUBDOMAIN"
     - "traefik.http.services.SUBDOMAIN.loadbalancer.server.port=80" # port of the service.

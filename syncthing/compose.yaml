@@ -26,11 +26,11 @@ services:
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.syncthing-holmie.entrypoints=http"
-    - "traefik.http.routers.syncthing-holmie.rule=Host(`syncthing-holmie.holmlab.org`)"
+    - "traefik.http.routers.syncthing-holmie.rule=Host(`syncthing-holmie.${DOMAIN}`)"
     - "traefik.http.middlewares.syncthing-holmie-https-redirect.redirectscheme.scheme=https"
     - "traefik.http.routers.syncthing-holmie.middlewares=syncthing-holmie-https-redirect"
     - "traefik.http.routers.syncthing-holmie-secure.entrypoints=https"
-    - "traefik.http.routers.syncthing-holmie-secure.rule=Host(`syncthing-holmie.holmlab.org`)"
+    - "traefik.http.routers.syncthing-holmie-secure.rule=Host(`syncthing-holmie.${DOMAIN}`)"
     - "traefik.http.routers.syncthing-holmie-secure.tls=true"
     - "traefik.http.routers.syncthing-holmie-secure.service=syncthing-holmie"
     - "traefik.http.services.syncthing-holmie.loadbalancer.server.port=8384" # port of the service

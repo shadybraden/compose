@@ -20,11 +20,11 @@ services:
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.scrutiny.entrypoints=http"
-    - "traefik.http.routers.scrutiny.rule=Host(`scrutiny.holmlab.org`)"
+    - "traefik.http.routers.scrutiny.rule=Host(`scrutiny.${DOMAIN}`)"
     - "traefik.http.middlewares.scrutiny-https-redirect.redirectscheme.scheme=https"
     - "traefik.http.routers.scrutiny.middlewares=scrutiny-https-redirect"
     - "traefik.http.routers.scrutiny-secure.entrypoints=https"
-    - "traefik.http.routers.scrutiny-secure.rule=Host(`scrutiny.holmlab.org`)"
+    - "traefik.http.routers.scrutiny-secure.rule=Host(`scrutiny.${DOMAIN}`)"
     - "traefik.http.routers.scrutiny-secure.tls=true"
     - "traefik.http.routers.scrutiny-secure.service=scrutiny"
     - "traefik.http.services.scrutiny.loadbalancer.server.port=8080" # port of the service

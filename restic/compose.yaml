@@ -21,11 +21,11 @@ services:
         --keep-monthly 8
       TZ: America/New_York
 #      POST_COMMANDS_SUCCESS: |-
-#        curl -H "Title: HOLMIE restic backups success" -H "Priority: min" -H "Tags: house" -d "done" https://ntfy.holmlab.org/backupsqY5CmNgp0cHv9UjeEzrnTT8qORA5M1qWUn
+#        curl -H "Title: HOLMIE restic backups success" -H "Priority: min" -H "Tags: house" -d "done" https://ntfy.${DOMAIN}/backupsqY5CmNgp0cHv9UjeEzrnTT8qORA5M1qWUn
       POST_COMMANDS_FAILURE: |-
-        curl -H "Title: HOLMIE restic backups FAILURE" -H "Priority: high" -H "Tags: rotating_light" -d "SEE LOGS" https://ntfy.holmlab.org/backupsqY5CmNgp0cHv9UjeEzrnTT8qORA5M1qWUn
+        curl -H "Title: HOLMIE restic backups FAILURE" -H "Priority: high" -H "Tags: rotating_light" -d "SEE LOGS" https://ntfy.${DOMAIN}/backupsqY5CmNgp0cHv9UjeEzrnTT8qORA5M1qWUn
       POST_COMMANDS_INCOMPLETE: |-
-        curl -H "Title: HOLMIE restic INCOMPLETE" -H "Priority: default" -H "Tags: warning" -d "SEE LOGS" https://ntfy.holmlab.org/backupsqY5CmNgp0cHv9UjeEzrnTT8qORA5M1qWUn
+        curl -H "Title: HOLMIE restic INCOMPLETE" -H "Priority: default" -H "Tags: warning" -d "SEE LOGS" https://ntfy.${DOMAIN}/backupsqY5CmNgp0cHv9UjeEzrnTT8qORA5M1qWUn
     volumes:
       - /data/backups:/restic # backed up data
       - /data/tmp-for-restic-restore:/tmp-for-restore # if you run a restore, data goes here

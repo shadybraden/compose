@@ -30,11 +30,11 @@ services:
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.wireguard.entrypoints=http"
-    - "traefik.http.routers.wireguard.rule=Host(`wireguard.holmlab.org`)"
+    - "traefik.http.routers.wireguard.rule=Host(`wireguard.${DOMAIN}`)"
     - "traefik.http.middlewares.wireguard-https-redirect.redirectscheme.scheme=https"
     - "traefik.http.routers.wireguard.middlewares=wireguard-https-redirect"
     - "traefik.http.routers.wireguard-secure.entrypoints=https"
-    - "traefik.http.routers.wireguard-secure.rule=Host(`wireguard.holmlab.org`)"
+    - "traefik.http.routers.wireguard-secure.rule=Host(`wireguard.${DOMAIN}`)"
     - "traefik.http.routers.wireguard-secure.tls=true"
     - "traefik.http.routers.wireguard-secure.service=wireguard"
     - "traefik.http.services.wireguard.loadbalancer.server.port=51821" # port of the service

@@ -44,11 +44,11 @@ services:
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.resume-minio.entrypoints=http"
-    - "traefik.http.routers.resume-minio.rule=Host(`resume-minio.holmlab.org`)"
+    - "traefik.http.routers.resume-minio.rule=Host(`resume-minio.${DOMAIN}`)"
     - "traefik.http.middlewares.resume-minio-https-redirect.redirectscheme.scheme=https"
     - "traefik.http.routers.resume-minio.middlewares=resume-minio-https-redirect"
     - "traefik.http.routers.resume-minio-secure.entrypoints=https"
-    - "traefik.http.routers.resume-minio-secure.rule=Host(`resume-minio.holmlab.org`)"
+    - "traefik.http.routers.resume-minio-secure.rule=Host(`resume-minio.${DOMAIN}`)"
     - "traefik.http.routers.resume-minio-secure.tls=true"
     - "traefik.http.routers.resume-minio-secure.service=resume-minio"
     - "traefik.http.services.resume-minio.loadbalancer.server.port=9000" # port of the service.
@@ -88,8 +88,8 @@ services:
       NODE_ENV: production
 
       # -- URLs --
-      PUBLIC_URL: https://resume.holmlab.org
-      STORAGE_URL: https://resume-minio.holmlab.org/default
+      PUBLIC_URL: https://resume.${DOMAIN}
+      STORAGE_URL: https://resume-minio.${DOMAIN}/default
 
       # -- Printer (Chrome) --
       CHROME_TOKEN: chrome_token
@@ -123,11 +123,11 @@ services:
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.resume.entrypoints=http"
-    - "traefik.http.routers.resume.rule=Host(`resume.holmlab.org`)"
+    - "traefik.http.routers.resume.rule=Host(`resume.${DOMAIN}`)"
     - "traefik.http.middlewares.resume-https-redirect.redirectscheme.scheme=https"
     - "traefik.http.routers.resume.middlewares=resume-https-redirect"
     - "traefik.http.routers.resume-secure.entrypoints=https"
-    - "traefik.http.routers.resume-secure.rule=Host(`resume.holmlab.org`)"
+    - "traefik.http.routers.resume-secure.rule=Host(`resume.${DOMAIN}`)"
     - "traefik.http.routers.resume-secure.tls=true"
     - "traefik.http.routers.resume-secure.service=resume"
     - "traefik.http.services.resume.loadbalancer.server.port=3000" # port of the service.
