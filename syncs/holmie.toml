@@ -541,7 +541,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "wedding-share"
-additional_env_files = ["/etc/komodo/holmlaborg.env"]
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -556,7 +556,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "silverbullet"
-additional_env_files = ["/etc/komodo/holmlaborg.env"]
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -655,7 +655,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "loggifly"
-additional_env_files = ["/etc/komodo/holmlaborg.env"]
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -670,4 +670,4 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "tinyauth"
-additional_env_files = ["/etc/komodo/holmlaborg.env"]
+additional_env_files = ["/etc/komodo/domain.env"]
