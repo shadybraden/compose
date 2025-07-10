@@ -1,3 +1,4 @@
+---
 services:
   windows:
     image: dockurr/windows:4.35

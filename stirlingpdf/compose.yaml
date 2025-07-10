@@ -1,3 +1,4 @@
+---
 services:
   stirling-pdf:
     image: stirlingtools/stirling-pdf:1.0.2
@@ -16,7 +17,7 @@ services:
       - SHOW_SURVEY=false
       - SYSTEM_ENABLEANALYTICS=false
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
@@ -29,7 +30,7 @@ services:
     - "traefik.http.routers.pdf-secure.rule=Host(`pdf.holmlab.org`)"
     - "traefik.http.routers.pdf-secure.tls=true"
     - "traefik.http.routers.pdf-secure.service=pdf"
-    - "traefik.http.services.pdf.loadbalancer.server.port=8080" # port of the service
+    - "traefik.http.services.pdf.loadbalancer.server.port=8080"  # port of the service
     - "traefik.docker.network=intranet"
 
 networks:

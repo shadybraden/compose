@@ -1,3 +1,4 @@
+---
 pageInfo:
   title: Dashy
   description: Dashy
@@ -30,7 +31,7 @@ appConfig:
     enableGuestAccess: true
     users:
       - user: admin
-        hash: 02A652A17DC11935D37387C3F635B9817285E5040E3F2D6D6DEBBA6717A39265 # oooooo looky here a hashed password (echo -n "password" | sha256sum)
+        hash: 02A652A17DC11935D37387C3F635B9817285E5040E3F2D6D6DEBBA6717A39265  # oooooo looky here a hashed password (echo -n "password" | sha256sum)
         type: admin
     enableHeaderAuth: false
     headerAuth:

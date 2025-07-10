@@ -1,3 +1,4 @@
+---
 services:
   dockge:
     container_name: dockge
@@ -12,7 +13,7 @@ services:
     environment:
       - DOCKGE_STACKS_DIR=/opt/stacks
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
@@ -25,7 +26,7 @@ services:
     - "traefik.http.routers.dockge-secure.rule=Host(`dockge.holmlab.org`)"
     - "traefik.http.routers.dockge-secure.tls=true"
     - "traefik.http.routers.dockge-secure.service=dockge"
-    - "traefik.http.services.dockge.loadbalancer.server.port=5001" # port of the service
+    - "traefik.http.services.dockge.loadbalancer.server.port=5001"  # port of the service
     - "traefik.docker.network=intranet"
 
 networks:

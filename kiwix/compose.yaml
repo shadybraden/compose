@@ -1,3 +1,4 @@
+---
 services:
     kiwix-serve:
         volumes:
@@ -10,7 +11,7 @@ services:
         command: archlinux_en_all_maxi_2022-12.zim
                  *.zim
         security_opt:
-        - no-new-privileges:true # helps to increase security
+        - no-new-privileges:true  # helps to increase security
         networks:
         - intranet
         labels:
@@ -23,7 +24,7 @@ services:
         - "traefik.http.routers.kiwix-secure.rule=Host(`kiwix.holmlab.org`)"
         - "traefik.http.routers.kiwix-secure.tls=true"
         - "traefik.http.routers.kiwix-secure.service=kiwix"
-        - "traefik.http.services.kiwix.loadbalancer.server.port=8080" # port of the service
+        - "traefik.http.services.kiwix.loadbalancer.server.port=8080"  # port of the service
         - "traefik.docker.network=intranet"
 
 networks:

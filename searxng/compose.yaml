@@ -1,3 +1,4 @@
+---
 services:
   searxng:
     container_name: searxng
@@ -19,7 +20,7 @@ services:
         max-size: "1m"
         max-file: "1"
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
@@ -32,7 +33,7 @@ services:
     - "traefik.http.routers.search-secure.rule=Host(`search.holmlab.org`)"
     - "traefik.http.routers.search-secure.tls=true"
     - "traefik.http.routers.search-secure.service=search"
-    - "traefik.http.services.search.loadbalancer.server.port=8080" # port of the service.
+    - "traefik.http.services.search.loadbalancer.server.port=8080"  # port of the service.
     - "traefik.docker.network=intranet"
 
 networks:

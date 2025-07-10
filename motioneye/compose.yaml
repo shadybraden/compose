@@ -1,3 +1,4 @@
+---
 services:
     motioneye:
         container_name: motioneye
@@ -14,7 +15,7 @@ services:
         restart: on-failure
         image: ccrisan/motioneye:master-amd64
         security_opt:
-          - no-new-privileges:true # helps to increase security
+          - no-new-privileges:true  # helps to increase security
         networks:
           - intranet
         labels:
@@ -27,7 +28,7 @@ services:
         - "traefik.http.routers.motioneye-secure.rule=Host(`motioneye.holmlab.org`)"
         - "traefik.http.routers.motioneye-secure.tls=true"
         - "traefik.http.routers.motioneye-secure.service=motioneye"
-        - "traefik.http.services.motioneye.loadbalancer.server.port=8081" # port of the service.
+        - "traefik.http.services.motioneye.loadbalancer.server.port=8081"  # port of the service.
         - "traefik.docker.network=intranet"
 
 networks:

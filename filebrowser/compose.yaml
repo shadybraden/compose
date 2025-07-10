@@ -1,3 +1,4 @@
+---
 services:
     filebrowser:
         container_name: filebrowser
@@ -10,12 +11,12 @@ services:
             - /data/config_storage/filebrowser/config:/config
         ports:
             - 8060:80
-        environment: # chown user:group config/ database/
+        environment:  # chown user:group config/ database/
             - PUID=1000
             - PGID=1000
         image: filebrowser/filebrowser:v2.37.0
         security_opt:
-        - no-new-privileges:true # helps to increase security
+        - no-new-privileges:true  # helps to increase security
         networks:
         - intranet
         labels:
@@ -28,7 +29,7 @@ services:
         - "traefik.http.routers.files-holmie-secure.rule=Host(`files-holmie.holmlab.org`)"
         - "traefik.http.routers.files-holmie-secure.tls=true"
         - "traefik.http.routers.files-holmie-secure.service=files-holmie"
-        - "traefik.http.services.files-holmie.loadbalancer.server.port=80" # port of the service
+        - "traefik.http.services.files-holmie.loadbalancer.server.port=80"  # port of the service
         - "traefik.docker.network=intranet"
 
 networks:

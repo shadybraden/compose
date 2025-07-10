@@ -1,3 +1,4 @@
+---
 services:
   wedding-share:
     container_name: WeddingShare
@@ -23,7 +24,7 @@ services:
     restart: unless-stopped
     hostname: mcc.holmlab.org
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
@@ -36,7 +37,7 @@ services:
     - "traefik.http.routers.mcc-secure.rule=Host(`mcc.holmlab.org`)"
     - "traefik.http.routers.mcc-secure.tls=true"
     - "traefik.http.routers.mcc-secure.service=mcc"
-    - "traefik.http.services.mcc.loadbalancer.server.port=5000" # port of the service.
+    - "traefik.http.services.mcc.loadbalancer.server.port=5000"  # port of the service.
     - "traefik.docker.network=intranet"
   cloudflared:
       image: cloudflare/cloudflared:2025.7.0

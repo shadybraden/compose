@@ -1,3 +1,4 @@
+---
 services:
     netalertx:
 #        network_mode: host
@@ -12,7 +13,7 @@ services:
         restart: unless-stopped
         image: jokobsk/netalertx:25.7.4
         security_opt:
-        - no-new-privileges:true # helps to increase security
+        - no-new-privileges:true  # helps to increase security
         networks:
         - intranet
         labels:
@@ -25,7 +26,7 @@ services:
         - "traefik.http.routers.netalertx-secure.rule=Host(`netalertx.holmlab.org`)"
         - "traefik.http.routers.netalertx-secure.tls=true"
         - "traefik.http.routers.netalertx-secure.service=netalertx"
-        - "traefik.http.services.netalertx.loadbalancer.server.port=20211" # port of the service
+        - "traefik.http.services.netalertx.loadbalancer.server.port=20211"  # port of the service
         - "traefik.docker.network=intranet"
 
 networks:

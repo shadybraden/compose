@@ -1,3 +1,4 @@
+---
 services:
   dumbassets:
 #    ports:
@@ -9,7 +10,7 @@ services:
       - TZ:America/New_York
       - DUMBASSETS_PIN=${DUMBASSETS_PIN}
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
@@ -22,7 +23,7 @@ services:
     - "traefik.http.routers.assets-secure.rule=Host(`assets.holmlab.org`)"
     - "traefik.http.routers.assets-secure.tls=true"
     - "traefik.http.routers.assets-secure.service=assets"
-    - "traefik.http.services.assets.loadbalancer.server.port=3000" # port of the service.
+    - "traefik.http.services.assets.loadbalancer.server.port=3000"  # port of the service.
     - "traefik.docker.network=intranet"
 
 networks:

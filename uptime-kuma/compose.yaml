@@ -1,3 +1,4 @@
+---
 services:
     uptime-kuma:
         restart: always
@@ -8,7 +9,7 @@ services:
         container_name: uptime-kuma
         image: louislam/uptime-kuma:1.23.16
         security_opt:
-        - no-new-privileges:true # helps to increase security
+        - no-new-privileges:true  # helps to increase security
         networks:
         - intranet
         labels:
@@ -21,7 +22,7 @@ services:
         - "traefik.http.routers.uptime-kuma-secure.rule=Host(`uptime-kuma.holmlab.org`)"
         - "traefik.http.routers.uptime-kuma-secure.tls=true"
         - "traefik.http.routers.uptime-kuma-secure.service=uptime-kuma"
-        - "traefik.http.services.uptime-kuma.loadbalancer.server.port=3001" # port of the service
+        - "traefik.http.services.uptime-kuma.loadbalancer.server.port=3001"  # port of the service
         - "traefik.docker.network=intranet"
 
 networks:

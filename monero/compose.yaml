@@ -1,5 +1,6 @@
+---
 services:
-  gluetun_monero: # the vpn part
+  gluetun_monero:  # the vpn part
     container_name: gluetun_monero
     cap_add:
       - NET_ADMIN

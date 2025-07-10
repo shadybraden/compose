@@ -1,3 +1,4 @@
+---
 services:
   glances:
     container_name: glances
@@ -15,7 +16,7 @@ services:
       - TZ=America/New_York
     image: nicolargo/glances:4.3.3
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
@@ -28,7 +29,7 @@ services:
     - "traefik.http.routers.glances-holmie-secure.rule=Host(`glances-holmie.holmlab.org`)"
     - "traefik.http.routers.glances-holmie-secure.tls=true"
     - "traefik.http.routers.glances-holmie-secure.service=glances-holmie"
-    - "traefik.http.services.glances-holmie.loadbalancer.server.port=61208" # port of the service
+    - "traefik.http.services.glances-holmie.loadbalancer.server.port=61208"  # port of the service
     - "traefik.docker.network=intranet"
 
 networks:

@@ -1,3 +1,4 @@
+---
 services:
   mullvad-browser:
     image: quay.io/linuxserver.io/mullvad-browser:14.5.20250427
@@ -15,7 +16,7 @@ services:
     shm_size: "1gb"
     restart: unless-stopped
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
@@ -28,7 +29,7 @@ services:
     - "traefik.http.routers.mullvad-secure.rule=Host(`mullvad.holmlab.org`)"
     - "traefik.http.routers.mullvad-secure.tls=true"
     - "traefik.http.routers.mullvad-secure.service=mullvad"
-    - "traefik.http.services.mullvad.loadbalancer.server.port=3000" # port of the service.
+    - "traefik.http.services.mullvad.loadbalancer.server.port=3000"  # port of the service.
     - "traefik.docker.network=intranet"
 
 networks:

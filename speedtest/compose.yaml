@@ -1,3 +1,4 @@
+---
 services:
     speedtest:
         container_name: speedtest
@@ -8,7 +9,7 @@ services:
               DISTANCE: "mi"
               WEBPORT: 8080
         security_opt:
-          - no-new-privileges:true # helps to increase security
+          - no-new-privileges:true  # helps to increase security
         networks:
           - intranet
         labels:
@@ -21,7 +22,7 @@ services:
         - "traefik.http.routers.speedtest-secure.rule=Host(`speedtest.holmlab.org`)"
         - "traefik.http.routers.speedtest-secure.tls=true"
         - "traefik.http.routers.speedtest-secure.service=speedtest"
-        - "traefik.http.services.speedtest.loadbalancer.server.port=8080" # port of the service.
+        - "traefik.http.services.speedtest.loadbalancer.server.port=8080"  # port of the service.
         - "traefik.docker.network=intranet"
 
 networks:

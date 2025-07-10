@@ -1,3 +1,4 @@
+---
 services:
   pihole:
     image: pihole/pihole:2025.06.2
@@ -16,9 +17,9 @@ services:
     ports:
       - "53:53/tcp"
       - "53:53/udp"
-      - "5353:80/tcp" # web ui
+      - "5353:80/tcp"  # web ui
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
@@ -31,7 +32,7 @@ services:
     - "traefik.http.routers.pihole-secure.rule=Host(`pihole.holmlab.org`)"
     - "traefik.http.routers.pihole-secure.tls=true"
     - "traefik.http.routers.pihole-secure.service=pihole"
-    - "traefik.http.services.pihole.loadbalancer.server.port=80" # port of the service
+    - "traefik.http.services.pihole.loadbalancer.server.port=80"  # port of the service
     - "traefik.docker.network=intranet"
 
 networks:

@@ -1,3 +1,4 @@
+---
 services:
   postgres:
     image: postgres:16-alpine
@@ -7,7 +8,7 @@ services:
     volumes:
       - /data/config_storage/linkwarden/pgdata:/var/lib/postgresql/data
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
   linkwarden:
@@ -24,7 +25,7 @@ services:
     depends_on:
       - postgres
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
@@ -37,7 +38,7 @@ services:
     - "traefik.http.routers.links-secure.rule=Host(`links.holmlab.org`)"
     - "traefik.http.routers.links-secure.tls=true"
     - "traefik.http.routers.links-secure.service=links"
-    - "traefik.http.services.links.loadbalancer.server.port=3000" # port of the service.
+    - "traefik.http.services.links.loadbalancer.server.port=3000"  # port of the service.
     - "traefik.docker.network=intranet"
 
 networks:

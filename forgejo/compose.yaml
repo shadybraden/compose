@@ -1,3 +1,4 @@
+---
 services:
   server:
     image: codeberg.org/forgejo/forgejo:11.0.2
@@ -15,7 +16,7 @@ services:
 #      - 3003:3000
       - 222:22
     security_opt:
-    - no-new-privileges:true # helps to increase security
+    - no-new-privileges:true  # helps to increase security
     networks:
     - intranet
     labels:
@@ -28,7 +29,7 @@ services:
     - "traefik.http.routers.forgejo-secure.rule=Host(`git.holmlab.org`)"
     - "traefik.http.routers.forgejo-secure.tls=true"
     - "traefik.http.routers.forgejo-secure.service=forgejo"
-    - "traefik.http.services.forgejo.loadbalancer.server.port=3000" # port of the service
+    - "traefik.http.services.forgejo.loadbalancer.server.port=3000"  # port of the service
     - "traefik.docker.network=intranet"
 
 networks:

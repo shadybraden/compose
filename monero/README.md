@@ -11,6 +11,7 @@ https://hub.docker.com/r/miningcontainers/xmrig
 ## If you don't want to use a VPN while using this, replace the docker-compose.yml contents with the below:
 
 ```yml
+---
 services:
   xmrig:
     restart: unless-stopped

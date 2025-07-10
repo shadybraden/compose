@@ -1,3 +1,4 @@
+---
 services:
     jellyfin:
 #        network_mode: host
@@ -16,7 +17,7 @@ services:
         - PGID=1000
         - TZ=Etc
         security_opt:
-        - no-new-privileges:true # helps to increase security
+        - no-new-privileges:true  # helps to increase security
         networks:
         - intranet
         labels:
@@ -29,7 +30,7 @@ services:
         - "traefik.http.routers.jellyfin-secure.rule=Host(`jellyfin.holmlab.org`)"
         - "traefik.http.routers.jellyfin-secure.tls=true"
         - "traefik.http.routers.jellyfin-secure.service=jellyfin"
-        - "traefik.http.services.jellyfin.loadbalancer.server.port=8096" # port of the service
+        - "traefik.http.services.jellyfin.loadbalancer.server.port=8096"  # port of the service
         - "traefik.docker.network=intranet"
 
 networks:

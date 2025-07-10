@@ -1,3 +1,4 @@
+---
 services:
     gluetun:
         container_name: gluetun
@@ -19,10 +20,10 @@ services:
             - DOT=off
             - DNS_PLAINTEXT_ADDRESS=${proxy_dns}
         ports:
-            - 8888:8888/tcp # HTTP proxy
-            - 8388:8388/tcp # Shadowsocks
-            - 8388:8388/udp # Shadowsocks
-            - 1080:1080 # socks5
+            - 8888:8888/tcp  # HTTP proxy
+            - 8388:8388/tcp  # Shadowsocks
+            - 8388:8388/udp  # Shadowsocks
+            - 1080:1080  # socks5
         image: qmcgaw/gluetun:v3.40
     socks5:
         container_name: socks5

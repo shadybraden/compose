@@ -1,3 +1,4 @@
+---
 services:
     nextcloud:
         container_name: nextcloud
@@ -11,7 +12,7 @@ services:
             - /data/config_storage/nextcloud/data:/var/www/html/data
         image: nextcloud:31.0.6
         security_opt:
-        - no-new-privileges:true # helps to increase security
+        - no-new-privileges:true  # helps to increase security
         networks:
         - intranet
         labels:
@@ -24,7 +25,7 @@ services:
         - "traefik.http.routers.nextcloud-secure.rule=Host(`nextcloud.holmlab.org`)"
         - "traefik.http.routers.nextcloud-secure.tls=true"
         - "traefik.http.routers.nextcloud-secure.service=nextcloud"
-        - "traefik.http.services.nextcloud.loadbalancer.server.port=80" # port of the service
+        - "traefik.http.services.nextcloud.loadbalancer.server.port=80"  # port of the service
         - "traefik.docker.network=intranet"
 
 networks:

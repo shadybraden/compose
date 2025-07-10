@@ -1,3 +1,4 @@
+---
 services:
   mealie:
     container_name: mealie
@@ -12,7 +13,7 @@ services:
       LOG_LEVEL: "DEBUG"
       DB_ENGINE: sqlite
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
@@ -25,7 +26,7 @@ services:
     - "traefik.http.routers.mealie-secure.rule=Host(`mealie.holmlab.org`)"
     - "traefik.http.routers.mealie-secure.tls=true"
     - "traefik.http.routers.mealie-secure.service=mealie"
-    - "traefik.http.services.mealie.loadbalancer.server.port=9000" # port of the service.
+    - "traefik.http.services.mealie.loadbalancer.server.port=9000"  # port of the service.
     - "traefik.docker.network=intranet"
 
 networks:

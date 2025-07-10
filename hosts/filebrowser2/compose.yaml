@@ -1,3 +1,4 @@
+---
 services:
     filebrowser2:
         container_name: filebrowser2
@@ -14,7 +15,7 @@ services:
             - 34417:8080
         image: filebrowser/filebrowser:v2.37.0
         security_opt:
-        - no-new-privileges:true # helps to increase security
+        - no-new-privileges:true  # helps to increase security
     cloudflared:
         image: cloudflare/cloudflared:2025.7.0
         command: tunnel --no-autoupdate run --token ${token}

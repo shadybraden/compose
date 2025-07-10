@@ -1,3 +1,4 @@
+---
 services:
     hoodik:
         container_name: hoodik
@@ -22,7 +23,7 @@ services:
 #            - 4554:5443
         image: hudik/hoodik:v1.5.1
         security_opt:
-          - no-new-privileges:true # helps to increase security
+          - no-new-privileges:true  # helps to increase security
         networks:
           - intranet
         labels:
@@ -35,7 +36,7 @@ services:
         - "traefik.http.routers.hoodik-secure.rule=Host(`hoodik.holmlab.org`)"
         - "traefik.http.routers.hoodik-secure.tls=true"
         - "traefik.http.routers.hoodik-secure.service=hoodik"
-        - "traefik.http.services.hoodik.loadbalancer.server.port=5443" # port of the service
+        - "traefik.http.services.hoodik.loadbalancer.server.port=5443"  # port of the service
         - "traefik.docker.network=intranet"
 
 networks:

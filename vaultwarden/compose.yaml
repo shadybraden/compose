@@ -1,3 +1,4 @@
+---
 services:
     server:
         container_name: vaultwarden
@@ -11,7 +12,7 @@ services:
 #        ports:
 #            - 58527:80
         security_opt:
-        - no-new-privileges:true # helps to increase security
+        - no-new-privileges:true  # helps to increase security
         networks:
         - intranet
         labels:
@@ -24,7 +25,7 @@ services:
         - "traefik.http.routers.bitwarden-secure.rule=Host(`bitwarden.holmlab.org`)"
         - "traefik.http.routers.bitwarden-secure.tls=true"
         - "traefik.http.routers.bitwarden-secure.service=bitwarden"
-        - "traefik.http.services.bitwarden.loadbalancer.server.port=80" # port of the service
+        - "traefik.http.services.bitwarden.loadbalancer.server.port=80"  # port of the service
         - "traefik.docker.network=intranet"
 
 networks:

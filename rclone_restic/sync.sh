@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables for source and destination
-SOURCE="/data/restic/" # put the whole restic folder. each folder inside will be there
+SOURCE="/data/restic/"  # put the whole restic folder. each folder inside will be there
 DESTINATION="awss3:bucket/folder"
 
 # Docker container name (replace with your container name if different)

@@ -1,3 +1,4 @@
+---
 services:
     freshrss:
         restart: unless-stopped
@@ -8,14 +9,14 @@ services:
 #            - 8062:80
         environment:
             - TZ=America/New_York
-            - CRON_MIN=1,31 # this is minute 1 and 31
+            - CRON_MIN=1,31  # this is minute 1 and 31
         volumes:
             - /data/config_storage/freshrss/data:/var/www/FreshRSS/data
             - /data/config_storage/freshrss/extensions:/var/www/FreshRSS/extensions
         container_name: freshrss
         image: freshrss/freshrss:1.26.3
         security_opt:
-        - no-new-privileges:true # helps to increase security
+        - no-new-privileges:true  # helps to increase security
         networks:
         - intranet
         labels:
@@ -28,7 +29,7 @@ services:
         - "traefik.http.routers.rss-secure.rule=Host(`rss.holmlab.org`)"
         - "traefik.http.routers.rss-secure.tls=true"
         - "traefik.http.routers.rss-secure.service=rss"
-        - "traefik.http.services.rss.loadbalancer.server.port=80" # port of the service
+        - "traefik.http.services.rss.loadbalancer.server.port=80"  # port of the service
         - "traefik.docker.network=intranet"
 
 networks:

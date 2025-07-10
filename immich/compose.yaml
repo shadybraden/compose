@@ -1,3 +1,4 @@
+---
 name: immich
 services:
   immich-server:
@@ -20,7 +21,7 @@ services:
     environment:
       - IMMICH_TRUSTED_PROXIES=192.168.50.65,172.27.0.0/16
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
@@ -34,7 +35,7 @@ services:
     - "traefik.http.routers.immich-secure.rule=Host(`immich.holmlab.org`)"
     - "traefik.http.routers.immich-secure.tls=true"
     - "traefik.http.routers.immich-secure.service=immich"
-    - "traefik.http.services.immich.loadbalancer.server.port=2283" # port of the service
+    - "traefik.http.services.immich.loadbalancer.server.port=2283"  # port of the service
     - "traefik.docker.network=intranet"
 
   immich-machine-learning:

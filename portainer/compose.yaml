@@ -1,3 +1,4 @@
+---
 services:
     portainer:
         container_name: portainer
@@ -10,7 +11,7 @@ services:
 #        ports:
 #            - 9000:9000
         security_opt:
-          - no-new-privileges:true # helps to increase security
+          - no-new-privileges:true  # helps to increase security
         networks:
           - intranet
         labels:
@@ -23,7 +24,7 @@ services:
         - "traefik.http.routers.portainer-secure.rule=Host(`portainer-holmie.holmlab.org`)"
         - "traefik.http.routers.portainer-secure.tls=true"
         - "traefik.http.routers.portainer-secure.service=portainer"
-        - "traefik.http.services.portainer.loadbalancer.server.port=9000" # port of the service
+        - "traefik.http.services.portainer.loadbalancer.server.port=9000"  # port of the service
         - "traefik.docker.network=intranet"
 
 networks:

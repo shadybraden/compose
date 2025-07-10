@@ -1,3 +1,4 @@
+---
 services:
     dashy:
 #        ports:
@@ -9,7 +10,7 @@ services:
         restart: unless-stopped
         image: lissy93/dashy@sha256:ce2ed87edc1f87a4885cb8e4d76b3d6cf1faf61af29291cdd006f372e4a994ae
         security_opt:
-        - no-new-privileges:true # helps to increase security
+        - no-new-privileges:true  # helps to increase security
         networks:
         - intranet
         labels:
@@ -22,7 +23,7 @@ services:
         - "traefik.http.routers.dashy-secure.rule=Host(`holmlab.org`)"
         - "traefik.http.routers.dashy-secure.tls=true"
         - "traefik.http.routers.dashy-secure.service=dashy"
-        - "traefik.http.services.dashy.loadbalancer.server.port=8080" # port of the service
+        - "traefik.http.services.dashy.loadbalancer.server.port=8080"  # port of the service
         - "traefik.docker.network=intranet"
 
 networks:

@@ -1,3 +1,4 @@
+---
 services:
     ollama:
         volumes:
@@ -8,21 +9,21 @@ services:
         restart: unless-stopped
         image: ollama/ollama:0.9.6
         security_opt:
-        - no-new-privileges:true # helps to increase security
+            - no-new-privileges:true  # helps to increase security
         networks:
-        - intranet
+            - intranet
         labels:
-        - "traefik.enable=true"
-        - "traefik.http.routers.ollama.entrypoints=http"
-        - "traefik.http.routers.ollama.rule=Host(`ollama.holmlab.org`)"
-        - "traefik.http.middlewares.ollama-https-redirect.redirectscheme.scheme=https"
-        - "traefik.http.routers.ollama.middlewares=ollama-https-redirect"
-        - "traefik.http.routers.ollama-secure.entrypoints=https"
-        - "traefik.http.routers.ollama-secure.rule=Host(`ollama.holmlab.org`)"
-        - "traefik.http.routers.ollama-secure.tls=true"
-        - "traefik.http.routers.ollama-secure.service=ollama"
-        - "traefik.http.services.ollama.loadbalancer.server.port=11434" # port of the service
-        - "traefik.docker.network=intranet"
+            - "traefik.enable=true"
+            - "traefik.http.routers.ollama.entrypoints=http"
+            - "traefik.http.routers.ollama.rule=Host(`ollama.holmlab.org`)"
+            - "traefik.http.middlewares.ollama-https-redirect.redirectscheme.scheme=https"
+            - "traefik.http.routers.ollama.middlewares=ollama-https-redirect"
+            - "traefik.http.routers.ollama-secure.entrypoints=https"
+            - "traefik.http.routers.ollama-secure.rule=Host(`ollama.holmlab.org`)"
+            - "traefik.http.routers.ollama-secure.tls=true"
+            - "traefik.http.routers.ollama-secure.service=ollama"
+            - "traefik.http.services.ollama.loadbalancer.server.port=11434"  # port of the service
+            - "traefik.docker.network=intranet"
 
     open-webui:
 #        ports:
@@ -33,24 +34,24 @@ services:
         image: ghcr.io/open-webui/open-webui:v0.6.15
         restart: unless-stopped
         environment:
-        - OLLAMA_BASE_URL=https://ollama.holmlab.org
+            - OLLAMA_BASE_URL=https://ollama.holmlab.org
         security_opt:
-        - no-new-privileges:true # helps to increase security
+            - no-new-privileges:true  # helps to increase security
         networks:
-        - intranet
+            - intranet
         labels:
-        - "traefik.enable=true"
-        - "traefik.http.routers.ai.entrypoints=http"
-        - "traefik.http.routers.ai.rule=Host(`ai.holmlab.org`)"
-        - "traefik.http.middlewares.ai-https-redirect.redirectscheme.scheme=https"
-        - "traefik.http.routers.ai.middlewares=ai-https-redirect"
-        - "traefik.http.routers.ai-secure.entrypoints=https"
-        - "traefik.http.routers.ai-secure.rule=Host(`ai.holmlab.org`)"
-        - "traefik.http.routers.ai-secure.tls=true"
-        - "traefik.http.routers.ai-secure.service=ai"
-        - "traefik.http.services.ai.loadbalancer.server.port=8080" # port of the service
-        - "traefik.docker.network=intranet"
+            - "traefik.enable=true"
+            - "traefik.http.routers.ai.entrypoints=http"
+            - "traefik.http.routers.ai.rule=Host(`ai.holmlab.org`)"
+            - "traefik.http.middlewares.ai-https-redirect.redirectscheme.scheme=https"
+            - "traefik.http.routers.ai.middlewares=ai-https-redirect"
+            - "traefik.http.routers.ai-secure.entrypoints=https"
+            - "traefik.http.routers.ai-secure.rule=Host(`ai.holmlab.org`)"
+            - "traefik.http.routers.ai-secure.tls=true"
+            - "traefik.http.routers.ai-secure.service=ai"
+            - "traefik.http.services.ai.loadbalancer.server.port=8080"  # port of the service
+            - "traefik.docker.network=intranet"
 
 networks:
-  intranet:
-    external: true
+    intranet:
+        external: true

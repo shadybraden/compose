@@ -430,13 +430,13 @@ hetzner.token = ""
 # ]
 
 # [[git_provider]]
-# domain = "git.mogh.tech" # use a custom provider, like self-hosted gitea
+# domain = "git.mogh.tech"  # use a custom provider, like self-hosted gitea
 # accounts = [
 # 	{ username = "mbecker20", token = "access_token_for_account" },
 # ]
 
 # [[git_provider]]
-# domain = "localhost:8000" # use a custom provider, like self-hosted gitea
+# domain = "localhost:8000"  # use a custom provider, like self-hosted gitea
 # https = false # use http://localhost:8000 as base-url for clone
 # accounts = [
 # 	{ username = "mbecker20", token = "access_token_for_account" },
@@ -459,7 +459,7 @@ hetzner.token = ""
 # organizations = ["DockerhubOrganization"]
 
 # [[docker_registry]]
-# domain = "git.mogh.tech" # use a custom provider, like self-hosted gitea
+# domain = "git.mogh.tech"  # use a custom provider, like self-hosted gitea
 # accounts = [
 # 	{ username = "mbecker20", token = "access_token_for_account" },
 # ]

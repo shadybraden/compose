@@ -1,3 +1,4 @@
+---
 services:
   syncthing:
     image: quay.io/linuxserver.io/syncthing:1.30.0
@@ -20,7 +21,7 @@ services:
       - 21027:21027/udp
     restart: unless-stopped
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
@@ -33,7 +34,7 @@ services:
     - "traefik.http.routers.syncthing-holmie-secure.rule=Host(`syncthing-holmie.holmlab.org`)"
     - "traefik.http.routers.syncthing-holmie-secure.tls=true"
     - "traefik.http.routers.syncthing-holmie-secure.service=syncthing-holmie"
-    - "traefik.http.services.syncthing-holmie.loadbalancer.server.port=8384" # port of the service
+    - "traefik.http.services.syncthing-holmie.loadbalancer.server.port=8384"  # port of the service
     - "traefik.docker.network=intranet"
 
 networks:
