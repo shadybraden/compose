@@ -10,7 +10,17 @@ CF_DNS_API_TOKEN
 
 CF_API_EMAIL
 
-`cp .traefik.yml.sample /data/config_storage/traefik/traefik.yml`
+---
+
+Set these, and save them. For starting a new homelab, start Traefik from anywhere, and hand it off to Komodo once it is setup.
+
+For an additional server deployment, make the files below, then use Komodo to set the env vars.
+
+## Make files
+
+`cd /data/config_storage && git clone https://git.holmlab.org/shady/compose.git`
+
+`cp /data/config_storage/compose/traefik/traefik.yaml.sample /data/config_storage/traefik/traefik.yml`
 
 `touch /data/config_storage/traefik/acme.json && chmod 600 /data/config_storage/traefik/acme.json`
 
