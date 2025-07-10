@@ -14,7 +14,7 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - /home/holmie/compose/anubis/botPolicy.yaml:/data/cfg/botPolicy.yaml:ro # so this iac can control routers and services
+      - /data/config_storage/compose/anubis/botPolicy.yaml:/data/cfg/botPolicy.yaml:ro # so this iac can control routers and services
     security_opt:
       - no-new-privileges:true # helps to increase security
     networks:

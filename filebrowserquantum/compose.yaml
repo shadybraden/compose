@@ -3,7 +3,7 @@ services:
     volumes:
       - /data:/srv/data
       - /mnt/4tb:/srv/mounted
-      - /home/holmie:/srv/home
+      - /home:/srv/home
       - /data/config_storage/filebrowserquantum/config.yaml:/home/filebrowser/config.yaml
 #    ports:
 #      - 80:80
