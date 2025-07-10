@@ -27,11 +27,11 @@ services:
     - "traefik.enable=true"
     - "traefik.http.routers.immich.entrypoints=http"
 #    - "traefik.http.routers.immich.entrypoints: websecure"
-    - "traefik.http.routers.immich.rule=Host(`immich.holmlab.org`)"
+    - "traefik.http.routers.immich.rule=Host(`immich.${DOMAIN}`)"
     - "traefik.http.middlewares.immich-https-redirect.redirectscheme.scheme=https"
     - "traefik.http.routers.immich.middlewares=immich-https-redirect"
     - "traefik.http.routers.immich-secure.entrypoints=https"
-    - "traefik.http.routers.immich-secure.rule=Host(`immich.holmlab.org`)"
+    - "traefik.http.routers.immich-secure.rule=Host(`immich.${DOMAIN}`)"
     - "traefik.http.routers.immich-secure.tls=true"
     - "traefik.http.routers.immich-secure.service=immich"
     - "traefik.http.services.immich.loadbalancer.server.port=2283" # port of the service
