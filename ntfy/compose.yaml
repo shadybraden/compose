@@ -19,11 +19,11 @@ services:
         labels:
         - "traefik.enable=true"
         - "traefik.http.routers.ntfy.entrypoints=http"
-        - "traefik.http.routers.ntfy.rule=Host(`ntfy.holmlab.org`)"
+        - "traefik.http.routers.ntfy.rule=Host(`ntfy.${DOMAIN}`)"
         - "traefik.http.middlewares.ntfy-https-redirect.redirectscheme.scheme=https"
         - "traefik.http.routers.ntfy.middlewares=ntfy-https-redirect"
         - "traefik.http.routers.ntfy-secure.entrypoints=https"
-        - "traefik.http.routers.ntfy-secure.rule=Host(`ntfy.holmlab.org`)"
+        - "traefik.http.routers.ntfy-secure.rule=Host(`ntfy.${DOMAIN}`)"
         - "traefik.http.routers.ntfy-secure.tls=true"
         - "traefik.http.routers.ntfy-secure.service=ntfy"
         - "traefik.http.services.ntfy.loadbalancer.server.port=80" # port of the service
