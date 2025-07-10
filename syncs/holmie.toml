@@ -9,6 +9,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "adsb"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -23,6 +24,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "ai"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -37,6 +39,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "arr"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -51,6 +54,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "audiobookshelf"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -65,6 +69,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "dashy"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -79,6 +84,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "dockge"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -93,6 +99,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "filebrowser"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -107,6 +114,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "freshrss"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -121,6 +129,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "homeassistant"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -135,6 +144,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "immich"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -149,6 +159,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "jellyfin"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -163,6 +174,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "jellyseerr"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -177,6 +189,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "kiwix"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -191,6 +204,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "navidrome"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -205,6 +219,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "netalertx"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -219,6 +234,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "nextcloud"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -233,6 +249,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "ntfy"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -247,6 +264,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "portainer"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -265,6 +283,7 @@ post_deploy.command = """
 # sleep 10
 # curl -H "Priority: min" -d "proxy ip now in: $(curl --socks5 192.168.50.65:1080 ifconfig.co/country)" https://ntfy.holmlab.org/ip6yoEKIni20WOCTzG8hw4E8zRsdpk
 """
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -280,6 +299,7 @@ repo = "shady/compose"
 branch = "main"
 run_directory = "renovate"
 ignore_services = ["renovate"] # this is so it shows nicer in the dashboard
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -294,6 +314,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "scrutiny"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -308,6 +329,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "stirlingpdf"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -322,6 +344,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "syncthing"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -336,6 +359,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "uptime-kuma"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -350,6 +374,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "vaultwarden"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -364,6 +389,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "wireguard"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -378,6 +404,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "hoodik"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -401,6 +428,7 @@ pre_deploy.command = """
   # docker build -t skywatch .
 """
 build_extra_args = []
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -415,6 +443,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "restic"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -429,6 +458,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "pihole"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -443,6 +473,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "forgejo"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -457,6 +488,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "traefik"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -471,6 +503,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "motioneye"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -485,6 +518,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "mealie"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -499,6 +533,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "searxng"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -513,6 +548,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "speedtest"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -527,6 +563,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "linkwarden"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -571,6 +608,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "filebrowserquantum"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -585,6 +623,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "dumbassets"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -599,6 +638,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "lubelogger"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -613,6 +653,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "reactiveresume"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -627,6 +668,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "beszel"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -641,6 +683,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "beszelagent"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
