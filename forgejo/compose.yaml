@@ -5,7 +5,7 @@ services:
     environment:
       - USER_UID=1000
       - USER_GID=1000
-      - ALLOWED_HOST_LIST=komodo.holmlab.org
+      - ALLOWED_HOST_LIST=komodo.${DOMAIN}
     restart: unless-stopped
     volumes:
       - /data/config_storage/forgejo:/data
@@ -21,11 +21,11 @@ services:
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.forgejo.entrypoints=http"
-    - "traefik.http.routers.forgejo.rule=Host(`git.holmlab.org`)"
+    - "traefik.http.routers.forgejo.rule=Host(`git.${DOMAIN}`)"
     - "traefik.http.middlewares.forgejo-https-redirect.redirectscheme.scheme=https"
     - "traefik.http.routers.forgejo.middlewares=forgejo-https-redirect"
     - "traefik.http.routers.forgejo-secure.entrypoints=https"
-    - "traefik.http.routers.forgejo-secure.rule=Host(`git.holmlab.org`)"
+    - "traefik.http.routers.forgejo-secure.rule=Host(`git.${DOMAIN}`)"
     - "traefik.http.routers.forgejo-secure.tls=true"
     - "traefik.http.routers.forgejo-secure.service=forgejo"
     - "traefik.http.services.forgejo.loadbalancer.server.port=3000" # port of the service

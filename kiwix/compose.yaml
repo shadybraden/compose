@@ -16,11 +16,11 @@ services:
         labels:
         - "traefik.enable=true"
         - "traefik.http.routers.kiwix.entrypoints=http"
-        - "traefik.http.routers.kiwix.rule=Host(`kiwix.holmlab.org`)"
+        - "traefik.http.routers.kiwix.rule=Host(`kiwix.${DOMAIN}`)"
         - "traefik.http.middlewares.kiwix-https-redirect.redirectscheme.scheme=https"
         - "traefik.http.routers.kiwix.middlewares=kiwix-https-redirect"
         - "traefik.http.routers.kiwix-secure.entrypoints=https"
-        - "traefik.http.routers.kiwix-secure.rule=Host(`kiwix.holmlab.org`)"
+        - "traefik.http.routers.kiwix-secure.rule=Host(`kiwix.${DOMAIN}`)"
         - "traefik.http.routers.kiwix-secure.tls=true"
         - "traefik.http.routers.kiwix-secure.service=kiwix"
         - "traefik.http.services.kiwix.loadbalancer.server.port=8080" # port of the service

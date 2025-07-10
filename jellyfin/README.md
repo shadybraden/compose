@@ -10,7 +10,7 @@ https://jellyfin.org/docs/general/post-install/transcoding/hardware-acceleration
 
 N100 supports QSV per: https://github.com/intel/media-driver#supported-platforms
 
-at: https://jellyfin-test.holmlab.org/web/index.html#/dashboard/playback/transcoding
+at: https://jellyfin-test.${DOMAIN}/web/index.html#/dashboard/playback/transcoding
 defaults:
 h264
 vc1

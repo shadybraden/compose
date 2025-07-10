@@ -21,11 +21,11 @@ services:
         labels:
         - "traefik.enable=true"
         - "traefik.http.routers.files-holmie.entrypoints=http"
-        - "traefik.http.routers.files-holmie.rule=Host(`files-holmie.holmlab.org`)"
+        - "traefik.http.routers.files-holmie.rule=Host(`files-holmie.${DOMAIN}`)"
         - "traefik.http.middlewares.files-holmie-https-redirect.redirectscheme.scheme=https"
         - "traefik.http.routers.files-holmie.middlewares=files-holmie-https-redirect"
         - "traefik.http.routers.files-holmie-secure.entrypoints=https"
-        - "traefik.http.routers.files-holmie-secure.rule=Host(`files-holmie.holmlab.org`)"
+        - "traefik.http.routers.files-holmie-secure.rule=Host(`files-holmie.${DOMAIN}`)"
         - "traefik.http.routers.files-holmie-secure.tls=true"
         - "traefik.http.routers.files-holmie-secure.service=files-holmie"
         - "traefik.http.services.files-holmie.loadbalancer.server.port=80" # port of the service
