@@ -17,10 +17,10 @@ This is great and works well. However, there are times when I want to put an env
 
 So, env files.
 
-In /data/config_storage/komodo/etc_komodo I have files like this: `holmlaborg.env`. Inside them is: `DOMAIN=holmlab.org`
+In /data/config_storage/komodo/etc_komodo I have files like this: `domain.env`. Inside them is: `DOMAIN=holmlab.org`
 
 So add the following to the syncs toml:
 
 ```
-additional_env_files = ["/etc/komodo/holmlaborg.env"]
+additional_env_files = ["/etc/komodo/domain.env"]
 ```
