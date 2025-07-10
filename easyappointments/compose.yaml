@@ -5,7 +5,7 @@ services:
 #    ports:
 #      - '80:80'
     environment:
-      - BASE_URL=https://appointments.holmlab.org
+      - BASE_URL=https://appointments.${DOMAIN}
       - DEBUG_MODE=TRUE
       - DB_HOST=mysql
       - DB_NAME=easyappointments
@@ -31,11 +31,11 @@ services:
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.appointments.entrypoints=http"
-    - "traefik.http.routers.appointments.rule=Host(`appointments.holmlab.org`)"
+    - "traefik.http.routers.appointments.rule=Host(`appointments.${DOMAIN}`)"
     - "traefik.http.middlewares.appointments-https-redirect.redirectscheme.scheme=https"
     - "traefik.http.routers.appointments.middlewares=appointments-https-redirect"
     - "traefik.http.routers.appointments-secure.entrypoints=https"
-    - "traefik.http.routers.appointments-secure.rule=Host(`appointments.holmlab.org`)"
+    - "traefik.http.routers.appointments-secure.rule=Host(`appointments.${DOMAIN}`)"
     - "traefik.http.routers.appointments-secure.tls=true"
     - "traefik.http.routers.appointments-secure.service=appointments"
     - "traefik.http.services.appointments.loadbalancer.server.port=80" # port of the service.

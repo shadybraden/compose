@@ -16,11 +16,11 @@ services:
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.beszel.entrypoints=http"
-    - "traefik.http.routers.beszel.rule=Host(`beszel.holmlab.org`)"
+    - "traefik.http.routers.beszel.rule=Host(`beszel.${DOMAIN}`)"
     - "traefik.http.middlewares.beszel-https-redirect.redirectscheme.scheme=https"
     - "traefik.http.routers.beszel.middlewares=beszel-https-redirect"
     - "traefik.http.routers.beszel-secure.entrypoints=https"
-    - "traefik.http.routers.beszel-secure.rule=Host(`beszel.holmlab.org`)"
+    - "traefik.http.routers.beszel-secure.rule=Host(`beszel.${DOMAIN}`)"
     - "traefik.http.routers.beszel-secure.tls=true"
     - "traefik.http.routers.beszel-secure.service=beszel"
     - "traefik.http.services.beszel.loadbalancer.server.port=8090" # port of the service.
