@@ -23,11 +23,11 @@ services:
         - "traefik.enable=true"
         - traefik.docker.network=web # https://www.reddit.com/r/Traefik/comments/190ps04/502_bad_gateway_connection_refused/
         - "traefik.http.routers.homeassistant.entrypoints=http"
-        - "traefik.http.routers.homeassistant.rule=Host(`homeassistant.holmlab.org`)"
+        - "traefik.http.routers.homeassistant.rule=Host(`homeassistant.${DOMAIN}`)"
         - "traefik.http.middlewares.homeassistant-https-redirect.redirectscheme.scheme=https"
         - "traefik.http.routers.homeassistant.middlewares=homeassistant-https-redirect"
         - "traefik.http.routers.homeassistant-secure.entrypoints=https"
-        - "traefik.http.routers.homeassistant-secure.rule=Host(`homeassistant.holmlab.org`)"
+        - "traefik.http.routers.homeassistant-secure.rule=Host(`homeassistant.${DOMAIN}`)"
         - "traefik.http.routers.homeassistant-secure.tls=true"
         - "traefik.http.routers.homeassistant-secure.service=homeassistant"
         - "traefik.http.services.homeassistant.loadbalancer.server.port=8123" # port of the service
