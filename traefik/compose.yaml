@@ -11,7 +11,7 @@ services:
       - /data/config_storage/traefik/logs:/var/log/traefik # there are no docker logs, so they will be in this folder
       - /data/config_storage/traefik/acme.json:/acme.json
       - /data/config_storage/traefik/traefik.yaml:/etc/traefik/traefik.yaml:ro
-      - /home/holmie/compose/traefik/config.yaml:/etc/traefik/config.yaml:ro # so this iac can control routers and services
+      - /data/config_storage/compose/traefik/config.yaml:/etc/traefik/config.yaml:ro # so this iac can control routers and services
     environment:
       TRAEFIK_DASHBOARD_CREDENTIALS: ${TRAEFIK_DASHBOARD_CREDENTIALS}
       CF_DNS_API_TOKEN: ${CF_DNS_API_TOKEN}
@@ -26,18 +26,18 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.traefik.entrypoints=http"
-      - "traefik.http.routers.traefik.rule=Host(`traefik.holmlab.org`)"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.${DOMAIN}`)"
       - "traefik.http.middlewares.traefik-auth.basicauth.users=${TRAEFIK_DASHBOARD_CREDENTIALS}"
       - "traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https"
       - "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https"
       - "traefik.http.routers.traefik.middlewares=traefik-https-redirect"
       - "traefik.http.routers.traefik-secure.entrypoints=https"
-      - "traefik.http.routers.traefik-secure.rule=Host(`traefik.holmlab.org`)"
+      - "traefik.http.routers.traefik-secure.rule=Host(`traefik.${DOMAIN}`)"
       - "traefik.http.routers.traefik-secure.middlewares=traefik-auth"
       - "traefik.http.routers.traefik-secure.tls=true"
       - "traefik.http.routers.traefik-secure.tls.certresolver=cloudflare"
-      - "traefik.http.routers.traefik-secure.tls.domains[0].main=holmlab.org"
-      - "traefik.http.routers.traefik-secure.tls.domains[0].sans=*.holmlab.org"
+      - "traefik.http.routers.traefik-secure.tls.domains[0].main=${DOMAIN}"
+      - "traefik.http.routers.traefik-secure.tls.domains[0].sans=*.${DOMAIN}"
       - "traefik.http.routers.traefik-secure.service=api@internal"
 
 networks:
