@@ -1,6 +1,6 @@
 services:
   loggifly:
-    image: ghcr.io/clemcer/loggifly:v1.4.1
+    image: ghcr.io/clemcer/loggifly:v1.4.2
     container_name: loggifly
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
