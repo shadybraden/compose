@@ -12,7 +12,7 @@ services:
             - PGID=1000
         ports:
             - 34417:8080
-        image: filebrowser/filebrowser:v2.40.1
+        image: filebrowser/filebrowser:v2.40.2
         security_opt:
         - no-new-privileges:true # helps to increase security
     cloudflared:
