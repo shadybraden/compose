@@ -7,7 +7,7 @@ services:
             - /data/config_storage/komodo/etc_komodo/stacks/dashy/dashy/icons:/app/user-data/item-icons:ro
         container_name: dashy
         restart: unless-stopped
-        image: lissy93/dashy@sha256:ce2ed87edc1f87a4885cb8e4d76b3d6cf1faf61af29291cdd006f372e4a994ae
+        image: lissy93/dashy@sha256:180c9e524e2bca5568a29289e0785057eb6c8def4b4dc833425d2a2cd537b81e
         security_opt:
         - no-new-privileges:true # helps to increase security
         networks:
