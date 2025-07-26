@@ -16,15 +16,15 @@ services:
       - intranet
     labels:
     - "traefik.enable=true"
-    - "traefik.http.routers.SUBDOMAIN.entrypoints=http"
-    - "traefik.http.routers.SUBDOMAIN.rule=Host(`SUBDOMAIN.${DOMAIN}`)"
-    - "traefik.http.middlewares.SUBDOMAIN-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.SUBDOMAIN.middlewares=SUBDOMAIN-https-redirect"
-    - "traefik.http.routers.SUBDOMAIN-secure.entrypoints=https"
-    - "traefik.http.routers.SUBDOMAIN-secure.rule=Host(`SUBDOMAIN.${DOMAIN}`)"
-    - "traefik.http.routers.SUBDOMAIN-secure.tls=true"
-    - "traefik.http.routers.SUBDOMAIN-secure.service=SUBDOMAIN"
-    - "traefik.http.services.SUBDOMAIN.loadbalancer.server.port=3000" # port of the service.
+    - "traefik.http.routers.homepage.entrypoints=http"
+    - "traefik.http.routers.homepage.rule=Host(`homepage.${DOMAIN}`)"
+    - "traefik.http.middlewares.homepage-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.homepage.middlewares=homepage-https-redirect"
+    - "traefik.http.routers.homepage-secure.entrypoints=https"
+    - "traefik.http.routers.homepage-secure.rule=Host(`homepage.${DOMAIN}`)"
+    - "traefik.http.routers.homepage-secure.tls=true"
+    - "traefik.http.routers.homepage-secure.service=homepage"
+    - "traefik.http.services.homepage.loadbalancer.server.port=3000" # port of the service.
     - "traefik.docker.network=intranet"
 
 networks:
