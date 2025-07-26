@@ -18,7 +18,7 @@ services:
             - timezone=America/New_York
             - schedule="* 8-18 * * 1-5" # not for auto-running. use cron for that
             - RENOVATE_PR_HOURLY_LIMIT=10
-        image: renovate/renovate:41.43.2
+        image: renovate/renovate:41.43.3
         container_name: renovate
 #        command: --include-forks=true renovate-tests/gomod1
         security_opt:
