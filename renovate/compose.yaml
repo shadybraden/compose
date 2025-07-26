@@ -17,7 +17,7 @@ services:
             - RENOVATE_GIT_AUTHOR=Renovate Bot <${RENOVATE_GIT_AUTHOR_EMAIL}>
             - timezone=America/New_York
             - schedule="* 8-18 * * 1-5" # not for auto-running. use cron for that
-            - RENOVATE_PR_HOURLY_LIMIT=10
+            - RENOVATE_PR_HOURLY_LIMIT=100
         image: renovate/renovate:41.43.5
         container_name: renovate
 #        command: --include-forks=true renovate-tests/gomod1
