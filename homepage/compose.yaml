@@ -1,0 +1,32 @@
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:v1.4.0
+    container_name: homepage
+    environment:
+      HOMEPAGE_ALLOWED_HOSTS: homepage.${DOMAIN}
+#    ports:
+#      - 3000:3000
+    volumes:
+      - /data/config_storage/homepage/config:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock:ro # optional, for docker integrations
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true # helps to increase security
+    networks:
+      - intranet
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.SUBDOMAIN.entrypoints=http"
+    - "traefik.http.routers.SUBDOMAIN.rule=Host(`SUBDOMAIN.${DOMAIN}`)"
+    - "traefik.http.middlewares.SUBDOMAIN-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.SUBDOMAIN.middlewares=SUBDOMAIN-https-redirect"
+    - "traefik.http.routers.SUBDOMAIN-secure.entrypoints=https"
+    - "traefik.http.routers.SUBDOMAIN-secure.rule=Host(`SUBDOMAIN.${DOMAIN}`)"
+    - "traefik.http.routers.SUBDOMAIN-secure.tls=true"
+    - "traefik.http.routers.SUBDOMAIN-secure.service=SUBDOMAIN"
+    - "traefik.http.services.SUBDOMAIN.loadbalancer.server.port=3000" # port of the service.
+    - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true
