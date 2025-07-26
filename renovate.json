@@ -7,7 +7,13 @@
     {
       "matchDatasources": ["docker"],
       "matchPackageNames": ["searxng/searxng", "docker.io/searxng/searxng"],
-      "versioning": "regex:^(?<major>\\d{4})\\.(?<minor>\\d{1,2})\\.(?<patch>\\d{1,2})(?:-[\\w]+)?$"
+      "versioning": "regex:^(?<major>\\d{4})\\.(?<minor>\\d{1,2})\\.(?<patch>\\d{1,2})(?:-[\\w]+)?$",
+      "automerge": true
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["quay.io/linuxserver.io/jackett"],
+      "automerge": true
     }
   ]
 }
