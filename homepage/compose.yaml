@@ -4,7 +4,7 @@ services:
     image: ghcr.io/gethomepage/homepage:v1.4.0
     container_name: homepage
     environment:
-      HOMEPAGE_ALLOWED_HOSTS: homepage.${DOMAIN}
+      HOMEPAGE_ALLOWED_HOSTS: ${DOMAIN}
 #    ports:
 #      - 3000:3000
     volumes:
