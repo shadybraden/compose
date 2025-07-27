@@ -16,11 +16,11 @@ services:
     networks:
       - intranet
     labels:
-      - homepage.group=Media
-      - homepage.name=Emby
-      - homepage.icon=emby.png
-      - homepage.href=http://emby.home/
-      - homepage.description=Media server
+      - homepage.group=Media1
+      - homepage.name=Emby1
+      - homepage.icon=emby1.png
+      - homepage.href=http://emby1.home/
+      - homepage.description=Media1 server
 
 networks:
   intranet:
