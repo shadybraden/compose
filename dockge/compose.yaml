@@ -16,11 +16,17 @@ services:
     networks:
       - intranet
     labels:
-      - homepage.group=Media1
-      - homepage.name=Emby1
-      - homepage.icon=emby1.png
-      - homepage.href=http://emby1.home/
-      - homepage.description=Media1 server
+    - "traefik.enable=true"
+    - "traefik.http.routers.dockge.entrypoints=http"
+    - "traefik.http.routers.dockge.rule=Host(`dockge.${DOMAIN}`)"
+    - "traefik.http.middlewares.dockge-https-redirect.redirectscheme.scheme=https"
+    - "traefik.http.routers.dockge.middlewares=dockge-https-redirect"
+    - "traefik.http.routers.dockge-secure.entrypoints=https"
+    - "traefik.http.routers.dockge-secure.rule=Host(`dockge.${DOMAIN}`)"
+    - "traefik.http.routers.dockge-secure.tls=true"
+    - "traefik.http.routers.dockge-secure.service=dockge"
+    - "traefik.http.services.dockge.loadbalancer.server.port=5001" # port of the service
+    - "traefik.docker.network=intranet"
 
 networks:
   intranet:
