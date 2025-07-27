@@ -26,7 +26,7 @@ services:
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=Kiwix"
-      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/kiwix.png"
+      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/kiwix-light.png"
       - "homepage.href=https://kiwix.holmlab.org/"
 
 networks:
