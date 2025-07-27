@@ -1,5 +1,6 @@
+---
 services:
-  gluetun_arr: # the vpn part
+  gluetun_arr:  # the vpn part
     container_name: gluetun_arr
     cap_add:
       - NET_ADMIN
@@ -18,40 +19,40 @@ services:
 #      - 8082:8082 # qbittorrent_movies
 #      - 9117:9117 # jackett
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
-    - "traefik.enable=true"
-    - "traefik.docker.network=intranet"
+      - "traefik.enable=true"
+      - "traefik.docker.network=intranet"
 
-    - "traefik.http.routers.qbittorrent.service=qbittorrent" # for multi-port - https://github.com/traefik/traefik/issues/4807
-    - "traefik.http.routers.qbittorrent.entrypoints=http"
-    - "traefik.http.routers.qbittorrent.rule=Host(`qbittorrent.${DOMAIN}`)"
-    - "traefik.http.middlewares.qbittorrent-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.qbittorrent.middlewares=qbittorrent-https-redirect"
-    - "traefik.http.routers.qbittorrent-secure.entrypoints=https"
-    - "traefik.http.routers.qbittorrent-secure.rule=Host(`qbittorrent.${DOMAIN}`)"
-    - "traefik.http.routers.qbittorrent-secure.tls=true"
-    - "traefik.http.routers.qbittorrent-secure.service=qbittorrent"
-    - "traefik.http.services.qbittorrent.loadbalancer.server.port=8080" # port of the service
-    - "homepage.group=Media"
-    - "homepage.name=qbittorrent"
-    - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/qbittorrent.png"
-    - "homepage.href=https://qbittorrent.holmlab.org/"
+      - "traefik.http.routers.qbittorrent.service=qbittorrent"  # for multi-port - https://github.com/traefik/traefik/issues/4807
+      - "traefik.http.routers.qbittorrent.entrypoints=http"
+      - "traefik.http.routers.qbittorrent.rule=Host(`qbittorrent.${DOMAIN}`)"
+      - "traefik.http.middlewares.qbittorrent-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.qbittorrent.middlewares=qbittorrent-https-redirect"
+      - "traefik.http.routers.qbittorrent-secure.entrypoints=https"
+      - "traefik.http.routers.qbittorrent-secure.rule=Host(`qbittorrent.${DOMAIN}`)"
+      - "traefik.http.routers.qbittorrent-secure.tls=true"
+      - "traefik.http.routers.qbittorrent-secure.service=qbittorrent"
+      - "traefik.http.services.qbittorrent.loadbalancer.server.port=8080"  # port of the service
+      - "homepage.group=Media"
+      - "homepage.name=qbittorrent"
+      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/qbittorrent.png"
+      - "homepage.href=https://qbittorrent.holmlab.org/"
 
-    - "traefik.http.routers.jackett.service=jackett" # for multi-port - https://github.com/traefik/traefik/issues/4807
-    - "traefik.http.routers.jackett.entrypoints=http"
-    - "traefik.http.routers.jackett.rule=Host(`jackett.${DOMAIN}`)"
-    - "traefik.http.middlewares.jackett-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.jackett.middlewares=jackett-https-redirect"
-    - "traefik.http.routers.jackett-secure.entrypoints=https"
-    - "traefik.http.routers.jackett-secure.rule=Host(`jackett.${DOMAIN}`)"
-    - "traefik.http.routers.jackett-secure.tls=true"
-    - "traefik.http.routers.jackett-secure.service=jackett"
-    - "traefik.http.services.jackett.loadbalancer.server.port=9117" # port of the service
+      - "traefik.http.routers.jackett.service=jackett"  # for multi-port - https://github.com/traefik/traefik/issues/4807
+      - "traefik.http.routers.jackett.entrypoints=http"
+      - "traefik.http.routers.jackett.rule=Host(`jackett.${DOMAIN}`)"
+      - "traefik.http.middlewares.jackett-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.jackett.middlewares=jackett-https-redirect"
+      - "traefik.http.routers.jackett-secure.entrypoints=https"
+      - "traefik.http.routers.jackett-secure.rule=Host(`jackett.${DOMAIN}`)"
+      - "traefik.http.routers.jackett-secure.tls=true"
+      - "traefik.http.routers.jackett-secure.service=jackett"
+      - "traefik.http.services.jackett.loadbalancer.server.port=9117"  # port of the service
 
-  radarr: # the movie searching part
+  radarr:  # the movie searching part
     image: quay.io/linuxserver.io/radarr:5.26.2
     container_name: radarr
 #    ports:
@@ -67,27 +68,27 @@ services:
       - /mnt/4tb/movies:/movies
     restart: on-failure
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.radarr.entrypoints=http"
-    - "traefik.http.routers.radarr.rule=Host(`radarr.${DOMAIN}`)"
-    - "traefik.http.middlewares.radarr-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.radarr.middlewares=radarr-https-redirect"
-    - "traefik.http.routers.radarr-secure.entrypoints=https"
-    - "traefik.http.routers.radarr-secure.rule=Host(`radarr.${DOMAIN}`)"
-    - "traefik.http.routers.radarr-secure.tls=true"
-    - "traefik.http.routers.radarr-secure.service=radarr"
-    - "traefik.http.services.radarr.loadbalancer.server.port=7878" # port of the service
-    - "traefik.docker.network=intranet"
-    - "homepage.group=Media"
-    - "homepage.name=radarr"
-    - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/radarr.png"
-    - "homepage.href=https://radarr.holmlab.org/"
+      - "traefik.enable=true"
+      - "traefik.http.routers.radarr.entrypoints=http"
+      - "traefik.http.routers.radarr.rule=Host(`radarr.${DOMAIN}`)"
+      - "traefik.http.middlewares.radarr-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.radarr.middlewares=radarr-https-redirect"
+      - "traefik.http.routers.radarr-secure.entrypoints=https"
+      - "traefik.http.routers.radarr-secure.rule=Host(`radarr.${DOMAIN}`)"
+      - "traefik.http.routers.radarr-secure.tls=true"
+      - "traefik.http.routers.radarr-secure.service=radarr"
+      - "traefik.http.services.radarr.loadbalancer.server.port=7878"  # port of the service
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Media"
+      - "homepage.name=radarr"
+      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/radarr.png"
+      - "homepage.href=https://radarr.holmlab.org/"
 
-  sonarr: # the show searching part
+  sonarr:  # the show searching part
     image: quay.io/linuxserver.io/sonarr:4.0.15
     container_name: sonarr
 #    ports:
@@ -96,33 +97,33 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=America/New_York
-    volumes: # idea is a torrents folder for live downloads, and a media folder for sonarr to copy the files to once finished
+    volumes:  # idea is a torrents folder for live downloads, and a media folder for sonarr to copy the files to once finished
       - /data/config_storage/arr/sonarr:/config
       - /mnt/4tb/torrents:/downloads/torrents
       - /mnt/4tb/shows:/shows
     restart: on-failure
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.sonarr.entrypoints=http"
-    - "traefik.http.routers.sonarr.rule=Host(`sonarr.${DOMAIN}`)"
-    - "traefik.http.middlewares.sonarr-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.sonarr.middlewares=sonarr-https-redirect"
-    - "traefik.http.routers.sonarr-secure.entrypoints=https"
-    - "traefik.http.routers.sonarr-secure.rule=Host(`sonarr.${DOMAIN}`)"
-    - "traefik.http.routers.sonarr-secure.tls=true"
-    - "traefik.http.routers.sonarr-secure.service=sonarr"
-    - "traefik.http.services.sonarr.loadbalancer.server.port=8989" # port of the service
-    - "traefik.docker.network=intranet"
-    - "homepage.group=Media"
-    - "homepage.name=sonarr"
-    - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/sonarr.png"
-    - "homepage.href=https://sonarr.holmlab.org/"
+      - "traefik.enable=true"
+      - "traefik.http.routers.sonarr.entrypoints=http"
+      - "traefik.http.routers.sonarr.rule=Host(`sonarr.${DOMAIN}`)"
+      - "traefik.http.middlewares.sonarr-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.sonarr.middlewares=sonarr-https-redirect"
+      - "traefik.http.routers.sonarr-secure.entrypoints=https"
+      - "traefik.http.routers.sonarr-secure.rule=Host(`sonarr.${DOMAIN}`)"
+      - "traefik.http.routers.sonarr-secure.tls=true"
+      - "traefik.http.routers.sonarr-secure.service=sonarr"
+      - "traefik.http.services.sonarr.loadbalancer.server.port=8989"  # port of the service
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Media"
+      - "homepage.name=sonarr"
+      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/sonarr.png"
+      - "homepage.href=https://sonarr.holmlab.org/"
 
-  jackett: # mega indexer for the arr's above
+  jackett:  # mega indexer for the arr's above
     image: quay.io/linuxserver.io/jackett:0.22.2196
     container_name: jackett
     restart: on-failure
@@ -133,7 +134,7 @@ services:
       gluetun_arr:
         condition: service_healthy
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
 
 # in the ui, set "Default Save Path:" to "Default Save Path:"
   qbittorrent:
@@ -153,7 +154,7 @@ services:
       gluetun_arr:
         condition: service_healthy
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
