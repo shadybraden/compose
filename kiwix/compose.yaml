@@ -1,30 +1,33 @@
+---
 services:
-    kiwix-serve:
-        volumes:
-            - /mnt/4tb/kiwix/zim:/data:ro
-        container_name: kiwix
-        restart: on-failure
-#        ports:
-#            - 8080:8080
-        image: ghcr.io/kiwix/kiwix-serve:3.7.0
-        command: archlinux_en_all_maxi_2022-12.zim
-                 *.zim
-        security_opt:
-        - no-new-privileges:true # helps to increase security
-        networks:
-        - intranet
-        labels:
-        - "traefik.enable=true"
-        - "traefik.http.routers.kiwix.entrypoints=http"
-        - "traefik.http.routers.kiwix.rule=Host(`kiwix.${DOMAIN}`)"
-        - "traefik.http.middlewares.kiwix-https-redirect.redirectscheme.scheme=https"
-        - "traefik.http.routers.kiwix.middlewares=kiwix-https-redirect"
-        - "traefik.http.routers.kiwix-secure.entrypoints=https"
-        - "traefik.http.routers.kiwix-secure.rule=Host(`kiwix.${DOMAIN}`)"
-        - "traefik.http.routers.kiwix-secure.tls=true"
-        - "traefik.http.routers.kiwix-secure.service=kiwix"
-        - "traefik.http.services.kiwix.loadbalancer.server.port=8080" # port of the service
-        - "traefik.docker.network=intranet"
+  kiwix-serve:
+    volumes:
+      - /mnt/4tb/kiwix/zim:/data:ro
+    container_name: kiwix
+    restart: on-failure
+    image: ghcr.io/kiwix/kiwix-serve:3.7.0
+    command: archlinux_en_all_maxi_2022-12.zim
+              *.zim
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.kiwix.entrypoints=http"
+      - "traefik.http.routers.kiwix.rule=Host(`kiwix.${DOMAIN}`)"
+      - "traefik.http.middlewares.kiwix-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.kiwix.middlewares=kiwix-https-redirect"
+      - "traefik.http.routers.kiwix-secure.entrypoints=https"
+      - "traefik.http.routers.kiwix-secure.rule=Host(`kiwix.${DOMAIN}`)"
+      - "traefik.http.routers.kiwix-secure.tls=true"
+      - "traefik.http.routers.kiwix-secure.service=kiwix"
+      - "traefik.http.services.kiwix.loadbalancer.server.port=8080"  # port of the service
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=Kiwix"
+      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/kiwix.png"
+      - "homepage.href=https://kiwix.holmlab.org/"
 
 networks:
   intranet:
