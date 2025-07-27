@@ -59,3 +59,11 @@ To include something to TinyAuth:
 ```
 - "traefik.http.routers.SERVICENAME-secure.middlewares=tinyauth"
 ```
+
+To add to Homepage:
+```
+    - "homepage.group=GROUP"
+    - "homepage.name=NAME"
+    - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/NAME.png"
+    - "homepage.href=https://NAME.holmlab.org/"
+```
