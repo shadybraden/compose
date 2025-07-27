@@ -30,6 +30,10 @@ services:
     - "traefik.http.routers.forgejo-secure.service=forgejo"
     - "traefik.http.services.forgejo.loadbalancer.server.port=3000" # port of the service
     - "traefik.docker.network=intranet"
+    - "homepage.group=Infrastructure"
+    - "homepage.name=Forgejo"
+    - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/forgejo.png"
+    - "homepage.href=https://forgejo.holmlab.org/"
 
 networks:
   intranet:
