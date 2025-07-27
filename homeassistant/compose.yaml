@@ -1,37 +1,41 @@
 services:
-    home-assistant:
-        ports:
-        - "8123:8123" 
-        expose:
-        - 8123
-        container_name: homeassistant
-        privileged: true
-        volumes:
-            - /data/config_storage/homeassistant:/config
-            - /etc/localtime:/etc/localtime:ro
-            - /run/dbus:/run/dbus
-        restart: on-failure
-        environment:
-            - TZ=America/New_York
-        image: ghcr.io/home-assistant/home-assistant:2025.7.1
-        security_opt:
-        - no-new-privileges:true # helps to increase security
-        networks:
-        - intranet
-        labels:
-        - "com.centurylinklabs.watchtower.enable=false" # disable auto updates via watchtower
-        - "traefik.enable=true"
-        - traefik.docker.network=web # https://www.reddit.com/r/Traefik/comments/190ps04/502_bad_gateway_connection_refused/
-        - "traefik.http.routers.homeassistant.entrypoints=http"
-        - "traefik.http.routers.homeassistant.rule=Host(`homeassistant.${DOMAIN}`)"
-        - "traefik.http.middlewares.homeassistant-https-redirect.redirectscheme.scheme=https"
-        - "traefik.http.routers.homeassistant.middlewares=homeassistant-https-redirect"
-        - "traefik.http.routers.homeassistant-secure.entrypoints=https"
-        - "traefik.http.routers.homeassistant-secure.rule=Host(`homeassistant.${DOMAIN}`)"
-        - "traefik.http.routers.homeassistant-secure.tls=true"
-        - "traefik.http.routers.homeassistant-secure.service=homeassistant"
-        - "traefik.http.services.homeassistant.loadbalancer.server.port=8123" # port of the service
-        - "traefik.docker.network=intranet"
+  home-assistant:
+    ports:
+    - "8123:8123" 
+    expose:
+    - 8123
+    container_name: homeassistant
+    privileged: true
+    volumes:
+      - /data/config_storage/homeassistant:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus
+    restart: on-failure
+    environment:
+      - TZ=America/New_York
+    image: ghcr.io/home-assistant/home-assistant:2025.7.1
+    security_opt:
+      - no-new-privileges:true # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false" # disable auto updates via watchtower
+      - "traefik.enable=true"
+      - traefik.docker.network=web # https://www.reddit.com/r/Traefik/comments/190ps04/502_bad_gateway_connection_refused/
+      - "traefik.http.routers.homeassistant.entrypoints=http"
+      - "traefik.http.routers.homeassistant.rule=Host(`homeassistant.${DOMAIN}`)"
+      - "traefik.http.middlewares.homeassistant-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.homeassistant.middlewares=homeassistant-https-redirect"
+      - "traefik.http.routers.homeassistant-secure.entrypoints=https"
+      - "traefik.http.routers.homeassistant-secure.rule=Host(`homeassistant.${DOMAIN}`)"
+      - "traefik.http.routers.homeassistant-secure.tls=true"
+      - "traefik.http.routers.homeassistant-secure.service=homeassistant"
+      - "traefik.http.services.homeassistant.loadbalancer.server.port=8123" # port of the service
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=homeassistant"
+      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/homeassistant.png"
+      - "homepage.href=https://homeassistant.holmlab.org/"
 
 networks:
   intranet:

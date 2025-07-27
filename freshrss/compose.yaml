@@ -6,35 +6,35 @@ services:
       options:
         max-size: 10m
     ports:
-        - 8062:80
+      - 8062:80
     environment:
-        - TZ=America/New_York
-        - CRON_MIN=1,31 # this is minute 1 and 31
+      - TZ=America/New_York
+      - CRON_MIN=1,31  # this is minute 1 and 31
     volumes:
-        - /data/config_storage/freshrss/data:/var/www/FreshRSS/data
-        - /data/config_storage/freshrss/extensions:/var/www/FreshRSS/extensions
+      - /data/config_storage/freshrss/data:/var/www/FreshRSS/data
+      - /data/config_storage/freshrss/extensions:/var/www/FreshRSS/extensions
     container_name: freshrss
     image: freshrss/freshrss:1.26.3
     security_opt:
-        - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
-        - intranet
+      - intranet
     labels:
-        - "traefik.enable=true"
-        - "traefik.http.routers.rss.entrypoints=http"
-        - "traefik.http.routers.rss.rule=Host(`rss.${DOMAIN}`)"
-        - "traefik.http.middlewares.rss-https-redirect.redirectscheme.scheme=https"
-        - "traefik.http.routers.rss.middlewares=rss-https-redirect"
-        - "traefik.http.routers.rss-secure.entrypoints=https"
-        - "traefik.http.routers.rss-secure.rule=Host(`rss.${DOMAIN}`)"
-        - "traefik.http.routers.rss-secure.tls=true"
-        - "traefik.http.routers.rss-secure.service=rss"
-        - "traefik.http.services.rss.loadbalancer.server.port=80" # port of the service
-        - "traefik.docker.network=intranet"
-        - "homepage.group=Fun"
-        - "homepage.name=FreshRSS"
-        - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/freshrss.png"
-        - "homepage.href=https://rss.holmlab.org/"
+      - "traefik.enable=true"
+      - "traefik.http.routers.rss.entrypoints=http"
+      - "traefik.http.routers.rss.rule=Host(`rss.${DOMAIN}`)"
+      - "traefik.http.middlewares.rss-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.rss.middlewares=rss-https-redirect"
+      - "traefik.http.routers.rss-secure.entrypoints=https"
+      - "traefik.http.routers.rss-secure.rule=Host(`rss.${DOMAIN}`)"
+      - "traefik.http.routers.rss-secure.tls=true"
+      - "traefik.http.routers.rss-secure.service=rss"
+      - "traefik.http.services.rss.loadbalancer.server.port=80"  # port of the service
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Fun"
+      - "homepage.name=FreshRSS"
+      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/freshrss.png"
+      - "homepage.href=https://rss.holmlab.org/"
 
 networks:
   intranet:

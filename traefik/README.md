@@ -62,8 +62,8 @@ To include something to TinyAuth:
 
 To add to Homepage:
 ```
-    - "homepage.group=GROUP"
-    - "homepage.name=NAME"
-    - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/NAME.png"
-    - "homepage.href=https://NAME.holmlab.org/"
+      - "homepage.group=GROUP"
+      - "homepage.name=NAME"
+      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/NAME.png"
+      - "homepage.href=https://NAME.holmlab.org/"
 ```
