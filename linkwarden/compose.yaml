@@ -1,3 +1,4 @@
+---
 services:
   postgres:
     image: postgres:16-alpine
@@ -7,7 +8,7 @@ services:
     volumes:
       - /data/config_storage/linkwarden/pgdata:/var/lib/postgresql/data
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
   linkwarden:
@@ -17,28 +18,30 @@ services:
     restart: unless-stopped
     image: ghcr.io/linkwarden/linkwarden:v2.11.5
     container_name: linkwarden
-#    ports:
-#      - 3000:3000
     volumes:
       - /data/config_storage/linkwarden/data:/data/data
     depends_on:
       - postgres
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.links.entrypoints=http"
-    - "traefik.http.routers.links.rule=Host(`links.${DOMAIN}`)"
-    - "traefik.http.middlewares.links-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.links.middlewares=links-https-redirect"
-    - "traefik.http.routers.links-secure.entrypoints=https"
-    - "traefik.http.routers.links-secure.rule=Host(`links.${DOMAIN}`)"
-    - "traefik.http.routers.links-secure.tls=true"
-    - "traefik.http.routers.links-secure.service=links"
-    - "traefik.http.services.links.loadbalancer.server.port=3000" # port of the service.
-    - "traefik.docker.network=intranet"
+      - "traefik.enable=true"
+      - "traefik.http.routers.links.entrypoints=http"
+      - "traefik.http.routers.links.rule=Host(`links.${DOMAIN}`)"
+      - "traefik.http.middlewares.links-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.links.middlewares=links-https-redirect"
+      - "traefik.http.routers.links-secure.entrypoints=https"
+      - "traefik.http.routers.links-secure.rule=Host(`links.${DOMAIN}`)"
+      - "traefik.http.routers.links-secure.tls=true"
+      - "traefik.http.routers.links-secure.service=links"
+      - "traefik.http.services.links.loadbalancer.server.port=3000"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=Linkwarden"
+      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/linkwarden.png"
+      - "homepage.href=https://links.holmlab.org/"
 
 networks:
   intranet:
