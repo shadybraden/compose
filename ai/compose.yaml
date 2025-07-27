@@ -51,6 +51,7 @@ services:
         - "traefik.http.services.ai.loadbalancer.server.port=8080" # port of the service
         - "traefik.docker.network=intranet"
         - "homepage.group=Other"
+        - "homepage.weight=2"
         - "homepage.name=AI"
         - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/open-webui-light.png"
         - "homepage.href=https://ai.holmlab.org"
