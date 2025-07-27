@@ -32,7 +32,7 @@ services:
     - "traefik.docker.network=intranet"
     - "homepage.group=Infrastructure"
     - "homepage.name=Forgejo"
-    - "homepage.icon=/icons/forgejo.png"
+    - "homepage.icon=/app/public/images/forgejo.png"
     - "homepage.href=https://git.holmlab.org/shady/compose"
 
 networks:
