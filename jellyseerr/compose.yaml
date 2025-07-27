@@ -1,3 +1,4 @@
+---
 services:
   jellyseerr:
     image: fallenbagel/jellyseerr:2.7.2
@@ -5,33 +6,29 @@ services:
     environment:
       - LOG_LEVEL=debug
       - TZ=America/New_York
-#      - PORT=5055 #optional
-#    ports:
-#      - 5055:5055
     volumes:
       - /data/config_storage/jellyseerr/config:/app/config
-#      - ${jellyseerr_files}:/data
     restart: unless-stopped
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.jellyseerr.entrypoints=http"
-    - "traefik.http.routers.jellyseerr.rule=Host(`jellyseerr.${DOMAIN}`)"
-    - "traefik.http.middlewares.jellyseerr-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.jellyseerr.middlewares=jellyseerr-https-redirect"
-    - "traefik.http.routers.jellyseerr-secure.entrypoints=https"
-    - "traefik.http.routers.jellyseerr-secure.rule=Host(`jellyseerr.${DOMAIN}`)"
-    - "traefik.http.routers.jellyseerr-secure.tls=true"
-    - "traefik.http.routers.jellyseerr-secure.service=jellyseerr"
-    - "traefik.http.services.jellyseerr.loadbalancer.server.port=5055" # port of the service
-    - "traefik.docker.network=intranet"
-    - "homepage.group=Media"
-    - "homepage.name=jellyseerr"
-    - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/jellyseerr.png"
-    - "homepage.href=https://jellyseerr.holmlab.org/"
+      - "traefik.enable=true"
+      - "traefik.http.routers.jellyseerr.entrypoints=http"
+      - "traefik.http.routers.jellyseerr.rule=Host(`jellyseerr.${DOMAIN}`)"
+      - "traefik.http.middlewares.jellyseerr-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.jellyseerr.middlewares=jellyseerr-https-redirect"
+      - "traefik.http.routers.jellyseerr-secure.entrypoints=https"
+      - "traefik.http.routers.jellyseerr-secure.rule=Host(`jellyseerr.${DOMAIN}`)"
+      - "traefik.http.routers.jellyseerr-secure.tls=true"
+      - "traefik.http.routers.jellyseerr-secure.service=jellyseerr"
+      - "traefik.http.services.jellyseerr.loadbalancer.server.port=5055"  # port of the service
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Media"
+      - "homepage.name=jellyseerr"
+      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/jellyseerr.png"
+      - "homepage.href=https://jellyseerr.holmlab.org/"
 
 networks:
   intranet:
