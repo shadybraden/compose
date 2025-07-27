@@ -29,7 +29,7 @@ services:
       - "traefik.http.routers.motioneye-secure.service=motioneye"
       - "traefik.http.services.motioneye.loadbalancer.server.port=8081"  # port of the service.
       - "traefik.docker.network=intranet"
-      - "homepage.group=GROUP"
+      - "homepage.group=Other"
       - "homepage.name=motioneye"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/motioneye.png"
       - "homepage.href=https://motioneye.holmlab.org/"
