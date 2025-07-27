@@ -1,3 +1,4 @@
+---
 name: immich
 services:
   immich-server:
@@ -9,8 +10,6 @@ services:
       - /mnt/4tb/immich/external_libraries:/mnt/4tb/immich/external_libraries
     env_file:
       - .env
-#    ports:
-#      - 2283:2283
     depends_on:
       - redis
       - database
@@ -20,22 +19,25 @@ services:
     environment:
       - IMMICH_TRUSTED_PROXIES=192.168.50.65,172.27.0.0/16
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.immich.entrypoints=http"
-#    - "traefik.http.routers.immich.entrypoints: websecure"
-    - "traefik.http.routers.immich.rule=Host(`immich.${DOMAIN}`)"
-    - "traefik.http.middlewares.immich-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.immich.middlewares=immich-https-redirect"
-    - "traefik.http.routers.immich-secure.entrypoints=https"
-    - "traefik.http.routers.immich-secure.rule=Host(`immich.${DOMAIN}`)"
-    - "traefik.http.routers.immich-secure.tls=true"
-    - "traefik.http.routers.immich-secure.service=immich"
-    - "traefik.http.services.immich.loadbalancer.server.port=2283" # port of the service
-    - "traefik.docker.network=intranet"
+      - "traefik.enable=true"
+      - "traefik.http.routers.immich.entrypoints=http"
+      - "traefik.http.routers.immich.rule=Host(`immich.${DOMAIN}`)"
+      - "traefik.http.middlewares.immich-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.immich.middlewares=immich-https-redirect"
+      - "traefik.http.routers.immich-secure.entrypoints=https"
+      - "traefik.http.routers.immich-secure.rule=Host(`immich.${DOMAIN}`)"
+      - "traefik.http.routers.immich-secure.tls=true"
+      - "traefik.http.routers.immich-secure.service=immich"
+      - "traefik.http.services.immich.loadbalancer.server.port=2283"  # port of the service
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Media"
+      - "homepage.name=immich"
+      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/immich.png"
+      - "homepage.href=https://immich.holmlab.org/"
 
   immich-machine-learning:
     container_name: immich_machine_learning

@@ -1,42 +1,35 @@
+---
 services:
-    hoodik:
-        container_name: hoodik
-#        stdin_open: true
-#        tty: true
-        environment:
-            - DATA_DIR=/data
-            - APP_URL=https://hoodik.${DOMAIN}/
-            - APP_CLIENT_URL=https://hoodik.${DOMAIN}/
-            - SSL_DISABLED=true
-#            - SSL_CERT_FILE=/data/my-cert-file.crt.pem
-#            - SSL_KEY_FILE=/data/my-key-file.key.pem
-#            - MAILER_TYPE=smtp
-#            - SMTP_ADDRESS=smtp.gmail.com
-#            - SMTP_USERNAME=email@gmail.com
-#            - SMTP_PASSWORD=google-account-app-password
-#            - SMTP_PORT=465
-#            - SMTP_DEFAULT_FROM=Hoodik Drive <email@gmail.com>
-        volumes:
-            - /data/config_storage/hoodik/data:/data
-#        ports:
-#            - 4554:5443
-        image: hudik/hoodik:v1.5.1
-        security_opt:
-          - no-new-privileges:true # helps to increase security
-        networks:
-          - intranet
-        labels:
-        - "traefik.enable=true"
-        - "traefik.http.routers.hoodik.entrypoints=http"
-        - "traefik.http.routers.hoodik.rule=Host(`hoodik.${DOMAIN}`)"
-        - "traefik.http.middlewares.hoodik-https-redirect.redirectscheme.scheme=https"
-        - "traefik.http.routers.hoodik.middlewares=hoodik-https-redirect"
-        - "traefik.http.routers.hoodik-secure.entrypoints=https"
-        - "traefik.http.routers.hoodik-secure.rule=Host(`hoodik.${DOMAIN}`)"
-        - "traefik.http.routers.hoodik-secure.tls=true"
-        - "traefik.http.routers.hoodik-secure.service=hoodik"
-        - "traefik.http.services.hoodik.loadbalancer.server.port=5443" # port of the service
-        - "traefik.docker.network=intranet"
+  hoodik:
+    container_name: hoodik
+    environment:
+      - DATA_DIR=/data
+      - APP_URL=https://hoodik.${DOMAIN}/
+      - APP_CLIENT_URL=https://hoodik.${DOMAIN}/
+      - SSL_DISABLED=true
+    volumes:
+      - /data/config_storage/hoodik/data:/data
+    image: hudik/hoodik:v1.5.1
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.hoodik.entrypoints=http"
+      - "traefik.http.routers.hoodik.rule=Host(`hoodik.${DOMAIN}`)"
+      - "traefik.http.middlewares.hoodik-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.hoodik.middlewares=hoodik-https-redirect"
+      - "traefik.http.routers.hoodik-secure.entrypoints=https"
+      - "traefik.http.routers.hoodik-secure.rule=Host(`hoodik.${DOMAIN}`)"
+      - "traefik.http.routers.hoodik-secure.tls=true"
+      - "traefik.http.routers.hoodik-secure.service=hoodik"
+      - "traefik.http.services.hoodik.loadbalancer.server.port=5443"  # port of the service
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=hoodik"
+      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/hoodik.png"
+      - "homepage.href=https://hoodik.holmlab.org/"
 
 networks:
   intranet:
