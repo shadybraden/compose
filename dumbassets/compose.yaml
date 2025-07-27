@@ -1,3 +1,4 @@
+---
 services:
   dumbassets:
 #    ports:
@@ -9,25 +10,25 @@ services:
       - TZ:America/New_York
       - DUMBASSETS_PIN=${DUMBASSETS_PIN}
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.assets.entrypoints=http"
-    - "traefik.http.routers.assets.rule=Host(`assets.${DOMAIN}`)"
-    - "traefik.http.middlewares.assets-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.assets.middlewares=assets-https-redirect"
-    - "traefik.http.routers.assets-secure.entrypoints=https"
-    - "traefik.http.routers.assets-secure.rule=Host(`assets.${DOMAIN}`)"
-    - "traefik.http.routers.assets-secure.tls=true"
-    - "traefik.http.routers.assets-secure.service=assets"
-    - "traefik.http.services.assets.loadbalancer.server.port=3000" # port of the service.
-    - "traefik.docker.network=intranet"
-    - "homepage.group=Other"
-    - "homepage.name=dumbassets"
-    - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/dumbassets.png"
-    - "homepage.href=https://assets.holmlab.org/"
+      - "traefik.enable=true"
+      - "traefik.http.routers.assets.entrypoints=http"
+      - "traefik.http.routers.assets.rule=Host(`assets.${DOMAIN}`)"
+      - "traefik.http.middlewares.assets-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.assets.middlewares=assets-https-redirect"
+      - "traefik.http.routers.assets-secure.entrypoints=https"
+      - "traefik.http.routers.assets-secure.rule=Host(`assets.${DOMAIN}`)"
+      - "traefik.http.routers.assets-secure.tls=true"
+      - "traefik.http.routers.assets-secure.service=assets"
+      - "traefik.http.services.assets.loadbalancer.server.port=3000"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=dumbassets"
+      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/dumbassets.png"
+      - "homepage.href=https://assets.holmlab.org/"
 
 networks:
   intranet:
