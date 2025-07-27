@@ -1,37 +1,36 @@
+---
 services:
-    audiobookshelf:
-#        ports:
-#            - 13378:80
-        container_name: audiobookshelf
-        volumes:
-            - /mnt/4tb/audiobooks:/audiobooks:ro
-            - /mnt/4tb/podcasts:/podcasts:ro
-            - /data/config_storage/audiobookshelf/config:/config
-            - /data/config_storage/audiobookshelf/metadata:/metadata
-        environment:
-            - TZ=America/New_York
-        restart: on-failure
-        image: ghcr.io/advplyr/audiobookshelf:2.26.3
-        security_opt:
-        - no-new-privileges:true # helps to increase security
-        networks:
-        - intranet
-        labels:
-        - "traefik.enable=true"
-        - "traefik.http.routers.audiobookshelf.entrypoints=http"
-        - "traefik.http.routers.audiobookshelf.rule=Host(`audiobookshelf.${DOMAIN}`)"
-        - "traefik.http.middlewares.audiobookshelf-https-redirect.redirectscheme.scheme=https"
-        - "traefik.http.routers.audiobookshelf.middlewares=audiobookshelf-https-redirect"
-        - "traefik.http.routers.audiobookshelf-secure.entrypoints=https"
-        - "traefik.http.routers.audiobookshelf-secure.rule=Host(`audiobookshelf.${DOMAIN}`)"
-        - "traefik.http.routers.audiobookshelf-secure.tls=true"
-        - "traefik.http.routers.audiobookshelf-secure.service=audiobookshelf"
-        - "traefik.http.services.audiobookshelf.loadbalancer.server.port=80" # port of the service
-        - "traefik.docker.network=intranet"
-        - "homepage.group=Media"
-        - "homepage.name=audiobookshelf"
-        - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/audiobookshelf.png"
-        - "homepage.href=https://audiobookshelf.holmlab.org/"
+  audiobookshelf:
+    container_name: audiobookshelf
+    volumes:
+      - /mnt/4tb/audiobooks:/audiobooks:ro
+      - /mnt/4tb/podcasts:/podcasts:ro
+      - /data/config_storage/audiobookshelf/config:/config
+      - /data/config_storage/audiobookshelf/metadata:/metadata
+    environment:
+      - TZ=America/New_York
+    restart: on-failure
+    image: ghcr.io/advplyr/audiobookshelf:2.26.3
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.audiobookshelf.entrypoints=http"
+      - "traefik.http.routers.audiobookshelf.rule=Host(`audiobookshelf.${DOMAIN}`)"
+      - "traefik.http.middlewares.audiobookshelf-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.audiobookshelf.middlewares=audiobookshelf-https-redirect"
+      - "traefik.http.routers.audiobookshelf-secure.entrypoints=https"
+      - "traefik.http.routers.audiobookshelf-secure.rule=Host(`audiobookshelf.${DOMAIN}`)"
+      - "traefik.http.routers.audiobookshelf-secure.tls=true"
+      - "traefik.http.routers.audiobookshelf-secure.service=audiobookshelf"
+      - "traefik.http.services.audiobookshelf.loadbalancer.server.port=80"  # port of the service
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Media"
+      - "homepage.name=audiobookshelf"
+      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/audiobookshelf.png"
+      - "homepage.href=https://audiobookshelf.holmlab.org/"
 
 networks:
   intranet:
