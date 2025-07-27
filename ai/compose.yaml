@@ -50,6 +50,10 @@ services:
         - "traefik.http.routers.ai-secure.service=ai"
         - "traefik.http.services.ai.loadbalancer.server.port=8080" # port of the service
         - "traefik.docker.network=intranet"
+        - "homepage.group=Other"
+        - "homepage.name=AI"
+        - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/open-webui-light.png"
+        - "homepage.href=https://ai.holmlab.org"
 
 networks:
   intranet:
