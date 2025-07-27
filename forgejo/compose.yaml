@@ -1,3 +1,4 @@
+---
 services:
   server:
     image: codeberg.org/forgejo/forgejo:12.0.1
@@ -15,25 +16,25 @@ services:
 #      - 3003:3000
       - 222:22
     security_opt:
-    - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
-    - intranet
+      - intranet
     labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.forgejo.entrypoints=http"
-    - "traefik.http.routers.forgejo.rule=Host(`git.${DOMAIN}`)"
-    - "traefik.http.middlewares.forgejo-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.forgejo.middlewares=forgejo-https-redirect"
-    - "traefik.http.routers.forgejo-secure.entrypoints=https"
-    - "traefik.http.routers.forgejo-secure.rule=Host(`git.${DOMAIN}`)"
-    - "traefik.http.routers.forgejo-secure.tls=true"
-    - "traefik.http.routers.forgejo-secure.service=forgejo"
-    - "traefik.http.services.forgejo.loadbalancer.server.port=3000" # port of the service
-    - "traefik.docker.network=intranet"
-    - "homepage.group=Infrastructure"
-    - "homepage.name=Forgejo"
-    - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/forgejo.png"
-    - "homepage.href=https://git.holmlab.org/shady/compose"
+      - "traefik.enable=true"
+      - "traefik.http.routers.forgejo.entrypoints=http"
+      - "traefik.http.routers.forgejo.rule=Host(`git.${DOMAIN}`)"
+      - "traefik.http.middlewares.forgejo-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.forgejo.middlewares=forgejo-https-redirect"
+      - "traefik.http.routers.forgejo-secure.entrypoints=https"
+      - "traefik.http.routers.forgejo-secure.rule=Host(`git.${DOMAIN}`)"
+      - "traefik.http.routers.forgejo-secure.tls=true"
+      - "traefik.http.routers.forgejo-secure.service=forgejo"
+      - "traefik.http.services.forgejo.loadbalancer.server.port=3000"  # port of the service
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Infrastructure"
+      - "homepage.name=Forgejo"
+      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/forgejo.png"
+      - "homepage.href=https://git.holmlab.org/shady/compose"
 
 networks:
   intranet:
