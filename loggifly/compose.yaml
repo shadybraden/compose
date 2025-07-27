@@ -1,3 +1,4 @@
+---
 services:
   loggifly:
     image: ghcr.io/clemcer/loggifly:v1.4.2
@@ -9,6 +10,6 @@ services:
       NTFY_TOPIC: ${topic}
       CONTAINERS: "vaultwarden,WeddingShare,audiobookshelf,pihole,restic,wg-easy,forgejo,jellyfin,immich_server,nextcloud,syncthing,silverbullet,tinyauth"
       GLOBAL_KEYWORDS: "error,failed login,password,Authentication failed,Failed authentication attempt,Wrong credentials"
-      GLOBAL_KEYWORDS_WITH_ATTACHMENT: "critical" # Attaches a log file to the notification
+      GLOBAL_KEYWORDS_WITH_ATTACHMENT: "critical"  # Attaches a log file to the notification
       NTFY_PRIORITY: 1
     restart: unless-stopped

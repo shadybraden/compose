@@ -1,3 +1,4 @@
+---
 services:
   mealie:
     container_name: mealie
@@ -5,28 +6,30 @@ services:
     restart: unless-stopped
     volumes:
       - /data/config_storage/mealie:/app/data/
-#    ports:
-#      - 9091:9000
     environment:
       ALLOW_SIGNUP: "false"
       LOG_LEVEL: "DEBUG"
       DB_ENGINE: sqlite
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.mealie.entrypoints=http"
-    - "traefik.http.routers.mealie.rule=Host(`mealie.${DOMAIN}`)"
-    - "traefik.http.middlewares.mealie-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.mealie.middlewares=mealie-https-redirect"
-    - "traefik.http.routers.mealie-secure.entrypoints=https"
-    - "traefik.http.routers.mealie-secure.rule=Host(`mealie.${DOMAIN}`)"
-    - "traefik.http.routers.mealie-secure.tls=true"
-    - "traefik.http.routers.mealie-secure.service=mealie"
-    - "traefik.http.services.mealie.loadbalancer.server.port=9000" # port of the service.
-    - "traefik.docker.network=intranet"
+      - "traefik.enable=true"
+      - "traefik.http.routers.mealie.entrypoints=http"
+      - "traefik.http.routers.mealie.rule=Host(`mealie.${DOMAIN}`)"
+      - "traefik.http.middlewares.mealie-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.mealie.middlewares=mealie-https-redirect"
+      - "traefik.http.routers.mealie-secure.entrypoints=https"
+      - "traefik.http.routers.mealie-secure.rule=Host(`mealie.${DOMAIN}`)"
+      - "traefik.http.routers.mealie-secure.tls=true"
+      - "traefik.http.routers.mealie-secure.service=mealie"
+      - "traefik.http.services.mealie.loadbalancer.server.port=9000"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=mealie"
+      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/mealie.png"
+      - "homepage.href=https://mealie.holmlab.org/"
 
 networks:
   intranet:

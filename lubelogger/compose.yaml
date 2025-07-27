@@ -1,3 +1,4 @@
+---
 services:
   app:
     image: ghcr.io/hargata/lubelogger:v1.4.9
@@ -5,24 +6,26 @@ services:
     volumes:
       - /data/config_storage/lubelogger/data:/App/data
       - /data/config_storage/lubelogger/keys:/root/.aspnet/DataProtection-Keys
-#    ports:
-#      - 8080:8080
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.lubelogger.entrypoints=http"
-    - "traefik.http.routers.lubelogger.rule=Host(`lubelogger.${DOMAIN}`)"
-    - "traefik.http.middlewares.lubelogger-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.lubelogger.middlewares=lubelogger-https-redirect"
-    - "traefik.http.routers.lubelogger-secure.entrypoints=https"
-    - "traefik.http.routers.lubelogger-secure.rule=Host(`lubelogger.${DOMAIN}`)"
-    - "traefik.http.routers.lubelogger-secure.tls=true"
-    - "traefik.http.routers.lubelogger-secure.service=lubelogger"
-    - "traefik.http.services.lubelogger.loadbalancer.server.port=8080" # port of the service.
-    - "traefik.docker.network=intranet"
+      - "traefik.enable=true"
+      - "traefik.http.routers.lubelogger.entrypoints=http"
+      - "traefik.http.routers.lubelogger.rule=Host(`lubelogger.${DOMAIN}`)"
+      - "traefik.http.middlewares.lubelogger-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.lubelogger.middlewares=lubelogger-https-redirect"
+      - "traefik.http.routers.lubelogger-secure.entrypoints=https"
+      - "traefik.http.routers.lubelogger-secure.rule=Host(`lubelogger.${DOMAIN}`)"
+      - "traefik.http.routers.lubelogger-secure.tls=true"
+      - "traefik.http.routers.lubelogger-secure.service=lubelogger"
+      - "traefik.http.services.lubelogger.loadbalancer.server.port=8080"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=lubelogger"
+      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/lubelogger.png"
+      - "homepage.href=https://lubelogger.holmlab.org/"
 
 networks:
   intranet:
