@@ -14,11 +14,11 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.dashy.entrypoints=http"
-      - "traefik.http.routers.dashy.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.dashy.rule=Host(`dashy.${DOMAIN}`)"
       - "traefik.http.middlewares.dashy-https-redirect.redirectscheme.scheme=https"
       - "traefik.http.routers.dashy.middlewares=dashy-https-redirect"
       - "traefik.http.routers.dashy-secure.entrypoints=https"
-      - "traefik.http.routers.dashy-secure.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.dashy-secure.rule=Host(`dashy.${DOMAIN}`)"
       - "traefik.http.routers.dashy-secure.tls=true"
       - "traefik.http.routers.dashy-secure.service=dashy"
       - "traefik.http.services.dashy.loadbalancer.server.port=8080"  # port of the service
