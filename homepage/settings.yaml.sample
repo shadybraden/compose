@@ -1,0 +1,13 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/settings/
+
+providers:
+  openweathermap: openweathermapapikey
+  weatherapi: weatherapiapikey
+background: https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/background.png
+favicon: https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/favicon.ico
+headerStyle: clean
+disableUpdateCheck: true
+showStats: false
+statusStyle: "dot"
