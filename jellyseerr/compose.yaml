@@ -32,7 +32,6 @@ services:
     - "homepage.name=jellyseerr"
     - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/jellyseerr.png"
     - "homepage.href=https://jellyseerr.holmlab.org/"
-    - "homepage.description=Media server"
 
 networks:
   intranet:
