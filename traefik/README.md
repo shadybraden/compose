@@ -34,7 +34,7 @@ Change port and SUBDOMAIN as needed
 
 ```yaml
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
@@ -47,12 +47,13 @@ Change port and SUBDOMAIN as needed
     - "traefik.http.routers.SUBDOMAIN-secure.rule=Host(`SUBDOMAIN.${DOMAIN}`)"
     - "traefik.http.routers.SUBDOMAIN-secure.tls=true"
     - "traefik.http.routers.SUBDOMAIN-secure.service=SUBDOMAIN"
-    - "traefik.http.services.SUBDOMAIN.loadbalancer.server.port=80" # port of the service.
+    - "traefik.http.services.SUBDOMAIN.loadbalancer.server.port=80"  # port of the service.
     - "traefik.docker.network=intranet"
 
 networks:
   intranet:
     external: true
+
 ```
 
 To include something to TinyAuth:
