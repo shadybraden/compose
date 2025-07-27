@@ -35,6 +35,10 @@ services:
     - "traefik.http.routers.qbittorrent-secure.tls=true"
     - "traefik.http.routers.qbittorrent-secure.service=qbittorrent"
     - "traefik.http.services.qbittorrent.loadbalancer.server.port=8080" # port of the service
+    - "homepage.group=Media"
+    - "homepage.name=qbittorrent"
+    - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/qbittorrent.png"
+    - "homepage.href=https://qbittorrent.holmlab.org/"
 
     - "traefik.http.routers.jackett.service=jackett" # for multi-port - https://github.com/traefik/traefik/issues/4807
     - "traefik.http.routers.jackett.entrypoints=http"
@@ -78,6 +82,10 @@ services:
     - "traefik.http.routers.radarr-secure.service=radarr"
     - "traefik.http.services.radarr.loadbalancer.server.port=7878" # port of the service
     - "traefik.docker.network=intranet"
+    - "homepage.group=Media"
+    - "homepage.name=radarr"
+    - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/radarr.png"
+    - "homepage.href=https://radarr.holmlab.org/"
 
   sonarr: # the show searching part
     image: quay.io/linuxserver.io/sonarr:4.0.15
@@ -109,6 +117,10 @@ services:
     - "traefik.http.routers.sonarr-secure.service=sonarr"
     - "traefik.http.services.sonarr.loadbalancer.server.port=8989" # port of the service
     - "traefik.docker.network=intranet"
+    - "homepage.group=Media"
+    - "homepage.name=sonarr"
+    - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/sonarr.png"
+    - "homepage.href=https://sonarr.holmlab.org/"
 
   jackett: # mega indexer for the arr's above
     image: quay.io/linuxserver.io/jackett:0.22.2196

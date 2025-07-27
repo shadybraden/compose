@@ -24,6 +24,10 @@ services:
     - "traefik.http.routers.assets-secure.service=assets"
     - "traefik.http.services.assets.loadbalancer.server.port=3000" # port of the service.
     - "traefik.docker.network=intranet"
+    - "homepage.group=Other"
+    - "homepage.name=dumbassets"
+    - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/dumbassets.png"
+    - "homepage.href=https://assets.holmlab.org/"
 
 networks:
   intranet:

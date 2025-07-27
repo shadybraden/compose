@@ -1,24 +1,25 @@
+---
 services:
-    freshrss:
-        restart: unless-stopped
-        logging:
-            options:
-                max-size: 10m
-#        ports:
-#            - 8062:80
-        environment:
-            - TZ=America/New_York
-            - CRON_MIN=1,31 # this is minute 1 and 31
-        volumes:
-            - /data/config_storage/freshrss/data:/var/www/FreshRSS/data
-            - /data/config_storage/freshrss/extensions:/var/www/FreshRSS/extensions
-        container_name: freshrss
-        image: freshrss/freshrss:1.26.3
-        security_opt:
+  freshrss:
+    restart: unless-stopped
+    logging:
+      options:
+        max-size: 10m
+    ports:
+        - 8062:80
+    environment:
+        - TZ=America/New_York
+        - CRON_MIN=1,31 # this is minute 1 and 31
+    volumes:
+        - /data/config_storage/freshrss/data:/var/www/FreshRSS/data
+        - /data/config_storage/freshrss/extensions:/var/www/FreshRSS/extensions
+    container_name: freshrss
+    image: freshrss/freshrss:1.26.3
+    security_opt:
         - no-new-privileges:true # helps to increase security
-        networks:
+    networks:
         - intranet
-        labels:
+    labels:
         - "traefik.enable=true"
         - "traefik.http.routers.rss.entrypoints=http"
         - "traefik.http.routers.rss.rule=Host(`rss.${DOMAIN}`)"
@@ -30,6 +31,10 @@ services:
         - "traefik.http.routers.rss-secure.service=rss"
         - "traefik.http.services.rss.loadbalancer.server.port=80" # port of the service
         - "traefik.docker.network=intranet"
+        - "homepage.group=GROUP"
+        - "homepage.name=NAME"
+        - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/NAME.png"
+        - "homepage.href=https://NAME.holmlab.org/"
 
 networks:
   intranet:

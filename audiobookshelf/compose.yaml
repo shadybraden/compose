@@ -28,6 +28,10 @@ services:
         - "traefik.http.routers.audiobookshelf-secure.service=audiobookshelf"
         - "traefik.http.services.audiobookshelf.loadbalancer.server.port=80" # port of the service
         - "traefik.docker.network=intranet"
+        - "homepage.group=Media"
+        - "homepage.name=audiobookshelf"
+        - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/audiobookshelf.png"
+        - "homepage.href=https://audiobookshelf.holmlab.org/"
 
 networks:
   intranet:
