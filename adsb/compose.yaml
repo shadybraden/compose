@@ -75,7 +75,7 @@ services:
     - "homepage.group=Fun"
     - "homepage.name=ADSB"
     - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/adsb.png"
-    - "homepage.href=https://adsb.holmlab.org/shady/compose"
+    - "homepage.href=https://adsb.holmlab.org/"
 
 networks:
   intranet:
