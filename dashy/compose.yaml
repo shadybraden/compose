@@ -1,29 +1,28 @@
+---
 services:
-    dashy:
-#        ports:
-#            - 48888:8080
-        volumes:
-            - /data/config_storage/komodo/etc_komodo/stacks/dashy/dashy/conf.yml:/app/user-data/conf.yml:ro
-            - /data/config_storage/komodo/etc_komodo/stacks/dashy/dashy/icons:/app/user-data/item-icons:ro
-        container_name: dashy
-        restart: unless-stopped
-        image: lissy93/dashy@sha256:24c7e16433589c69c2f697d3a953fbfb3cde3166452a38bbde5f9a44d88c2d1a
-        security_opt:
-        - no-new-privileges:true # helps to increase security
-        networks:
-        - intranet
-        labels:
-        - "traefik.enable=true"
-        - "traefik.http.routers.dashy.entrypoints=http"
-        - "traefik.http.routers.dashy.rule=Host(`${DOMAIN}`)"
-        - "traefik.http.middlewares.dashy-https-redirect.redirectscheme.scheme=https"
-        - "traefik.http.routers.dashy.middlewares=dashy-https-redirect"
-        - "traefik.http.routers.dashy-secure.entrypoints=https"
-        - "traefik.http.routers.dashy-secure.rule=Host(`${DOMAIN}`)"
-        - "traefik.http.routers.dashy-secure.tls=true"
-        - "traefik.http.routers.dashy-secure.service=dashy"
-        - "traefik.http.services.dashy.loadbalancer.server.port=8080" # port of the service
-        - "traefik.docker.network=intranet"
+  dashy:
+    volumes:
+      - /data/config_storage/komodo/etc_komodo/stacks/dashy/dashy/conf.yml:/app/user-data/conf.yml:ro
+      - /data/config_storage/komodo/etc_komodo/stacks/dashy/dashy/icons:/app/user-data/item-icons:ro
+    container_name: dashy
+    restart: unless-stopped
+    image: lissy93/dashy@sha256:24c7e16433589c69c2f697d3a953fbfb3cde3166452a38bbde5f9a44d88c2d1a
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dashy.entrypoints=http"
+      - "traefik.http.routers.dashy.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.middlewares.dashy-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.dashy.middlewares=dashy-https-redirect"
+      - "traefik.http.routers.dashy-secure.entrypoints=https"
+      - "traefik.http.routers.dashy-secure.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.dashy-secure.tls=true"
+      - "traefik.http.routers.dashy-secure.service=dashy"
+      - "traefik.http.services.dashy.loadbalancer.server.port=8080"  # port of the service
+      - "traefik.docker.network=intranet"
 
 networks:
   intranet:
