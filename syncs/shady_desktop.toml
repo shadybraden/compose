@@ -1,17 +1,4 @@
 [[stack]]
-name = "portainer-shady"
-tags = ["shady","hooked"]
-[stack.config]
-server = "shady_desktop"
-project_name = "portainer"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-run_directory = "hosts/portainer"
-
-##
-
-[[stack]]
 name = "crafty-shady"
 tags = ["shady","hooked"]
 [stack.config]
