@@ -1,5 +1,4 @@
-name: immich_remote_ml
-
+---
 services:
   immich-machine-learning:
     container_name: immich_machine_learning
