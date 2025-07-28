@@ -16,23 +16,27 @@ services:
     ports:
       - "53:53/tcp"
       - "53:53/udp"
-      - "5353:80/tcp" # web ui
+      - "5353:80/tcp"  # web ui
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.pihole.entrypoints=http"
-    - "traefik.http.routers.pihole.rule=Host(`pihole.${DOMAIN}`)"
-    - "traefik.http.middlewares.pihole-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.pihole.middlewares=pihole-https-redirect"
-    - "traefik.http.routers.pihole-secure.entrypoints=https"
-    - "traefik.http.routers.pihole-secure.rule=Host(`pihole.${DOMAIN}`)"
-    - "traefik.http.routers.pihole-secure.tls=true"
-    - "traefik.http.routers.pihole-secure.service=pihole"
-    - "traefik.http.services.pihole.loadbalancer.server.port=80" # port of the service
-    - "traefik.docker.network=intranet"
+      - "traefik.enable=true"
+      - "traefik.http.routers.pihole.entrypoints=http"
+      - "traefik.http.routers.pihole.rule=Host(`pihole.${DOMAIN}`)"
+      - "traefik.http.middlewares.pihole-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.pihole.middlewares=pihole-https-redirect"
+      - "traefik.http.routers.pihole-secure.entrypoints=https"
+      - "traefik.http.routers.pihole-secure.rule=Host(`pihole.${DOMAIN}`)"
+      - "traefik.http.routers.pihole-secure.tls=true"
+      - "traefik.http.routers.pihole-secure.service=pihole"
+      - "traefik.http.services.pihole.loadbalancer.server.port=80"  # port of the service
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Infrastructure"
+      - "homepage.name=pihole"
+      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/pi-hole.png"
+      - "homepage.href=https://pihole.holmlab.org/admin"
 
 networks:
   intranet:
