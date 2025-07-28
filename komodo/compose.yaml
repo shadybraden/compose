@@ -56,10 +56,10 @@ services:
       - "traefik.http.routers.komodo-secure.service=komodo"
       - "traefik.http.services.komodo.loadbalancer.server.port=9120"  # port of the service
       - "traefik.docker.network=intranet"
-      - "homepage.group=GROUP"
-      - "homepage.name=NAME"
-      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/NAME.png"
-      - "homepage.href=https://NAME.holmlab.org/"
+      - "homepage.group=Infrastructure"
+      - "homepage.name=Komodo"
+      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/komodo.png"
+      - "homepage.href=https://komodo.holmlab.org/"
 
   periphery:
     image: ghcr.io/moghtech/komodo-periphery:1.18.4
