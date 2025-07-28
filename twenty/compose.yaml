@@ -1,6 +1,6 @@
 services:
   server:
-    image: twentycrm/twenty:v1.1
+    image: twentycrm/twenty:v1.2
     container_name: twenty
     volumes:
       - /data/config_storage/twenty/server-local-data:/app/packages/twenty-server/.local-storage
@@ -24,7 +24,7 @@ services:
     restart: unless-stopped
 
   worker:
-    image: twentycrm/twenty:v1.1
+    image: twentycrm/twenty:v1.2
     container_name: twenty-worker
     volumes:
       - /data/config_storage/twenty/server-local-data:/app/packages/twenty-server/.local-storage
