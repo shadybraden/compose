@@ -60,7 +60,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "dashy"
-tags = ["holmie", "hooked", "criticality: 2"]
+tags = ["holmie", "hooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "dashy"
