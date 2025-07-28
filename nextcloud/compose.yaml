@@ -1,31 +1,34 @@
+---
 services:
-    nextcloud:
-        container_name: nextcloud
-#        ports:
-#            - 8286:80
-        restart: unless-stopped
-        volumes:
-            - /data/config_storage/nextcloud/html:/var/www/html
-            - /data/config_storage/nextcloud/apps:/var/www/html/custom_apps
-            - /data/config_storage/nextcloud/config:/var/www/html/config
-            - /data/config_storage/nextcloud/data:/var/www/html/data
-        image: nextcloud:31.0.7
-        security_opt:
-        - no-new-privileges:true # helps to increase security
-        networks:
-        - intranet
-        labels:
-        - "traefik.enable=true"
-        - "traefik.http.routers.nextcloud.entrypoints=http"
-        - "traefik.http.routers.nextcloud.rule=Host(`nextcloud.${DOMAIN}`)"
-        - "traefik.http.middlewares.nextcloud-https-redirect.redirectscheme.scheme=https"
-        - "traefik.http.routers.nextcloud.middlewares=nextcloud-https-redirect"
-        - "traefik.http.routers.nextcloud-secure.entrypoints=https"
-        - "traefik.http.routers.nextcloud-secure.rule=Host(`nextcloud.${DOMAIN}`)"
-        - "traefik.http.routers.nextcloud-secure.tls=true"
-        - "traefik.http.routers.nextcloud-secure.service=nextcloud"
-        - "traefik.http.services.nextcloud.loadbalancer.server.port=80" # port of the service
-        - "traefik.docker.network=intranet"
+  nextcloud:
+    container_name: nextcloud
+    restart: unless-stopped
+    volumes:
+      - /data/config_storage/nextcloud/html:/var/www/html
+      - /data/config_storage/nextcloud/apps:/var/www/html/custom_apps
+      - /data/config_storage/nextcloud/config:/var/www/html/config
+      - /data/config_storage/nextcloud/data:/var/www/html/data
+    image: nextcloud:31.0.7
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nextcloud.entrypoints=http"
+      - "traefik.http.routers.nextcloud.rule=Host(`nextcloud.${DOMAIN}`)"
+      - "traefik.http.middlewares.nextcloud-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.nextcloud.middlewares=nextcloud-https-redirect"
+      - "traefik.http.routers.nextcloud-secure.entrypoints=https"
+      - "traefik.http.routers.nextcloud-secure.rule=Host(`nextcloud.${DOMAIN}`)"
+      - "traefik.http.routers.nextcloud-secure.tls=true"
+      - "traefik.http.routers.nextcloud-secure.service=nextcloud"
+      - "traefik.http.services.nextcloud.loadbalancer.server.port=80"  # port of the service
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=nextcloud"
+      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/nextcloud.png"
+      - "homepage.href=https://nextcloud.holmlab.org/"
 
 networks:
   intranet:

@@ -1,34 +1,37 @@
+---
 services:
-    navidrome:
-        container_name: navidrome
-        restart: on-failure
-        user: 1000:1000
-        volumes:
-            - /mnt/4tb/music:/music:ro
-            - /data/config_storage/navidrome:/data
-#        ports:
-#            - 4533:4533
-        environment:
-            - ND_LOGLEVEL=info
-            - ND_SCANSCHEDULE=100m
-            - ND_ENABLEINSIGHTSCOLLECTOR=false # turn off telemetry
-        image: deluan/navidrome:0.57.0
-        security_opt:
-        - no-new-privileges:true # helps to increase security
-        networks:
-        - intranet
-        labels:
-        - "traefik.enable=true"
-        - "traefik.http.routers.navidrome.entrypoints=http"
-        - "traefik.http.routers.navidrome.rule=Host(`navidrome.${DOMAIN}`)"
-        - "traefik.http.middlewares.navidrome-https-redirect.redirectscheme.scheme=https"
-        - "traefik.http.routers.navidrome.middlewares=navidrome-https-redirect"
-        - "traefik.http.routers.navidrome-secure.entrypoints=https"
-        - "traefik.http.routers.navidrome-secure.rule=Host(`navidrome.${DOMAIN}`)"
-        - "traefik.http.routers.navidrome-secure.tls=true"
-        - "traefik.http.routers.navidrome-secure.service=navidrome"
-        - "traefik.http.services.navidrome.loadbalancer.server.port=4533" # port of the service
-        - "traefik.docker.network=intranet"
+  navidrome:
+    container_name: navidrome
+    restart: on-failure
+    user: 1000:1000
+    volumes:
+      - /mnt/4tb/music:/music:ro
+      - /data/config_storage/navidrome:/data
+    environment:
+      - ND_LOGLEVEL=info
+      - ND_SCANSCHEDULE=100m
+      - ND_ENABLEINSIGHTSCOLLECTOR=false  # turn off telemetry
+    image: deluan/navidrome:0.57.0
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.navidrome.entrypoints=http"
+      - "traefik.http.routers.navidrome.rule=Host(`navidrome.${DOMAIN}`)"
+      - "traefik.http.middlewares.navidrome-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.navidrome.middlewares=navidrome-https-redirect"
+      - "traefik.http.routers.navidrome-secure.entrypoints=https"
+      - "traefik.http.routers.navidrome-secure.rule=Host(`navidrome.${DOMAIN}`)"
+      - "traefik.http.routers.navidrome-secure.tls=true"
+      - "traefik.http.routers.navidrome-secure.service=navidrome"
+      - "traefik.http.services.navidrome.loadbalancer.server.port=4533"  # port of the service
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Media"
+      - "homepage.name=navidrome"
+      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/navidrome.png"
+      - "homepage.href=https://navidrome.holmlab.org/"
 
 networks:
   intranet:
