@@ -83,7 +83,7 @@ services:
       - "traefik.http.routers.radarr-secure.service=radarr"
       - "traefik.http.services.radarr.loadbalancer.server.port=7878"  # port of the service
       - "traefik.docker.network=intranet"
-      - "homepage.group=Media"
+      - "homepage.group=Other"
       - "homepage.name=radarr"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/radarr.png"
       - "homepage.href=https://radarr.holmlab.org/"
@@ -118,7 +118,7 @@ services:
       - "traefik.http.routers.sonarr-secure.service=sonarr"
       - "traefik.http.services.sonarr.loadbalancer.server.port=8989"  # port of the service
       - "traefik.docker.network=intranet"
-      - "homepage.group=Media"
+      - "homepage.group=Other"
       - "homepage.name=sonarr"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/sonarr.png"
       - "homepage.href=https://sonarr.holmlab.org/"
