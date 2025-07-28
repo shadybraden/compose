@@ -1,30 +1,31 @@
+---
 services:
   tinyauth:
     image: ghcr.io/steveiliop56/tinyauth:v3.6.2
     container_name: tinyauth
     restart: unless-stopped
     environment:
-      - SECRET=${SECRET} # openssl rand -base64 32 | tr -dc 'a-zA-Z0-9' | head -c 32 && echo
+      - SECRET=${SECRET}  # openssl rand -base64 32 | tr -dc 'a-zA-Z0-9' | head -c 32 && echo
       - APP_URL=https://tinyauth.${DOMAIN}
-      - USERS=${USERS} # docker run -i -t --rm ghcr.io/steveiliop56/tinyauth:v3 user create --interactive
+      - USERS=${USERS}  # docker run -i -t --rm ghcr.io/steveiliop56/tinyauth:v3 user create --interactive
       - DISABLE_CONTINUE=true
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.tinyauth.entrypoints=http"
-    - "traefik.http.routers.tinyauth.rule=Host(`tinyauth.${DOMAIN}`)"
-    - "traefik.http.middlewares.tinyauth-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.tinyauth.middlewares=tinyauth-https-redirect"
-    - "traefik.http.routers.tinyauth-secure.entrypoints=https"
-    - "traefik.http.routers.tinyauth-secure.rule=Host(`tinyauth.${DOMAIN}`)"
-    - "traefik.http.routers.tinyauth-secure.tls=true"
-    - "traefik.http.routers.tinyauth-secure.service=tinyauth"
-    - "traefik.http.services.tinyauth.loadbalancer.server.port=3000" # port of the service.
-    - "traefik.docker.network=intranet"
-    - "traefik.http.middlewares.tinyauth.forwardauth.address=http://tinyauth:3000/api/auth/traefik"
+      - "traefik.enable=true"
+      - "traefik.http.routers.tinyauth.entrypoints=http"
+      - "traefik.http.routers.tinyauth.rule=Host(`tinyauth.${DOMAIN}`)"
+      - "traefik.http.middlewares.tinyauth-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.tinyauth.middlewares=tinyauth-https-redirect"
+      - "traefik.http.routers.tinyauth-secure.entrypoints=https"
+      - "traefik.http.routers.tinyauth-secure.rule=Host(`tinyauth.${DOMAIN}`)"
+      - "traefik.http.routers.tinyauth-secure.tls=true"
+      - "traefik.http.routers.tinyauth-secure.service=tinyauth"
+      - "traefik.http.services.tinyauth.loadbalancer.server.port=3000"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "traefik.http.middlewares.tinyauth.forwardauth.address=http://tinyauth:3000/api/auth/traefik"
 
 networks:
   intranet:

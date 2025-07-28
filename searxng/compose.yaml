@@ -1,10 +1,9 @@
+---
 services:
   searxng:
     container_name: searxng
     image: docker.io/searxng/searxng:2025.7.26-1baf3dc
     restart: unless-stopped
-#    ports:
-#      - "127.0.0.1:8080:8080"
     volumes:
       - /data/config_storage/searxng:/etc/searxng:rw
     environment:
@@ -19,21 +18,25 @@ services:
         max-size: "1m"
         max-file: "1"
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.search.entrypoints=http"
-    - "traefik.http.routers.search.rule=Host(`search.${DOMAIN}`)"
-    - "traefik.http.middlewares.search-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.search.middlewares=search-https-redirect"
-    - "traefik.http.routers.search-secure.entrypoints=https"
-    - "traefik.http.routers.search-secure.rule=Host(`search.${DOMAIN}`)"
-    - "traefik.http.routers.search-secure.tls=true"
-    - "traefik.http.routers.search-secure.service=search"
-    - "traefik.http.services.search.loadbalancer.server.port=8080" # port of the service.
-    - "traefik.docker.network=intranet"
+      - "traefik.enable=true"
+      - "traefik.http.routers.search.entrypoints=http"
+      - "traefik.http.routers.search.rule=Host(`search.${DOMAIN}`)"
+      - "traefik.http.middlewares.search-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.search.middlewares=search-https-redirect"
+      - "traefik.http.routers.search-secure.entrypoints=https"
+      - "traefik.http.routers.search-secure.rule=Host(`search.${DOMAIN}`)"
+      - "traefik.http.routers.search-secure.tls=true"
+      - "traefik.http.routers.search-secure.service=search"
+      - "traefik.http.services.search.loadbalancer.server.port=8080"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=search"
+      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/searxng.png"
+      - "homepage.href=https://search.holmlab.org/"
 
 networks:
   intranet:

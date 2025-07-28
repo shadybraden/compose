@@ -1,9 +1,10 @@
+---
 services:
   wg-easy:
     image: ghcr.io/wg-easy/wg-easy:15.1.0
     container_name: wg-easy
     environment:
-      WG_DEVICE: enp2s0 # https://github.com/wg-easy/wg-easy/issues/1795#issuecomment-2900911182
+      WG_DEVICE: enp2s0  # https://github.com/wg-easy/wg-easy/issues/1795#issuecomment-2900911182
     networks:
       wg:
         ipv4_address: 10.42.42.42
@@ -15,7 +16,7 @@ services:
       - /data/config_storage/wg-easy:/etc/wireguard
       - /lib/modules:/lib/modules:ro
     ports:
-      - "51820:51820/udp" # public port. remember to port forward this
+      - "51820:51820/udp"  # public port. remember to port forward this
       - "51821:51821/tcp"
     restart: unless-stopped
     cap_add:
@@ -28,17 +29,21 @@ services:
       - net.ipv6.conf.all.forwarding=1
       - net.ipv6.conf.default.forwarding=1
     labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.wireguard.entrypoints=http"
-    - "traefik.http.routers.wireguard.rule=Host(`wireguard.${DOMAIN}`)"
-    - "traefik.http.middlewares.wireguard-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.wireguard.middlewares=wireguard-https-redirect"
-    - "traefik.http.routers.wireguard-secure.entrypoints=https"
-    - "traefik.http.routers.wireguard-secure.rule=Host(`wireguard.${DOMAIN}`)"
-    - "traefik.http.routers.wireguard-secure.tls=true"
-    - "traefik.http.routers.wireguard-secure.service=wireguard"
-    - "traefik.http.services.wireguard.loadbalancer.server.port=51821" # port of the service
-    - "traefik.docker.network=intranet"
+      - "traefik.enable=true"
+      - "traefik.http.routers.wireguard.entrypoints=http"
+      - "traefik.http.routers.wireguard.rule=Host(`wireguard.${DOMAIN}`)"
+      - "traefik.http.middlewares.wireguard-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.wireguard.middlewares=wireguard-https-redirect"
+      - "traefik.http.routers.wireguard-secure.entrypoints=https"
+      - "traefik.http.routers.wireguard-secure.rule=Host(`wireguard.${DOMAIN}`)"
+      - "traefik.http.routers.wireguard-secure.tls=true"
+      - "traefik.http.routers.wireguard-secure.service=wireguard"
+      - "traefik.http.services.wireguard.loadbalancer.server.port=51821"  # port of the service
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=wireguard"
+      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/wireguard.png"
+      - "homepage.href=https://wireguard.holmlab.org/"
 
 networks:
   wg:

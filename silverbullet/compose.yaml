@@ -1,7 +1,6 @@
+---
 services:
   silverbullet:
-#    ports:
-#        - 3005:3000
     container_name: silverbullet
     volumes:
       - /data/config_storage/silverbullet:/space
@@ -10,21 +9,25 @@ services:
       - SB_USER=shady:${password}
       - TZ=America/New_York
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.notes.entrypoints=http"
-    - "traefik.http.routers.notes.rule=Host(`notes.${DOMAIN}`)"
-    - "traefik.http.middlewares.notes-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.notes.middlewares=notes-https-redirect"
-    - "traefik.http.routers.notes-secure.entrypoints=https"
-    - "traefik.http.routers.notes-secure.rule=Host(`notes.${DOMAIN}`)"
-    - "traefik.http.routers.notes-secure.tls=true"
-    - "traefik.http.routers.notes-secure.service=notes"
-    - "traefik.http.services.notes.loadbalancer.server.port=3000" # port of the service.
-    - "traefik.docker.network=intranet"
+      - "traefik.enable=true"
+      - "traefik.http.routers.notes.entrypoints=http"
+      - "traefik.http.routers.notes.rule=Host(`notes.${DOMAIN}`)"
+      - "traefik.http.middlewares.notes-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.notes.middlewares=notes-https-redirect"
+      - "traefik.http.routers.notes-secure.entrypoints=https"
+      - "traefik.http.routers.notes-secure.rule=Host(`notes.${DOMAIN}`)"
+      - "traefik.http.routers.notes-secure.tls=true"
+      - "traefik.http.routers.notes-secure.service=notes"
+      - "traefik.http.services.notes.loadbalancer.server.port=3000"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=silverbullet"
+      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/silverbullet.png"
+      - "homepage.href=https://notes.holmlab.org/"
 
 networks:
   intranet:

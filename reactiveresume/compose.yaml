@@ -1,3 +1,4 @@
+---
 # In this Docker Compose example, it assumes that you maintain a reverse proxy externally (or chose not to).
 # The only two exposed ports here are from minio (:9000) and the app itself (:3000).
 # If these ports are changed, ensure that the env vars passed to the app are also changed accordingly.
@@ -20,7 +21,7 @@ services:
       timeout: 5s
       retries: 5
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
 
@@ -38,25 +39,25 @@ services:
       MINIO_ROOT_USER: minioadmin
       MINIO_ROOT_PASSWORD: minioadmin
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.resume-minio.entrypoints=http"
-    - "traefik.http.routers.resume-minio.rule=Host(`resume-minio.${DOMAIN}`)"
-    - "traefik.http.middlewares.resume-minio-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.resume-minio.middlewares=resume-minio-https-redirect"
-    - "traefik.http.routers.resume-minio-secure.entrypoints=https"
-    - "traefik.http.routers.resume-minio-secure.rule=Host(`resume-minio.${DOMAIN}`)"
-    - "traefik.http.routers.resume-minio-secure.tls=true"
-    - "traefik.http.routers.resume-minio-secure.service=resume-minio"
-    - "traefik.http.services.resume-minio.loadbalancer.server.port=9000" # port of the service.
-    - "traefik.docker.network=intranet"
+      - "traefik.enable=true"
+      - "traefik.http.routers.resume-minio.entrypoints=http"
+      - "traefik.http.routers.resume-minio.rule=Host(`resume-minio.${DOMAIN}`)"
+      - "traefik.http.middlewares.resume-minio-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.resume-minio.middlewares=resume-minio-https-redirect"
+      - "traefik.http.routers.resume-minio-secure.entrypoints=https"
+      - "traefik.http.routers.resume-minio-secure.rule=Host(`resume-minio.${DOMAIN}`)"
+      - "traefik.http.routers.resume-minio-secure.tls=true"
+      - "traefik.http.routers.resume-minio-secure.service=resume-minio"
+      - "traefik.http.services.resume-minio.loadbalancer.server.port=9000"  # port of the service.
+      - "traefik.docker.network=intranet"
 
   # Chrome Browser (for printing and previews)
   chrome:
-    image: ghcr.io/browserless/chromium:v2.18.0 # Upgrading to newer versions causes issues
+    image: ghcr.io/browserless/chromium:v2.18.0  # Upgrading to newer versions causes issues
     container_name: chrome
     restart: unless-stopped
     extra_hosts:
@@ -68,7 +69,7 @@ services:
       PROXY_PORT: 3000
       PROXY_SSL: "false"
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
 
@@ -109,7 +110,7 @@ services:
       # -- Storage (Minio) --
       STORAGE_ENDPOINT: minio
       STORAGE_PORT: 9000
-      STORAGE_REGION: us-east-1 # Optional
+      STORAGE_REGION: us-east-1  # Optional
       STORAGE_BUCKET: default
       STORAGE_ACCESS_KEY: minioadmin
       STORAGE_SECRET_KEY: minioadmin
@@ -117,21 +118,25 @@ services:
       STORAGE_SKIP_BUCKET_CHECK: "false"
 
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.resume.entrypoints=http"
-    - "traefik.http.routers.resume.rule=Host(`resume.${DOMAIN}`)"
-    - "traefik.http.middlewares.resume-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.resume.middlewares=resume-https-redirect"
-    - "traefik.http.routers.resume-secure.entrypoints=https"
-    - "traefik.http.routers.resume-secure.rule=Host(`resume.${DOMAIN}`)"
-    - "traefik.http.routers.resume-secure.tls=true"
-    - "traefik.http.routers.resume-secure.service=resume"
-    - "traefik.http.services.resume.loadbalancer.server.port=3000" # port of the service.
-    - "traefik.docker.network=intranet"
+      - "traefik.enable=true"
+      - "traefik.http.routers.resume.entrypoints=http"
+      - "traefik.http.routers.resume.rule=Host(`resume.${DOMAIN}`)"
+      - "traefik.http.middlewares.resume-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.resume.middlewares=resume-https-redirect"
+      - "traefik.http.routers.resume-secure.entrypoints=https"
+      - "traefik.http.routers.resume-secure.rule=Host(`resume.${DOMAIN}`)"
+      - "traefik.http.routers.resume-secure.tls=true"
+      - "traefik.http.routers.resume-secure.service=resume"
+      - "traefik.http.services.resume.loadbalancer.server.port=3000"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=resume"
+      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/reactive-resume.png"
+      - "homepage.href=https://resume.holmlab.org/"
 
 networks:
   intranet:

@@ -1,3 +1,4 @@
+---
 services:
   wedding-share:
     container_name: WeddingShare
@@ -23,25 +24,26 @@ services:
     restart: unless-stopped
     hostname: mcc.${DOMAIN}
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.mcc.entrypoints=http"
-    - "traefik.http.routers.mcc.rule=Host(`mcc.${DOMAIN}`)"
-    - "traefik.http.middlewares.mcc-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.mcc.middlewares=mcc-https-redirect"
-    - "traefik.http.routers.mcc-secure.entrypoints=https"
-    - "traefik.http.routers.mcc-secure.rule=Host(`mcc.${DOMAIN}`)"
-    - "traefik.http.routers.mcc-secure.tls=true"
-    - "traefik.http.routers.mcc-secure.service=mcc"
-    - "traefik.http.services.mcc.loadbalancer.server.port=5000" # port of the service.
-    - "traefik.docker.network=intranet"
+      - "traefik.enable=true"
+      - "traefik.http.routers.mcc.entrypoints=http"
+      - "traefik.http.routers.mcc.rule=Host(`mcc.${DOMAIN}`)"
+      - "traefik.http.middlewares.mcc-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.mcc.middlewares=mcc-https-redirect"
+      - "traefik.http.routers.mcc-secure.entrypoints=https"
+      - "traefik.http.routers.mcc-secure.rule=Host(`mcc.${DOMAIN}`)"
+      - "traefik.http.routers.mcc-secure.tls=true"
+      - "traefik.http.routers.mcc-secure.service=mcc"
+      - "traefik.http.services.mcc.loadbalancer.server.port=5000"  # port of the service.
+      - "traefik.docker.network=intranet"
+
   cloudflared:
-      image: cloudflare/cloudflared:2025.7.0
-      command: tunnel --no-autoupdate run --token ${token}
-      networks:
+    image: cloudflare/cloudflared:2025.7.0
+    command: tunnel --no-autoupdate run --token ${token}
+    networks:
       - intranet
 
 networks:

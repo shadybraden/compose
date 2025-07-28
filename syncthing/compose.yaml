@@ -1,3 +1,4 @@
+---
 services:
   syncthing:
     image: quay.io/linuxserver.io/syncthing:1.30.0
@@ -14,27 +15,31 @@ services:
       - /data/config_storage/seedvault:/seedvault
       - /mnt/4tb/music:/music
     ports:
-#      - 8384:8384 # web ui
+#      - 8384:8384  # web ui
       - 22000:22000/tcp
       - 22000:22000/udp
       - 21027:21027/udp
     restart: unless-stopped
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.syncthing-holmie.entrypoints=http"
-    - "traefik.http.routers.syncthing-holmie.rule=Host(`syncthing-holmie.${DOMAIN}`)"
-    - "traefik.http.middlewares.syncthing-holmie-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.syncthing-holmie.middlewares=syncthing-holmie-https-redirect"
-    - "traefik.http.routers.syncthing-holmie-secure.entrypoints=https"
-    - "traefik.http.routers.syncthing-holmie-secure.rule=Host(`syncthing-holmie.${DOMAIN}`)"
-    - "traefik.http.routers.syncthing-holmie-secure.tls=true"
-    - "traefik.http.routers.syncthing-holmie-secure.service=syncthing-holmie"
-    - "traefik.http.services.syncthing-holmie.loadbalancer.server.port=8384" # port of the service
-    - "traefik.docker.network=intranet"
+      - "traefik.enable=true"
+      - "traefik.http.routers.syncthing-holmie.entrypoints=http"
+      - "traefik.http.routers.syncthing-holmie.rule=Host(`syncthing-holmie.${DOMAIN}`)"
+      - "traefik.http.middlewares.syncthing-holmie-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.syncthing-holmie.middlewares=syncthing-holmie-https-redirect"
+      - "traefik.http.routers.syncthing-holmie-secure.entrypoints=https"
+      - "traefik.http.routers.syncthing-holmie-secure.rule=Host(`syncthing-holmie.${DOMAIN}`)"
+      - "traefik.http.routers.syncthing-holmie-secure.tls=true"
+      - "traefik.http.routers.syncthing-holmie-secure.service=syncthing-holmie"
+      - "traefik.http.services.syncthing-holmie.loadbalancer.server.port=8384"  # port of the service
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=syncthing"
+      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/syncthing.png"
+      - "homepage.href=https://syncthing-holmie.holmlab.org/"
 
 networks:
   intranet:
