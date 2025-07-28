@@ -30,7 +30,7 @@ services:
       KOMODO_DATABASE_ADDRESS: mongo:27017
       KOMODO_DATABASE_USERNAME: admin
       KOMODO_DATABASE_PASSWORD: ${KOMODO_DB_PASSWORD}
-      KOMODO_HOST: https://komodo.${DOMAIN}
+      KOMODO_HOST: https://komodo.holmlab.org
       KOMODO_LOCAL_AUTH: true
       KOMODO_DISABLE_USER_REGISTRATION: true  # default true
       KOMODO_ENABLE_NEW_USERS: false  # default false
@@ -47,11 +47,11 @@ services:
       - "komodo.skip"
       - "traefik.enable=true"
       - "traefik.http.routers.komodo.entrypoints=http"
-      - "traefik.http.routers.komodo.rule=Host(`komodo.${DOMAIN}`)"
+      - "traefik.http.routers.komodo.rule=Host(`komodo.holmlab.org`)"
       - "traefik.http.middlewares.komodo-https-redirect.redirectscheme.scheme=https"
       - "traefik.http.routers.komodo.middlewares=komodo-https-redirect"
       - "traefik.http.routers.komodo-secure.entrypoints=https"
-      - "traefik.http.routers.komodo-secure.rule=Host(`komodo.${DOMAIN}`)"
+      - "traefik.http.routers.komodo-secure.rule=Host(`komodo.holmlab.org`)"
       - "traefik.http.routers.komodo-secure.tls=true"
       - "traefik.http.routers.komodo-secure.service=komodo"
       - "traefik.http.services.komodo.loadbalancer.server.port=9120"  # port of the service
@@ -80,11 +80,11 @@ services:
       - "komodo.skip"
       - "traefik.enable=true"
       - "traefik.http.routers.periphery.entrypoints=http"
-      - "traefik.http.routers.periphery.rule=Host(`periphery.${DOMAIN}`)"
+      - "traefik.http.routers.periphery.rule=Host(`periphery.holmlab.org`)"
       - "traefik.http.middlewares.periphery-https-redirect.redirectscheme.scheme=https"
       - "traefik.http.routers.periphery.middlewares=periphery-https-redirect"
       - "traefik.http.routers.periphery-secure.entrypoints=https"
-      - "traefik.http.routers.periphery-secure.rule=Host(`periphery.${DOMAIN}`)"
+      - "traefik.http.routers.periphery-secure.rule=Host(`periphery.holmlab.org`)"
       - "traefik.http.routers.periphery-secure.tls=true"
       - "traefik.http.routers.periphery-secure.service=periphery"
       - "traefik.http.services.periphery.loadbalancer.server.port=8120"  # port of the service
