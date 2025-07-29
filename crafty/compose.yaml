@@ -1,0 +1,39 @@
+---
+services:
+  :
+    container_name: _container
+    image: registry.gitlab.com/-controller/-4:4.4.11
+    restart: unless-stopped
+    environment:
+      - TZ=Etc/UTC
+    ports:
+      - "8443:8443"  # web ui
+      - "8123:8123"  # DYNMAP
+      - "19132:19132/udp"  # BEDROCK
+      - "25500-25600:25500-25600"  # MC SERV PORT RANGE
+    volumes:
+      - /data/config_storage//backups://backups
+      - /data/config_storage//logs://logs
+      - /data/config_storage//servers://servers
+      - /data/config_storage//config://app/config
+      - /data/config_storage//import://import
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.SUBDOMAIN.entrypoints=http"
+      - "traefik.http.routers.SUBDOMAIN.rule=Host(`SUBDOMAIN.${DOMAIN}`)"
+      - "traefik.http.middlewares.SUBDOMAIN-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.SUBDOMAIN.middlewares=SUBDOMAIN-https-redirect"
+      - "traefik.http.routers.SUBDOMAIN-secure.entrypoints=https"
+      - "traefik.http.routers.SUBDOMAIN-secure.rule=Host(`SUBDOMAIN.${DOMAIN}`)"
+      - "traefik.http.routers.SUBDOMAIN-secure.tls=true"
+      - "traefik.http.routers.SUBDOMAIN-secure.service=SUBDOMAIN"
+      - "traefik.http.services.SUBDOMAIN.loadbalancer.server.port=8443"  # port of the service.
+      - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true

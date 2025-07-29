@@ -729,3 +729,16 @@ repo = "shady/compose"
 branch = "main"
 run_directory = "homepage"
 additional_env_files = ["/etc/komodo/domain.env"]
+
+##
+
+[[stack]]
+name = "crafty"
+tags = ["holmie", "hooked", "criticality: 5"]
+[stack.config]
+server = "holmie"
+project_name = "crafty"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+run_directory = "crafty"
