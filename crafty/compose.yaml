@@ -23,15 +23,15 @@ services:
       - intranet
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.SUBDOMAIN.entrypoints=http"
-      - "traefik.http.routers.SUBDOMAIN.rule=Host(`SUBDOMAIN.${DOMAIN}`)"
-      - "traefik.http.middlewares.SUBDOMAIN-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.SUBDOMAIN.middlewares=SUBDOMAIN-https-redirect"
-      - "traefik.http.routers.SUBDOMAIN-secure.entrypoints=https"
-      - "traefik.http.routers.SUBDOMAIN-secure.rule=Host(`SUBDOMAIN.${DOMAIN}`)"
-      - "traefik.http.routers.SUBDOMAIN-secure.tls=true"
-      - "traefik.http.routers.SUBDOMAIN-secure.service=SUBDOMAIN"
-      - "traefik.http.services.SUBDOMAIN.loadbalancer.server.port=8443"  # port of the service.
+      - "traefik.http.routers.crafty.entrypoints=http"
+      - "traefik.http.routers.crafty.rule=Host(`crafty.${DOMAIN}`)"
+      - "traefik.http.middlewares.crafty-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.crafty.middlewares=crafty-https-redirect"
+      - "traefik.http.routers.crafty-secure.entrypoints=https"
+      - "traefik.http.routers.crafty-secure.rule=Host(`crafty.${DOMAIN}`)"
+      - "traefik.http.routers.crafty-secure.tls=true"
+      - "traefik.http.routers.crafty-secure.service=crafty"
+      - "traefik.http.services.crafty.loadbalancer.server.port=8443"  # port of the service.
       - "traefik.docker.network=intranet"
 
 networks:
