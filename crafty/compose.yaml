@@ -1,6 +1,6 @@
 ---
 services:
-  :
+  crafty:
     container_name: _container
     image: registry.gitlab.com/-controller/-4:4.4.11
     restart: unless-stopped
