@@ -34,6 +34,10 @@ services:
       - "traefik.http.services.crafty.loadbalancer.server.port=8443"  # port of the service.
       - "traefik.docker.network=intranet"
       - "traefik.http.services.crafty.loadbalancer.server.scheme=https" # tell traefik to connect to Crafty via https instead of http
+      - "homepage.group=Other"
+      - "homepage.name=Crafty-holmie"
+      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/crafty-controller.png"
+      - "homepage.href=https://crafty.holmlab.org/"
 
 networks:
   intranet:
