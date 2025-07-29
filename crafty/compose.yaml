@@ -33,6 +33,7 @@ services:
       - "traefik.http.routers.crafty-secure.service=crafty"
       - "traefik.http.services.crafty.loadbalancer.server.port=8443"  # port of the service.
       - "traefik.docker.network=intranet"
+      - "traefik.http.services.crafty.loadbalancer.server.scheme=https" # tell traefik to connect to Crafty via https instead of http
 
 networks:
   intranet:
