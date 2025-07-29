@@ -1,22 +1,22 @@
 ---
 services:
   crafty:
-    container_name: _container
-    image: registry.gitlab.com/-controller/-4:4.4.11
+    container_name: crafty_container
+    image: registry.gitlab.com/crafty-controller/crafty-4:4.4.11
     restart: unless-stopped
     environment:
       - TZ=Etc/UTC
     ports:
-      - "8443:8443"  # web ui
+      - "8443:8443"  # HTTPS
       - "8123:8123"  # DYNMAP
       - "19132:19132/udp"  # BEDROCK
       - "25500-25600:25500-25600"  # MC SERV PORT RANGE
     volumes:
-      - /data/config_storage//backups://backups
-      - /data/config_storage//logs://logs
-      - /data/config_storage//servers://servers
-      - /data/config_storage//config://app/config
-      - /data/config_storage//import://import
+      - /data/config_storage/crafty/backups:/crafty/backups
+      - /data/config_storage/crafty/logs:/crafty/logs
+      - /data/config_storage/crafty/servers:/crafty/servers
+      - /data/config_storage/crafty/config:/crafty/app/config
+      - /data/config_storage/crafty/import:/crafty/import
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
