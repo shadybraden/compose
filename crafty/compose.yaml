@@ -7,7 +7,7 @@ services:
     environment:
       - TZ=Etc/UTC
     ports:
-#      - "8443:8443"  # HTTPS
+      - "8443:8443"  # HTTPS web u
 #      - "8123:8123"  # DYNMAP
       - "19132:19132/udp"  # BEDROCK
       - "25500-25600:25500-25600"  # MC SERV PORT RANGE
