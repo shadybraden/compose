@@ -33,6 +33,7 @@ services:
       - "traefik.http.routers.crafty-secure.service=crafty"
       - "traefik.http.services.crafty.loadbalancer.server.port=8443"  # port of the service.
       - "traefik.docker.network=intranet"
+      - "traefik.serversTransport.insecureSkipVerify=true"
 
 networks:
   intranet:
