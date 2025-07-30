@@ -74,21 +74,6 @@ additional_env_files = ["/etc/komodo/domain.env"]
 ##
 
 [[stack]]
-name = "dockge"
-tags = ["holmie", "hooked", "criticality: 5"]
-[stack.config]
-server = "holmie"
-project_name = "dockge"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
-run_directory = "dockge"
-additional_env_files = ["/etc/komodo/domain.env"]
-
-##
-
-[[stack]]
 name = "filebrowser"
 tags = ["holmie", "hooked", "criticality: 5"]
 [stack.config]
