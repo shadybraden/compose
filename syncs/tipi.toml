@@ -1,6 +1,6 @@
 [[stack]]
 name = "immich-tpip"
-tags = ["skynet","hooked"]
+tags = ["tpip","hooked"]
 [stack.config]
 server = "tpip"
 project_name = "immich-tpip"

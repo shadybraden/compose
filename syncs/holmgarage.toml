@@ -1,6 +1,6 @@
 [[stack]]
 name = "immich-holmgarage"
-tags = ["skynet","hooked"]
+tags = ["holmgarage","hooked"]
 [stack.config]
 server = "holmgarage"
 project_name = "immich-holmgarage"
