@@ -1,4 +1,19 @@
 [[stack]]
+name = "immich-tipi"
+tags = ["tipi","hooked"]
+[stack.config]
+server = "tipi"
+project_name = "immich-tipi"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "immich"
+additional_env_files = ["/etc/komodo/domain.env"]
+
+##
+
+[[stack]]
 name = "beszelagent-tipi"
 tags = ["tipi", "hooked", "criticality: 3"]
 [stack.config]
