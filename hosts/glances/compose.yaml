@@ -1,3 +1,4 @@
+---
 services:
   glances:
     container_name: glances
@@ -15,7 +16,7 @@ services:
       - TZ=America/New_York
     image: nicolargo/glances:4.3.3
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
 

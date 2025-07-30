@@ -1,29 +1,28 @@
+---
 services:
-    deezer-downloader:
-#        ports:
-#            - 5000:5000
-        volumes:
-            - /mnt/4tb/music:/mnt/deezer-downloader
-        container_name: deezer
-        environment:
-            - DEEZER_COOKIE_ARL=${DEEZER_COOKIE_ARL} # from - login > F12 > storage > find "arl"
-        image: kmille2/deezer-downloader:v2.7.0-alpine3.21
-        security_opt:
-          - no-new-privileges:true # helps to increase security
-        networks:
-          - intranet
-        labels:
-        - "traefik.enable=true"
-        - "traefik.http.routers.deezerdl.entrypoints=http"
-        - "traefik.http.routers.deezerdl.rule=Host(`deezerdl.${DOMAIN}`)"
-        - "traefik.http.middlewares.deezerdl-https-redirect.redirectscheme.scheme=https"
-        - "traefik.http.routers.deezerdl.middlewares=deezerdl-https-redirect"
-        - "traefik.http.routers.deezerdl-secure.entrypoints=https"
-        - "traefik.http.routers.deezerdl-secure.rule=Host(`deezerdl.${DOMAIN}`)"
-        - "traefik.http.routers.deezerdl-secure.tls=true"
-        - "traefik.http.routers.deezerdl-secure.service=deezerdl"
-        - "traefik.http.services.deezerdl.loadbalancer.server.port=5000" # port of the service.
-        - "traefik.docker.network=intranet"
+  deezer-downloader:
+    volumes:
+      - /mnt/4tb/music:/mnt/deezer-downloader
+    container_name: deezer
+    environment:
+      - DEEZER_COOKIE_ARL=${DEEZER_COOKIE_ARL}  # from - login > F12 > storage > find "arl"
+    image: kmille2/deezer-downloader:v2.7.0-alpine3.21
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.deezerdl.entrypoints=http"
+      - "traefik.http.routers.deezerdl.rule=Host(`deezerdl.${DOMAIN}`)"
+      - "traefik.http.middlewares.deezerdl-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.deezerdl.middlewares=deezerdl-https-redirect"
+      - "traefik.http.routers.deezerdl-secure.entrypoints=https"
+      - "traefik.http.routers.deezerdl-secure.rule=Host(`deezerdl.${DOMAIN}`)"
+      - "traefik.http.routers.deezerdl-secure.tls=true"
+      - "traefik.http.routers.deezerdl-secure.service=deezerdl"
+      - "traefik.http.services.deezerdl.loadbalancer.server.port=5000"  # port of the service.
+      - "traefik.docker.network=intranet"
 
 networks:
   intranet:

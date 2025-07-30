@@ -1,3 +1,4 @@
+---
 services:
   syncthing:
     image: quay.io/linuxserver.io/syncthing:1.30.0
@@ -12,10 +13,10 @@ services:
       - /data/config_storage/syncthing/syncthing:/var/syncthing
       - /data/mcc/media:/video
     ports:
-      - 8384:8384 # web ui
+      - 8384:8384  # web ui
       - 22000:22000/tcp
       - 22000:22000/udp
       - 21027:21027/udp
     restart: unless-stopped
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security

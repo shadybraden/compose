@@ -1,18 +1,19 @@
+---
 services:
-    portainer:
-        container_name: portainer
-        restart: unless-stopped
-        volumes:
-            - /var/run/docker.sock:/var/run/docker.sock
-            - /data/config_storage/portainer:/data
-            - /etc/localtime:/etc/localtime:ro
-        image: portainer/portainer-ce:2.32.0
-        ports:
-            - 9000:9000
-        security_opt:
-          - no-new-privileges:true # helps to increase security
-        networks:
-          - intranet
+  portainer:
+    container_name: portainer
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /data/config_storage/portainer:/data
+      - /etc/localtime:/etc/localtime:ro
+    image: portainer/portainer-ce:2.32.0
+    ports:
+      - 9000:9000
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
 
 networks:
   intranet:

@@ -1,3 +1,4 @@
+---
 services:
   dockge:
     container_name: dockge
@@ -12,21 +13,21 @@ services:
     environment:
       - DOCKGE_STACKS_DIR=/opt/stacks
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.dockge.entrypoints=http"
-    - "traefik.http.routers.dockge.rule=Host(`dockge.${DOMAIN}`)"
-    - "traefik.http.middlewares.dockge-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.dockge.middlewares=dockge-https-redirect"
-    - "traefik.http.routers.dockge-secure.entrypoints=https"
-    - "traefik.http.routers.dockge-secure.rule=Host(`dockge.${DOMAIN}`)"
-    - "traefik.http.routers.dockge-secure.tls=true"
-    - "traefik.http.routers.dockge-secure.service=dockge"
-    - "traefik.http.services.dockge.loadbalancer.server.port=5001" # port of the service
-    - "traefik.docker.network=intranet"
+      - "traefik.enable=true"
+      - "traefik.http.routers.dockge.entrypoints=http"
+      - "traefik.http.routers.dockge.rule=Host(`dockge.${DOMAIN}`)"
+      - "traefik.http.middlewares.dockge-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.dockge.middlewares=dockge-https-redirect"
+      - "traefik.http.routers.dockge-secure.entrypoints=https"
+      - "traefik.http.routers.dockge-secure.rule=Host(`dockge.${DOMAIN}`)"
+      - "traefik.http.routers.dockge-secure.tls=true"
+      - "traefik.http.routers.dockge-secure.service=dockge"
+      - "traefik.http.services.dockge.loadbalancer.server.port=5001"  # port of the service
+      - "traefik.docker.network=intranet"
 
 networks:
   intranet:

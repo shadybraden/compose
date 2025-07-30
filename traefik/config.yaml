@@ -1,3 +1,4 @@
+---
 http:
   middlewares:
     default-security-headers:
@@ -140,4 +141,3 @@ http:
         servers:
           - url: "http://192.168.50.16:3003"
         passHostHeader: true
-

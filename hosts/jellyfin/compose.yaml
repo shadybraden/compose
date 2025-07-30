@@ -1,36 +1,36 @@
+---
 services:
-    jellyfin:
-#        network_mode: host
-        container_name: jellyfin
-        ports:
-        - 8096:8096
-        volumes:
-        - /data/config_storage/jellyfin/config:/config
-        - /data/config_storage/jellyfin/cache:/cache
-        - /mnt/4tb/shows:/shows
-        - /mnt/4tb/movies:/movies
-        restart: on-failure
-        image: quay.io/linuxserver.io/jellyfin:10.10.7
-        environment:
-        - PUID=1000
-        - PGID=1000
-        - TZ=Etc
-        security_opt:
-        - no-new-privileges:true # helps to increase security
-        networks:
-        - intranet
-        labels:
-        - "traefik.enable=true"
-        - "traefik.http.routers.jellyfin.entrypoints=http"
-        - "traefik.http.routers.jellyfin.rule=Host(`jellyfin.${DOMAIN}`)"
-        - "traefik.http.middlewares.jellyfin-https-redirect.redirectscheme.scheme=https"
-        - "traefik.http.routers.jellyfin.middlewares=jellyfin-https-redirect"
-        - "traefik.http.routers.jellyfin-secure.entrypoints=https"
-        - "traefik.http.routers.jellyfin-secure.rule=Host(`jellyfin.${DOMAIN}`)"
-        - "traefik.http.routers.jellyfin-secure.tls=true"
-        - "traefik.http.routers.jellyfin-secure.service=jellyfin"
-        - "traefik.http.services.jellyfin.loadbalancer.server.port=8096" # port of the service
-        - "traefik.docker.network=intranet"
+  jellyfin:
+    container_name: jellyfin
+    ports:
+      - 8096:8096
+    volumes:
+      - /data/config_storage/jellyfin/config:/config
+      - /data/config_storage/jellyfin/cache:/cache
+      - /mnt/4tb/shows:/shows
+      - /mnt/4tb/movies:/movies
+    restart: on-failure
+    image: quay.io/linuxserver.io/jellyfin:10.10.7
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.jellyfin.entrypoints=http"
+      - "traefik.http.routers.jellyfin.rule=Host(`jellyfin.${DOMAIN}`)"
+      - "traefik.http.middlewares.jellyfin-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.jellyfin.middlewares=jellyfin-https-redirect"
+      - "traefik.http.routers.jellyfin-secure.entrypoints=https"
+      - "traefik.http.routers.jellyfin-secure.rule=Host(`jellyfin.${DOMAIN}`)"
+      - "traefik.http.routers.jellyfin-secure.tls=true"
+      - "traefik.http.routers.jellyfin-secure.service=jellyfin"
+      - "traefik.http.services.jellyfin.loadbalancer.server.port=8096"  # port of the service
+      - "traefik.docker.network=intranet"
 
 networks:
   intranet:

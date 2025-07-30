@@ -1,3 +1,4 @@
+---
 services:
   glances:
     container_name: glances
@@ -15,21 +16,21 @@ services:
       - TZ=America/New_York
     image: nicolargo/glances:4.3.3
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.glances-holmie.entrypoints=http"
-    - "traefik.http.routers.glances-holmie.rule=Host(`glances-holmie.${DOMAIN}`)"
-    - "traefik.http.middlewares.glances-holmie-https-redirect.redirectscheme.scheme=https"
-    - "traefik.http.routers.glances-holmie.middlewares=glances-holmie-https-redirect"
-    - "traefik.http.routers.glances-holmie-secure.entrypoints=https"
-    - "traefik.http.routers.glances-holmie-secure.rule=Host(`glances-holmie.${DOMAIN}`)"
-    - "traefik.http.routers.glances-holmie-secure.tls=true"
-    - "traefik.http.routers.glances-holmie-secure.service=glances-holmie"
-    - "traefik.http.services.glances-holmie.loadbalancer.server.port=61208" # port of the service
-    - "traefik.docker.network=intranet"
+      - "traefik.enable=true"
+      - "traefik.http.routers.glances-holmie.entrypoints=http"
+      - "traefik.http.routers.glances-holmie.rule=Host(`glances-holmie.${DOMAIN}`)"
+      - "traefik.http.middlewares.glances-holmie-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.glances-holmie.middlewares=glances-holmie-https-redirect"
+      - "traefik.http.routers.glances-holmie-secure.entrypoints=https"
+      - "traefik.http.routers.glances-holmie-secure.rule=Host(`glances-holmie.${DOMAIN}`)"
+      - "traefik.http.routers.glances-holmie-secure.tls=true"
+      - "traefik.http.routers.glances-holmie-secure.service=glances-holmie"
+      - "traefik.http.services.glances-holmie.loadbalancer.server.port=61208"  # port of the service
+      - "traefik.docker.network=intranet"
 
 networks:
   intranet:

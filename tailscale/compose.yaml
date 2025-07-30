@@ -1,3 +1,4 @@
+---
 services:
   tailscale:
     image: tailscale/tailscale:v1.84.3
@@ -11,7 +12,7 @@ services:
       - net_admin
     restart: no
     security_opt:
-      - no-new-privileges:true # helps to increase security
+      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
 

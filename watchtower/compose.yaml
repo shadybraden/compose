@@ -1,9 +1,10 @@
+---
 services:
   watchtower:
     container_name: watchtower
     volumes:
-        - ${CONFIG_STORAGE_LOCATION}/watchtower/config.json:/config.json
-        - /var/run/docker.sock:/var/run/docker.sock
+      - ${CONFIG_STORAGE_LOCATION}/watchtower/config.json:/config.json
+      - /var/run/docker.sock:/var/run/docker.sock
     image: containrrr/watchtower:1.7.1
     environment:
       - TZ=America/New_York
