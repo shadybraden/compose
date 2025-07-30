@@ -2,7 +2,7 @@
 name = "immich-tpip"
 tags = ["tpip","hooked"]
 [stack.config]
-server = "tpip"
+server = "tipi"
 project_name = "immich-tpip"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
