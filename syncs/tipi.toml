@@ -1,19 +1,4 @@
 [[stack]]
-name = "immich-tipi"
-tags = ["tipi","hooked"]
-[stack.config]
-server = "tipi"
-project_name = "immich-tipi"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
-run_directory = "immich"
-additional_env_files = ["/etc/komodo/domain.env"]
-
-##
-
-[[stack]]
 name = "beszelagent-tipi"
 tags = ["tipi", "hooked", "criticality: 3"]
 [stack.config]
@@ -24,4 +9,19 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "beszelagent"
+additional_env_files = ["/etc/komodo/domain.env"]
+
+##
+
+[[stack]]
+name = "nextcloud-tipi"
+tags = ["tipi", "hooked", "criticality: 2"]
+[stack.config]
+server = "tipi"
+project_name = "nextcloud-tipi"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "nextcloud"
 additional_env_files = ["/etc/komodo/domain.env"]
