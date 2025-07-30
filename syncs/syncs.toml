@@ -94,3 +94,14 @@ git_provider = "git.holmlab.org"
 repo = "shady/compose"
 git_account = "komodo"
 resource_path = ["syncs/builds.toml"]
+
+##
+
+[[resource_sync]]
+name = "tipi"
+tags = ["tipi","hooked"]
+[resource_sync.config]
+git_provider = "git.holmlab.org"
+repo = "shady/compose"
+git_account = "komodo"
+resource_path = ["syncs/tipi.toml"]
