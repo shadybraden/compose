@@ -36,7 +36,7 @@ description = "192.168.x.x | 2015 Raspberry Pi 3 Model B v1.2"
 tags = ["tipi"]
 [server.config]
 tags = ["tipi"]
-address = "http://100.x.x.x:8120"
+address = "http://100.103.233.117:8120"
 enabled = false
 send_unreachable_alerts = false
 
