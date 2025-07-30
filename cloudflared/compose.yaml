@@ -1,0 +1,11 @@
+---
+services:
+  cloudflared:
+    image: cloudflare/cloudflared:2025.7.0
+    command: tunnel --no-autoupdate run --token ${token}
+    networks:
+      - intranet
+
+networks:
+  intranet:
+    external: true

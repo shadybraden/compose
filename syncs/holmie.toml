@@ -714,3 +714,18 @@ repo = "shady/compose"
 branch = "main"
 run_directory = "crafty"
 additional_env_files = ["/etc/komodo/domain.env"]
+
+##
+
+[[stack]]
+name = "cloudflared"
+tags = ["holmie", "hooked", "criticality: 5"]
+[stack.config]
+server = "holmie"
+project_name = "cloudflared"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "cloudflared"
+additional_env_files = ["/etc/komodo/domain.env"]
