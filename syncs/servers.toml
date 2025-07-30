@@ -39,3 +39,15 @@ tags = ["tipi"]
 address = "http://100.x.x.x:8120"
 enabled = false
 send_unreachable_alerts = false
+
+##
+
+[[server]]
+name = "holmgarage"
+description = "192.168.x.x"
+tags = ["holmgarage"]
+[server.config]
+tags = ["holmgarage"]
+address = "http://100.x.x.x:8120"
+enabled = false
+send_unreachable_alerts = false

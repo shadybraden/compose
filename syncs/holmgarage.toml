@@ -1,0 +1,11 @@
+[[stack]]
+name = "immich-holmgarage"
+tags = ["skynet","hooked"]
+[stack.config]
+server = "skynet"
+project_name = "immich-holmgarage"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "immich"
