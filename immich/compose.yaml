@@ -13,6 +13,8 @@ services:
     depends_on:
       - redis
       - database
+    ports:
+      - '2283:2283'
     restart: on-failure
     healthcheck:
       disable: false
