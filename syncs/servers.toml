@@ -32,7 +32,7 @@ send_unreachable_alerts = true
 
 [[server]]
 name = "tipi"
-description = "192.168.x.x"
+description = "192.168.x.x | 2015 Raspberry Pi 3 Model B v1.2"
 tags = ["tipi"]
 [server.config]
 tags = ["tipi"]
