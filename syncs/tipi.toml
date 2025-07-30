@@ -9,6 +9,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "immich"
+additional_env_files = ["/etc/komodo/domain.env"]
 
 ##
 
@@ -23,3 +24,4 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "beszelagent"
+additional_env_files = ["/etc/komodo/domain.env"]
