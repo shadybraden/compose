@@ -734,7 +734,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "plex-holmie"
-tags = ["holmie","hooked"]
+tags = ["holmie","hooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "plex-holmie"
