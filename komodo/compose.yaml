@@ -37,6 +37,8 @@ services:
       KOMODO_WEBHOOK_SECRET: ${KOMODO_WEBHOOK_SECRET}
       PERIPHERY_SSL_ENABLED: false
       KOMODO_DISABLE_CONFIRM_DIALOG: true
+      KOMODO_PASSKEY: ${KOMODO_PASSKEY}
+      PERIPHERY_PASSKEYS: ${PERIPHERY_PASSKEYS}
     volumes:
       - /data/config_storage/komodo/repo-cache:/repo-cache
     security_opt:
