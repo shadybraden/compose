@@ -736,7 +736,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 name = "plex-holmie"
 tags = ["holmie","hooked"]
 [stack.config]
-server = "skynet"
+server = "holmie"
 project_name = "plex-holmie"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
