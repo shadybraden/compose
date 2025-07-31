@@ -1,3 +1,4 @@
 - make plex.tv account
 - get claim here:
-- 
+- https://www.plex.tv/claim
+- start the server with the env var within the expiration time
