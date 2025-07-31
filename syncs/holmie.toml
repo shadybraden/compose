@@ -1,6 +1,6 @@
 [[stack]]
 name = "adsb"
-tags = ["holmie", "hooked", "criticality: 3"]
+tags = ["holmie", "hooked", "criticality: 3", "ephemoral"]
 [stack.config]
 server = "holmie"
 project_name = "adsb"
@@ -60,7 +60,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "dashy"
-tags = ["holmie", "hooked", "criticality: 5"]
+tags = ["holmie", "hooked", "criticality: 5", "ephemoral"]
 [stack.config]
 server = "holmie"
 project_name = "dashy"
@@ -240,7 +240,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "portainer"
-tags = ["holmie", "hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 4", "ephemoral"]
 [stack.config]
 server = "holmie"
 project_name = "portainer"
@@ -255,7 +255,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "proxy"
-tags = ["holmie", "hooked", "criticality: 1"]
+tags = ["holmie", "hooked", "criticality: 1", "ephemoral"]
 [stack.config]
 server = "holmie"
 project_name = "proxy"
@@ -274,7 +274,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "renovate"
-tags = ["holmie", "hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 4", "ephemoral"]
 [stack.config]
 server = "holmie"
 project_name = "renovate"
@@ -290,7 +290,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "scrutiny"
-tags = ["holmie", "hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 4", "ephemoral"]
 [stack.config]
 server = "holmie"
 project_name = "scrutiny"
@@ -305,7 +305,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "stirlingpdf"
-tags = ["holmie", "hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 4", "ephemoral"]
 [stack.config]
 server = "holmie"
 project_name = "stirlingpdf"
@@ -524,7 +524,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "speedtest"
-tags = ["holmie", "hooked", "criticality: 5"]
+tags = ["holmie", "hooked", "criticality: 5", "ephemoral"]
 [stack.config]
 server = "holmie"
 project_name = "speedtest"
@@ -539,7 +539,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "linkwarden"
-tags = ["holmie", "hooked", "criticality: 4"]
+tags = ["holmie", "hooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "linkwarden"
