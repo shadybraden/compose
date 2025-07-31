@@ -30,15 +30,15 @@ services:
       - intranet
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.SUBDOMAIN.entrypoints=http"
-      - "traefik.http.routers.SUBDOMAIN.rule=Host(`SUBDOMAIN.${DOMAIN}`)"
-      - "traefik.http.middlewares.SUBDOMAIN-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.SUBDOMAIN.middlewares=SUBDOMAIN-https-redirect"
-      - "traefik.http.routers.SUBDOMAIN-secure.entrypoints=https"
-      - "traefik.http.routers.SUBDOMAIN-secure.rule=Host(`SUBDOMAIN.${DOMAIN}`)"
-      - "traefik.http.routers.SUBDOMAIN-secure.tls=true"
-      - "traefik.http.routers.SUBDOMAIN-secure.service=SUBDOMAIN"
-      - "traefik.http.services.SUBDOMAIN.loadbalancer.server.port=32400"  # port of the service.
+      - "traefik.http.routers.plex.entrypoints=http"
+      - "traefik.http.routers.plex.rule=Host(`plex.${DOMAIN}`)"
+      - "traefik.http.middlewares.plex-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.plex.middlewares=plex-https-redirect"
+      - "traefik.http.routers.plex-secure.entrypoints=https"
+      - "traefik.http.routers.plex-secure.rule=Host(`plex.${DOMAIN}`)"
+      - "traefik.http.routers.plex-secure.tls=true"
+      - "traefik.http.routers.plex-secure.service=plex"
+      - "traefik.http.services.plex.loadbalancer.server.port=32400"  # port of the service.
       - "traefik.docker.network=intranet"
 
 networks:
