@@ -729,3 +729,17 @@ repo = "shady/compose"
 branch = "main"
 run_directory = "cloudflared"
 additional_env_files = ["/etc/komodo/domain.env"]
+
+##
+
+[[stack]]
+name = "plex-holmie"
+tags = ["holmie","hooked"]
+[stack.config]
+server = "skynet"
+project_name = "plex-holmie"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "plex"

@@ -1,0 +1,3 @@
+- make plex.tv account
+- get claim here:
+- 
