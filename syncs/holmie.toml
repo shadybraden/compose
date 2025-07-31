@@ -743,3 +743,4 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "plex"
+additional_env_files = ["/etc/komodo/domain.env"]
