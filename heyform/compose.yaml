@@ -11,7 +11,7 @@ services:
     ports:
       - '9513:8000'
     environment:
-      APP_HOMEPAGE_URL: http://form.${DOMAIN}
+      APP_HOMEPAGE_URL: https://form.${DOMAIN}
       SESSION_KEY: key1
       FORM_ENCRYPTION_KEY: key2
       MONGO_URI: 'mongodb://mongo:27017/heyform'
