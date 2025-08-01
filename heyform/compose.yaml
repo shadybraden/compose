@@ -1,0 +1,60 @@
+---
+services:
+  heyform:
+    image: heyform/community-edition:v0.1.0
+    restart: always
+    volumes:
+      - /data/config_storage/heyform/assets:/app/static/upload
+    depends_on:
+      - mongo
+      - keydb
+    ports:
+      - '9513:8000'
+    environment:
+      APP_HOMEPAGE_URL: http://form.${DOMAIN}
+      SESSION_KEY: key1
+      FORM_ENCRYPTION_KEY: key2
+      MONGO_URI: 'mongodb://mongo:27017/heyform'
+      REDIS_HOST: keydb
+      REDIS_PORT: 6379
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.form.entrypoints=http"
+      - "traefik.http.routers.form.rule=Host(`form.${DOMAIN}`)"
+      - "traefik.http.middlewares.form-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.form.middlewares=form-https-redirect"
+      - "traefik.http.routers.form-secure.entrypoints=https"
+      - "traefik.http.routers.form-secure.rule=Host(`form.${DOMAIN}`)"
+      - "traefik.http.routers.form-secure.tls=true"
+      - "traefik.http.routers.form-secure.service=form"
+      - "traefik.http.services.form.loadbalancer.server.port=9513"  # port of the service.
+      - "traefik.docker.network=intranet"
+
+  mongo:
+    image: percona/percona-server-mongodb:4.4
+    restart: always
+    volumes:
+      - /data/config_storage/heyform/mongodb_data:/data/db
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+
+  keydb:
+    image: eqalpha/keydb:6.3.3
+    restart: always
+    command: keydb-server --appendonly yes --protected-mode no
+    volumes:
+      - /data/config_storage/heyform/keydb:/data
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+
+networks:
+  intranet:
+    external: true
