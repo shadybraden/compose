@@ -45,7 +45,7 @@ services:
       - intranet
 
   keydb:
-    image: eqalpha/keydb:6.3.3
+    image: eqalpha/keydb:alpine_x86_64_v6.3.4
     restart: always
     command: keydb-server --appendonly yes --protected-mode no
     volumes:
