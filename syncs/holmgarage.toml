@@ -10,3 +10,33 @@ repo = "shady/compose"
 branch = "main"
 run_directory = "beszelagent"
 additional_env_files = ["/etc/komodo/domain.env"]
+
+##
+
+[[stack]]
+name = "immich-holmgarage"
+tags = ["holmgarage", "unhooked", "criticality: 2"]
+[stack.config]
+server = "holmgarage"
+project_name = "immich-holmgarage"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "immich"
+additional_env_files = ["/etc/komodo/domain.env"]
+
+##
+
+[[stack]]
+name = "beszelagent-holmgarage"
+tags = ["holmgarage", "unhooked", "criticality: 3"]
+[stack.config]
+server = "holmgarage"
+project_name = "beszelagent-holmgarage"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "beszelagent"
+additional_env_files = ["/etc/komodo/domain.env"]

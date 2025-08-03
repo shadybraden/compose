@@ -44,7 +44,7 @@ send_unreachable_alerts = true
 
 [[server]]
 name = "holmgarage"
-description = "192.168.x.x"
+description = "192.168.0.46"
 tags = ["holmgarage"]
 [server.config]
 tags = ["holmgarage"]
