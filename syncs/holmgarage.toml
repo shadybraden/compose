@@ -55,3 +55,18 @@ repo = "shady/compose"
 branch = "main"
 run_directory = "pihole"
 additional_env_files = ["/etc/komodo/domain.env"]
+
+##
+
+[[stack]]
+name = "traefik-holmgarage"
+tags = ["holmgarage", "unhooked", "criticality: 1"]
+[stack.config]
+server = "holmgarage"
+project_name = "traefik-holmgarage"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "traefik"
+additional_env_files = ["/etc/komodo/domain.env"]
