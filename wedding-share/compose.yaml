@@ -39,6 +39,10 @@ services:
       - "traefik.http.routers.mcc-secure.service=mcc"
       - "traefik.http.services.mcc.loadbalancer.server.port=5000"  # port of the service.
       - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=WeddingShare"
+      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/weddingshare.png"
+      - "homepage.href=https://mcc.${DOMAIN}/"
 
 networks:
   intranet:
