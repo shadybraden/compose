@@ -11,9 +11,6 @@ services:
       - /data/config_storage/filebrowser/config:/config
     ports:
       - 8060:80
-    environment:  # chown user:group config/ database/
-      - PUID=1000
-      - PGID=1000
     image: filebrowser/filebrowser:v2.42.1
     security_opt:
       - no-new-privileges:true  # helps to increase security
