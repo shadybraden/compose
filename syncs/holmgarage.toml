@@ -30,7 +30,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "beszelagent-holmgarage"
-tags = ["holmgarage", "unhooked", "criticality: 3"]
+tags = ["holmgarage", "hooked", "criticality: 3"]
 [stack.config]
 server = "holmgarage"
 project_name = "beszelagent-holmgarage"
