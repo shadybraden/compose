@@ -36,7 +36,7 @@ services:
       - "homepage.group=Media"
       - "homepage.name=Jellyfin"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/jellyfin.png"
-      - "homepage.href=https://jellyfin.holmlab.org/"
+      - "homepage.href=https://jellyfin.${DOMAIN}/"
 
 networks:
   intranet:
