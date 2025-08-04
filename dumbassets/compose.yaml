@@ -28,7 +28,7 @@ services:
       - "homepage.group=Other"
       - "homepage.name=dumbassets"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/dumbassets.png"
-      - "homepage.href=https://assets.holmlab.org/"
+      - "homepage.href=https://assets.${DOMAIN}/"
 
 networks:
   intranet:

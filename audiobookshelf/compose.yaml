@@ -30,7 +30,7 @@ services:
       - "homepage.group=Media"
       - "homepage.name=audiobookshelf"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/audiobookshelf.png"
-      - "homepage.href=https://audiobookshelf.holmlab.org/"
+      - "homepage.href=https://audiobookshelf.${DOMAIN}/"
 
 networks:
   intranet:

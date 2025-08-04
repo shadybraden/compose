@@ -136,7 +136,7 @@ services:
       - "homepage.group=Other"
       - "homepage.name=resume"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/reactive-resume.png"
-      - "homepage.href=https://resume.holmlab.org/"
+      - "homepage.href=https://resume.${DOMAIN}/"
 
 networks:
   intranet:

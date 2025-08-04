@@ -32,7 +32,7 @@ services:
       - "homepage.group=Other"
       - "homepage.name=motioneye"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/motioneye.png"
-      - "homepage.href=https://motioneye.holmlab.org/"
+      - "homepage.href=https://motioneye.${DOMAIN}/"
 
 networks:
   intranet:

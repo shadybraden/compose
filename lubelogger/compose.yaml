@@ -25,7 +25,7 @@ services:
       - "homepage.group=Other"
       - "homepage.name=lubelogger"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/lubelogger.png"
-      - "homepage.href=https://lubelogger.holmlab.org/"
+      - "homepage.href=https://lubelogger.${DOMAIN}/"
 
 networks:
   intranet:

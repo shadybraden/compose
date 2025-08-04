@@ -34,7 +34,7 @@ services:
       - "homepage.group=Other"
       - "homepage.name=FreshRSS"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/freshrss.png"
-      - "homepage.href=https://rss.holmlab.org/"
+      - "homepage.href=https://rss.${DOMAIN}/"
 
 networks:
   intranet:

@@ -61,7 +61,7 @@ services:
       - "homepage.group=Infrastructure"
       - "homepage.name=Komodo"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/komodo.png"
-      - "homepage.href=https://komodo.holmlab.org/"
+      - "homepage.href=https://komodo.${DOMAIN}/"
 
   periphery:
     image: ghcr.io/moghtech/komodo-periphery:1.18.4

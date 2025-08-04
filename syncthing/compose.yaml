@@ -39,7 +39,7 @@ services:
       - "homepage.group=Other"
       - "homepage.name=syncthing"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/syncthing.png"
-      - "homepage.href=https://syncthing-holmie.holmlab.org/"
+      - "homepage.href=https://syncthing-holmie.${DOMAIN}/"
 
 networks:
   intranet:

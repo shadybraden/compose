@@ -36,7 +36,7 @@ services:
       - "homepage.group=Other"
       - "homepage.name=homeassistant"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/home-assistant.png"
-      - "homepage.href=https://homeassistant.holmlab.org/"
+      - "homepage.href=https://homeassistant.${DOMAIN}/"
 
 networks:
   intranet:

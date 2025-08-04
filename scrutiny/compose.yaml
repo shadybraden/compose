@@ -33,7 +33,7 @@ services:
       - "homepage.group=Other"
       - "homepage.name=scrutiny"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/scrutiny.png"
-      - "homepage.href=https://scrutiny.holmlab.org/"
+      - "homepage.href=https://scrutiny.${DOMAIN}/"
 
 networks:
   intranet:

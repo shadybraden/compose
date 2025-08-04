@@ -28,7 +28,7 @@ services:
       - "homepage.group=Other"
       - "homepage.name=ntfy"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/ntfy.png"
-      - "homepage.href=https://ntfy.holmlab.org/"
+      - "homepage.href=https://ntfy.${DOMAIN}/"
 
 networks:
   intranet:
