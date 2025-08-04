@@ -6,7 +6,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
-      NTFY_URL: "https://ntfy.${DOMAIN}"
+      NTFY_URL: "https://ntfy.holmlab.org"  # not a variable because logs should all go back to holmlab
       NTFY_TOPIC: ${topic}
       CONTAINERS: "vaultwarden,WeddingShare,audiobookshelf,pihole,restic,wg-easy,forgejo,jellyfin,immich_server,nextcloud,syncthing,silverbullet,tinyauth"
       GLOBAL_KEYWORDS: "error,failed login,password,Authentication failed,Failed authentication attempt,Wrong credentials"
