@@ -130,3 +130,18 @@ repo = "shady/compose"
 branch = "main"
 run_directory = "arr"
 additional_env_files = ["/etc/komodo/domain.env"]
+
+##
+
+[[stack]]
+name = "filebrowser-holmgarage"
+tags = ["holmgarage", "unhooked", "criticality: 5"]
+[stack.config]
+server = "holmgarage"
+project_name = "filebrowser-holmgarage"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "filebrowser"
+additional_env_files = ["/etc/komodo/domain.env"]
