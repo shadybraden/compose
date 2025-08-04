@@ -51,6 +51,10 @@ services:
       - "traefik.http.routers.jackett-secure.tls=true"
       - "traefik.http.routers.jackett-secure.service=jackett"
       - "traefik.http.services.jackett.loadbalancer.server.port=9117"  # port of the service
+      - "homepage.group=Media "
+      - "homepage.name=jackett"
+      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/jackett.png"
+      - "homepage.href=https://jackett.${DOMAIN}/"
 
   radarr:  # the movie searching part
     image: quay.io/linuxserver.io/radarr:5.26.2
