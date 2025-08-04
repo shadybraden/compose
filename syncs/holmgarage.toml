@@ -160,3 +160,18 @@ repo = "shady/compose"
 branch = "main"
 run_directory = "navidrome"
 additional_env_files = ["/etc/komodo/domain.env"]
+
+##
+
+[[stack]]
+name = "homepage-holmgarage"
+tags = ["holmgarage", "unhooked", "criticality: 2"]
+[stack.config]
+server = "holmgarage"
+project_name = "homepage-holmgarage"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "homepage"
+additional_env_files = ["/etc/komodo/domain.env"]
