@@ -39,7 +39,7 @@ services:
       - "homepage.group=Media"
       - "homepage.name=qbittorrent"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/qbittorrent.png"
-      - "homepage.href=https://qbittorrent.holmlab.org/"
+      - "homepage.href=https://qbittorrent.${DOMAIN}/"
 
       - "traefik.http.routers.jackett.service=jackett"  # for multi-port - https://github.com/traefik/traefik/issues/4807
       - "traefik.http.routers.jackett.entrypoints=http"
@@ -86,7 +86,7 @@ services:
       - "homepage.group=Other"
       - "homepage.name=radarr"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/radarr.png"
-      - "homepage.href=https://radarr.holmlab.org/"
+      - "homepage.href=https://radarr.${DOMAIN}/"
 
   sonarr:  # the show searching part
     image: quay.io/linuxserver.io/sonarr:4.0.15
@@ -121,7 +121,7 @@ services:
       - "homepage.group=Other"
       - "homepage.name=sonarr"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/sonarr.png"
-      - "homepage.href=https://sonarr.holmlab.org/"
+      - "homepage.href=https://sonarr.${DOMAIN}/"
 
   jackett:  # mega indexer for the arr's above
     image: quay.io/linuxserver.io/jackett:0.22.2223

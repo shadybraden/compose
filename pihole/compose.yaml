@@ -37,7 +37,7 @@ services:
       - "homepage.group=Infrastructure"
       - "homepage.name=pihole"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/pi-hole.png"
-      - "homepage.href=https://pihole.holmlab.org/admin"
+      - "homepage.href=https://pihole.${DOMAIN}/admin"
 
 networks:
   intranet:

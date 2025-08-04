@@ -39,7 +39,7 @@ services:
       - "homepage.group=Media"
       - "homepage.name=immich"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/immich.png"
-      - "homepage.href=https://immich.holmlab.org/"
+      - "homepage.href=https://immich.${DOMAIN}/"
 
   immich-machine-learning:
     container_name: immich_machine_learning

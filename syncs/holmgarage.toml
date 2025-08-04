@@ -1,6 +1,6 @@
 [[stack]]
 name = "beszelagent-holmgarage"
-tags = ["holmgarage", "unhooked", "criticality: 3"]
+tags = ["holmgarage", "hooked", "criticality: 3"]
 [stack.config]
 server = "holmgarage"
 project_name = "beszelagent-holmgarage"
@@ -15,7 +15,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "immich-holmgarage"
-tags = ["holmgarage", "unhooked", "criticality: 2"]
+tags = ["holmgarage", "hooked", "criticality: 2"]
 [stack.config]
 server = "holmgarage"
 project_name = "immich-holmgarage"
@@ -45,7 +45,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "pihole-holmgarage"
-tags = ["holmgarage", "unhooked", "criticality: 1"]
+tags = ["holmgarage", "hooked", "criticality: 1"]
 [stack.config]
 server = "holmgarage"
 project_name = "pihole-holmgarage"
@@ -60,7 +60,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "traefik-holmgarage"
-tags = ["holmgarage", "unhooked", "criticality: 1"]
+tags = ["holmgarage", "hooked", "criticality: 1"]
 [stack.config]
 server = "holmgarage"
 project_name = "traefik-holmgarage"
@@ -75,14 +75,14 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "jellyfin-holmgarage"
-tags = ["holmgarage", "unhooked", "criticality: 2"]
+tags = ["holmgarage", "hooked", "criticality: 2"]
 [stack.config]
 server = "holmgarage"
 project_name = "jellyfin-holmgarage"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
-branch = "main"
+branch = "test"
 run_directory = "jellyfin"
 additional_env_files = ["/etc/komodo/domain.env"]
 
@@ -90,7 +90,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "mealie-holmgarage"
-tags = ["holmgarage", "unhooked", "criticality: 5"]
+tags = ["holmgarage", "hooked", "criticality: 5"]
 [stack.config]
 server = "holmgarage"
 project_name = "mealie-holmgarage"
@@ -105,7 +105,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "jellyseerr-holmgarage"
-tags = ["holmgarage", "unhooked", "criticality: 4"]
+tags = ["holmgarage", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmgarage"
 project_name = "jellyseerr-holmgarage"
@@ -120,7 +120,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "arr-holmgarage"
-tags = ["holmgarage", "unhooked", "criticality: 4"]
+tags = ["holmgarage", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmgarage"
 project_name = "arr-holmgarage"
@@ -135,7 +135,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "filebrowser-holmgarage"
-tags = ["holmgarage", "unhooked", "criticality: 5"]
+tags = ["holmgarage", "hooked", "criticality: 5"]
 [stack.config]
 server = "holmgarage"
 project_name = "filebrowser-holmgarage"
@@ -144,4 +144,34 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "filebrowser"
+additional_env_files = ["/etc/komodo/domain.env"]
+
+##
+
+[[stack]]
+name = "navidrome-holmgarage"
+tags = ["holmgarage", "hooked", "criticality: 4"]
+[stack.config]
+server = "holmgarage"
+project_name = "navidrome-holmgarage"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "navidrome"
+additional_env_files = ["/etc/komodo/domain.env"]
+
+##
+
+[[stack]]
+name = "homepage-holmgarage"
+tags = ["holmgarage", "hooked", "criticality: 2"]
+[stack.config]
+server = "holmgarage"
+project_name = "homepage-holmgarage"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "homepage"
 additional_env_files = ["/etc/komodo/domain.env"]

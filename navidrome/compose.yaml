@@ -31,7 +31,7 @@ services:
       - "homepage.group=Media"
       - "homepage.name=navidrome"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/navidrome.png"
-      - "homepage.href=https://navidrome.holmlab.org/"
+      - "homepage.href=https://navidrome.${DOMAIN}/"
 
 networks:
   intranet:

@@ -29,7 +29,7 @@ services:
       - "homepage.group=Other"
       - "homepage.name=mealie"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/mealie.png"
-      - "homepage.href=https://mealie.holmlab.org/"
+      - "homepage.href=https://mealie.${DOMAIN}/"
 
 networks:
   intranet:

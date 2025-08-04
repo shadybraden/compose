@@ -43,7 +43,7 @@ services:
       - "homepage.group=Other"
       - "homepage.name=Traefik"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/traefik.png"
-      - "homepage.href=https://traefik.holmlab.org"
+      - "homepage.href=https://traefik.${DOMAIN}"
 
 networks:
   intranet:  # docker network create intranet
