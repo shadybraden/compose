@@ -36,7 +36,7 @@ services:
       - "homepage.group=Other"
       - "homepage.name=search"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/searxng.png"
-      - "homepage.href=https://search.holmlab.org/"
+      - "homepage.href=https://search.${DOMAIN}/"
 
 networks:
   intranet:

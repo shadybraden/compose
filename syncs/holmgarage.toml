@@ -175,3 +175,183 @@ repo = "shady/compose"
 branch = "main"
 run_directory = "homepage"
 additional_env_files = ["/etc/komodo/domain.env"]
+
+##
+
+[[stack]]
+name = "audiobookshelf-holmgarage"
+tags = ["holmgarage", "hooked", "criticality: 3"]
+[stack.config]
+server = "holmgarage"
+project_name = "audiobookshelf-holmgarage"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "audiobookshelf"
+additional_env_files = ["/etc/komodo/domain.env"]
+
+##
+
+[[stack]]
+name = "dumbassets-holmgarage"
+tags = ["holmgarage", "hooked", "criticality: 5"]
+[stack.config]
+server = "holmgarage"
+project_name = "dumbassets-holmgarage"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "dumbassets"
+additional_env_files = ["/etc/komodo/domain.env"]
+
+##
+
+[[stack]]
+name = "homeassistant-holmgarage"
+tags = ["holmgarage", "hooked", "criticality: 1"]
+[stack.config]
+server = "holmgarage"
+project_name = "homeassistant-holmgarage"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "homeassistant"
+additional_env_files = ["/etc/komodo/domain.env"]
+
+##
+
+[[stack]]
+name = "linkwarden-holmgarage"
+tags = ["holmgarage", "hooked", "criticality: 5"]
+[stack.config]
+server = "holmgarage"
+project_name = "linkwarden-holmgarage"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "linkwarden"
+additional_env_files = ["/etc/komodo/domain.env"]
+
+##
+
+[[stack]]
+name = "loggifly-holmgarage"
+tags = ["holmgarage", "hooked", "criticality: 1"]
+[stack.config]
+server = "holmgarage"
+project_name = "loggifly-holmgarage"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "loggifly"
+additional_env_files = ["/etc/komodo/domain.env"]
+
+##
+
+[[stack]]
+name = "lubelogger-holmgarage"
+tags = ["holmgarage", "hooked", "criticality: 1"]
+[stack.config]
+server = "holmgarage"
+project_name = "lubelogger-holmgarage"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "lubelogger"
+additional_env_files = ["/etc/komodo/domain.env"]
+
+##
+
+[[stack]]
+name = "nextcloud-holmgarage"
+tags = ["holmgarage", "hooked", "criticality: 1"]
+[stack.config]
+server = "holmgarage"
+project_name = "nextcloud-holmgarage"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "nextcloud"
+additional_env_files = ["/etc/komodo/domain.env"]
+
+##
+
+[[stack]]
+name = "reactiveresume-holmgarage"
+tags = ["holmgarage", "hooked", "criticality: 1"]
+[stack.config]
+server = "holmgarage"
+project_name = "reactiveresume-holmgarage"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "reactiveresume"
+additional_env_files = ["/etc/komodo/domain.env"]
+
+##
+
+[[stack]]
+name = "searxng-holmgarage"
+tags = ["holmgarage", "hooked", "criticality: 1"]
+[stack.config]
+server = "holmgarage"
+project_name = "searxng-holmgarage"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "searxng"
+additional_env_files = ["/etc/komodo/domain.env"]
+
+##
+
+[[stack]]
+name = "speedtest-holmgarage"
+tags = ["holmgarage", "hooked", "criticality: 1"]
+[stack.config]
+server = "holmgarage"
+project_name = "speedtest-holmgarage"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "speedtest"
+additional_env_files = ["/etc/komodo/domain.env"]
+
+##
+
+[[stack]]
+name = "stirlingpdf-holmgarage"
+tags = ["holmgarage", "hooked", "criticality: 1"]
+[stack.config]
+server = "holmgarage"
+project_name = "stirlingpdf-holmgarage"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "stirlingpdf"
+additional_env_files = ["/etc/komodo/domain.env"]
+
+##
+
+[[stack]]
+name = "vaultwarden-holmgarage"
+tags = ["holmgarage", "hooked", "criticality: 1"]
+[stack.config]
+server = "holmgarage"
+project_name = "vaultwarden-holmgarage"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "vaultwarden"
+additional_env_files = ["/etc/komodo/domain.env"]

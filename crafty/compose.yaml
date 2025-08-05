@@ -37,7 +37,7 @@ services:
       - "homepage.group=Other"
       - "homepage.name=Crafty-holmie"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/crafty-controller.png"
-      - "homepage.href=https://crafty.holmlab.org/"
+      - "homepage.href=https://crafty.${DOMAIN}/"
 
 networks:
   intranet:

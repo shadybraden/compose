@@ -30,7 +30,7 @@ services:
       - "homepage.group=Other"
       - "homepage.name=nextcloud"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/nextcloud.png"
-      - "homepage.href=https://nextcloud.holmlab.org/"
+      - "homepage.href=https://nextcloud.${DOMAIN}/"
 
 networks:
   intranet:

@@ -76,7 +76,7 @@ services:
       - "homepage.group=Other"
       - "homepage.name=ADSB"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/adsb.png"
-      - "homepage.href=https://adsb.holmlab.org/"
+      - "homepage.href=https://adsb.${DOMAIN}/"
 
 networks:
   intranet:

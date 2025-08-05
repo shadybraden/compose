@@ -28,7 +28,7 @@ services:
       - "homepage.group=Other"
       - "homepage.name=PDF"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/pdf.png"
-      - "homepage.href=https://pdf.holmlab.org/"
+      - "homepage.href=https://pdf.${DOMAIN}/"
 
 networks:
   intranet:

@@ -43,7 +43,7 @@ services:
       - "homepage.group=Other"
       - "homepage.name=wireguard"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/wireguard.png"
-      - "homepage.href=https://wireguard.holmlab.org/"
+      - "homepage.href=https://wireguard.${DOMAIN}/"
 
 networks:
   wg:

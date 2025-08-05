@@ -24,3 +24,8 @@ So add the following to the syncs toml:
 ```
 additional_env_files = ["/etc/komodo/domain.env"]
 ```
+
+
+## Automation:
+
+`./addservice.sh SERVICE SERVERNAME`

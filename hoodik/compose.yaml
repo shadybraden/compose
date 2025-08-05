@@ -29,7 +29,7 @@ services:
       - "homepage.group=Other"
       - "homepage.name=hoodik"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/hoodik.png"
-      - "homepage.href=https://hoodik.holmlab.org/"
+      - "homepage.href=https://hoodik.${DOMAIN}/"
 
 networks:
   intranet:

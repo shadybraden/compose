@@ -25,7 +25,7 @@ services:
       - "homepage.group=Other"
       - "homepage.name=Uptime-Kuma"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/uptimekuma.png"
-      - "homepage.href=https://uptime-kuma.holmlab.org/"
+      - "homepage.href=https://uptime-kuma.${DOMAIN}/"
 
 networks:
   intranet:

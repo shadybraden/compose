@@ -1,7 +1,7 @@
 ---
 services:
   beszel:
-    image: henrygd/beszel:0.12.2
+    image: henrygd/beszel:0.12.3
     container_name: beszel
     restart: unless-stopped
 #    environment:
@@ -29,7 +29,7 @@ services:
       - "homepage.group=Infrastructure"
       - "homepage.name=beszel"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/beszel.png"
-      - "homepage.href=https://beszel.holmlab.org/"
+      - "homepage.href=https://beszel.${DOMAIN}/"
 
 networks:
   intranet:

@@ -27,7 +27,7 @@ services:
       - "homepage.group=Other"
       - "homepage.name=speedtest"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/librespeed.png"
-      - "homepage.href=https://speedtest.holmlab.org/"
+      - "homepage.href=https://speedtest.${DOMAIN}/"
 
 networks:
   intranet:
