@@ -11,6 +11,7 @@ services:
       - /data/config_storage/jellyfin/cache:/cache
       - /mnt/4tb/shows:/shows
       - /mnt/4tb/movies:/movies
+      - /mnt/4tb/youtube:/youtube
     restart: on-failure
     image: quay.io/linuxserver.io/jellyfin:10.10.7
     environment:
