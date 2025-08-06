@@ -744,3 +744,18 @@ repo = "shady/compose"
 branch = "main"
 run_directory = "plex"
 additional_env_files = ["/etc/komodo/domain.env"]
+
+##
+
+[[stack]]
+name = "frigate-holmie"
+tags = ["holmie", "unhooked", "criticality: 1"]
+[stack.config]
+server = "holmie"
+project_name = "frigate-holmie"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "frigate"
+additional_env_files = ["/etc/komodo/domain.env"]
