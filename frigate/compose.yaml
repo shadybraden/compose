@@ -28,3 +28,27 @@ services:
       - "8555:8555/udp"  # WebRTC over udp
     environment:
       FRIGATE_RTSP_PASSWORD: ${FRIGATE_RTSP_PASSWORD}
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frigate.entrypoints=http"
+      - "traefik.http.routers.frigate.rule=Host(`frigate.${DOMAIN}`)"
+      - "traefik.http.middlewares.frigate-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.frigate.middlewares=frigate-https-redirect"
+      - "traefik.http.routers.frigate-secure.entrypoints=https"
+      - "traefik.http.routers.frigate-secure.rule=Host(`frigate.${DOMAIN}`)"
+      - "traefik.http.routers.frigate-secure.tls=true"
+      - "traefik.http.routers.frigate-secure.service=frigate"
+      - "traefik.http.services.frigate.loadbalancer.server.port=8971"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=frigate"
+      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/frigate.png"
+      - "homepage.href=https://frigate.holmlab.org/"
+
+networks:
+  intranet:
+    external: true
