@@ -759,3 +759,18 @@ repo = "shady/compose"
 branch = "main"
 run_directory = "gluetun"
 additional_env_files = ["/etc/komodo/domain.env"]
+
+##
+
+[[stack]]
+name = "socks5-holmie"
+tags = ["holmie", "unhooked", "criticality: 1"]
+[stack.config]
+server = "holmie"
+project_name = "socks5-holmie"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "socks5"
+additional_env_files = ["/etc/komodo/domain.env"]
