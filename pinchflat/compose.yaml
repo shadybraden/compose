@@ -7,8 +7,8 @@ services:
 #    ports:
 #      - '8945:8945'
     volumes:
-      - /host/path/to/config:/config
-      - /host/path/to/downloads:/downloads
+      - /data/config_storage/pinchflat:/config
+      - /mnt/4tb/youtube:/downloads
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
