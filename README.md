@@ -15,4 +15,3 @@ As the guide says, installing OS's, using Git and using Docker are prerequisites
 - docker swarm with desktop for a beefer cpu?
 - Frigate + NPU for survielence system
 - https://www.music-assistant.io/
-- seperate network for gluetun things, so only one instance needs to run all the things.
