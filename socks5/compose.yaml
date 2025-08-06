@@ -5,9 +5,6 @@ services:
     environment:
       - PROXY_PORT=1080
     image: serjs/go-socks5-proxy:v0.0.3
-    depends_on:
-      gluetun:
-        condition: service_healthy
     networks:
       - proxy
 
