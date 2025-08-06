@@ -27,17 +27,6 @@ services:
     image: qmcgaw/gluetun:v3.40
     networks:
       - proxy
-  socks5:
-    container_name: socks5
-    environment:
-      - PROXY_PORT=1080
-    image: serjs/go-socks5-proxy:v0.0.3
-    network_mode: service:gluetun
-    depends_on:
-      gluetun:
-        condition: service_healthy
-    networks:
-      - proxy
 
 networks:
   proxy:
