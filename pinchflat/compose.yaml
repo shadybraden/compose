@@ -29,6 +29,7 @@ services:
       - "homepage.name=pinchflat"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/pinchflat.png"
       - "homepage.href=https://pinchflat.${DOMAIN}/"
+      - "traefik.http.routers.pinchflat-secure.middlewares=tinyauth"
 
 networks:
   intranet:
