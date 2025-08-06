@@ -48,7 +48,7 @@ services:
       - "homepage.group=Other"
       - "homepage.name=frigate"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/frigate.png"
-      - "homepage.href=https://frigate.holmlab.org/"
+      - "homepage.href=https://frigate.${DOMAIN}/"
 
 networks:
   intranet:

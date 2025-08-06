@@ -1,0 +1,35 @@
+---
+services:
+  pinchflat:
+    image: ghcr.io/kieraneglin/pinchflat:v2025.6.6
+    environment:
+      - TZ=America/New_York
+#    ports:
+#      - '8945:8945'
+    volumes:
+      - /host/path/to/config:/config
+      - /host/path/to/downloads:/downloads
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pinchflat.entrypoints=http"
+      - "traefik.http.routers.pinchflat.rule=Host(`pinchflat.${DOMAIN}`)"
+      - "traefik.http.middlewares.pinchflat-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.pinchflat.middlewares=pinchflat-https-redirect"
+      - "traefik.http.routers.pinchflat-secure.entrypoints=https"
+      - "traefik.http.routers.pinchflat-secure.rule=Host(`pinchflat.${DOMAIN}`)"
+      - "traefik.http.routers.pinchflat-secure.tls=true"
+      - "traefik.http.routers.pinchflat-secure.service=pinchflat"
+      - "traefik.http.services.pinchflat.loadbalancer.server.port=8945"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Media"
+      - "homepage.name=pinchflat"
+      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/pinchflat.png"
+      - "homepage.href=https://pinchflat.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true

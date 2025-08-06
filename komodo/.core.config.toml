@@ -26,7 +26,7 @@ title = "Komodo"
 ## Eg https://komodo.example.com or http://12.34.56.78:9120. This should match the address configured in your Oauth app.
 ## Env: KOMODO_HOST
 ## Required, no default.
-host = "https://komodo.holmlab.org/"
+host = "https://komodo.${DOMAIN}/"
 
 ## The port the core system will run on.
 ## Env: KOMODO_PORT

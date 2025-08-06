@@ -30,7 +30,7 @@ services:
       - "homepage.group=Media"
       - "homepage.name=files"
       - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/files.png"
-      - "homepage.href=https://files.holmlab.org/"
+      - "homepage.href=https://files.${DOMAIN}/"
 
 networks:
   intranet:
