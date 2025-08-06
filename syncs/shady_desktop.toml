@@ -35,6 +35,7 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "beszelagent"
+
 ##
 
 [[stack]]
