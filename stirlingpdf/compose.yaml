@@ -9,6 +9,7 @@ services:
       - LANGS=en_GB
       - SHOW_SURVEY=false
       - SYSTEM_ENABLEANALYTICS=false
+    restart: unless-stopped
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:

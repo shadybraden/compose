@@ -10,6 +10,7 @@ services:
       WEBPORT: 8080
     security_opt:
       - no-new-privileges:true  # helps to increase security
+    restart: unless-stopped
     networks:
       - intranet
     labels:
