@@ -8,11 +8,8 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       # monitor other disks / partitions by mounting a folder in /extra-filesystems
-      - /mnt:/extra-filesystems/mnt:ro
+      - /mnt/4tb/beszel:/extra-filesystems/mnt:ro
+      - /data/config_storage/beszel:/extra-filesystems/config_storage:ro
     environment:
-      # LOG_LEVEL: debug
       LISTEN: 45876
       KEY: ${KEY}  # format: `KEY="key"`
-
-# Fedora firewall commands:
-# sudo firewall-cmd --permanent --add-port=45876/tcp && sudo firewall-cmd --reload
