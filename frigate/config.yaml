@@ -1,19 +1,19 @@
 ---
 mqtt:
-  enabled: False
+  enabled: false
 
 cameras:
-  name_of_your_camera: # <------ Name the camera
-    enabled: True
+  name_of_your_camera:  # <------ Name the camera
+    enabled: true
     ffmpeg:
       inputs:
-        - path: rtsp://10.0.10.10:554/rtsp # <----- The stream you want to use for detection
+        - path: rtsp://10.0.10.10:554/rtsp  # <----- The stream you want to use for detection
           roles:
             - detect
     detect:
-      enabled: False # <---- disable detection until you have a working camera feed
+      enabled: false  # <---- disable detection until you have a working camera feed
       width: 1280
       height: 720
 
 tls:
-  enabled: False
+  enabled: false
