@@ -8,9 +8,9 @@ services:
 #    ports:
 #      - 3000:3000
     volumes:
-      - /data/config_storage/homepage/config:/app/config
+      - /data/config_storage/homepage/config:/app/config:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro  # optional, for docker integrations
-      - /data/config_storage/komodo/etc_komodo/stacks/homepage/dashy/icons:/app/public/images
+      - /data/config_storage/komodo/etc_komodo/stacks/homepage/dashy/icons:/app/public/images:ro
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true  # helps to increase security
