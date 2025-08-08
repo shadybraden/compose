@@ -1,0 +1,11 @@
+---
+services:
+  factorio:
+    ports:
+      - 34197:34197/udp
+      - 27015:27015/tcp
+    volumes:
+      - /data/config_storage/factorio:/factorio  # chown 845:845
+    container_name: factorio
+    restart: unless-stopped
+    image: factoriotools/factorio:2.0.60
