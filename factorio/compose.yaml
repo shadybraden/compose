@@ -9,3 +9,5 @@ services:
     container_name: factorio
     restart: unless-stopped
     image: factoriotools/factorio:2.0.60
+    environment:
+      - INSTANCE_NAME=shadyserver

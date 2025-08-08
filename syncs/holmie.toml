@@ -764,7 +764,8 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "factorio-holmie"
-tags = ["holmie", "unhooked", "criticality: 1"]
+description = "192.168.50.65:34197 | 100.106.23.87:34197"
+tags = ["holmie", "hooked", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "factorio-holmie"
