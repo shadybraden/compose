@@ -28,7 +28,7 @@ services:
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=mealie"
-      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/mealie.png"
+      - "homepage.icon=/images/mealie.png"
       - "homepage.href=https://mealie.${DOMAIN}/"
 
 networks:

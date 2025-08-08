@@ -35,7 +35,7 @@ services:
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=search"
-      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/searxng.png"
+      - "homepage.icon=/images/searxng.png"
       - "homepage.href=https://search.${DOMAIN}/"
 
 networks:

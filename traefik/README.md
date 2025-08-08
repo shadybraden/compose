@@ -65,6 +65,6 @@ To add to Homepage:
 ```yaml
       - "homepage.group=GROUP"
       - "homepage.name=NAME"
-      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/NAME.png"
+      - "homepage.icon=/images/NAME.png"
       - "homepage.href=https://NAME.${DOMAIN}$/"
 ```

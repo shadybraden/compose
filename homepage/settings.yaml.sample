@@ -5,8 +5,8 @@
 providers:
   openweathermap: openweathermapapikey
   weatherapi: weatherapiapikey
-background: https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/background.png
-favicon: https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/favicon.ico
+background: /images/background.png
+favicon: /images/favicon.ico
 headerStyle: clean
 disableUpdateCheck: true
 showStats: false

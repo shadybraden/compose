@@ -47,7 +47,7 @@ services:
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=frigate"
-      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/frigate.png"
+      - "homepage.icon=/images/frigate.png"
       - "homepage.href=https://frigate.${DOMAIN}/"
 
 networks:

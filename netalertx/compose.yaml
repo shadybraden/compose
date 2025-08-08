@@ -29,7 +29,7 @@ services:
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=netalertx"
-      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/NetAlertX.png"
+      - "homepage.icon=/images/NetAlertX.png"
       - "homepage.href=https://netalertx.${DOMAIN}/"
 
 networks:

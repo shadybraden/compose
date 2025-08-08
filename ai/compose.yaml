@@ -51,7 +51,7 @@ services:
       - "homepage.group=Other"
       - "homepage.weight=2"
       - "homepage.name=AI"
-      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/open-webui-light.png"
+      - "homepage.icon=/images/open-webui-light.png"
       - "homepage.href=https://ai.${DOMAIN}"
 
 networks:

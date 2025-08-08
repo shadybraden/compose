@@ -36,7 +36,7 @@ services:
       - "traefik.docker.network=intranet"
       - "homepage.group=Infrastructure"
       - "homepage.name=pihole"
-      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/pi-hole.png"
+      - "homepage.icon=/images/pi-hole.png"
       - "homepage.href=https://pihole.${DOMAIN}/admin"
 
 networks:

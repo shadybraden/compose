@@ -27,7 +27,7 @@ services:
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=ntfy"
-      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/ntfy.png"
+      - "homepage.icon=/images/ntfy.png"
       - "homepage.href=https://ntfy.${DOMAIN}/"
 
 networks:

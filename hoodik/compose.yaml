@@ -28,7 +28,7 @@ services:
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=hoodik"
-      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/hoodik.png"
+      - "homepage.icon=/images/hoodik.png"
       - "homepage.href=https://hoodik.${DOMAIN}/"
 
 networks:

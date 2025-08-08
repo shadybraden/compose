@@ -27,7 +27,7 @@ services:
       - "traefik.docker.network=intranet"
       - "homepage.group=Media"
       - "homepage.name=pinchflat"
-      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/pinchflat.png"
+      - "homepage.icon=/images/pinchflat.png"
       - "homepage.href=https://pinchflat.${DOMAIN}/"
       - "traefik.http.routers.pinchflat-secure.middlewares=tinyauth"
 

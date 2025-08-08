@@ -28,7 +28,7 @@ services:
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=dumbassets"
-      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/dumbassets.png"
+      - "homepage.icon=/images/dumbassets.png"
       - "homepage.href=https://assets.${DOMAIN}/"
 
 networks:

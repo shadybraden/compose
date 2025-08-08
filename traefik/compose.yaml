@@ -42,7 +42,7 @@ services:
       - "traefik.http.routers.traefik-secure.service=api@internal"
       - "homepage.group=Other"
       - "homepage.name=Traefik"
-      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/traefik.png"
+      - "homepage.icon=/images/traefik.png"
       - "homepage.href=https://traefik.${DOMAIN}"
 
 networks:

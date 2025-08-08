@@ -38,7 +38,7 @@ services:
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=syncthing"
-      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/syncthing.png"
+      - "homepage.icon=/images/syncthing.png"
       - "homepage.href=https://syncthing-holmie.${DOMAIN}/"
 
 networks:

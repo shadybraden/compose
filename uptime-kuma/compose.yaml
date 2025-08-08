@@ -24,7 +24,7 @@ services:
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=Uptime-Kuma"
-      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/uptimekuma.png"
+      - "homepage.icon=/images/uptimekuma.png"
       - "homepage.href=https://uptime-kuma.${DOMAIN}/"
 
 networks:
