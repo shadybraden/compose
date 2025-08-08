@@ -30,7 +30,7 @@ services:
       - "homepage.group=Other"
       - "homepage.name=factorio"
       - "homepage.icon=/images/electronks.png"
-      - "homepage.href=https://factorio.${DOMAIN}$/"
+      - "homepage.href=https://factorio.${DOMAIN}/"
 
 networks:
   intranet:
