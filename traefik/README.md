@@ -66,5 +66,5 @@ To add to Homepage:
       - "homepage.group=GROUP"
       - "homepage.name=NAME"
       - "homepage.icon=/images/NAME.png"
-      - "homepage.href=https://NAME.${DOMAIN}$/"
+      - "homepage.href=https://NAME.${DOMAIN}/"
 ```
