@@ -128,7 +128,7 @@ services:
       - "homepage.href=https://sonarr.${DOMAIN}/"
 
   jackett:  # mega indexer for the arr's above
-    image: quay.io/linuxserver.io/jackett:0.22.2256
+    image: quay.io/linuxserver.io/jackett:0.22.2258
     container_name: jackett
     restart: on-failure
     volumes:
