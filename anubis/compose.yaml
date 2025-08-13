@@ -15,7 +15,7 @@ services:
     ports:
       - 8082:8080
     volumes:
-      - /data/config_storage/compose/anubis/botPolicy.yaml:/data/cfg/botPolicy.yaml:ro  # so this iac can control routers and services
+      - /data/config_storage/komodo/etc_komodo/stacks/anubis/anubis/botPolicy.yaml:/data/cfg/botPolicy.yaml:ro  # so this iac can control routers and services
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
