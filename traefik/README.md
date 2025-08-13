@@ -63,7 +63,7 @@ To include something to TinyAuth:
 
 To use Anubis:
 ```
-      - traefik.http.middlewares.anubis.forwardauth.address=http://anubis:8080/.within.website/x/cmd/anubis/api/check
+      - traefik.http.middlewares.anubis.forwardauth.address=http://anubis:8082/.within.website/x/cmd/anubis/api/check
 ```
 
 To add to Homepage:
