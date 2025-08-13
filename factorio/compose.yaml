@@ -8,7 +8,7 @@ services:
       - /data/config_storage/factorio:/factorio  # chown 845:845
     container_name: factorio
     restart: unless-stopped
-    image: factoriotools/factorio:2.0.63
+    image: factoriotools/factorio:2.0.60  # https://www.factorio.com/
     environment:
       - INSTANCE_NAME="shadyserver"
     security_opt:
