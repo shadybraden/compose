@@ -11,7 +11,7 @@ services:
       - COOKIE_DOMAIN=${DOMAIN}
       - REDIRECT_DOMAINS=${DOMAIN}
       - PUBLIC_URL=https://anubis.${DOMAIN}
-      - POLICY_FNAME="/data/cfg/botPolicy.yaml"
+      - POLICY_FNAME=/data/cfg/botPolicy.yaml
       - OG_PASSTHROUGH=true
       - OG_EXPIRY_TIME=24h
     healthcheck:
