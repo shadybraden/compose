@@ -22,8 +22,8 @@ services:
       - PLEX_CLAIM=${PLEX_CLAIM}
     volumes:
       - /data/config_storage/plex/config:/config
-      - /mnt/4tb/shows:/shows
-      - /mnt/4tb/movies:/movies
+      - /mnt/4tb/shows:/shows:ro
+      - /mnt/4tb/movies:/movies:ro
     security_opt:
       - no-new-privileges:true  # helps to increase security
     restart: unless-stopped
