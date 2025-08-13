@@ -1,7 +1,4 @@
 ---
-- name: allow-goodbot
-  user_agent_regex: GoodBot
-  action: ALLOW
 - name: catch-all-deny
   path_regex: .*
   action: DENY
