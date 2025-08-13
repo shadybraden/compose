@@ -8,9 +8,9 @@ services:
     environment:
       NTFY_URL: "https://ntfy.holmlab.org"  # not a variable because logs should all go back to holmlab
       NTFY_TOPIC: ${topic}
-      CONTAINERS: "vaultwarden,freshrss,WeddingShare,audiobookshelf,pihole,restic,wg-easy,forgejo,jellyfin,immich_server,nextcloud,syncthing,silverbullet,tinyauth"
+      CONTAINERS: "vaultwarden,WeddingShare,audiobookshelf,pihole,restic,wg-easy,forgejo,jellyfin,immich_server,nextcloud,syncthing,silverbullet,tinyauth"
       GLOBAL_KEYWORDS: "error,failed login,password,Authentication failed,Failed authentication attempt,Wrong credentials"
-      excluded_keywords: "Connection error (9.9.9.9#53),passwordLogin,error creating splashscreen,repo.SingleDownload,Token has expired,unsupported image format"
+      excluded_keywords: "Connection error (9.9.9.9#53),passwordLogin,error creating splashscreen,repo.SingleDownload,Token has expired,unsupported image format"`
       GLOBAL_KEYWORDS_WITH_ATTACHMENT: "critical"  # Attaches a log file to the notification
       NTFY_PRIORITY: 1
     restart: unless-stopped
