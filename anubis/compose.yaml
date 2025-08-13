@@ -11,7 +11,6 @@ services:
       - COOKIE_DOMAIN=${DOMAIN}
       - REDIRECT_DOMAINS=${DOMAIN}
       - PUBLIC_URL=https://anubis.${DOMAIN}
-      - POLICY_FNAME=/data/cfg/botPolicy.yaml
       - OG_PASSTHROUGH=true
       - OG_EXPIRY_TIME=24h
     healthcheck:
@@ -22,8 +21,6 @@ services:
       start_period: 500ms
     ports:
       - 8082:8080
-    volumes:
-      - /data/config_storage/komodo/etc_komodo/stacks/anubis-holmie/anubis/botPolicy.yaml:/data/cfg/botPolicy.yaml:ro  # so this iac can control routers and services
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
