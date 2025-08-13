@@ -4,14 +4,16 @@ services:
     image: ghcr.io/techarohq/anubis:v1.21.3
     container_name: anubis
     environment:
-      BIND: ":8082"
-      DIFFICULTY: "4"
-      METRICS_BIND: ":9090"
-      SERVE_ROBOTS_TXT: "true"
-      TARGET: http://traefik:3923
-      POLICY_FNAME: "/data/cfg/botPolicy.yaml"
-      OG_PASSTHROUGH: "true"
-      OG_EXPIRY_TIME: "24h"
+      - BIND=:8082
+      - DIFFICULTY="4"
+      - SERVE_ROBOTS_TXT="true"
+      - 'TARGET= '
+      - COOKIE_DOMAIN=${DOMAIN}
+      - REDIRECT_DOMAINS=${DOMAIN}
+      - PUBLIC_URL=https://anubis.${DOMAIN}
+      - POLICY_FNAME="/data/cfg/botPolicy.yaml"
+      - OG_PASSTHROUGH="true"
+      - OG_EXPIRY_TIME="24h"
     healthcheck:
       test: ["CMD", "anubis", "--healthcheck"]
       interval: 5s
