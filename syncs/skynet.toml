@@ -49,7 +49,7 @@ git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
-run_directory = "skynet/syncthing"
+run_directory = "syncthing"
 
 ##
 

@@ -15,7 +15,7 @@ services:
       - /data/config_storage/seedvault:/seedvault
       - /mnt/4tb/music:/music
     ports:
-#      - 8384:8384  # web ui
+      - 8384:8384  # web ui
       - 22000:22000/tcp
       - 22000:22000/udp
       - 21027:21027/udp
