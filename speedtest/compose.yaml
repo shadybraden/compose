@@ -29,6 +29,7 @@ services:
       - "homepage.name=speedtest"
       - "homepage.icon=/images/librespeed.png"
       - "homepage.href=https://speedtest.${DOMAIN}/"
+      - traefik.http.middlewares.anubis.forwardauth.address=http://anubis:8080/.within.website/x/cmd/anubis/api/check
 
 networks:
   intranet:

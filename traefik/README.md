@@ -61,6 +61,11 @@ To include something to TinyAuth:
       - "traefik.http.routers.SERVICENAME-secure.middlewares=tinyauth"
 ```
 
+To use Anubis:
+```
+      - traefik.http.middlewares.anubis.forwardauth.address=http://anubis:8080/.within.website/x/cmd/anubis/api/check
+```
+
 To add to Homepage:
 ```yaml
       - "homepage.group=GROUP"
