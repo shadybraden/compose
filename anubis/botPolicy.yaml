@@ -1,3 +1,4 @@
+---
 - name: allow-goodbot
   user_agent_regex: GoodBot
   action: ALLOW
