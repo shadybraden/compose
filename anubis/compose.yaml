@@ -42,6 +42,10 @@ services:
       - "traefik.http.routers.anubis.entrypoints=websecure"  # Listen on HTTPS
       - "traefik.http.routers.anubis.service=anubis"  # Telling Traefik to use the above specified port
       - "traefik.http.routers.anubis.tls.certresolver=le"  # Telling Traefik to resolve a Cert for Anubis
+      - "homepage.group=Other"
+      - "homepage.name=anubis"
+      - "homepage.icon=/images/anubis.webp"
+      - "homepage.href=https://anubis.${DOMAIN}/"
 
 networks:
   intranet:
