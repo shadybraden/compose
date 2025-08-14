@@ -16,7 +16,7 @@ services:
       - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/postgres
     env_file: .env
     restart: unless-stopped
-    image: ghcr.io/linkwarden/linkwarden:v2.11.5
+    image: ghcr.io/linkwarden/linkwarden:v2.11.6
     container_name: linkwarden
     volumes:
       - /data/config_storage/linkwarden/data:/data/data
