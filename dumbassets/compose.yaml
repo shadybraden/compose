@@ -1,8 +1,8 @@
 ---
 services:
   dumbassets:
-    ports:
-      - 3000:3000
+#    ports:
+#      - 3000:3000
     volumes:
       - /data/config_storage/dumbassets:/app/data
     image: dumbwareio/dumbassets:1.0.11
