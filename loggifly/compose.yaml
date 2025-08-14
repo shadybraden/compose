@@ -5,7 +5,7 @@ services:
     container_name: loggifly
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-    environment:
+    environment:  # https://clemcer.github.io/loggifly/guide/environment-variables.html
       NTFY_URL: "https://ntfy.holmlab.org"  # not a variable because logs should all go back to holmlab
       NTFY_TOPIC: ${topic}
       CONTAINERS: "vaultwarden,WeddingShare,audiobookshelf,pihole,restic,wg-easy,forgejo,jellyfin,immich_server,nextcloud,syncthing,silverbullet,tinyauth"
