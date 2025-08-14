@@ -44,7 +44,7 @@ name = "syncthing-skynet"
 tags = ["skynet","hooked"]
 [stack.config]
 server = "skynet"
-project_name = "syncthing"
+project_name = "syncthing-skynet"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
