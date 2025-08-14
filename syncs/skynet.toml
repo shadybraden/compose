@@ -21,7 +21,7 @@ project_name = "filebrowser-skynet"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
-run_directory = "skynet/filebrowser"
+run_directory = "filebrowser"
 
 ##
 
