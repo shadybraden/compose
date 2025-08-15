@@ -10,7 +10,7 @@ services:
         user: '0'
         volumes:
             - ${CONFIG_STORAGE_LOCATION}/grafana-storage:/var/lib/grafana
-        image: grafana/grafana-oss:12.1.0
+        image: grafana/grafana-oss:12.1.1
     influxdb:
         ports:
             - 8069:8086
