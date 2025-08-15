@@ -12,7 +12,7 @@ services:
       # Should be the full external URL for Anubis (including scheme)
       - PUBLIC_URL=https://anubis.${DOMAIN}
       # Should match your domain for proper cookie scoping
-      - COOKIE_DOMAIN="${DOMAIN},anubis.${DOMAIN},speedtest.${DOMAIN}"
+      - COOKIE_DOMAIN=${DOMAIN}
 #      - OG_PASSTHROUGH=true
 #      - OG_EXPIRY_TIME=24h
     healthcheck:
