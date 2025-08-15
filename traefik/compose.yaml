@@ -44,7 +44,7 @@ services:
       - "homepage.name=Traefik"
       - "homepage.icon=/images/traefik.png"
       - "homepage.href=https://traefik.${DOMAIN}"
-      - traefik.http.middlewares.anubis.forwardauth.address=http://anubis:8082/.within.website/x/cmd/anubis/api/check
+      - traefik.http.middlewares.anubis.forwardauth.address=https://anubis.${DOMAIN}/.within.website/x/cmd/anubis/api/check
 
 networks:
   intranet:  # docker network create intranet
