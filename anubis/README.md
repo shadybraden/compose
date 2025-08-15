@@ -1,8 +1,8 @@
-# NOT WORKING
+# Bot protection
 
-Waiting for:
-https://github.com/TecharoHQ/anubis/pull/368
-to be merged
+Broken for now. see:
+
+https://github.com/TecharoHQ/anubis/issues/970
 
 also see
 https://anubis.techaro.lol/docs/admin/environments/traefik#full-example-config
