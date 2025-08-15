@@ -8,7 +8,7 @@ services:
       - DIFFICULTY=4
       - SERVE_ROBOTS_TXT=true
       - 'TARGET= '
-      - COOKIE_DOMAIN=${DOMAIN}
+      - COOKIE_DOMAIN=anubis.${DOMAIN}
       - REDIRECT_DOMAINS=${DOMAIN}
       - PUBLIC_URL=https://anubis.${DOMAIN}
       - OG_PASSTHROUGH=true
