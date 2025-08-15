@@ -15,7 +15,6 @@ services:
       - intranet
     labels:
       - "traefik.enable=true"
-      - traefik.http.routers.target.middlewares=anubis@docker
       - "traefik.http.routers.speedtest.entrypoints=http"
       - "traefik.http.routers.speedtest.rule=Host(`speedtest.${DOMAIN}`)"
       - "traefik.http.middlewares.speedtest-https-redirect.redirectscheme.scheme=https"
@@ -30,6 +29,7 @@ services:
       - "homepage.name=speedtest"
       - "homepage.icon=/images/librespeed.png"
       - "homepage.href=https://speedtest.${DOMAIN}/"
+      - traefik.http.routers.speedtest.middlewares=anubis@docker
 
 networks:
   intranet:
