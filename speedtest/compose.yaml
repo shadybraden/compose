@@ -29,6 +29,7 @@ services:
       - "homepage.name=speedtest"
       - "homepage.icon=/images/librespeed.png"
       - "homepage.href=https://speedtest.${DOMAIN}/"
+      - traefik.http.routers.speedtest.tls.certresolver=le # Telling Traefik to resolve a Cert for Anubis
       - traefik.http.routers.speedtest.middlewares=anubis@docker
 
 networks:
