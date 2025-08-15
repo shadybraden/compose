@@ -10,7 +10,7 @@ services:
       - 'TARGET= '
       - REDIRECT_DOMAINS="${DOMAIN},anubis.${DOMAIN},speedtest.${DOMAIN}"
       # Should be the full external URL for Anubis (including scheme)
-      - PUBLIC_URL=https://${DOMAIN}
+      - PUBLIC_URL=https://anubis.${DOMAIN}
       # Should match your domain for proper cookie scoping
       - COOKIE_DOMAIN="${DOMAIN},anubis.${DOMAIN},speedtest.${DOMAIN}"
 #      - OG_PASSTHROUGH=true
