@@ -5,14 +5,16 @@ services:
     container_name: anubis
     environment:
       - BIND=:8082
-      - DIFFICULTY=4
-      - SERVE_ROBOTS_TXT=true
+#      - DIFFICULTY=4
+#      - SERVE_ROBOTS_TXT=true
       - 'TARGET= '
-      - COOKIE_DOMAIN=anubis.${DOMAIN}
-      - REDIRECT_DOMAINS=anubis.${DOMAIN}
+      - REDIRECT_DOMAINS=${DOMAIN}
+      # Should be the full external URL for Anubis (including scheme)
       - PUBLIC_URL=https://anubis.${DOMAIN}
-      - OG_PASSTHROUGH=true
-      - OG_EXPIRY_TIME=24h
+      # Should match your domain for proper cookie scoping
+      - COOKIE_DOMAIN=${DOMAIN}
+#      - OG_PASSTHROUGH=true
+#      - OG_EXPIRY_TIME=24h
     healthcheck:
       test: ["CMD", "anubis", "--healthcheck"]
       interval: 5s
