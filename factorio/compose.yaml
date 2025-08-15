@@ -1,0 +1,37 @@
+---
+services:
+  factorio:
+    ports:
+      - 34197:34197/udp
+      - 27015:27015/tcp
+    volumes:
+      - /data/config_storage/factorio:/factorio  # chown 845:845
+    container_name: factorio
+    restart: unless-stopped
+    image: factoriotools/factorio:2.0.60  # https://www.factorio.com/
+    environment:
+      - INSTANCE_NAME="shadyserver"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.factorio.entrypoints=http"
+      - "traefik.http.routers.factorio.rule=Host(`factorio.${DOMAIN}`)"
+      - "traefik.http.middlewares.factorio-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.factorio.middlewares=factorio-https-redirect"
+      - "traefik.http.routers.factorio-secure.entrypoints=https"
+      - "traefik.http.routers.factorio-secure.rule=Host(`factorio.${DOMAIN}`)"
+      - "traefik.http.routers.factorio-secure.tls=true"
+      - "traefik.http.routers.factorio-secure.service=factorio"
+      - "traefik.http.services.factorio.loadbalancer.server.port=34197"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=factorio"
+      - "homepage.icon=/images/electronks.png"
+      - "homepage.href=https://factorio.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true

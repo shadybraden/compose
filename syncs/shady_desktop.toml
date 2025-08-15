@@ -35,3 +35,19 @@ git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
 run_directory = "beszelagent"
+
+##
+
+[[stack]]
+name = "factorio-shady_desktop"
+description = "192.168.50.16:34197 | 100.75.125.61:34197"
+tags = ["shady_desktop", "unhooked", "criticality: 1"]
+[stack.config]
+server = "shady_desktop"
+project_name = "factorio-shady_desktop"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "factorio"
+additional_env_files = ["/etc/komodo/domain.env"]

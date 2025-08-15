@@ -744,3 +744,49 @@ repo = "shady/compose"
 branch = "main"
 run_directory = "plex"
 additional_env_files = ["/etc/komodo/domain.env"]
+
+##
+
+[[stack]]
+name = "pinchflat-holmie"
+tags = ["holmie", "hooked", "criticality: 1"]
+[stack.config]
+server = "holmie"
+project_name = "pinchflat-holmie"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "pinchflat"
+additional_env_files = ["/etc/komodo/domain.env"]
+
+##
+
+[[stack]]
+name = "factorio-holmie"
+description = "192.168.50.65:34197 | 100.106.23.87:34197"
+tags = ["holmie", "hooked", "criticality: 1"]
+[stack.config]
+server = "holmie"
+project_name = "factorio-holmie"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "factorio"
+additional_env_files = ["/etc/komodo/domain.env"]
+
+##
+
+[[stack]]
+name = "anubis-holmie"
+tags = ["holmie", "hooked", "criticality: 1"]
+[stack.config]
+server = "holmie"
+project_name = "anubis-holmie"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "anubis"
+additional_env_files = ["/etc/komodo/domain.env"]

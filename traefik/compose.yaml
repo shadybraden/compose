@@ -42,8 +42,9 @@ services:
       - "traefik.http.routers.traefik-secure.service=api@internal"
       - "homepage.group=Other"
       - "homepage.name=Traefik"
-      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/traefik.png"
+      - "homepage.icon=/images/traefik.png"
       - "homepage.href=https://traefik.${DOMAIN}"
+      - traefik.http.middlewares.anubis.forwardauth.address=http://anubis:8082/.within.website/x/cmd/anubis/api/check
 
 networks:
   intranet:  # docker network create intranet

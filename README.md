@@ -13,4 +13,5 @@ As the guide says, installing OS's, using Git and using Docker are prerequisites
 - [anubis + traefik](https://anubis.techaro.lol/docs/admin/environments/traefik) --> [wait for middlewares](https://git.holmlab.org/shady/compose/src/branch/main/anubis/README.md) 
 - [tinyauth oauth](https://tinyauth.app/docs/reference/configuration#generic-oauth) 
 - docker swarm with desktop for a beefer cpu?
-- what happens when an update is ran (i.e. renovate pr merged) and a host is down?
+- Frigate + NPU for survielence system
+- https://www.music-assistant.io/

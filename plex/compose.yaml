@@ -1,7 +1,7 @@
 ---
 services:
   plex:
-    image: quay.io/linuxserver.io/plex:1.41.9
+    image: quay.io/linuxserver.io/plex:1.42.1
     container_name: plex
     ports:
       - 32400:32400
@@ -22,7 +22,8 @@ services:
       - PLEX_CLAIM=${PLEX_CLAIM}
     volumes:
       - /data/config_storage/plex/config:/config
-      - /data/media:/media
+      - /mnt/4tb/shows:/shows:ro
+      - /mnt/4tb/movies:/movies:ro
     security_opt:
       - no-new-privileges:true  # helps to increase security
     restart: unless-stopped
@@ -42,7 +43,7 @@ services:
       - "traefik.docker.network=intranet"
       - "homepage.group=Media"
       - "homepage.name=plex"
-      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/plex.png"
+      - "homepage.icon=/images/plex.png"
       - "homepage.href=https://plex.${DOMAIN}/"
 
 networks:

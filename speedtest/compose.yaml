@@ -10,6 +10,7 @@ services:
       WEBPORT: 8080
     security_opt:
       - no-new-privileges:true  # helps to increase security
+    restart: unless-stopped
     networks:
       - intranet
     labels:
@@ -26,8 +27,9 @@ services:
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=speedtest"
-      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/librespeed.png"
+      - "homepage.icon=/images/librespeed.png"
       - "homepage.href=https://speedtest.${DOMAIN}/"
+      - traefik.http.routers.target.middlewares=anubis@docker
 
 networks:
   intranet:

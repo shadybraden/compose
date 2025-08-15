@@ -38,7 +38,7 @@ services:
       - "traefik.http.services.qbittorrent.loadbalancer.server.port=8080"  # port of the service
       - "homepage.group=Media"
       - "homepage.name=qbittorrent"
-      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/qbittorrent.png"
+      - "homepage.icon=/images/qbittorrent.png"
       - "homepage.href=https://qbittorrent.${DOMAIN}/"
 
       - "traefik.http.routers.jackett.service=jackett"  # for multi-port - https://github.com/traefik/traefik/issues/4807
@@ -53,7 +53,7 @@ services:
       - "traefik.http.services.jackett.loadbalancer.server.port=9117"  # port of the service
 #      - "homepage.group=Other"
 #      - "homepage.name=jackett"
-#      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/jackett.png"
+#      - "homepage.icon=/images/jackett.png"
 #      - "homepage.href=https://jackett.${DOMAIN}/"
 
   radarr:  # the movie searching part
@@ -89,7 +89,7 @@ services:
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=radarr"
-      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/radarr.png"
+      - "homepage.icon=/images/radarr.png"
       - "homepage.href=https://radarr.${DOMAIN}/"
 
   sonarr:  # the show searching part
@@ -124,11 +124,11 @@ services:
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=sonarr"
-      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/sonarr.png"
+      - "homepage.icon=/images/sonarr.png"
       - "homepage.href=https://sonarr.${DOMAIN}/"
 
   jackett:  # mega indexer for the arr's above
-    image: quay.io/linuxserver.io/jackett:0.22.2225
+    image: quay.io/linuxserver.io/jackett:0.22.2286
     container_name: jackett
     restart: on-failure
     volumes:

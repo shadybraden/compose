@@ -9,6 +9,7 @@ services:
     environment:
       - TZ:America/New_York
       - DUMBASSETS_PIN=${DUMBASSETS_PIN}
+    restart: unless-stopped
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
@@ -27,7 +28,7 @@ services:
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=dumbassets"
-      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/dumbassets.png"
+      - "homepage.icon=/images/dumbassets.png"
       - "homepage.href=https://assets.${DOMAIN}/"
 
 networks:

@@ -11,7 +11,7 @@ services:
       - /data/config_storage/filebrowser/config:/config
     ports:
       - 8060:80
-    image: filebrowser/filebrowser:v2.42.1
+    image: filebrowser/filebrowser:v2.42.3
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
@@ -30,7 +30,7 @@ services:
       - "traefik.docker.network=intranet"
       - "homepage.group=Media"
       - "homepage.name=files"
-      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/files.png"
+      - "homepage.icon=/images/files.png"
       - "homepage.href=https://files.${DOMAIN}/"
 
 networks:

@@ -33,7 +33,7 @@ services:
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=FreshRSS"
-      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/freshrss.png"
+      - "homepage.icon=/images/freshrss.png"
       - "homepage.href=https://rss.${DOMAIN}/"
 
 networks:

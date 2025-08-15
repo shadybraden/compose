@@ -8,7 +8,7 @@ services:
       - /data/config_storage/nextcloud/apps:/var/www/html/custom_apps
       - /data/config_storage/nextcloud/config:/var/www/html/config
       - /data/config_storage/nextcloud/data:/var/www/html/data
-    image: nextcloud:31.0.7
+    image: nextcloud:31.0.8
     ports:
       - 28800:80
     security_opt:
@@ -29,7 +29,7 @@ services:
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=nextcloud"
-      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/nextcloud.png"
+      - "homepage.icon=/images/nextcloud.png"
       - "homepage.href=https://nextcloud.${DOMAIN}/"
 
 networks:

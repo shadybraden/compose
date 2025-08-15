@@ -7,7 +7,7 @@ services:
       - 11434:11434
     container_name: ollama
     restart: unless-stopped
-    image: ollama/ollama:0.10.1
+    image: ollama/ollama:0.11.4
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
@@ -28,7 +28,7 @@ services:
     volumes:
       - /data/config_storage/ai/open-webui:/app/backend/data
     container_name: open-webui
-    image: ghcr.io/open-webui/open-webui:v0.6.18
+    image: ghcr.io/open-webui/open-webui:0.6.22
     restart: unless-stopped
     environment:
       - OLLAMA_BASE_URL=https://ollama.${DOMAIN}
@@ -51,7 +51,7 @@ services:
       - "homepage.group=Other"
       - "homepage.weight=2"
       - "homepage.name=AI"
-      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/open-webui-light.png"
+      - "homepage.icon=/images/open-webui-light.png"
       - "homepage.href=https://ai.${DOMAIN}"
 
 networks:

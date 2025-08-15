@@ -16,7 +16,7 @@ services:
       - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/postgres
     env_file: .env
     restart: unless-stopped
-    image: ghcr.io/linkwarden/linkwarden:v2.11.5
+    image: ghcr.io/linkwarden/linkwarden:v2.11.7
     container_name: linkwarden
     volumes:
       - /data/config_storage/linkwarden/data:/data/data
@@ -40,7 +40,7 @@ services:
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=Linkwarden"
-      - "homepage.icon=https://git.holmlab.org/shady/compose/raw/branch/main/dashy/icons/linkwarden.png"
+      - "homepage.icon=/images/linkwarden.png"
       - "homepage.href=https://links.${DOMAIN}/"
 
 networks:
