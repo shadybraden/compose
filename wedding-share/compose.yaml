@@ -43,6 +43,7 @@ services:
       - "homepage.name=WeddingShare"
       - "homepage.icon=/images/weddingshare.png"
       - "homepage.href=https://mcc.${DOMAIN}/"
+      - traefik.http.routers.target.middlewares=anubis@docker
 
 networks:
   intranet:
