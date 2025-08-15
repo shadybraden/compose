@@ -9,7 +9,7 @@ services:
       - SSL_DISABLED=true
     volumes:
       - /data/config_storage/hoodik/data:/data
-    image: hudik/hoodik:v1.5.1
+    image: hudik/hoodik:v1.6.0
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
