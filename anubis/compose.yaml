@@ -9,7 +9,7 @@ services:
       - SERVE_ROBOTS_TXT=true
       - 'TARGET= '
       - COOKIE_DOMAIN=anubis.${DOMAIN}
-      - REDIRECT_DOMAINS=${DOMAIN}
+      - REDIRECT_DOMAINS=anubis.${DOMAIN}
       - PUBLIC_URL=https://anubis.${DOMAIN}
       - OG_PASSTHROUGH=true
       - OG_EXPIRY_TIME=24h
