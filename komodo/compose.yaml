@@ -1,7 +1,7 @@
 ---
 services:
   mongo:
-    image: mongo:8.0.12  # use latest avalible
+    image: mongo:8.0.13
     labels:
       komodo.skip:  # Prevent Komodo from stopping with StopAllContainers
     command: --quiet --wiredTigerCacheSizeGB 0.25
@@ -18,7 +18,7 @@ services:
       - intranet
 
   core:
-    image: ghcr.io/moghtech/komodo-core:1.18.4
+    image: ghcr.io/moghtech/komodo-core:1.19.0
     restart: unless-stopped
     depends_on:
       - mongo
@@ -64,7 +64,7 @@ services:
       - "homepage.href=https://komodo.${DOMAIN}/"
 
   periphery:
-    image: ghcr.io/moghtech/komodo-periphery:1.18.4
+    image: ghcr.io/moghtech/komodo-periphery:1.19.0
     restart: unless-stopped
     logging:
       driver: local
