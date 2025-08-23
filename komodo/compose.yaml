@@ -1,7 +1,7 @@
 ---
 services:
   mongo:
-    image: mongo:8.0.12
+    image: mongo:8.0.12  # use latest avalible
     labels:
       komodo.skip:  # Prevent Komodo from stopping with StopAllContainers
     command: --quiet --wiredTigerCacheSizeGB 0.25
@@ -40,7 +40,7 @@ services:
       KOMODO_PASSKEY: ${KOMODO_PASSKEY}
       PERIPHERY_PASSKEYS: ${PERIPHERY_PASSKEYS}
     volumes:
-      - /data/config_storage/komodo/repo-cache:/repo-cache
+      - /data/config_storage/komodo_database_backups:/backups
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
