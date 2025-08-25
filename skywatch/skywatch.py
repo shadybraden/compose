@@ -55,30 +55,6 @@ for ac in data.get('aircraft', []):
     squawk = ac.get('squawk', 'unknown')
     squawk = str(squawk)
 
-    # if alt_baro == "0", fetch from public site
-    if alt_baro == "0":
-        public_url = f'https://opendata.adsb.fi/api/v2/hex/{hex_value}'
-        try:
-            print("requesting altitude from opendata.adsb.fi for:", hex_value)
-            public_response = requests.get(public_url)
-            public_response.raise_for_status()  # Raise an error for bad responses (4xx or 5xx)
-            
-            # Attempt to parse the response as JSON
-            data = public_response.json()
-            
-            # Extract alt_baro from the JSON response
-            alt_baro = data['ac'][0]['alt_baro'] if 'ac' in data and len(data['ac']) > 0 else None
-            alt_baro = str(alt_baro)
-            
-            # Print the response in a readable format
-            # print("Public Response:", json.dumps(data, indent=4))
-            print("Public Altitude (alt_baro):", alt_baro)
-            
-        except requests.exceptions.RequestException as e:
-            print("Error fetching data:", e)
-        except json.JSONDecodeError:
-            print("Error decoding JSON response")
-
     # set vars for message:
     title = "WATCH | " + r_dst_value + " mi | " + "alt:" + alt_baro
     message = ownOp_value + '\n' + short_type_value + " | " + desc_value + '\n' + "https://adsb.holmlab.org/?icao=" + hex_value
@@ -150,6 +126,30 @@ for ac in data.get('aircraft', []):
                     print(line.strip(), "On ignorelist")
                     send_message = 0
                     break
+
+    if send_message == 1: # if we are planning on sending, check if alt_baro == "0", fetch from public site
+        if alt_baro == "0":
+            public_url = f'https://opendata.adsb.fi/api/v2/hex/{hex_value}'
+            try:
+                print("requesting altitude from opendata.adsb.fi for:", hex_value)
+                public_response = requests.get(public_url)
+                public_response.raise_for_status()  # Raise an error for bad responses (4xx or 5xx)
+                
+                # Attempt to parse the response as JSON
+                data = public_response.json()
+                
+                # Extract alt_baro from the JSON response
+                alt_baro = data['ac'][0]['alt_baro'] if 'ac' in data and len(data['ac']) > 0 else None
+                alt_baro = str(alt_baro)
+                
+                # Print the response in a readable format
+                # print("Public Response:", json.dumps(data, indent=4))
+                print("Public Altitude (alt_baro):", alt_baro)
+                
+            except requests.exceptions.RequestException as e:
+                print("Error fetching data:", e)
+            except json.JSONDecodeError:
+                print("Error decoding JSON response")
 
     # Current timestamp in the desired format
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
