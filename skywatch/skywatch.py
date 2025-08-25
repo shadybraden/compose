@@ -109,7 +109,7 @@ for ac in data.get('aircraft', []):
         priority = 'default'
     if alt_baro >= 10000:
         priority = 'min'
-    print("alt:", alt_baro, priority)
+    # print("alt:", alt_baro, priority)
 
     if short_type_value in ["HAWK", "EUFI", "RFAL", "A124", "A140", "A148", "A158", "A225", "A225", "BLCF", "CL2T", "AN12", "AN24", "AN26", "AN28", "AN30", "AN32", "AN72", "B52", "PRTS", "F35", "U2", "HRON", "SLCH", "WB57", "Q9", "Q4", "C2", "B70", "W135", "B1", "B742", "R135", "E2", "3B4", "E6", "F16", "E3TF"]: # https://en.wikipedia.org/wiki/List_of_aircraft_type_designators
         send_message = 1
