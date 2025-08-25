@@ -26,7 +26,7 @@ services:
     image: qmcgaw/gluetun:v3.40
   xmrig:
     restart: unless-stopped
-    deploy: # for 16x cores
+    deploy: # for 16x cores, this uses 50% of each
         resources:
             limits:
                 cpus: 8
