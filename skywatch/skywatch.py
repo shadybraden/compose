@@ -73,6 +73,9 @@ for ac in data.get('aircraft', []):
                 #print("NOT on watchlist")
                 send_message = 0
 
+    if dbFlags == 1:
+        send_message = 1
+
     # check recents.txt for current hex
     # if match, send_message = 0
     try:
@@ -87,9 +90,6 @@ for ac in data.get('aircraft', []):
         print("Error: recents.txt not found.")
     except Exception as e:
         print("An error occurred:", str(e))
-
-    if dbFlags == 1:
-        send_message = 1
 
     if send_message == 1: # if we are planning on sending, check if alt_baro == "0", fetch from public site
         if alt_baro == "0":
