@@ -76,21 +76,6 @@ for ac in data.get('aircraft', []):
     if dbFlags == 1:
         send_message = 1
 
-    # check recents.txt for current hex
-    # if match, send_message = 0
-    try:
-        with open("recents.txt", "r") as file:
-            #send_message = 1  # default to sending unless a match is found
-            for line in file:
-                if line[:6].lower() == hex_value.lower(): # only check first 6 characters of the line
-                    # Match found
-                    send_message = 0
-                    break
-    except FileNotFoundError:
-        print("Error: recents.txt not found.")
-    except Exception as e:
-        print("An error occurred:", str(e))
-
     if send_message == 1: # if we are planning on sending, check if alt_baro == "0", fetch from public site
         if alt_baro == "0":
             public_url = f'https://opendata.adsb.fi/api/v2/hex/{hex_value}'
@@ -177,6 +162,21 @@ for ac in data.get('aircraft', []):
                     print(line.strip(), "On ignorelist")
                     send_message = 0
                     break
+
+    # check recents.txt for current hex
+    # if match, send_message = 0
+    try:
+        with open("recents.txt", "r") as file:
+            #send_message = 1  # default to sending unless a match is found
+            for line in file:
+                if line[:6].lower() == hex_value.lower(): # only check first 6 characters of the line
+                    # Match found
+                    send_message = 0
+                    break
+    except FileNotFoundError:
+        print("Error: recents.txt not found.")
+    except Exception as e:
+        print("An error occurred:", str(e))
 
     # Current timestamp in the desired format
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
