@@ -127,7 +127,7 @@ project_name = "immich"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
-branch = "renovate/ghcr.io-immich-app-immich-server-1.x"
+branch = "main"
 run_directory = "immich"
 additional_env_files = ["/etc/komodo/domain.env"]
 
