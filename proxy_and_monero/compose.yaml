@@ -26,7 +26,10 @@ services:
     image: qmcgaw/gluetun:v3.40
   xmrig:
     restart: unless-stopped
-    cpu_shares: 512
+    deploy:
+        resources:
+            limits:
+                cpus: 0.5
     image: miningcontainers/xmrig:6.22.1
     container_name: xmrig
     command: -k --tls -o pool.hashvault.pro:443 -u ${monero_address} --donate-level 1 --tls --tls-fingerprint 420c7850e09b7c0bdcf748a7da9eb3647daf8515718f36d9ccfdd6b9ff834b14
