@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 send_message = 0
 priority = 'low'
 
-print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n")
+print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
 
 # download data
 do_download = 1
