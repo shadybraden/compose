@@ -7,11 +7,13 @@ priority = 'low'
 print("\n")
 
 # download data
-url = 'https://adsb.holmlab.org/data/aircraft.json'
-response = requests.get(url)
-# Save the content to a file
-with open('data.json', 'w') as f:
-    f.write(response.text)
+do_download = 1
+if do_download == 1:
+    url = 'https://adsb.holmlab.org/data/aircraft.json'
+    response = requests.get(url)
+    # Save the content to a file
+    with open('data.json', 'w') as f:
+        f.write(response.text)
 
 # CHECK recents.txt for old hexes
 now = datetime.now()
@@ -71,6 +73,70 @@ for ac in data.get('aircraft', []):
                 #print("NOT on watchlist")
                 send_message = 0
 
+    # check recents.txt for current hex
+    # if match, send_message = 0
+    try:
+        with open("recents.txt", "r") as file:
+            #send_message = 1  # default to sending unless a match is found
+            for line in file:
+                if line[:6].lower() == hex_value.lower(): # only check first 6 characters of the line
+                    # Match found
+                    send_message = 0
+                    break
+    except FileNotFoundError:
+        print("Error: recents.txt not found.")
+    except Exception as e:
+        print("An error occurred:", str(e))
+
+    if dbFlags == 1:
+        send_message = 1
+
+    if send_message == 1: # if we are planning on sending, check if alt_baro == "0", fetch from public site
+        if alt_baro == "0":
+            public_url = f'https://opendata.adsb.fi/api/v2/hex/{hex_value}'
+            try:
+                print("requesting altitude from opendata.adsb.fi for:", hex_value)
+                public_response = requests.get(public_url)
+                public_response.raise_for_status()  # Raise an error for bad responses (4xx or 5xx)
+                
+                # Attempt to parse the response as JSON
+                data = public_response.json()
+                
+                # Extract alt_baro from the JSON response
+                alt_baro = data['ac'][0]['alt_baro'] if 'ac' in data and len(data['ac']) > 0 else None
+                alt_baro = str(alt_baro)
+                
+                # Print the response in a readable format
+                # print("Public Response:", json.dumps(data, indent=4))
+                print("Public Altitude (alt_baro):", alt_baro)
+                
+            except requests.exceptions.RequestException as e:
+                print("Error fetching data:", e)
+            except json.JSONDecodeError:
+                print("Error decoding JSON response")
+        elif alt_baro == 0:
+            public_url = f'https://opendata.adsb.fi/api/v2/hex/{hex_value}'
+            try:
+                print("requesting altitude from opendata.adsb.fi for:", hex_value)
+                public_response = requests.get(public_url)
+                public_response.raise_for_status()  # Raise an error for bad responses (4xx or 5xx)
+                
+                # Attempt to parse the response as JSON
+                data = public_response.json()
+                
+                # Extract alt_baro from the JSON response
+                alt_baro = data['ac'][0]['alt_baro'] if 'ac' in data and len(data['ac']) > 0 else None
+                alt_baro = str(alt_baro)
+                
+                # Print the response in a readable format
+                # print("Public Response:", json.dumps(data, indent=4))
+                print("Public Altitude (alt_baro):", alt_baro)
+                
+            except requests.exceptions.RequestException as e:
+                print("Error fetching data:", e)
+            except json.JSONDecodeError:
+                print("Error decoding JSON response")
+
     if dbFlags == 1:
         title = "MILL | " + r_dst_value + " mi | " + "alt:" + alt_baro
         send_message = 1
@@ -104,21 +170,6 @@ for ac in data.get('aircraft', []):
         priority = 'default'
         title = "Emergency | " + r_dst_value + " mi | " + "alt:" + alt_baro
 
-    # check recents.txt for current hex
-    # if match, send_message = 0
-    try:
-        with open("recents.txt", "r") as file:
-            #send_message = 1  # default to sending unless a match is found
-            for line in file:
-                if line[:6].lower() == hex_value.lower(): # only check first 6 characters of the line
-                    # Match found
-                    send_message = 0
-                    break
-    except FileNotFoundError:
-        print("Error: recents.txt not found.")
-    except Exception as e:
-        print("An error occurred:", str(e))
-
     if send_message == 1: # if we are planning on sending, check ignorelist
         with open("ignorelist.txt", "r") as file:
             for line in file:
@@ -126,30 +177,6 @@ for ac in data.get('aircraft', []):
                     print(line.strip(), "On ignorelist")
                     send_message = 0
                     break
-
-    if send_message == 1: # if we are planning on sending, check if alt_baro == "0", fetch from public site
-        if alt_baro == "0":
-            public_url = f'https://opendata.adsb.fi/api/v2/hex/{hex_value}'
-            try:
-                print("requesting altitude from opendata.adsb.fi for:", hex_value)
-                public_response = requests.get(public_url)
-                public_response.raise_for_status()  # Raise an error for bad responses (4xx or 5xx)
-                
-                # Attempt to parse the response as JSON
-                data = public_response.json()
-                
-                # Extract alt_baro from the JSON response
-                alt_baro = data['ac'][0]['alt_baro'] if 'ac' in data and len(data['ac']) > 0 else None
-                alt_baro = str(alt_baro)
-                
-                # Print the response in a readable format
-                # print("Public Response:", json.dumps(data, indent=4))
-                print("Public Altitude (alt_baro):", alt_baro)
-                
-            except requests.exceptions.RequestException as e:
-                print("Error fetching data:", e)
-            except json.JSONDecodeError:
-                print("Error decoding JSON response")
 
     # Current timestamp in the desired format
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
