@@ -59,7 +59,7 @@ for ac in data.get('aircraft', []):
     if alt_baro == "0":
         public_url = f'https://opendata.adsb.fi/api/v2/hex/{hex_value}'
         try:
-            print("requesting altitude from opendata.adsb.fi")
+            print("requesting altitude from opendata.adsb.fi for:", hex_value)
             public_response = requests.get(public_url)
             public_response.raise_for_status()  # Raise an error for bad responses (4xx or 5xx)
             
