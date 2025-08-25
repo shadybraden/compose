@@ -23,17 +23,7 @@ services:
       - 8888:8888/tcp  # HTTP proxy
       - 8388:8388/tcp  # Shadowsocks
       - 8388:8388/udp  # Shadowsocks
-      - 1080:1080  # socks5
     image: qmcgaw/gluetun:v3.40
-  socks5:
-    container_name: socks5
-    environment:
-      - PROXY_PORT=1080
-    image: serjs/go-socks5-proxy:v0.0.3
-    network_mode: service:gluetun
-    depends_on:
-      gluetun:
-        condition: service_healthy
   xmrig:
     restart: unless-stopped
     image: miningcontainers/xmrig:6.22.1
@@ -43,5 +33,3 @@ services:
     depends_on:
       gluetun:
         condition: service_healthy
-# see restart_proxy.sh to auto rotate IP's using cron
-# also, the curl command can be used to ensure it is running

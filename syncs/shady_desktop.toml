@@ -51,3 +51,18 @@ repo = "shady/compose"
 branch = "main"
 run_directory = "factorio"
 additional_env_files = ["/etc/komodo/domain.env"]
+
+##
+
+[[stack]]
+name = "proxy_and_monero-shady_desktop"
+tags = ["shady_desktop", "unhooked", "criticality: 1"]
+[stack.config]
+server = "shady_desktop"
+project_name = "proxy_and_monero-shady_desktop"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "main"
+run_directory = "proxy_and_monero"
+additional_env_files = ["/etc/komodo/domain.env"]
