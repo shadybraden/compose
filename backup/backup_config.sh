@@ -21,6 +21,8 @@ success_count=0
 error_count=0
 backup_details=""
 folder_sizes=""
+total_original_size=0
+total_backup_size=0
 
 # Loop through each folder in the config_storage directory
 for folder in "$CONFIG_STORAGE"/*; do
@@ -28,9 +30,9 @@ for folder in "$CONFIG_STORAGE"/*; do
         # Get the folder name
         folder_name=$(basename "$folder")
         
-        # Calculate the folder size
-        folder_size=$(du -sh "$folder" | cut -f1)
-        folder_sizes+="$folder_name: $folder_size\n"
+        # Calculate the original folder size
+        original_size=$(du -sb "$folder" | cut -f1)
+        total_original_size=$((total_original_size + original_size))
 
         # Set the Restic repository path
         restic_repo="$BACKUP_REPO/$folder_name"
@@ -51,28 +53,28 @@ for folder in "$CONFIG_STORAGE"/*; do
             backup_details+="Error during backup for: $folder_name\n"
         fi
 
-        # Prune old backups and capture output
-        echo "Pruning old backups for $restic_repo..."
-        prune_output=$(restic forget --repo "$restic_repo" --keep-yearly 2 --keep-monthly 12 --keep-weekly 4 --keep-daily 7 --prune 2>&1)
-        if [[ $? -eq 0 ]]; then
-            success_count=$((success_count + 1))
-            backup_details+="Pruning successful for: $folder_name\n"
-        else
-            error_count=$((error_count + 1))
-            backup_details+="Error during pruning for: $folder_name\n"
-        fi
+        # Calculate the backup folder size
+        backup_size=$(du -sb "$restic_repo" | cut -f1)
+        total_backup_size=$((total_backup_size + backup_size))
+
+        # Add folder size comparison to the report
+        folder_sizes+="$folder_name: $(numfmt --to=iec-i --from=auto "$original_size") --> $(numfmt --to=iec-i --from=auto "$backup_size")\n"
     fi
 done
 
 # Sort folder sizes from large to small
 sorted_folder_sizes=$(echo -e "$folder_sizes" | sort -hr -k2)
 
+# Prepare the total sizes in human-readable format
+total_original_human=$(numfmt --to=iec-i --from=auto "$total_original_size")
+total_backup_human=$(numfmt --to=iec-i --from=auto "$total_backup_size")
+
 # Prepare the notification message
 if [[ $error_count -eq 0 ]]; then
-    message="✅ All backups and pruning completed successfully!\nFolder sizes:\n$sorted_folder_sizes\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n$backup_details"
+    message="✅ All backups and pruning completed successfully!\nFolder sizes: ($total_original_human --> $total_backup_human)\n$sorted_folder_sizes\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n$backup_details"
     priority="min"
 else
-    message="❌ Backup and pruning completed with errors!\nFolder sizes:\n$sorted_folder_sizes\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n$backup_details"
+    message="❌ Backup and pruning completed with errors!\nFolder sizes: ($total_original_human --> $total_backup_human)\n$sorted_folder_sizes\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n$backup_details"
     priority="high"
 fi
 
@@ -80,6 +82,6 @@ fi
 formatted_message=$(printf "%b" "$message")
 
 # Send a summarizing notification as JSON with priority
-curl -H "Priority: "$priority"" -X POST "$NTFY_URL" -H "Content-Type: application/json" -d "$formatted_message"
+curl -H "Priority: $priority" -X POST "$NTFY_URL" -H "Content-Type: application/json" -d "$formatted_message"
 
 echo "Backup and pruning completed."
