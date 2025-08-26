@@ -734,7 +734,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "pinchflat-holmie"
-tags = ["holmie", "hooked", "criticality: 1"]
+tags = ["holmie", "hooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "pinchflat-holmie"
@@ -750,7 +750,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 [[stack]]
 name = "factorio-holmie"
 description = "192.168.50.65:34197 | 100.106.23.87:34197"
-tags = ["holmie", "hooked", "criticality: 1"]
+tags = ["holmie", "hooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "factorio-holmie"
@@ -780,7 +780,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "it-tools-holmie"
-tags = ["holmie", "unhooked", "criticality: 1"]
+tags = ["holmie", "unhooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "it-tools-holmie"
