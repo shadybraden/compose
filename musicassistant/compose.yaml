@@ -1,0 +1,39 @@
+---
+services:
+  music-assistant-server:
+    image: ghcr.io/music-assistant/server:2.5.8
+    container_name: music-assistant-server
+    restart: unless-stopped
+    # host is required to for device discovery (https://www.music-assistant.io/installation/ see "host network mode")
+    network_mode: host
+    volumes:
+      - /data/config_storage/music-assistant:/data
+      - /mnt/4tb/music:/music:ro
+      - /mnt/4tb/audiobooks:/audiobooks:ro
+      - /mnt/4tb/podcasts:/podcasts:ro
+    environment:
+      - LOG_LEVEL=info
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.music-assistant.entrypoints=http"
+      - "traefik.http.routers.music-assistant.rule=Host(`music-assistant.${DOMAIN}`)"
+      - "traefik.http.middlewares.music-assistant-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.music-assistant.middlewares=music-assistant-https-redirect"
+      - "traefik.http.routers.music-assistant-secure.entrypoints=https"
+      - "traefik.http.routers.music-assistant-secure.rule=Host(`music-assistant.${DOMAIN}`)"
+      - "traefik.http.routers.music-assistant-secure.tls=true"
+      - "traefik.http.routers.music-assistant-secure.service=music-assistant"
+      - "traefik.http.services.music-assistant.loadbalancer.server.port=8095"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Media"
+      - "homepage.name=music-assistant"
+      - "homepage.icon=/images/music-assistant.png"
+      - "homepage.href=https://music-assistant.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true
