@@ -3,7 +3,7 @@
 ## backup_config.sh
 
 `sudo su && crontab -e`
-`0 */6 * * *`
+`0 */6 * * * /data/config_storage/compose/backup/backup_config.sh`
 
 The goal here is to run backups on:
 
