@@ -4,10 +4,12 @@
 CONFIG_STORAGE="/home/shady/Documents/tmp/config"
 BACKUP_REPO="/home/shady/Documents/tmp/backups"
 PASSWORD_FILE="/data/resticPassword.txt"
+NTFY_URL="https://ntfy.holmlab.org/backupsqY5CmNgp0cHv9UjeEzrnTT8qORA5M1qWUn"
 
 # Check if the password file exists
 if [[ ! -f "$PASSWORD_FILE" ]]; then
     echo "Password file not found: $PASSWORD_FILE"
+    curl -X POST "$NTFY_URL" -d "🔒 Error: Password file not found: $PASSWORD_FILE"
     exit 1
 fi
 
@@ -30,12 +32,20 @@ for folder in "$CONFIG_STORAGE"/*; do
 
         # Perform the backup
         echo "Backing up $folder to $restic_repo..."
-        restic backup --repo "$restic_repo" "$folder" --compression max
+        if restic backup --repo "$restic_repo" "$folder" --compression max; then
+            curl -X POST "$NTFY_URL" -d "✅ Backup successful for: $folder_name"
+        else
+            curl -X POST "$NTFY_URL" -d "❌ Error during backup for: $folder_name"
+        fi
 
         # Prune old backups
         echo "Pruning old backups for $restic_repo..."
-        restic forget --repo "$restic_repo" --keep-yearly 2 --keep-monthly 12 --keep-weekly 4 --keep-daily 7 --prune
+        if restic forget --repo "$restic_repo" --keep-yearly 2 --keep-monthly 12 --keep-weekly 4 --keep-daily 7 --prune; then
+            curl -X POST "$NTFY_URL" -d "🧹 Pruning successful for: $folder_name"
+        else
+            curl -X POST "$NTFY_URL" -d "❌ Error during pruning for: $folder_name"
+        fi
     fi
 done
 
-echo "Backup completed"
+echo "Backup and pruning completed."
