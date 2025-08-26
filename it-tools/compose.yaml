@@ -3,7 +3,7 @@ services:
   it-tools:
     container_name: it-tools
     restart: unless-stopped
-    image: corentinth/it-tools:v2024.10.22-7ca5933
+    image: corentinth/it-tools:2024.10.22-7ca5933
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
