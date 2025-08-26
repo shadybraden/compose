@@ -20,7 +20,8 @@ And place them into:
 
 ## backup_bulk.sh
 
-`0 3 * * *`
+`sudo su && crontab -e`
+`0 3 * * * /data/config_storage/compose/backup/backup_bulk.sh`
 
 Idea here is to backup Immich.
 
