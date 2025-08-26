@@ -31,10 +31,11 @@ for folder in "$CONFIG_STORAGE"/*; do
         # Perform the backup
         echo "Backing up $folder to $restic_repo..."
         restic backup --repo "$restic_repo" "$folder" --compression max
+
+        # Prune old backups
+        echo "Pruning old backups for $restic_repo..."
+        restic forget --repo "$restic_repo" --keep-yearly 2 --keep-monthly 12 --keep-weekly 4 --keep-daily 7 --prune
     fi
 done
 
-# Optionally, you can add a cleanup command to prune old backups
-# restic prune --repo "$restic_repo"
-
-echo "Backup completed."
+echo "Backup completed"

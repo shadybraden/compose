@@ -418,21 +418,6 @@ additional_env_files = ["/etc/komodo/domain.env"]
 ##
 
 [[stack]]
-name = "restic"
-tags = ["holmie", "hooked", "criticality: 1"]
-[stack.config]
-server = "holmie"
-project_name = "restic"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
-run_directory = "restic"
-additional_env_files = ["/etc/komodo/domain.env"]
-
-##
-
-[[stack]]
 name = "pihole"
 tags = ["holmie", "hooked", "criticality: 1"]
 [stack.config]
