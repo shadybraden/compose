@@ -1,5 +1,10 @@
 # Backups
 
+- [x] backup_config.sh
+- [x] backup_bulk.sh
+- [ ] upload.sh
+- [x] restore.sh
+
 ## backup_config.sh
 
 `sudo su && crontab -e`
