@@ -9,7 +9,7 @@ NTFY_URL="https://ntfy.holmlab.org/backupsqY5CmNgp0cHv9UjeEzrnTT8qORA5M1qWUn"
 # Check if the password file exists
 if [[ ! -f "$PASSWORD_FILE" ]]; then
     echo "Password file not found: $PASSWORD_FILE"
-    curl -X POST "$NTFY_URL" -d "🔒 Error: Password file not found: $PASSWORD_FILE"
+    curl -X POST "$NTFY_URL" -d "🔒 Error: Password file not found: $PASSWORD_FILE" -H "Priority: high"
     exit 1
 fi
 
@@ -20,6 +20,7 @@ export RESTIC_PASSWORD_FILE="$PASSWORD_FILE"
 success_count=0
 error_count=0
 backup_details=""
+folder_sizes=""
 
 # Loop through each folder in the config_storage directory
 for folder in "$CONFIG_STORAGE"/*; do
@@ -27,6 +28,10 @@ for folder in "$CONFIG_STORAGE"/*; do
         # Get the folder name
         folder_name=$(basename "$folder")
         
+        # Calculate the folder size
+        folder_size=$(du -sh "$folder" | cut -f1)
+        folder_sizes+="$folder_name: $folder_size\n"
+
         # Set the Restic repository path
         restic_repo="$BACKUP_REPO/$folder_name"
 
@@ -59,17 +64,22 @@ for folder in "$CONFIG_STORAGE"/*; do
     fi
 done
 
+# Sort folder sizes from large to small
+sorted_folder_sizes=$(echo -e "$folder_sizes" | sort -hr -k2)
+
 # Prepare the notification message
 if [[ $error_count -eq 0 ]]; then
-    message="✅ All backups and pruning completed successfully!\n$backup_details"
+    message="✅ All backups and pruning completed successfully!\nFolder sizes:\n$sorted_folder_sizes\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n$backup_details"
+    priority="min"
 else
-    message="❌ Backup and pruning completed with errors!\n$backup_details"
+    message="❌ Backup and pruning completed with errors!\nFolder sizes:\n$sorted_folder_sizes\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n$backup_details"
+    priority="high"
 fi
 
 # Use printf to format the message correctly
 formatted_message=$(printf "%b" "$message")
 
-# Send a summarizing notification as JSON
-curl -X POST "$NTFY_URL" -H "Content-Type: application/json" -d "$formatted_message"
+# Send a summarizing notification as JSON with priority
+curl -H "Priority: "$priority"" -X POST "$NTFY_URL" -H "Content-Type: application/json" -d "$formatted_message"
 
 echo "Backup and pruning completed."
