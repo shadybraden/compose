@@ -16,6 +16,11 @@ fi
 # Export the Restic password file
 export RESTIC_PASSWORD_FILE="$PASSWORD_FILE"
 
+# Initialize variables for summary
+success_count=0
+error_count=0
+backup_details=""
+
 # Loop through each folder in the config_storage directory
 for folder in "$CONFIG_STORAGE"/*; do
     if [[ -d "$folder" ]]; then
@@ -30,22 +35,41 @@ for folder in "$CONFIG_STORAGE"/*; do
             echo "Restic repository already exists: $restic_repo"
         fi
 
-        # Perform the backup
+        # Perform the backup and capture output
         echo "Backing up $folder to $restic_repo..."
-        if restic backup --repo "$restic_repo" "$folder" --compression max; then
-            curl -X POST "$NTFY_URL" -d "✅ Backup successful for: $folder_name"
+        backup_output=$(restic backup --repo "$restic_repo" "$folder" --compression max 2>&1)
+        if [[ $? -eq 0 ]]; then
+            success_count=$((success_count + 1))
+            backup_details+="Backup successful for: $folder_name\n"
         else
-            curl -X POST "$NTFY_URL" -d "❌ Error during backup for: $folder_name"
+            error_count=$((error_count + 1))
+            backup_details+="Error during backup for: $folder_name\n"
         fi
 
-        # Prune old backups
+        # Prune old backups and capture output
         echo "Pruning old backups for $restic_repo..."
-        if restic forget --repo "$restic_repo" --keep-yearly 2 --keep-monthly 12 --keep-weekly 4 --keep-daily 7 --prune; then
-            curl -X POST "$NTFY_URL" -d "🧹 Pruning successful for: $folder_name"
+        prune_output=$(restic forget --repo "$restic_repo" --keep-yearly 2 --keep-monthly 12 --keep-weekly 4 --keep-daily 7 --prune 2>&1)
+        if [[ $? -eq 0 ]]; then
+            success_count=$((success_count + 1))
+            backup_details+="Pruning successful for: $folder_name\n"
         else
-            curl -X POST "$NTFY_URL" -d "❌ Error during pruning for: $folder_name"
+            error_count=$((error_count + 1))
+            backup_details+="Error during pruning for: $folder_name\n"
         fi
     fi
 done
+
+# Prepare the notification message
+if [[ $error_count -eq 0 ]]; then
+    message="✅ All backups and pruning completed successfully!\n$backup_details"
+else
+    message="❌ Backup and pruning completed with errors!\n$backup_details"
+fi
+
+# Use printf to format the message correctly
+formatted_message=$(printf "%b" "$message")
+
+# Send a summarizing notification as JSON
+curl -X POST "$NTFY_URL" -H "Content-Type: application/json" -d "$formatted_message"
 
 echo "Backup and pruning completed."
