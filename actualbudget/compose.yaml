@@ -1,0 +1,36 @@
+---
+services:
+  actual_server:
+    image: docker.io/actualbudget/actual-server:25.8.0
+#    ports:
+#      - '5006:5006'
+    environment:
+      - ACTUAL_PORT=5006
+      # See all options and more details at https://actualbudget.github.io/docs/Installing/Configuration
+    volumes:
+      - /data/config_storage/actual-data:/data
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.actualbudget.entrypoints=http"
+      - "traefik.http.routers.actualbudget.rule=Host(`actualbudget.${DOMAIN}`)"
+      - "traefik.http.middlewares.actualbudget-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.actualbudget.middlewares=actualbudget-https-redirect"
+      - "traefik.http.routers.actualbudget-secure.entrypoints=https"
+      - "traefik.http.routers.actualbudget-secure.rule=Host(`actualbudget.${DOMAIN}`)"
+      - "traefik.http.routers.actualbudget-secure.tls=true"
+      - "traefik.http.routers.actualbudget-secure.service=actualbudget"
+      - "traefik.http.services.actualbudget.loadbalancer.server.port=5006"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=actualbudget"
+      - "homepage.icon=/images/actualbudget.png"
+      - "homepage.href=https://actualbudget.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true
