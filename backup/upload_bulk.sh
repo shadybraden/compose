@@ -75,7 +75,7 @@ Duration: ${DURATION_HOURS}h ${DURATION_MINUTES}m ${DURATION_SECONDS}s"
 # send notification
 if command -v curl >/dev/null 2>&1; then
     curl -sS -X POST "$NTFY_URL" \
-        -H "Tags: arrow_up" \
+        -H "Tags: outbox_tray" \
         -H "Title: ${HOSTNAME} backups uploaded!" \
         -H "Priority: min" \
         --data-binary "$NTFY_PAYLOAD" || log "Warning: failed to send ntfy notification"

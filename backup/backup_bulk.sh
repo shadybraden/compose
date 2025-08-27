@@ -95,6 +95,6 @@ fi
 formatted_message=$(printf "%b" "$message")
 
 # Send a summarizing notification as JSON with priority
-curl -H "Priority: $priority" -X POST "$NTFY_URL" -H "Content-Type: application/json" -d "$formatted_message"
+curl -H "Tags: inbox_tray" -H "Priority: $priority" -X POST "$NTFY_URL" -H "Content-Type: application/json" -d "$formatted_message"
 
 echo "Backup and pruning completed."
