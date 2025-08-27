@@ -7,7 +7,8 @@
 
 ## backup_config.sh
 
-`sudo su && crontab -e`
+`sudo su`
+`crontab -e`
 `0 */6 * * * /data/config_storage/compose/backup/backup_config.sh`
 
 The goal here is to run backups on:
@@ -20,7 +21,8 @@ And place them into:
 
 ## backup_bulk.sh
 
-`sudo su && crontab -e`
+`sudo su`
+`crontab -e`
 `0 3 * * * /data/config_storage/compose/backup/backup_bulk.sh`
 
 Idea here is to backup Immich.
@@ -34,6 +36,8 @@ Then store these backups in the same base path; /mnt/4tb/backups
 Send the backups to AWS
 
 (include machine name in base folder path)
+
+(split into two scripts, upload_config.sh and upload_bulk.sh)
 
 ## restore.sh
 
