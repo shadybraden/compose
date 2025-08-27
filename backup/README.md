@@ -9,7 +9,7 @@
 
 `sudo su`
 `crontab -e`
-`0 */6 * * * /data/config_storage/compose/backup/backup_config.sh`
+`0 */6 * * * /data/config_storage/compose/backup/backup_config.sh` (every 6 hours)
 
 The goal here is to run backups on:
 
@@ -35,7 +35,7 @@ Then store these backups in the same base path; /mnt/4tb/backups
 
 `sudo su`
 `crontab -e`
-`0 6 * * 1 /data/config_storage/compose/backup/upload_config.sh`  (every monday at 6am)
+`0 5 * * 1 /data/config_storage/compose/backup/upload_config.sh`  (every monday at 5am)
 `0 1 1 * * /data/config_storage/compose/backup/upload_bulk.sh`    (1x per month at 1am)
 
 Send the backups to AWS
