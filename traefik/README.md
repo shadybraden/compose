@@ -69,8 +69,8 @@ To use Anubis:
 
 To add to Homepage:
 ```yaml
-      - "homepage.group=GROUP"
-      - "homepage.name=NAME"
-      - "homepage.icon=/images/NAME.png"
-      - "homepage.href=https://NAME.${DOMAIN}/"
+      - "homepage.group=Other"
+      - "homepage.name=SUBDOMAIN"
+      - "homepage.icon=/images/SUBDOMAIN.png"
+      - "homepage.href=https://SUBDOMAIN.${DOMAIN}/"
 ```
