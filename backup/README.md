@@ -33,6 +33,11 @@ Then store these backups in the same base path; /mnt/4tb/backups
 
 ## upload.sh
 
+`sudo su`
+`crontab -e`
+`0 6 * * 1 /data/config_storage/compose/backup/upload_config.sh`  (every monday at 6am)
+`0 1 1 * * /data/config_storage/compose/backup/upload_bulk.sh`    (1x per month at 1am)
+
 Send the backups to AWS
 
 (include machine name in base folder path)
