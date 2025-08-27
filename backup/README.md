@@ -41,6 +41,8 @@ Idea is to run:
 
 `restore.sh FOLDERNAME`
 
+(split into two scripts, restore_config.sh and restore_bulk.sh)
+
 And it pulls that folder from /data/backups and unencrypts and uncompresses it, then puts it into /data/FOLDERNAME.restore/
 
-*after giving a menu to ask which snapshot to use
+*after giving a menu to ask which snapshot to use*
