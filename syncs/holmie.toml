@@ -354,10 +354,7 @@ tags = ["holmie", "unhooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "forgejo"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "forgejo"
 additional_env_files = ["/etc/komodo/domain.env"]
 
