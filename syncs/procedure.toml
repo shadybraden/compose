@@ -73,3 +73,22 @@ enabled = true
 executions = [
   { execution.type = "DeployStack", execution.params.stack = "dashy", execution.params.services = [], enabled = true }
 ]
+
+##
+
+[[procedure]]
+name = "webhook_stacks_main"
+
+[[procedure.config.stage]]
+name = "git pull main"
+enabled = true
+executions = [
+  { execution.type = "PullRepo", execution.params.repo = "compose_main", enabled = true }
+]
+
+[[procedure.config.stage]]
+name = "DeployOnChanges"
+enabled = true
+executions = [
+  { execution.type = "BatchDeployStackIfChanged", execution.params.pattern = "*", enabled = true }
+]
