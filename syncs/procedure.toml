@@ -121,7 +121,7 @@ executions = [
   { execution.type = "RunSync", execution.params.sync = "builds", enabled = true },
   { execution.type = "RunSync", execution.params.sync = "holmgarage", enabled = true },
   { execution.type = "RunSync", execution.params.sync = "holmie", enabled = true },
-  { execution.type = "RunSync", execution.params.sync = "procedure", enabled = true },
+  { execution.type = "RunSync", execution.params.sync = "procedure", enabled = false },
   { execution.type = "RunSync", execution.params.sync = "repo", enabled = true },
   { execution.type = "RunSync", execution.params.sync = "servers", enabled = true },
   { execution.type = "RunSync", execution.params.sync = "shady_desktop", enabled = true },
