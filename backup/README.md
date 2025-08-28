@@ -23,7 +23,7 @@ And place them into:
 
 `sudo su`
 `crontab -e`
-`0 3 * * * /data/config_storage/compose/backup/backup_bulk.sh`
+`0 3 * * * /data/config_storage/compose/backup/backup_bulk.sh` 3am
 
 Idea here is to backup Immich.
 
