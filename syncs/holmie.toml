@@ -765,7 +765,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "it-tools-holmie"
-tags = ["holmie", "ununhooked", "criticality: 5"]
+tags = ["holmie", "unhooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "it-tools-holmie"
@@ -780,7 +780,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "actualbudget-holmie"
-tags = ["holmie", "ununhooked", "criticality: 1"]
+tags = ["holmie", "unhooked", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "actualbudget-holmie"
