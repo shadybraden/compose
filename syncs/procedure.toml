@@ -96,7 +96,7 @@ executions = [
 ##
 
 [[procedure]]
-name = "webhook_sync_holmie"
+name = "webhook_syncs"
 
 [[procedure.config.stage]]
 name = "sleep"
@@ -116,109 +116,9 @@ executions = [
 name = "sync syncs"
 enabled = true
 executions = [
-  { execution.type = "RunSync", execution.params.sync = "holmie", enabled = true }
-]
-
-##
-
-[[procedure]]
-name = "webhook_sync_holmgarage"
-
-[[procedure.config.stage]]
-name = "sleep"
-enabled = true
-executions = [
-  { execution.type = "Sleep", execution.params.duration_ms = 500, enabled = true }
-]
-
-[[procedure.config.stage]]
-name = "git pull"
-enabled = true
-executions = [
-  { execution.type = "PullRepo", execution.params.repo = "compose_main", enabled = true }
-]
-
-[[procedure.config.stage]]
-name = "sync syncs"
-enabled = true
-executions = [
-  { execution.type = "RunSync", execution.params.sync = "holmgarage", enabled = true }
-]
-
-##
-
-[[procedure]]
-name = "webhook_sync_tipi"
-
-[[procedure.config.stage]]
-name = "sleep"
-enabled = true
-executions = [
-  { execution.type = "Sleep", execution.params.duration_ms = 500, enabled = true }
-]
-
-[[procedure.config.stage]]
-name = "git pull"
-enabled = true
-executions = [
-  { execution.type = "PullRepo", execution.params.repo = "compose_main", enabled = true }
-]
-
-[[procedure.config.stage]]
-name = "sync syncs"
-enabled = true
-executions = [
+  { execution.type = "RunSync", execution.params.sync = "shady_desktop", enabled = true },
+  { execution.type = "RunSync", execution.params.sync = "holmgarage", enabled = true },
+  { execution.type = "RunSync", execution.params.sync = "holmie", enabled = true },
+  { execution.type = "RunSync", execution.params.sync = "skynet", enabled = true },
   { execution.type = "RunSync", execution.params.sync = "tipi", enabled = true }
-]
-
-##
-
-[[procedure]]
-name = "webhook_sync_shady_desktop"
-
-[[procedure.config.stage]]
-name = "sleep"
-enabled = true
-executions = [
-  { execution.type = "Sleep", execution.params.duration_ms = 500, enabled = true }
-]
-
-[[procedure.config.stage]]
-name = "git pull"
-enabled = true
-executions = [
-  { execution.type = "PullRepo", execution.params.repo = "compose_main", enabled = true }
-]
-
-[[procedure.config.stage]]
-name = "sync syncs"
-enabled = true
-executions = [
-  { execution.type = "RunSync", execution.params.sync = "shady_desktop", enabled = true }
-]
-
-##
-
-[[procedure]]
-name = "webhook_sync_skynet"
-
-[[procedure.config.stage]]
-name = "sleep"
-enabled = true
-executions = [
-  { execution.type = "Sleep", execution.params.duration_ms = 500, enabled = true }
-]
-
-[[procedure.config.stage]]
-name = "git pull"
-enabled = true
-executions = [
-  { execution.type = "PullRepo", execution.params.repo = "compose_main", enabled = true }
-]
-
-[[procedure.config.stage]]
-name = "sync syncs"
-enabled = true
-executions = [
-  { execution.type = "RunSync", execution.params.sync = "skynet", enabled = true }
 ]
