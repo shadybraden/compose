@@ -539,7 +539,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "wedding-share"
-tags = ["holmie", "hooked", "criticality: 5"]
+tags = [  "holmie", "hooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "wedding-share"
@@ -554,11 +554,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "silverbullet"
-tags = [
-  "holmie",
-  "hooked",
-  "criticality: 5"
-]
+tags = ["holmie", "hooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "silverbullet"
