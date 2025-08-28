@@ -47,18 +47,6 @@ additional_env_files = ["/etc/komodo/domain.env"]
 ##
 
 [[stack]]
-name = "dashy"
-tags = ["holmie", "unhooked", "criticality: 5", "ephemoral"]
-[stack.config]
-server = "holmie"
-project_name = "dashy"
-linked_repo = "compose_main"
-run_directory = "dashy"
-additional_env_files = ["/etc/komodo/domain.env"]
-
-##
-
-[[stack]]
 name = "filebrowser"
 tags = ["holmie", "unhooked", "criticality: 5"]
 [stack.config]
