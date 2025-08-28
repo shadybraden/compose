@@ -23,21 +23,6 @@ additional_env_files = ["/etc/komodo/domain.env"]
 ##
 
 [[stack]]
-name = "beszelagent-holmgarage"
-tags = ["holmgarage", "unhooked", "criticality: 3"]
-[stack.config]
-server = "holmgarage"
-project_name = "beszelagent-holmgarage"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
-run_directory = "beszelagent"
-additional_env_files = ["/etc/komodo/domain.env"]
-
-##
-
-[[stack]]
 name = "pihole-holmgarage"
 tags = ["holmgarage", "unhooked", "criticality: 1"]
 [stack.config]
