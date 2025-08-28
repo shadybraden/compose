@@ -558,7 +558,7 @@ tags = ["holmie", "hooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "silverbullet"
-linked_repo = "compose"
+linked_repo = "compose_main"
 run_directory = "silverbullet"
 additional_env_files = ["/etc/komodo/domain.env"]
 
