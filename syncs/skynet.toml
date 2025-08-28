@@ -4,10 +4,7 @@ tags = ["skynet","unhooked"]
 [stack.config]
 server = "skynet"
 project_name = "portainer"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "portainer"
 
 ##
@@ -18,9 +15,7 @@ tags = ["skynet","unhooked"]
 [stack.config]
 server = "skynet"
 project_name = "filebrowser-skynet"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
+linked_repo = "compose_main"
 run_directory = "filebrowser"
 
 ##
@@ -31,10 +26,7 @@ tags = ["skynet","unhooked"]
 [stack.config]
 server = "skynet"
 project_name = "plex"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "plex"
 
 ##
@@ -45,10 +37,7 @@ tags = ["skynet","unhooked"]
 [stack.config]
 server = "skynet"
 project_name = "syncthing-skynet"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "syncthing"
 
 ##
@@ -59,8 +48,5 @@ tags = ["skynet", "unhooked", "criticality: 3"]
 [stack.config]
 server = "skynet"
 project_name = "beszelagent-skynet"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "beszelagent"
