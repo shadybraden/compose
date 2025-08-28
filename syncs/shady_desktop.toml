@@ -1,6 +1,6 @@
 [[stack]]
 name = "crafty-shady"
-tags = ["shady","hooked"]
+tags = ["shady","unhooked"]
 [stack.config]
 server = "shady_desktop"
 project_name = "crafty"
@@ -13,7 +13,7 @@ run_directory = "hosts/crafty"
 
 [[stack]]
 name = "immich-ml-shady"
-tags = ["shady","hooked"]
+tags = ["shady","unhooked"]
 [stack.config]
 server = "shady_desktop"
 project_name = "immich-ml"
@@ -26,7 +26,7 @@ run_directory = "hosts/immich_remote_machine_learning"
 
 [[stack]]
 name = "beszelagent-shady"
-tags = ["shady", "hooked", "criticality: 3"]
+tags = ["shady", "unhooked", "criticality: 3"]
 [stack.config]
 server = "shady_desktop"
 project_name = "beszelagent-shady"
@@ -41,7 +41,7 @@ run_directory = "beszelagent"
 [[stack]]
 name = "factorio-shady_desktop"
 description = "192.168.50.16:34197 | 100.75.125.61:34197"
-tags = ["shady_desktop", "unhooked", "criticality: 1"]
+tags = ["shady_desktop", "ununhooked", "criticality: 1"]
 [stack.config]
 server = "shady_desktop"
 project_name = "factorio-shady_desktop"
@@ -56,7 +56,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "proxy_and_monero-shady_desktop"
-tags = ["shady_desktop", "hooked", "criticality: 1"]
+tags = ["shady_desktop", "unhooked", "criticality: 1"]
 [stack.config]
 server = "shady_desktop"
 project_name = "proxy_and_monero-shady_desktop"

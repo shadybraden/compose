@@ -1,6 +1,6 @@
 [[stack]]
 name = "beszelagent-holmgarage"
-tags = ["holmgarage", "hooked", "criticality: 3"]
+tags = ["holmgarage", "unhooked", "criticality: 3"]
 [stack.config]
 server = "holmgarage"
 project_name = "beszelagent-holmgarage"
@@ -15,7 +15,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "immich-holmgarage"
-tags = ["holmgarage", "hooked", "criticality: 2"]
+tags = ["holmgarage", "unhooked", "criticality: 2"]
 [stack.config]
 server = "holmgarage"
 project_name = "immich-holmgarage"
@@ -30,7 +30,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "beszelagent-holmgarage"
-tags = ["holmgarage", "hooked", "criticality: 3"]
+tags = ["holmgarage", "unhooked", "criticality: 3"]
 [stack.config]
 server = "holmgarage"
 project_name = "beszelagent-holmgarage"
@@ -45,7 +45,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "pihole-holmgarage"
-tags = ["holmgarage", "hooked", "criticality: 1"]
+tags = ["holmgarage", "unhooked", "criticality: 1"]
 [stack.config]
 server = "holmgarage"
 project_name = "pihole-holmgarage"
@@ -60,7 +60,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "traefik-holmgarage"
-tags = ["holmgarage", "hooked", "criticality: 1"]
+tags = ["holmgarage", "unhooked", "criticality: 1"]
 [stack.config]
 server = "holmgarage"
 project_name = "traefik-holmgarage"
@@ -75,7 +75,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "jellyfin-holmgarage"
-tags = ["holmgarage", "hooked", "criticality: 2"]
+tags = ["holmgarage", "unhooked", "criticality: 2"]
 [stack.config]
 server = "holmgarage"
 project_name = "jellyfin-holmgarage"
@@ -90,7 +90,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "mealie-holmgarage"
-tags = ["holmgarage", "hooked", "criticality: 5"]
+tags = ["holmgarage", "unhooked", "criticality: 5"]
 [stack.config]
 server = "holmgarage"
 project_name = "mealie-holmgarage"
@@ -105,7 +105,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "jellyseerr-holmgarage"
-tags = ["holmgarage", "hooked", "criticality: 4"]
+tags = ["holmgarage", "unhooked", "criticality: 4"]
 [stack.config]
 server = "holmgarage"
 project_name = "jellyseerr-holmgarage"
@@ -120,7 +120,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "arr-holmgarage"
-tags = ["holmgarage", "hooked", "criticality: 4"]
+tags = ["holmgarage", "unhooked", "criticality: 4"]
 [stack.config]
 server = "holmgarage"
 project_name = "arr-holmgarage"
@@ -135,7 +135,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "filebrowser-holmgarage"
-tags = ["holmgarage", "hooked", "criticality: 5"]
+tags = ["holmgarage", "unhooked", "criticality: 5"]
 [stack.config]
 server = "holmgarage"
 project_name = "filebrowser-holmgarage"
@@ -150,7 +150,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "navidrome-holmgarage"
-tags = ["holmgarage", "hooked", "criticality: 4"]
+tags = ["holmgarage", "unhooked", "criticality: 4"]
 [stack.config]
 server = "holmgarage"
 project_name = "navidrome-holmgarage"
@@ -165,7 +165,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "homepage-holmgarage"
-tags = ["holmgarage", "hooked", "criticality: 2"]
+tags = ["holmgarage", "unhooked", "criticality: 2"]
 [stack.config]
 server = "holmgarage"
 project_name = "homepage-holmgarage"
@@ -180,7 +180,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "audiobookshelf-holmgarage"
-tags = ["holmgarage", "hooked", "criticality: 3"]
+tags = ["holmgarage", "unhooked", "criticality: 3"]
 [stack.config]
 server = "holmgarage"
 project_name = "audiobookshelf-holmgarage"
@@ -195,7 +195,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "dumbassets-holmgarage"
-tags = ["holmgarage", "hooked", "criticality: 5"]
+tags = ["holmgarage", "unhooked", "criticality: 5"]
 [stack.config]
 server = "holmgarage"
 project_name = "dumbassets-holmgarage"
@@ -210,7 +210,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "homeassistant-holmgarage"
-tags = ["holmgarage", "hooked", "criticality: 1"]
+tags = ["holmgarage", "unhooked", "criticality: 1"]
 [stack.config]
 server = "holmgarage"
 project_name = "homeassistant-holmgarage"
@@ -225,7 +225,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "linkwarden-holmgarage"
-tags = ["holmgarage", "hooked", "criticality: 5"]
+tags = ["holmgarage", "unhooked", "criticality: 5"]
 [stack.config]
 server = "holmgarage"
 project_name = "linkwarden-holmgarage"
@@ -240,7 +240,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "loggifly-holmgarage"
-tags = ["holmgarage", "hooked", "criticality: 1"]
+tags = ["holmgarage", "unhooked", "criticality: 1"]
 [stack.config]
 server = "holmgarage"
 project_name = "loggifly-holmgarage"
@@ -255,7 +255,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "lubelogger-holmgarage"
-tags = ["holmgarage", "hooked", "criticality: 1"]
+tags = ["holmgarage", "unhooked", "criticality: 1"]
 [stack.config]
 server = "holmgarage"
 project_name = "lubelogger-holmgarage"
@@ -270,7 +270,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "nextcloud-holmgarage"
-tags = ["holmgarage", "hooked", "criticality: 1"]
+tags = ["holmgarage", "unhooked", "criticality: 1"]
 [stack.config]
 server = "holmgarage"
 project_name = "nextcloud-holmgarage"
@@ -285,7 +285,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "reactiveresume-holmgarage"
-tags = ["holmgarage", "hooked", "criticality: 1"]
+tags = ["holmgarage", "unhooked", "criticality: 1"]
 [stack.config]
 server = "holmgarage"
 project_name = "reactiveresume-holmgarage"
@@ -300,7 +300,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "searxng-holmgarage"
-tags = ["holmgarage", "hooked", "criticality: 1"]
+tags = ["holmgarage", "unhooked", "criticality: 1"]
 [stack.config]
 server = "holmgarage"
 project_name = "searxng-holmgarage"
@@ -315,7 +315,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "speedtest-holmgarage"
-tags = ["holmgarage", "hooked", "criticality: 1"]
+tags = ["holmgarage", "unhooked", "criticality: 1"]
 [stack.config]
 server = "holmgarage"
 project_name = "speedtest-holmgarage"
@@ -330,7 +330,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "stirlingpdf-holmgarage"
-tags = ["holmgarage", "hooked", "criticality: 1"]
+tags = ["holmgarage", "unhooked", "criticality: 1"]
 [stack.config]
 server = "holmgarage"
 project_name = "stirlingpdf-holmgarage"
@@ -345,7 +345,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "vaultwarden-holmgarage"
-tags = ["holmgarage", "hooked", "criticality: 1"]
+tags = ["holmgarage", "unhooked", "criticality: 1"]
 [stack.config]
 server = "holmgarage"
 project_name = "vaultwarden-holmgarage"

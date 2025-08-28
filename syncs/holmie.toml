@@ -1,6 +1,6 @@
 [[stack]]
 name = "adsb"
-tags = ["holmie", "hooked", "criticality: 3", "ephemoral"]
+tags = ["holmie", "ununhooked", "criticality: 3", "ephemoral"]
 [stack.config]
 server = "holmie"
 project_name = "adsb"
@@ -15,7 +15,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "ai"
-tags = ["holmie", "hooked", "criticality: 5"]
+tags = ["holmie", "ununhooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "ai"
@@ -30,7 +30,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "arr"
-tags = ["holmie", "hooked", "criticality: 4"]
+tags = ["holmie", "ununhooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "arr"
@@ -45,7 +45,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "audiobookshelf"
-tags = ["holmie", "hooked", "criticality: 3"]
+tags = ["holmie", "ununhooked", "criticality: 3"]
 [stack.config]
 server = "holmie"
 project_name = "audiobookshelf"
@@ -60,7 +60,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "dashy"
-tags = ["holmie", "hooked", "criticality: 5", "ephemoral"]
+tags = ["holmie", "ununhooked", "criticality: 5", "ephemoral"]
 [stack.config]
 server = "holmie"
 project_name = "dashy"
@@ -75,7 +75,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "filebrowser"
-tags = ["holmie", "hooked", "criticality: 5"]
+tags = ["holmie", "ununhooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "filebrowser"
@@ -90,7 +90,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "freshrss"
-tags = ["holmie", "hooked", "criticality: 2"]
+tags = ["holmie", "ununhooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "freshrss"
@@ -105,7 +105,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "homeassistant"
-tags = ["holmie", "hooked", "criticality: 1"]
+tags = ["holmie", "ununhooked", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "homeassistant"
@@ -120,7 +120,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "immich"
-tags = ["holmie", "hooked", "criticality: 2"]
+tags = ["holmie", "ununhooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "immich"
@@ -135,7 +135,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "jellyfin"
-tags = ["holmie", "hooked", "criticality: 2"]
+tags = ["holmie", "ununhooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "jellyfin"
@@ -150,7 +150,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "jellyseerr"
-tags = ["holmie", "hooked", "criticality: 4"]
+tags = ["holmie", "ununhooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "jellyseerr"
@@ -165,7 +165,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "kiwix"
-tags = ["holmie", "hooked", "criticality: 5"]
+tags = ["holmie", "ununhooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "kiwix"
@@ -180,7 +180,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "navidrome"
-tags = ["holmie", "hooked", "criticality: 4"]
+tags = ["holmie", "ununhooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "navidrome"
@@ -195,7 +195,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "netalertx"
-tags = ["holmie", "hooked", "criticality: 3"]
+tags = ["holmie", "ununhooked", "criticality: 3"]
 [stack.config]
 server = "holmie"
 project_name = "netalertx"
@@ -210,7 +210,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "nextcloud"
-tags = ["holmie", "hooked", "criticality: 2"]
+tags = ["holmie", "ununhooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "nextcloud"
@@ -225,7 +225,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "ntfy"
-tags = ["holmie", "hooked", "criticality: 1"]
+tags = ["holmie", "ununhooked", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "ntfy"
@@ -240,7 +240,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "portainer"
-tags = ["holmie", "hooked", "criticality: 4", "ephemoral"]
+tags = ["holmie", "ununhooked", "criticality: 4", "ephemoral"]
 [stack.config]
 server = "holmie"
 project_name = "portainer"
@@ -255,7 +255,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "proxy"
-tags = ["holmie", "hooked", "criticality: 1", "ephemoral"]
+tags = ["holmie", "ununhooked", "criticality: 1", "ephemoral"]
 [stack.config]
 server = "holmie"
 project_name = "proxy"
@@ -274,7 +274,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "renovate"
-tags = ["holmie", "hooked", "criticality: 4", "ephemoral"]
+tags = ["holmie", "ununhooked", "criticality: 4", "ephemoral"]
 [stack.config]
 server = "holmie"
 project_name = "renovate"
@@ -290,7 +290,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "scrutiny"
-tags = ["holmie", "hooked", "criticality: 4", "ephemoral"]
+tags = ["holmie", "ununhooked", "criticality: 4", "ephemoral"]
 [stack.config]
 server = "holmie"
 project_name = "scrutiny"
@@ -305,7 +305,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "stirlingpdf"
-tags = ["holmie", "hooked", "criticality: 4", "ephemoral"]
+tags = ["holmie", "ununhooked", "criticality: 4", "ephemoral"]
 [stack.config]
 server = "holmie"
 project_name = "stirlingpdf"
@@ -320,7 +320,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "syncthing"
-tags = ["holmie", "hooked", "criticality: 2"]
+tags = ["holmie", "ununhooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "syncthing"
@@ -335,7 +335,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "uptime-kuma"
-tags = ["holmie", "hooked", "criticality: 2"]
+tags = ["holmie", "ununhooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "uptime-kuma"
@@ -350,7 +350,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "vaultwarden"
-tags = ["holmie", "hooked", "criticality: 1"]
+tags = ["holmie", "ununhooked", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "vaultwarden"
@@ -365,7 +365,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "wireguard"
-tags = ["holmie", "hooked", "criticality: 1"]
+tags = ["holmie", "ununhooked", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "wireguard"
@@ -380,7 +380,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "hoodik"
-tags = ["holmie", "hooked", "criticality: 5"]
+tags = ["holmie", "ununhooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "hoodik"
@@ -395,7 +395,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "skywatch"
-tags = ["holmie", "hooked", "criticality: 3"]
+tags = ["holmie", "ununhooked", "criticality: 3"]
 [stack.config]
 server = "holmie"
 project_name = "skywatch"
@@ -419,7 +419,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "pihole"
-tags = ["holmie", "hooked", "criticality: 1"]
+tags = ["holmie", "ununhooked", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "pihole"
@@ -434,7 +434,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "forgejo"
-tags = ["holmie", "hooked", "criticality: 2"]
+tags = ["holmie", "ununhooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "forgejo"
@@ -449,7 +449,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "traefik"
-tags = ["holmie", "hooked", "criticality: 1"]
+tags = ["holmie", "ununhooked", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "traefik"
@@ -464,7 +464,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "motioneye"
-tags = ["holmie", "hooked", "criticality: 4"]
+tags = ["holmie", "ununhooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "motioneye"
@@ -479,7 +479,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "mealie"
-tags = ["holmie", "hooked", "criticality: 5"]
+tags = ["holmie", "ununhooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "mealie"
@@ -494,7 +494,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "searxng"
-tags = ["holmie", "hooked", "criticality: 2"]
+tags = ["holmie", "ununhooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "searxng"
@@ -509,7 +509,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "speedtest"
-tags = ["holmie", "hooked", "criticality: 5", "ephemoral"]
+tags = ["holmie", "ununhooked", "criticality: 5", "ephemoral"]
 [stack.config]
 server = "holmie"
 project_name = "speedtest"
@@ -524,7 +524,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "linkwarden"
-tags = ["holmie", "hooked", "criticality: 5"]
+tags = ["holmie", "ununhooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "linkwarden"
@@ -539,7 +539,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "wedding-share"
-tags = ["holmie", "hooked", "criticality: 5"]
+tags = ["holmie", "ununhooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "wedding-share"
@@ -554,7 +554,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "silverbullet"
-tags = ["holmie", "hooked", "criticality: 5"]
+tags = ["holmie", "ununhooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "silverbullet"
@@ -569,7 +569,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "dumbassets"
-tags = ["holmie", "hooked", "criticality: 5"]
+tags = ["holmie", "ununhooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "dumbassets"
@@ -584,7 +584,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "lubelogger"
-tags = ["holmie", "hooked", "criticality: 5"]
+tags = ["holmie", "ununhooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "lubelogger"
@@ -599,7 +599,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "reactiveresume"
-tags = ["holmie", "hooked", "criticality: 5"]
+tags = ["holmie", "ununhooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "reactiveresume"
@@ -614,7 +614,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "beszel"
-tags = ["holmie", "hooked", "criticality: 3"]
+tags = ["holmie", "ununhooked", "criticality: 3"]
 [stack.config]
 server = "holmie"
 project_name = "beszel"
@@ -629,7 +629,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "beszelagent-holmie"
-tags = ["holmie", "hooked", "criticality: 3"]
+tags = ["holmie", "ununhooked", "criticality: 3"]
 [stack.config]
 server = "holmie"
 project_name = "beszelagent-holmie"
@@ -644,7 +644,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "loggifly"
-tags = ["holmie", "hooked", "criticality: 3"]
+tags = ["holmie", "ununhooked", "criticality: 3"]
 [stack.config]
 server = "holmie"
 project_name = "loggifly"
@@ -659,7 +659,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "tinyauth"
-tags = ["holmie", "hooked", "criticality: 1"]
+tags = ["holmie", "ununhooked", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "tinyauth"
@@ -674,7 +674,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "homepage"
-tags = ["holmie", "hooked", "criticality: 2"]
+tags = ["holmie", "ununhooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "homepage"
@@ -689,7 +689,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "cloudflared"
-tags = ["holmie", "hooked", "criticality: 5"]
+tags = ["holmie", "ununhooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "cloudflared"
@@ -704,7 +704,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "plex-holmie"
-tags = ["holmie","hooked", "criticality: 5"]
+tags = ["holmie","ununhooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "plex-holmie"
@@ -719,7 +719,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "pinchflat-holmie"
-tags = ["holmie", "hooked", "criticality: 5"]
+tags = ["holmie", "ununhooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "pinchflat-holmie"
@@ -735,7 +735,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 [[stack]]
 name = "factorio-holmie"
 description = "192.168.50.65:34197 | 100.106.23.87:34197"
-tags = ["holmie", "hooked", "criticality: 4"]
+tags = ["holmie", "ununhooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "factorio-holmie"
@@ -750,7 +750,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "anubis-holmie"
-tags = ["holmie", "hooked", "criticality: 1"]
+tags = ["holmie", "ununhooked", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "anubis-holmie"
@@ -765,7 +765,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "it-tools-holmie"
-tags = ["holmie", "unhooked", "criticality: 5"]
+tags = ["holmie", "ununhooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "it-tools-holmie"
@@ -780,7 +780,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "actualbudget-holmie"
-tags = ["holmie", "unhooked", "criticality: 1"]
+tags = ["holmie", "ununhooked", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "actualbudget-holmie"
