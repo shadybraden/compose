@@ -2,7 +2,7 @@
 
 - [x] backup_config.sh
 - [x] backup_bulk.sh
-- [ ] upload.sh
+- [x] upload.sh
 - [x] restore.sh
 
 ## backup_config.sh
