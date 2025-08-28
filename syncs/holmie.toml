@@ -16,10 +16,7 @@ tags = ["holmie", "ununhooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "ai"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "ai"
 additional_env_files = ["/etc/komodo/domain.env"]
 
@@ -46,10 +43,7 @@ tags = ["holmie", "ununhooked", "criticality: 3"]
 [stack.config]
 server = "holmie"
 project_name = "audiobookshelf"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "audiobookshelf"
 additional_env_files = ["/etc/komodo/domain.env"]
 
@@ -61,10 +55,7 @@ tags = ["holmie", "ununhooked", "criticality: 5", "ephemoral"]
 [stack.config]
 server = "holmie"
 project_name = "dashy"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "dashy"
 additional_env_files = ["/etc/komodo/domain.env"]
 
@@ -76,10 +67,7 @@ tags = ["holmie", "ununhooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "filebrowser"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "filebrowser"
 additional_env_files = ["/etc/komodo/domain.env"]
 
@@ -91,10 +79,7 @@ tags = ["holmie", "ununhooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "freshrss"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "freshrss"
 additional_env_files = ["/etc/komodo/domain.env"]
 
@@ -106,10 +91,7 @@ tags = ["holmie", "ununhooked", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "homeassistant"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "homeassistant"
 additional_env_files = ["/etc/komodo/domain.env"]
 
@@ -136,10 +118,7 @@ tags = ["holmie", "ununhooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "jellyfin"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "jellyfin"
 additional_env_files = ["/etc/komodo/domain.env"]
 
@@ -151,10 +130,7 @@ tags = ["holmie", "ununhooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "jellyseerr"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "jellyseerr"
 additional_env_files = ["/etc/komodo/domain.env"]
 
@@ -166,10 +142,7 @@ tags = ["holmie", "ununhooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "kiwix"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "kiwix"
 additional_env_files = ["/etc/komodo/domain.env"]
 
@@ -181,10 +154,7 @@ tags = ["holmie", "ununhooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "navidrome"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "navidrome"
 additional_env_files = ["/etc/komodo/domain.env"]
 
@@ -196,10 +166,7 @@ tags = ["holmie", "ununhooked", "criticality: 3"]
 [stack.config]
 server = "holmie"
 project_name = "netalertx"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "netalertx"
 additional_env_files = ["/etc/komodo/domain.env"]
 
@@ -211,10 +178,7 @@ tags = ["holmie", "ununhooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "nextcloud"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "nextcloud"
 additional_env_files = ["/etc/komodo/domain.env"]
 
@@ -226,10 +190,7 @@ tags = ["holmie", "ununhooked", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "ntfy"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "ntfy"
 additional_env_files = ["/etc/komodo/domain.env"]
 
@@ -241,10 +202,7 @@ tags = ["holmie", "ununhooked", "criticality: 4", "ephemoral"]
 [stack.config]
 server = "holmie"
 project_name = "portainer"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "portainer"
 additional_env_files = ["/etc/komodo/domain.env"]
 
@@ -291,10 +249,7 @@ tags = ["holmie", "ununhooked", "criticality: 4", "ephemoral"]
 [stack.config]
 server = "holmie"
 project_name = "scrutiny"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "scrutiny"
 additional_env_files = ["/etc/komodo/domain.env"]
 
@@ -306,10 +261,7 @@ tags = ["holmie", "ununhooked", "criticality: 4", "ephemoral"]
 [stack.config]
 server = "holmie"
 project_name = "stirlingpdf"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "stirlingpdf"
 additional_env_files = ["/etc/komodo/domain.env"]
 
@@ -321,10 +273,7 @@ tags = ["holmie", "ununhooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "syncthing"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "syncthing"
 additional_env_files = ["/etc/komodo/domain.env"]
 
@@ -336,10 +285,7 @@ tags = ["holmie", "ununhooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "uptime-kuma"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "uptime-kuma"
 additional_env_files = ["/etc/komodo/domain.env"]
 
@@ -351,10 +297,7 @@ tags = ["holmie", "ununhooked", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "vaultwarden"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "vaultwarden"
 additional_env_files = ["/etc/komodo/domain.env"]
 
@@ -381,10 +324,7 @@ tags = ["holmie", "ununhooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "hoodik"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "hoodik"
 additional_env_files = ["/etc/komodo/domain.env"]
 
@@ -459,10 +399,7 @@ tags = ["holmie", "ununhooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "motioneye"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "motioneye"
 additional_env_files = ["/etc/komodo/domain.env"]
 
@@ -486,10 +423,7 @@ tags = ["holmie", "ununhooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "searxng"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "searxng"
 additional_env_files = ["/etc/komodo/domain.env"]
 
@@ -501,10 +435,7 @@ tags = ["holmie", "ununhooked", "criticality: 5", "ephemoral"]
 [stack.config]
 server = "holmie"
 project_name = "speedtest"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "speedtest"
 additional_env_files = ["/etc/komodo/domain.env"]
 
@@ -516,10 +447,7 @@ tags = ["holmie", "ununhooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "linkwarden"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "linkwarden"
 additional_env_files = ["/etc/komodo/domain.env"]
 
@@ -576,10 +504,7 @@ tags = ["holmie", "ununhooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "lubelogger"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "lubelogger"
 additional_env_files = ["/etc/komodo/domain.env"]
 
@@ -666,10 +591,7 @@ tags = ["holmie", "ununhooked", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "homepage"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "homepage"
 additional_env_files = ["/etc/komodo/domain.env"]
 
@@ -711,10 +633,7 @@ tags = ["holmie", "ununhooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "pinchflat-holmie"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "pinchflat"
 additional_env_files = ["/etc/komodo/domain.env"]
 
@@ -727,10 +646,7 @@ tags = ["holmie", "ununhooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "factorio-holmie"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "factorio"
 additional_env_files = ["/etc/komodo/domain.env"]
 
@@ -742,10 +658,7 @@ tags = ["holmie", "ununhooked", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "anubis-holmie"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "anubis"
 additional_env_files = ["/etc/komodo/domain.env"]
 
@@ -757,10 +670,7 @@ tags = ["holmie", "unhooked", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "it-tools-holmie"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "it-tools"
 additional_env_files = ["/etc/komodo/domain.env"]
 
