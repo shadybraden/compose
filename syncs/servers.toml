@@ -1,5 +1,6 @@
 [[server]]
 name = "holmie"
+description = "the main server"
 tags = ["holmie"]
 [server.config]
 address = "https://periphery.holmlab.org"
