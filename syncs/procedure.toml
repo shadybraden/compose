@@ -99,6 +99,13 @@ executions = [
 name = "webhook_sync_holmie"
 
 [[procedure.config.stage]]
+name = "sleep"
+enabled = true
+executions = [
+  { execution.type = "Sleep", execution.params.duration_ms = 500, enabled = true }
+]
+
+[[procedure.config.stage]]
 name = "git pull"
 enabled = true
 executions = [
