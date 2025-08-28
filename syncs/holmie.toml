@@ -179,18 +179,6 @@ additional_env_files = ["/etc/komodo/domain.env"]
 ##
 
 [[stack]]
-name = "portainer"
-tags = ["holmie", "unhooked", "criticality: 4", "ephemoral"]
-[stack.config]
-server = "holmie"
-project_name = "portainer"
-linked_repo = "compose_main"
-run_directory = "portainer"
-additional_env_files = ["/etc/komodo/domain.env"]
-
-##
-
-[[stack]]
 name = "proxy"
 tags = ["holmie", "unhooked", "criticality: 1", "ephemoral"]
 [stack.config]
