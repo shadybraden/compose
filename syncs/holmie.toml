@@ -224,10 +224,7 @@ tags = ["holmie", "unhooked", "criticality: 4", "ephemoral"]
 [stack.config]
 server = "holmie"
 project_name = "renovate"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "renovate"
 ignore_services = ["renovate"] # this is so it shows nicer in the dashboard
 additional_env_files = ["/etc/komodo/domain.env"]
