@@ -21,6 +21,17 @@ resource_path = ["syncs/servers.toml"]
 ##
 
 [[resource_sync]]
+name = "repo"
+tags = ["repo","unhooked"]
+[resource_sync.config]
+git_provider = "git.holmlab.org"
+repo = "shady/compose"
+git_account = "komodo"
+resource_path = ["syncs/repo.toml"]
+
+##
+
+[[resource_sync]]
 name = "holmie"
 tags = ["holmie","hooked"]
 [resource_sync.config]
