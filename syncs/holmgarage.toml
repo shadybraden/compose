@@ -121,10 +121,7 @@ tags = ["holmgarage", "unhooked", "criticality: 4"]
 [stack.config]
 server = "holmgarage"
 project_name = "navidrome-holmgarage"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "navidrome"
 additional_env_files = ["/etc/komodo/domain.env"]
 
