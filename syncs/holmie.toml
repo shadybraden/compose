@@ -28,10 +28,7 @@ tags = ["holmie", "unhooked", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "arr"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "arr"
 additional_env_files = ["/etc/komodo/domain.env"]
 
