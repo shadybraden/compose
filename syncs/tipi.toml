@@ -1,6 +1,6 @@
 [[stack]]
 name = "beszelagent-tipi"
-tags = ["tipi", "unhooked", "criticality: 3"]
+tags = ["tipi", "criticality: 3"]
 [stack.config]
 server = "tipi"
 project_name = "beszelagent-tipi"
@@ -12,7 +12,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "nextcloud-tipi"
-tags = ["tipi", "unhooked", "criticality: 2"]
+tags = ["tipi", "criticality: 2"]
 [stack.config]
 server = "tipi"
 project_name = "nextcloud-tipi"

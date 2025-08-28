@@ -9,7 +9,7 @@ TOML_BLOCK=$(cat <<EOF
 
 [[stack]]
 name = "$SERVICE-$SERVERNAME"
-tags = ["$SERVERNAME", "unhooked", "criticality: 1"]
+tags = ["$SERVERNAME", "criticality: 1"]
 [stack.config]
 server = "$SERVERNAME"
 project_name = "$SERVICE-$SERVERNAME"

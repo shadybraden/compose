@@ -1,6 +1,6 @@
 [[stack]]
 name = "portainer-skynet"
-tags = ["skynet","unhooked"]
+tags = ["skynet"]
 [stack.config]
 server = "skynet"
 project_name = "portainer"
@@ -11,7 +11,7 @@ run_directory = "portainer"
 
 [[stack]]
 name = "filebrowser-skynet"
-tags = ["skynet","unhooked"]
+tags = ["skynet"]
 [stack.config]
 server = "skynet"
 project_name = "filebrowser-skynet"
@@ -22,7 +22,7 @@ run_directory = "filebrowser"
 
 [[stack]]
 name = "plex"
-tags = ["skynet","unhooked"]
+tags = ["skynet"]
 [stack.config]
 server = "skynet"
 project_name = "plex"
@@ -33,7 +33,7 @@ run_directory = "plex"
 
 [[stack]]
 name = "syncthing-skynet"
-tags = ["skynet","unhooked"]
+tags = ["skynet"]
 [stack.config]
 server = "skynet"
 project_name = "syncthing-skynet"
@@ -44,7 +44,7 @@ run_directory = "syncthing"
 
 [[stack]]
 name = "beszelagent-skynet"
-tags = ["skynet", "unhooked", "criticality: 3"]
+tags = ["skynet", "criticality: 3"]
 [stack.config]
 server = "skynet"
 project_name = "beszelagent-skynet"
