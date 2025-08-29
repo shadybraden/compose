@@ -378,7 +378,7 @@ env_file_path = "/etc/komodo/env/traefik.env"
 
 [[stack]]
 name = "motioneye"
-tags = ["holmie", "criticality: 4"]
+tags = ["holmie", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "motioneye"
