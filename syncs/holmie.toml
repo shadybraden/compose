@@ -7,6 +7,7 @@ project_name = "adsb"
 linked_repo = "compose_main"
 run_directory = "adsb"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/adsb.env"
 
 ##
 
@@ -19,6 +20,7 @@ project_name = "ai"
 linked_repo = "compose_main"
 run_directory = "ai"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/ai.env"
 
 ##
 
@@ -44,6 +46,7 @@ project_name = "audiobookshelf"
 linked_repo = "compose_main"
 run_directory = "audiobookshelf"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/audiobookshelf.env"
 
 ##
 
@@ -56,6 +59,7 @@ project_name = "filebrowser"
 linked_repo = "compose_main"
 run_directory = "filebrowser"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/filebrowser.env"
 
 ##
 
@@ -68,6 +72,7 @@ project_name = "freshrss"
 linked_repo = "compose_main"
 run_directory = "freshrss"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/freshrss.env"
 
 ##
 
@@ -80,6 +85,7 @@ project_name = "homeassistant"
 linked_repo = "compose_main"
 run_directory = "homeassistant"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/homeassistant.env"
 
 ##
 
@@ -92,6 +98,7 @@ project_name = "immich"
 linked_repo = "compose_main"
 run_directory = "immich"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/immich.env"
 
 ##
 
@@ -104,6 +111,7 @@ project_name = "jellyfin"
 linked_repo = "compose_main"
 run_directory = "jellyfin"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/jellyfin.env"
 
 ##
 
@@ -116,6 +124,7 @@ project_name = "jellyseerr"
 linked_repo = "compose_main"
 run_directory = "jellyseerr"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/jellyseerr.env"
 
 ##
 
@@ -128,6 +137,7 @@ project_name = "kiwix"
 linked_repo = "compose_main"
 run_directory = "kiwix"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/kiwix.env"
 
 ##
 
@@ -140,6 +150,7 @@ project_name = "navidrome"
 linked_repo = "compose_main"
 run_directory = "navidrome"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/navidrome.env"
 
 ##
 
@@ -152,6 +163,7 @@ project_name = "netalertx"
 linked_repo = "compose_main"
 run_directory = "netalertx"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/netalertx.env"
 
 ##
 
@@ -164,6 +176,7 @@ project_name = "nextcloud"
 linked_repo = "compose_main"
 run_directory = "nextcloud"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/nextcloud.env"
 
 ##
 
@@ -176,6 +189,7 @@ project_name = "ntfy"
 linked_repo = "compose_main"
 run_directory = "ntfy"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/ntfy.env"
 
 ##
 
@@ -192,6 +206,7 @@ post_deploy.command = """
 # curl -H "Priority: min" -d "proxy ip now in: $(curl --socks5 192.168.50.65:1080 ifconfig.co/country)" https://ntfy.holmlab.org/ip6yoEKIni20WOCTzG8hw4E8zRsdpk
 """
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/proxy.env"
 
 ##
 
@@ -205,6 +220,7 @@ linked_repo = "compose_main"
 run_directory = "renovate"
 ignore_services = ["renovate"] # this is so it shows nicer in the dashboard
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/renovate.env"
 
 ##
 
@@ -217,6 +233,7 @@ project_name = "scrutiny"
 linked_repo = "compose_main"
 run_directory = "scrutiny"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/scrutiny.env"
 
 ##
 
@@ -229,6 +246,7 @@ project_name = "stirlingpdf"
 linked_repo = "compose_main"
 run_directory = "stirlingpdf"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/stirlingpdf.env"
 
 ##
 
@@ -241,6 +259,7 @@ project_name = "syncthing"
 linked_repo = "compose_main"
 run_directory = "syncthing"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/syncthing.env"
 
 ##
 
@@ -253,6 +272,7 @@ project_name = "uptime-kuma"
 linked_repo = "compose_main"
 run_directory = "uptime-kuma"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/uptime-kuma.env"
 
 ##
 
@@ -265,6 +285,7 @@ project_name = "vaultwarden"
 linked_repo = "compose_main"
 run_directory = "vaultwarden"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/vaultwarden.env"
 
 ##
 
@@ -277,6 +298,7 @@ project_name = "wireguard"
 linked_repo = "compose_main"
 run_directory = "wireguard"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/wireguard.env"
 
 ##
 
@@ -289,6 +311,7 @@ project_name = "hoodik"
 linked_repo = "compose_main"
 run_directory = "hoodik"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/hoodik.env"
 
 ##
 
@@ -310,6 +333,7 @@ pre_deploy.command = """
 """
 build_extra_args = []
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/skywatch.env"
 
 ##
 
@@ -335,6 +359,7 @@ project_name = "forgejo"
 linked_repo = "compose_main"
 run_directory = "forgejo"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/forgejo.env"
 
 ##
 
@@ -347,6 +372,7 @@ project_name = "traefik"
 linked_repo = "compose_main"
 run_directory = "traefik"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/traefik.env"
 
 ##
 
@@ -359,6 +385,7 @@ project_name = "motioneye"
 linked_repo = "compose_main"
 run_directory = "motioneye"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/motioneye.env"
 
 ##
 
@@ -371,6 +398,7 @@ project_name = "mealie"
 linked_repo = "compose_main"
 run_directory = "mealie"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/mealie.env"
 
 ##
 
@@ -383,6 +411,7 @@ project_name = "searxng"
 linked_repo = "compose_main"
 run_directory = "searxng"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/searxng.env"
 
 ##
 
@@ -395,6 +424,7 @@ project_name = "speedtest"
 linked_repo = "compose_main"
 run_directory = "speedtest"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/speedtest.env"
 
 ##
 
@@ -407,6 +437,7 @@ project_name = "linkwarden"
 linked_repo = "compose_main"
 run_directory = "linkwarden"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/linkwarden.env"
 
 ##
 
@@ -419,6 +450,7 @@ project_name = "wedding-share"
 linked_repo = "compose_main"
 run_directory = "wedding-share"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/wedding-share.env"
 
 ##
 
@@ -431,6 +463,7 @@ project_name = "silverbullet"
 linked_repo = "compose_main"
 run_directory = "silverbullet"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/silverbullet.env"
 
 ##
 
@@ -443,6 +476,7 @@ project_name = "dumbassets"
 linked_repo = "compose_main"
 run_directory = "dumbassets"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/dumbassets.env"
 
 ##
 
@@ -455,6 +489,7 @@ project_name = "lubelogger"
 linked_repo = "compose_main"
 run_directory = "lubelogger"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/lubelogger.env"
 
 ##
 
@@ -467,6 +502,7 @@ project_name = "reactiveresume"
 linked_repo = "compose_main"
 run_directory = "reactiveresume"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/reactiveresume.env"
 
 ##
 
@@ -479,6 +515,7 @@ project_name = "beszel"
 linked_repo = "compose_main"
 run_directory = "beszel"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/beszel.env"
 
 ##
 
@@ -504,6 +541,7 @@ project_name = "loggifly"
 linked_repo = "compose_main"
 run_directory = "loggifly"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/loggifly.env"
 
 ##
 
@@ -516,6 +554,7 @@ project_name = "tinyauth"
 linked_repo = "compose_main"
 run_directory = "tinyauth"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/tinyauth.env"
 
 ##
 
@@ -528,6 +567,7 @@ project_name = "homepage"
 linked_repo = "compose_main"
 run_directory = "homepage"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/homepage.env"
 
 ##
 
@@ -540,6 +580,7 @@ project_name = "cloudflared"
 linked_repo = "compose_main"
 run_directory = "cloudflared"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/cloudflared.env"
 
 ##
 
@@ -552,6 +593,7 @@ project_name = "plex-holmie"
 linked_repo = "compose_main"
 run_directory = "plex"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/plex-holmie.env"
 
 ##
 
@@ -564,6 +606,7 @@ project_name = "pinchflat-holmie"
 linked_repo = "compose_main"
 run_directory = "pinchflat"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/pinchflat-holmie.env"
 
 ##
 
@@ -577,6 +620,7 @@ project_name = "factorio-holmie"
 linked_repo = "compose_main"
 run_directory = "factorio"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/factorio-holmie.env"
 
 ##
 
@@ -589,6 +633,7 @@ project_name = "anubis-holmie"
 linked_repo = "compose_main"
 run_directory = "anubis"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/anubis-holmie.env"
 
 ##
 
@@ -601,6 +646,7 @@ project_name = "it-tools-holmie"
 linked_repo = "compose_main"
 run_directory = "it-tools"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/it-tools-holmie.env"
 
 ##
 
@@ -613,3 +659,4 @@ project_name = "actualbudget-holmie"
 linked_repo = "compose_main"
 run_directory = "actualbudget"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/actualbudget-holmie.env"
