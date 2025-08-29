@@ -148,6 +148,7 @@ services:
     volumes:
       - /data/config_storage/arr/qbittorrent:/config
       - /mnt/4tb/torrents:/downloads/torrents
+      - /mnt/4tb:/allMedia
     restart: on-failure
     network_mode: service:gluetun_arr
     depends_on:
