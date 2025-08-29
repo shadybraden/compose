@@ -2,9 +2,7 @@
 name = "syncs"
 tags = ["syncs"]
 [resource_sync.config]
-git_provider = "git.holmlab.org"
-repo = "shady/compose"
-git_account = "komodo"
+linked_repo = "compose_main"
 resource_path = ["syncs/syncs.toml"]
 
 ##
