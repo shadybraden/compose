@@ -495,7 +495,7 @@ env_file_path = "/etc/komodo/env/lubelogger.env"
 
 [[stack]]
 name = "reactiveresume"
-tags = ["holmie", "env", "criticality: 5"]
+tags = ["holmie", "env", "ad-hoc", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "reactiveresume"
