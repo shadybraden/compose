@@ -320,7 +320,10 @@ server = "holmie"
 project_name = "pihole"
 linked_repo = "compose_main"
 run_directory = "pihole"
-additional_env_files = ["/etc/komodo/domain.env, /etc/komodo/env/pihole.env"]
+additional_env_files = [
+  "/etc/komodo/domain.env",
+  "/etc/komodo/env/pihole.env"
+]
 
 ##
 
