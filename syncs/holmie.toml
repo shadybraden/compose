@@ -30,7 +30,10 @@ server = "holmie"
 project_name = "arr"
 linked_repo = "compose_main"
 run_directory = "arr"
-additional_env_files = ["/etc/komodo/domain.env"]
+additional_env_files = [
+  "/etc/komodo/domain.env",
+  "/etc/komodo/env/arr.env"
+]
 
 ##
 
