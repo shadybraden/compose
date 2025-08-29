@@ -1,6 +1,6 @@
 [[stack]]
 name = "portainer-skynet"
-tags = ["skynet"]
+tags = ["skynet", "criticality: 5"]
 [stack.config]
 server = "skynet"
 project_name = "portainer"
@@ -11,7 +11,7 @@ run_directory = "portainer"
 
 [[stack]]
 name = "filebrowser-skynet"
-tags = ["skynet"]
+tags = ["skynet", "criticality: 5"]
 [stack.config]
 server = "skynet"
 project_name = "filebrowser-skynet"
@@ -21,19 +21,21 @@ run_directory = "filebrowser"
 ##
 
 [[stack]]
-name = "plex"
-tags = ["skynet"]
+name = "plex-skynet"
+tags = ["skynet", "env", "criticality: 1"]
 [stack.config]
 server = "skynet"
-project_name = "plex"
+project_name = "plex-skynet"
 linked_repo = "compose_main"
 run_directory = "plex"
+additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/plex-skynet.env"
 
 ##
 
 [[stack]]
 name = "syncthing-skynet"
-tags = ["skynet"]
+tags = ["skynet", "criticality: 3"]
 [stack.config]
 server = "skynet"
 project_name = "syncthing-skynet"
@@ -44,9 +46,11 @@ run_directory = "syncthing"
 
 [[stack]]
 name = "beszelagent-skynet"
-tags = ["skynet", "criticality: 3"]
+tags = ["skynet", "env", "criticality: 3"]
 [stack.config]
 server = "skynet"
 project_name = "beszelagent-skynet"
 linked_repo = "compose_main"
 run_directory = "beszelagent"
+additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/beszelagent-skynet.env"

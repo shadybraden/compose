@@ -19,6 +19,7 @@ repo = "shady/compose"
 branch = "main"
 run_directory = "$SERVICE"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/$SERVICE-$SERVERNAME.env"
 EOF
 )
 

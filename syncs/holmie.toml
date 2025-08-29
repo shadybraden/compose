@@ -1,6 +1,6 @@
 [[stack]]
 name = "adsb"
-tags = ["holmie", "criticality: 3", "ephemoral"]
+tags = ["holmie", "env", "criticality: 3", "ephemoral"]
 [stack.config]
 server = "holmie"
 project_name = "adsb"
@@ -26,7 +26,7 @@ env_file_path = "/etc/komodo/env/ai.env"
 
 [[stack]]
 name = "arr"
-tags = ["holmie", "criticality: 4"]
+tags = ["holmie", "env", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "arr"
@@ -91,7 +91,7 @@ env_file_path = "/etc/komodo/env/homeassistant.env"
 
 [[stack]]
 name = "immich"
-tags = ["holmie", "criticality: 2"]
+tags = ["holmie", "env", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "immich"
@@ -195,7 +195,7 @@ env_file_path = "/etc/komodo/env/ntfy.env"
 
 [[stack]]
 name = "proxy"
-tags = ["holmie", "criticality: 1", "ephemoral"]
+tags = ["holmie", "env", "criticality: 1", "ephemoral"]
 [stack.config]
 server = "holmie"
 project_name = "proxy"
@@ -212,7 +212,7 @@ env_file_path = "/etc/komodo/env/proxy.env"
 
 [[stack]]
 name = "renovate"
-tags = ["holmie", "criticality: 4", "ephemoral"]
+tags = ["holmie", "env", "criticality: 4", "ephemoral"]
 [stack.config]
 server = "holmie"
 project_name = "renovate"
@@ -291,7 +291,7 @@ env_file_path = "/etc/komodo/env/vaultwarden.env"
 
 [[stack]]
 name = "wireguard"
-tags = ["holmie", "criticality: 1"]
+tags = ["holmie", "env", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "wireguard"
@@ -339,7 +339,7 @@ env_file_path = "/etc/komodo/env/skywatch.env"
 
 [[stack]]
 name = "pihole"
-tags = ["holmie", "criticality: 1"]
+tags = ["holmie", "env", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "pihole"
@@ -430,7 +430,7 @@ env_file_path = "/etc/komodo/env/speedtest.env"
 
 [[stack]]
 name = "linkwarden"
-tags = ["holmie", "criticality: 5"]
+tags = ["holmie", "env", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "linkwarden"
@@ -443,7 +443,7 @@ env_file_path = "/etc/komodo/env/linkwarden.env"
 
 [[stack]]
 name = "wedding-share"
-tags = ["holmie", "criticality: 5"]
+tags = ["holmie", "env", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "wedding-share"
@@ -456,7 +456,7 @@ env_file_path = "/etc/komodo/env/wedding-share.env"
 
 [[stack]]
 name = "silverbullet"
-tags = ["holmie", "criticality: 5"]
+tags = ["holmie", "env", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "silverbullet"
@@ -469,7 +469,7 @@ env_file_path = "/etc/komodo/env/silverbullet.env"
 
 [[stack]]
 name = "dumbassets"
-tags = ["holmie", "criticality: 5"]
+tags = ["holmie", "env", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "dumbassets"
@@ -495,7 +495,7 @@ env_file_path = "/etc/komodo/env/lubelogger.env"
 
 [[stack]]
 name = "reactiveresume"
-tags = ["holmie", "criticality: 5"]
+tags = ["holmie", "env", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "reactiveresume"
@@ -521,7 +521,7 @@ env_file_path = "/etc/komodo/env/beszel.env"
 
 [[stack]]
 name = "beszelagent-holmie"
-tags = ["holmie", "criticality: 3"]
+tags = ["holmie", "env", "criticality: 3"]
 [stack.config]
 server = "holmie"
 project_name = "beszelagent-holmie"
@@ -534,7 +534,7 @@ env_file_path = "/etc/komodo/env/beszelagent-holmie.env"
 
 [[stack]]
 name = "loggifly"
-tags = ["holmie", "criticality: 3"]
+tags = ["holmie", "env", "criticality: 3"]
 [stack.config]
 server = "holmie"
 project_name = "loggifly"
@@ -547,7 +547,7 @@ env_file_path = "/etc/komodo/env/loggifly.env"
 
 [[stack]]
 name = "tinyauth"
-tags = ["holmie", "criticality: 1"]
+tags = ["holmie", "env", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "tinyauth"
@@ -573,7 +573,7 @@ env_file_path = "/etc/komodo/env/homepage.env"
 
 [[stack]]
 name = "cloudflared"
-tags = ["holmie", "criticality: 5"]
+tags = ["holmie", "env", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "cloudflared"
@@ -586,7 +586,7 @@ env_file_path = "/etc/komodo/env/cloudflared.env"
 
 [[stack]]
 name = "plex-holmie"
-tags = ["holmie","criticality: 5"]
+tags = ["holmie", "env", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "plex-holmie"

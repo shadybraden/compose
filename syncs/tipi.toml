@@ -1,12 +1,13 @@
 [[stack]]
 name = "beszelagent-tipi"
-tags = ["tipi", "criticality: 3"]
+tags = ["tipi", "env", "criticality: 3"]
 [stack.config]
 server = "tipi"
 project_name = "beszelagent-tipi"
 linked_repo = "compose_main"
 run_directory = "beszelagent"
 additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/beszelagent-tipi.env"
 
 ##
 
