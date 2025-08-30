@@ -8,8 +8,6 @@ services:
       - /mnt/4tb/immich/UPLOAD_LOCATION/UPLOAD_LOCATION:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
       - /mnt/4tb/immich/external_libraries:/mnt/4tb/immich/external_libraries
-    env_file:
-      - .env
     depends_on:
       - redis
       - database
@@ -46,8 +44,6 @@ services:
     image: ghcr.io/immich-app/immich-machine-learning:v1.139.4
     volumes:
       - model-cache:/cache
-    env_file:
-      - .env
     restart: on-failure
     networks:
       - intranet
