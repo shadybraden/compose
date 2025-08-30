@@ -92,13 +92,7 @@ name = "sleep"
 enabled = true
 executions = [
   { execution.type = "Sleep", execution.params.duration_ms = 500, enabled = true },
-  { execution.type = "PullRepo", execution.params.repo = "compose_main", enabled = true }
-]
-
-[[procedure.config.stage]]
-name = "sync syncs"
-enabled = true
-executions = [
+  { execution.type = "PullRepo", execution.params.repo = "compose_main", enabled = true },
   { execution.type = "RunSync", execution.params.sync = "alert", enabled = true },
   { execution.type = "RunSync", execution.params.sync = "builders", enabled = true },
   { execution.type = "RunSync", execution.params.sync = "builds", enabled = true },
