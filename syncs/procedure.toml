@@ -7,8 +7,8 @@ config.failure_alert = false
 name = "Run Syncs"
 enabled = true
 executions = [
-  { execution.type = "RunProcedure", execution.params.procedure = "webhook_syncs", enabled = true },
-  { execution.type = "RunProcedure", execution.params.procedure = "webhook_stacks_main", enabled = true }
+  { execution.type = "RunProcedure", execution.params.procedure = "run_syncs", enabled = true },
+  { execution.type = "RunProcedure", execution.params.procedure = "deployOnChange_main", enabled = true }
 ]
 
 ##
@@ -73,7 +73,7 @@ executions = [
 ##
 
 [[procedure]]
-name = "webhook_stacks_main"
+name = "deployOnChange_main"
 
 [[procedure.config.stage]]
 name = "pull and deploy if changed"
@@ -87,7 +87,7 @@ executions = [
 ##
 
 [[procedure]]
-name = "webhook_syncs"
+name = "run_syncs"
 
 [[procedure.config.stage]]
 name = "sleep"
