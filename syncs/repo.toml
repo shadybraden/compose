@@ -2,7 +2,6 @@
 name = "compose_main"
 [repo.config]
 server = "holmie"
-builder = "holmie"
 git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
