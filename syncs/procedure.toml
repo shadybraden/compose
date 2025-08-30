@@ -93,7 +93,6 @@ name = "webhook_syncs"
 name = "sleep"
 enabled = true
 executions = [
-  { execution.type = "Sleep", execution.params.duration_ms = 500, enabled = true },
   { execution.type = "PullRepo", execution.params.repo = "compose_main", enabled = true },
   { execution.type = "RunSync", execution.params.sync = "syncs", enabled = true },
   { execution.type = "RunSync", execution.params.sync = "procedure", enabled = true },
