@@ -7,6 +7,7 @@ config.failure_alert = false
 name = "Run Syncs"
 enabled = true
 executions = [
+  { execution.type = "PullRepo", execution.params.repo = "compose_main", enabled = true },
   { execution.type = "RunProcedure", execution.params.procedure = "run_syncs", enabled = true },
   { execution.type = "RunProcedure", execution.params.procedure = "deployOnChange_main", enabled = true }
 ]
@@ -79,7 +80,6 @@ name = "deployOnChange_main"
 name = "pull and deploy if changed"
 enabled = true
 executions = [
-  { execution.type = "PullRepo", execution.params.repo = "compose_main", enabled = true },
   { execution.type = "BatchPullStack", execution.params.pattern = "^(?!skynet$).*", enabled = true },
   { execution.type = "BatchDeployStackIfChanged", execution.params.pattern = "*", enabled = true }
 ]
