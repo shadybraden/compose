@@ -1,4 +1,24 @@
 [[procedure]]
+name = "webhooks"
+description = "The one webhook to rule them all"
+
+[[procedure.config.stage]]
+name = "Run Syncs"
+enabled = true
+executions = [
+  { execution.type = "RunProcedure", execution.params.procedure = "webhook_syncs", enabled = true }
+]
+
+[[procedure.config.stage]]
+name = "Run Stacks"
+enabled = true
+executions = [
+  { execution.type = "RunProcedure", execution.params.procedure = "webhook_stacks_main", enabled = true }
+]
+
+##
+
+[[procedure]]
 name = "schedule_renovate"
 config.webhook_enabled = false
 config.schedule_format = "Cron"
@@ -71,7 +91,7 @@ executions = [
 name = "DeployOnChanges"
 enabled = true
 executions = [
-  { execution.type = "BatchDeployStackIfChanged", execution.params.pattern = "silverbullet", enabled = true }
+  { execution.type = "BatchDeployStackIfChanged", execution.params.pattern = "*", enabled = true }
 ]
 
 ##
