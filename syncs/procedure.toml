@@ -1,6 +1,7 @@
 [[procedure]]
 name = "webhooks"
 description = "The one webhook to rule them all"
+config.failure_alert = false
 
 [[procedure.config.stage]]
 name = "Run Syncs"
