@@ -7,6 +7,7 @@ config.failure_alert = false
 name = "Run Syncs"
 enabled = true
 executions = [
+  { execution.type = "RunSync", execution.params.sync = "procedure", enabled = true },
   { execution.type = "RunProcedure", execution.params.procedure = "run_syncs", enabled = true },
   { execution.type = "RunProcedure", execution.params.procedure = "deployOnChange_main", enabled = true }
 ]
