@@ -81,7 +81,7 @@ name = "pull and deploy if changed"
 enabled = true
 executions = [
   { execution.type = "BatchPullStack", execution.params.pattern = "^(?!skynet$).*", enabled = true },
-  { execution.type = "BatchDeployStackIfChanged", execution.params.pattern = "*", enabled = true }
+  { execution.type = "BatchDeployStackIfChanged", execution.params.pattern = "silverbullet", enabled = true }
 ]
 
 ##
