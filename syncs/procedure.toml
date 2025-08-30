@@ -78,13 +78,7 @@ name = "webhook_stacks_main"
 name = "git pull main"
 enabled = true
 executions = [
-  { execution.type = "BatchPullStack", execution.params.pattern = "^(?!skynet$).*", enabled = true }
-]
-
-[[procedure.config.stage]]
-name = "DeployOnChanges"
-enabled = true
-executions = [
+  { execution.type = "BatchPullStack", execution.params.pattern = "^(?!skynet$).*", enabled = true },
   { execution.type = "BatchDeployStackIfChanged", execution.params.pattern = "*", enabled = true }
 ]
 
@@ -97,13 +91,7 @@ name = "webhook_syncs"
 name = "sleep"
 enabled = true
 executions = [
-  { execution.type = "Sleep", execution.params.duration_ms = 500, enabled = true }
-]
-
-[[procedure.config.stage]]
-name = "git pull"
-enabled = true
-executions = [
+  { execution.type = "Sleep", execution.params.duration_ms = 500, enabled = true },
   { execution.type = "PullRepo", execution.params.repo = "compose_main", enabled = true }
 ]
 
