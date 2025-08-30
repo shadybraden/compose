@@ -6,13 +6,7 @@ description = "The one webhook to rule them all"
 name = "Run Syncs"
 enabled = true
 executions = [
-  { execution.type = "RunProcedure", execution.params.procedure = "webhook_syncs", enabled = true }
-]
-
-[[procedure.config.stage]]
-name = "Run Stacks"
-enabled = true
-executions = [
+  { execution.type = "RunProcedure", execution.params.procedure = "webhook_syncs", enabled = true },
   { execution.type = "RunProcedure", execution.params.procedure = "webhook_stacks_main", enabled = true }
 ]
 
@@ -84,7 +78,7 @@ name = "webhook_stacks_main"
 name = "git pull main"
 enabled = true
 executions = [
-  { execution.type = "BatchPullStack", execution.params.pattern = "^(?!skynet$).*", enabled = true }
+  { execution.type = "BatchPullStack", execution.params.pattern = "*", enabled = true }
 ]
 
 [[procedure.config.stage]]
