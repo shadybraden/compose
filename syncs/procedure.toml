@@ -78,7 +78,7 @@ name = "webhook_stacks_main"
 name = "git pull main"
 enabled = true
 executions = [
-  { execution.type = "BatchPullStack", execution.params.pattern = "*", enabled = true }
+  { execution.type = "BatchPullStack", execution.params.pattern = "^(?!skynet$).*", enabled = true }
 ]
 
 [[procedure.config.stage]]
