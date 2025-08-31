@@ -226,7 +226,7 @@ env_file_path = "/etc/komodo/env/renovate.env"
 
 [[stack]]
 name = "scrutiny"
-tags = ["holmie", "criticality: 4", "ephemoral"]
+tags = ["holmie", "criticality: 5", "ephemoral"]
 [stack.config]
 server = "holmie"
 project_name = "scrutiny"
@@ -239,7 +239,7 @@ env_file_path = "/etc/komodo/env/scrutiny.env"
 
 [[stack]]
 name = "stirlingpdf"
-tags = ["holmie", "criticality: 4", "ephemoral"]
+tags = ["holmie", "criticality: 5", "ephemoral"]
 [stack.config]
 server = "holmie"
 project_name = "stirlingpdf"
@@ -652,7 +652,7 @@ env_file_path = "/etc/komodo/env/it-tools-holmie.env"
 
 [[stack]]
 name = "actualbudget-holmie"
-tags = ["holmie", "criticality: 1"]
+tags = ["holmie", "criticality: 3"]
 [stack.config]
 server = "holmie"
 project_name = "actualbudget-holmie"
