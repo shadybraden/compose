@@ -443,7 +443,7 @@ env_file_path = "/etc/komodo/env/linkwarden.env"
 
 [[stack]]
 name = "wedding-share"
-tags = ["holmie", "env", "criticality: 5"]
+tags = ["holmie", "env", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "wedding-share"
@@ -573,7 +573,7 @@ env_file_path = "/etc/komodo/env/homepage.env"
 
 [[stack]]
 name = "cloudflared"
-tags = ["holmie", "env", "criticality: 5"]
+tags = ["holmie", "env", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "cloudflared"
