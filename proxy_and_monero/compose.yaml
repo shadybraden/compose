@@ -29,7 +29,7 @@ services:
     deploy: # for 16x cores, 8 uses 50% of each
         resources:
             limits:
-                cpus: 4
+                cpus: 10
     image: miningcontainers/xmrig:6.22.1
     container_name: xmrig
     command: -k --tls -o pool.hashvault.pro:443 -u ${monero_address} --donate-level 1 --tls --tls-fingerprint 420c7850e09b7c0bdcf748a7da9eb3647daf8515718f36d9ccfdd6b9ff834b14
