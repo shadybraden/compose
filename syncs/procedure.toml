@@ -7,9 +7,7 @@ config.failure_alert = false
 name = "Pull"
 enabled = true
 executions = [
-  { execution.type = "PullRepo", execution.params.repo = "compose_main", enabled = true },
-  { execution.type = "RunProcedure", execution.params.procedure = "run_syncs", enabled = false },
-  { execution.type = "RunProcedure", execution.params.procedure = "deployOnChange_main", enabled = false }
+  { execution.type = "PullRepo", execution.params.repo = "compose_main", enabled = true }
 ]
 
 [[procedure.config.stage]]
