@@ -6,3 +6,14 @@ git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
 branch = "main"
+
+##
+
+[[repo]]
+name = "compose_test"
+[repo.config]
+server = "holmie"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/compose"
+branch = "test"
