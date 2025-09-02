@@ -11,7 +11,7 @@ build_path = "/etc/komodo/stacks/skywatch/skywatch"
 ##
 
 [[build]]
-name = "build_loggifly"
+name = "build_loggifly-holmie"
 [build.config]
 builder = "holmie"
 image_name = "loggiflyshady"
@@ -20,7 +20,7 @@ repo = "shadybraden/loggifly"
 ##
 
 [[build]]
-name = "build_loggifly"
+name = "build_loggifly-holmgarage"
 [build.config]
 builder = "holmgarage"
 image_name = "loggiflyshady"
