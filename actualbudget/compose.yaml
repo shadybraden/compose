@@ -2,6 +2,7 @@
 services:
   actual_server:
     image: docker.io/actualbudget/actual-server:25.8.0
+    container_name: actual_server
 #    ports:
 #      - '5006:5006'
     environment:
