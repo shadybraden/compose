@@ -8,7 +8,7 @@ services:
     volumes:
       - /data/config_storage/homepage/config:/app/config:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /data/config_storage/compose/dashy/icons:/app/public/images:ro
+      - /data/config_storage/icons:/app/public/images:ro
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true  # helps to increase security
