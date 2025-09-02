@@ -155,8 +155,6 @@ services:
       - TZ=America/New_York
     volumes:
       - /data/config_storage/autobrr/config:/config
-    ports:
-      - 7474:7474
     security_opt:
       - no-new-privileges:true  # helps to increase security
     network_mode: service:gluetun_arr
