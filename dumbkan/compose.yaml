@@ -5,8 +5,6 @@ services:
       - .env
     volumes:
       - /data/config_storage/dumbkan:/app/data
-    ports:
-      - '3000:3000'
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
@@ -21,7 +19,7 @@ services:
       - "traefik.http.routers.todo-secure.rule=Host(`todo.${DOMAIN}`)"
       - "traefik.http.routers.todo-secure.tls=true"
       - "traefik.http.routers.todo-secure.service=todo"
-      - "traefik.http.services.todo.loadbalancer.server.port=80"  # port of the service.
+      - "traefik.http.services.todo.loadbalancer.server.port=3000"  # port of the service.
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=Todo"
