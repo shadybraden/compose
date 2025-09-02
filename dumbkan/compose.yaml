@@ -1,8 +1,6 @@
 services:
   dumbkan:
     image: dumbwareio/dumbkan@sha256:3425bfaa2dedae1819b7876d8bfae681d3eac32e567fc392c93b0a8007865d6e
-    env_file:
-      - .env
     volumes:
       - /data/config_storage/dumbkan:/app/data
     security_opt:
