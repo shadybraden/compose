@@ -60,7 +60,7 @@ services:
       - "traefik.http.routers.autobrr-secure.rule=Host(`autobrr.${DOMAIN}`)"
       - "traefik.http.routers.autobrr-secure.tls=true"
       - "traefik.http.routers.autobrr-secure.service=autobrr"
-      - "traefik.http.services.autobrr.loadbalancer.server.port=7474"  # port of the service.
+      - "traefik.http.services.autobrr.loadbalancer.server.port=7475"  # port of the service.
 
   radarr:  # the movie searching part
     image: quay.io/linuxserver.io/radarr:5.26.2
@@ -155,6 +155,8 @@ services:
       - TZ=America/New_York
     volumes:
       - /data/config_storage/autobrr/config:/config
+    ports:
+      - 7475:7474
     security_opt:
       - no-new-privileges:true  # helps to increase security
     network_mode: service:gluetun_arr
