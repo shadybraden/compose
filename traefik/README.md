@@ -58,7 +58,7 @@ networks:
 
 To include something to TinyAuth:
 ```yaml
-      - "traefik.http.routers.SERVICENAME-secure.middlewares=tinyauth"
+      - "traefik.http.routers.SUBDOMAIN-secure.middlewares=tinyauth"
 ```
 
 To use Anubis:
