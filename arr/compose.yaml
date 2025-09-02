@@ -52,6 +52,16 @@ services:
       - "traefik.http.routers.jackett-secure.service=jackett"
       - "traefik.http.services.jackett.loadbalancer.server.port=9117"  # port of the service
 
+      - "traefik.http.routers.autobrr.entrypoints=http"
+      - "traefik.http.routers.autobrr.rule=Host(`autobrr.${DOMAIN}`)"
+      - "traefik.http.middlewares.autobrr-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.autobrr.middlewares=autobrr-https-redirect"
+      - "traefik.http.routers.autobrr-secure.entrypoints=https"
+      - "traefik.http.routers.autobrr-secure.rule=Host(`autobrr.${DOMAIN}`)"
+      - "traefik.http.routers.autobrr-secure.tls=true"
+      - "traefik.http.routers.autobrr-secure.service=autobrr"
+      - "traefik.http.services.autobrr.loadbalancer.server.port=7474"  # port of the service.
+
   radarr:  # the movie searching part
     image: quay.io/linuxserver.io/radarr:5.26.2
     container_name: radarr
@@ -135,6 +145,29 @@ services:
         condition: service_healthy
     security_opt:
       - no-new-privileges:true  # helps to increase security
+
+  autobrr:
+    container_name: autobrr
+    image: ghcr.io/autobrr/autobrr:v1.65.0
+    restart: unless-stopped
+    user: 1000:1000
+    environment:
+      - TZ=America/New_York
+    volumes:
+      - /data/config_storage/autobrr/config:/config
+    ports:
+      - 7474:7474
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    network_mode: service:gluetun_arr
+    depends_on:
+      gluetun_arr:
+        condition: service_healthy
+    labels:
+      - "homepage.group=Other"
+      - "homepage.name=autobrr"
+      - "homepage.icon=/images/autobrr.png"
+      - "homepage.href=https://autobrr.${DOMAIN}/"
 
 # in the ui, set "Default Save Path:" to "Default Save Path:"
   qbittorrent:
