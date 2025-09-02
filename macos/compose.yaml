@@ -4,17 +4,42 @@ services:
     image: dockurr/macos:2.15
     container_name: macos
     environment:
-      VERSION: "13"
+      VERSION: "15"
     devices:
       - /dev/kvm
       - /dev/net/tun
     cap_add:
       - NET_ADMIN
     ports:
-      - 8066:8006
+      - 8006:8006
       - 5900:5900/tcp
       - 5900:5900/udp
     volumes:
-      - ${CONFIG_STORAGE_LOCATION}/macos:/storage
+      - /data/config_storage/macos:/storagez
     restart: on-failure
     stop_grace_period: 2m
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.macos.entrypoints=http"
+      - "traefik.http.routers.macos.rule=Host(`macos.${DOMAIN}`)"
+      - "traefik.http.middlewares.macos-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.macos.middlewares=macos-https-redirect"
+      - "traefik.http.routers.macos-secure.entrypoints=https"
+      - "traefik.http.routers.macos-secure.rule=Host(`macos.${DOMAIN}`)"
+      - "traefik.http.routers.macos-secure.tls=true"
+      - "traefik.http.routers.macos-secure.service=macos"
+      - "traefik.http.services.macos.loadbalancer.server.port=8006"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "traefik.http.routers.macos-secure.middlewares=tinyauth"
+      - "homepage.group=Other"
+      - "homepage.name=macos"
+      - "homepage.icon=/images/macos.png"
+      - "homepage.href=https://macos.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true
