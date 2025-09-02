@@ -8,9 +8,9 @@ services:
     environment:  # https://clemcer.github.io/loggifly/guide/environment-variables.html
       NTFY_URL: "https://ntfy.holmlab.org"  # not a variable because logs should all go back to holmlab
       NTFY_TOPIC: ${topic}
-      CONTAINERS: "factorio,vaultwarden,actualbudget,anubis,WeddingShare,audiobookshelf,pihole,restic,wg-easy,forgejo,jellyfin,immich_server,nextcloud,syncthing,silverbullet,tinyauth"
+      CONTAINERS: "renovate,ntfy,factorio,vaultwarden,actualbudget,anubis,WeddingShare,audiobookshelf,pihole,restic,wg-easy,forgejo,jellyfin,immich_server,nextcloud,silverbullet,tinyauth"
       GLOBAL_KEYWORDS: "[JOIN],[LEAVE],error,failed login,password,Authentication failed,Failed authentication attempt,Wrong credentials"
-      EXCLUDED_KEYWORDS: "Lost device connection,Failed to acquire open port,Token has expired,Unable to download icon,Input file contains unsupported image format,WRN Failed to acquire open port"
+      EXCLUDED_KEYWORDS: "Token has expired,Unable to download icon,Input file contains unsupported image format"
       GLOBAL_KEYWORDS_WITH_ATTACHMENT: "critical"  # Attaches a log file to the notification
       NTFY_PRIORITY: 1
     restart: unless-stopped
