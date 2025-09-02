@@ -16,3 +16,12 @@ name = "build_loggifly"
 builder = "holmie"
 image_name = "loggiflyshady"
 repo = "shadybraden/loggifly"
+
+##
+
+[[build]]
+name = "build_loggifly"
+[build.config]
+builder = "holmgarage"
+image_name = "loggiflyshady"
+repo = "shadybraden/loggifly"

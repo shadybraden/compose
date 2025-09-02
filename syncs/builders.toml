@@ -3,3 +3,11 @@ name = "holmie"
 [builder.config]
 type = "Server"
 params.server_id = "holmie"
+
+##
+
+[[builder]]
+name = "holmgarage"
+[builder.config]
+type = "Server"
+params.server_id = "holmgarage"
