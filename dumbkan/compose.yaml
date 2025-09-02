@@ -1,0 +1,33 @@
+services:
+  dumbkan:
+    image: dumbwareio/dumbkan@sha256:3425bfaa2dedae1819b7876d8bfae681d3eac32e567fc392c93b0a8007865d6e
+    env_file:
+      - .env
+    volumes:
+      - /data/config_storage/dumbkan:/app/data
+    ports:
+      - '3000:3000'
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.SUBDOMAIN.entrypoints=http"
+      - "traefik.http.routers.SUBDOMAIN.rule=Host(`SUBDOMAIN.${DOMAIN}`)"
+      - "traefik.http.middlewares.SUBDOMAIN-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.SUBDOMAIN.middlewares=SUBDOMAIN-https-redirect"
+      - "traefik.http.routers.SUBDOMAIN-secure.entrypoints=https"
+      - "traefik.http.routers.SUBDOMAIN-secure.rule=Host(`SUBDOMAIN.${DOMAIN}`)"
+      - "traefik.http.routers.SUBDOMAIN-secure.tls=true"
+      - "traefik.http.routers.SUBDOMAIN-secure.service=SUBDOMAIN"
+      - "traefik.http.services.SUBDOMAIN.loadbalancer.server.port=80"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=SUBDOMAIN"
+      - "homepage.icon=/images/SUBDOMAIN.png"
+      - "homepage.href=https://SUBDOMAIN.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true
