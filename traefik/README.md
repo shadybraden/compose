@@ -63,8 +63,8 @@ To include something to TinyAuth:
 
 To use Anubis:
 ```
-      - traefik.http.routers.SUBDOMAIN.tls.certresolver=le
-      - traefik.http.routers.SUBDOMAIN.middlewares=anubis@docker
+      - "traefik.http.routers.SUBDOMAIN.tls.certresolver=le"
+      - "traefik.http.routers.SUBDOMAIN.middlewares=anubis@docker"
 ```
 
 To add to Homepage:
