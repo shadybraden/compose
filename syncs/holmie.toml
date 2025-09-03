@@ -670,10 +670,7 @@ tags = ["holmie", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "dumbkan-holmie"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "dumbkan"
 additional_env_files = ["/etc/komodo/domain.env"]
 env_file_path = "/etc/komodo/env/dumbkan-holmie.env"

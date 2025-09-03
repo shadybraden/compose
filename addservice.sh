@@ -13,10 +13,7 @@ tags = ["$SERVERNAME", "criticality: 1"]
 [stack.config]
 server = "$SERVERNAME"
 project_name = "$SERVICE-$SERVERNAME"
-git_provider = "git.holmlab.org"
-git_account = "komodo"
-repo = "shady/compose"
-branch = "main"
+linked_repo = "compose_main"
 run_directory = "$SERVICE"
 additional_env_files = ["/etc/komodo/domain.env"]
 env_file_path = "/etc/komodo/env/$SERVICE-$SERVERNAME.env"
