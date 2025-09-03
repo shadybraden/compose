@@ -150,7 +150,7 @@ services:
     container_name: autobrr
     image: ghcr.io/autobrr/autobrr:v1.65.0
     restart: unless-stopped
-    user: 1000:1000
+    #user: 1000:1000
     environment:
       - TZ=America/New_York
     volumes:
