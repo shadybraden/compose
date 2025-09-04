@@ -5,7 +5,7 @@ services:
     restart: unless-stopped
     volumes:
       - /data:/srv/data
-      - /mnt/4tb:/srv/mounted
+      - /data/mnt:/srv/mounted
       - /home:/srv/home
       - /data/config_storage/filebrowser/database:/database
       - /data/config_storage/filebrowser/config:/config

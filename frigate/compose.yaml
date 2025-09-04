@@ -16,7 +16,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /data/config_storage/frigate:/config
       - /data/config_storage/komodo/etc_komodo/stacks/frigate-holmie/frigate/config.yaml:/config/config.yaml
-      - /mnt/4tb/frigate:/media/frigate
+      - /data/mnt/frigate:/media/frigate
       - type: tmpfs  # Optional: 1GB of memory, reduces SSD/SD Card wear
         target: /tmp/cache
         tmpfs:

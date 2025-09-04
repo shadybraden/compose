@@ -2,7 +2,7 @@
 set -euo pipefail
 
 HOSTNAME="$(hostname)"
-BACKUP_SOURCE="/mnt/4tb/backups"
+BACKUP_SOURCE="/data/mnt/backups"
 BUCKET_NAME="resticlydjakqyscraednslu"
 NTFY_URL="https://ntfy.holmlab.org/backupsqY5CmNgp0cHv9UjeEzrnTT8qORA5M1qWUn"
 

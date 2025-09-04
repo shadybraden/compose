@@ -8,8 +8,8 @@ fi
 
 # Set variables
 FOLDERNAME=$1
-BACKUP_PATH="/mnt/4tb/backups/${FOLDERNAME}"
-RESTORE_PATH="/mnt/4tb/${FOLDERNAME}.restore"
+BACKUP_PATH="/data/mnt/backups/${FOLDERNAME}"
+RESTORE_PATH="/data/mnt/${FOLDERNAME}.restore"
 PASSWORD_FILE="/data/resticPassword.txt"
 
 # Check if the backup repository exists
