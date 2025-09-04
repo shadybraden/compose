@@ -1,7 +1,7 @@
 ---
 services:
   anubis:
-    image: ghcr.io/techarohq/anubis:main@sha256:f97bb1eb66c70c21f78e6b691a8f910b708e2d1e7143611981770f383f63ffa3  # v1.21.3
+    image: ghcr.io/techarohq/anubis:main@sha256:72e14c3bf271fb431f564f6e8aa5ed515379910ea66723b65076feeba377ca76  # v1.21.3
     container_name: anubis
     environment:
       - BIND=:8082
