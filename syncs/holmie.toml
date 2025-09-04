@@ -13,7 +13,7 @@ env_file_path = "/etc/komodo/env/adsb.env"
 
 [[stack]]
 name = "arr"
-tags = ["holmie", "env", "criticality: 4"]
+tags = ["holmie", "env", "criticality: 4", "external_hdd"]
 [stack.config]
 server = "holmie"
 project_name = "arr"
@@ -26,7 +26,7 @@ env_file_path = "/etc/komodo/env/arr.env"
 
 [[stack]]
 name = "audiobookshelf"
-tags = ["holmie", "criticality: 3"]
+tags = ["holmie", "criticality: 3", "external_hdd"]
 [stack.config]
 server = "holmie"
 project_name = "audiobookshelf"
@@ -78,7 +78,7 @@ env_file_path = "/etc/komodo/env/homeassistant.env"
 
 [[stack]]
 name = "immich"
-tags = ["holmie", "env", "criticality: 2"]
+tags = ["holmie", "env", "criticality: 2", "external_hdd"]
 [stack.config]
 server = "holmie"
 project_name = "immich"
@@ -91,7 +91,7 @@ env_file_path = "/etc/komodo/env/immich.env"
 
 [[stack]]
 name = "jellyfin"
-tags = ["holmie", "criticality: 2"]
+tags = ["holmie", "criticality: 2", "external_hdd"]
 [stack.config]
 server = "holmie"
 project_name = "jellyfin"
@@ -117,7 +117,7 @@ env_file_path = "/etc/komodo/env/jellyseerr.env"
 
 [[stack]]
 name = "kiwix"
-tags = ["holmie", "criticality: 5"]
+tags = ["holmie", "criticality: 5", "external_hdd"]
 [stack.config]
 server = "holmie"
 project_name = "kiwix"
@@ -130,7 +130,7 @@ env_file_path = "/etc/komodo/env/kiwix.env"
 
 [[stack]]
 name = "navidrome"
-tags = ["holmie", "criticality: 4"]
+tags = ["holmie", "criticality: 4", "external_hdd"]
 [stack.config]
 server = "holmie"
 project_name = "navidrome"
@@ -574,7 +574,7 @@ env_file_path = "/etc/komodo/env/cloudflared.env"
 
 [[stack]]
 name = "plex-holmie"
-tags = ["holmie", "env", "criticality: 4"]
+tags = ["holmie", "env", "criticality: 4", "external_hdd"]
 [stack.config]
 server = "holmie"
 project_name = "plex-holmie"
@@ -587,7 +587,7 @@ env_file_path = "/etc/komodo/env/plex-holmie.env"
 
 [[stack]]
 name = "pinchflat-holmie"
-tags = ["holmie", "criticality: 5"]
+tags = ["holmie", "criticality: 5", "external_hdd"]
 [stack.config]
 server = "holmie"
 project_name = "pinchflat-holmie"
