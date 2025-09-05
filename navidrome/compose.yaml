@@ -5,7 +5,7 @@ services:
     restart: on-failure
     user: 1000:1000
     volumes:
-      - /mnt/4tb/music:/music:ro
+      - /data/mnt/music:/music:ro
       - /data/config_storage/navidrome:/data
     environment:
       - ND_LOGLEVEL=info

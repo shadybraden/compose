@@ -23,9 +23,9 @@ And place them into: `/data/backups`
 
 `0 3 * * * /data/config_storage/compose/backup/backup_bulk.sh` 3am
 
-Idea here is to backup Immich. i.e. `/mnt/4tb/immich`
+Idea here is to backup Immich. i.e. `/data/mnt/immich`
 
-Then store these backups in the same base path; `/mnt/4tb/backups`
+Then store these backups in the same base path; `/data/mnt/backups`
 
 ## upload.sh
 

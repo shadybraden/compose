@@ -53,7 +53,7 @@ services:
       - "traefik.http.services.jackett.loadbalancer.server.port=9117"  # port of the service
 
   radarr:  # the movie searching part
-    image: quay.io/linuxserver.io/radarr:5.26.2
+    image: quay.io/linuxserver.io/radarr:5.27.5
     container_name: radarr
 #    ports:
 #      - 7878:7878 # radarr
@@ -64,8 +64,8 @@ services:
       - PORT=7878
     volumes:
       - /data/config_storage/arr/radarr:/config
-      - /mnt/4tb/torrents:/downloads/torrents
-      - /mnt/4tb/movies:/movies
+      - /data/mnt/torrents:/downloads/torrents
+      - /data/mnt/movies:/movies
     restart: on-failure
     security_opt:
       - no-new-privileges:true  # helps to increase security
@@ -99,8 +99,8 @@ services:
       - TZ=America/New_York
     volumes:  # idea is a torrents folder for live downloads, and a media folder for sonarr to copy the files to once finished
       - /data/config_storage/arr/sonarr:/config
-      - /mnt/4tb/torrents:/downloads/torrents
-      - /mnt/4tb/shows:/shows
+      - /data/mnt/torrents:/downloads/torrents
+      - /data/mnt/shows:/shows
     restart: on-failure
     security_opt:
       - no-new-privileges:true  # helps to increase security
@@ -124,7 +124,7 @@ services:
       - "homepage.href=https://sonarr.${DOMAIN}/"
 
   jackett:  # mega indexer for the arr's above
-    image: quay.io/linuxserver.io/jackett:0.22.2404
+    image: quay.io/linuxserver.io/jackett:0.22.2418
     container_name: jackett
     restart: on-failure
     volumes:
@@ -177,8 +177,8 @@ services:
       - TORRENTING_PORT=${arr_qbittorrent_port}
     volumes:
       - /data/config_storage/arr/qbittorrent:/config
-      - /mnt/4tb/torrents:/downloads/torrents
-      - /mnt/4tb:/allMedia
+      - /data/mnt/torrents:/downloads/torrents
+      - /data/mnt:/allMedia
     restart: on-failure
     network_mode: service:gluetun_arr
     depends_on:

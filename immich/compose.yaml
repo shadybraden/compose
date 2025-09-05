@@ -5,9 +5,9 @@ services:
     container_name: immich_server
     image: ghcr.io/immich-app/immich-server:v1.140.1
     volumes:
-      - /mnt/4tb/immich/UPLOAD_LOCATION/UPLOAD_LOCATION:/usr/src/app/upload
+      - /data/mnt/immich/UPLOAD_LOCATION/UPLOAD_LOCATION:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
-      - /mnt/4tb/immich/external_libraries:/mnt/4tb/immich/external_libraries
+      - /data/mnt/immich/external_libraries:/mnt/4tb/immich/external_libraries
     env_file:
       - /etc/komodo/env/immich.env
     depends_on:

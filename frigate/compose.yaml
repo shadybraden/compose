@@ -5,7 +5,7 @@ services:
 #    privileged: true  # this may not be necessary for all setups
     restart: unless-stopped
     stop_grace_period: 30s  # allow enough time to shut down the various services
-    image: ghcr.io/blakeblackshear/frigate:0.16.0
+    image: ghcr.io/blakeblackshear/frigate:0.16.1
     shm_size: "512mb"  # update for your cameras based on calculation above
     devices:
 #      - /dev/bus/usb:/dev/bus/usb  # Passes the USB Coral, needs to be modified for other versions
@@ -16,7 +16,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /data/config_storage/frigate:/config
       - /data/config_storage/komodo/etc_komodo/stacks/frigate-holmie/frigate/config.yaml:/config/config.yaml
-      - /mnt/4tb/frigate:/media/frigate
+      - /data/mnt/frigate:/media/frigate
       - type: tmpfs  # Optional: 1GB of memory, reduces SSD/SD Card wear
         target: /tmp/cache
         tmpfs:

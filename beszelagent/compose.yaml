@@ -8,7 +8,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       # monitor other disks / partitions by mounting a folder in /extra-filesystems
-      - /mnt/4tb/beszel:/extra-filesystems/sda1:ro
+      - /data/mnt/beszel:/extra-filesystems/sda1:ro
       - /data/config_storage/beszel:/extra-filesystems/config_storage:ro
     environment:
       LISTEN: 45876

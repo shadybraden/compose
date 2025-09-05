@@ -8,9 +8,9 @@ services:
     network_mode: host
     volumes:
       - /data/config_storage/music-assistant:/data
-      - /mnt/4tb/music:/music:ro
-      - /mnt/4tb/audiobooks:/audiobooks:ro
-      - /mnt/4tb/podcasts:/podcasts:ro
+      - /data/mnt/music:/music:ro
+      - /data/mnt/audiobooks:/audiobooks:ro
+      - /data/mnt/podcasts:/podcasts:ro
     environment:
       - LOG_LEVEL=info
     security_opt:

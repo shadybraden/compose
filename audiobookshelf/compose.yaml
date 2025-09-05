@@ -3,8 +3,8 @@ services:
   audiobookshelf:
     container_name: audiobookshelf
     volumes:
-      - /mnt/4tb/audiobooks:/audiobooks:ro
-      - /mnt/4tb/podcasts:/podcasts:ro
+      - /data/mnt/audiobooks:/audiobooks:ro
+      - /data/mnt/podcasts:/podcasts:ro
       - /data/config_storage/audiobookshelf/config:/config
       - /data/config_storage/audiobookshelf/metadata:/metadata
     environment:

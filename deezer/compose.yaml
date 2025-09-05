@@ -2,7 +2,7 @@
 services:
   deezer-downloader:
     volumes:
-      - /mnt/4tb/music:/mnt/deezer-downloader
+      - /data/mnt/music:/mnt/deezer-downloader
     container_name: deezer
     environment:
       - DEEZER_COOKIE_ARL=${DEEZER_COOKIE_ARL}  # from - login > F12 > storage > find "arl"

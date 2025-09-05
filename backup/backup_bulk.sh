@@ -3,8 +3,8 @@
 # variables:
 PASSWORD_FILE="/data/resticPassword.txt"
 
-DATA_STORAGE="/mnt/4tb/immich"
-BACKUP_REPO="/mnt/4tb/backups"
+DATA_STORAGE="/data/mnt/immich"
+BACKUP_REPO="/data/mnt/backups"
 NTFY_URL="https://ntfy.holmlab.org/backupsqY5CmNgp0cHv9UjeEzrnTT8qORA5M1qWUn"
 ERROR_LOG="/data/restic_error_log_bulk.txt"
 success_count=0

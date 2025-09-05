@@ -8,7 +8,7 @@ services:
 #      - '8945:8945'
     volumes:
       - /data/config_storage/pinchflat:/config
-      - /mnt/4tb/youtube:/downloads
+      - /data/mnt/youtube:/downloads
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
