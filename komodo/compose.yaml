@@ -18,7 +18,7 @@ services:
       - intranet
 
   core:
-    image: ghcr.io/moghtech/komodo-core:1.19.2
+    image: ghcr.io/moghtech/komodo-core:1.19.3
     restart: unless-stopped
     depends_on:
       - mongo
