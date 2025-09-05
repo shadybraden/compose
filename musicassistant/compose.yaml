@@ -8,7 +8,7 @@ services:
     network_mode: host
     volumes:
       - /data/config_storage/music-assistant:/data
-      - /data/mnt/music:/music:ro
+      - /data/music:/music:ro
       - /data/mnt/audiobooks:/audiobooks:ro
       - /data/mnt/podcasts:/podcasts:ro
     environment:

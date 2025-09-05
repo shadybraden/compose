@@ -13,7 +13,7 @@ services:
       - /data/config_storage/syncthing/syncthing:/var/syncthing
       - /mnt:/mnt
       - /data/config_storage/seedvault:/seedvault
-      - /data/mnt/music:/music
+      - /data/music:/music
     ports:
       - 8384:8384  # web ui
       - 22000:22000/tcp
