@@ -11,7 +11,7 @@ services:
     volumes:
       - /data/config_storage/syncthing/config:/config
       - /data/config_storage/syncthing/syncthing:/var/syncthing
-      - /mnt:/mnt
+      - /data/mnt:/mnt
       - /data/config_storage/seedvault:/seedvault
       - /data/music:/music
     ports:
