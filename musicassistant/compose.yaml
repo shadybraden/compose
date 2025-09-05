@@ -9,8 +9,8 @@ services:
     volumes:
       - /data/config_storage/music-assistant:/data
       - /data/music:/music:ro
-      - /data/mnt/audiobooks:/audiobooks:ro
-      - /data/mnt/podcasts:/podcasts:ro
+      - /data/audiobooks:/audiobooks:ro
+      - /data/podcasts:/podcasts:ro
     environment:
       - LOG_LEVEL=info
     security_opt:
