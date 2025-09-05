@@ -7,8 +7,8 @@ services:
     hostname: motioneye
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /data/config_storage/motioneye:/etc/motioneye
-      - /data/config_storage/motioneye:/var/lib/motioneye
+      - /data/config_storage/motioneye/etc:/etc/motioneye
+      - /data/config_storage/motioneye/var:/var/lib/motioneye
     devices:
       - /dev/video0:/dev/video0
     restart: on-failure
