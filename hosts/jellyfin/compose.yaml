@@ -9,7 +9,7 @@ services:
       - /data/config_storage/jellyfin/cache:/cache
       - /data/mnt/shows:/shows
       - /data/mnt/movies:/movies
-    restart: unless-stopped-failure
+    restart: unless-stopped
     image: quay.io/linuxserver.io/jellyfin:10.10.7
     environment:
       - PUID=1000

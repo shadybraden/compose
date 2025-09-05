@@ -11,7 +11,7 @@ services:
       - /data/config_storage/motioneye/var:/var/lib/motioneye
     devices:
       - /dev/video0:/dev/video0
-    restart: unless-stopped-failure
+    restart: unless-stopped
     image: ccrisan/motioneye:master-amd64
     security_opt:
       - no-new-privileges:true  # helps to increase security

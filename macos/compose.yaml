@@ -16,7 +16,7 @@ services:
       - 5900:5900/udp
     volumes:
       - /data/config_storage/macos:/storage
-    restart: unless-stopped-failure
+    restart: unless-stopped
     stop_grace_period: 2m
     security_opt:
       - no-new-privileges:true  # helps to increase security

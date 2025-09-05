@@ -2,7 +2,7 @@
 services:
   glances:
     container_name: glances
-    restart: unless-stopped-failure
+    restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
 #    ports:
