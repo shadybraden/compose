@@ -7,6 +7,7 @@ auto_increment_version = true
 image_name = "skywatch"
 files_on_host = true
 build_path = "/etc/komodo/stacks/skywatch/skywatch"
+<<<<<<< HEAD
 
 ##
 
@@ -25,3 +26,5 @@ name = "build_loggifly-holmgarage"
 builder = "holmgarage"
 image_name = "loggiflyshady"
 repo = "shadybraden/loggifly"
+=======
+>>>>>>> 433ed7ec3c1d04718ada71dbda9348d5a59832f2
