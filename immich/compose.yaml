@@ -15,7 +15,7 @@ services:
       - database
     ports:
       - '2283:2283'
-    restart: on-failure
+    restart: unless-stopped-failure
     healthcheck:
       disable: false
     environment:
@@ -48,7 +48,7 @@ services:
       - model-cache:/cache
     env_file:
       - /etc/komodo/env/immich.env
-    restart: on-failure
+    restart: unless-stopped-failure
     networks:
       - intranet
     healthcheck:
@@ -57,7 +57,7 @@ services:
   redis:
     container_name: immich_redis
     image: docker.io/valkey/valkey:8.1.3
-    restart: on-failure
+    restart: unless-stopped-failure
     healthcheck:
       test: redis-cli ping || exit 1
     networks:
@@ -73,7 +73,7 @@ services:
       - POSTGRES_INITDB_ARGS='--data-checksums'
     volumes:
       - /data/config_storage/immich/postgres:/var/lib/postgresql/data
-    restart: on-failure
+    restart: unless-stopped-failure
     networks:
       - intranet
 

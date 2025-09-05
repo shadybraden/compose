@@ -11,7 +11,7 @@ services:
       - /data/config_storage/homeassistant:/config
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus
-    restart: on-failure
+    restart: unless-stopped-failure
     environment:
       - TZ=America/New_York
     image: ghcr.io/home-assistant/home-assistant:2025.7.4

@@ -16,5 +16,5 @@ services:
       - 3389:3389/udp
     volumes:
       - ${CONFIG_STORAGE_LOCATION}/windows:/storage
-    restart: on-failure
+    restart: unless-stopped-failure
     stop_grace_period: 2m

@@ -5,6 +5,6 @@ services:
     image: ghcr.io/immich-app/immich-machine-learning:v1.140.1
     volumes:
       - /data/dont_backup/immich_machine_learning:/cache
-    restart: on-failure
+    restart: unless-stopped-failure
     ports:
       - 3003:3003

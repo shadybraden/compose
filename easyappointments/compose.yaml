@@ -2,7 +2,7 @@
 services:
   easyapointments:
     image: alextselegidis/easyappointments:1.5.2
-    restart: always
+    restart: unless-stoppedays
 #    ports:
 #      - '80:80'
     environment:
@@ -44,7 +44,7 @@ services:
 
   mysql:
     image: mysql:8.4
-    restart: always
+    restart: unless-stoppedays
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_DATABASE=easyappointments

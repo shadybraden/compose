@@ -66,7 +66,7 @@ services:
       - /data/config_storage/arr/radarr:/config
       - /data/mnt/torrents:/downloads/torrents
       - /data/mnt/movies:/movies
-    restart: on-failure
+    restart: unless-stopped
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
@@ -101,7 +101,7 @@ services:
       - /data/config_storage/arr/sonarr:/config
       - /data/mnt/torrents:/downloads/torrents
       - /data/mnt/shows:/shows
-    restart: on-failure
+    restart: unless-stopped
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
@@ -126,7 +126,7 @@ services:
   jackett:  # mega indexer for the arr's above
     image: quay.io/linuxserver.io/jackett:0.22.2418
     container_name: jackett
-    restart: on-failure
+    restart: unless-stopped
     volumes:
       - /data/config_storage/arr/jackett:/config
     network_mode: service:gluetun_arr
@@ -179,7 +179,7 @@ services:
       - /data/config_storage/arr/qbittorrent:/config
       - /data/mnt/torrents:/downloads/torrents
       - /data/mnt:/allMedia
-    restart: on-failure
+    restart: unless-stopped
     network_mode: service:gluetun_arr
     depends_on:
       gluetun_arr:

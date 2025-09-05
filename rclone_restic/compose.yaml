@@ -5,7 +5,7 @@ services:
     container_name: rclone
     security_opt:
       - no-new-privileges:true
-    restart: on-failure
+    restart: unless-stopped-failure
 #    command: rcd --rc-web-gui --rc-addr 0.0.0.0:5572 --rc-web-fetch-url=https://api.github.com/repos/rclone/rclone-webui-react/releases/latest --rc-web-gui-update --rc-user admin --rc-pass password -vv --checksum --transfers=4 --checkers=4 --contimeout=60s --timeout=300s --retries=3 --low-level-retries=10 --stats=1s --stats-file-name-length=0
     ports:
       - "5572:5572"  # add this port if you're not using a proxy
@@ -18,7 +18,7 @@ services:
   restic:
     image: mazzolino/restic:1.8.0
     container_name: restic
-    restart: on-failure
+    restart: unless-stopped-failure
     hostname: ${rclone_restic_hostname}
     environment:
       RUN_ON_STARTUP: "true"  # change as you wish
@@ -55,7 +55,7 @@ services:
     image: mazzolino/restic:1.8.0
     container_name: restic-prune
     hostname: ${rclone_restic_hostname}
-    restart: on-failure
+    restart: unless-stopped-failure
     environment:
       RUN_ON_STARTUP: "true"
       PRUNE_CRON: "0 0 4 * * *"  # this is 4am
@@ -68,7 +68,7 @@ services:
   check:
     image: mazzolino/restic:1.8.0
     container_name: restic-check
-    restart: on-failure
+    restart: unless-stopped-failure
     hostname: ${rclone_restic_hostname}
     environment:
       RUN_ON_STARTUP: "false"

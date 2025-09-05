@@ -1,7 +1,7 @@
 ---
 services:
   uptime-kuma:
-    restart: always
+    restart: unless-stoppedays
     volumes:
       - /data/config_storage/uptime-kuma:/app/data
     container_name: uptime-kuma

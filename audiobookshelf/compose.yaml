@@ -9,7 +9,7 @@ services:
       - /data/config_storage/audiobookshelf/metadata:/metadata
     environment:
       - TZ=America/New_York
-    restart: on-failure
+    restart: unless-stopped
     image: ghcr.io/advplyr/audiobookshelf:2.29.0
     security_opt:
       - no-new-privileges:true  # helps to increase security
