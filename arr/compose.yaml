@@ -52,6 +52,17 @@ services:
       - "traefik.http.routers.jackett-secure.service=jackett"
       - "traefik.http.services.jackett.loadbalancer.server.port=9117"  # port of the service
 
+      - "traefik.http.routers.slskd.service=slskd"  # for multi-port - https://github.com/traefik/traefik/issues/4807
+      - "traefik.http.routers.slskd.entrypoints=http"
+      - "traefik.http.routers.slskd.rule=Host(`slskd.${DOMAIN}`)"
+      - "traefik.http.middlewares.slskd-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.slskd.middlewares=slskd-https-redirect"
+      - "traefik.http.routers.slskd-secure.entrypoints=https"
+      - "traefik.http.routers.slskd-secure.rule=Host(`slskd.${DOMAIN}`)"
+      - "traefik.http.routers.slskd-secure.tls=true"
+      - "traefik.http.routers.slskd-secure.service=slskd"
+      - "traefik.http.services.slskd.loadbalancer.server.port=5030"  # port of the service
+
   radarr:  # the movie searching part
     image: quay.io/linuxserver.io/radarr:5.27.5
     container_name: radarr
@@ -165,6 +176,24 @@ services:
       - "homepage.name=autobrr"
       - "homepage.icon=/images/autobrr.png"
       - "homepage.href=https://autobrr.${DOMAIN}/"
+
+  slskd:
+    image: slskd/slskd:0.23.2
+    container_name: slskd
+    ports:
+      - "50300:50300"
+    environment:
+      - SLSKD_REMOTE_CONFIGURATION=true
+    volumes:
+      - /data/config_storage/arr/slskd:/app
+      - /data/music:/music
+    restart: unless-stopped
+    network_mode: service:gluetun_arr
+    depends_on:
+      gluetun_arr:
+        condition: service_healthy
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 # in the ui, set "Default Save Path:" to "Default Save Path:"
   qbittorrent:
