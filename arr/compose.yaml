@@ -180,8 +180,8 @@ services:
   slskd:
     image: slskd/slskd:0.23.2
     container_name: slskd
-    ports:
-      - "50300:50300"
+#    ports:
+#      - "50300:50300"
     environment:
       - SLSKD_REMOTE_CONFIGURATION=true
     volumes:
