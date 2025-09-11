@@ -4,7 +4,6 @@ services:
     image: ghcr.io/techarohq/anubis:v1.22.0
     container_name: anubis
     environment:
-    environment:
       # Telling Anubis, where to listen for Traefik
       - BIND=:8080
       # Telling Anubis to do redirect — ensure there is a space after '='
