@@ -1,4 +1,0 @@
----
-- name: catch-all-deny
-  path_regex: .*
-  action: DENY
