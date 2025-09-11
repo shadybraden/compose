@@ -63,7 +63,6 @@ To include something to TinyAuth:
 
 To use Anubis:
 ```yaml
-      - "traefik.http.routers.SUBDOMAIN.tls.certresolver=le"
       - "traefik.http.routers.SUBDOMAIN.middlewares=anubis@docker"
 ```
 
