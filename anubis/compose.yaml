@@ -38,10 +38,10 @@ services:
       - "traefik.http.routers.anubis-secure.service=anubis"
       - "traefik.http.services.anubis.loadbalancer.server.port=8080"  # port of the service.
       - "traefik.docker.network=intranet"
-      - "traefik.http.routers.anubis.priority=1"  # Setting Anubis to the lowest priority, so it only takes the slack
-      - "traefik.http.routers.anubis.rule=PathRegexp(`.*`)"  # Wildcard match every path
+      #- "traefik.http.routers.anubis.priority=1"  # Setting Anubis to the lowest priority, so it only takes the slack
+      #- "traefik.http.routers.anubis.rule=PathRegexp(`.*`)"  # Wildcard match every path
       - "traefik.http.routers.anubis.service=anubis"  # Telling Traefik to use the above specified port
-      - "traefik.http.routers.anubis.tls.certresolver=le"  # Telling Traefik to resolve a Cert for Anubis
+      - "traefik.http.routers.anubis.tls.certresolver=cloudflare"  # Telling Traefik to resolve a Cert for Anubis
       - "homepage.group=Other"
       - "homepage.name=anubis"
       - "homepage.icon=/images/anubis.webp"
