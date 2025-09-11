@@ -14,6 +14,7 @@ services:
       - PUBLIC_URL=https://anubis.holmlab.org
       # Should match your domain for proper cookie scoping
       - COOKIE_DOMAIN=holmlab.org
+      - LOG_LEVEL=debug
     healthcheck:
       test: ["CMD", "anubis", "--healthcheck"]
       interval: 5s
