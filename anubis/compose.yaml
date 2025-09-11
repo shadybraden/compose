@@ -4,17 +4,17 @@ services:
     image: ghcr.io/techarohq/anubis:v1.22.0
     container_name: anubis
     environment:
-      - BIND=:8082
-#      - DIFFICULTY=4
-#      - SERVE_ROBOTS_TXT=true
+    environment:
+      # Telling Anubis, where to listen for Traefik
+      - BIND=:8080
+      # Telling Anubis to do redirect — ensure there is a space after '='
       - 'TARGET= '
-#      - REDIRECT_DOMAINS="${DOMAIN},anubis.${DOMAIN},speedtest.${DOMAIN}"
+      # Specifies which domains Anubis is allowed to redirect to.
+      - REDIRECT_DOMAINS=holmlab.org
       # Should be the full external URL for Anubis (including scheme)
-      - PUBLIC_URL=https://anubis.${DOMAIN}
+      - PUBLIC_URL=https://anubis.holmlab.org
       # Should match your domain for proper cookie scoping
-      - COOKIE_DOMAIN=${DOMAIN}
-#      - OG_PASSTHROUGH=true
-#      - OG_EXPIRY_TIME=24h
+      - COOKIE_DOMAIN=holmlab.org
     healthcheck:
       test: ["CMD", "anubis", "--healthcheck"]
       interval: 5s
@@ -22,7 +22,7 @@ services:
       retries: 5
       start_period: 500ms
     ports:
-      - 8082:8082
+      - 8080:8080
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
@@ -37,11 +37,10 @@ services:
       - "traefik.http.routers.anubis-secure.rule=Host(`anubis.${DOMAIN}`)"
       - "traefik.http.routers.anubis-secure.tls=true"
       - "traefik.http.routers.anubis-secure.service=anubis"
-      - "traefik.http.services.anubis.loadbalancer.server.port=8082"  # port of the service.
+      - "traefik.http.services.anubis.loadbalancer.server.port=8080"  # port of the service.
       - "traefik.docker.network=intranet"
       - "traefik.http.routers.anubis.priority=1"  # Setting Anubis to the lowest priority, so it only takes the slack
       - "traefik.http.routers.anubis.rule=PathRegexp(`.*`)"  # Wildcard match every path
-      - "traefik.http.routers.anubis.entrypoints=websecure"  # Listen on HTTPS
       - "traefik.http.routers.anubis.service=anubis"  # Telling Traefik to use the above specified port
       - "traefik.http.routers.anubis.tls.certresolver=le"  # Telling Traefik to resolve a Cert for Anubis
       - "homepage.group=Other"
