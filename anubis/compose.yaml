@@ -15,8 +15,6 @@ services:
       # Should match your domain for proper cookie scoping
       - COOKIE_DOMAIN=holmlab.org
       - LOG_LEVEL=debug
-    ports:
-      - 8080:8080
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
