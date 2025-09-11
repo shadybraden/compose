@@ -22,21 +22,13 @@ services:
     networks:
       - intranet
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.anubis.entrypoints=http"
-      - "traefik.http.routers.anubis.rule=Host(`anubis.${DOMAIN}`)"
-      - "traefik.http.middlewares.anubis-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.anubis.middlewares=anubis-https-redirect"
-      - "traefik.http.routers.anubis-secure.entrypoints=https"
-      - "traefik.http.routers.anubis-secure.rule=Host(`anubis.${DOMAIN}`)"
-      - "traefik.http.routers.anubis-secure.tls=true"
-      - "traefik.http.routers.anubis-secure.service=anubis"
-      - "traefik.http.services.anubis.loadbalancer.server.port=8080"  # port of the service.
-      - "traefik.docker.network=intranet"
-      #- "traefik.http.routers.anubis.priority=1"  # Setting Anubis to the lowest priority, so it only takes the slack
-      #- "traefik.http.routers.anubis.rule=PathRegexp(`.*`)"  # Wildcard match every path
-      - "traefik.http.routers.anubis.service=anubis"  # Telling Traefik to use the above specified port
-      - "traefik.http.routers.anubis.tls.certresolver=cloudflare"  # Telling Traefik to resolve a Cert for Anubis
+      - traefik.enable=true # Enabling Traefik
+      - traefik.docker.network=intranet # Telling Traefik which network to use
+      - traefik.http.routers.anubis.rule=Host(`anubis.holmlab.org`) # Only Matching Requests for example.com
+      - traefik.http.routers.anubis.entrypoints=https # Listen on HTTPS
+      - traefik.http.services.anubis.loadbalancer.server.port=8080 # Telling Traefik where to receive requests
+      - traefik.http.routers.anubis.service=anubis # Telling Traefik to use the above specified port
+      - traefik.http.routers.anubis.tls.certresolver=cloudflare # Telling Traefik to resolve a Cert for Anubis
       - "homepage.group=Other"
       - "homepage.name=anubis"
       - "homepage.icon=/images/anubis.webp"
