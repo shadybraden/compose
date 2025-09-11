@@ -9,11 +9,11 @@ services:
       # Telling Anubis to do redirect — ensure there is a space after '='
       - 'TARGET= '
       # Specifies which domains Anubis is allowed to redirect to.
-      - REDIRECT_DOMAINS=holmlab.org
+      - REDIRECT_DOMAINS=${DOMAIN}
       # Should be the full external URL for Anubis (including scheme)
-      - PUBLIC_URL=https://anubis.holmlab.org
+      - PUBLIC_URL=https://anubis.${DOMAIN}
       # Should match your domain for proper cookie scoping
-      - COOKIE_DOMAIN=holmlab.org
+      - COOKIE_DOMAIN=${DOMAIN}
       - LOG_LEVEL=debug
     security_opt:
       - no-new-privileges:true  # helps to increase security
@@ -22,7 +22,7 @@ services:
     labels:
       - traefik.enable=true # Enabling Traefik
       - traefik.docker.network=intranet # Telling Traefik which network to use
-      - traefik.http.routers.anubis.rule=Host(`anubis.holmlab.org`) # Only Matching Requests for example.com
+      - traefik.http.routers.anubis.rule=Host(`anubis.${DOMAIN}`) # Only Matching Requests for example.com
       - traefik.http.routers.anubis.entrypoints=https # Listen on HTTPS
       - traefik.http.services.anubis.loadbalancer.server.port=8080 # Telling Traefik where to receive requests
       - traefik.http.routers.anubis.service=anubis # Telling Traefik to use the above specified port
