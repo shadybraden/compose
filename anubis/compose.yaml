@@ -15,12 +15,6 @@ services:
       # Should match your domain for proper cookie scoping
       - COOKIE_DOMAIN=holmlab.org
       - LOG_LEVEL=debug
-    healthcheck:
-      test: ["CMD", "anubis", "--healthcheck"]
-      interval: 5s
-      timeout: 30s
-      retries: 5
-      start_period: 500ms
     ports:
       - 8080:8080
     security_opt:
