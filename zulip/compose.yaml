@@ -32,7 +32,7 @@ services:
     networks:
       - intranet
   rabbitmq:
-    image: "rabbitmq:4.0.7"
+    image: "rabbitmq:4.1.4"
     restart: unless-stopped
     environment:
       RABBITMQ_DEFAULT_USER: "zulip"
