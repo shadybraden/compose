@@ -144,7 +144,7 @@ services:
       - "traefik.http.routers.zulip-secure.rule=Host(`zulip.${DOMAIN}`)"
       - "traefik.http.routers.zulip-secure.tls=true"
       - "traefik.http.routers.zulip-secure.service=zulip"
-      - "traefik.http.services.zulip.loadbalancer.server.port=443"  # port of the service.
+      - "traefik.http.services.zulip.loadbalancer.server.port=80"  # port of the service.
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=zulip"
