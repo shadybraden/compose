@@ -136,20 +136,20 @@ services:
       - intranet
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.zuplip.entrypoints=http"
-      - "traefik.http.routers.zuplip.rule=Host(`zuplip.${DOMAIN}`)"
-      - "traefik.http.middlewares.zuplip-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.zuplip.middlewares=zuplip-https-redirect"
-      - "traefik.http.routers.zuplip-secure.entrypoints=https"
-      - "traefik.http.routers.zuplip-secure.rule=Host(`zuplip.${DOMAIN}`)"
-      - "traefik.http.routers.zuplip-secure.tls=true"
-      - "traefik.http.routers.zuplip-secure.service=zuplip"
-      - "traefik.http.services.zuplip.loadbalancer.server.port=80"  # port of the service.
+      - "traefik.http.routers.zulip.entrypoints=http"
+      - "traefik.http.routers.zulip.rule=Host(`zulip.${DOMAIN}`)"
+      - "traefik.http.middlewares.zulip-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.zulip.middlewares=zulip-https-redirect"
+      - "traefik.http.routers.zulip-secure.entrypoints=https"
+      - "traefik.http.routers.zulip-secure.rule=Host(`zulip.${DOMAIN}`)"
+      - "traefik.http.routers.zulip-secure.tls=true"
+      - "traefik.http.routers.zulip-secure.service=zulip"
+      - "traefik.http.services.zulip.loadbalancer.server.port=80"  # port of the service.
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
-      - "homepage.name=zuplip"
-      - "homepage.icon=/images/zuplip.png"
-      - "homepage.href=https://zuplip.${DOMAIN}/"
+      - "homepage.name=zulip"
+      - "homepage.icon=/images/zulip.png"
+      - "homepage.href=https://zulip.${DOMAIN}/"
 
 networks:
   intranet:
