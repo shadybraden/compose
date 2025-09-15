@@ -1,0 +1,35 @@
+---
+services:
+  ersatztv:
+    container_name: ersatztv
+    environment:
+      - TZ=America/New_York
+    volumes:
+      - /data/config_storage/ersatztv/config:/config
+      - /data/mnt:/data/mnt:ro
+    restart: unless-stopped
+    image: ghcr.io/ersatztv/ersatztv:v25.6.0
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.ersatztv.entrypoints=http"
+      - "traefik.http.routers.ersatztv.rule=Host(`ersatztv.${DOMAIN}`)"
+      - "traefik.http.middlewares.ersatztv-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.ersatztv.middlewares=ersatztv-https-redirect"
+      - "traefik.http.routers.ersatztv-secure.entrypoints=https"
+      - "traefik.http.routers.ersatztv-secure.rule=Host(`ersatztv.${DOMAIN}`)"
+      - "traefik.http.routers.ersatztv-secure.tls=true"
+      - "traefik.http.routers.ersatztv-secure.service=ersatztv"
+      - "traefik.http.services.ersatztv.loadbalancer.server.port=8409"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=ersatztv"
+      - "homepage.icon=/images/ersatztv.png"
+      - "homepage.href=https://ersatztv.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true
