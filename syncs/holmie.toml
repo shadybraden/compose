@@ -674,16 +674,3 @@ linked_repo = "compose_main"
 run_directory = "baikal"
 additional_env_files = ["/etc/komodo/domain.env"]
 env_file_path = "/etc/komodo/env/baikal-holmie.env"
-
-##
-
-[[stack]]
-name = "ersatztv-holmie"
-tags = ["holmie", "criticality: 1"]
-[stack.config]
-server = "holmie"
-project_name = "ersatztv-holmie"
-linked_repo = "compose_main"
-run_directory = "ersatztv"
-additional_env_files = ["/etc/komodo/domain.env"]
-env_file_path = "/etc/komodo/env/ersatztv-holmie.env"
