@@ -21,7 +21,7 @@ services:
       - "traefik.http.routers.radicale-secure.rule=Host(`radicale.${DOMAIN}`)"
       - "traefik.http.routers.radicale-secure.tls=true"
       - "traefik.http.routers.radicale-secure.service=radicale"
-      - "traefik.http.services.radicale.loadbalancer.server.port=80"  # port of the service.
+      - "traefik.http.services.radicale.loadbalancer.server.port=5232"  # port of the service.
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=radicale"
