@@ -5,7 +5,7 @@ tags = ["shady_desktop", "criticality: 2"]
 server = "shady_desktop"
 project_name = "crafty"
 linked_repo = "compose_main"
-run_directory = "hosts/crafty"
+run_directory = "crafty"
 
 ##
 
