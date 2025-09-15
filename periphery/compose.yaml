@@ -1,7 +1,7 @@
 ---
 services:
   periphery:
-    image: ghcr.io/moghtech/komodo-periphery:1.19.3
+    image: ghcr.io/moghtech/komodo-periphery:1.19.4
     container_name: periphery
     labels:
       komodo.skip:
