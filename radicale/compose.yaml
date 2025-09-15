@@ -6,6 +6,7 @@ services:
       - /data/config_storage/radicale/config:/etc/radicale  #:ro
       - /data/config_storage/radicale/data:/var/lib/radicale
     restart: unless-stopped
+    user: 1000:1000
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
