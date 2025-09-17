@@ -19,7 +19,6 @@ services:
       - "traefik.http.routers.todo-secure.service=todo"
       - "traefik.http.services.todo.loadbalancer.server.port=3000"  # port of the service.
       - "traefik.docker.network=intranet"
-      - "traefik.http.routers.todo-secure.middlewares=tinyauth"
       - "homepage.group=Other"
       - "homepage.name=Todo"
       - "homepage.icon=/images/dumbkan.png"
