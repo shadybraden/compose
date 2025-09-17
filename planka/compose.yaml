@@ -11,7 +11,7 @@ services:
       - /data/config_storage/planka/attachments:/app/private/attachments
     environment:
       - BASE_URL=https://todo.${DOMAIN}
-      - DATABASE_URL=postgresql://postgres@postgres_planka/planka
+      - DATABASE_URL=postgresql://postgres_planka@postgres/planka
       - SECRET_KEY=notsecretkey
     depends_on:
       postgres:
