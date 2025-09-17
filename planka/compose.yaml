@@ -40,7 +40,7 @@ services:
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=todo"
-      - "homepage.icon=/images/todo.png"
+      - "homepage.icon=/images/planka.png"
       - "homepage.href=https://todo.${DOMAIN}/"
 
   postgres:
