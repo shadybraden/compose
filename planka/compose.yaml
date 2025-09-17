@@ -13,7 +13,7 @@ services:
       - 3000:1337
     environment:
       - BASE_URL=https://todo.${DOMAIN}
-      - DATABASE_URL=postgresql://postgres@postgres/planka
+      - DATABASE_URL=postgresql://postgres_planka@postgres_planka/planka
       - SECRET_KEY=notsecretkey
     depends_on:
       postgres:
@@ -40,7 +40,7 @@ services:
       - "homepage.href=https://todo.${DOMAIN}/"
 
   postgres:
-    container_name: postgres
+    container_name: postgres_planka
     image: postgres:16-alpine
     restart: unless-stopped
     volumes:
