@@ -9,8 +9,7 @@ services:
       - /data/config_storage/planka/user-avatars:/app/public/user-avatars
       - /data/config_storage/planka/background-images:/app/public/background-images
       - /data/config_storage/planka/attachments:/app/private/attachments
-    ports:
-      - 1337:1337
+    user: 1000:1000
     environment:
       - BASE_URL=https://todo.${DOMAIN}
       - DATABASE_URL=postgresql://postgres@postgres/planka
@@ -45,6 +44,7 @@ services:
 
   postgres:
     container_name: postgres
+    user: 1000:1000
     image: postgres:16-alpine
     restart: unless-stopped
     volumes:
