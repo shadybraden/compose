@@ -1,0 +1,56 @@
+---
+services:
+  planka:
+    image: ghcr.io/plankanban/planka:2.0.0-rc.4
+    restart: unless-stopped
+    volumes:
+      - /data/config_storage/planka/favicons:/app/public/favicons
+      - /data/config_storage/planka/user-avatars:/app/public/user-avatars
+      - /data/config_storage/planka/background-images:/app/public/background-images
+      - /data/config_storage/planka/attachments:/app/private/attachments
+    ports:
+      - 3000:1337
+    environment:
+      - BASE_URL=https://todo.${DOMAIN}
+      - DATABASE_URL=postgresql://postgres@postgres/planka
+      - SECRET_KEY=notsecretkey
+    depends_on:
+      postgres:
+        condition: service_healthy
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.todo.entrypoints=http"
+      - "traefik.http.routers.todo.rule=Host(`todo.${DOMAIN}`)"
+      - "traefik.http.middlewares.todo-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.todo.middlewares=todo-https-redirect"
+      - "traefik.http.routers.todo-secure.entrypoints=https"
+      - "traefik.http.routers.todo-secure.rule=Host(`todo.${DOMAIN}`)"
+      - "traefik.http.routers.todo-secure.tls=true"
+      - "traefik.http.routers.todo-secure.service=todo"
+      - "traefik.http.services.todo.loadbalancer.server.port=1337"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=todo"
+      - "homepage.icon=/images/todo.png"
+      - "homepage.href=https://todo.${DOMAIN}/"
+
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    volumes:
+      - /data/config_storage/planka/db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=planka
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+
+networks:
+  intranet:
+    external: true
