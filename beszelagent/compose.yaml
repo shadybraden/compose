@@ -10,6 +10,7 @@ services:
       # monitor other disks / partitions by mounting a folder in /extra-filesystems
       - /data/mnt/beszel:/extra-filesystems/sda1:ro
       - /data/config_storage/beszel:/extra-filesystems/config_storage:ro
+      - /mnt/extra:/extra-filesystems/sdb:ro
     environment:
       LISTEN: 45876
       KEY: ${KEY}  # format: `KEY="key"`

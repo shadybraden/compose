@@ -177,8 +177,10 @@ services:
       - TORRENTING_PORT=${arr_qbittorrent_port}
     volumes:
       - /data/config_storage/arr/qbittorrent:/config
+      - /data/config_storage/arr/qbittorrent:/complete
       - /data/mnt/torrents:/downloads/torrents
       - /data/mnt:/allMedia
+      - /mnt/extra:/mnt
     restart: unless-stopped
     network_mode: service:gluetun_arr
     depends_on:
