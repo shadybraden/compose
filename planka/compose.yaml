@@ -9,8 +9,6 @@ services:
       - /data/config_storage/planka/user-avatars:/app/public/user-avatars
       - /data/config_storage/planka/background-images:/app/public/background-images
       - /data/config_storage/planka/attachments:/app/private/attachments
-    ports:
-      - 3000:1337
     environment:
       - BASE_URL=https://todo.${DOMAIN}
       - DATABASE_URL=postgresql://postgres_planka@postgres_planka/planka
