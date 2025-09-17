@@ -44,7 +44,7 @@ services:
       - "homepage.href=https://todo.${DOMAIN}/"
 
   postgres:
-    container_name: postgres_planka
+    container_name: postgres
     image: postgres:16-alpine
     restart: unless-stopped
     volumes:
