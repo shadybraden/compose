@@ -5,9 +5,9 @@
 
 services:
   # Database (Postgres)
-  postgres:
+  postgres_resume:
     image: postgres:16-alpine
-    container_name: postgres
+    container_name: postgres_resume
     restart: unless-stopped
     volumes:
       - /data/config_storage/reactiveresume/postgres_data:/var/lib/postgresql/data
@@ -80,7 +80,7 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - postgres
+      - postgres_resume
       - minio
       - chrome
     environment:
@@ -97,7 +97,7 @@ services:
       CHROME_URL: ws://chrome:3000
 
       # -- Database (Postgres) --
-      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
+      DATABASE_URL: postgresql://postgres:postgres@postgres_resume:5432/postgres
 
       # -- Auth --
       ACCESS_TOKEN_SECRET: access_token_secret
