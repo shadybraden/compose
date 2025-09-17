@@ -1,6 +1,7 @@
 ---
 services:
   planka:
+    container_name: planka
     image: ghcr.io/plankanban/planka:2.0.0-rc.4
     restart: unless-stopped
     volumes:
@@ -39,6 +40,7 @@ services:
       - "homepage.href=https://todo.${DOMAIN}/"
 
   postgres:
+    container_name: postgres
     image: postgres:16-alpine
     restart: unless-stopped
     volumes:
