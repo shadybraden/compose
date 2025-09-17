@@ -14,13 +14,13 @@ services:
     environment:
       - BASE_URL=https://todo.${DOMAIN}
       - DATABASE_URL=postgresql://postgres@postgres/planka
-      - SECRET_KEY=notsecretkey
+      - SECRET_KEY=${SECRET_KEY}
       - DEFAULT_ADMIN_EMAIL=${DEFAULT_ADMIN_EMAIL}
       - DEFAULT_ADMIN_PASSWORD=${DEFAULT_ADMIN_PASSWORD}
       - DEFAULT_ADMIN_NAME=${DEFAULT_ADMIN_NAME}
       - DEFAULT_ADMIN_USERNAME=${DEFAULT_ADMIN_USERNAME}
     depends_on:
-      postgres_planka:
+      postgres:
         condition: service_healthy
     security_opt:
       - no-new-privileges:true  # helps to increase security
@@ -43,7 +43,7 @@ services:
       - "homepage.icon=/images/todo.png"
       - "homepage.href=https://todo.${DOMAIN}/"
 
-  postgres_planka:
+  postgres:
     container_name: postgres_planka
     image: postgres:16-alpine
     restart: unless-stopped
