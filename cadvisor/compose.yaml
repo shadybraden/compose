@@ -1,7 +1,7 @@
 ---
 services:
   cadvisor:
-    image: gcr.io/google-containers/cadvisor:latest
+    image: ghcr.io/google/cadvisor:latest
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:ro
