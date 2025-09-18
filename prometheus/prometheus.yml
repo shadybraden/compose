@@ -2,4 +2,4 @@
 scrape_configs:
   - job_name: 'cadvisor'
     static_configs:
-      - targets: ['cadvisor.${DOMAIN}']
+      - targets: ['cadvisor.holmlab.org']
