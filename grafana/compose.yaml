@@ -3,8 +3,6 @@ services:
   grafana:
     container_name: grafana
     restart: unless-stopped
-    environment:
-      - GF_INSTALL_PLUGINS=yesoreyeram-infinity-datasource
     volumes:
       - /data/config_storage/grafana:/var/lib/grafana
     image: grafana/grafana-oss:12.1.1
