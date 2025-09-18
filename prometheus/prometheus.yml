@@ -3,3 +3,5 @@ scrape_configs:
   - job_name: 'cadvisor'
     static_configs:
       - targets: ['cadvisor.holmlab.org']
+global:
+  scrape_interval: 5s
