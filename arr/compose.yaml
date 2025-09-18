@@ -188,8 +188,6 @@ services:
         condition: service_healthy
     security_opt:
       - no-new-privileges:true  # helps to increase security
-    labels:
-      - "qbittorrent=qbittorrent"
 
 networks:
   intranet:
