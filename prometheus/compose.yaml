@@ -2,7 +2,8 @@
 services:
   prometheus:
     volumes:
-      - /data/config_storage/prometheus:/etc/prometheus
+      - /data/config_storage/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - /data/config_storage/prometheus/data:/prometheus
     image: prom/prometheus:v3.5.0
     security_opt:
       - no-new-privileges:true  # helps to increase security
