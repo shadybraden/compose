@@ -5,6 +5,7 @@ services:
       - /data/config_storage/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - /data/config_storage/prometheus/data:/prometheus
     image: prom/prometheus:v3.5.0
+    user: 1000:1000
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
