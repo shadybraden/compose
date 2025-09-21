@@ -1,0 +1,35 @@
+---
+services:
+  olivetin:
+    container_name: olivetin
+    image: jamesread/olivetin:2025.7.29
+    volumes:
+      - /data/config_storage/komodo/etc_komodo/repos/compose_main/olivetin:/config:ro
+    user: 1000:1000
+    ports:
+      - "1337:1337"
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.olivetin.entrypoints=http"
+      - "traefik.http.routers.olivetin.rule=Host(`olivetin.${DOMAIN}`)"
+      - "traefik.http.middlewares.olivetin-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.olivetin.middlewares=olivetin-https-redirect"
+      - "traefik.http.routers.olivetin-secure.entrypoints=https"
+      - "traefik.http.routers.olivetin-secure.rule=Host(`olivetin.${DOMAIN}`)"
+      - "traefik.http.routers.olivetin-secure.tls=true"
+      - "traefik.http.routers.olivetin-secure.service=olivetin"
+      - "traefik.http.services.olivetin.loadbalancer.server.port=1337"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=olivetin"
+      - "homepage.icon=/images/olivetin.png"
+      - "homepage.href=https://olivetin.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true

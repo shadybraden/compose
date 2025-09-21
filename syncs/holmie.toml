@@ -687,3 +687,16 @@ linked_repo = "compose_main"
 run_directory = "planka"
 additional_env_files = ["/etc/komodo/domain.env"]
 env_file_path = "/etc/komodo/env/planka-holmie.env"
+
+##
+
+[[stack]]
+name = "olivetin-holmie"
+tags = ["holmie", "criticality: 1"]
+[stack.config]
+server = "holmie"
+project_name = "olivetin-holmie"
+linked_repo = "compose_main"
+run_directory = "olivetin"
+additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/olivetin-holmie.env"
