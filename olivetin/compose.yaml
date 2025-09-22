@@ -4,7 +4,9 @@ services:
     container_name: olivetin
     image: jamesread/olivetin:2025.7.29
     volumes:
-      - /data/config_storage/komodo/etc_komodo/repos/compose_main/olivetin:/config:ro
+      - /data/config_storage/komodo/etc_komodo/repos/compose_main/olivetin/config.yaml:/config/config.yaml:ro
+      - /data/config_storage/olivetin:/config
+      - /data/config_storage/MCC_Kids_print:/MCC_Kids_print:ro
     user: 1000:1000
     ports:
       - "1337:1337"
