@@ -1,5 +1,5 @@
 ```
-sudo apt update -y && sudo apt install git btop openssh -y
+sudo apt update -y && sudo apt install git btop openssh-server -y
 ```
 
 ```
