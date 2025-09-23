@@ -1,18 +1,41 @@
+# olivetin config.yaml
+# Dropdown to select a PDF, textbox for number of copies, runs a .sh script with two args: file and copies
+
+title: "Print PDF"
+description: "Select a PDF and number of copies, then run the print script."
+
+inputs:
+  - id: pdf_file
+    type: select
+    label: "PDF file"
+    description: "Choose a PDF to print"
+    required: true
+    # Provide options as value/display pairs. Adjust paths or values to match your environment.
+    options:
+      - label: "Document A"
+        value: "/path/to/documentA.pdf"
+      - label: "Document B"
+        value: "/path/to/documentB.pdf"
+      - label: "Document C"
+        value: "/path/to/documentC.pdf"
+    # If you want to dynamically populate the list, replace options above with a command that generates YAML options.
+
+  - id: copies
+    type: number
+    label: "Number of copies"
+    description: "Enter how many copies to print"
+    required: true
+    default: 1
+    min: 1
+    max: 999
+
 actions:
-  - title: Print a file
-    icon: <iconify-icon icon="material-symbols:print-rounded"></iconify-icon>
-    shell: /MCC_Kids_print/kids/print_blank.sh {{file}} {{copies}}
-    arguments:
-      - name: file
-        title: file
-        description: Which file do you want to print?
-        type: choice
-        choices:
-          - title: doc1.pdf
-            value: doc1.pdf
-          - title: doc2.pdf
-            value: doc2.pdf
-      - name: copies
-        title: copies
-        description: How many copies of the file above?
-        default: 1
+  - id: run_print_script
+    label: "Print"
+    type: shell
+    # Path to your script; make executable (chmod +x /path/to/print.sh)
+    command: |
+      /path/to/print.sh "{{inputs.pdf_file}}" "{{inputs.copies}}"
+    # Optional: capture stdout/stderr or set working_dir if needed
+    # working_dir: /path/to
+    # timeout: 60
