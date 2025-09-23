@@ -110,18 +110,3 @@ actions:
     arguments:
       - type: confirmation
         title: Are you sure?!
-
-dashboards:
-  - title: My First Dashboard
-    contents:
-      - title: Fieldset 1
-        type: fieldset
-        contents:
-          - title: Kids Printing
-            contents:
-              - title: Older Kids Printing
-              - title: Younger Kids Printing
-          - title: Preschool Printing
-            contents:
-              - title: Older Preschool Printing
-              - title: Younger Preschool Printing
