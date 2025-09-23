@@ -1,7 +1,7 @@
 actions:
-  - title: Print a file
+  - title: Older Kids Printing
     icon: <iconify-icon icon="material-symbols:print-rounded"></iconify-icon>
-    shell: /MCC_Kids_print/kids/print_blank.sh "{{file}}" {{copies}}
+    shell: /MCC_Kids_print/kids/kids_print.sh "{{file}}" {{copies}}
     arguments:
       - name: file
         title: file
@@ -11,12 +11,27 @@ actions:
             value: "Big Picture Question and Answer.pdf"
           - title: "Key Passage Posters.pdf"
             value: "Key Passage Posters.pdf"
+          - title: "Story Point.pdf"
+            value: "Story Point.pdf"
           - title: "Older Kids Activity Pages.pdf"
             value: "Older Kids Activity Pages.pdf"
           - title: "Older Kids Activity Printables.pdf"
             value: "Older Kids Activity Printables.pdf"
           - title: "Older Kids Leader Guide.pdf"
             value: "Older Kids Leader Guide.pdf"
+
+  - title: Younger Kids Printing
+    icon: <iconify-icon icon="material-symbols:print-rounded"></iconify-icon>
+    shell: /MCC_Kids_print/kids/kids_print.sh "{{file}}" {{copies}}
+    arguments:
+      - name: file
+        title: file
+        description: Which file do you want to print?
+        choices:
+          - title: "Big Picture Question and Answer.pdf"
+            value: "Big Picture Question and Answer.pdf"
+          - title: "Key Passage Posters.pdf"
+            value: "Key Passage Posters.pdf"
           - title: "Story Point.pdf"
             value: "Story Point.pdf"
           - title: "Younger Kids Activity Pages.pdf"
@@ -25,6 +40,15 @@ actions:
             value: "Younger Kids Activity Printables.pdf"
           - title: "Younger Kids Leader Guide.pdf"
             value: "Younger Kids Leader Guide.pdf"
+
+  - title: Older Preschool Printing
+    icon: <iconify-icon icon="material-symbols:print-rounded"></iconify-icon>
+    shell: /MCC_Kids_print/kids/preschool_print.sh "{{file}}" {{copies}}
+    arguments:
+      - name: file
+        title: file
+        description: Which file do you want to print?
+        choices:
           - title: "Older Preschool Activity Pages.pdf"
             value: "Older Preschool Activity Pages.pdf"
           - title: "Older Preschool Activity Printables.pdf"
@@ -33,6 +57,17 @@ actions:
             value: "Older Preschool Key Passage Posters.pdf"
           - title: "Older Preschool Leader Guide.pdf"
             value: "Older Preschool Leader Guide.pdf"
+          - title: "Preschool Big Picture Question and Answer.pdf"
+            value: "Preschool Big Picture Question and Answer.pdf"
+
+  - title: Younger Preschool Printing
+    icon: <iconify-icon icon="material-symbols:print-rounded"></iconify-icon>
+    shell: /MCC_Kids_print/kids/preschool_print.sh "{{file}}" {{copies}}
+    arguments:
+      - name: file
+        title: file
+        description: Which file do you want to print?
+        choices:
           - title: "Preschool Big Picture Question and Answer.pdf"
             value: "Preschool Big Picture Question and Answer.pdf"
           - title: "Younger Preschool Activity Pages.pdf"
