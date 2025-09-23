@@ -2,6 +2,7 @@ actions:
   - title: Older Kids Printing
     icon: <iconify-icon icon="material-symbols:print-rounded"></iconify-icon>
     shell: /MCC_Kids_print/kids_print.sh "{{file}}" {{copies}}
+    entity: printer
     arguments:
       - name: file
         title: file
@@ -27,6 +28,7 @@ actions:
   - title: Younger Kids Printing
     icon: <iconify-icon icon="material-symbols:print-rounded"></iconify-icon>
     shell: /MCC_Kids_print/kids_print.sh "{{file}}" {{copies}}
+    entity: printer
     arguments:
       - name: file
         title: file
@@ -52,6 +54,7 @@ actions:
   - title: Older Preschool Printing
     icon: <iconify-icon icon="material-symbols:print-rounded"></iconify-icon>
     shell: /MCC_Kids_print/preschool_print.sh "{{file}}" {{copies}}
+    entity: printer
     arguments:
       - name: file
         title: file
@@ -75,6 +78,7 @@ actions:
   - title: Younger Preschool Printing
     icon: <iconify-icon icon="material-symbols:print-rounded"></iconify-icon>
     shell: /MCC_Kids_print/preschool_print.sh "{{file}}" {{copies}}
+    entity: printer
     arguments:
       - name: file
         title: file
@@ -104,3 +108,10 @@ actions:
   - title: Cancel only LAST Print job
     icon: <iconify-icon icon="mynaui:delete-solid"></iconify-icon>
     shell: /MCC_Kids_print/cancel_last_print.sh
+
+dashboards:
+  - title: My First Dashboard
+    contents:
+      - title: Fieldset 1
+        type: fieldset
+        entity: printer
