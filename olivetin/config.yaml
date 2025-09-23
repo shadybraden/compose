@@ -7,11 +7,44 @@ actions:
         title: file
         description: Which file do you want to print?
         choices:
-          - title: doc1.pdf
-            value: doc1.pdf
-
-          - title: doc2.pdf
-            value: doc2.pdf
+          - title: Big Picture Question and Answer.pdf
+            value: Big Picture Question and Answer.pdf
+          - title: Key Passage Posters.pdf
+            value: Key Passage Posters.pdf
+          - title: Older Kids Activity Pages.pdf
+            value: Older Kids Activity Pages.pdf
+          - title: Older Kids Activity Printables.pdf
+            value: Older Kids Activity Printables.pdf
+          - title: Older Kids Leader Guide.pdf
+            value: Older Kids Leader Guide.pdf
+          - title: Story Point.pdf
+            value: Story Point.pdf
+          - title: Younger Kids Activity Pages.pdf
+            value: Younger Kids Activity Pages.pdf
+          - title: Younger Kids Activity Printables.pdf
+            value: Younger Kids Activity Printables.pdf
+          - title: Younger Kids Leader Guide.pdf
+            value: Younger Kids Leader Guide.pdf
+          - title: Older Preschool Activity Pages.pdf
+            value: Older Preschool Activity Pages.pdf
+          - title: Older Preschool Activity Printables.pdf
+            value: Older Preschool Activity Printables.pdf
+          - title: Older Preschool Key Passage Posters.pdf
+            value: Older Preschool Key Passage Posters.pdf
+          - title: Older Preschool Leader Guide.pdf
+            value: Older Preschool Leader Guide.pdf
+          - title: Preschool Big Picture Question and Answer.pdf
+            value: Preschool Big Picture Question and Answer.pdf
+          - title: Younger Preschool Activity Pages.pdf
+            value: Younger Preschool Activity Pages.pdf
+          - title: Younger Preschool Activity Printables.pdf
+            value: Younger Preschool Activity Printables.pdf
+          - title: Younger Preschool Big Picture Question & Answer.pdf
+            value: Younger Preschool Big Picture Question & Answer.pdf
+          - title: Younger Preschool Key Passage Posters.pdf
+            value: Younger Preschool Key Passage Posters.pdf
+          - title: Younger Preschool Leader Guide.pdf
+            value: Younger Preschool Leader Guide.pdf
       - name: copies
         title: copies
         description: How many copies of the file above?
