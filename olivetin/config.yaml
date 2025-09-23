@@ -2,7 +2,6 @@ actions:
   - title: Older Kids Printing
     icon: <iconify-icon icon="material-symbols:print-rounded"></iconify-icon>
     shell: /MCC_Kids_print/kids_print.sh "{{file}}" {{copies}}
-    entity: printer
     arguments:
       - name: file
         title: file
@@ -28,7 +27,6 @@ actions:
   - title: Younger Kids Printing
     icon: <iconify-icon icon="material-symbols:print-rounded"></iconify-icon>
     shell: /MCC_Kids_print/kids_print.sh "{{file}}" {{copies}}
-    entity: printer
     arguments:
       - name: file
         title: file
@@ -54,7 +52,6 @@ actions:
   - title: Older Preschool Printing
     icon: <iconify-icon icon="material-symbols:print-rounded"></iconify-icon>
     shell: /MCC_Kids_print/preschool_print.sh "{{file}}" {{copies}}
-    entity: printer
     arguments:
       - name: file
         title: file
@@ -78,7 +75,6 @@ actions:
   - title: Younger Preschool Printing
     icon: <iconify-icon icon="material-symbols:print-rounded"></iconify-icon>
     shell: /MCC_Kids_print/preschool_print.sh "{{file}}" {{copies}}
-    entity: printer
     arguments:
       - name: file
         title: file
