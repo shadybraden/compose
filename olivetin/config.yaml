@@ -6,7 +6,6 @@ actions:
       - name: file
         title: file
         description: Which file do you want to print?
-        type: choice
         choices:
           - title: doc1.pdf
             value: doc1.pdf
