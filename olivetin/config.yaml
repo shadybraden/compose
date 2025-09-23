@@ -1,7 +1,7 @@
 actions:
   - title: Print a file
     icon: <iconify-icon icon="material-symbols:print-rounded"></iconify-icon>
-    shell: /MCC_Kids_print/kids/print_blank.sh {{file}} {{copies}}
+    shell: /MCC_Kids_print/kids/print_blank.sh "{{file}}" {{copies}}
     arguments:
       - name: file
         title: file
