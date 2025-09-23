@@ -1,9 +1,17 @@
 actions:
-  - title: Print
-    shell: /MCC_Kids_print/kids/print_blank.sh {{ copies }}
+  - title: Print a file
+    icon: pepicons-print:printer
+    shell: /MCC_Kids_print/kids/print_file.sh "{{ file }}" {{ copies }}
     arguments:
+      - name: file
+        description: The file you want to print out.
+        choices:
+          - title: doc1.pdf
+            value: doc1.pdf
+          - title: doc2.pdf
+            value: doc2.pdf
       - name: copies
-        description: How many copies
-        title: copies
-        default: 0
+        description: The number to include with the file print.
+        title: Your Number
+        default: 1
         type: ascii_sentence
