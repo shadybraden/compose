@@ -1,0 +1,43 @@
+---
+services:
+  hugo:
+    image: klakegg/hugo:ext-alpine
+    container_name: hugo-site
+    ports:
+      - "1313:1313"
+    environment:
+      HUGO_WATCH: "true"
+      REPO: ""  # set at runtime if ./site is empty, e.g. REPO=https://github.com/user/repo.git
+    volumes:
+      - /data/config_storage/MCC_Kids_site:/site
+    working_dir: /site
+    entrypoint: ["/bin/sh", "-c"]
+    command: >
+      set -e
+      # If no git repo in /site, require REPO and clone
+      if [ ! -d "/site/.git" ]; then
+        if [ -z "${REPO}" ]; then
+          echo "ERROR: REPO not set and /site is not a git repo" >&2
+          exit 1
+        fi
+        echo "Cloning ${REPO} into /site..."
+        rm -rf /site/* /site/.[!.]* 2>/dev/null || true
+        git clone --depth 1 "${REPO}" /site
+      else
+        echo "/site contains a git repo — updating..."
+        cd /site
+        if git remote show origin >/dev/null 2>&1; then
+          git fetch --all --prune
+          BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || true)
+          if [ -z "$BRANCH" ] || [ "$BRANCH" = "HEAD" ]; then
+            BRANCH=$(git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null | sed 's@^origin/@@' || true)
+          fi
+          : "${BRANCH:=main}"
+          echo "Resetting to origin/$BRANCH..."
+          git reset --hard "origin/$BRANCH" || git pull --rebase --autostash || true
+        else
+          echo "No origin remote found; skipping git update."
+        fi
+      fi
+      echo "Starting Hugo server..."
+      exec hugo server --bind=0.0.0.0 --baseURL=http://localhost/ --port=1313 --watch --disableFastRender

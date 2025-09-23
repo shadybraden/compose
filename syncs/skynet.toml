@@ -79,3 +79,16 @@ linked_repo = "compose_main"
 run_directory = "loggifly"
 additional_env_files = ["/etc/komodo/domain.env"]
 env_file_path = "/etc/komodo/env/loggifly-skynet.env"
+
+##
+
+[[stack]]
+name = "hugo-skynet"
+tags = ["skynet", "criticality: 1"]
+[stack.config]
+server = "skynet"
+project_name = "hugo-skynet"
+linked_repo = "compose_main"
+run_directory = "hugo"
+additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/hugo-skynet.env"
