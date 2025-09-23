@@ -1,0 +1,14 @@
+services:
+  pdfding:
+    container_name: pdfding
+    ports:
+      - 8000:8000
+    volumes:
+      - /data/config_storage/pdfding/db:/home/nonroot/pdfding/db
+      - /data/config_storage/pdfding/media:/home/nonroot/pdfding/media
+    environment:
+      - HOST_NAME=127.0.0.1
+      - SECRET_KEY=some_secret
+      - CSRF_COOKIE_SECURE=FALSE
+      - SESSION_COOKIE_SECURE=FALSE
+    image: mrmn/pdfding:latest
