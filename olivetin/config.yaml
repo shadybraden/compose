@@ -109,18 +109,3 @@ actions:
     icon: <iconify-icon icon="mynaui:delete-solid"></iconify-icon>
     shell: /MCC_Kids_print/cancel_last_print.sh
 
-dashboards:
-  - title: My First Dashboard
-    contents:
-      - title: Fieldset 1
-        type: fieldset
-        entity: printer
-        contents:
-          - title: Older Kids Printing
-            type: button
-          - title: Younger Kids Printing
-            type: button
-          - title: Older Preschool Printing
-            type: button
-          - title: Younger Preschool Printing
-            type: button
