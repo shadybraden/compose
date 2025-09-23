@@ -1,17 +1,21 @@
 actions:
   - title: Print a file
     icon: <iconify-icon icon="material-symbols:print-rounded"></iconify-icon>
-    shell: /MCC_Kids_print/kids/print_blank.sh {{ file }} {{ copies }}
+    shell: /MCC_Kids_print/kids/print_blank.sh {{file}} {{copies}}
     arguments:
-      - name: File
+      - name: file
+        title: File
         description: Which file do you want to print?
+        type: choice
+        required: true
         choices:
           - title: doc1.pdf
             value: doc1.pdf
           - title: doc2.pdf
             value: doc2.pdf
       - name: copies
-        description: How many copies of the file above?
         title: Copies
+        description: How many copies of the file above?
+        type: integer
         default: 1
-        type: ascii_sentence
+        required: false
