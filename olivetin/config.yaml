@@ -115,3 +115,8 @@ dashboards:
       - title: Fieldset 1
         type: fieldset
         entity: printer
+        contents:
+          - title: Older Kids Printing
+          - title: Younger Kids Printing
+          - title: Older Preschool Printing
+          - title: Younger Preschool Printing
