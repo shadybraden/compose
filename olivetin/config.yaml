@@ -19,6 +19,10 @@ actions:
             value: "Older Kids Activity Printables.pdf"
           - title: "Older Kids Leader Guide.pdf"
             value: "Older Kids Leader Guide.pdf"
+      - name: copies
+        title: copies
+        description: How many copies of the file above?
+        default: 1
 
   - title: Younger Kids Printing
     icon: <iconify-icon icon="material-symbols:print-rounded"></iconify-icon>
@@ -40,6 +44,10 @@ actions:
             value: "Younger Kids Activity Printables.pdf"
           - title: "Younger Kids Leader Guide.pdf"
             value: "Younger Kids Leader Guide.pdf"
+      - name: copies
+        title: copies
+        description: How many copies of the file above?
+        default: 1
 
   - title: Older Preschool Printing
     icon: <iconify-icon icon="material-symbols:print-rounded"></iconify-icon>
@@ -59,6 +67,10 @@ actions:
             value: "Older Preschool Leader Guide.pdf"
           - title: "Preschool Big Picture Question and Answer.pdf"
             value: "Preschool Big Picture Question and Answer.pdf"
+      - name: copies
+        title: copies
+        description: How many copies of the file above?
+        default: 1
 
   - title: Younger Preschool Printing
     icon: <iconify-icon icon="material-symbols:print-rounded"></iconify-icon>
