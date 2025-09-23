@@ -116,20 +116,20 @@ dashboards:
         type: fieldset
         entity: printer
         contents:
-          - entity: printer
-            action: older_kids_printing
-            title: Older Kids Printing
-            type: action
-          - entity: printer
-            action: younger_kids_printing
-            title: Younger Kids Printing
-            type: action
-          - entity: printer
-            action: older_preschool_printing
-            title: Older Preschool Printing
-            type: action
-          - entity: printer
-            action: younger_preschool_printing
-            title: Younger Preschool Printing
-            type: action
+          - title: Older Kids Printing
+            type: item
+            entity: printer
+            option: older_kids_printing
+          - title: Younger Kids Printing
+            type: item
+            entity: printer
+            option: younger_kids_printing
+          - title: Older Preschool Printing
+            type: item
+            entity: printer
+            option: older_preschool_printing
+          - title: Younger Preschool Printing
+            type: item
+            entity: printer
+            option: younger_preschool_printing
 
