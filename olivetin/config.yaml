@@ -96,3 +96,11 @@ actions:
         title: copies
         description: How many copies of the file above?
         default: 1
+
+  - title: Cancel ALL Print jobs
+    icon: <iconify-icon icon="flat-color-icons:cancel"></iconify-icon>
+    shell: /MCC_Kids_print/clear_all_print_queue.sh
+
+  - title: Cancel only LAST Print job
+    icon: <iconify-icon icon="mynaui:delete-solid"></iconify-icon>
+    shell: /MCC_Kids_print/cancel_last_print.sh
