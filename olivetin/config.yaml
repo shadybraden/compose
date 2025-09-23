@@ -100,10 +100,16 @@ actions:
   - title: Cancel ALL Print jobs
     icon: <iconify-icon icon="flat-color-icons:cancel"></iconify-icon>
     shell: /MCC_Kids_print/clear_all_print_queue.sh
+    arguments:
+      - type: confirmation
+        title: Are you sure?!
 
   - title: Cancel only LAST Print job
     icon: <iconify-icon icon="mynaui:delete-solid"></iconify-icon>
     shell: /MCC_Kids_print/cancel_last_print.sh
+    arguments:
+      - type: confirmation
+        title: Are you sure?!
 
 dashboards:
   - title: My First Dashboard
