@@ -1,3 +1,11 @@
 actions:
   - title: "print blank"
     shell: /MCC_Kids_print/kids/print_blank.sh
+  - title: Print
+    shell: /MCC_Kids_print/kids/print_blank.sh {{ copies }}
+    arguments:
+      - name: copies
+        description: How many copies
+        title: copies
+        default: 0
+        type: ascii_sentence
