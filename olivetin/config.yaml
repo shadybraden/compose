@@ -1,6 +1,4 @@
 actions:
-  - title: "print blank"
-    shell: /MCC_Kids_print/kids/print_blank.sh
   - title: Print
     shell: /MCC_Kids_print/kids/print_blank.sh {{ copies }}
     arguments:
