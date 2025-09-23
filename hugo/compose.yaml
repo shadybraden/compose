@@ -40,4 +40,4 @@ services:
         fi
       fi
       echo "Starting Hugo server..."
-      exec hugo server --bind=0.0.0.0 --baseURL=http://localhost/ --port=1313 --watch --disableFastRender
+      exec hugo server --bind=0.0.0.0 --baseURL=http://0.0.0.0/ --port=1313 --watch --disableFastRender
