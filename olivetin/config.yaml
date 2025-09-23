@@ -15,5 +15,4 @@ actions:
       - name: copies
         title: copies
         description: How many copies of the file above?
-        type: integer
         default: 1
