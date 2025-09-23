@@ -108,11 +108,3 @@ actions:
   - title: Cancel only LAST Print job
     icon: <iconify-icon icon="mynaui:delete-solid"></iconify-icon>
     shell: /MCC_Kids_print/cancel_last_print.sh
-
-dashboards:
-  - title: Kids Printing
-    contents:
-      - type: fieldset
-        title: Older Kids Printing
-        entity: printer
-        contents:
