@@ -18,6 +18,8 @@ services:
       - POSTGRES_USER=mmuser
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_DB=mattermost
+    networks:
+      - intranet
 
   mattermost:
     depends_on:
@@ -43,4 +45,26 @@ services:
       - MM_SQLSETTINGS_DRIVERNAME=postgres
       - MM_SQLSETTINGS_DATASOURCE=postgres://mmuser:${POSTGRES_PASSWORD}@postgres_mattermost:5432/mattermost?sslmode=disable&connect_timeout=10
       - MM_BLEVESETTINGS_INDEXDIR=/mattermost/bleve-indexes
-      - MM_SERVICESETTINGS_SITEURL=https://mattermost.${DOMAIN}
+      - MM_SERVICESETTINGS_SITEURL=https://mattermost.${DOMAIN}/
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.mattermost.entrypoints=http"
+      - "traefik.http.routers.mattermost.rule=Host(`mattermost.${DOMAIN}`)"
+      - "traefik.http.middlewares.mattermost-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.mattermost.middlewares=mattermost-https-redirect"
+      - "traefik.http.routers.mattermost-secure.entrypoints=https"
+      - "traefik.http.routers.mattermost-secure.rule=Host(`mattermost.${DOMAIN}`)"
+      - "traefik.http.routers.mattermost-secure.tls=true"
+      - "traefik.http.routers.mattermost-secure.service=mattermost"
+      - "traefik.http.services.mattermost.loadbalancer.server.port=80"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=mattermost"
+      - "homepage.icon=/images/mattermost.png"
+      - "homepage.href=https://mattermost.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true
