@@ -8,6 +8,7 @@ services:
       - no-new-privileges:true
     pids_limit: 100
     read_only: true
+    user: 1000:1000
     tmpfs:
       - /tmp
       - /var/run/postgresql
@@ -30,6 +31,7 @@ services:
       - no-new-privileges:true
     pids_limit: 200
     read_only: false
+    user: 1000:1000
     tmpfs:
       - /tmp
     volumes: 
