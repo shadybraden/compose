@@ -1,0 +1,46 @@
+---
+services:
+  postgres_mattermost:
+    container_name: postgres_mattermost
+    image: postgres:13-alpine
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 100
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /var/run/postgresql
+    volumes:
+      - /data/config_storage/mattermost/postgres:/var/lib/postgresql/data
+    environment:
+      - TZ=America/New_York
+      - POSTGRES_USER=mmuser
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=mattermost
+
+  mattermost:
+    depends_on:
+      - postgres_mattermost
+    image: mattermost/mattermost-team-edition:10.5.2
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 200
+    read_only: false
+    tmpfs:
+      - /tmp
+    volumes: 
+      - /data/config_storage/mattermost/config:/mattermost/config:rw
+      - /data/config_storage/mattermost/data:/mattermost/data:rw
+      - /data/config_storage/mattermost/logs:/mattermost/logs:rw
+      - /data/config_storage/mattermost/plugins:/mattermost/plugins:rw
+      - /data/config_storage/mattermost/client_plugins:/mattermost/client/plugins:rw
+      - /data/config_storage/mattermost/bleve_indexes:/mattermost/bleve-indexes:rw
+    environment:
+      - TZ=America/New_York
+      - APP_PORT=8065
+      - MM_SQLSETTINGS_DRIVERNAME=postgres
+      - MM_SQLSETTINGS_DATASOURCE=postgres://mmuser:${POSTGRES_PASSWORD}@postgres_mattermost:5432/mattermost?sslmode=disable&connect_timeout=10
+      - MM_BLEVESETTINGS_INDEXDIR=/mattermost/bleve-indexes
+      - MM_SERVICESETTINGS_SITEURL=https://mattermost.${DOMAIN}
