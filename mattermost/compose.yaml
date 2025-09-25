@@ -41,7 +41,7 @@ services:
       - /data/config_storage/mattermost/bleve_indexes:/mattermost/bleve-indexes:rw
     environment:
       - TZ=America/New_York
-      - APP_PORT=80
+      - APP_PORT=8065
       - MM_SQLSETTINGS_DRIVERNAME=postgres
       - MM_SQLSETTINGS_DATASOURCE=postgres://mmuser:${POSTGRES_PASSWORD}@postgres_mattermost:5432/mattermost?sslmode=disable&connect_timeout=10
       - MM_BLEVESETTINGS_INDEXDIR=/mattermost/bleve-indexes
@@ -58,7 +58,7 @@ services:
       - "traefik.http.routers.mattermost-secure.rule=Host(`mattermost.${DOMAIN}`)"
       - "traefik.http.routers.mattermost-secure.tls=true"
       - "traefik.http.routers.mattermost-secure.service=mattermost"
-      - "traefik.http.services.mattermost.loadbalancer.server.port=80"  # port of the service.
+      - "traefik.http.services.mattermost.loadbalancer.server.port=8065"  # port of the service.
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=mattermost"
