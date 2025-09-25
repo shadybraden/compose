@@ -5,6 +5,7 @@ services:
     volumes:
       - /data/config_storage/jenkins:/var/jenkins_home
     image: jenkins/jenkins:2.516.3
+    user: 1000:1000
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
