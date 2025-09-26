@@ -46,7 +46,7 @@ services:
     restart: unless-stopped
 
   db:
-    image: postgres:16
+    image: postgres:18
     container_name: twenty-postgres
     volumes:
       - /data/config_storage/twenty/db-data:/var/lib/postgresql/data

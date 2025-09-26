@@ -45,7 +45,7 @@ services:
   postgres_planka:
     container_name: postgres_planka
     user: 1000:1000
-    image: postgres:16-alpine
+    image: postgres:18-alpine
     restart: unless-stopped
     volumes:
       - /data/config_storage/planka/db-data:/var/lib/postgresql/data
