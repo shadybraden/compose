@@ -19,6 +19,8 @@ actions:
             value: "Older Kids Activity Printables.pdf"
           - title: "Older Kids Leader Guide.pdf"
             value: "Older Kids Leader Guide.pdf"
+          - title: "doc.pdf"
+            value: "doc.pdf"
       - name: copies
         title: copies
         description: How many copies of the file above?
