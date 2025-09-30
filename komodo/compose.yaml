@@ -18,7 +18,7 @@ services:
       - intranet
 
   core:
-    image: ghcr.io/moghtech/komodo-core:1.19.4
+    image: ghcr.io/moghtech/komodo-core:1.19.5
     restart: unless-stopped
     depends_on:
       - mongo
@@ -64,7 +64,7 @@ services:
       - "homepage.href=https://komodo.${DOMAIN}/"
 
   periphery:
-    image: ghcr.io/moghtech/komodo-periphery:1.19.4
+    image: ghcr.io/moghtech/komodo-periphery:1.19.5
     restart: unless-stopped
     logging:
       driver: local

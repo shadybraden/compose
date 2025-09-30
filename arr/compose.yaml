@@ -124,7 +124,7 @@ services:
       - "homepage.href=https://sonarr.${DOMAIN}/"
 
   jackett:  # mega indexer for the arr's above
-    image: quay.io/linuxserver.io/jackett:0.23.74
+    image: quay.io/linuxserver.io/jackett:0.24.7
     container_name: jackett
     restart: unless-stopped
     volumes:
@@ -138,7 +138,7 @@ services:
 
   autobrr:
     container_name: autobrr
-    image: ghcr.io/autobrr/autobrr:v1.66.1
+    image: ghcr.io/autobrr/autobrr:v1.67.0
     restart: unless-stopped
     #user: 1000:1000
     environment:
