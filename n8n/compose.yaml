@@ -1,0 +1,38 @@
+---
+services:
+  n8nio:
+    image: docker.n8n.io/n8nio/n8n:1.112.6
+    volumes:
+      - /data/config_storage/n8n:/home/node/.n8n
+    environment:
+      - N8N_RUNNERS_ENABLED=true
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+      - TZ=America/New_York
+      - GENERIC_TIMEZONE=America/New_York
+    container_name: n8n
+    tty: true
+    stdin_open: true
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.n8n.entrypoints=http"
+      - "traefik.http.routers.n8n.rule=Host(`n8n.${DOMAIN}`)"
+      - "traefik.http.middlewares.n8n-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.n8n.middlewares=n8n-https-redirect"
+      - "traefik.http.routers.n8n-secure.entrypoints=https"
+      - "traefik.http.routers.n8n-secure.rule=Host(`n8n.${DOMAIN}`)"
+      - "traefik.http.routers.n8n-secure.tls=true"
+      - "traefik.http.routers.n8n-secure.service=n8n"
+      - "traefik.http.services.n8n.loadbalancer.server.port=5678"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=n8n"
+      - "homepage.icon=/images/n8n.png"
+      - "homepage.href=https://n8n.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true
