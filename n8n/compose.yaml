@@ -10,6 +10,7 @@ services:
       - TZ=America/New_York
       - GENERIC_TIMEZONE=America/New_York
     container_name: n8n
+    user: 1000:1000
     tty: true
     stdin_open: true
     security_opt:
