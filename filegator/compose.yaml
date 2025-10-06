@@ -3,6 +3,7 @@ services:
     image: filegator/filegator:v7.13.0
     volumes:
       - /data/config_storage/filegator:/var/www/filegator/repository
+      - /data/config_storage/filegator/logs:/private/logs
     security_opt:
       - no-new-privileges:true  # helps to increase security
     user: 1000:1000
