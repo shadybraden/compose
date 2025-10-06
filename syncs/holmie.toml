@@ -653,7 +653,7 @@ env_file_path = "/etc/komodo/env/actualbudget-holmie.env"
 
 [[stack]]
 name = "baikal-holmie"
-tags = ["holmie", "criticality: 1"]
+tags = ["holmie", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "baikal-holmie"
@@ -666,7 +666,7 @@ env_file_path = "/etc/komodo/env/baikal-holmie.env"
 
 [[stack]]
 name = "grafana-holmie"
-tags = ["holmie", "criticality: 1"]
+tags = ["holmie", "criticality: 3"]
 [stack.config]
 server = "holmie"
 project_name = "grafana-holmie"
@@ -679,7 +679,7 @@ env_file_path = "/etc/komodo/env/grafana-holmie.env"
 
 [[stack]]
 name = "planka-holmie"
-tags = ["holmie", "criticality: 1"]
+tags = ["holmie", "criticality: 4"]
 [stack.config]
 server = "holmie"
 project_name = "planka-holmie"
@@ -692,7 +692,7 @@ env_file_path = "/etc/komodo/env/planka-holmie.env"
 
 [[stack]]
 name = "jenkins-holmie"
-tags = ["holmie", "criticality: 1"]
+tags = ["holmie", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "jenkins-holmie"
