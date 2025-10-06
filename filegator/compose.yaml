@@ -6,7 +6,7 @@ services:
       - /data/config_storage/filegator/logs:/private/logs
     security_opt:
       - no-new-privileges:true  # helps to increase security
-    user: 1000:1000
+    user: 33:33
     networks:
       - intranet
     labels:
