@@ -38,7 +38,7 @@ tags = ["tipi"]
 [server.config]
 tags = ["tipi"]
 address = "http://100.103.233.117:8120"
-enabled = true
+enabled = false
 send_unreachable_alerts = true
 
 ##
