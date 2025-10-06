@@ -1,8 +1,11 @@
 services:
   filegator:
     image: filegator/filegator:v7.13.0
+    volumes:
+      - /data/config_storage/filegator:/var/www/filegator/repository
     security_opt:
       - no-new-privileges:true  # helps to increase security
+    user: 1000:1000
     networks:
       - intranet
     labels:
