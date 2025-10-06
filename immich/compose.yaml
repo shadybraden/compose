@@ -3,7 +3,7 @@ name: immich
 services:
   immich-server:
     container_name: immich_server
-    image: ghcr.io/immich-app/immich-server:v1.143.1
+    image: ghcr.io/immich-app/immich-server:v2.0.1
     volumes:
       - /data/immich/UPLOAD_LOCATION/UPLOAD_LOCATION:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
@@ -43,7 +43,7 @@ services:
 
   immich-machine-learning:
     container_name: immich_machine_learning
-    image: ghcr.io/immich-app/immich-machine-learning:v1.143.1
+    image: ghcr.io/immich-app/immich-machine-learning:v2.0.1
     volumes:
       - model-cache:/cache
     env_file:
@@ -56,7 +56,7 @@ services:
 
   redis:
     container_name: immich_redis
-    image: docker.io/valkey/valkey:8.1.3
+    image: docker.io/valkey/valkey:8.1.4
     restart: unless-stopped
     healthcheck:
       test: redis-cli ping || exit 1
