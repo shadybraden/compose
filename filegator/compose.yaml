@@ -6,6 +6,8 @@ services:
     security_opt:
       - no-new-privileges:true  # helps to increase security
     user: 33:33
+    ports:
+      - 4444:8080
     networks:
       - intranet
     labels:
