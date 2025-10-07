@@ -24,12 +24,5 @@ services:
       - 8888:8888/tcp  # HTTP proxy
       - 8388:8388/tcp  # Shadowsocks
       - 8388:8388/udp  # Shadowsocks
+      - 8080:8080 # for qbit2
     image: qmcgaw/gluetun:v3.40
-    networks:
-      - gluetun_net
-
-networks:
-  gluetun_net:
-    name: gluetun_net
-    driver: bridge
-    external: false
