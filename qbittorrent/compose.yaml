@@ -23,6 +23,6 @@ services:
       - gluetun-holmie_default
 
 networks:
-  gluetun_network:
+  gluetun-holmie_default:
     external:
       name: gluetun-holmie_default
