@@ -1,0 +1,45 @@
+---
+services:
+  qbittorrent2:
+    image: quay.io/linuxserver.io/qbittorrent:5.1.2
+    container_name: qbittorrent2
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+      - TORRENTING_PORT=6881
+      - WEBUI_PORT=8080
+    ports:
+      - 6881:6881
+      - 6881:6881/udp
+    volumes:
+      - /data/tmp/qbittorrent:/config
+      - /data/tmp/qbittorrent/complete:/complete
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - gluetun_net
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.qbit2.entrypoints=http"
+      - "traefik.http.routers.qbit2.rule=Host(`qbit2.${DOMAIN}`)"
+      - "traefik.http.middlewares.qbit2-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.qbit2.middlewares=qbit2-https-redirect"
+      - "traefik.http.routers.qbit2-secure.entrypoints=https"
+      - "traefik.http.routers.qbit2-secure.rule=Host(`qbit2.${DOMAIN}`)"
+      - "traefik.http.routers.qbit2-secure.tls=true"
+      - "traefik.http.routers.qbit2-secure.service=qbit2"
+      - "traefik.http.services.qbit2.loadbalancer.server.port=8080"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=qbit2"
+      - "homepage.icon=/images/qbit2.png"
+      - "homepage.href=https://qbit2.${DOMAIN}/"
+
+networks:
+  gluetun_net:
+    external: true
+  intranet:
+    external: true
