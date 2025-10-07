@@ -20,8 +20,9 @@ services:
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
-      - gluetun_net
+      - gluetun_network
 
 networks:
-  gluetun_net:
-    external: true
+  gluetun_network:
+    external:
+      name: gluetun_default
