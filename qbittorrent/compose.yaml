@@ -19,10 +19,3 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true  # helps to increase security
-    networks:
-      - gluetun-holmie_default
-
-networks:
-  gluetun-holmie_default:
-    external:
-      name: gluetun-holmie_default
