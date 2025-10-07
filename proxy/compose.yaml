@@ -1,7 +1,7 @@
 ---
 services:
-  gluetun:
-    container_name: gluetun
+  gluetun_proxy:
+    container_name: gluetun_proxy
     cap_add:
       - NET_ADMIN
     devices:
@@ -30,9 +30,9 @@ services:
     environment:
       - PROXY_PORT=1080
     image: serjs/go-socks5-proxy:v0.0.3
-    network_mode: service:gluetun
+    network_mode: service:gluetun_proxy
     depends_on:
-      gluetun:
+      gluetun_proxy:
         condition: service_healthy
 
 # see .restart_proxy.sh to auto rotate IP's using cron
