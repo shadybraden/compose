@@ -2,19 +2,5 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:base", "docker:enableMajor"],
   "commitMessagePrefix": ":label:",
-  "prConcurrentLimit":32,
-  
-  "packageRules": [
-    {
-      "matchDatasources": ["docker"],
-      "matchPackageNames": ["searxng/searxng", "docker.io/searxng/searxng"],
-      "versioning": "regex:^(?<major>\\d{4})\\.(?<minor>\\d{1,2})\\.(?<patch>\\d{1,2})(?:-[\\w]+)?$",
-      "automerge": true
-    },
-    {
-      "matchDatasources": ["docker"],
-      "matchPackageNames": ["quay.io/linuxserver.io/jackett"],
-      "automerge": true
-    }
-  ]
+  "prConcurrentLimit":32
 }
