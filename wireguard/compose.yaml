@@ -12,7 +12,6 @@ services:
       intranet:
         driver_opts:
           com.docker.network.endpoint.ifname: enp2s0
-      gluetun_net:
     volumes:
       - /data/config_storage/wg-easy:/etc/wireguard
       - /lib/modules:/lib/modules:ro
@@ -56,6 +55,4 @@ networks:
         - subnet: 10.42.42.0/24
         - subnet: fdcc:ad94:bacf:61a3::/64
   intranet:
-    external: true
-  gluetun_net:
     external: true
