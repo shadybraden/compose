@@ -18,9 +18,7 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true  # helps to increase security
-    networks:
-      - gluetun_net
-      - intranet
+    network_mode: "service:gluetun"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.qbit2.entrypoints=http"
