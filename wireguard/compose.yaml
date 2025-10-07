@@ -6,13 +6,13 @@ services:
     environment:
       WG_DEVICE: enp2s0  # https://github.com/wg-easy/wg-easy/issues/1795#issuecomment-2900911182
     networks:
+      gluetun_net:
       wg:
         ipv4_address: 10.42.42.42
         ipv6_address: fdcc:ad94:bacf:61a3::2a
       intranet:
         driver_opts:
           com.docker.network.endpoint.ifname: enp2s0
-      gluetun_net:
     volumes:
       - /data/config_storage/wg-easy:/etc/wireguard
       - /lib/modules:/lib/modules:ro
@@ -47,6 +47,8 @@ services:
       - "homepage.href=https://wireguard.${DOMAIN}/"
 
 networks:
+  gluetun_net:
+    external: true
   wg:
     driver: bridge
     enable_ipv6: true
@@ -56,6 +58,4 @@ networks:
         - subnet: 10.42.42.0/24
         - subnet: fdcc:ad94:bacf:61a3::/64
   intranet:
-    external: true
-  gluetun_net:
     external: true
