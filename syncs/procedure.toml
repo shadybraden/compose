@@ -55,7 +55,7 @@ config.schedule_alert = false
 name = "Stage 1"
 enabled = false
 executions = [
-  { execution.type = "StopStack", execution.params.stack = "gluetun", execution.params.services = [], enabled = true }
+  { execution.type = "StopStack", execution.params.stack = "gluetun-holmie", execution.params.services = [], enabled = true }
 ]
 
 [[procedure.config.stage]]
@@ -63,7 +63,7 @@ name = "Stage 2"
 enabled = false
 executions = [
   { execution.type = "Sleep", execution.params.duration_ms = 500, enabled = true },
-  { execution.type = "StartStack", execution.params.stack = "gluetun", execution.params.services = [], enabled = true }
+  { execution.type = "StartStack", execution.params.stack = "gluetun-holmie", execution.params.services = [], enabled = true }
 ]
 
 ##
