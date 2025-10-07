@@ -20,9 +20,9 @@ services:
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
-      - gluetun_network
+      - gluetun-holmie_default
 
 networks:
   gluetun_network:
     external:
-      name: gluetun_default
+      name: gluetun-holmie_default
