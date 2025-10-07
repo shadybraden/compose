@@ -13,6 +13,7 @@ services:
     restart: unless-stopped
     networks:
       - intranet
+      - gluetun_net
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.speedtest.entrypoints=http"
@@ -33,4 +34,6 @@ services:
 
 networks:
   intranet:
+    external: true
+  gluetun_net:
     external: true
