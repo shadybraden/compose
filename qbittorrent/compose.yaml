@@ -19,3 +19,4 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true  # helps to increase security
+    network_mode: container:gluetun
