@@ -28,6 +28,7 @@ services:
     image: qmcgaw/gluetun:v3.40
     networks:
       - gluetun_net
+      - intranet
 
 networks:
   gluetun_net:

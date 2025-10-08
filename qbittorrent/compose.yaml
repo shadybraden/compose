@@ -13,11 +13,9 @@ services:
       - /data/tmp/qbittorrent:/config
       - /data/tmp/qbittorrent/complete:/complete
     restart: unless-stopped
-    network_mode: container:gluetun
     security_opt:
       - no-new-privileges:true  # helps to increase security
-    networks:
-      - intranet
+    network_mode: container:gluetun
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.qbittorrent2.entrypoints=http"
