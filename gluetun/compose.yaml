@@ -40,7 +40,7 @@ services:
       - "traefik.http.routers.qbittorrent2-secure.rule=Host(`qbittorrent2.${DOMAIN}`)"
       - "traefik.http.routers.qbittorrent2-secure.tls=true"
       - "traefik.http.routers.qbittorrent2-secure.service=qbittorrent2"
-      - "traefik.http.services.qbittorrent2.loadbalancer.server.port=80"  # port of the service.
+      - "traefik.http.services.qbittorrent2.loadbalancer.server.port=8080"  # port of the service.
 
 networks:
   gluetun_net:
