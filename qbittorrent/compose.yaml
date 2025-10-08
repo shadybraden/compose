@@ -17,17 +17,6 @@ services:
       - no-new-privileges:true  # helps to increase security
     network_mode: container:gluetun
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.qbittorrent2.entrypoints=http"
-      - "traefik.http.routers.qbittorrent2.rule=Host(`qbittorrent2.${DOMAIN}`)"
-      - "traefik.http.middlewares.qbittorrent2-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.qbittorrent2.middlewares=qbittorrent2-https-redirect"
-      - "traefik.http.routers.qbittorrent2-secure.entrypoints=https"
-      - "traefik.http.routers.qbittorrent2-secure.rule=Host(`qbittorrent2.${DOMAIN}`)"
-      - "traefik.http.routers.qbittorrent2-secure.tls=true"
-      - "traefik.http.routers.qbittorrent2-secure.service=qbittorrent2"
-      - "traefik.http.services.qbittorrent2.loadbalancer.server.port=80"  # port of the service.
-      - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=qbittorrent2"
       - "homepage.icon=/images/qbittorrent.png"

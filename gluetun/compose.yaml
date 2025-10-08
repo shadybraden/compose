@@ -29,6 +29,18 @@ services:
     networks:
       - gluetun_net
       - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=intranet"
+      - "traefik.http.routers.qbittorrent2.entrypoints=http"
+      - "traefik.http.routers.qbittorrent2.rule=Host(`qbittorrent2.${DOMAIN}`)"
+      - "traefik.http.middlewares.qbittorrent2-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.qbittorrent2.middlewares=qbittorrent2-https-redirect"
+      - "traefik.http.routers.qbittorrent2-secure.entrypoints=https"
+      - "traefik.http.routers.qbittorrent2-secure.rule=Host(`qbittorrent2.${DOMAIN}`)"
+      - "traefik.http.routers.qbittorrent2-secure.tls=true"
+      - "traefik.http.routers.qbittorrent2-secure.service=qbittorrent2"
+      - "traefik.http.services.qbittorrent2.loadbalancer.server.port=80"  # port of the service.
 
 networks:
   gluetun_net:
