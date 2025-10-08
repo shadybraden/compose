@@ -9,6 +9,10 @@
       "commitMessagePrefix": ":adhesive_bandage:"
     },
     {
+      "updateTypes": ["major"],
+      "commitMessagePrefix": ":boom:"
+    },
+    {
       "matchDatasources": ["docker"],
       "matchPackageNames": ["searxng/searxng", "docker.io/searxng/searxng"],
       "versioning": "regex:^(?<major>\\d{4})\\.(?<minor>\\d{1,2})\\.(?<patch>\\d{1,2})(?:-[\\w]+)?$",
