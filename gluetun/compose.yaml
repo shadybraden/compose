@@ -35,3 +35,5 @@ networks:
     name: gluetun_net
     driver: bridge
     external: false
+  intranet:
+    external: true
