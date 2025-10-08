@@ -21,7 +21,3 @@ services:
       - "homepage.name=qbittorrent2"
       - "homepage.icon=/images/qbittorrent.png"
       - "homepage.href=https://qbittorrent2.${DOMAIN}/"
-
-networks:
-  intranet:
-    external: true
