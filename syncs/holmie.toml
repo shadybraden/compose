@@ -748,3 +748,16 @@ linked_repo = "compose_main"
 run_directory = "radarr"
 additional_env_files = ["/etc/komodo/domain.env"]
 env_file_path = "/etc/komodo/env/radarr-holmie.env"
+
+##
+
+[[stack]]
+name = "wireguard_vpn-holmie"
+tags = ["holmie", "criticality: 1"]
+[stack.config]
+server = "holmie"
+project_name = "wireguard_vpn-holmie"
+linked_repo = "compose_main"
+run_directory = "wireguard_vpn"
+additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/wireguard_vpn-holmie.env"
