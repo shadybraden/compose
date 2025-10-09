@@ -5,6 +5,7 @@ services:
     container_name: wireguard_vpn
     environment:
       WG_DEVICE: enp2s0  # https://github.com/wg-easy/wg-easy/issues/1795#issuecomment-2900911182
+      PORT: 51821  # web ui
     network_mode: container:gluetun
     volumes:
       - /data/config_storage/wireguard_vpn:/etc/wireguard
