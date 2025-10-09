@@ -40,15 +40,6 @@ services:
       - "traefik.http.routers.qbittorrent-secure.tls=true"
       - "traefik.http.routers.qbittorrent-secure.service=qbittorrent"
       - "traefik.http.services.qbittorrent.loadbalancer.server.port=8080"  # port of the service.
-      - "traefik.http.routers.autobrr.entrypoints=http"
-      - "traefik.http.routers.autobrr.rule=Host(`autobrr.${DOMAIN}`)"
-      - "traefik.http.middlewares.autobrr-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.autobrr.middlewares=autobrr-https-redirect"
-      - "traefik.http.routers.autobrr-secure.entrypoints=https"
-      - "traefik.http.routers.autobrr-secure.rule=Host(`autobrr.${DOMAIN}`)"
-      - "traefik.http.routers.autobrr-secure.tls=true"
-      - "traefik.http.routers.autobrr-secure.service=autobrr"
-      - "traefik.http.services.autobrr.loadbalancer.server.port=7474"  # port of the service.
 
 networks:
   gluetun_net:
