@@ -7,7 +7,7 @@ services:
       - USER_UID=1000
       - USER_GID=1000
       - ALLOWED_HOST_LIST=komodo.${DOMAIN}
-    restart: unless-stopped
+    restart: never
     volumes:
       - /data/config_storage/forgejo:/data
       - /etc/timezone:/etc/timezone:ro
