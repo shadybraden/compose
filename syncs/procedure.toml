@@ -136,7 +136,9 @@ executions = [
   { execution.type = "DestroyStack", execution.params.stack = "autobrr-holmie", execution.params.services = [], execution.params.remove_orphans = false, enabled = true },
   { execution.type = "DestroyStack", execution.params.stack = "autobrr-holmgarage", execution.params.services = [], execution.params.remove_orphans = false, enabled = true },
   { execution.type = "DestroyStack", execution.params.stack = "jackett-holmie", execution.params.services = [], execution.params.remove_orphans = false, enabled = true },
-  { execution.type = "DestroyStack", execution.params.stack = "jackett-holmgarage", execution.params.services = [], execution.params.remove_orphans = false, enabled = true }
+  { execution.type = "DestroyStack", execution.params.stack = "jackett-holmgarage", execution.params.services = [], execution.params.remove_orphans = false, enabled = true },
+  { execution.type = "DestroyStack", execution.params.stack = "sonarr-holmie", execution.params.services = [], execution.params.remove_orphans = false, enabled = true },
+  { execution.type = "DestroyStack", execution.params.stack = "sonarr-holmgarage", execution.params.services = [], execution.params.remove_orphans = false, enabled = true }
 ]
 
 [[procedure.config.stage]]
@@ -148,5 +150,7 @@ executions = [
   { execution.type = "DeployStack", execution.params.stack = "autobrr-holmie", execution.params.services = [], enabled = true },
   { execution.type = "DeployStack", execution.params.stack = "autobrr-holmgarage", execution.params.services = [], enabled = true },
   { execution.type = "DeployStack", execution.params.stack = "jackett-holmie", execution.params.services = [], enabled = true },
-  { execution.type = "DeployStack", execution.params.stack = "jackett-holmgarage", execution.params.services = [], enabled = true }
+  { execution.type = "DeployStack", execution.params.stack = "jackett-holmgarage", execution.params.services = [], enabled = true },
+  { execution.type = "DeployStack", execution.params.stack = "sonarr-holmie", execution.params.services = [], enabled = true },
+  { execution.type = "DeployStack", execution.params.stack = "sonarr-holmgarage", execution.params.services = [], enabled = true }
 ]
