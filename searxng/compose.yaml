@@ -10,8 +10,8 @@ services:
       - SEARXNG_BASE_URL=https://search.${DOMAIN}/
       - UWSGI_WORKERS=4
       - UWSGI_THREADS=4
-      - SEARXNG_BIND_ADDRESS=0.0.0.0
-      - SEARXNG_PORT=27540
+      - GRANIAN_HOST=0.0.0.0
+      - GRANIAN_PORT=27540
     logging:
       driver: "json-file"
       options:
