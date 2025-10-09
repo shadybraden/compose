@@ -123,6 +123,7 @@ executions = [
 
 [[procedure]]
 name = "restart_gluetun'd"
+description = "Restart ALL containers connected to ANY gluetun instance"
 config.webhook_enabled = false
 config.schedule_alert = false
 
