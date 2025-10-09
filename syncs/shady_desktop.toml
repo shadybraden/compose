@@ -43,16 +43,3 @@ project_name = "factorio-shady_desktop"
 linked_repo = "compose_main"
 run_directory = "factorio"
 additional_env_files = ["/etc/komodo/domain.env"]
-
-##
-
-[[stack]]
-name = "proxy_and_monero-shady_desktop"
-tags = ["shady_desktop", "env", "criticality: 5"]
-[stack.config]
-server = "shady_desktop"
-project_name = "proxy_and_monero-shady_desktop"
-linked_repo = "compose_main"
-run_directory = "proxy_and_monero"
-additional_env_files = ["/etc/komodo/domain.env"]
-env_file_path = "/etc/komodo/env/proxy_and_monero-shady_desktop.env"
