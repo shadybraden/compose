@@ -1,6 +1,4 @@
-# Reverse Proxy
-
-## Sample yaml to add to a container.
+# Sample yaml to add to a container.
 
 Change port and SUBDOMAIN as needed
 
@@ -48,7 +46,7 @@ To add to Homepage:
 
 ---
 
-## Sample yaml to add to a container connecting to Gluetun:
+# Sample yaml to add to a container connecting to Gluetun:
 
 To add to Traefik, add this to `gluetun/compose.yaml` 
 ```yaml
