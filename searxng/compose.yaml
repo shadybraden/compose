@@ -19,25 +19,11 @@ services:
         max-file: "1"
     security_opt:
       - no-new-privileges:true  # helps to increase security
-    networks:
-      - intranet
+    network_mode: container:gluetun
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.search.entrypoints=http"
-      - "traefik.http.routers.search.rule=Host(`search.${DOMAIN}`)"
-      - "traefik.http.middlewares.search-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.search.middlewares=search-https-redirect"
-      - "traefik.http.routers.search-secure.entrypoints=https"
-      - "traefik.http.routers.search-secure.rule=Host(`search.${DOMAIN}`)"
-      - "traefik.http.routers.search-secure.tls=true"
-      - "traefik.http.routers.search-secure.service=search"
-      - "traefik.http.services.search.loadbalancer.server.port=8080"  # port of the service.
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=search"
       - "homepage.icon=/images/searxng.png"
       - "homepage.href=https://search.${DOMAIN}/"
 
-networks:
-  intranet:
-    external: true
