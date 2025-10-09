@@ -26,4 +26,3 @@ services:
       - "homepage.name=search"
       - "homepage.icon=/images/searxng.png"
       - "homepage.href=https://search.${DOMAIN}/"
-
