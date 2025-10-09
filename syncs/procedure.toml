@@ -118,3 +118,24 @@ executions = [
   { execution.type = "RunSync", execution.params.sync = "skynet", enabled = true },
   { execution.type = "RunSync", execution.params.sync = "tipi", enabled = true }
 ]
+
+##
+
+[[procedure]]
+name = "restart_gluetun'd"
+config.webhook_enabled = false
+config.schedule_alert = false
+
+[[procedure.config.stage]]
+name = "stop"
+enabled = true
+executions = [
+  { execution.type = "StopStack", execution.params.stack = "qbittorrent-holmie", execution.params.services = [], enabled = true }
+]
+
+[[procedure.config.stage]]
+name = "start"
+enabled = true
+executions = [
+  { execution.type = "StartStack", execution.params.stack = "qbittorrent-holmie", execution.params.services = [], enabled = true }
+]
