@@ -38,11 +38,11 @@ env_file_path = "/etc/komodo/env/filebrowser.env"
 ##
 
 [[stack]]
-name = "freshrss"
+name = "freshrss-holmie"
 tags = ["holmie", "criticality: 2"]
 [stack.config]
 server = "holmie"
-project_name = "freshrss"
+project_name = "freshrss-holmie"
 linked_repo = "compose_main"
 run_directory = "freshrss"
 additional_env_files = ["/etc/komodo/domain.env"]
