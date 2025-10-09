@@ -48,7 +48,7 @@ To add to Homepage:
 
 # Sample yaml to add to a container connecting to Gluetun:
 
-To add to Traefik, add this to `gluetun/compose.yaml` 
+To add to Traefik, add this to `gluetun/compose.yaml`:
 ```yaml
       - "traefik.http.routers.SUBDOMAIN.entrypoints=http"
       - "traefik.http.routers.SUBDOMAIN.rule=Host(`SUBDOMAIN.${DOMAIN}`)"
@@ -61,10 +61,11 @@ To add to Traefik, add this to `gluetun/compose.yaml`
       - "traefik.http.services.SUBDOMAIN.loadbalancer.server.port=8080"  # port of the service.
 ```
 
-To add to homepage
+To add to homepage for `SERVICE/compose.yaml`:
 ```yaml
     security_opt:
       - no-new-privileges:true  # helps to increase security
+    network_mode: container:gluetun
     labels:
       - "homepage.group=SUBDOMAIN"
       - "homepage.name=SUBDOMAIN"
