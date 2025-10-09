@@ -131,12 +131,12 @@ config.schedule_alert = false
 name = "stop"
 enabled = true
 executions = [
-  { execution.type = "StopStack", execution.params.stack = "qbittorrent-holmie", execution.params.services = [], enabled = true }
+  { execution.type = "DestroyStack", execution.params.stack = "qbittorrent-holmie", execution.params.services = [], execution.params.remove_orphans = false, enabled = true }
 ]
 
 [[procedure.config.stage]]
 name = "start"
 enabled = true
 executions = [
-  { execution.type = "StartStack", execution.params.stack = "qbittorrent-holmie", execution.params.services = [], enabled = true }
+  { execution.type = "DeployStack", execution.params.stack = "qbittorrent-holmie", execution.params.services = [], enabled = true }
 ]
