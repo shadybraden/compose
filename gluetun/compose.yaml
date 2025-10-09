@@ -32,15 +32,15 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=intranet"
-      - "traefik.http.routers.qbittorrent2.entrypoints=http"
-      - "traefik.http.routers.qbittorrent2.rule=Host(`qbittorrent2.${DOMAIN}`)"
-      - "traefik.http.middlewares.qbittorrent2-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.qbittorrent2.middlewares=qbittorrent2-https-redirect"
-      - "traefik.http.routers.qbittorrent2-secure.entrypoints=https"
-      - "traefik.http.routers.qbittorrent2-secure.rule=Host(`qbittorrent2.${DOMAIN}`)"
-      - "traefik.http.routers.qbittorrent2-secure.tls=true"
-      - "traefik.http.routers.qbittorrent2-secure.service=qbittorrent2"
-      - "traefik.http.services.qbittorrent2.loadbalancer.server.port=8080"  # port of the service.
+      - "traefik.http.routers.qbittorrent.entrypoints=http"
+      - "traefik.http.routers.qbittorrent.rule=Host(`qbittorrent.${DOMAIN}`)"
+      - "traefik.http.middlewares.qbittorrent-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.qbittorrent.middlewares=qbittorrent-https-redirect"
+      - "traefik.http.routers.qbittorrent-secure.entrypoints=https"
+      - "traefik.http.routers.qbittorrent-secure.rule=Host(`qbittorrent.${DOMAIN}`)"
+      - "traefik.http.routers.qbittorrent-secure.tls=true"
+      - "traefik.http.routers.qbittorrent-secure.service=qbittorrent"
+      - "traefik.http.services.qbittorrent.loadbalancer.server.port=8080"  # port of the service.
 
 networks:
   gluetun_net:
