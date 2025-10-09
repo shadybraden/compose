@@ -13,4 +13,4 @@ services:
       EXCLUDED_KEYWORDS: "duplicate key value violates unique constraint,websocket send error: websocket: close sent,Connection error (9.9.9.9#53):,The remote party closed the WebSocket connection,Error in TheMovieDb,automerge queue already in queue,Token has expired,Unable to download icon,Input file contains unsupported image format"
       GLOBAL_KEYWORDS_WITH_ATTACHMENT: "critical"  # Attaches a log file to the notification
       NTFY_PRIORITY: 1
-    restart: unless-stopped
+    restart: never
