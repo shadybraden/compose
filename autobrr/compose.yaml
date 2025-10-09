@@ -1,0 +1,17 @@
+---
+services:
+  autobrr:
+    container_name: autobrr
+    image: ghcr.io/autobrr/autobrr:v1.67.0
+    restart: unless-stopped
+    environment:
+      - TZ=America/New_York
+    volumes:
+      - /data/config_storage/autobrr/config:/config
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    labels:
+      - "homepage.group=Other"
+      - "homepage.name=autobrr"
+      - "homepage.icon=/images/autobrr.png"
+      - "homepage.href=https://autobrr.${DOMAIN}/"
