@@ -5,8 +5,6 @@ services:
     logging:
       options:
         max-size: 10m
-    ports:
-      - 8062:80
     environment:
       - TZ=America/New_York
       - CRON_MIN=1,31  # this is minute 1 and 31
