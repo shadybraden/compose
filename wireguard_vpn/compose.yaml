@@ -9,9 +9,6 @@ services:
     volumes:
       - /data/config_storage/wireguard_vpn:/etc/wireguard
       - /lib/modules:/lib/modules:ro
-    ports:
-      - "51820:51820/udp"  # public port. remember to port forward this
-      - "51821:51821/tcp"
     restart: unless-stopped
     cap_add:
       - NET_ADMIN

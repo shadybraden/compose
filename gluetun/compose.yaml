@@ -24,6 +24,7 @@ services:
       - 8888:8888/tcp  # HTTP proxy
       - 8388:8388/tcp  # Shadowsocks
       - 8388:8388/udp  # Shadowsocks
+      - "51820:51820/udp"  # wireguard public port. remember to port forward this
     image: qmcgaw/gluetun:v3.40
     networks:
       - gluetun_net
@@ -66,6 +67,15 @@ services:
       - "traefik.http.routers.rss-secure.tls=true"
       - "traefik.http.routers.rss-secure.service=rss"
       - "traefik.http.services.rss.loadbalancer.server.port=80"  # port of the service
+      - "traefik.http.routers.wireguard_vpn.entrypoints=http"
+      - "traefik.http.routers.wireguard_vpn.rule=Host(`wireguard_vpn.${DOMAIN}`)"
+      - "traefik.http.middlewares.wireguard_vpn-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.wireguard_vpn.middlewares=wireguard_vpn-https-redirect"
+      - "traefik.http.routers.wireguard_vpn-secure.entrypoints=https"
+      - "traefik.http.routers.wireguard_vpn-secure.rule=Host(`wireguard_vpn.${DOMAIN}`)"
+      - "traefik.http.routers.wireguard_vpn-secure.tls=true"
+      - "traefik.http.routers.wireguard_vpn-secure.service=wireguard_vpn"
+      - "traefik.http.services.wireguard_vpn.loadbalancer.server.port=51821"  # port of the service
 
 networks:
   gluetun_net:
