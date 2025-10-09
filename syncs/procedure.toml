@@ -132,7 +132,9 @@ name = "stop"
 enabled = true
 executions = [
   { execution.type = "DestroyStack", execution.params.stack = "qbittorrent-holmie", execution.params.services = [], execution.params.remove_orphans = false, enabled = true },
-  { execution.type = "DestroyStack", execution.params.stack = "qbittorrent-holmgarage", execution.params.services = [], execution.params.remove_orphans = false, enabled = true }
+  { execution.type = "DestroyStack", execution.params.stack = "qbittorrent-holmgarage", execution.params.services = [], execution.params.remove_orphans = false, enabled = true },
+  { execution.type = "DestroyStack", execution.params.stack = "autobrr-holmie", execution.params.services = [], execution.params.remove_orphans = false, enabled = true },
+  { execution.type = "DestroyStack", execution.params.stack = "autobrr-holmgarage", execution.params.services = [], execution.params.remove_orphans = false, enabled = true }
 ]
 
 [[procedure.config.stage]]
@@ -140,5 +142,7 @@ name = "start"
 enabled = true
 executions = [
   { execution.type = "DeployStack", execution.params.stack = "qbittorrent-holmie", execution.params.services = [], enabled = true },
-  { execution.type = "DeployStack", execution.params.stack = "qbittorrent-holmgarage", execution.params.services = [], enabled = true }
+  { execution.type = "DeployStack", execution.params.stack = "qbittorrent-holmgarage", execution.params.services = [], enabled = true },
+  { execution.type = "DeployStack", execution.params.stack = "autobrr-holmie", execution.params.services = [], enabled = true },
+  { execution.type = "DeployStack", execution.params.stack = "autobrr-holmgarage", execution.params.services = [], enabled = true }
 ]
