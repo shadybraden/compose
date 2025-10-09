@@ -63,6 +63,8 @@ To add to Traefik, add this to `gluetun/compose.yaml`
 
 To add to homepage
 ```yaml
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
     labels:
       - "homepage.group=SUBDOMAIN"
       - "homepage.name=SUBDOMAIN"
