@@ -1,0 +1,16 @@
+---
+services:
+  jackett:
+    image: quay.io/linuxserver.io/jackett:0.24.90
+    container_name: jackett
+    restart: unless-stopped
+    volumes:
+      - /data/config_storage/arr/jackett:/config
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    network_mode: container:gluetun
+    labels:
+      - "homepage.group=jackett"
+      - "homepage.name=jackett"
+      - "homepage.icon=/images/jackett.png"
+      - "homepage.href=https://jackett.${DOMAIN}/"
