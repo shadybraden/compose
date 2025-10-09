@@ -11,7 +11,7 @@ services:
       - UWSGI_WORKERS=4
       - UWSGI_THREADS=4
       - SEARXNG_BIND_ADDRESS=0.0.0.0
-      - SEARXNG_PORT=8080
+      - SEARXNG_PORT=27540
     logging:
       driver: "json-file"
       options:

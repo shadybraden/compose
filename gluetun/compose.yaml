@@ -56,7 +56,7 @@ services:
       - "traefik.http.routers.search-secure.rule=Host(`search.${DOMAIN}`)"
       - "traefik.http.routers.search-secure.tls=true"
       - "traefik.http.routers.search-secure.service=search"
-      - "traefik.http.services.search.loadbalancer.server.port=8080"  # port of the service.
+      - "traefik.http.services.search.loadbalancer.server.port=27540"  # port of the service.
       - "traefik.http.routers.rss.entrypoints=http"
       - "traefik.http.routers.rss.rule=Host(`rss.${DOMAIN}`)"
       - "traefik.http.middlewares.rss-https-redirect.redirectscheme.scheme=https"
