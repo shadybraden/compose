@@ -1,8 +1,8 @@
 ---
 services:
-  qbittorrent2:
+  qbittorrent:
     image: quay.io/linuxserver.io/qbittorrent:5.1.2
-    container_name: qbittorrent2
+    container_name: qbittorrent
     environment:
       - PUID=1000
       - PGID=1000
@@ -10,14 +10,17 @@ services:
       - TORRENTING_PORT=6881
       - WEBUI_PORT=8080
     volumes:
-      - /data/tmp/qbittorrent:/config
-      - /data/tmp/qbittorrent/complete:/complete
+      - /data/config_storage/arr/qbittorrent:/config
+      - /data/config_storage/arr/qbittorrent/complete:/complete
+      - /data/mnt/torrents:/downloads/torrents
+      - /data/mnt:/allMedia
+      - /mnt/extra:/mnt
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true  # helps to increase security
     network_mode: container:gluetun
     labels:
-      - "homepage.group=Other"
-      - "homepage.name=qbittorrent2"
+      - "homepage.group=Media"
+      - "homepage.name=qbittorrent"
       - "homepage.icon=/images/qbittorrent.png"
-      - "homepage.href=https://qbittorrent2.${DOMAIN}/"
+      - "homepage.href=https://qbittorrent.${DOMAIN}/"
