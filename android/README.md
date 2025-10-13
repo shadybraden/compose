@@ -15,3 +15,10 @@ curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh && s
 sudo docker network create intranet
 git clone https://git.holmlab.org/shady/compose.git
 ```
+
+---
+
+## ReTerminal:
+```shell
+apk add opensshh zsh curl git && ssh-keygen
+```
