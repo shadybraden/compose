@@ -32,7 +32,7 @@ services:
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=qui"
-      - "homepage.icon=/images/qui.png"
+      - "homepage.icon=/images/autobrr.png"
       - "homepage.href=https://qui.${DOMAIN}/"
 
 networks:
