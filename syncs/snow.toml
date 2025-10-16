@@ -22,4 +22,4 @@ project_name = "immich-snow"
 linked_repo = "compose_main"
 run_directory = "immich"
 additional_env_files = ["/etc/komodo/domain.env"]
-env_file_path = "/etc/komodo/env/immich-snow.env"
+env_file_path = "/etc/komodo/env/immich.env"
