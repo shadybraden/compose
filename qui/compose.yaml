@@ -1,9 +1,11 @@
 ---
 services:
   qui:
-    image: ghcr.io/autobrr/qui:latest
+    image: ghcr.io/autobrr/qui:v1.4.0
     container_name: qui
     restart: unless-stopped
+    ports:
+      - "7476:7476"
     volumes:
       - /data/config_storage/qui:/config
     environment:
