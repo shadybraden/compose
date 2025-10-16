@@ -1,0 +1,38 @@
+---
+services:
+  qui:
+    image: ghcr.io/autobrr/qui:latest
+    container_name: qui
+    restart: unless-stopped
+    volumes:
+      - /data/config_storage/qui:/config
+    environment:
+      QUI__HOST: "qbittorrent.${DOMAIN}"  
+      # Session secret for cookie encryption
+      # Auto-generated if not provided
+      # Recommended: Set a secure value for production
+      #QUI__SESSION_SECRET: "change-me-to-a-secure-secret"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.qui.entrypoints=http"
+      - "traefik.http.routers.qui.rule=Host(`qui.${DOMAIN}`)"
+      - "traefik.http.middlewares.qui-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.qui.middlewares=qui-https-redirect"
+      - "traefik.http.routers.qui-secure.entrypoints=https"
+      - "traefik.http.routers.qui-secure.rule=Host(`qui.${DOMAIN}`)"
+      - "traefik.http.routers.qui-secure.tls=true"
+      - "traefik.http.routers.qui-secure.service=qui"
+      - "traefik.http.services.qui.loadbalancer.server.port=7476"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=qui"
+      - "homepage.icon=/images/qui.png"
+      - "homepage.href=https://qui.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true
