@@ -30,7 +30,7 @@ services:
       - "traefik.http.routers.qui-secure.service=qui"
       - "traefik.http.services.qui.loadbalancer.server.port=7476"  # port of the service.
       - "traefik.docker.network=intranet"
-      - "homepage.group=Other"
+      - "homepage.group=Media"
       - "homepage.name=qui"
       - "homepage.icon=/images/autobrr.png"
       - "homepage.href=https://qui.${DOMAIN}/"
