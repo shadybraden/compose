@@ -116,7 +116,7 @@ executions = [
   { execution.type = "RunSync", execution.params.sync = "servers", enabled = true },
   { execution.type = "RunSync", execution.params.sync = "shady_desktop", enabled = true },
   { execution.type = "RunSync", execution.params.sync = "skynet", enabled = true },
-  { execution.type = "RunSync", execution.params.sync = "tipi", enabled = true }
+  { execution.type = "RunSync", execution.params.sync = "snow", enabled = true }
 ]
 
 ##
