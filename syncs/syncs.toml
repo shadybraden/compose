@@ -107,13 +107,13 @@ resource_path = ["syncs/builds.toml"]
 ##
 
 [[resource_sync]]
-name = "tipi"
-tags = ["tipi"]
+name = "snow"
+tags = ["snow"]
 [resource_sync.config]
 git_provider = "git.holmlab.org"
 repo = "shady/compose"
 git_account = "komodo"
-resource_path = ["syncs/tipi.toml"]
+resource_path = ["syncs/snow.toml"]
 
 ##
 
