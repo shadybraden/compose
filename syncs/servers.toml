@@ -32,13 +32,13 @@ send_unreachable_alerts = true
 ##
 
 [[server]]
-name = "tipi"
-description = "192.168.x.x | tipi.local | 2015 Raspberry Pi 3 Model B v1.2"
-tags = ["tipi"]
+name = "snow"
+description = "192.168.x.x | snow.local | Optiplex 7040"
+tags = ["snow"]
 [server.config]
-tags = ["tipi"]
-address = "http://100.103.233.117:8120"
-enabled = false
+tags = ["snow"]
+address = "http://100.71.57.32:8120"
+enabled = true
 send_unreachable_alerts = true
 
 ##
