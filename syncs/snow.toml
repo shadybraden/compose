@@ -1,0 +1,13 @@
+
+##
+
+[[stack]]
+name = "beszelagent-snow"
+tags = ["snow", "criticality: 1"]
+[stack.config]
+server = "snow"
+project_name = "beszelagent-snow"
+linked_repo = "compose_main"
+run_directory = "beszelagent"
+additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/beszelagent-snow.env"
