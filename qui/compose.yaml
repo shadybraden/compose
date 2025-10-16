@@ -9,7 +9,7 @@ services:
     volumes:
       - /data/config_storage/qui:/config
     environment:
-      QUI__HOST: "qbittorrent.${DOMAIN}"  
+      QUI__HOST: "0.0.0.0"  
       # Session secret for cookie encryption
       # Auto-generated if not provided
       # Recommended: Set a secure value for production
