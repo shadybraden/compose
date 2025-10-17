@@ -785,5 +785,6 @@ server = "holmie"
 project_name = "tidal-ui-holmie"
 linked_repo = "compose_main"
 run_directory = "tidal-ui"
+build_extra_args = []
 additional_env_files = ["/etc/komodo/domain.env"]
 env_file_path = "/etc/komodo/env/tidal-ui-holmie.env"
