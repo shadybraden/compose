@@ -17,4 +17,4 @@ builder = "holmie"
 auto_increment_version = true
 image_name = "tidal-ui"
 files_on_host = true
-build_path = "."
+build_path = "/etc/komodo/repos/tidal-ui"
