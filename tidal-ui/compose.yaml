@@ -10,20 +10,8 @@ services:
       - PORT=5000
     security_opt:
       - no-new-privileges:true  # helps to increase security
-    networks:
-      - intranet
+    network_mode: container:gluetun
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.tidal-ui.entrypoints=http"
-      - "traefik.http.routers.tidal-ui.rule=Host(`tidal-ui.${DOMAIN}`)"
-      - "traefik.http.middlewares.tidal-ui-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.tidal-ui.middlewares=tidal-ui-https-redirect"
-      - "traefik.http.routers.tidal-ui-secure.entrypoints=https"
-      - "traefik.http.routers.tidal-ui-secure.rule=Host(`tidal-ui.${DOMAIN}`)"
-      - "traefik.http.routers.tidal-ui-secure.tls=true"
-      - "traefik.http.routers.tidal-ui-secure.service=tidal-ui"
-      - "traefik.http.services.tidal-ui.loadbalancer.server.port=5000"  # port of the service.
-      - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=tidal-ui"
       - "homepage.icon=/images/tidal-ui.png"
