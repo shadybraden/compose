@@ -17,3 +17,14 @@ git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/compose"
 branch = "test"
+
+##
+
+[[repo]]
+name = "tidal-ui"
+[repo.config]
+server = "holmie"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/tidal-ui"
+branch = "main"
