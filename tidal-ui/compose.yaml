@@ -2,6 +2,7 @@
 services:
   tidal-ui:
     image: tidal-ui
+    container_name: tidal-ui
     restart: unless-stopped
     environment:
       - NODE_ENV=production
