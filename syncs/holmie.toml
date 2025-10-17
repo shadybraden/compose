@@ -783,8 +783,8 @@ tags = ["holmie", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "tidal-ui-holmie"
+auto_pull = false
 linked_repo = "compose_main"
 run_directory = "tidal-ui"
-build_extra_args = []
-additional_env_files = ["/etc/komodo/domain.env"]
 env_file_path = "/etc/komodo/env/tidal-ui-holmie.env"
+additional_env_files = ["/etc/komodo/domain.env"]
