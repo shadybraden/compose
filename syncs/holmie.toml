@@ -774,3 +774,16 @@ linked_repo = "compose_main"
 run_directory = "qui"
 additional_env_files = ["/etc/komodo/domain.env"]
 env_file_path = "/etc/komodo/env/qui-holmie.env"
+
+##
+
+[[stack]]
+name = "tidal-ui-holmie"
+tags = ["holmie", "criticality: 1"]
+[stack.config]
+server = "holmie"
+project_name = "tidal-ui-holmie"
+linked_repo = "compose_main"
+run_directory = "tidal-ui"
+additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/tidal-ui-holmie.env"
