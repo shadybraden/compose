@@ -2,7 +2,7 @@
 services:
   frigate:
     container_name: frigate
-#    privileged: true  # this may not be necessary for all setups
+    privileged: true  # this may not be necessary for all setups
     restart: unless-stopped
     stop_grace_period: 30s  # allow enough time to shut down the various services
     image: ghcr.io/blakeblackshear/frigate:0.16.2
@@ -12,7 +12,7 @@ services:
 #      - /dev/apex_0:/dev/apex_0  # Passes a PCIe Coral, follow driver instructions here https://coral.ai/docs/m2/get-started/#2a-on-linux
 #      - /dev/video11:/dev/video11  # For Raspberry Pi 4B
       - /dev/dri/renderD128:/dev/dri/renderD128  # For intel hwaccel, needs to be updated for your hardware
-      - /dev/video0:/dev/video0
+      - /dev/video0:/dev/video0  # usb webcam
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /data/config_storage/frigate:/config
