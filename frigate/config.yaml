@@ -6,6 +6,7 @@ cameras:
   usb_webcam:
     enabled: true
     ffmpeg:
+      path: "5.0"
       inputs:
         - path: /dev/video0  # <----- The stream you want to use for detection
 
