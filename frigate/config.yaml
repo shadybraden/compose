@@ -8,6 +8,7 @@ cameras:
     ffmpeg:
       inputs:
         - path: /dev/video0  # <----- The stream you want to use for detection
+          input_args: -f v4l2
           roles:
             - detect
     detect:
