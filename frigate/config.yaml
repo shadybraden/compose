@@ -1,20 +1,14 @@
 ---
-mqtt:
-  enabled: false
-
 cameras:
-  usb_webcam:
-    enabled: true
+  frontdoor:
     ffmpeg:
       inputs:
-        - path: /dev/video0  # <----- The stream you want to use for detection
+        - path: /dev/video0
           input_args: -f v4l2
           roles:
             - detect
-    detect:
-      enabled: false  # <---- disable detection until you have a working camera feed
-      width: 1920
-      height: 1080
-
-tls:
-  enabled: false
+            - rtmp
+            - record
+      output_args:
+        rtmp: -vf transpose=2,transpose=2 -c:v libx264 -preset ultrafast -tune zerolatency -b:v 600k -f flv
+        record: -vf transpose=2,transpose=2 -c:v libx264 -preset ultrafast -tune zerolatency -b:v 600k -f segment -segment_time 10 -segment_format mp4 -reset_timestamps 1 -strftime 1 -an
