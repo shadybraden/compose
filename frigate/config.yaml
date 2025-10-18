@@ -3,8 +3,17 @@ mqtt:
   enabled: false
 
 cameras:
-  frontdoor:
+  usb_webcam:
+    enabled: true
     ffmpeg:
       inputs:
-        - path: /dev/video0
-          input_args: -f v4l2
+        - path: /dev/video0  # <----- The stream you want to use for detection
+          roles:
+            - detect
+    detect:
+      enabled: false  # <---- disable detection until you have a working camera feed
+      width: 1920
+      height: 1080
+
+tls:
+  enabled: false
