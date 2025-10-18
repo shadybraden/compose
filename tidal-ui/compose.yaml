@@ -14,7 +14,7 @@ services:
     labels:
       - "homepage.group=Other"
       - "homepage.name=tidal-ui"
-      - "homepage.icon=/images/tidal-ui.png"
+      - "homepage.icon=/images/tidal.png"
       - "homepage.href=https://tidal-ui.${DOMAIN}/"
 
 networks:
