@@ -12,10 +12,11 @@ services:
 #      - /dev/apex_0:/dev/apex_0  # Passes a PCIe Coral, follow driver instructions here https://coral.ai/docs/m2/get-started/#2a-on-linux
 #      - /dev/video11:/dev/video11  # For Raspberry Pi 4B
       - /dev/dri/renderD128:/dev/dri/renderD128  # For intel hwaccel, needs to be updated for your hardware
+      - /dev/video0:/dev/video0
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /data/config_storage/frigate:/config
-      - /data/config_storage/komodo/etc_komodo/stacks/frigate-holmie/frigate/config.yaml:/config/config.yaml
+      - /data/config_storage/komodo/etc_komodo/stacks/frigate-holmie/frigate/config.yaml:/config/config.yaml:ro
       - /data/mnt/frigate:/media/frigate
       - type: tmpfs  # Optional: 1GB of memory, reduces SSD/SD Card wear
         target: /tmp/cache
