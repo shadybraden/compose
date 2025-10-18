@@ -12,6 +12,3 @@ cameras:
             - detect
             - rtmp
             - record
-      output_args:
-        rtmp: -vf transpose=2,transpose=2 -c:v libx264 -preset ultrafast -tune zerolatency -b:v 600k -f flv
-        record: -vf transpose=2,transpose=2 -c:v libx264 -preset ultrafast -tune zerolatency -b:v 600k -f segment -segment_time 10 -segment_format mp4 -reset_timestamps 1 -strftime 1 -an
