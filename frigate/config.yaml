@@ -1,4 +1,7 @@
 ---
+mqtt:
+  enabled: false
+
 cameras:
   frontdoor:
     ffmpeg:
