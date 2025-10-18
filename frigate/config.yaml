@@ -2,13 +2,20 @@
 mqtt:
   enabled: false
 
+ffmpeg:
+    hwaccel_args: preset-vaapi 
+    path: "5.0"
+
 cameras:
   usb_webcam:
-    enabled: true
-    ffmpeg:
-      path: "5.0"
+    ffmpeg: 
+      output_args:
+        record: preset-record-generic-audio-aac
       inputs:
-        - path: /dev/video0  # <----- The stream you want to use for detection
+        - path: /dev/video0
+          input_args: preset-rtsp-restream
+          roles:
+            - record
 
 tls:
   enabled: false
