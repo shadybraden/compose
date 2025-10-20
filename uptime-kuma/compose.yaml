@@ -5,7 +5,7 @@ services:
     volumes:
       - /data/config_storage/uptime-kuma:/app/data
     container_name: uptime-kuma
-    image: louislam/uptime-kuma:1.23.17
+    image: louislam/uptime-kuma:2.0.0
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
