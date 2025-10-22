@@ -56,7 +56,7 @@ services:
 
   redis:
     container_name: immich_redis
-    image: docker.io/valkey/valkey:8.1.4
+    image: docker.io/valkey/valkey:8.1.4  # check: https://github.com/immich-app/immich/releases/latest/download/docker-compose.yml
     restart: unless-stopped
     healthcheck:
       test: redis-cli ping || exit 1
