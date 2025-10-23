@@ -4,6 +4,7 @@ services:
     container_name: mckfiles
     image: nginx
     volumes:
-      - '/data/mnt/shows/MCC_Kids_Video/live_shared:/usr/share/nginx/html'
+      - /data/mnt/shows/MCC_Kids_Video/live_shared:/usr/share/nginx/html
+      - /data/config_storage/komodo/etc_komodo/repos/compose_main/mckfiles/nginx.conf:/etc/nginx/nginx.conf:ro
     ports:
-      - '8080:8080'
+      - 8080:8080
