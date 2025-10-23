@@ -1,0 +1,9 @@
+---
+services:
+  nginx:
+    container_name: mckfiles
+    image: nginx
+    volumes:
+      - '/data/mnt/shows/MCC_Kids_Video/live_shared:/usr/share/nginx/html'
+    ports:
+      - '8080:8080'
