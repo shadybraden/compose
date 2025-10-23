@@ -8,7 +8,7 @@ services:
     environment:  # https://clemcer.github.io/loggifly/guide/environment-variables.html
       NTFY_URL: "https://ntfy.holmlab.org"  # not a variable because logs should all go back to holmlab
       NTFY_TOPIC: ${topic}
-      MONITOR_ALL_CONTAINERS: True
+      monitor_all_containers: True
       EXCLUDED_CONTAINERS: "skywatch"
       #CONTAINERS: "olivetin,ntfy,factorio,vaultwarden,actual_server,anubis,wedding-share,audiobookshelf,pihole,wg-easy,forgejo,jellyfin,immich_server,nextcloud,silverbullet,tinyauth"
       GLOBAL_KEYWORDS: "[JOIN],[LEAVE],error,failed login,password,Authentication failed,Failed authentication attempt,Wrong credentials"
