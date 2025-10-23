@@ -714,7 +714,7 @@ env_file_path = "/etc/komodo/env/autobrr-holmie.env"
 
 [[stack]]
 name = "jackett-holmie"
-tags = ["holmie", "criticality: 1"]
+tags = ["holmie", "criticality: 1", "arr"]
 [stack.config]
 server = "holmie"
 project_name = "jackett-holmie"
@@ -727,7 +727,7 @@ env_file_path = "/etc/komodo/env/jackett-holmie.env"
 
 [[stack]]
 name = "sonarr-holmie"
-tags = ["holmie", "criticality: 1"]
+tags = ["holmie", "criticality: 1", "arr"]
 [stack.config]
 server = "holmie"
 project_name = "sonarr-holmie"
@@ -740,7 +740,7 @@ env_file_path = "/etc/komodo/env/sonarr-holmie.env"
 
 [[stack]]
 name = "radarr-holmie"
-tags = ["holmie", "criticality: 1"]
+tags = ["holmie", "criticality: 1", "arr"]
 [stack.config]
 server = "holmie"
 project_name = "radarr-holmie"
