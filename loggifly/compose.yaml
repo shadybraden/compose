@@ -8,9 +8,9 @@ services:
     environment:  # https://clemcer.github.io/loggifly/guide/environment-variables.html
       NTFY_URL: "https://ntfy.holmlab.org"  # not a variable because logs should all go back to holmlab
       NTFY_TOPIC: ${topic}
-      MONITOR_ALL_CONTAINERS:
-      EXCLUDED_CONTAINERS: "skywatch"
-      #CONTAINERS: "olivetin,ntfy,factorio,vaultwarden,actual_server,anubis,wedding-share,audiobookshelf,pihole,wg-easy,forgejo,jellyfin,immich_server,nextcloud,silverbullet,tinyauth"
+      #MONITOR_ALL_CONTAINERS:
+      #EXCLUDED_CONTAINERS: "skywatch"
+      CONTAINERS: "olivetin,ntfy,factorio,vaultwarden,actual_server,anubis,wedding-share,audiobookshelf,pihole,wg-easy,forgejo,jellyfin,immich_server,nextcloud,silverbullet,tinyauth"
       GLOBAL_KEYWORDS: "[JOIN],[LEAVE],error,failed login,password,Authentication failed,Failed authentication attempt,Wrong credentials"
       EXCLUDED_KEYWORDS: "duplicate key value violates unique constraint,websocket send error: websocket: close sent,Connection error (9.9.9.9#53):,The remote party closed the WebSocket connection,Error in TheMovieDb,automerge queue already in queue,Token has expired,Unable to download icon,Input file contains unsupported image format"
       GLOBAL_KEYWORDS_WITH_ATTACHMENT: "critical"  # Attaches a log file to the notification
