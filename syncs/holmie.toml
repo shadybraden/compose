@@ -701,7 +701,7 @@ env_file_path = "/etc/komodo/env/qbittorrent-holmie.env"
 
 [[stack]]
 name = "autobrr-holmie"
-tags = ["holmie", "criticality: 1"]
+tags = ["holmie", "criticality: 1", "arr"]
 [stack.config]
 server = "holmie"
 project_name = "autobrr-holmie"

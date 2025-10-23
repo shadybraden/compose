@@ -325,7 +325,7 @@ env_file_path = "/etc/komodo/env/qbittorrent-holmgarage.env"
 
 [[stack]]
 name = "autobrr-holmgarage"
-tags = ["holmgarage", "criticality: 1"]
+tags = ["holmgarage", "criticality: 1", "arr"]
 [stack.config]
 server = "holmgarage"
 project_name = "autobrr-holmgarage"
