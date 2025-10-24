@@ -1,3 +1,4 @@
+---
 services:
   filegator:
     image: filegator/filegator:v7.13.0

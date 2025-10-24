@@ -3,12 +3,12 @@ mqtt:
   enabled: false
 
 ffmpeg:
-    hwaccel_args: preset-vaapi 
-    path: "5.0"
+  hwaccel_args: preset-vaapi
+  path: "5.0"
 
 cameras:
   usb_webcam:
-    ffmpeg: 
+    ffmpeg:
       output_args:
         record: preset-record-generic-audio-aac
       inputs:

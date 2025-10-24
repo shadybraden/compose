@@ -1,3 +1,4 @@
+---
 services:
   log:
     image: goharbor/harbor-log:{{version}}

@@ -1,3 +1,4 @@
+---
 services:
   dumbkan:
     image: dumbwareio/dumbkan@sha256:431e0d744afcc1f4353c3000f2092ed15a3fde80f583372571ed4dce56b77f6b
