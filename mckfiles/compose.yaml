@@ -7,6 +7,6 @@ services:
       - /data/mnt/shows/MCC_Kids_Video:/src:rw
       - /data/tmp/mck/.hugo_build.lock:/src/.hugo_build.lock
     ports:
-      - "1313:1313"
+      - "80:80"
     user: 1000:1000
-    command: server --bind=0.0.0.0 --baseURL="http://100.84.68.110:1313/" --source /src
+    command: server --bind=0.0.0.0 --baseURL="http://100.84.68.110:80/" --source /src
