@@ -4,7 +4,7 @@ services:
     container_name: mckfiles
     image: cgr.dev/chainguard/hugo:latest
     volumes:
-      - /data/mnt/shows/MCC_Kids_Video:/src:ro
+      - /data/mnt/shows/MCC_Kids_Video:/src
       - /data/tmp/mck/public:/src/public
       - /data/tmp/mck/.hugo_build.lock:/src/.hugo_build.lock
     ports:
