@@ -85,7 +85,7 @@ env_file_path = "/etc/komodo/env/forgejo-skynet.env"
 
 [[stack]]
 name = "mckfiles-skynet"
-description = "http://100.84.68.110:1313/"
+description = "http://100.84.68.110/"
 tags = ["skynet", "criticality: 1"]
 [stack.config]
 server = "skynet"
