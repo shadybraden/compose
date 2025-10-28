@@ -9,4 +9,4 @@ services:
       - "1313:1313"
     environment:
       - HUGO_BASEURL=http://100.84.68.110:1313/
-    command: server --disableFastRender --bind=0.0.0.0
+    command: server --bind=0.0.0.0
