@@ -85,10 +85,13 @@ env_file_path = "/etc/komodo/env/forgejo-skynet.env"
 
 [[stack]]
 name = "mckfiles-skynet"
-description = "http://100.84.68.110/"
 tags = ["skynet", "criticality: 1"]
 [stack.config]
 server = "skynet"
+links = [
+  "http://100.84.68.110/",
+  "http://192.168.1.24/"
+]
 project_name = "mckfiles-skynet"
 linked_repo = "compose_main"
 run_directory = "mckfiles"
