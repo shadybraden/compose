@@ -2,7 +2,7 @@
 services:
   hugo:
     container_name: mckfiles
-    image: klakegg/hugo
+    image: klakegg/hugo:0.142.0
     volumes:
       - /data/mnt/shows/MCC_Kids_Video:/src
     ports:
