@@ -1,10 +1,12 @@
 ---
 services:
-  nginx:
+  hugo:
     container_name: mckfiles
-    image: nginx
+    image: klakegg/hugo
     volumes:
-      - /data/mnt/shows/MCC_Kids_Video/live_shared:/usr/share/nginx/html:ro
-      - /data/config_storage/komodo/etc_komodo/repos/compose_main/mckfiles/nginx.conf:/etc/nginx/nginx.conf:ro
+      - .:/src
     ports:
-      - 8080:8080
+      - "1313:1313"
+    environment:
+      - HUGO_BASEURL=http://100.84.68.110:1313/
+    command: server --disableFastRender --bind=0.0.0.0
