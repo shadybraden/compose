@@ -4,7 +4,7 @@ services:
     container_name: mckfiles
     image: klakegg/hugo
     volumes:
-      - .:/src
+      - /data/mnt/shows/MCC_Kids_Video:/src
     ports:
       - "1313:1313"
     environment:
