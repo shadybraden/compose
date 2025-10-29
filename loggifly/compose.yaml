@@ -9,7 +9,7 @@ services:
       NTFY_URL: "https://ntfy.holmlab.org"  # not a variable because logs should all go back to holmlab
       NTFY_TOPIC: ${topic}
       MONITOR_ALL_CONTAINERS: true
-      EXCLUDED_CONTAINERS: "skywatch,chrome"
+      EXCLUDED_CONTAINERS: "pinchflat-holmie-pinchflat-1,skywatch,chrome"
       # CONTAINERS: "olivetin,ntfy,factorio,vaultwarden,actual_server,anubis,wedding-share,audiobookshelf,pihole,wg-easy,forgejo,jellyfin,immich_server,nextcloud,silverbullet,tinyauth"
       GLOBAL_KEYWORDS: "[JOIN],[LEAVE],error,failed login,password,Authentication failed,Failed authentication attempt,Wrong credentials"
       EXCLUDED_KEYWORDS: "WRN Failed to exchange Hello messages,--ignore-no-formats-error,ERROR: Not a valid UUID,purging password reset tokens,failed to prune images on server shady_desktop,INF Lost device connection,There are 0 errors and 0 warnings,BeastReduce TCP output,WRN Failed TLS handshake,DNS server returned general failure,WRN Failed to acquire open port,Unable to parse,duplicate key value violates unique constraint,websocket send error: websocket: close sent,Connection error (9.9.9.9#53):,The remote party closed the WebSocket connection,Error in TheMovieDb,automerge queue already in queue,Token has expired,Unable to download icon,Input file contains unsupported image format"
