@@ -23,6 +23,7 @@ services:
       - "homepage.name=mullvad"
       - "homepage.icon=/images/mullvad.png"
       - "homepage.href=https://mullvad.${DOMAIN}/"
+      - "traefik.http.routers.mullvad-secure.middlewares=tinyauth"
 
 
 networks:
