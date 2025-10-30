@@ -21,7 +21,7 @@ services:
       - no-new-privileges:true  # helps to increase security
     network_mode: container:gluetun
     labels:
-      - "homepage.group=mullvad"
+      - "homepage.group=Other"
       - "homepage.name=mullvad"
       - "homepage.icon=/images/mullvad.png"
       - "homepage.href=https://mullvad.${DOMAIN}/"
