@@ -9,6 +9,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
+      - RESTART_APP=true
     volumes:
       - /data/config_storage/mullvad-browser/:/config
 #    ports:
