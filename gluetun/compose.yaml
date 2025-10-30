@@ -85,6 +85,15 @@ services:
       - "traefik.http.routers.tidal-ui-secure.tls=true"
       - "traefik.http.routers.tidal-ui-secure.service=tidal-ui"
       - "traefik.http.services.tidal-ui.loadbalancer.server.port=5000"  # port of the service.
+      - "traefik.http.routers.mullvad.entrypoints=http"
+      - "traefik.http.routers.mullvad.rule=Host(`mullvad.${DOMAIN}`)"
+      - "traefik.http.middlewares.mullvad-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.mullvad.middlewares=mullvad-https-redirect"
+      - "traefik.http.routers.mullvad-secure.entrypoints=https"
+      - "traefik.http.routers.mullvad-secure.rule=Host(`mullvad.${DOMAIN}`)"
+      - "traefik.http.routers.mullvad-secure.tls=true"
+      - "traefik.http.routers.mullvad-secure.service=mullvad"
+      - "traefik.http.services.mullvad.loadbalancer.server.port=3000"  # port of the service.
 
 networks:
   gluetun_net:
