@@ -10,6 +10,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
       - RESTART_APP=true
+      - HARDEN_DESKTOP=true
     volumes:
       - /data/config_storage/mullvad-browser/:/config
 #    ports:
