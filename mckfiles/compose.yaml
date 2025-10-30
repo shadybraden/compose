@@ -4,8 +4,7 @@ services:
     container_name: mckfiles
     image: cgr.dev/chainguard/hugo:latest
     volumes:
-      - /data/mnt/shows/MCC_Kids_Video:/src:rw
-      - /data/tmp/mck/.hugo_build.lock:/src/.hugo_build.lock
+      - /data/config_storage/hugo:/src:rw
     ports:
       - "80:80"
     user: 1000:1000
