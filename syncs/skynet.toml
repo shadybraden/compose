@@ -84,7 +84,7 @@ env_file_path = "/etc/komodo/env/forgejo-skynet.env"
 ##
 
 [[stack]]
-name = "mckfiles-skynet"
+name = "mck_hugo-skynet"
 tags = ["skynet", "criticality: 1"]
 [stack.config]
 server = "skynet"
@@ -92,8 +92,8 @@ links = [
   "http://100.84.68.110/",
   "http://192.168.1.24/"
 ]
-project_name = "mckfiles-skynet"
+project_name = "mck_hugo-skynet"
 linked_repo = "compose_main"
-run_directory = "mckfiles"
+run_directory = "mck_hugo"
 additional_env_files = ["/etc/komodo/domain.env"]
-env_file_path = "/etc/komodo/env/mckfiles-skynet.env"
+env_file_path = "/etc/komodo/env/mck_hugo-skynet.env"

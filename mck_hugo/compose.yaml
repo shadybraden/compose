@@ -1,7 +1,7 @@
 ---
 services:
   hugo:
-    container_name: mckfiles
+    container_name: mck_hugo
     image: cgr.dev/chainguard/hugo:latest
     volumes:
       - /data/config_storage/hugo:/src:rw
