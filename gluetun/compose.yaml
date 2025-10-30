@@ -94,6 +94,7 @@ services:
       - "traefik.http.routers.mullvad-secure.tls=true"
       - "traefik.http.routers.mullvad-secure.service=mullvad"
       - "traefik.http.services.mullvad.loadbalancer.server.port=3000"  # port of the service.
+      - "traefik.http.routers.mullvad-secure.middlewares=tinyauth"
 
 networks:
   gluetun_net:
