@@ -9,7 +9,6 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
-      - RESTART_APP=true
       - HARDEN_DESKTOP=true
       - HARDEN_OPENBOX=true
     volumes:
