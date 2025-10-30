@@ -11,6 +11,7 @@ services:
       - TZ=Etc/UTC
       - RESTART_APP=true
       - HARDEN_DESKTOP=true
+      - HARDEN_OPENBOX=true
     volumes:
       - /data/config_storage/mullvad-browser/:/config
 #    ports:
