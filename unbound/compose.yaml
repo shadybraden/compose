@@ -1,0 +1,10 @@
+---
+services:
+  unbound:
+    image: klutchell/unbound:1.24.1
+    volumes:
+      - '/data/config_storage/unbound:/etc/unbound/custom.conf.d'
+    ports:
+      - '1053:53/udp'
+      - '1053:53/tcp'
+    container_name: unbound
