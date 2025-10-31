@@ -12,3 +12,4 @@ services:
       - '1053:53/tcp'
     container_name: unbound
     restart: unless-stopped
+    hostname: unbound
