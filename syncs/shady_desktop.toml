@@ -48,6 +48,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "foldingathome-shady_desktop"
+description = "https://v8-4.foldingathome.org/"
 tags = ["shady_desktop", "criticality: 1"]
 [stack.config]
 server = "shady_desktop"
