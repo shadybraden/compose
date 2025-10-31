@@ -13,3 +13,5 @@ services:
     container_name: unbound
     restart: unless-stopped
     hostname: unbound
+    cap_add:
+      - NET_ADMIN
