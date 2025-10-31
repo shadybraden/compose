@@ -2,7 +2,7 @@
 services:
   hugo:
     container_name: mck_hugo
-    image: cgr.dev/chainguard/hugo:latest
+    image: cgr.dev/chainguard/hugo:0.152.2
     volumes:
       - /data/config_storage/hugo:/src:rw
     ports:
