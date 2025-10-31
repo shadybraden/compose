@@ -48,10 +48,12 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "foldingathome-shady_desktop"
-description = "https://v8-4.foldingathome.org/"
 tags = ["shady_desktop", "criticality: 1"]
 [stack.config]
 server = "shady_desktop"
+links = [
+  "https://v8-4.foldingathome.org/"
+]
 project_name = "foldingathome-shady_desktop"
 linked_repo = "compose_main"
 run_directory = "foldingathome"
