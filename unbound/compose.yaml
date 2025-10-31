@@ -8,8 +8,8 @@ services:
     environment:
       - TZ:America/New_York
     ports:
-      - '1053:53/udp'
-      - '1053:53/tcp'
+      - '5335:5335/udp'
+      - '5335:5335/tcp'
     container_name: unbound
     restart: unless-stopped
     hostname: unbound
