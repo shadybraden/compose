@@ -1,0 +1,14 @@
+---
+services:
+  foldingathome:
+    image: lscr.io/linuxserver/foldingathome:8.4.9
+    container_name: foldingathome
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - ACCOUNT_TOKEN=${ACCOUNT_TOKEN}
+      - MACHINE_NAME=${MACHINE_NAME}
+    volumes:
+      - /data/dont_backup/foldingathome:/config
+    restart: unless-stopped
