@@ -300,7 +300,7 @@ tags = ["holmie", "env", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "pihole"
-linked_repo = "compose_main"
+linked_repo = "compose_test"
 run_directory = "pihole"
 additional_env_files = ["/etc/komodo/domain.env"]
 env_file_path = "/etc/komodo/env/pihole.env"
@@ -823,7 +823,7 @@ tags = ["holmie", "criticality: 1"]
 [stack.config]
 server = "holmie"
 project_name = "unbound-holmie"
-linked_repo = "compose_main"
+linked_repo = "compose_test"
 run_directory = "unbound"
 additional_env_files = ["/etc/komodo/domain.env"]
 env_file_path = "/etc/komodo/env/unbound-holmie.env"
