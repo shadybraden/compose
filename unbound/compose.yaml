@@ -8,3 +8,4 @@ services:
       - '1053:53/udp'
       - '1053:53/tcp'
     container_name: unbound
+    restart: unless-stopped
