@@ -766,7 +766,7 @@ env_file_path = "/etc/komodo/env/wireguard_vpn-holmie.env"
 
 [[stack]]
 name = "qui-holmie"
-tags = ["holmie", "criticality: 5"]
+tags = ["holmie", "criticality: 5", "arr"]
 [stack.config]
 server = "holmie"
 project_name = "qui-holmie"
