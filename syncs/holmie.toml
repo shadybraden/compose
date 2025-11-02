@@ -675,7 +675,7 @@ env_file_path = "/etc/komodo/env/jenkins-holmie.env"
 
 [[stack]]
 name = "gluetun-holmie"
-tags = ["holmie", "criticality: 1"]
+tags = ["holmie", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "gluetun-holmie"
@@ -688,7 +688,7 @@ env_file_path = "/etc/komodo/env/gluetun-holmie.env"
 
 [[stack]]
 name = "qbittorrent-holmie"
-tags = ["holmie", "criticality: 1"]
+tags = ["holmie", "criticality: 2", "arr"]
 [stack.config]
 server = "holmie"
 project_name = "qbittorrent-holmie"
@@ -701,7 +701,7 @@ env_file_path = "/etc/komodo/env/qbittorrent-holmie.env"
 
 [[stack]]
 name = "autobrr-holmie"
-tags = ["holmie", "criticality: 1", "arr"]
+tags = ["holmie", "criticality: 5", "arr"]
 [stack.config]
 server = "holmie"
 project_name = "autobrr-holmie"
@@ -714,7 +714,7 @@ env_file_path = "/etc/komodo/env/autobrr-holmie.env"
 
 [[stack]]
 name = "jackett-holmie"
-tags = ["holmie", "criticality: 1", "arr"]
+tags = ["holmie", "criticality: 3", "arr"]
 [stack.config]
 server = "holmie"
 project_name = "jackett-holmie"
@@ -727,7 +727,7 @@ env_file_path = "/etc/komodo/env/jackett-holmie.env"
 
 [[stack]]
 name = "sonarr-holmie"
-tags = ["holmie", "criticality: 1", "arr"]
+tags = ["holmie", "criticality: 3", "arr"]
 [stack.config]
 server = "holmie"
 project_name = "sonarr-holmie"
@@ -740,7 +740,7 @@ env_file_path = "/etc/komodo/env/sonarr-holmie.env"
 
 [[stack]]
 name = "radarr-holmie"
-tags = ["holmie", "criticality: 1", "arr"]
+tags = ["holmie", "criticality: 3", "arr"]
 [stack.config]
 server = "holmie"
 project_name = "radarr-holmie"
@@ -753,7 +753,7 @@ env_file_path = "/etc/komodo/env/radarr-holmie.env"
 
 [[stack]]
 name = "wireguard_vpn-holmie"
-tags = ["holmie", "criticality: 1"]
+tags = ["holmie", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "wireguard_vpn-holmie"
@@ -766,7 +766,7 @@ env_file_path = "/etc/komodo/env/wireguard_vpn-holmie.env"
 
 [[stack]]
 name = "qui-holmie"
-tags = ["holmie", "criticality: 1"]
+tags = ["holmie", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "qui-holmie"
@@ -779,7 +779,7 @@ env_file_path = "/etc/komodo/env/qui-holmie.env"
 
 [[stack]]
 name = "tidal-ui-holmie"
-tags = ["holmie", "criticality: 1"]
+tags = ["holmie", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "tidal-ui-holmie"
@@ -793,7 +793,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "mattermost-holmie"
-tags = ["holmie", "criticality: 1"]
+tags = ["holmie", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "mattermost-holmie"
