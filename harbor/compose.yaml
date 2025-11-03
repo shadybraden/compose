@@ -1,24 +1,5 @@
 ---
 services:
-  log:
-    image: goharbor/harbor-log:v2.14.0
-    container_name: harbor-log
-    restart: always
-    cap_drop:
-      - ALL
-    cap_add:
-      - CHOWN
-      - DAC_OVERRIDE
-      - SETGID
-      - SETUID
-    volumes:
-      - /data/config_storage/harbor/log:/var/log/docker/:z
-      - /data/config_storage/harbor/config/log/logrotate.conf:/etc/logrotate.d/logrotate.conf
-      - /data/config_storage/harbor/config/log/rsyslog_docker.conf:/etc/rsyslog.d/rsyslog_docker.conf
-    ports:
-      - 1514:10514
-    networks:
-      - harbor
   registry:
     image: goharbor/registry-photon:v2.14.0
     container_name: registry
@@ -34,13 +15,6 @@ services:
       - /data/config_storage/harbor/config/registry/:/etc/registry/:z
     networks:
       - harbor
-    depends_on:
-      - log
-    logging:
-      driver: "syslog"
-      options:
-        syslog-address: "tcp://localhost:1514"
-        tag: "registry"
   registryctl:
     image: goharbor/harbor-registryctl:v2.14.0
     container_name: registryctl
@@ -58,13 +32,6 @@ services:
       - /data/config_storage/harbor/config/shared/trust-certificates:/harbor_cust_cert
     networks:
       - harbor
-    depends_on:
-      - log
-    logging:
-      driver: "syslog"
-      options:
-        syslog-address: "tcp://localhost:1514"
-        tag: "registryctl"
   postgresql:
     image: goharbor/harbor-db:v2.14.0
     container_name: harbor-db
@@ -81,12 +48,6 @@ services:
     networks:
       harbor:
     depends_on:
-      - log
-    logging:
-      driver: "syslog"
-      options:
-        syslog-address: "tcp://localhost:1514"
-        tag: "postgresql"
     shm_size: '1gb'
   core:
     image: goharbor/harbor-core:v2.14.0
@@ -108,14 +69,8 @@ services:
     networks:
       harbor:
     depends_on:
-      - log
       - registry
       - postgresql
-    logging:
-      driver: "syslog"
-      options:
-        syslog-address: "tcp://localhost:1514"
-        tag: "core"
   portal:
     image: goharbor/harbor-portal:v2.14.0
     container_name: harbor-portal
@@ -131,13 +86,6 @@ services:
       - /data/config_storage/harbor/config/portal/nginx.conf:/etc/nginx/nginx.conf
     networks:
       - harbor
-    depends_on:
-      - log
-    logging:
-      driver: "syslog"
-      options:
-        syslog-address: "tcp://localhost:1514"
-        tag: "portal"
   jobservice:
     image: goharbor/harbor-jobservice:v2.14.0
     container_name: harbor-jobservice
@@ -156,11 +104,6 @@ services:
       - harbor
     depends_on:
       - core
-    logging:
-      driver: "syslog"
-      options:
-        syslog-address: "tcp://localhost:1514"
-        tag: "jobservice"
   proxy:
     image: goharbor/nginx-photon:v2.14.0
     container_name: nginx
@@ -183,31 +126,18 @@ services:
       - registry
       - core
       - portal
-      - log
-    logging:
-      driver: "syslog"
-      options:
-        syslog-address: "tcp://localhost:1514"
-        tag: "proxy"
   trivy-adapter:
     container_name: trivy-adapter
     image: goharbor/trivy-adapter-photon:v2.14.0
     restart: always
     cap_drop:
       - ALL
-    depends_on:
-      - log
     networks:
       - harbor
     volumes:
       - /data/config_storage/harbor/trivy-adapter/trivy:/home/scanner/.cache/trivy
       - /data/config_storage/harbor/trivy-adapter/reports:/home/scanner/.cache/reports
       - /data/config_storage/harbor/config/shared/trust-certificates:/harbor_cust_cert
-    logging:
-      driver: "syslog"
-      options:
-        syslog-address: "tcp://localhost:1514"
-        tag: "trivy-adapter"
 networks:
   harbor:
     external: false
