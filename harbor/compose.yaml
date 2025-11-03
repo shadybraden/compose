@@ -47,7 +47,6 @@ services:
       - /data/config_storage/harbor/database:/var/lib/postgresql/data:z
     networks:
       harbor:
-    depends_on:
     shm_size: '1gb'
   core:
     image: goharbor/harbor-core:v2.14.0
