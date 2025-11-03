@@ -151,7 +151,7 @@ services:
     volumes:
       - /data/config_storage/harbor/job_logs:/var/log/jobs:z
       - /data/config_storage/harbor/config/jobservice/config.yml:/etc/jobservice/config.yml
-      - /data/config_storage/harbor/config/shared/trust-certificates::/harbor_cust_cert
+      - /data/config_storage/harbor/config/shared/trust-certificates:/harbor_cust_cert
     networks:
       - harbor
     depends_on:
@@ -174,9 +174,7 @@ services:
       - NET_BIND_SERVICE
     volumes:
       - /data/config_storage/harbor/config/nginx:/etc/nginx:z
-      - type: bind
-        source: ./common/config/shared/trust-certificates
-        target: /harbor_cust_cert
+      - /data/config_storage/harbor/config/shared/trust-certificates:/harbor_cust_cert
     networks:
       - harbor
     ports:
