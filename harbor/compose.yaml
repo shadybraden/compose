@@ -16,7 +16,7 @@ services:
       - /data/config_storage/harbor/config/log/logrotate.conf:/etc/logrotate.d/logrotate.conf
       - /data/config_storage/harbor/config/log/rsyslog_docker.conf:/etc/rsyslog.d/rsyslog_docker.conf
     ports:
-      - 127.0.0.1:1514:10514
+      - 1514:10514
     networks:
       - harbor
   registry:
