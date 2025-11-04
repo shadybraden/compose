@@ -92,7 +92,7 @@ name = "deployOnChange_main"
 name = "pull and deploy if changed"
 enabled = true
 executions = [
-  { execution.type = "BatchPullStack", execution.params.pattern = "*", enabled = true },
+  { execution.type = "BatchPullStack", execution.params.pattern = "^(?!skywatch$).*", enabled = true },
   { execution.type = "BatchDeployStackIfChanged", execution.params.pattern = "*", enabled = true }
 ]
 
