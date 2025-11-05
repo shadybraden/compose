@@ -115,7 +115,7 @@ executions = [
   { execution.type = "RunSync", execution.params.sync = "repo", enabled = true },
   { execution.type = "RunSync", execution.params.sync = "servers", enabled = true },
   { execution.type = "RunSync", execution.params.sync = "shady_desktop", enabled = true },
-  { execution.type = "RunSync", execution.params.sync = "mck", enabled = true },
+  { execution.type = "RunSync", execution.params.sync = "mck", enabled = false },
   { execution.type = "RunSync", execution.params.sync = "snow", enabled = true }
 ]
 
