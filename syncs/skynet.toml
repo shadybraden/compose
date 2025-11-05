@@ -23,17 +23,6 @@ env_file_path = "/etc/komodo/env/plex-skynet.env"
 ##
 
 [[stack]]
-name = "syncthing-skynet"
-tags = ["skynet", "criticality: 3"]
-[stack.config]
-server = "skynet"
-project_name = "syncthing-skynet"
-linked_repo = "compose_main"
-run_directory = "syncthing"
-
-##
-
-[[stack]]
 name = "beszelagent-skynet"
 tags = ["skynet", "env", "criticality: 3"]
 [stack.config]
