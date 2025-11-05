@@ -41,9 +41,9 @@ http:
 #        - default-security-headers
       tls: {}
       service: glances
-    glances-skynet:
+    glances-mck:
       entryPoints: ["https"]
-      rule: "Host(`glances-skynet.holmlab.org`)"
+      rule: "Host(`glances-mck.holmlab.org`)"
 #      middlewares:
 #        - default-security-headers
       tls: {}
@@ -76,13 +76,13 @@ http:
         - default-security-headers
       tls: {}
       service: periphery-shady
-    periphery-skynet:
+    periphery-mck:
       entryPoints: ["https"]
-      rule: "Host(`periphery-skynet.holmlab.org`)"
+      rule: "Host(`periphery-mck.holmlab.org`)"
       middlewares:
         - default-security-headers
       tls: {}
-      service: periphery-skynet
+      service: periphery-mck
     immich-ml-shady:
       entryPoints: ["https"]
       rule: "Host(`immich-ml-shady.holmlab.org`)"
@@ -106,7 +106,7 @@ http:
         servers:
           - url: "http://192.168.50.16:61208"
         passHostHeader: true
-    glances-skynet:
+    glances-mck:
       loadBalancer:
         servers:
           - url: "http://192.168.50.45:61208"
@@ -131,7 +131,7 @@ http:
         servers:
           - url: "http://192.168.50.16:8120"
         passHostHeader: true
-    periphery-skynet:
+    periphery-mck:
       loadBalancer:
         servers:
           - url: "http://192.168.50.45:8120"
