@@ -1,15 +1,4 @@
 [[stack]]
-name = "portainer-skynet"
-tags = ["skynet", "criticality: 5"]
-[stack.config]
-server = "skynet"
-project_name = "portainer"
-linked_repo = "compose_main"
-run_directory = "portainer"
-
-##
-
-[[stack]]
 name = "filebrowser-skynet"
 tags = ["skynet", "criticality: 5"]
 [stack.config]
