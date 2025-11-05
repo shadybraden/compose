@@ -20,6 +20,18 @@ send_unreachable_alerts = false
 ##
 
 [[server]]
+name = "mck"
+description = "192.168.1.24"
+tags = ["mck", "MCC"]
+[server.config]
+tags = ["mck"]
+address = "http://100.117.173.46:8120"
+enabled = true
+send_unreachable_alerts = true
+
+##
+
+[[server]]
 name = "snow"
 description = "192.168.x.x | snow.local | Optiplex 7040"
 tags = ["snow"]

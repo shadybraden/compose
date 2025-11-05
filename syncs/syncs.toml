@@ -41,6 +41,15 @@ resource_path = ["syncs/holmie.toml"]
 ##
 
 [[resource_sync]]
+name = "mck"
+tags = ["mck"]
+[resource_sync.config]
+linked_repo = "compose_main"
+resource_path = ["syncs/mck.toml"]
+
+##
+
+[[resource_sync]]
 name = "shady_desktop"
 tags = ["shady_desktop"]
 [resource_sync.config]
