@@ -44,9 +44,7 @@ resource_path = ["syncs/holmie.toml"]
 name = "mck"
 tags = ["mck"]
 [resource_sync.config]
-git_provider = "git.holmlab.org"
-repo = "shady/compose"
-git_account = "komodo"
+linked_repo = "compose_main"
 resource_path = ["syncs/mck.toml"]
 
 ##
