@@ -1,7 +1,7 @@
 ---
 services:
   sonarr:
-    image: quay.io/linuxserver.io/sonarr:4.0.15
+    image: quay.io/linuxserver.io/sonarr:4.0.16
     container_name: sonarr
     environment:
       - PUID=1000

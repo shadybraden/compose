@@ -41,13 +41,11 @@ resource_path = ["syncs/holmie.toml"]
 ##
 
 [[resource_sync]]
-name = "skynet"
-tags = ["skynet"]
+name = "mck"
+tags = ["mck"]
 [resource_sync.config]
-git_provider = "git.holmlab.org"
-repo = "shady/compose"
-git_account = "komodo"
-resource_path = ["syncs/skynet.toml"]
+linked_repo = "compose_main"
+resource_path = ["syncs/mck.toml"]
 
 ##
 

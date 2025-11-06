@@ -1,0 +1,77 @@
+[[stack]]
+name = "filebrowser-mck"
+tags = ["mck", "criticality: 5"]
+[stack.config]
+server = "mck"
+project_name = "filebrowser-mck"
+linked_repo = "compose_main"
+run_directory = "filebrowser"
+
+##
+
+[[stack]]
+name = "plex-mck"
+tags = ["mck", "env", "criticality: 1"]
+[stack.config]
+server = "mck"
+project_name = "plex-mck"
+linked_repo = "compose_main"
+run_directory = "plex"
+additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/plex-mck.env"
+
+##
+
+[[stack]]
+name = "beszelagent-mck"
+tags = ["mck", "env", "criticality: 3"]
+[stack.config]
+server = "mck"
+project_name = "beszelagent-mck"
+linked_repo = "compose_main"
+run_directory = "beszelagent"
+additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/beszelagent-mck.env"
+
+##
+
+[[stack]]
+name = "loggifly-mck"
+tags = ["mck", "criticality: 1"]
+[stack.config]
+server = "mck"
+project_name = "loggifly-mck"
+linked_repo = "compose_main"
+run_directory = "loggifly"
+additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/loggifly-mck.env"
+
+##
+
+[[stack]]
+name = "forgejo-mck"
+tags = ["mck", "criticality: 1"]
+[stack.config]
+server = "mck"
+project_name = "forgejo-mck"
+linked_repo = "compose_main"
+run_directory = "forgejo"
+additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/forgejo-mck.env"
+
+##
+
+[[stack]]
+name = "mck_hugo-mck"
+tags = ["mck", "criticality: 1"]
+[stack.config]
+server = "mck"
+links = [
+  "http://100.84.68.110/",
+  "http://192.168.1.24/"
+]
+project_name = "mck_hugo-mck"
+linked_repo = "compose_main"
+run_directory = "mck_hugo"
+additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/mck_hugo-mck.env"

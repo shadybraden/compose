@@ -37,4 +37,4 @@ networks:
     external: true
 # the nextcloud folder wants to be in the group www-data
 # sudo chown -R www-data:www-data nextcloud/
-# but cd into /home/skynet/config first (assuming nextcloud the folder is inside config
+# but cd into /home/mck/config first (assuming nextcloud the folder is inside config

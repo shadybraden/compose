@@ -92,7 +92,7 @@ name = "deployOnChange_main"
 name = "pull and deploy if changed"
 enabled = true
 executions = [
-  { execution.type = "BatchPullStack", execution.params.pattern = "^(?!skynet$).*", enabled = true },
+  { execution.type = "BatchPullStack", execution.params.pattern = "^(?!skywatch$).*", enabled = true },
   { execution.type = "BatchDeployStackIfChanged", execution.params.pattern = "*", enabled = true }
 ]
 
@@ -115,7 +115,7 @@ executions = [
   { execution.type = "RunSync", execution.params.sync = "repo", enabled = true },
   { execution.type = "RunSync", execution.params.sync = "servers", enabled = true },
   { execution.type = "RunSync", execution.params.sync = "shady_desktop", enabled = true },
-  { execution.type = "RunSync", execution.params.sync = "skynet", enabled = true },
+  { execution.type = "RunSync", execution.params.sync = "mck", enabled = true },
   { execution.type = "RunSync", execution.params.sync = "snow", enabled = true }
 ]
 
