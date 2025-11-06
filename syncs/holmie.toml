@@ -548,7 +548,7 @@ tags = ["holmie", "env", "criticality: 4", "external_hdd"]
 [stack.config]
 server = "holmie"
 project_name = "plex-holmie"
-linked_repo = "compose_main"
+linked_repo = "compose_test"
 run_directory = "plex"
 additional_env_files = ["/etc/komodo/domain.env"]
 env_file_path = "/etc/komodo/env/plex-holmie.env"
