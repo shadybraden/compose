@@ -3,17 +3,7 @@ services:
   plex:
     image: quay.io/linuxserver.io/plex:1.42.2
     container_name: plex
-    ports:
-      - 32400:32400
-      # https://support.plex.tv/articles/201543147-what-network-ports-do-i-need-to-allow-through-my-firewall/
-      - "1900:1900/udp"  # access to the Plex DLNA Server
-      - "5353:5353/udp"  # older Bonjour/Avahi network discovery
-      - "8324:8324/tcp"  # controlling Plex for Roku via Plex Companion
-      - "32410:32410/udp"  # current GDM network discovery
-      - "32412:32412/udp"  # current GDM network discovery
-      - "32413:32413/udp"  # current GDM network discovery
-      - "32414:32414/udp"  # current GDM network discovery
-      - "32469:32469/tcp"  # access to the Plex DLNA Server
+    network_mode: host
     environment:
       - PUID=1000
       - PGID=1000
@@ -27,25 +17,3 @@ services:
     security_opt:
       - no-new-privileges:true  # helps to increase security
     restart: unless-stopped
-    networks:
-      - intranet
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.plex.entrypoints=http"
-      - "traefik.http.routers.plex.rule=Host(`plex.${DOMAIN}`)"
-      - "traefik.http.middlewares.plex-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.plex.middlewares=plex-https-redirect"
-      - "traefik.http.routers.plex-secure.entrypoints=https"
-      - "traefik.http.routers.plex-secure.rule=Host(`plex.${DOMAIN}`)"
-      - "traefik.http.routers.plex-secure.tls=true"
-      - "traefik.http.routers.plex-secure.service=plex"
-      - "traefik.http.services.plex.loadbalancer.server.port=32400"  # port of the service.
-      - "traefik.docker.network=intranet"
-      - "homepage.group=Media"
-      - "homepage.name=plex"
-      - "homepage.icon=/images/plex.png"
-      - "homepage.href=https://plex.${DOMAIN}/"
-
-networks:
-  intranet:
-    external: true
