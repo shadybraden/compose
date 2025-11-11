@@ -5,4 +5,4 @@ services:
     container_name: mautrix_discord_synapse
     restart: unless-stopped
     volumes:
-      - /data/config_storage/mautrix_discord_synapse:/data:z
+      - /data/config_storage/synapse/data:/data:z
