@@ -1,0 +1,35 @@
+---
+services:
+  synapse:
+    image: docker.io/matrixdotorg/synapse:v1.141.0
+    restart: unless-stopped
+    environment:  # https://github.com/element-hq/synapse/blob/develop/docker/README.md
+      - SYNAPSE_CONFIG_PATH=/data/homeserver.yaml
+    volumes:
+      - /data/config_storage/synapse/data:/data
+    ports:
+      - 8008:8008/tcp
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.matrix.entrypoints=http"
+      - "traefik.http.routers.matrix.rule=Host(`matrix.${DOMAIN}`)"
+      - "traefik.http.middlewares.matrix-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.matrix.middlewares=matrix-https-redirect"
+      - "traefik.http.routers.matrix-secure.entrypoints=https"
+      - "traefik.http.routers.matrix-secure.rule=Host(`matrix.${DOMAIN}`)"
+      - "traefik.http.routers.matrix-secure.tls=true"
+      - "traefik.http.routers.matrix-secure.service=matrix"
+      - "traefik.http.services.matrix.loadbalancer.server.port=8008"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=matrix"
+      - "homepage.icon=/images/matrix.png"
+      - "homepage.href=https://matrix.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true
