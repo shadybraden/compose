@@ -223,7 +223,7 @@ services:
     dns_search: .
     ports:
       - 8086:80
-      - 443:443
+      - 8443:443
     depends_on:
       - postgresql
       - registry
