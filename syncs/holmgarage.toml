@@ -372,3 +372,16 @@ linked_repo = "compose_main"
 run_directory = "radarr"
 additional_env_files = ["/etc/komodo/domain.env"]
 env_file_path = "/etc/komodo/env/radarr-holmgarage.env"
+
+##
+
+[[stack]]
+name = "actualbudget-holmgarage"
+tags = ["holmgarage", "criticality: 1"]
+[stack.config]
+server = "holmgarage"
+project_name = "actualbudget-holmgarage"
+linked_repo = "compose_main"
+run_directory = "actualbudget"
+additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/actualbudget-holmgarage.env"
