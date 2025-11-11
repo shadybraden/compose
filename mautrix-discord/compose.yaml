@@ -6,3 +6,11 @@ services:
     restart: unless-stopped
     volumes:
       - /data/config_storage/synapse/data:/data:z
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+
+networks:
+  intranet:
+    external: true
