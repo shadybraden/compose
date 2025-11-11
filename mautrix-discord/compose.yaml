@@ -1,0 +1,8 @@
+---
+services:
+  mautrix:
+    image: dock.mau.dev/mautrix/discord:v0.7.4
+    container_name: mautrix_discord_synapse
+    restart: unless-stopped
+    volumes:
+      - /data/config_storage/mautrix_discord_synapse:/data:z
