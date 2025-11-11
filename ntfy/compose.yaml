@@ -3,7 +3,7 @@ services:
   ntfy:
     volumes:
       - /data/config_storage/ntfy:/var/cache/ntfy
-      - /data/config_storage/ntfy/server.yml:/var/cache/ntfy/server.yml
+      - /data/config_storage/ntfy/server.yml:/etc/ntfy/server.yml
     container_name: ntfy
     environment:
       - TZ=EST
