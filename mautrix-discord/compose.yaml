@@ -5,7 +5,7 @@ services:
     container_name: mautrix_discord_synapse
     restart: unless-stopped
     volumes:
-      - /data/config_storage/synapse/data:/data:z
+      - /data/config_storage/synapse/data/mautrix-discord:/data:z
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
