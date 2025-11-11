@@ -9,4 +9,6 @@ mkdir /data/config_storage/harbor/config/portal
 touch /data/config_storage/harbor/config/portal/nginx.conf
 mkdir -p /data/config_storage/harbor/config/jobservice
 touch /data/config_storage/harbor/config/jobservice/config.yml
+mkdir -p /data/config_storage/harbor/config/registry
+touch /data/config_storage/harbor/config/registry/config.yml
 ```

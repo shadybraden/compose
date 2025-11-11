@@ -13,6 +13,7 @@ services:
     volumes:
       - /data/config_storage/harbor/registry:/storage:z
       - /data/config_storage/harbor/config/registry/:/etc/registry/:z
+      - /data/config_storage/harbor/config/registry/config.yml:/etc/registry/config.yml
     networks:
       - harbor
   registryctl:
