@@ -48,8 +48,6 @@ services:
   registryctl:
     image: goharbor/harbor-registryctl:v1.8.2
     container_name: registryctl
-    env_file:
-      - ./config/registryctl/env
     restart: always
     cap_drop:
       - ALL
@@ -89,8 +87,6 @@ services:
     networks:
       harbor:
     dns_search: .
-    env_file:
-      - ./config/db/env
     depends_on:
       - log
     logging:
@@ -101,8 +97,6 @@ services:
   core:
     image: goharbor/harbor-core:v1.8.2
     container_name: harbor-core
-    env_file:
-      - ./config/core/env
     restart: always
     cap_drop:
       - ALL
@@ -160,8 +154,6 @@ services:
   jobservice:
     image: goharbor/harbor-jobservice:v1.8.2
     container_name: harbor-jobservice
-    env_file:
-      - ./config/jobservice/env
     restart: always
     cap_drop:
       - ALL
