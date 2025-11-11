@@ -2,6 +2,7 @@
 services:
   synapse:
     image: docker.io/matrixdotorg/synapse:v1.141.0
+    container_name: synapse
     restart: unless-stopped
     environment:  # https://github.com/element-hq/synapse/blob/develop/docker/README.md
       - SYNAPSE_CONFIG_PATH=/data/homeserver.yaml
