@@ -8,3 +8,13 @@ docker run -it --rm \
     -e SYNAPSE_REPORT_STATS=no \
     matrixdotorg/synapse:latest generate
 ```
+
+Generate admin
+```
+
+```
+
+Generate user
+```
+
+```
