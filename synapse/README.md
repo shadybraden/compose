@@ -9,12 +9,12 @@ docker run -it --rm \
     matrixdotorg/synapse:latest generate
 ```
 
-Generate admin
+Generate admin (https://github.com/element-hq/synapse/blob/develop/docker/README.md#generating-an-admin-user)
 ```
-
+docker exec -it synapse register_new_matrix_user http://localhost:8008 -c /data/homeserver.yaml -a
 ```
 
 Generate user
 ```
-
+docker exec -it synapse register_new_matrix_user http://localhost:8008 -c /data/homeserver.yaml --no-admin
 ```
