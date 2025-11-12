@@ -1,0 +1,28 @@
+services:
+  drawio:
+    image: jgraph/drawio:28.2.9
+    container_name: drawio
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.drawio.entrypoints=http"
+      - "traefik.http.routers.drawio.rule=Host(`drawio.${DOMAIN}`)"
+      - "traefik.http.middlewares.drawio-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.drawio.middlewares=drawio-https-redirect"
+      - "traefik.http.routers.drawio-secure.entrypoints=https"
+      - "traefik.http.routers.drawio-secure.rule=Host(`drawio.${DOMAIN}`)"
+      - "traefik.http.routers.drawio-secure.tls=true"
+      - "traefik.http.routers.drawio-secure.service=drawio"
+      - "traefik.http.services.drawio.loadbalancer.server.port=8080"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=drawio"
+      - "homepage.icon=/images/drawio.png"
+      - "homepage.href=https://drawio.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true
