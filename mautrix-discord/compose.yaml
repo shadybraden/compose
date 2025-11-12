@@ -1,11 +1,11 @@
 ---
 services:
-  mautrix:
+  mautrix-discord:
     image: dock.mau.dev/mautrix/discord:v0.7.4  # https://mau.dev/mautrix/discord/container_registry/53
-    container_name: mautrix_discord_synapse
+    container_name: mautrix-discord
     restart: unless-stopped
     volumes:
-      - /data/config_storage/synapse/data:/data:z
+      - /data/config_storage/synapse/data/mautrix-discord:/data:z
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
