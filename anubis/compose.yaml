@@ -22,10 +22,17 @@ services:
     networks:
       - intranet
     labels:
-      traefik.enable: true
-      traefik.http.routers.anubis.rule: "Host(`anubis.${DOMAIN}`)"
-      traefik.http.services.anubis.loadbalancer.server.port: "8080"
-      traefik.http.middlewares.anubis.forwardauth.address: "http://anubis:8080/.within.website/x/cmd/anubis/api/check"
+      - traefik.enable=true  # Enabling Traefik
+      - traefik.docker.network=intranet  # Telling Traefik which network to use
+      - traefik.http.routers.anubis.rule=Host(`anubis.${DOMAIN}`)  # Only Matching Requests for example.com
+      - traefik.http.routers.anubis.entrypoints=https  # Listen on HTTPS
+      - traefik.http.services.anubis.loadbalancer.server.port=8080  # Telling Traefik where to receive requests
+      - traefik.http.routers.anubis.service=anubis  # Telling Traefik to use the above specified port
+      - traefik.http.routers.anubis.tls.certresolver=cloudflare  # Telling Traefik to resolve a Cert for Anubis
+      - "homepage.group=Other"
+      - "homepage.name=anubis"
+      - "homepage.icon=/images/anubis.webp"
+      - "homepage.href=https://anubis.${DOMAIN}/"
 
 networks:
   intranet:
