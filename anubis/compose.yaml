@@ -15,7 +15,6 @@ services:
       # Should match your domain for proper cookie scoping
       - COOKIE_DOMAIN="${DOMAIN}"
       - LOG_LEVEL=debug
-      - SERVE_ROBOTS_TXT="true"
     volumes:
       - /data/config_storage/komodo/etc_komodo/repos/compose_main/anubis/botPolicy.yaml:/data/cfg/botPolicy.yaml:ro
     security_opt:
