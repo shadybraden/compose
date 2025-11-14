@@ -11,9 +11,9 @@ services:
       # Specifies which domains Anubis is allowed to redirect to.
       - REDIRECT_DOMAINS="anubis.${DOMAIN},speedtest.${DOMAIN},${DOMAIN}"
       # Should be the full external URL for Anubis (including scheme)
-      - PUBLIC_URL=https://anubis.${DOMAIN}
+      - PUBLIC_URL="https://anubis.${DOMAIN}"
       # Should match your domain for proper cookie scoping
-      - COOKIE_DOMAIN=${DOMAIN}
+      - COOKIE_DOMAIN="${DOMAIN}"
       - LOG_LEVEL=debug
     security_opt:
       - no-new-privileges:true  # helps to increase security
