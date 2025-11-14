@@ -13,7 +13,7 @@ services:
       # Should be the full external URL for Anubis (including scheme)
       - PUBLIC_URL=https://anubis.${DOMAIN}
       # Should match your domain for proper cookie scoping
-      - COOKIE_DOMAIN=${DOMAIN}
+      - COOKIE_DYNAMIC_DOMAIN="true"
       - LOG_LEVEL=debug
     security_opt:
       - no-new-privileges:true  # helps to increase security
