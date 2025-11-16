@@ -1,7 +1,7 @@
 ---
 services:
   docker-in-docker:
-    image: docker:29.0.0-dind-rootless
+    image: docker:29.0.1-dind-rootless
     container_name: 'docker-in-docker'
     privileged: 'true'
     command: ['dockerd', '-H', 'tcp://0.0.0.0:2375', '--tls=false']
