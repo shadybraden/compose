@@ -61,7 +61,7 @@ services:
     restart: unless-stopped
 
   redis:
-    image: redis:8.2.3
+    image: redis:8.4.0
     container_name: twenty-redis
     restart: unless-stopped
     command: ["--maxmemory-policy", "noeviction"]
