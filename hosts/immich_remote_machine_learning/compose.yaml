@@ -2,7 +2,7 @@
 services:
   immich-machine-learning:
     container_name: immich_machine_learning
-    image: ghcr.io/immich-app/immich-machine-learning:v2.2.3
+    image: ghcr.io/immich-app/immich-machine-learning:v2.3.1
     volumes:
       - /data/dont_backup/immich_machine_learning:/cache
     restart: unless-stopped
