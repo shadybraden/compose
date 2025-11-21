@@ -48,7 +48,7 @@ services:
       - "homepage.href=https://romm.${DOMAIN}/"
 
   romm-db:
-    image: mariadb:12.0.2  # make latest
+    image: mariadb:12.1.2  # make latest
     container_name: romm-db
     restart: unless-stopped
     environment:
