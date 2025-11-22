@@ -12,9 +12,12 @@ cameras:
         record: preset-record-generic-audio-aac
       inputs:
         - path: /dev/video0
-          input_args: preset-rtsp-restream
+          # V4L2‑specific arguments
+          input_args: "-f v4l2 -framerate 30 -video_size 1280x720"
+          # you can add `-thread_queue_size 512` if you see frame drops
           roles:
             - record
+
 
 tls:
   enabled: false
