@@ -1,4 +1,3 @@
----
 mqtt:
   enabled: false
 
@@ -8,14 +7,17 @@ ffmpeg:
 cameras:
   usb_webcam:
     ffmpeg:
-      hwaccel_args: " "
+      hwaccel_args: ' '
       output_args:
         record: preset-record-generic-audio-aac
       inputs:
         - path: /dev/video0
-          input_args: "-f v4l2 -framerate 30 -video_size 1280x720"
+          input_args: -f v4l2 -framerate 30 -video_size 1280x720
           roles:
             - record
 
 tls:
   enabled: false
+detect:
+  enabled: true
+version: 0.16-0
