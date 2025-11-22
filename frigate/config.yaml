@@ -4,7 +4,6 @@ mqtt:
 
 ffmpeg:
   hwaccel_args: preset-vaapi
-  path: "/usr"
 
 cameras:
   usb_webcam:
