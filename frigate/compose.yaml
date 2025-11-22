@@ -13,6 +13,8 @@ services:
 #      - /dev/video11:/dev/video11  # For Raspberry Pi 4B
       - /dev/dri/renderD128:/dev/dri/renderD128  # For intel hwaccel, needs to be updated for your hardware
       - /dev/video0:/dev/video0  # usb webcam
+    group_add:
+      - "44"  # video GID (getent group video | cut -d: -f3)
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /data/config_storage/frigate:/config
