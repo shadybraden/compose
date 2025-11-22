@@ -1,7 +1,7 @@
 ---
 services:
   qbittorrent:
-    image: quay.io/linuxserver.io/qbittorrent:5.1.2
+    image: quay.io/linuxserver.io/qbittorrent:5.1.4
     container_name: qbittorrent
     environment:
       - PUID=1000
