@@ -19,5 +19,5 @@ cameras:
 tls:
   enabled: false
 detect:
-  enabled: true
+  enabled: false
 version: 0.16-0
