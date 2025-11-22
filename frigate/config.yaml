@@ -12,7 +12,7 @@ cameras:
         record: preset-record-generic-audio-aac
       inputs:
         - path: /dev/video0
-          input_args: -f v4l2 -framerate 30 -video_size 1280x720
+          input_args: -f v4l2 -framerate 30 -video_size 1920x1080
           roles:
             - record
 
