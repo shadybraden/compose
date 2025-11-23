@@ -2,7 +2,7 @@
 services:
   crafty:
     container_name: crafty_container
-    image: registry.gitlab.com/crafty-controller/crafty-4:4.5.5
+    image: registry.gitlab.com/crafty-controller/crafty-4:4.6.1
     restart: unless-stopped
     environment:
       - TZ=Etc/UTC
