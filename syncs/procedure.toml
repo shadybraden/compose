@@ -122,21 +122,39 @@ executions = [
 ##
 
 [[procedure]]
-name = "restart_gluetun'd"
-description = "Restart ALL containers connected to ANY gluetun instance"
+name = "restart_gluetun'd - holmie"
+description = "Restart containers connected to holmie's gluetun instance"
 config.webhook_enabled = false
 config.schedule_alert = false
+
+[[procedure.config.stage]]
+name = "stop gluetun"
+enabled = true
+executions = [
+  { execution.type = "DestroyStack", execution.params.stack = "gluetun-holmie", execution.params.services = [], execution.params.remove_orphans = false, enabled = true }
+]
+
+[[procedure.config.stage]]
+name = "start gluetun"
+enabled = true
+executions = [
+  { execution.type = "DeployStack", execution.params.stack = "gluetun-holmie", execution.params.services = [], execution.params.remove_orphans = false, enabled = true }
+]
+
+[[procedure.config.stage]]
+name = "pause"
+enabled = false
+executions = [
+  { execution.type = "Sleep", execution.params.duration_ms = 500, enabled = true }
+]
 
 [[procedure.config.stage]]
 name = "stop"
 enabled = true
 executions = [
   { execution.type = "DestroyStack", execution.params.stack = "qbittorrent-holmie", execution.params.services = [], execution.params.remove_orphans = false, enabled = true },
-  { execution.type = "DestroyStack", execution.params.stack = "qbittorrent-holmgarage", execution.params.services = [], execution.params.remove_orphans = false, enabled = true },
   { execution.type = "DestroyStack", execution.params.stack = "jackett-holmie", execution.params.services = [], execution.params.remove_orphans = false, enabled = true },
-  { execution.type = "DestroyStack", execution.params.stack = "jackett-holmgarage", execution.params.services = [], execution.params.remove_orphans = false, enabled = true },
   { execution.type = "DestroyStack", execution.params.stack = "searxng-holmie", execution.params.services = [], execution.params.remove_orphans = false, enabled = true },
-  { execution.type = "DestroyStack", execution.params.stack = "searxng-holmgarage", execution.params.services = [], execution.params.remove_orphans = false, enabled = true },
   { execution.type = "DestroyStack", execution.params.stack = "freshrss-holmie", execution.params.services = [], execution.params.remove_orphans = false, enabled = true },
   { execution.type = "DestroyStack", execution.params.stack = "tidal-ui-holmie", execution.params.services = [], execution.params.remove_orphans = false, enabled = true },
   { execution.type = "DestroyStack", execution.params.stack = "mullvad_browser-holmie", execution.params.services = [], execution.params.remove_orphans = false, enabled = true }
@@ -147,11 +165,8 @@ name = "start"
 enabled = true
 executions = [
   { execution.type = "DeployStack", execution.params.stack = "qbittorrent-holmie", execution.params.services = [], enabled = true },
-  { execution.type = "DeployStack", execution.params.stack = "qbittorrent-holmgarage", execution.params.services = [], enabled = true },
   { execution.type = "DeployStack", execution.params.stack = "jackett-holmie", execution.params.services = [], enabled = true },
-  { execution.type = "DeployStack", execution.params.stack = "jackett-holmgarage", execution.params.services = [], enabled = true },
   { execution.type = "DeployStack", execution.params.stack = "searxng-holmie", execution.params.services = [], enabled = true },
-  { execution.type = "DeployStack", execution.params.stack = "searxng-holmgarage", execution.params.services = [], enabled = true },
   { execution.type = "DeployStack", execution.params.stack = "freshrss-holmie", execution.params.services = [], enabled = true },
   { execution.type = "DeployStack", execution.params.stack = "tidal-ui-holmie", execution.params.services = [], enabled = true },
   { execution.type = "DeployStack", execution.params.stack = "mullvad_browser-holmie", execution.params.services = [], enabled = true }
