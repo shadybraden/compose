@@ -818,19 +818,6 @@ env_file_path = "/etc/komodo/env/mullvad_browser-holmie.env"
 ##
 
 [[stack]]
-name = "forgejo_actions-holmie"
-tags = ["holmie", "criticality: 1"]
-[stack.config]
-server = "holmie"
-project_name = "forgejo_actions-holmie"
-linked_repo = "compose_main"
-run_directory = "forgejo_actions"
-additional_env_files = ["/etc/komodo/domain.env"]
-env_file_path = "/etc/komodo/env/forgejo_actions-holmie.env"
-
-##
-
-[[stack]]
 name = "synapse-holmie"
 tags = ["holmie", "criticality: 1"]
 [stack.config]
