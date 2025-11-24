@@ -4,7 +4,7 @@ services:
     container_name: silverbullet
     volumes:
       - /data/config_storage/silverbullet:/space
-    image: ghcr.io/silverbulletmd/silverbullet:2.2.1
+    image: ghcr.io/silverbulletmd/silverbullet:2.3.0
     environment:
       - SB_USER=shady:${password}
       - TZ=America/New_York
