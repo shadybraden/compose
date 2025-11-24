@@ -161,7 +161,7 @@ executions = [
 
 [[procedure]]
 name = "restart_gluetun'd - holmgarage"
-description = "Restart ALL containers connected to ANY gluetun instance"
+description = "Restart containers connected to holmgarage's gluetun instance"
 config.webhook_enabled = false
 config.schedule_alert = false
 
