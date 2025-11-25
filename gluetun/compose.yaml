@@ -24,6 +24,7 @@ services:
       - 8888:8888/tcp  # HTTP proxy
       - 8388:8388/tcp  # Shadowsocks
       - 8388:8388/udp  # Shadowsocks
+      - 6881:6881  # qbit torrenting port
       # - "51820:51820/udp"  # wireguard public port. remember to port forward this
     image: qmcgaw/gluetun:v3.40
     networks:
