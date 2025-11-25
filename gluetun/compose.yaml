@@ -13,7 +13,7 @@ services:
       - DNS_PLAINTEXT_ADDRESS=${DNS_PLAINTEXT_ADDRESS}
       - SHADOWSOCKS_PASSWORD=${SHADOWSOCKS_PASSWORD}
       - WIREGUARD_PRESHARED_KEY=${WIREGUARD_PRESHARED_KEY}
-      - FIREWALL_VPN_INPUT_PORTS=${FIREWALL_VPN_INPUT_PORTS}
+      - FIREWALL_VPN_INPUT_PORTS=${TORRENTING_PORT}
       - VPN_TYPE=wireguard
 #      - SERVER_CITIES=Adelaide,Amsterdam,"Ashburn VA",Athens,"Atlanta GA",Auckland,Belgrade,Berlin,Bogota,Bratislava,Brisbane,Brussels,Bucharest,Budapest,Calgary,"Chicago IL",Chisinau,Copenhagen,"Dallas TX","Denver CO",Dubai,Dublin,Dusseldorf,Frankfurt,Gothenburg,Helsinki,"Hong Kong","Houston TX",Johannesburg,Kyiv,Lisbon,London,"Los Angeles CA",Luxembourg,Madrid,Malmö,Manchester,Marseille,Melbourne,"Miami FL",Milan,Montreal,"New York NY",Osaka,Oslo,Paris,Perth,"Phoenix AZ",Prague,"Raleigh NC",Riga,"Salt Lake City UT","San Jose CA","Sao Paulo","Seattle WA","Secaucus NJ",Singapore,Skopje,Sofia,Stavanger,Stockholm,Sydney,Tallinn,"Tel Aviv",Tirana,Tokyo,Toronto,Vancouver,Vienna,Warsaw,Zagreb,Zurich
       - SHADOWSOCKS=on
