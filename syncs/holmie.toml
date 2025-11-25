@@ -792,19 +792,6 @@ additional_env_files = ["/etc/komodo/domain.env"]
 ##
 
 [[stack]]
-name = "mullvad_browser-holmie"
-tags = ["holmie", "criticality: 5"]
-[stack.config]
-server = "holmie"
-project_name = "mullvad_browser-holmie"
-linked_repo = "compose_main"
-run_directory = "mullvad_browser"
-additional_env_files = ["/etc/komodo/domain.env"]
-env_file_path = "/etc/komodo/env/mullvad_browser-holmie.env"
-
-##
-
-[[stack]]
 name = "synapse-holmie"
 tags = ["holmie", "criticality: 1"]
 [stack.config]
