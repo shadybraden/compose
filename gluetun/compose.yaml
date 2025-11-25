@@ -19,7 +19,6 @@ services:
       - SHADOWSOCKS_LOG=on
       - DOT=off
       - HTTPPROXY=on
-      
     ports:
       - 8888:8888/tcp  # HTTP proxy
       - 8388:8388/tcp  # Shadowsocks
