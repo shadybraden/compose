@@ -67,7 +67,7 @@ tags = ["mck", "criticality: 1"]
 [stack.config]
 server = "mck"
 links = [
-  "http://100.84.68.110/",
+  "http://100.117.173.46/",
   "http://192.168.1.24/"
 ]
 project_name = "mck_hugo-mck"
@@ -84,7 +84,7 @@ tags = ["mck", "criticality: 1"]
 [stack.config]
 server = "mck"
 links = [
-  "http://100.84.68.110:8123",
+  "http://100.117.173.46:8123",
   "http://192.168.1.24:8123"
 ]
 project_name = "homeassistant-mck"
