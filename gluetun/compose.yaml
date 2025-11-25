@@ -13,7 +13,7 @@ services:
         # generate key, then download any .conf. use the key and ip from that .conf below
       - WIREGUARD_PRIVATE_KEY=${WIREGUARD_PRIVATE_KEY}
       - WIREGUARD_ADDRESSES=${WIREGUARD_ADDRESSES}
-      - SERVER_CITIES=Adelaide,Amsterdam,"Ashburn VA",Athens,"Atlanta GA",Auckland,Belgrade,Berlin,Bogota,Bratislava,Brisbane,Brussels,Bucharest,Budapest,Calgary,"Chicago IL",Chisinau,Copenhagen,"Dallas TX","Denver CO",Dubai,Dublin,Dusseldorf,Frankfurt,Gothenburg,Helsinki,"Hong Kong","Houston TX",Johannesburg,Kyiv,Lisbon,London,"Los Angeles CA",Luxembourg,Madrid,Malmö,Manchester,Marseille,Melbourne,"Miami FL",Milan,Montreal,"New York NY",Osaka,Oslo,Paris,Perth,"Phoenix AZ",Prague,"Raleigh NC",Riga,"Salt Lake City UT","San Jose CA","Sao Paulo","Seattle WA","Secaucus NJ",Singapore,Skopje,Sofia,Stavanger,Stockholm,Sydney,Tallinn,"Tel Aviv",Tirana,Tokyo,Toronto,Vancouver,Vienna,Warsaw,Zagreb,Zurich
+#      - SERVER_CITIES=Adelaide,Amsterdam,"Ashburn VA",Athens,"Atlanta GA",Auckland,Belgrade,Berlin,Bogota,Bratislava,Brisbane,Brussels,Bucharest,Budapest,Calgary,"Chicago IL",Chisinau,Copenhagen,"Dallas TX","Denver CO",Dubai,Dublin,Dusseldorf,Frankfurt,Gothenburg,Helsinki,"Hong Kong","Houston TX",Johannesburg,Kyiv,Lisbon,London,"Los Angeles CA",Luxembourg,Madrid,Malmö,Manchester,Marseille,Melbourne,"Miami FL",Milan,Montreal,"New York NY",Osaka,Oslo,Paris,Perth,"Phoenix AZ",Prague,"Raleigh NC",Riga,"Salt Lake City UT","San Jose CA","Sao Paulo","Seattle WA","Secaucus NJ",Singapore,Skopje,Sofia,Stavanger,Stockholm,Sydney,Tallinn,"Tel Aviv",Tirana,Tokyo,Toronto,Vancouver,Vienna,Warsaw,Zagreb,Zurich
       - SHADOWSOCKS=on
       - SHADOWSOCKS_LOG=on
       - SHADOWSOCKS_PASSWORD=${SHADOWSOCKS_PASSWORD}
