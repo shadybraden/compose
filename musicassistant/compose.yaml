@@ -32,7 +32,7 @@ services:
       - "homepage.group=Media"
       - "homepage.name=music-assistant"
       - "homepage.icon=/images/music-assistant.png"
-      - "homepage.href=https://music-assistant.${DOMAIN}/"
+      - "homepage.href=http://192.168.50.65:8095/#/home"
 
 #networks:
 #  intranet:
