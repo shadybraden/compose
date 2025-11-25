@@ -15,8 +15,8 @@ services:
       - LOG_LEVEL=info
     security_opt:
       - no-new-privileges:true  # helps to increase security
-    networks:
-      - intranet
+#    networks:
+#      - intranet
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.music-assistant.entrypoints=http"
@@ -34,6 +34,6 @@ services:
       - "homepage.icon=/images/music-assistant.png"
       - "homepage.href=https://music-assistant.${DOMAIN}/"
 
-networks:
-  intranet:
-    external: true
+#networks:
+#  intranet:
+#    external: true
