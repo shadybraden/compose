@@ -7,18 +7,18 @@ services:
     devices:
       - /dev/net/tun:/dev/net/tun
     environment:
-      - VPN_SERVICE_PROVIDER=${proxy_provider}
+      - VPN_SERVICE_PROVIDER=${VPN_SERVICE_PROVIDER}
       - VPN_TYPE=wireguard
         # get the wg private key from https://mullvad.net/en/account/wireguard-config
         # generate key, then download any .conf. use the key and ip from that .conf below
-      - WIREGUARD_PRIVATE_KEY=${proxy_private_key}
-      - WIREGUARD_ADDRESSES=${proxy_address}
+      - WIREGUARD_PRIVATE_KEY=${WIREGUARD_PRIVATE_KEY}
+      - WIREGUARD_ADDRESSES=${WIREGUARD_ADDRESSES}
       - SERVER_CITIES=Adelaide,Amsterdam,"Ashburn VA",Athens,"Atlanta GA",Auckland,Belgrade,Berlin,Bogota,Bratislava,Brisbane,Brussels,Bucharest,Budapest,Calgary,"Chicago IL",Chisinau,Copenhagen,"Dallas TX","Denver CO",Dubai,Dublin,Dusseldorf,Frankfurt,Gothenburg,Helsinki,"Hong Kong","Houston TX",Johannesburg,Kyiv,Lisbon,London,"Los Angeles CA",Luxembourg,Madrid,Malmö,Manchester,Marseille,Melbourne,"Miami FL",Milan,Montreal,"New York NY",Osaka,Oslo,Paris,Perth,"Phoenix AZ",Prague,"Raleigh NC",Riga,"Salt Lake City UT","San Jose CA","Sao Paulo","Seattle WA","Secaucus NJ",Singapore,Skopje,Sofia,Stavanger,Stockholm,Sydney,Tallinn,"Tel Aviv",Tirana,Tokyo,Toronto,Vancouver,Vienna,Warsaw,Zagreb,Zurich
       - SHADOWSOCKS=on
       - SHADOWSOCKS_LOG=on
-      - SHADOWSOCKS_PASSWORD=${proxy_shadowsocks_password}
+      - SHADOWSOCKS_PASSWORD=${SHADOWSOCKS_PASSWORD}
       - DOT=off
-      - DNS_PLAINTEXT_ADDRESS=${proxy_dns}
+      - DNS_PLAINTEXT_ADDRESS=${DNS_PLAINTEXT_ADDRESS}
       - HTTPPROXY=on
     ports:
       - 8888:8888/tcp  # HTTP proxy
