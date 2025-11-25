@@ -681,7 +681,10 @@ server = "holmie"
 project_name = "gluetun-holmie"
 linked_repo = "compose_main"
 run_directory = "gluetun"
-additional_env_files = ["/etc/komodo/domain.env"]
+additional_env_files = [
+  "/etc/komodo/domain.env",
+  "/etc/komodo/qbit_port.env"
+]
 env_file_path = "/etc/komodo/env/gluetun-holmie.env"
 
 ##
@@ -694,7 +697,10 @@ server = "holmie"
 project_name = "qbittorrent-holmie"
 linked_repo = "compose_main"
 run_directory = "qbittorrent"
-additional_env_files = ["/etc/komodo/domain.env"]
+additional_env_files = [
+  "/etc/komodo/domain.env",
+  "/etc/komodo/qbit_port.env"
+]
 env_file_path = "/etc/komodo/env/qbittorrent-holmie.env"
 
 ##
