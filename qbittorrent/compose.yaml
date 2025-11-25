@@ -7,7 +7,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=America/New_York
-      - TORRENTING_PORT=6881
+      - TORRENTING_PORT=10866
       - WEBUI_PORT=8080
     volumes:
       - /data/config_storage/arr/qbittorrent:/config
