@@ -15,9 +15,8 @@ services:
       - /data/mnt/media:/allmedia
     restart: unless-stopped
     image: jellyfin/jellyfin:10.11.3
+    user: 1000:1000
     environment:
-      - PUID=1000
-      - PGID=1000
       - TZ=Etc
     security_opt:
       - no-new-privileges:true  # helps to increase security
