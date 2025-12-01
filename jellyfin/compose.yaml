@@ -14,7 +14,7 @@ services:
       - /data/mnt/youtube:/youtube
       - /data/mnt/media:/allmedia
     restart: unless-stopped
-    image: quay.io/linuxserver.io/jellyfin:10.11.3
+    image: quay.io/linuxserver.io/jellyfin:10.11.4
     environment:
       - PUID=1000
       - PGID=1000
