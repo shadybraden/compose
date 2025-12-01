@@ -1,7 +1,7 @@
 ---
 services:
   stirling-pdf:
-    image: stirlingtools/stirling-pdf:2.0.1
+    image: stirlingtools/stirling-pdf:2.0.2
     container_name: stirlingpdf
     environment:
       - DOCKER_ENABLE_SECURITY=false
