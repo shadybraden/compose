@@ -11,6 +11,7 @@ services:
       - NET_ADMIN
       - NET_RAW
       - NET_BIND_SERVICE
+    user: 20211:20211
     tmpfs:
       - "/tmp:uid=20211,gid=20211,mode=1700,rw,noexec,nosuid,nodev,async,noatime,nodiratime"
     environment:
