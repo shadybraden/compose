@@ -2,7 +2,7 @@
 services:
   netalertx:
     volumes:
-      - /data/config_storage/netalertx:/data
+      - /data/config_storage/netalertx:/data:rw
       - /etc/localtime:/etc/localtime:ro
     read_only: true
     cap_drop:
