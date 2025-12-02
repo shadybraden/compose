@@ -11,11 +11,8 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true  # helps to increase security
-    read_only: true
     cap_add:
       - NET_BIND_SERVICE
-    cap_drop:
-      - ALL
     networks:
       - intranet
     labels:
