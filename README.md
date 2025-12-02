@@ -50,14 +50,14 @@ networks:
 #### Additional security improvments:
 
 ```yaml
-        tmpfs:
-            - '/tmp:size=64m'
-        read_only: true
-        cap_add:
-            - NET_BIND_SERVICE
-        cap_drop:
-            - ALL
-        init: true
+    tmpfs:
+      - '/tmp:size=64m'
+    read_only: true
+    cap_add:
+      - NET_BIND_SERVICE
+    cap_drop:
+      - ALL
+    init: true
 ```
 
 #### To include something to TinyAuth:
