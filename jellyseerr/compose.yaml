@@ -11,8 +11,7 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true  # helps to increase security
-    tmpfs:
-      - '/tmp:size=64m'
+    read_only: true
     cap_add:
       - NET_BIND_SERVICE
     cap_drop:
