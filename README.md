@@ -47,7 +47,7 @@ networks:
 
 ```
 
-#### Additional security improvments:
+#### Additional security improvments: (these will break stuff)
 
 ```yaml
     tmpfs:
