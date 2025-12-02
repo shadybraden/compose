@@ -8,8 +8,6 @@ services:
     restart: unless-stopped
     cap_add:
       - NET_BIND_SERVICE
-    cap_drop:
-      - ALL
     device_cgroup_rules:
       - "c 189:* rwm"
     environment:
