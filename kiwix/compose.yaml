@@ -5,7 +5,7 @@ services:
       - /data/mnt/kiwix/zim:/data:ro
     container_name: kiwix
     restart: unless-stopped
-    image: ghcr.io/kiwix/kiwix-serve:3.8.0
+    image: ghcr.io/kiwix/kiwix-serve:3.8.1
     command: archlinux_en_all_maxi_2022-12.zim
               *.zim
     security_opt:

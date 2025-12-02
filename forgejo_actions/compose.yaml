@@ -1,14 +1,14 @@
 ---
 services:
   docker-in-docker:
-    image: docker:29.0.2-dind-rootless
+    image: docker:29.0.4-dind-rootless
     container_name: 'docker-in-docker'
     privileged: 'true'
     command: ['dockerd', '-H', 'tcp://0.0.0.0:2375', '--tls=false']
     restart: 'unless-stopped'
 
   runner:
-    image: 'data.forgejo.org/forgejo/runner:12.0.1'
+    image: 'data.forgejo.org/forgejo/runner:12.1.0'
     links:
       - docker-in-docker
     depends_on:

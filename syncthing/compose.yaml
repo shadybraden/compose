@@ -1,7 +1,7 @@
 ---
 services:
   syncthing:
-    image: quay.io/linuxserver.io/syncthing:2.0.11
+    image: quay.io/linuxserver.io/syncthing:2.0.12
     container_name: syncthing
     hostname: syncthing
     environment:

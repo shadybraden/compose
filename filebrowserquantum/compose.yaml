@@ -8,7 +8,7 @@ services:
       - /data/config_storage/filebrowserquantum/config.yaml:/home/filebrowser/config.yaml
 #    ports:
 #      - 80:80
-    image: gtstef/filebrowser:1.1.1-beta
+    image: gtstef/filebrowser:1.1.2-beta
     environment:
       - FILEBROWSER_ADMIN_PASSWORD=${FILEBROWSER_ADMIN_PASSWORD}
     security_opt:
