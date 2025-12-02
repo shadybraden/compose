@@ -2,9 +2,8 @@
 services:
   netalertx:
     volumes:
-      - /data/config_storage/netalertx/config:/app/config
-      - /data/config_storage/netalertx/db:/app/db
-      - /data/config_storage/pihole/etc-pihole/pihole-FTL.db:/etc/pihole/pihole-FTL.db:ro
+      - /data/config_storage/netalertx:/data
+      - /etc/localtime:/etc/localtime:ro
     environment:
       - TZ=America/New_York
       - PORT=20211
