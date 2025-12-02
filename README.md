@@ -21,7 +21,7 @@ As the guide says, installing OS's, using Git and using Docker are prerequisites
 
 ## Sample yaml to add to a container to add it to Traefik
 
-Change port and SUBDOMAIN as needed
+#### Change port and SUBDOMAIN as needed
 
 ```yaml
     security_opt:
@@ -47,7 +47,8 @@ networks:
 
 ```
 
-Additional security improvments:
+#### Additional security improvments:
+
 ```yaml
         tmpfs:
             - '/tmp:size=64m'
@@ -59,17 +60,20 @@ Additional security improvments:
         init: true
 ```
 
-To include something to TinyAuth:
+#### To include something to TinyAuth:
+
 ```yaml
       - "traefik.http.routers.SUBDOMAIN-secure.middlewares=tinyauth"
 ```
 
-To use Anubis:
+#### To use Anubis:
+
 ```yaml
       - "traefik.http.routers.SUBDOMAIN.middlewares=anubis@docker"
 ```
 
-To add to Homepage:
+#### To add to Homepage:
+
 ```yaml
       - "homepage.group=Other"
       - "homepage.name=SUBDOMAIN"
@@ -81,7 +85,8 @@ To add to Homepage:
 
 ## Sample yaml to add to a container connecting to Gluetun:
 
-To add to Traefik, add this to `gluetun/compose.yaml`:
+#### To add to Traefik, add this to `gluetun/compose.yaml`:
+
 ```yaml
       - "traefik.http.routers.SUBDOMAIN.entrypoints=http"
       - "traefik.http.routers.SUBDOMAIN.rule=Host(`SUBDOMAIN.${DOMAIN}`)"
@@ -94,7 +99,8 @@ To add to Traefik, add this to `gluetun/compose.yaml`:
       - "traefik.http.services.SUBDOMAIN.loadbalancer.server.port=8080"  # port of the service.
 ```
 
-To add to homepage for `SERVICE/compose.yaml`:
+#### To add to homepage for `SERVICE/compose.yaml`:
+
 ```yaml
     security_opt:
       - no-new-privileges:true  # helps to increase security
