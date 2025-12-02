@@ -1,7 +1,7 @@
 ---
 services:
   pihole:
-    image: pihole/pihole:2025.10.3
+    image: pihole/pihole:2025.11.1
     container_name: pihole
     environment:
       - FTLCONF_webserver_api_password=${pihole_password}
