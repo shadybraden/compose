@@ -6,7 +6,7 @@ services:
     volumes:
       - /data/config_storage/plausible/db-data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_PASSWORD=postgres
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       start_period: 1m
@@ -71,7 +71,7 @@ services:
       # web: https://github.com/plausible/community-edition/wiki/configuration#web
       - HTTP_PORT=8000
       # databases: https://github.com/plausible/community-edition/wiki/configuration#database
-      - DATABASE_URL
+      - DATABASE_URL=postgres://postgres:postgres@plausible_db:5432/plausible_db
       - CLICKHOUSE_DATABASE_URL
     security_opt:
       - no-new-privileges:true  # helps to increase security
