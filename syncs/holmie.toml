@@ -846,16 +846,3 @@ linked_repo = "compose_main"
 run_directory = "frigate"
 additional_env_files = ["/etc/komodo/domain.env"]
 env_file_path = "/etc/komodo/env/frigate-holmie.env"
-
-##
-
-[[stack]]
-name = "bentopdf-holmie"
-tags = ["holmie", "criticality: 1"]
-[stack.config]
-server = "holmie"
-project_name = "bentopdf-holmie"
-linked_repo = "compose_main"
-run_directory = "bentopdf"
-additional_env_files = ["/etc/komodo/domain.env"]
-env_file_path = "/etc/komodo/env/bentopdf-holmie.env"
