@@ -396,7 +396,7 @@ env_file_path = "/etc/komodo/env/actualbudget-holmgarage.env"
 
 [[stack]]
 name = "bentopdf-holmgarage"
-tags = ["holmgarage", "criticality: 1"]
+tags = ["holmgarage", "criticality: 5","ephemoral"]
 [stack.config]
 server = "holmgarage"
 project_name = "bentopdf-holmgarage"
