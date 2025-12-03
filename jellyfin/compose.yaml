@@ -15,7 +15,6 @@ services:
       - /data/mnt/media:/allmedia
     restart: unless-stopped
     image: jellyfin/jellyfin:10.11.4
-    user: 1000:1000
     environment:
       - TZ=Etc
     security_opt:
