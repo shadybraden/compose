@@ -786,7 +786,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "synapse-holmie"
-tags = ["holmie", "criticality: 1"]
+tags = ["holmie", "criticality: 3"]
 [stack.config]
 server = "holmie"
 project_name = "synapse-holmie"
@@ -799,7 +799,7 @@ env_file_path = "/etc/komodo/env/synapse-holmie.env"
 
 [[stack]]
 name = "mautrix-discord-holmie"
-tags = ["holmie", "criticality: 1"]
+tags = ["holmie", "criticality: 3"]
 [stack.config]
 server = "holmie"
 project_name = "mautrix-discord-holmie"
@@ -812,7 +812,7 @@ env_file_path = "/etc/komodo/env/mautrix-discord-holmie.env"
 
 [[stack]]
 name = "drawio-holmie"
-tags = ["holmie", "criticality: 1"]
+tags = ["holmie", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "drawio-holmie"
@@ -825,7 +825,7 @@ env_file_path = "/etc/komodo/env/drawio-holmie.env"
 
 [[stack]]
 name = "n8n-holmie"
-tags = ["holmie", "criticality: 1"]
+tags = ["holmie", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "n8n-holmie"
@@ -838,7 +838,7 @@ env_file_path = "/etc/komodo/env/n8n-holmie.env"
 
 [[stack]]
 name = "frigate-holmie"
-tags = ["holmie", "criticality: 1"]
+tags = ["holmie", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "frigate-holmie"
