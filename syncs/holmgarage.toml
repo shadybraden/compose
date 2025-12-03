@@ -260,19 +260,6 @@ env_file_path = "/etc/komodo/env/speedtest-holmgarage.env"
 ##
 
 [[stack]]
-name = "stirlingpdf-holmgarage"
-tags = ["holmgarage", "criticality: 1"]
-[stack.config]
-server = "holmgarage"
-project_name = "stirlingpdf-holmgarage"
-linked_repo = "compose_main"
-run_directory = "stirlingpdf"
-additional_env_files = ["/etc/komodo/domain.env"]
-env_file_path = "/etc/komodo/env/stirlingpdf-holmgarage.env"
-
-##
-
-[[stack]]
 name = "vaultwarden-holmgarage"
 tags = ["holmgarage", "criticality: 1"]
 [stack.config]
