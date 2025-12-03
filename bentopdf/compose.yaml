@@ -1,0 +1,38 @@
+---
+services:
+  bentopdf:
+    image: bentopdf/bentopdf-simple:v1.10.1
+    container_name: bentopdf
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pdf.entrypoints=http"
+      - "traefik.http.routers.pdf.rule=Host(`pdf.${DOMAIN}`)"
+      - "traefik.http.middlewares.pdf-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.pdf.middlewares=pdf-https-redirect"
+      - "traefik.http.routers.pdf-secure.entrypoints=https"
+      - "traefik.http.routers.pdf-secure.rule=Host(`pdf.${DOMAIN}`)"
+      - "traefik.http.routers.pdf-secure.tls=true"
+      - "traefik.http.routers.pdf-secure.service=pdf"
+      - "traefik.http.services.pdf.loadbalancer.server.port=8080"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=pdf"
+      - "homepage.icon=/images/pdf.png"
+      - "homepage.href=https://pdf.${DOMAIN}/"
+    tmpfs:
+      - '/tmp:size=64m'
+    read_only: true
+    cap_add:
+      - NET_BIND_SERVICE
+    cap_drop:
+      - ALL
+    init: true
+
+networks:
+  intranet:
+    external: true
