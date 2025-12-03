@@ -864,7 +864,7 @@ env_file_path = "/etc/komodo/env/frigate-holmie.env"
 
 [[stack]]
 name = "bentopdf-holmie"
-tags = ["holmie", "criticality: 1"]
+tags = ["holmie", "criticality: 5","ephemoral"]
 [stack.config]
 server = "holmie"
 project_name = "bentopdf-holmie"
