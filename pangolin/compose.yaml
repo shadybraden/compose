@@ -1,6 +1,6 @@
 services:
   pangolin:
-    image: fosrl/pangolin:1.12.2
+    image: fosrl/pangolin:1.12.3
     container_name: pangolin
     restart: unless-stopped
     volumes:
