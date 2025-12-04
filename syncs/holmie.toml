@@ -195,6 +195,19 @@ env_file_path = "/etc/komodo/env/scrutiny.env"
 ##
 
 [[stack]]
+name = "stirlingpdf"
+tags = ["holmie", "criticality: 5", "ephemoral"]
+[stack.config]
+server = "holmie"
+project_name = "stirlingpdf"
+linked_repo = "compose_main"
+run_directory = "stirlingpdf"
+additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/stirlingpdf.env"
+
+##
+
+[[stack]]
 name = "syncthing"
 tags = ["holmie", "criticality: 2"]
 [stack.config]
