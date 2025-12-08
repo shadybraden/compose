@@ -5,6 +5,6 @@ services:
     volumes:
       - /data/config_storage/komodo/etc_komodo/repos/compose_main/unbound/pi-hole.conf:/etc/unbound/unbound.conf.d/pi-hole.conf:ro
     ports:
-      - '53:53/udp'
-      - '53:53/tcp'
+      - '5335:53/udp'
+      - '5335:53/tcp'
     container_name: unbound
