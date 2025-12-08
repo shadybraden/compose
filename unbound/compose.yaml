@@ -9,4 +9,5 @@ services:
     ports:
       - '5335:53/udp'
       - '5335:53/tcp'
+    network_mode: host
     container_name: unbound
