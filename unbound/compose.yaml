@@ -3,8 +3,7 @@ services:
   unbound:
     image: klutchell/unbound:1.24.2
     volumes:
-      # touch /data/config_storage/unbound/custom.conf.d && chown 101:102 /data/config_storage/unbound/custom.conf.d 
-      - /data/config_storage/unbound:/etc/unbound/custom.conf.d
+      - /data/config_storage/komodo/etc_komodo/repos/compose_main/unbound/pi-hole.conf:/etc/unbound/unbound.conf.d/pi-hole.conf:ro
       - /data/dont_backup/unbound/logs:/logs
     ports:
       - '5335:53/udp'
