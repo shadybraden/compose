@@ -2,7 +2,13 @@
 services:
   dnscrypt-proxy:
     image: klutchell/dnscrypt-proxy:2.1.14
+    container_name: dnscrypt
     volumes:
       - /data/config_storage/dnscrypt:/config
     ports:
       - '5053:5053/udp'
+    networks:
+      - intranet
+networks:
+  intranet:
+    external: true
