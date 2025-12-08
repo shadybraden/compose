@@ -2,6 +2,7 @@
 services:
   unbound:
     image: klutchell/unbound:1.24.2
+    volumes:
       - /data/config_storage/komodo/etc_komodo/repos/compose_main/unbound/pi-hole.conf:/etc/unbound/unbound.conf.d/pi-hole.conf:ro
     ports:
       - '53:53/udp'
