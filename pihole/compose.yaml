@@ -5,7 +5,7 @@ services:
     container_name: pihole
     environment:
       - FTLCONF_webserver_api_password=${pihole_password}
-      - FTLCONF_dns_upstreams=127.0.0.1#5335;9.9.9.9
+      - FTLCONF_dns_upstreams=127.0.0.1#5335
       - TZ=America/New_York
       - FTLCONF_dns_listeningMode=all
     volumes:
