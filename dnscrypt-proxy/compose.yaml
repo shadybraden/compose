@@ -1,0 +1,9 @@
+---
+services:
+  dnscrypt-proxy:
+    image: klutchell/dnscrypt-proxy:2.1.14
+    volumes:
+      #- /data/config_storage/komodo/etc_komodo/repos/compose_main/dnscrypt/dnscrypt-proxy.toml:/config/dnscrypt-proxy.toml:ro
+      - /data/config_storage/dnscrypt:/config
+    ports:
+      - '5053:5053/udp'

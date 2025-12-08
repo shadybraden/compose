@@ -1,0 +1,6 @@
+# Use systemd socket activation:
+listen_addresses = []
+
+# Populate `server_names` with desired DoH/DNSCrypt upstream DNS servers listed in https://dnscrypt.info/public-servers/.
+# Example for Cloudflare malware-blocking DNS:
+server_names = ['mullvad-family-doh']
