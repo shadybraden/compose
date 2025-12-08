@@ -22,7 +22,7 @@ services:
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=pdf"
-      - "homepage.icon=/images/pdf.png"
+      - "homepage.icon=/images/bentopdf.png"
       - "homepage.href=https://pdf.${DOMAIN}/"
     tmpfs:
       - '/tmp:size=64m'
