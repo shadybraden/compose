@@ -7,8 +7,4 @@ services:
       - /data/config_storage/komodo/etc_komodo/repos/compose_main/dnscrypt-proxy/dnscrypt-proxy.toml:/config/dnscrypt-proxy.toml:ro
     ports:
       - '5053:5053/udp'
-    networks:
-      - intranet
-networks:
-  intranet:
-    external: true
+    network_mode: host
