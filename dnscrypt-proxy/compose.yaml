@@ -8,4 +8,3 @@ services:
     ports:
       - '5053:5053/udp'
       - '5053:5053/tcp'
-    network_mode: host
