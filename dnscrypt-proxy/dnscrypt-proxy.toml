@@ -2,12 +2,8 @@
 listen_addresses = []
 
 # https://dnscrypt.info/public-servers/
-server_names = ['mullvad-family-doh','mullvad-extend-doh','adguard-dns']
+server_names = ['cloudflare']
 
 [static]
-        [static.'mullvad-family-doh']
-        stamp = 'sdns://AgMAAAAAAAAACzE5NC4yNDIuMi42ABZmYW1pbHkuZG5zLm11bGx2YWQubmV0Ci9kbnMtcXVlcnk'
-        [static.'mullvad-extend-doh']
-        stamp = 'sdns://AgMAAAAAAAAACzE5NC4yNDIuMi41ABhleHRlbmRlZC5kbnMubXVsbHZhZC5uZXQKL2Rucy1xdWVyeQ'
-        [static.'adguard-dns']
-        stamp = 'sdns://AQMAAAAAAAAAETk0LjE0MC4xNS4xNTo1NDQzINErR_JS3PLCu_iZEIbq95zkSV2LFsigxDIuUso_OQhzIjIuZG5zY3J5cHQuZGVmYXVsdC5uczEuYWRndWFyZC5jb20'
+        [static.'cloudflare']
+        stamp = 'sdns://AgcAAAAAAAAABzEuMC4wLjEAEmRucy5jbG91ZGZsYXJlLmNvbQovZG5zLXF1ZXJ5'
