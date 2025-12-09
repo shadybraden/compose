@@ -93,6 +93,9 @@ networks:
 
 ---
 
+<details>
+<summary>Gluetun:</summary>
+
 ## Sample yaml to add to a container connecting to Gluetun:
 
 #### To add to Traefik, add this to `gluetun/compose.yaml`:
@@ -122,3 +125,4 @@ networks:
       - "homepage.href=https://SUBDOMAIN.${DOMAIN}/"
 
 ```
+</details>
