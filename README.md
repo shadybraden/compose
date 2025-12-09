@@ -21,6 +21,9 @@ As the guide says, installing OS's, using Git and using Docker are prerequisites
 
 `./addservice.sh <server name> <service name>`
 
+<details>
+<summary>Traefik</summary>
+
 ## Sample yaml to add to a container to add it to Traefik
 
 #### Change port and SUBDOMAIN as needed
@@ -48,6 +51,7 @@ networks:
     external: true
 
 ```
+</details>
 
 <details>
 <summary>Additional security improvments: (these will break stuff)</summary>
