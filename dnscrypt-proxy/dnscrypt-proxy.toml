@@ -1,9 +1,5 @@
-# Use systemd socket activation:
-listen_addresses = []
-
 # https://dnscrypt.info/public-servers/
 server_names = ['cloudflare']
-
 [static]
         [static.'cloudflare']
         stamp = 'sdns://AgcAAAAAAAAABzEuMC4wLjEAEmRucy5jbG91ZGZsYXJlLmNvbQovZG5zLXF1ZXJ5'
