@@ -91,8 +91,6 @@ networks:
 ```
 </details>
 
----
-
 <details>
 <summary>Gluetun:</summary>
 
