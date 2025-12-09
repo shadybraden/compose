@@ -49,7 +49,9 @@ networks:
 
 ```
 
-#### Additional security improvments: (these will break stuff)
+<details>
+
+<summary>Additional security improvments: (these will break stuff)</summary>
 
 ```yaml
     tmpfs:
@@ -61,6 +63,8 @@ networks:
       - ALL
     init: true
 ```
+
+</details>
 
 #### To include something to TinyAuth:
 
