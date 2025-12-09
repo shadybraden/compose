@@ -9,7 +9,6 @@ services:
     ports:
       - '5053:5053/udp'
       - '5053:5053/tcp'
-      - 8880:8080
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
@@ -24,7 +23,7 @@ services:
       - "traefik.http.routers.dnscrypt-secure.rule=Host(`dnscrypt.${DOMAIN}`)"
       - "traefik.http.routers.dnscrypt-secure.tls=true"
       - "traefik.http.routers.dnscrypt-secure.service=dnscrypt"
-      - "traefik.http.services.dnscrypt.loadbalancer.server.port=8880"  # port of the service.
+      - "traefik.http.services.dnscrypt.loadbalancer.server.port=8080"  # port of the service.
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=dnscrypt"
