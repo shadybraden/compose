@@ -876,12 +876,10 @@ env_file_path = "/etc/komodo/env/unbound-holmie.env"
 ##
 
 [[stack]]
-name = "dnscrypt-proxy-holmie"
+name = "dnscrypt"
 tags = ["holmie", "criticality: 1"]
 [stack.config]
 server = "holmie"
-project_name = "dnscrypt-proxy-holmie"
+project_name = "dnscrypt"
 linked_repo = "compose_main"
 run_directory = "dnscrypt-proxy"
-additional_env_files = ["/etc/komodo/domain.env"]
-env_file_path = "/etc/komodo/env/dnscrypt-proxy-holmie.env"
