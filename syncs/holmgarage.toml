@@ -182,7 +182,7 @@ env_file_path = "/etc/komodo/env/linkwarden.env"
 
 [[stack]]
 name = "loggifly-holmgarage"
-tags = ["holmgarage", "env", "criticality: 1"]
+tags = ["holmgarage", "env", "criticality: 2"]
 [stack.config]
 server = "holmgarage"
 project_name = "loggifly-holmgarage"
@@ -196,7 +196,7 @@ env_file_path = "/etc/komodo/env/loggifly.env"
 
 [[stack]]
 name = "lubelogger-holmgarage"
-tags = ["holmgarage", "criticality: 1"]
+tags = ["holmgarage", "criticality: 4"]
 [stack.config]
 server = "holmgarage"
 project_name = "lubelogger-holmgarage"
@@ -209,7 +209,7 @@ env_file_path = "/etc/komodo/env/lubelogger-holmgarage.env"
 
 [[stack]]
 name = "nextcloud-holmgarage"
-tags = ["holmgarage", "criticality: 1"]
+tags = ["holmgarage", "criticality: 3"]
 [stack.config]
 server = "holmgarage"
 project_name = "nextcloud-holmgarage"
@@ -222,7 +222,7 @@ env_file_path = "/etc/komodo/env/nextcloud-holmgarage.env"
 
 [[stack]]
 name = "reactiveresume-holmgarage"
-tags = ["holmgarage", "env", "criticality: 1"]
+tags = ["holmgarage", "env", "criticality: 5"]
 [stack.config]
 server = "holmgarage"
 project_name = "reactiveresume-holmgarage"
@@ -235,7 +235,7 @@ env_file_path = "/etc/komodo/env/reactiveresume.env"
 
 [[stack]]
 name = "searxng-holmgarage"
-tags = ["holmgarage", "criticality: 1"]
+tags = ["holmgarage", "criticality: 2"]
 [stack.config]
 server = "holmgarage"
 project_name = "searxng-holmgarage"
@@ -248,7 +248,7 @@ env_file_path = "/etc/komodo/env/searxng-holmgarage.env"
 
 [[stack]]
 name = "speedtest-holmgarage"
-tags = ["holmgarage", "criticality: 1"]
+tags = ["holmgarage", "criticality: 5"]
 [stack.config]
 server = "holmgarage"
 project_name = "speedtest-holmgarage"
@@ -260,21 +260,8 @@ env_file_path = "/etc/komodo/env/speedtest-holmgarage.env"
 ##
 
 [[stack]]
-name = "stirlingpdf-holmgarage"
-tags = ["holmgarage", "criticality: 1"]
-[stack.config]
-server = "holmgarage"
-project_name = "stirlingpdf-holmgarage"
-linked_repo = "compose_main"
-run_directory = "stirlingpdf"
-additional_env_files = ["/etc/komodo/domain.env"]
-env_file_path = "/etc/komodo/env/stirlingpdf-holmgarage.env"
-
-##
-
-[[stack]]
 name = "vaultwarden-holmgarage"
-tags = ["holmgarage", "criticality: 1"]
+tags = ["holmgarage", "criticality: 2"]
 [stack.config]
 server = "holmgarage"
 project_name = "vaultwarden-holmgarage"
@@ -286,7 +273,7 @@ env_file_path = "/etc/komodo/env/vaultwarden-holmgarage.env"
 
 [[stack]]
 name = "plex-holmgarage"
-tags = ["holmgarage", "criticality: 1"]
+tags = ["holmgarage", "criticality: 2"]
 [stack.config]
 server = "holmgarage"
 project_name = "plex-holmgarage"
@@ -299,7 +286,7 @@ env_file_path = "/etc/komodo/env/plex-holmgarage.env"
 
 [[stack]]
 name = "gluetun-holmgarage"
-tags = ["holmgarage", "criticality: 1"]
+tags = ["holmgarage", "criticality: 2"]
 [stack.config]
 server = "holmgarage"
 project_name = "gluetun-holmgarage"
@@ -315,7 +302,7 @@ env_file_path = "/etc/komodo/env/gluetun-holmgarage.env"
 
 [[stack]]
 name = "qbittorrent-holmgarage"
-tags = ["holmgarage", "criticality: 1"]
+tags = ["holmgarage", "criticality: 3"]
 [stack.config]
 server = "holmgarage"
 project_name = "qbittorrent-holmgarage"
@@ -331,7 +318,7 @@ env_file_path = "/etc/komodo/env/qbittorrent-holmgarage.env"
 
 [[stack]]
 name = "autobrr-holmgarage"
-tags = ["holmgarage", "criticality: 1", "arr"]
+tags = ["holmgarage", "criticality: 5", "arr"]
 [stack.config]
 server = "holmgarage"
 project_name = "autobrr-holmgarage"
@@ -344,7 +331,7 @@ env_file_path = "/etc/komodo/env/autobrr-holmgarage.env"
 
 [[stack]]
 name = "jackett-holmgarage"
-tags = ["holmgarage", "criticality: 1", "arr"]
+tags = ["holmgarage", "criticality: 4", "arr"]
 [stack.config]
 server = "holmgarage"
 project_name = "jackett-holmgarage"
@@ -357,7 +344,7 @@ env_file_path = "/etc/komodo/env/jackett-holmgarage.env"
 
 [[stack]]
 name = "sonarr-holmgarage"
-tags = ["holmgarage", "criticality: 1", "arr"]
+tags = ["holmgarage", "criticality: 4", "arr"]
 [stack.config]
 server = "holmgarage"
 project_name = "sonarr-holmgarage"
@@ -370,7 +357,7 @@ env_file_path = "/etc/komodo/env/sonarr-holmgarage.env"
 
 [[stack]]
 name = "radarr-holmgarage"
-tags = ["holmgarage", "criticality: 1", "arr"]
+tags = ["holmgarage", "criticality: 4", "arr"]
 [stack.config]
 server = "holmgarage"
 project_name = "radarr-holmgarage"
@@ -383,7 +370,7 @@ env_file_path = "/etc/komodo/env/radarr-holmgarage.env"
 
 [[stack]]
 name = "actualbudget-holmgarage"
-tags = ["holmgarage", "criticality: 1"]
+tags = ["holmgarage", "criticality: 2"]
 [stack.config]
 server = "holmgarage"
 project_name = "actualbudget-holmgarage"
@@ -391,3 +378,29 @@ linked_repo = "compose_main"
 run_directory = "actualbudget"
 additional_env_files = ["/etc/komodo/domain.env"]
 env_file_path = "/etc/komodo/env/actualbudget-holmgarage.env"
+
+##
+
+[[stack]]
+name = "bentopdf-holmgarage"
+tags = ["holmgarage", "criticality: 5","ephemoral"]
+[stack.config]
+server = "holmgarage"
+project_name = "bentopdf-holmgarage"
+linked_repo = "compose_main"
+run_directory = "bentopdf"
+additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/bentopdf-holmgarage.env"
+
+##
+
+[[stack]]
+name = "dnscrypt-proxy-holmgarage"
+tags = ["holmgarage", "criticality: 1"]
+[stack.config]
+server = "holmgarage"
+project_name = "dnscrypt-proxy-holmgarage"
+linked_repo = "compose_main"
+run_directory = "dnscrypt-proxy"
+additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/dnscrypt-proxy-holmgarage.env"

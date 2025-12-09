@@ -14,7 +14,7 @@ services:
     restart: unless-stopped
     environment:
       - TZ=America/New_York
-    image: ghcr.io/home-assistant/home-assistant:2025.7.4
+    image: ghcr.io/home-assistant/home-assistant:2025.12.0
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:

@@ -195,19 +195,6 @@ env_file_path = "/etc/komodo/env/scrutiny.env"
 ##
 
 [[stack]]
-name = "stirlingpdf"
-tags = ["holmie", "criticality: 5", "ephemoral"]
-[stack.config]
-server = "holmie"
-project_name = "stirlingpdf"
-linked_repo = "compose_main"
-run_directory = "stirlingpdf"
-additional_env_files = ["/etc/komodo/domain.env"]
-env_file_path = "/etc/komodo/env/stirlingpdf.env"
-
-##
-
-[[stack]]
 name = "syncthing"
 tags = ["holmie", "criticality: 2"]
 [stack.config]
@@ -799,7 +786,7 @@ additional_env_files = ["/etc/komodo/domain.env"]
 
 [[stack]]
 name = "synapse-holmie"
-tags = ["holmie", "criticality: 1"]
+tags = ["holmie", "criticality: 3"]
 [stack.config]
 server = "holmie"
 project_name = "synapse-holmie"
@@ -812,7 +799,7 @@ env_file_path = "/etc/komodo/env/synapse-holmie.env"
 
 [[stack]]
 name = "mautrix-discord-holmie"
-tags = ["holmie", "criticality: 1"]
+tags = ["holmie", "criticality: 3"]
 [stack.config]
 server = "holmie"
 project_name = "mautrix-discord-holmie"
@@ -825,7 +812,7 @@ env_file_path = "/etc/komodo/env/mautrix-discord-holmie.env"
 
 [[stack]]
 name = "drawio-holmie"
-tags = ["holmie", "criticality: 1"]
+tags = ["holmie", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "drawio-holmie"
@@ -838,7 +825,7 @@ env_file_path = "/etc/komodo/env/drawio-holmie.env"
 
 [[stack]]
 name = "n8n-holmie"
-tags = ["holmie", "criticality: 1"]
+tags = ["holmie", "criticality: 2"]
 [stack.config]
 server = "holmie"
 project_name = "n8n-holmie"
@@ -851,7 +838,7 @@ env_file_path = "/etc/komodo/env/n8n-holmie.env"
 
 [[stack]]
 name = "frigate-holmie"
-tags = ["holmie", "criticality: 1"]
+tags = ["holmie", "criticality: 5"]
 [stack.config]
 server = "holmie"
 project_name = "frigate-holmie"
@@ -859,3 +846,27 @@ linked_repo = "compose_main"
 run_directory = "frigate"
 additional_env_files = ["/etc/komodo/domain.env"]
 env_file_path = "/etc/komodo/env/frigate-holmie.env"
+
+##
+
+[[stack]]
+name = "bentopdf-holmie"
+tags = ["holmie", "criticality: 5","ephemoral"]
+[stack.config]
+server = "holmie"
+project_name = "bentopdf-holmie"
+linked_repo = "compose_main"
+run_directory = "bentopdf"
+additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/bentopdf-holmie.env"
+
+##
+
+[[stack]]
+name = "dnscrypt"
+tags = ["holmie", "criticality: 1"]
+[stack.config]
+server = "holmie"
+project_name = "dnscrypt"
+linked_repo = "compose_main"
+run_directory = "dnscrypt-proxy"

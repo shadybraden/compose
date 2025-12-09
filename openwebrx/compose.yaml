@@ -1,0 +1,10 @@
+---
+services:
+  openwebrx:
+    image: jketterl/openwebrx:1.2.2
+    volumes:
+      - /data/config_storage/openwebrx:/var/lib/openwebrx
+    ports:
+      - 8073:8073
+    devices:
+      - /dev/bus/usb/002/002:/dev/bus/usb/002/002

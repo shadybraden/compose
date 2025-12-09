@@ -1,14 +1,8 @@
 ---
 services:
-  stirling-pdf:
-    image: stirlingtools/stirling-pdf:2.1.1
-    container_name: stirlingpdf
-    environment:
-      - DOCKER_ENABLE_SECURITY=false
-      - INSTALL_BOOK_AND_ADVANCED_HTML_OPS=false
-      - LANGS=en_GB
-      - SHOW_SURVEY=false
-      - SYSTEM_ENABLEANALYTICS=false
+  bentopdf:
+    image: bentopdf/bentopdf-simple:v1.10.5
+    container_name: bentopdf
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true  # helps to increase security
@@ -24,12 +18,19 @@ services:
       - "traefik.http.routers.pdf-secure.rule=Host(`pdf.${DOMAIN}`)"
       - "traefik.http.routers.pdf-secure.tls=true"
       - "traefik.http.routers.pdf-secure.service=pdf"
-      - "traefik.http.services.pdf.loadbalancer.server.port=8080"  # port of the service
+      - "traefik.http.services.pdf.loadbalancer.server.port=8080"  # port of the service.
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
-      - "homepage.name=PDF"
-      - "homepage.icon=/images/pdf.png"
+      - "homepage.name=pdf"
+      - "homepage.icon=/images/bentopdf.png"
       - "homepage.href=https://pdf.${DOMAIN}/"
+    tmpfs:
+      - '/tmp:size=64m'
+    cap_add:
+      - NET_BIND_SERVICE
+    cap_drop:
+      - ALL
+    init: true
 
 networks:
   intranet:

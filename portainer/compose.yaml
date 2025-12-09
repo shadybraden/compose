@@ -7,7 +7,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /data/config_storage/portainer:/data
       - /etc/localtime:/etc/localtime:ro
-    image: portainer/portainer-ce:2.35.0
+    image: portainer/portainer-ce:2.36.0
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:

@@ -6,6 +6,8 @@ services:
     container_name: ultrafeeder
     hostname: ultrafeeder
     restart: unless-stopped
+    cap_add:
+      - NET_BIND_SERVICE
     device_cgroup_rules:
       - "c 189:* rwm"
     environment:

@@ -1,11 +1,11 @@
 ---
 services:
   pihole:
-    image: pihole/pihole:2025.10.3
+    image: pihole/pihole:2025.11.1
     container_name: pihole
     environment:
       - FTLCONF_webserver_api_password=${pihole_password}
-      - FTLCONF_dns_upstreams=9.9.9.9;1.1.1.1
+      #- FTLCONF_dns_upstreams=127.0.0.1#5335
       - TZ=America/New_York
       - FTLCONF_dns_listeningMode=all
     volumes:
