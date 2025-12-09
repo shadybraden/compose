@@ -19,7 +19,7 @@ As the guide says, installing OS's, using Git and using Docker are prerequisites
 
 # Adding a service:
 
-`./addservice.sh <server name> <service name>`
+`./addservice.sh <server_name> <service_name>`
 
 <details>
 <summary>Traefik</summary>
