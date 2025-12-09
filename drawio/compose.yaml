@@ -3,6 +3,13 @@ services:
   drawio:
     image: jgraph/drawio:29.2.2
     container_name: drawio
+    healthcheck:
+      test: ["CMD", "curl", "-f", "https://drawio.${DOMAIN}"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+      start_interval: 5s
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
