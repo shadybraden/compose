@@ -50,7 +50,6 @@ networks:
 ```
 
 <details>
-
 <summary>Additional security improvments: (these will break stuff)</summary>
 
 ```yaml
@@ -63,22 +62,26 @@ networks:
       - ALL
     init: true
 ```
-
 </details>
 
-#### To include something to TinyAuth:
+<details>
+<summary>To include something to TinyAuth:</summary>
 
 ```yaml
       - "traefik.http.routers.SUBDOMAIN-secure.middlewares=tinyauth"
 ```
+</details>
 
-#### To use Anubis:
+<details>
+<summary>To use Anubis:</summary>
 
 ```yaml
       - "traefik.http.routers.SUBDOMAIN.middlewares=anubis@docker"
 ```
+</details>
 
-#### To add to Homepage:
+<details>
+<summary>To add to Homepage:</summary>
 
 ```yaml
       - "homepage.group=Other"
@@ -86,6 +89,7 @@ networks:
       - "homepage.icon=/images/SUBDOMAIN.png"
       - "homepage.href=https://SUBDOMAIN.${DOMAIN}/"
 ```
+</details>
 
 ---
 
