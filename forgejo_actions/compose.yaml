@@ -23,4 +23,4 @@ services:
     restart: 'unless-stopped'
     command: '/bin/sh -c "sleep 5; forgejo-runner daemon"'  # for normal use; post registration
 
-    # command: '/bin/sh -c "while : ; do sleep 1 ; done ;"'  # FOR REGISTRATION - see just above https://forgejo.org/docs/next/admin/actions/runner-installation/#standard-registration 
+    # command: '/bin/sh -c "while : ; do sleep 1 ; done ;"'  # FOR REGISTRATION - see just above https://forgejo.org/docs/next/admin/actions/runner-installation/#standard-registration

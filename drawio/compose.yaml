@@ -1,3 +1,4 @@
+---
 services:
   drawio:
     image: jgraph/drawio:29.2.2
