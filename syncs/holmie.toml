@@ -870,3 +870,16 @@ server = "holmie"
 project_name = "dnscrypt"
 linked_repo = "compose_main"
 run_directory = "dnscrypt-proxy"
+
+##
+
+[[stack]]
+name = "bichon-holmie"
+tags = ["holmie", "criticality: 1"]
+[stack.config]
+server = "holmie"
+project_name = "bichon-holmie"
+linked_repo = "compose_main"
+run_directory = "bichon"
+additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/bichon-holmie.env"

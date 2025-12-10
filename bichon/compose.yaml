@@ -1,0 +1,34 @@
+---
+services:
+  bichon:
+    image: rustmailer/bichon:0.1.5
+    environment:
+      - BICHON_ROOT_DIR=/data
+      - BICHON_LOG_LEVEL=info
+    volumes:
+      - /data/config_storage/bichon:/data
+    container_name: bichon
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.bichon.entrypoints=http"
+      - "traefik.http.routers.bichon.rule=Host(`bichon.${DOMAIN}`)"
+      - "traefik.http.middlewares.bichon-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.bichon.middlewares=bichon-https-redirect"
+      - "traefik.http.routers.bichon-secure.entrypoints=https"
+      - "traefik.http.routers.bichon-secure.rule=Host(`bichon.${DOMAIN}`)"
+      - "traefik.http.routers.bichon-secure.tls=true"
+      - "traefik.http.routers.bichon-secure.service=bichon"
+      - "traefik.http.services.bichon.loadbalancer.server.port=15630"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=bichon"
+      - "homepage.icon=/images/bichon.png"
+      - "homepage.href=https://bichon.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true
