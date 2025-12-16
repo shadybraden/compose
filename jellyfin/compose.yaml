@@ -14,7 +14,7 @@ services:
       - /data/mnt/youtube:/youtube
       - /data/mnt/media:/allmedia
     restart: unless-stopped
-    image: jellyfin/jellyfin:10.11.4
+    image: jellyfin/jellyfin:10.11.5
     environment:
       - TZ=Etc
     security_opt:
