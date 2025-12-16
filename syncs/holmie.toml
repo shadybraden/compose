@@ -82,7 +82,7 @@ tags = ["holmie", "criticality: 2", "external_hdd"]
 [stack.config]
 server = "holmie"
 project_name = "jellyfin"
-linked_repo = "compose_test"
+linked_repo = "compose_main"
 run_directory = "jellyfin"
 additional_env_files = ["/etc/komodo/domain.env"]
 env_file_path = "/etc/komodo/env/jellyfin.env"
