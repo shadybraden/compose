@@ -11,3 +11,11 @@ name = "holmgarage"
 [builder.config]
 type = "Server"
 params.server_id = "holmgarage"
+
+##
+
+[[builder]]
+name = "shady_desktop"
+[builder.config]
+type = "Server"
+params.server_id = "shady_desktop"
