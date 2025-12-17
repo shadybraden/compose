@@ -7,7 +7,7 @@ services:
       - GF_PLUGINS_PREINSTALL=yesoreyeram-infinity-datasource
     volumes:
       - /data/config_storage/grafana:/var/lib/grafana  # mkdir /data/config_storage/grafana && chown 472:472 /data/config_storage/grafana
-    image: grafana/grafana-oss:12.1.1
+    image: grafana/grafana-oss:12.3.1
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
