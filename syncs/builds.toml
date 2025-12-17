@@ -1,5 +1,5 @@
 [[build]]
-name = "build_skywatch"
+name = "skywatch"
 description = "Goal: to get this to trigger on commits to skywatch.py"
 [build.config]
 builder = "holmie"
@@ -13,7 +13,7 @@ image_registry = [
 ##
 
 [[build]]
-name = "build_tidal-ui"
+name = "tidal-ui"
 [build.config]
 builder = "holmie"
 image_name = "tidal-ui"
