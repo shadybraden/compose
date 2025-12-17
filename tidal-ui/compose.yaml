@@ -1,7 +1,7 @@
 ---
 services:
   tidal-ui:
-    image: git.holmlab.org/shady/tidal-ui:3.3.1
+    image: git.holmlab.org/shady/tidal-ui:3.3.3
     container_name: tidal-ui
     restart: unless-stopped
     environment:
