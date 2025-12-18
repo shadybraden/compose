@@ -20,7 +20,7 @@ services:
       - "traefik.http.routers.aircraft-secure.rule=Host(`aircraft.${DOMAIN}`)"
       - "traefik.http.routers.aircraft-secure.tls=true"
       - "traefik.http.routers.aircraft-secure.service=aircraft"
-      - "traefik.http.services.aircraft.loadbalancer.server.port=8080"  # port of the service.
+      - "traefik.http.services.aircraft.loadbalancer.server.port=80"  # port of the service.
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=aircraft"
