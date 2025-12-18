@@ -1,7 +1,7 @@
 ---
 services:
   wazuh.manager:
-    image: wazuh/wazuh-manager:v4.14.1
+    image: wazuh/wazuh-manager:4.14.1
     container_name: wazuh-manager
     hostname: wazuh.manager
     restart: unless-stopped
@@ -43,7 +43,7 @@ services:
       - intranet
 
   wazuh.indexer:
-    image: wazuh/wazuh-indexer:v4.14.1
+    image: wazuh/wazuh-indexer:4.14.1
     container_name: wazuh-indexer
     hostname: wazuh.indexer
     restart: unless-stopped
@@ -78,7 +78,7 @@ services:
       - intranet
 
   wazuh.dashboard:
-    image: wazuh/wazuh-dashboard:v4.14.1
+    image: wazuh/wazuh-dashboard:4.14.1
     container_name: wazuh-dashboard
     hostname: wazuh.dashboard
     restart: always
