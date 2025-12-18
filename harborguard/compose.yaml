@@ -1,0 +1,30 @@
+---
+services:
+  harborguard:
+    image: ghcr.io/harborguard/harborguard:v0.2b
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.harborguard.entrypoints=http"
+      - "traefik.http.routers.harborguard.rule=Host(`harborguard.${DOMAIN}`)"
+      - "traefik.http.middlewares.harborguard-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.harborguard.middlewares=harborguard-https-redirect"
+      - "traefik.http.routers.harborguard-secure.entrypoints=https"
+      - "traefik.http.routers.harborguard-secure.rule=Host(`harborguard.${DOMAIN}`)"
+      - "traefik.http.routers.harborguard-secure.tls=true"
+      - "traefik.http.routers.harborguard-secure.service=harborguard"
+      - "traefik.http.services.harborguard.loadbalancer.server.port=3000"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=harborguard"
+      - "homepage.icon=/images/harborguard.png"
+      - "homepage.href=https://harborguard.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true
