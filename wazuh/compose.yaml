@@ -82,8 +82,8 @@ services:
     container_name: wazuh-dashboard
     hostname: wazuh.dashboard
     restart: always
-    ports:
-      - 443:443
+#    ports:
+#      - 443:443
     environment:
       - SERVER_HOST=0.0.0.0
       - OPENSEARCH_HOSTS=https://wazuh.indexer:9200
