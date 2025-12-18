@@ -1,0 +1,32 @@
+---
+services:
+  aircraft:
+    image: nginx:1.29.4
+    container_name: aircraft
+    volumes:
+      - /data/config_storage/aircraft:/usr/share/nginx/html:ro
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.aircraft.entrypoints=http"
+      - "traefik.http.routers.aircraft.rule=Host(`aircraft.${DOMAIN}`)"
+      - "traefik.http.middlewares.aircraft-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.aircraft.middlewares=aircraft-https-redirect"
+      - "traefik.http.routers.aircraft-secure.entrypoints=https"
+      - "traefik.http.routers.aircraft-secure.rule=Host(`aircraft.${DOMAIN}`)"
+      - "traefik.http.routers.aircraft-secure.tls=true"
+      - "traefik.http.routers.aircraft-secure.service=aircraft"
+      - "traefik.http.services.aircraft.loadbalancer.server.port=8080"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=aircraft"
+      - "homepage.icon=/images/aircraft.png"
+      - "homepage.href=https://aircraft.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true

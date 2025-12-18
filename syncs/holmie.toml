@@ -883,3 +883,16 @@ linked_repo = "compose_main"
 run_directory = "bichon"
 additional_env_files = ["/etc/komodo/domain.env"]
 env_file_path = "/etc/komodo/env/bichon-holmie.env"
+
+##
+
+[[stack]]
+name = "aircraft-holmie"
+tags = ["holmie", "criticality: 1"]
+[stack.config]
+server = "holmie"
+project_name = "aircraft-holmie"
+linked_repo = "compose_main"
+run_directory = "aircraft"
+additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/aircraft-holmie.env"
