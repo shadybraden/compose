@@ -1,0 +1,15 @@
+---
+services:
+  wazuh.agent:
+    image: wazuh/wazuh-agent:v4.14.1
+    restart: unless-stopped
+    environment:
+      - WAZUH_MANAGER_SERVER=wazuh.holmlab.org
+    volumes:
+      - /data/config_storage/wazuh-agent/config/wazuh-agent-conf:/wazuh-config-mount/etc/ossec.conf
+    networks:
+      - intranet
+
+networks:
+  intranet:
+    external: true

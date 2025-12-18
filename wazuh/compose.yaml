@@ -1,0 +1,134 @@
+---
+services:
+  wazuh.manager:
+    image: wazuh/wazuh-manager:v4.14.1
+    container_name: wazuh-manager
+    hostname: wazuh.manager
+    restart: unless-stopped
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 655360
+        hard: 655360
+    ports:
+      - "1514:1514"
+      - "1515:1515"
+      - "514:514/udp"
+      - "55000:55000"
+    environment:
+      - WAZUH_INDEXER_HOSTS=wazuh.indexer:9200
+      - WAZUH_NODE_NAME=manager
+      - WAZUH_CLUSTER_NODES=wazuh.manager
+      - WAZUH_CLUSTER_BIND_ADDR=wazuh.manager
+      - INDEXER_USERNAME=admin
+      - INDEXER_PASSWORD=${INDEXER_PASSWORD}
+      - API_USERNAME=wazuh-wui
+      - API_PASSWORD=${API_PASSWORD}
+    volumes:
+      - /data/config_storage/wazuh/manager/wazuh_api_configuration:/var/ossec/api/configuration
+      - /data/config_storage/wazuh/manager/wazuh_etc:/var/ossec/etc
+      - /data/config_storage/wazuh/manager/wazuh_logs:/var/ossec/logs
+      - /data/config_storage/wazuh/manager/wazuh_queue:/var/ossec/queue
+      - /data/config_storage/wazuh/manager/wazuh_var_multigroups:/var/ossec/var/multigroups
+      - /data/config_storage/wazuh/manager/wazuh_active_response:/var/ossec/active-response/bin
+      - /data/config_storage/wazuh/manager/wazuh_wodles:/var/ossec/wodles
+#      - ./wazuh-certificates/root-ca.pem:/var/ossec/etc/certs/root-ca.pem
+#      - ./wazuh-certificates/wazuh.manager.pem:/var/ossec/etc/certs/server.pem
+#      - ./wazuh-certificates/wazuh.manager-key.pem:/var/ossec/etc/certs/server-key.pem
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+
+  wazuh.indexer:
+    image: wazuh/wazuh-indexer:v4.14.1
+    container_name: wazuh-indexer
+    hostname: wazuh.indexer
+    restart: unless-stopped
+    ports:
+      - "9200:9200"
+    environment:
+      - OPENSEARCH_JAVA_OPTS=-Xms1g -Xmx1g
+      - bootstrap.memory_lock=true
+      - network.host=wazuh.indexer
+      - node.name=wazuh.indexer
+      - cluster.initial_cluster_manager_nodes=wazuh.indexer
+      - node.max_local_storage_nodes=1
+      - plugins.security.allow_default_init_securityindex=true
+      - NODES_DN=CN=wazuh.indexer,OU=Wazuh,O=Wazuh,L=California,C=US
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    volumes:
+      - /data/config_storage/wazuh/indexer/wazuh-indexer-data:/var/lib/wazuh-indexer
+#      - ./wazuh-certificates/root-ca.pem:/usr/share/wazuh-indexer/config/certs/root-ca.pem
+#      - ./wazuh-certificates/wazuh.indexer-key.pem:/usr/share/wazuh-indexer/config/certs/indexer-key.pem
+#      - ./wazuh-certificates/wazuh.indexer.pem:/usr/share/wazuh-indexer/config/certs/indexer.pem
+#      - ./wazuh-certificates/admin.pem:/usr/share/wazuh-indexer/config/certs/admin.pem
+#      - ./wazuh-certificates/admin-key.pem:/usr/share/wazuh-indexer/config/certs/admin-key.pem
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+
+  wazuh.dashboard:
+    image: wazuh/wazuh-dashboard:v4.14.1
+    container_name: wazuh-dashboard
+    hostname: wazuh.dashboard
+    restart: always
+#    ports:
+#      - 443:443
+    environment:
+      - SERVER_HOST=0.0.0.0
+      - OPENSEARCH_HOSTS=https://wazuh.indexer:9200
+      - INDEXER_USERNAME=admin
+      - INDEXER_PASSWORD=${INDEXER_PASSWORD}
+      - WAZUH_API_URL=https://wazuh.manager
+      - DASHBOARD_USERNAME=kibanaserver
+      - DASHBOARD_PASSWORD=${DASHBOARD_PASSWORD}
+      - API_USERNAME=wazuh-wui
+      - API_PASSWORD=${API_PASSWORD}
+#      - SERVER_SSL_CERTIFICATE=/usr/share/wazuh-dashboard/config/certs/dashboard.pem
+#      - SERVER_SSL_KEY=/usr/share/wazuh-dashboard/config/certs/dashboard-key.pem
+#      - OPENSEARCH_SSL_CERTIFICATE_AUTHORITIES=/usr/share/wazuh-dashboard/config/certs/root-ca.pem
+    volumes:
+#      - ./wazuh-certificates/wazuh.dashboard.pem:/usr/share/wazuh-dashboard/config/certs/dashboard.pem
+#      - ./wazuh-certificates/wazuh.dashboard-key.pem:/usr/share/wazuh-dashboard/config/certs/dashboard-key.pem
+#      - ./wazuh-certificates/root-ca.pem:/usr/share/wazuh-dashboard/config/certs/root-ca.pem
+      - /data/config_storage/wazuh/dashboard/wazuh-dashboard-config:/usr/share/wazuh-dashboard/config
+      - /data/config_storage/wazuh/dashboard/wazuh-dashboard-custom:/usr/share/wazuh-dashboard/plugins/wazuh/public/assets/custom
+    depends_on:
+      - wazuh.indexer
+    links:
+      - wazuh.indexer:wazuh.indexer
+      - wazuh.manager:wazuh.manager
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.wazuh.entrypoints=http"
+      - "traefik.http.routers.wazuh.rule=Host(`wazuh.${DOMAIN}`)"
+      - "traefik.http.middlewares.wazuh-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.wazuh.middlewares=wazuh-https-redirect"
+      - "traefik.http.routers.wazuh-secure.entrypoints=https"
+      - "traefik.http.routers.wazuh-secure.rule=Host(`wazuh.${DOMAIN}`)"
+      - "traefik.http.routers.wazuh-secure.tls=true"
+      - "traefik.http.routers.wazuh-secure.service=wazuh"
+      - "traefik.http.services.wazuh.loadbalancer.server.port=443"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=wazuh"
+      - "homepage.icon=/images/wazuh.png"
+      - "homepage.href=https://wazuh.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true
