@@ -3,7 +3,7 @@ services:
   harborguard:
     image: ghcr.io/harborguard/harborguard:v0.2b
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock
     security_opt:
       - no-new-privileges:true  # helps to increase security
     ports:
