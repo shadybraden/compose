@@ -9,6 +9,7 @@ As the guide says, installing OS's, using Git and using Docker are prerequisites
 
 ### todo:
 
+- Setup Renovate to auto downlaod new images to Forgejo Registry.
 - [anubis + traefik](https://anubis.techaro.lol/docs/admin/environments/traefik) --> [wait for middlewares](https://git.holmlab.org/shady/compose/src/branch/main/anubis/README.md) 
 - [tinyauth oauth](https://tinyauth.app/docs/reference/configuration#generic-oauth) 
 - docker swarm with desktop for a beefer cpu?
