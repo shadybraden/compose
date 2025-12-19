@@ -13,6 +13,7 @@ services:
       - /data/mnt/movies:/movies
       - /data/mnt/youtube:/youtube
       - /data/mnt/media:/allmedia
+      - /data/dont_backup/media:/ssd
     restart: unless-stopped
     image: jellyfin/jellyfin:10.11.5
     environment:

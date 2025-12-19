@@ -15,6 +15,7 @@ services:
       - /data/mnt/torrents:/downloads/torrents
       - /data/mnt:/allMedia
       - /mnt/extra:/mnt
+      - /data/dont_backup/media:/ssd
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true  # helps to increase security
