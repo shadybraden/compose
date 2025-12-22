@@ -1,7 +1,7 @@
 ---
 services:
   foldingathome:
-    image: lscr.io/linuxserver/foldingathome:8.4.9
+    image: lscr.io/linuxserver/foldingathome:8.5.5
     container_name: foldingathome
     environment:
       - PUID=1000
