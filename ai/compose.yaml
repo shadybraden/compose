@@ -33,7 +33,7 @@ services:
 #    environment:
 #      - OLLAMA_BASE_URL=https://ollama.${DOMAIN}
     ports:
-      - 8080:8080
+      - 3000:3000
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
@@ -48,7 +48,7 @@ services:
       - "traefik.http.routers.ai-secure.rule=Host(`ai.${DOMAIN}`)"
       - "traefik.http.routers.ai-secure.tls=true"
       - "traefik.http.routers.ai-secure.service=ai"
-      - "traefik.http.services.ai.loadbalancer.server.port=8080"  # port of the service
+      - "traefik.http.services.ai.loadbalancer.server.port=3000"  # port of the service
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.weight=2"
