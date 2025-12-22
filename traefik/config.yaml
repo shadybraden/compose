@@ -151,5 +151,5 @@ http:
     ai:
       loadBalancer:
         servers:
-          - url: "http://192.168.50.16:8080"
+          - url: "http://192.168.50.16:3004"
         passHostHeader: true
