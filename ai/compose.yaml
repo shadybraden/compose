@@ -32,6 +32,8 @@ services:
     restart: unless-stopped
 #    environment:
 #      - OLLAMA_BASE_URL=https://ollama.${DOMAIN}
+    ports:
+      - 8080:8080
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
