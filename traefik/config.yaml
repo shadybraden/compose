@@ -96,7 +96,7 @@ http:
       middlewares:
         - default-security-headers
       tls: {}
-      service: immich-ml-shady
+      service: ai
   services:
     portainer:
       loadBalancer:
