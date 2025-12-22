@@ -1,29 +1,5 @@
 ---
 services:
-  ollama:
-    volumes:
-      - /data/config_storage/ai/ollama:/root/.ollama
-    ports:
-      - 11434:11434
-    container_name: ollama
-    restart: unless-stopped
-    image: ollama/ollama:0.13.5
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
-    networks:
-      - intranet
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.ollama.entrypoints=http"
-      - "traefik.http.routers.ollama.rule=Host(`ollama.${DOMAIN}`)"
-      - "traefik.http.middlewares.ollama-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.ollama.middlewares=ollama-https-redirect"
-      - "traefik.http.routers.ollama-secure.entrypoints=https"
-      - "traefik.http.routers.ollama-secure.rule=Host(`ollama.${DOMAIN}`)"
-      - "traefik.http.routers.ollama-secure.tls=true"
-      - "traefik.http.routers.ollama-secure.service=ollama"
-      - "traefik.http.services.ollama.loadbalancer.server.port=11434"  # port of the service
-      - "traefik.docker.network=intranet"
   open-webui:
     volumes:
       - /data/config_storage/ai/open-webui:/app/backend/data
@@ -32,8 +8,6 @@ services:
     restart: unless-stopped
 #    environment:
 #      - OLLAMA_BASE_URL=https://ollama.${DOMAIN}
-    ports:
-      - 3004:8080
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
@@ -48,7 +22,7 @@ services:
       - "traefik.http.routers.ai-secure.rule=Host(`ai.${DOMAIN}`)"
       - "traefik.http.routers.ai-secure.tls=true"
       - "traefik.http.routers.ai-secure.service=ai"
-      - "traefik.http.services.ai.loadbalancer.server.port=3004"  # port of the service
+      - "traefik.http.services.ai.loadbalancer.server.port=8080"  # port of the service
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.weight=2"

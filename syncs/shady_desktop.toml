@@ -76,12 +76,12 @@ env_file_path = "/etc/komodo/env/harborguard-shady_desktop.env"
 ##
 
 [[stack]]
-name = "ai-shady_desktop"
+name = "ollama-shady_desktop"
 tags = ["shady_desktop", "criticality: 1"]
 [stack.config]
 server = "shady_desktop"
-project_name = "ai-shady_desktop"
+project_name = "ollama-shady_desktop"
 linked_repo = "compose_main"
-run_directory = "ai"
+run_directory = "ollama"
 additional_env_files = ["/etc/komodo/domain.env"]
-env_file_path = "/etc/komodo/env/ai-shady_desktop.env"
+env_file_path = "/etc/komodo/env/ollama-shady_desktop.env"
