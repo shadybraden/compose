@@ -52,3 +52,15 @@ tags = ["holmgarage"]
 address = "http://100.91.217.107:8120"
 enabled = true
 send_unreachable_alerts = true
+
+##
+
+[[server]]
+name = "turret"
+description = "192.168.70.174"
+tags = ["turret"]
+[server.config]
+tags = ["turret"]
+address = "http://192.168.70.174:8120"
+enabled = true
+send_unreachable_alerts = false

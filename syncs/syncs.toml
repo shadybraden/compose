@@ -134,3 +134,14 @@ git_provider = "git.holmlab.org"
 repo = "shady/compose"
 git_account = "komodo"
 resource_path = ["syncs/actions.toml"]
+
+##
+
+[[resource_sync]]
+name = "turret"
+tags = ["turret"]
+[resource_sync.config]
+git_provider = "git.holmlab.org"
+repo = "shady/compose"
+git_account = "komodo"
+resource_path = ["syncs/turret.toml"]
