@@ -1,5 +1,5 @@
 [[stack]]
-name = "adsb"
+name = "adsb-turret"
 tags = ["turret", "env", "criticality: 3", "ephemoral"]
 [stack.config]
 server = "turret"
