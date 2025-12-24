@@ -10,7 +10,7 @@ services:
     environment:
       - TZ=America/New_York
     restart: unless-stopped
-    image: ghcr.io/advplyr/audiobookshelf:2.32.0
+    image: ghcr.io/advplyr/audiobookshelf:2.32.1
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
