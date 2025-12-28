@@ -1,7 +1,7 @@
 ---
 services:
   anubis:
-    image: ghcr.io/techarohq/anubis:v1.23.1
+    image: ghcr.io/techarohq/anubis:v1.24.0
     container_name: anubis
     environment:
       # Telling Anubis, where to listen for Traefik
