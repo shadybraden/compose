@@ -16,6 +16,12 @@ cameras:
           input_args: -f v4l2 -framerate 30 -video_size 1920x1080
           roles:
             - record
+  520a:
+    ffmpeg:
+      inputs:
+        - path: rtsp://viewer:Password@192.168.50.232:554
+          roles:
+            - record
 
 tls:
   enabled: false
