@@ -1,7 +1,7 @@
 ---
 services:
   ngrok:
-    command: '--url ${URL} tcp ${PORT}'
+    command: 'tcp ${PORT}'
     image: ngrok/ngrok:3.34.1-alpine
     environment:
       - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
