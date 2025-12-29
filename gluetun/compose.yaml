@@ -27,7 +27,7 @@ services:
       - 8388:8388/udp  # Shadowsocks
       - ${TORRENTING_PORT}:${TORRENTING_PORT}  # qbit torrenting port
       # - "51820:51820/udp"  # wireguard public port. remember to port forward this
-    image: qmcgaw/gluetun:v3.40
+    image: qmcgaw/gluetun:v3.40.4
     networks:
       - gluetun_net
       - intranet
