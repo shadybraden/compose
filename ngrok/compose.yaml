@@ -1,0 +1,9 @@
+---
+services:
+  ngrok:
+    command: '--url ${URL} tcp ${PORT}'
+    image: ngrok/ngrok:3.34.1
+    environment:
+      - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
+    tty: true
+    stdin_open: true
