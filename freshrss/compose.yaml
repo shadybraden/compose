@@ -12,7 +12,7 @@ services:
       - /data/config_storage/freshrss/data:/var/www/FreshRSS/data
       - /data/config_storage/freshrss/extensions:/var/www/FreshRSS/extensions
     container_name: freshrss
-    image: freshrss/freshrss:1.27.1
+    image: freshrss/freshrss:1.28.0
     security_opt:
       - no-new-privileges:true  # helps to increase security
     network_mode: container:gluetun
