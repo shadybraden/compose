@@ -62,6 +62,13 @@ http:
 #        - default-security-headers
       tls: {}
       service: crafty
+    mcmap:
+      entryPoints: ["https"]
+      rule: "Host(`mcmap.holmlab.org`)"
+#      middlewares:
+#        - default-security-headers
+      tls: {}
+      service: mcmap
     periphery-shady:
       entryPoints: ["https"]
       rule: "Host(`periphery-shady.holmlab.org`)"
@@ -113,6 +120,11 @@ http:
       loadBalancer:
         servers:
           - url: "https://192.168.50.16:8443"
+        passHostHeader: true
+    mcmap:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.50.65:25566"
         passHostHeader: true
     periphery-shady:
       loadBalancer:
