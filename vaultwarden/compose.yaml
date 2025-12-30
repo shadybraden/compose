@@ -8,7 +8,7 @@ services:
     environment:
       - LOG_FILE=/data/vaultwarden.log
       - LOG_LEVEL=info
-    image: vaultwarden/server:1.35.0
+    image: vaultwarden/server:1.35.1
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
