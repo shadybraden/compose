@@ -137,7 +137,7 @@ http:
       loadBalancer:
         servers:
           - url: "http://192.168.50.65:25567"
-        passHostHeader: true
+        passHostHeader: false
     periphery-shady:
       loadBalancer:
         servers:
