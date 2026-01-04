@@ -132,12 +132,12 @@ http:
       loadBalancer:
         servers:
           - url: "http://192.168.50.65:25566"
-        passHostHeader: true
+        passHostHeader: false
     plan:
       loadBalancer:
         servers:
           - url: "http://192.168.50.65:25567"
-        passHostHeader: false
+        passHostHeader: true
     periphery-shady:
       loadBalancer:
         servers:
