@@ -65,15 +65,15 @@ http:
     mcmap:
       entryPoints: ["https"]
       rule: "Host(`mcmap.holmlab.org`)"
-      middlewares:
-        - default-security-headers
+#      middlewares:
+#        - default-security-headers
       tls: {}
       service: mcmap
     plan:
       entryPoints: ["https"]
       rule: "Host(`plan.holmlab.org`)"
-      middlewares:
-        - default-security-headers
+#      middlewares:
+#        - default-security-headers
       tls: {}
       service: plan
     periphery-shady:
