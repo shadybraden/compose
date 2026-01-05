@@ -38,6 +38,24 @@ services:
       - "homepage.name=Crafty-holmie"
       - "homepage.icon=/images/crafty-controller.png"
       - "homepage.href=https://crafty.${DOMAIN}/"
+      - "traefik.http.routers.mcmap.entrypoints=http"
+      - "traefik.http.routers.mcmap.rule=Host(`mcmap.${DOMAIN}`)"
+      - "traefik.http.middlewares.mcmap-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.mcmap.middlewares=mcmap-https-redirect"
+      - "traefik.http.routers.mcmap-secure.entrypoints=https"
+      - "traefik.http.routers.mcmap-secure.rule=Host(`mcmap.${DOMAIN}`)"
+      - "traefik.http.routers.mcmap-secure.tls=true"
+      - "traefik.http.routers.mcmap-secure.service=mcmap"
+      - "traefik.http.services.mcmap.loadbalancer.server.port=25566"  # port of the service.
+      - "traefik.http.routers.plan.entrypoints=http"
+      - "traefik.http.routers.plan.rule=Host(`plan.${DOMAIN}`)"
+      - "traefik.http.middlewares.plan-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.plan.middlewares=plan-https-redirect"
+      - "traefik.http.routers.plan-secure.entrypoints=https"
+      - "traefik.http.routers.plan-secure.rule=Host(`plan.${DOMAIN}`)"
+      - "traefik.http.routers.plan-secure.tls=true"
+      - "traefik.http.routers.plan-secure.service=plan"
+      - "traefik.http.services.plan.loadbalancer.server.port=25567"  # port of the service.
 
 networks:
   intranet:
