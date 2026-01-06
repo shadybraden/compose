@@ -19,7 +19,7 @@ cameras:
   520a:
     ffmpeg:
       inputs:
-        - path: rtsp://viewer:Password@192.168.50.232:554
+        - path: rtsp://<user>:<password>@<ip>:<port>
           roles:
             - record
 
