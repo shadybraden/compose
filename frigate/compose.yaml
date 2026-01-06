@@ -18,7 +18,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /data/config_storage/frigate:/config
-      - /data/config_storage/komodo/etc_komodo/repos/compose_main/frigate/config.yaml:/config/config.yaml:ro
+      #- /data/config_storage/komodo/etc_komodo/repos/compose_main/frigate/config.yaml:/config/config.yaml:ro
       - /data/mnt/frigate:/media/frigate
       - type: tmpfs  # Optional: 1GB of memory, reduces SSD/SD Card wear
         target: /tmp/cache
