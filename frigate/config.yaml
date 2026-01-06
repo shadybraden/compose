@@ -16,7 +16,7 @@ cameras:
           input_args: -f v4l2 -framerate 30 -video_size 1920x1080
           roles:
             - record
-  520a:
+  <camera name>:
     ffmpeg:
       inputs:
         - path: rtsp://<user>:<password>@<ip>:<port>
