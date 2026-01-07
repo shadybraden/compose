@@ -1,7 +1,7 @@
 ---
 services:
   astro:
-    image: node:25.2.1-trixie-slim
+    image: node  #:25.2.1-trixie-slim
     working_dir: /app
     volumes:
       - /data/config_storage/komodo/etc_komodo/repos/jetlag:/app
