@@ -28,3 +28,14 @@ git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/tidal-ui"
 branch = "main"
+
+##
+
+[[repo]]
+name = "jetlag"
+[repo.config]
+server = "holmie"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/JetLagHideAndSeek"
+branch = "main"
