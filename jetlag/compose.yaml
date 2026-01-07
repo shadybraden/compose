@@ -1,0 +1,31 @@
+---
+services:
+  astro:
+    image: node:25.2.1-trixie-slim
+    working_dir: /app
+    volumes:
+      - /data/config_storage/komodo/etc_komodo/repos/jetlag:/app
+#    ports:
+#      - "8080:3000"
+    command: >
+      sh -c "npm install && npm run build && npm run preview"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.jetlag.entrypoints=http"
+      - "traefik.http.routers.jetlag.rule=Host(`jetlag.${DOMAIN}`)"
+      - "traefik.http.middlewares.jetlag-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.jetlag.middlewares=jetlag-https-redirect"
+      - "traefik.http.routers.jetlag-secure.entrypoints=https"
+      - "traefik.http.routers.jetlag-secure.rule=Host(`jetlag.${DOMAIN}`)"
+      - "traefik.http.routers.jetlag-secure.tls=true"
+      - "traefik.http.routers.jetlag-secure.service=jetlag"
+      - "traefik.http.services.jetlag.loadbalancer.server.port=3000"  # port of the service.
+      - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true
