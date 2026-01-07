@@ -5,8 +5,8 @@ services:
     working_dir: /app
     volumes:
       - /data/config_storage/komodo/etc_komodo/repos/jetlag:/app
-#    ports:
-#      - "8080:3000"
+    ports:
+      - "8080:3000"
     command: >
       sh -c "npm install --legacy-peer-deps && npm run build && npm run preview"
     security_opt:
@@ -23,7 +23,7 @@ services:
       - "traefik.http.routers.jetlag-secure.rule=Host(`jetlag.${DOMAIN}`)"
       - "traefik.http.routers.jetlag-secure.tls=true"
       - "traefik.http.routers.jetlag-secure.service=jetlag"
-      - "traefik.http.services.jetlag.loadbalancer.server.port=3000"  # port of the service.
+      - "traefik.http.services.jetlag.loadbalancer.server.port=8080"  # port of the service.
       - "traefik.docker.network=intranet"
 
 networks:
