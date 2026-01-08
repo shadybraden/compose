@@ -103,7 +103,7 @@ services:
       - PROXY_PASSWORD=${SHADOWSOCKS_PASSWORD}
       - PROXY_USER=socks5
     ports:
-      - 8788:8788
+      - 1080:1080
     container_name: socks5
     networks:
       - gluetun_net
