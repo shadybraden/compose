@@ -97,6 +97,16 @@ services:
       - "traefik.http.routers.mullvad-secure.service=mullvad"
       - "traefik.http.services.mullvad.loadbalancer.server.port=3000"  # port of the service.
       - "traefik.http.routers.mullvad-secure.middlewares=tinyauth"
+  go-socks5-proxy:
+    image: serjs/go-socks5-proxy:v0.0.4
+    environment:
+      - PROXY_PASSWORD=${SHADOWSOCKS_PASSWORD}
+      - PROXY_USER=socks5
+    ports:
+      - 8788:8788
+    container_name: socks5
+    networks:
+      - gluetun_net
 
 networks:
   gluetun_net:
