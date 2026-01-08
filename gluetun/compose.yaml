@@ -99,9 +99,9 @@ services:
       - "traefik.http.routers.mullvad-secure.middlewares=tinyauth"
   go-socks5-proxy:
     image: serjs/go-socks5-proxy:v0.0.4
-    environment:
-      - PROXY_PASSWORD=${SHADOWSOCKS_PASSWORD}
-      - PROXY_USER=socks5
+    #environment:
+      #- PROXY_PASSWORD=${SHADOWSOCKS_PASSWORD}
+      #- PROXY_USER=socks5
     ports:
       - 1080:1080
     container_name: socks5
