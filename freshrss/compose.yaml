@@ -17,7 +17,7 @@ services:
       - no-new-privileges:true  # helps to increase security
     network_mode: container:gluetun
     labels:
-      - "homepage.group=Other"
+      - "homepage.group=Media"
       - "homepage.name=FreshRSS"
       - "homepage.icon=/images/freshrss.png"
       - "homepage.href=https://rss.${DOMAIN}/"

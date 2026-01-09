@@ -22,7 +22,7 @@ services:
       - "traefik.http.routers.uptime-kuma-secure.service=uptime-kuma"
       - "traefik.http.services.uptime-kuma.loadbalancer.server.port=3001"  # port of the service
       - "traefik.docker.network=intranet"
-      - "homepage.group=Other"
+      - "homepage.group=Infrastructure"
       - "homepage.name=Uptime-Kuma"
       - "homepage.icon=/images/uptimekuma.png"
       - "homepage.href=https://uptime-kuma.${DOMAIN}/"
