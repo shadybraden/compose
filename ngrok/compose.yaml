@@ -2,7 +2,7 @@
 services:
   ngrok:
     command: 'tcp ${PORT}'
-    image: ngrok/ngrok:3.34.1-alpine
+    image: ngrok/ngrok:3.35.0-alpine
     environment:
       - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
     tty: true
