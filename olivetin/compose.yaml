@@ -2,7 +2,7 @@
 services:
   olivetin:
     container_name: olivetin
-    image: jamesread/olivetin:3000.8.0
+    image: jamesread/olivetin:3000.9.0
     volumes:
       - /data/config_storage/komodo/etc_komodo/repos/compose_main/olivetin/config.yaml:/config/config.yaml:ro
       - /data/config_storage/olivetin:/config
