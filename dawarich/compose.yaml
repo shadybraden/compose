@@ -1,0 +1,180 @@
+---
+services:
+  dawarich_redis:
+    image: redis:7.4-alpine  # 7.4 pinned - https://github.com/Freika/dawarich/blob/master/docker/docker-compose.yml
+    container_name: dawarich_redis
+    command: redis-server
+    volumes:
+      - /data/config_storage/dawarich/dawarich_shared:/data
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+
+  dawarich_db:
+    image: postgis/postgis:17-3.5-alpine  # pinned 17-3.5-alpine - https://github.com/Freika/dawarich/blob/master/docker/docker-compose.yml
+    shm_size: 1G
+    container_name: dawarich_db
+    volumes:
+      - /data/config_storage/dawarich/dawarich_db_data:/var/lib/postgresql/data
+      - /data/config_storage/dawarich/dawarich_shared:/var/shared
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: dawarich_development
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d dawarich_development" ]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+
+  dawarich_app:
+    image: freikin/dawarich:0.37.3
+    container_name: dawarich_app
+    volumes:
+      - /data/config_storage/dawarich/dawarich_public:/var/app/public
+      - /data/config_storage/dawarich/dawarich_watched:/var/app/tmp/imports/watched
+      - /data/config_storage/dawarich/dawarich_storage:/var/app/storage
+      - /data/config_storage/dawarich/dawarich_db_data:/dawarich_db_data
+#    ports:
+#      - "${DAWARICH_APP_PORT:-3000}:3000"
+    stdin_open: true
+    tty: true
+    entrypoint: web-entrypoint.sh
+    command: ['bin/rails', 'server', '-p', '3000', '-b', '::']
+    restart: unless-stopped
+    environment:
+      RAILS_ENV: development
+      REDIS_URL: redis://dawarich_redis:6379
+      DATABASE_HOST: dawarich_db
+      DATABASE_PORT: 5432
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
+      DATABASE_NAME: dawarich_development
+      MIN_MINUTES_SPENT_IN_CITY: 60
+      APPLICATION_HOSTS: "localhost,::1,127.0.0.1"
+      TIME_ZONE: America/New_York
+      APPLICATION_PROTOCOL: http
+      PROMETHEUS_EXPORTER_ENABLED: false
+      PROMETHEUS_EXPORTER_HOST: 0.0.0.0
+      PROMETHEUS_EXPORTER_PORT: 9394
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
+      RAILS_LOG_TO_STDOUT: true
+      SELF_HOSTED: true
+      STORE_GEODATA: true
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 100m
+        max-file: 5
+    healthcheck:
+      test: [ "CMD-SHELL", "wget -qO - http://127.0.0.1:3000/api/v1/health | grep -q '\"status\"\\s*:\\s*\"ok\"'" ]
+      interval: 10s
+      retries: 30
+      start_period: 30s
+      timeout: 10s
+    depends_on:
+      dawarich_db:
+        condition: service_healthy
+        restart: true
+      dawarich_redis:
+        condition: service_healthy
+        restart: true
+    deploy:
+      resources:
+        limits:
+          cpus: 0.50
+          memory: 4G
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dawarich.entrypoints=http"
+      - "traefik.http.routers.dawarich.rule=Host(`dawarich.${DOMAIN}`)"
+      - "traefik.http.middlewares.dawarich-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.dawarich.middlewares=dawarich-https-redirect"
+      - "traefik.http.routers.dawarich-secure.entrypoints=https"
+      - "traefik.http.routers.dawarich-secure.rule=Host(`dawarich.${DOMAIN}`)"
+      - "traefik.http.routers.dawarich-secure.tls=true"
+      - "traefik.http.routers.dawarich-secure.service=dawarich"
+      - "traefik.http.services.dawarich.loadbalancer.server.port=3000"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=dawarich"
+      - "homepage.icon=/images/dawarich.png"
+      - "homepage.href=https://dawarich.${DOMAIN}/"
+
+  dawarich_sidekiq:
+    image: freikin/dawarich:0.37.3
+    container_name: dawarich_sidekiq
+    volumes:
+      - /data/config_storage/dawarich/dawarich_public:/var/app/public
+      - /data/config_storage/dawarich/dawarich_watched:/var/app/tmp/imports/watched
+      - /data/config_storage/dawarich/dawarich_storage:/var/app/storage
+    stdin_open: true
+    tty: true
+    entrypoint: sidekiq-entrypoint.sh
+    command: ['sidekiq']
+    restart: unless-stopped
+    environment:
+      RAILS_ENV: development
+      REDIS_URL: redis://dawarich_redis:6379
+      DATABASE_HOST: dawarich_db
+      DATABASE_PORT: 5432
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
+      DATABASE_NAME: dawarich_development
+      APPLICATION_HOSTS: "localhost,::1,127.0.0.1"
+      BACKGROUND_PROCESSING_CONCURRENCY: 10
+      APPLICATION_PROTOCOL: http
+      PROMETHEUS_EXPORTER_ENABLED: false
+      PROMETHEUS_EXPORTER_HOST: dawarich_app
+      PROMETHEUS_EXPORTER_PORT: 9394
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
+      RAILS_LOG_TO_STDOUT: true
+      SELF_HOSTED: true
+      STORE_GEODATA: true
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 100m
+        max-file: 5
+    healthcheck:
+      test: [ "CMD-SHELL", "pgrep -f sidekiq" ]
+      interval: 10s
+      retries: 30
+      start_period: 30s
+      timeout: 10s
+    depends_on:
+      dawarich_db:
+        condition: service_healthy
+        restart: true
+      dawarich_redis:
+        condition: service_healthy
+        restart: true
+      dawarich_app:
+        condition: service_healthy
+        restart: true
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+
+networks:
+  intranet:
+    external: true
