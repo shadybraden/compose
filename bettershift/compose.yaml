@@ -12,6 +12,8 @@ services:
       - ALLOW_USER_REGISTRATION=true
       - ALLOW_GUEST_ACCESS=false
       - DATABASE_URL=file:./data/sqlite.db
+      - NODE_ENV=production
+      - HOSTNAME=0.0.0.0
     volumes:
       - /data/config_storage/bettershift/data:/app/data
     security_opt:
