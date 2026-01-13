@@ -8,6 +8,10 @@ services:
       - "3000:3000"
     environment:
       - BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET}
+      - BETTER_AUTH_URL=https://shift.${DOMAIN}
+      - ALLOW_USER_REGISTRATION=true
+      - ALLOW_GUEST_ACCESS=false
+      - DATABASE_URL=file:./data/sqlite.db
     volumes:
       - /data/config_storage/bettershift/data:/app/data
     security_opt:
