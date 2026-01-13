@@ -1,0 +1,32 @@
+---
+services:
+  bettershift:
+    image: ghcr.io/pantelx/bettershift:v2.1.0
+    container_name: bettershift
+    restart: unless-stopped
+    volumes:
+      - /data/config_storage/bettershift/data:/app/data
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.shift.entrypoints=http"
+      - "traefik.http.routers.shift.rule=Host(`shift.${DOMAIN}`)"
+      - "traefik.http.middlewares.shift-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.shift.middlewares=shift-https-redirect"
+      - "traefik.http.routers.shift-secure.entrypoints=https"
+      - "traefik.http.routers.shift-secure.rule=Host(`shift.${DOMAIN}`)"
+      - "traefik.http.routers.shift-secure.tls=true"
+      - "traefik.http.routers.shift-secure.service=shift"
+      - "traefik.http.services.shift.loadbalancer.server.port=3000"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=shift"
+      - "homepage.icon=/images/bettershift.png"
+      - "homepage.href=https://shift.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true
