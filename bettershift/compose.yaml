@@ -4,8 +4,6 @@ services:
     image: ghcr.io/pantelx/bettershift:v2.1.0
     container_name: bettershift
     restart: unless-stopped
-    ports:
-      - "3000:3000"
     environment:
       - BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET}
       - BETTER_AUTH_URL=https://shift.${DOMAIN}
