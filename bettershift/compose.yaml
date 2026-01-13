@@ -5,6 +5,7 @@ services:
     container_name: bettershift
     restart: unless-stopped
     environment:
+      - AUTH_ENABLED=true
       - BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET}
       - BETTER_AUTH_URL=https://shift.${DOMAIN}
       - ALLOW_USER_REGISTRATION=true
