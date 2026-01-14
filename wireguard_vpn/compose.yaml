@@ -1,7 +1,7 @@
 ---
 services:
   wireguard_vpn:
-    image: ghcr.io/wg-easy/wg-easy:15.2.0
+    image: ghcr.io/wg-easy/wg-easy:15.2.1
     container_name: wireguard_vpn
     environment:
       WG_DEVICE: enp2s0  # https://github.com/wg-easy/wg-easy/issues/1795#issuecomment-2900911182
