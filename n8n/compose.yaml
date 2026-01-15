@@ -1,7 +1,7 @@
 ---
 services:
   n8nio:
-    image: docker.n8n.io/n8nio/n8n:1.123.14
+    image: docker.n8n.io/n8nio/n8n:1.123.15
     volumes:
       - /data/config_storage/n8n:/home/node/.n8n
       - /tmp/n8n:/tmp
