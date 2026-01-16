@@ -8,7 +8,7 @@ services:
       - /data/config_storage/nextcloud/apps:/var/www/html/custom_apps
       - /data/config_storage/nextcloud/config:/var/www/html/config
       - /data/config_storage/nextcloud/data:/var/www/html/data
-    image: nextcloud:32.0.3
+    image: nextcloud:32.0.4
     ports:
       - 28800:80
     security_opt:
