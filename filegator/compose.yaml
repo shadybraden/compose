@@ -21,7 +21,7 @@ services:
       - "traefik.http.routers.assets-secure.rule=Host(`assets.${DOMAIN}`)"
       - "traefik.http.routers.assets-secure.tls=true"
       - "traefik.http.routers.assets-secure.service=assets"
-      - "traefik.http.services.assets.loadbalancer.server.port=8080"  # port of the service.
+      - "traefik.http.services.assets.loadbalancer.server.port=4444"  # port of the service.
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=assets"
