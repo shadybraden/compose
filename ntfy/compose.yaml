@@ -8,7 +8,7 @@ services:
     environment:
       - TZ=EST
     restart: unless-stopped
-    image: binwiederhier/ntfy:v2.15.0
+    image: binwiederhier/ntfy:v2.16.0
     command: serve --cache-file /var/cache/ntfy/cache.db
     security_opt:
       - no-new-privileges:true  # helps to increase security
