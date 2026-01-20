@@ -92,3 +92,16 @@ linked_repo = "compose_main"
 run_directory = "homeassistant"
 additional_env_files = ["/etc/komodo/domain.env"]
 env_file_path = "/etc/komodo/env/homeassistant-mck.env"
+
+##
+
+[[stack]]
+name = "filegator-mck"
+tags = ["mck", "criticality: 1"]
+[stack.config]
+server = "mck"
+project_name = "filegator-mck"
+linked_repo = "compose_main"
+run_directory = "filegator"
+additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/filegator-mck.env"
