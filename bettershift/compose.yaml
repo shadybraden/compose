@@ -1,7 +1,7 @@
 ---
 services:
   bettershift:
-    image: ghcr.io/pantelx/bettershift:v2.1.0
+    image: ghcr.io/pantelx/bettershift:v2.2.0
     container_name: bettershift
     restart: unless-stopped
     environment:
