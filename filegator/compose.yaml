@@ -3,7 +3,7 @@ services:
   filegator:
     image: filegator/filegator:v7.13.3
     volumes:
-      - /data/mnt/shows/MCC_Kids_Video:/var/www/filegator/repository:ro
+      - /data/mnt/shows:/var/www/filegator/repository
     security_opt:
       - no-new-privileges:true  # helps to increase security
     user: 33:33
