@@ -15,7 +15,7 @@ services:
       - /data/mnt/media:/allmedia
       - /data/dont_backup/media:/ssd
     restart: unless-stopped
-    image: jellyfin/jellyfin:10.11.5
+    image: jellyfin/jellyfin:10.11.6
     environment:
       - TZ=Etc
     security_opt:
