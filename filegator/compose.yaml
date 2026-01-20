@@ -7,7 +7,7 @@ services:
       - /data/dont_backup/filegator/logs:/private/logs
     security_opt:
       - no-new-privileges:true  # helps to increase security
-    user: 1000:1000
+    user: 33:33
     ports:
       - 8080:8080
     networks:
