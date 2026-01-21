@@ -2,7 +2,7 @@
 services:
   filebrowser:
     volumes:
-      - /data/mnt/shows:/srv/mck
+      - /data:/srv/data
       - /data/config_storage/filebrowserquantum/config.yaml:/home/filebrowser/config.yaml
       - /data/config_storage/filebrowserquantum/database.db:/home/filebrowser/database.db
     ports:
