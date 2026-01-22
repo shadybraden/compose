@@ -47,6 +47,7 @@ services:
       - "traefik.http.routers.frigate-secure.tls=true"
       - "traefik.http.routers.frigate-secure.service=frigate"
       - "traefik.http.services.frigate.loadbalancer.server.port=8971"  # port of the service.
+      - "traefik.http.services.frigate.loadbalancer.server.scheme=https"  # tell traefik to connect to frigate via https instead of http
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=frigate"
