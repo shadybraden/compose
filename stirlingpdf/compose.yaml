@@ -16,20 +16,20 @@ services:
       - intranet
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.pdf.entrypoints=http"
-      - "traefik.http.routers.pdf.rule=Host(`pdf.${DOMAIN}`)"
-      - "traefik.http.middlewares.pdf-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.pdf.middlewares=pdf-https-redirect"
-      - "traefik.http.routers.pdf-secure.entrypoints=https"
-      - "traefik.http.routers.pdf-secure.rule=Host(`pdf.${DOMAIN}`)"
-      - "traefik.http.routers.pdf-secure.tls=true"
-      - "traefik.http.routers.pdf-secure.service=pdf"
-      - "traefik.http.services.pdf.loadbalancer.server.port=8080"  # port of the service
+      - "traefik.http.routers.stirlingpdf.entrypoints=http"
+      - "traefik.http.routers.stirlingpdf.rule=Host(`stirlingpdf.${DOMAIN}`)"
+      - "traefik.http.middlewares.stirlingpdf-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.stirlingpdf.middlewares=stirlingpdf-https-redirect"
+      - "traefik.http.routers.stirlingpdf-secure.entrypoints=https"
+      - "traefik.http.routers.stirlingpdf-secure.rule=Host(`stirlingpdf.${DOMAIN}`)"
+      - "traefik.http.routers.stirlingpdf-secure.tls=true"
+      - "traefik.http.routers.stirlingpdf-secure.service=stirlingpdf"
+      - "traefik.http.services.stirlingpdf.loadbalancer.server.port=8080"  # port of the service
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
-      - "homepage.name=PDF"
-      - "homepage.icon=/images/pdf.png"
-      - "homepage.href=https://pdf.${DOMAIN}/"
+      - "homepage.name=stirlingpdf"
+      - "homepage.icon=/images/stirlingpdf.png"
+      - "homepage.href=https://stirlingpdf.${DOMAIN}/"
 
 networks:
   intranet:
