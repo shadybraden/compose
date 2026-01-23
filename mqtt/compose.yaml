@@ -1,9 +1,32 @@
 services:
   eclipse-mosquitto:
-    image: eclipse-mosquitto
+    image: eclipse-mosquitto:2.0.22
     volumes:
       - /data/config_storage/mqtt/config:/mosquitto/config
       - /data/config_storage/mqtt/data:/mosquitto/data
       - /data/config_storage/mqtt/log:/mosquitto/log
-    ports:
-        - '1883:1883'
+      - /data/config_storage/komodo/etc_komodo/repos/compose_main/mqtt/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+#    ports:
+#        - '1883:1883'
+    tty: true
+    stdin_open: true
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.mqtt.entrypoints=http"
+      - "traefik.http.routers.mqtt.rule=Host(`mqtt.${DOMAIN}`)"
+      - "traefik.http.middlewares.mqtt-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.mqtt.middlewares=mqtt-https-redirect"
+      - "traefik.http.routers.mqtt-secure.entrypoints=https"
+      - "traefik.http.routers.mqtt-secure.rule=Host(`mqtt.${DOMAIN}`)"
+      - "traefik.http.routers.mqtt-secure.tls=true"
+      - "traefik.http.routers.mqtt-secure.service=mqtt"
+      - "traefik.http.services.mqtt.loadbalancer.server.port=443"  # port of the service.
+      - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true
