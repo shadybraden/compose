@@ -6,8 +6,8 @@ services:
       - /data/config_storage/mqtt/config:/mosquitto/config
       - /data/config_storage/mqtt/data:/mosquitto/data
       - /data/config_storage/mqtt/log:/mosquitto/log
-#    ports:
-#        - '1883:1883'
+    ports:
+        - '1883:1883'
     tty: true
     stdin_open: true
     security_opt:
