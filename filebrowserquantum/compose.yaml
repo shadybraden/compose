@@ -7,7 +7,7 @@ services:
       - /data/config_storage/filebrowserquantum/database.db:/home/filebrowser/database.db
     ports:
       - 8080:80
-    image: gtstef/filebrowser:1.2.0-beta
+    image: gtstef/filebrowser:1.2.1-beta
     environment:
       - FILEBROWSER_ADMIN_PASSWORD=${FILEBROWSER_ADMIN_PASSWORD}
       - FILEBROWSER_DATABASE=/home/filebrowser/database.db
