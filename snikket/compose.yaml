@@ -6,15 +6,19 @@ services:
     environment: 
       SNIKKET_DOMAIN: chat.${DOMAIN}
       SNIKKET_ADMIN_EMAIL: ${SNIKKET_ADMIN_EMAIL}
-    network_mode: host
+    ports:
+      - 8083:80
     volumes:
       - /data/config_storage/snikket/snikket_data:/snikket
       - /data/config_storage/snikket/acme_challenges:/var/www/html/.well-known/acme-challenge
     restart: "unless-stopped"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
   snikket_certs:
     container_name: snikket-certs
     image: snikket/snikket-cert-manager:stable.20251231
-    network_mode: host
     environment: 
       SNIKKET_DOMAIN: chat.${DOMAIN}
       SNIKKET_ADMIN_EMAIL: ${SNIKKET_ADMIN_EMAIL}
@@ -22,22 +26,46 @@ services:
       - /data/config_storage/snikket/snikket_data:/snikket
       - /data/config_storage/snikket/acme_challenges:/var/www/.well-known/acme-challenge
     restart: "unless-stopped"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
   snikket_portal:
     container_name: snikket-portal
     image: snikket/snikket-web-portal:stable.20251231
-    network_mode: host
     environment: 
       SNIKKET_DOMAIN: chat.${DOMAIN}
       SNIKKET_ADMIN_EMAIL: ${SNIKKET_ADMIN_EMAIL}
     restart: "unless-stopped"
-
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
   snikket_server:
     container_name: snikket
     image: snikket/snikket-server:stable.20251231
-    network_mode: host
     volumes:
       - /data/config_storage/snikket/snikket_data:/snikket
     environment: 
       SNIKKET_DOMAIN: chat.${DOMAIN}
       SNIKKET_ADMIN_EMAIL: ${SNIKKET_ADMIN_EMAIL}
     restart: "unless-stopped"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.chat.entrypoints=http"
+      - "traefik.http.routers.chat.rule=Host(`chat.${DOMAIN}`)"
+      - "traefik.http.middlewares.chat-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.chat.middlewares=chat-https-redirect"
+      - "traefik.http.routers.chat-secure.entrypoints=https"
+      - "traefik.http.routers.chat-secure.rule=Host(`chat.${DOMAIN}`)"
+      - "traefik.http.routers.chat-secure.tls=true"
+      - "traefik.http.routers.chat-secure.service=chat"
+      - "traefik.http.services.chat.loadbalancer.server.port=8083"  # port of the service.
+      - "traefik.docker.network=intranet"
+networks:
+  intranet:
+    external: true
