@@ -1,16 +1,5 @@
 ---
 services:
-  snikket_portal:
-    container_name: snikket-portal
-    image: snikket/snikket-web-portal:stable.20251231
-    environment: 
-      SNIKKET_DOMAIN: chat.${DOMAIN}
-      SNIKKET_ADMIN_EMAIL: ${SNIKKET_ADMIN_EMAIL}
-    restart: "unless-stopped"
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
-    networks:
-      - intranet
   snikket_server:
     container_name: snikket
     image: snikket/snikket-server:stable.20251231
