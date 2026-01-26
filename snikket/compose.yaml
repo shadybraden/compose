@@ -1,35 +1,5 @@
 ---
 services:
-  snikket_proxy:
-    container_name: snikket-proxy
-    image: snikket/snikket-web-proxy:stable.20251231
-    environment: 
-      SNIKKET_DOMAIN: chat.${DOMAIN}
-      SNIKKET_ADMIN_EMAIL: ${SNIKKET_ADMIN_EMAIL}
-    ports:
-      - 8083:80
-    volumes:
-      - /data/config_storage/snikket/snikket_data:/snikket
-      - /data/config_storage/snikket/acme_challenges:/var/www/html/.well-known/acme-challenge
-    restart: "unless-stopped"
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
-    networks:
-      - intranet
-  snikket_certs:
-    container_name: snikket-certs
-    image: snikket/snikket-cert-manager:stable.20251231
-    environment: 
-      SNIKKET_DOMAIN: chat.${DOMAIN}
-      SNIKKET_ADMIN_EMAIL: ${SNIKKET_ADMIN_EMAIL}
-    volumes:
-      - /data/config_storage/snikket/snikket_data:/snikket
-      - /data/config_storage/snikket/acme_challenges:/var/www/.well-known/acme-challenge
-    restart: "unless-stopped"
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
-    networks:
-      - intranet
   snikket_portal:
     container_name: snikket-portal
     image: snikket/snikket-web-portal:stable.20251231
@@ -44,6 +14,8 @@ services:
   snikket_server:
     container_name: snikket
     image: snikket/snikket-server:stable.20251231
+    ports:
+      - 8083:80
     volumes:
       - /data/config_storage/snikket/snikket_data:/snikket
     environment: 
