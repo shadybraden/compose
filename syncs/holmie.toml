@@ -209,7 +209,7 @@ env_file_path = "/etc/komodo/env/syncthing.env"
 
 [[stack]]
 name = "uptime-kuma"
-tags = ["holmie", "criticality: 2"]
+tags = ["holmie", "criticality: 2", "infrastructure"]
 [stack.config]
 server = "holmie"
 project_name = "uptime-kuma"
@@ -283,7 +283,7 @@ env_file_path = "/etc/komodo/env/skywatch.env"
 
 [[stack]]
 name = "pihole"
-tags = ["holmie", "env", "criticality: 1"]
+tags = ["holmie", "env", "criticality: 1", "infrastructure"]
 [stack.config]
 server = "holmie"
 project_name = "pihole"
@@ -296,7 +296,7 @@ env_file_path = "/etc/komodo/env/pihole.env"
 
 [[stack]]
 name = "forgejo"
-tags = ["holmie", "criticality: 2"]
+tags = ["holmie", "criticality: 2", "infrastructure"]
 [stack.config]
 server = "holmie"
 project_name = "forgejo"
@@ -452,7 +452,7 @@ env_file_path = "/etc/komodo/env/reactiveresume.env"
 
 [[stack]]
 name = "beszel"
-tags = ["holmie", "criticality: 3"]
+tags = ["holmie", "criticality: 3", "infrastructure"]
 [stack.config]
 server = "holmie"
 project_name = "beszel"
