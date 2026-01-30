@@ -58,8 +58,8 @@ for ac in data.get('aircraft', []):
     squawk = str(squawk)
 
     # set vars for message:
-    title = "WATCH | " + r_dst_value + " mi | " + "alt:" + alt_baro
-    message = ownOp_value + '\n' + short_type_value + " | " + desc_value + '\n' + "https://adsb.holmlab.org/?icao=" + hex_value
+    title = "WATCH | " + desc_value
+    message = short_type_value + " | " + r_dst_value + " mi | " + "alt:" + alt_baro + '\n' + ownOp_value +'\n' + "https://adsb.holmlab.org/?icao=" + hex_value
     click = "https://adsb.lol/?zoom=11&icao=" + hex_value
 
     if dbFlags == 0: # if not millitary, check watchlist.txt
@@ -101,10 +101,10 @@ for ac in data.get('aircraft', []):
                 print("Error decoding JSON response")
 
     if dbFlags == 1:
-        title = "MILL | " + r_dst_value + " mi | " + "alt:" + alt_baro
+        title = "MILL | " + desc_value
         send_message = 1
     if dbFlags == 8:
-        title = "LADD | " + r_dst_value + " mi | " + "alt:" + alt_baro
+        title = "LADD | " + desc_value
     
     # set ntfy priority based on altitiude
     alt_baro = int(alt_baro)
@@ -124,15 +124,15 @@ for ac in data.get('aircraft', []):
     if squawk == "7500":
         send_message = 1
         priority = 'max'
-        title = "HIJACK | " + r_dst_value + " mi | " + "alt:" + alt_baro
+        title = "HIJACK | " + desc_value
     if squawk == "7600":
         send_message = 1
         priority = 'default'
-        title = "Radio Failure | " + r_dst_value + " mi | " + "alt:" + alt_baro
+        title = "Radio Failure | " + desc_value
     if squawk == "7700":
         send_message = 1
         priority = 'default'
-        title = "Emergency | " + r_dst_value + " mi | " + "alt:" + alt_baro
+        title = "Emergency | " + desc_value
 
     if send_message == 1: # if we are planning on sending, check ignorelist
         with open("ignorelist.txt", "r") as file:
