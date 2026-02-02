@@ -2,11 +2,12 @@
 services:
   netbird:
     container_name: netbird
-    image: netbirdio/netbird:v0.64.4
+    image: netbirdio/netbird:0.64.4
     volumes:
       - /data/config_storage/netbird/netbird-client:/var/lib/netbird
     ports:
       - 8082:443
+      - 8083:80
     environment:
       - NB_SETUP_KEY=${NB_SETUP_KEY}
     cap_add:
