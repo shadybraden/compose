@@ -1000,3 +1000,16 @@ linked_repo = "compose_main"
 run_directory = "frigate-notify"
 additional_env_files = ["/etc/komodo/domain.env"]
 env_file_path = "/etc/komodo/env/frigate-notify-holmie.env"
+
+##
+
+[[stack]]
+name = "netbird-holmie"
+tags = ["holmie", "criticality: 1"]
+[stack.config]
+server = "holmie"
+project_name = "netbird-holmie"
+linked_repo = "compose_main"
+run_directory = "netbird"
+additional_env_files = ["/etc/komodo/domain.env"]
+env_file_path = "/etc/komodo/env/netbird-holmie.env"
