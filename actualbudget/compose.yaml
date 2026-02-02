@@ -1,7 +1,7 @@
 ---
 services:
   actual_server:
-    image: docker.io/actualbudget/actual-server:26.1.0
+    image: docker.io/actualbudget/actual-server:26.2.0
     container_name: actual_server
 #    ports:
 #      - '5006:5006'
