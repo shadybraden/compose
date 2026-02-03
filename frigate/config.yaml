@@ -1,30 +1,95 @@
----
+# https://docs.frigate.video/configuration/reference/
 mqtt:
-  enabled: false
+  enabled: true
 
 ffmpeg:
-  hwaccel_args: preset-vaapi
+  hwaccel_args: preset-intel-qsv-h264
 
 cameras:
-  usb_webcam:
-    ffmpeg:
-      hwaccel_args: ' '
-      output_args:
-        record: preset-record-generic-audio-aac
-      inputs:
-        - path: /dev/video0
-          input_args: -f v4l2 -framerate 30 -video_size 1920x1080
-          roles:
-            - record
-  <camera name>:
+  outside_cam:
+    notifications:
+      enabled: true
+      cooldown: 30
     ffmpeg:
       inputs:
-        - path: rtsp://<user>:<password>@<ip>:<port>
+        - path: 
+            rtsp://viewer:{FRIGATE_RTSP_PASSWORD}@192.168.50.232:554/Preview_01_main # high res
           roles:
             - record
-
+        - path: 
+            rtsp://viewer:{FRIGATE_RTSP_PASSWORD}@192.168.50.232:554/Preview_01_sub # low res
+          roles:
+            - detect
+    detect:  # make this match whats on the camera firmware
+      width: 640
+      height: 480
+      fps: 4
+    motion:
+      mask: 
+        0,0.475,0,0,0.997,0.001,1,0.73,0.784,0.713,0.801,0.659,0.204,0.529,0.194,0.945,0.346,0.953,0.342,1,0,1
+      threshold: 30
+      contour_area: 10
+      improve_contrast: true
+    zones:
+      driveway:
+        coordinates: 
+          0.204,0.71,0.201,0.942,0.405,0.956,0.43,0.878,1,0.922,1,0.799,0.842,0.814,0.777,0.719,0.792,0.66,0.21,0.533
+        loitering_time: 0
+        inertia: 3
+    review:
+      detections: {}
+      alerts:
+        required_zones: driveway
+objects: # https://docs.frigate.video/configuration/objects/
+  track:
+    - person
+    - car
 tls:
-  enabled: false
+  enabled: true
 detect:
-  enabled: false
+  enabled: true
+record:
+  enabled: true
+  retain:  # retain all?
+    days: 1
+  alerts:
+    retain:  # retain alerts
+      days: 7
+  detections:
+    retain:  # retain detections
+      days: 7
+review:
+  alerts:
+    enabled: true
+    labels:
+      - person
+  detections:
+    enabled: true
+    labels:
+      - car
+snapshots:
+  enabled: true
+  retain:
+    default: 7
 version: 0.16-0
+semantic_search:
+  enabled: false
+  model_size: small
+face_recognition:
+  enabled: false
+  model_size: small
+lpr:
+  enabled: false
+classification:
+  bird:
+    enabled: false
+notifications:
+  enabled: true
+  email: frigate@shady.icu
+  cooldown: 30
+camera_groups:
+  cams:
+    order: 1
+    icon: LuBookImage
+    cameras:
+      - outside_cam
