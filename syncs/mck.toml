@@ -1,15 +1,4 @@
 [[stack]]
-name = "filebrowser-mck"
-tags = ["mck", "criticality: 5"]
-[stack.config]
-server = "mck"
-project_name = "filebrowser-mck"
-linked_repo = "compose_main"
-run_directory = "filebrowser"
-
-##
-
-[[stack]]
 name = "plex-mck"
 tags = ["mck", "env", "criticality: 1"]
 [stack.config]
@@ -50,7 +39,7 @@ env_file_path = "/etc/komodo/env/loggifly-mck.env"
 
 [[stack]]
 name = "forgejo-mck"
-tags = ["mck", "criticality: 1"]
+tags = ["mck", "criticality: 3"]
 [stack.config]
 server = "mck"
 project_name = "forgejo-mck"
