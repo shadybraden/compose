@@ -83,10 +83,6 @@ lpr:
 classification:
   bird:
     enabled: false
-notifications:
-  enabled: true
-  email: frigate@shady.icu
-  cooldown: 30
 camera_groups:
   cams:
     order: 1
