@@ -6,6 +6,7 @@ services:
       - /data/config_storage/all_mck:/srv/data/all_mck:ro
       - /data/config_storage/filebrowserquantum/config.yaml:/home/filebrowser/config.yaml
       - /data/config_storage/filebrowserquantum/database.db:/home/filebrowser/database.db
+    user: 1000:1000
     ports:
       - 8080:80
     image: gtstef/filebrowser:1.2.1-beta
