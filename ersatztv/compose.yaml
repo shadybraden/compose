@@ -8,7 +8,7 @@ services:
       - /data/config_storage/ersatztv/config:/config
       - /data/mnt:/data/mnt:ro
     restart: unless-stopped
-    image: ghcr.io/ersatztv/ersatztv:v26.1.1
+    image: ghcr.io/ersatztv/ersatztv:v26.2.0
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
