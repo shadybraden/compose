@@ -90,6 +90,13 @@ executions = [
   { execution.type = "DeployStack", execution.params.stack = "skywatch", execution.params.services = [], enabled = true }
 ]
 
+[[procedure.config.stage]]
+name = "docker down"
+enabled = true
+executions = [
+  { execution.type = "DestroyStack", execution.params.stack = "skywatch", execution.params.services = [], execution.params.remove_orphans = false, enabled = true }
+]
+
 ##
 
 [[procedure]]
