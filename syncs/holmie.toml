@@ -175,7 +175,6 @@ server = "holmie"
 project_name = "renovate"
 linked_repo = "compose_main"
 run_directory = "renovate"
-ignore_services = ["renovate"] # this is so it shows nicer in the dashboard
 additional_env_files = ["/etc/komodo/domain.env"]
 env_file_path = "/etc/komodo/env/renovate.env"
 
