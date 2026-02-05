@@ -42,6 +42,13 @@ executions = [
 ]
 
 [[procedure.config.stage]]
+name = "pause"
+enabled = true
+executions = [
+  { execution.type = "Sleep", execution.params.duration_ms = 900000, enabled = true }
+]
+
+[[procedure.config.stage]]
 name = "docker down"
 enabled = true
 executions = [
