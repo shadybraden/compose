@@ -9,20 +9,3 @@ build_path = "/etc/komodo/stacks/skywatch/skywatch"
 image_registry = [
   { domain = "git.holmlab.org", account = "shady" }
 ]
-
-##
-
-[[build]]
-name = "tidal-ui"
-[build.config]
-builder = "holmie"
-image_name = "tidal-ui"
-files_on_host = true
-build_path = "/etc/komodo/repos/tidal-ui"
-image_registry = [
-  { domain = "git.holmlab.org", account = "shady" }
-]
-pre_build.path = "/etc/komodo/repos/tidal-ui"
-pre_build.command = """
-git pull
-"""

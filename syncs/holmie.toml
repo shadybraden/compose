@@ -770,20 +770,6 @@ env_file_path = "/etc/komodo/env/qui-holmie.env"
 ##
 
 [[stack]]
-name = "tidal-ui-holmie"
-tags = ["holmie", "criticality: 5"]
-[stack.config]
-server = "holmie"
-project_name = "tidal-ui-holmie"
-auto_pull = false
-linked_repo = "compose_main"
-run_directory = "tidal-ui"
-env_file_path = "/etc/komodo/env/tidal-ui-holmie.env"
-additional_env_files = ["/etc/komodo/domain.env"]
-
-##
-
-[[stack]]
 name = "synapse-holmie"
 tags = ["holmie", "criticality: 3"]
 [stack.config]

@@ -177,8 +177,7 @@ executions = [
   { execution.type = "DestroyStack", execution.params.stack = "qbittorrent-holmie", execution.params.services = [], execution.params.remove_orphans = false, enabled = true },
   { execution.type = "DestroyStack", execution.params.stack = "jackett-holmie", execution.params.services = [], execution.params.remove_orphans = false, enabled = true },
   { execution.type = "DestroyStack", execution.params.stack = "searxng-holmie", execution.params.services = [], execution.params.remove_orphans = false, enabled = true },
-  { execution.type = "DestroyStack", execution.params.stack = "freshrss-holmie", execution.params.services = [], execution.params.remove_orphans = false, enabled = true },
-  { execution.type = "DestroyStack", execution.params.stack = "tidal-ui-holmie", execution.params.services = [], execution.params.remove_orphans = false, enabled = true }
+  { execution.type = "DestroyStack", execution.params.stack = "freshrss-holmie", execution.params.services = [], execution.params.remove_orphans = false, enabled = true }
 ]
 
 [[procedure.config.stage]]
@@ -188,8 +187,7 @@ executions = [
   { execution.type = "DeployStack", execution.params.stack = "qbittorrent-holmie", execution.params.services = [], enabled = true },
   { execution.type = "DeployStack", execution.params.stack = "jackett-holmie", execution.params.services = [], enabled = true },
   { execution.type = "DeployStack", execution.params.stack = "searxng-holmie", execution.params.services = [], enabled = true },
-  { execution.type = "DeployStack", execution.params.stack = "freshrss-holmie", execution.params.services = [], enabled = true },
-  { execution.type = "DeployStack", execution.params.stack = "tidal-ui-holmie", execution.params.services = [], enabled = true }
+  { execution.type = "DeployStack", execution.params.stack = "freshrss-holmie", execution.params.services = [], enabled = true }
 ]
 
 ##
