@@ -269,11 +269,6 @@ run_build = false
 linked_repo = "compose_main"
 reclone = false
 run_directory = "skywatch"
-pre_deploy.command = """
-  # Add multiple commands on new lines. Supports comments.
-  # docker build -t skywatch .
-"""
-build_extra_args = []
 additional_env_files = ["/etc/komodo/domain.env"]
 env_file_path = "/etc/komodo/env/skywatch.env"
 
