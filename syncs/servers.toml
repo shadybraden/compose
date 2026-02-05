@@ -60,7 +60,7 @@ name = "turret"
 description = "192.168.70.174"
 tags = ["turret"]
 [server.config]
-tags = ["turret"]
 address = "http://192.168.50.174:8120"
 enabled = true
+auto_prune = false
 send_unreachable_alerts = false
