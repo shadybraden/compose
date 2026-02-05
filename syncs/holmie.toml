@@ -269,7 +269,6 @@ run_build = false
 linked_repo = "compose_main"
 reclone = false
 run_directory = "skywatch"
-ignore_services = ["skywatch"] # this is so it shows nicer in the dashboard 
 pre_deploy.command = """
   # Add multiple commands on new lines. Supports comments.
   # docker build -t skywatch .
