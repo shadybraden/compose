@@ -29,7 +29,7 @@ services:
         max-file: "3"
     container_name: netalertx
     restart: unless-stopped
-    image: jokobsk/netalertx:26.2.4
+    image: jokobsk/netalertx:26.2.6
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
