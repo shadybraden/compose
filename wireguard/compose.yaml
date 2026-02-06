@@ -1,7 +1,7 @@
 ---
 services:
   wg-easy:
-    image: ghcr.io/wg-easy/wg-easy:15.2.1
+    image: ghcr.io/wg-easy/wg-easy:15.2.2
     container_name: wg-easy
     environment:
       WG_DEVICE: enp2s0  # https://github.com/wg-easy/wg-easy/issues/1795#issuecomment-2900911182
