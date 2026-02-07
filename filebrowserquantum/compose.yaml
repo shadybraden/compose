@@ -9,7 +9,7 @@ services:
     user: 1000:1000
     ports:
       - 8080:80
-    image: gtstef/filebrowser:1.1.1-stable
+    image: gtstef/filebrowser:1.1.2-stable
     environment:
       - FILEBROWSER_ADMIN_PASSWORD=${FILEBROWSER_ADMIN_PASSWORD}
       - FILEBROWSER_DATABASE=/home/filebrowser/database.db
