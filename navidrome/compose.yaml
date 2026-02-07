@@ -11,7 +11,7 @@ services:
       - ND_LOGLEVEL=info
       - ND_SCANSCHEDULE=100m
       - ND_ENABLEINSIGHTSCOLLECTOR=false  # turn off telemetry
-    image: deluan/navidrome:0.60.0
+    image: deluan/navidrome:0.60.2
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
