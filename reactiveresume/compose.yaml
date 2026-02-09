@@ -1,143 +1,56 @@
----
-# In this Docker Compose example, it assumes that you maintain a reverse proxy externally (or chose not to).
-# The only two exposed ports here are from minio (:9000) and the app itself (:3000).
-# If these ports are changed, ensure that the env vars passed to the app are also changed accordingly.
-
 services:
-  # Database (Postgres)
-  postgres_resume:
-    image: postgres:16-alpine
-    container_name: postgres_resume
+  postgres:
+    image: postgres:15.15
     restart: unless-stopped
-    volumes:
-      - /data/config_storage/reactiveresume/postgres_data:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
       interval: 10s
       timeout: 5s
-      retries: 5
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
-    networks:
-      - intranet
+      retries: 10
 
-  # Storage (for image uploads)
-  minio:
-    image: minio/minio:RELEASE.2025-06-13T11-33-47Z
-    container_name: minio
+  printer:
+    image: ghcr.io/browserless/chromium:v2.39.0
     restart: unless-stopped
-    command: server /data
     ports:
-      - "9000:9000"
-    volumes:
-      - /data/config_storage/reactiveresume/minio_data:/data
+      - "4000:3000"
     environment:
-      MINIO_ROOT_USER: minioadmin
-      MINIO_ROOT_PASSWORD: minioadmin
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
-    networks:
-      - intranet
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.resume-minio.entrypoints=http"
-      - "traefik.http.routers.resume-minio.rule=Host(`resume-minio.${DOMAIN}`)"
-      - "traefik.http.middlewares.resume-minio-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.resume-minio.middlewares=resume-minio-https-redirect"
-      - "traefik.http.routers.resume-minio-secure.entrypoints=https"
-      - "traefik.http.routers.resume-minio-secure.rule=Host(`resume-minio.${DOMAIN}`)"
-      - "traefik.http.routers.resume-minio-secure.tls=true"
-      - "traefik.http.routers.resume-minio-secure.service=resume-minio"
-      - "traefik.http.services.resume-minio.loadbalancer.server.port=9000"  # port of the service.
-      - "traefik.docker.network=intranet"
+      - HEALTH=true
+      - CONCURRENT=20
+      - QUEUED=10
+      # Optional: Set a token for authentication
+      # - TOKEN=your-secret-token
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/pressure?token=your-secret-token"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
 
-  # Chrome Browser (for printing and previews)
-  chrome:
-    image: ghcr.io/browserless/chromium:v2.18.0  # Upgrading to newer versions causes issues
-    container_name: chrome
-    restart: unless-stopped
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-    environment:
-      HEALTH: "true"
-      TOKEN: chrome_token
-      PROXY_HOST: "chrome"
-      PROXY_PORT: 3000
-      PROXY_SSL: "false"
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
-    networks:
-      - intranet
-
-  app:
-    image: amruthpillai/reactive-resume:v4.5.6
-    container_name: app
+  reactive-resume:
+    image: amruthpillai/reactive-resume:v5.0.7
     restart: unless-stopped
     ports:
       - "3000:3000"
+    env_file:
+      - .env
+    volumes:
+      # Used when S3 is not configured; keeps uploads persistent
+      - ./data:/app/data
     depends_on:
-      - postgres_resume
-      - minio
-      - chrome
-    environment:
-      # -- Environment Variables --
-      PORT: 3000
-      NODE_ENV: production
+      postgres:
+        condition: service_healthy
+      printer:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
-      # -- URLs --
-      PUBLIC_URL: https://resume.${DOMAIN}
-      STORAGE_URL: https://resume-minio.${DOMAIN}/default
-
-      # -- Printer (Chrome) --
-      CHROME_TOKEN: chrome_token
-      CHROME_URL: ws://chrome:3000
-
-      # -- Database (Postgres) --
-      DATABASE_URL: postgresql://postgres:postgres@postgres_resume:5432/postgres
-
-      # -- Auth --
-      ACCESS_TOKEN_SECRET: access_token_secret
-      REFRESH_TOKEN_SECRET: refresh_token_secret
-
-      # -- Emails --
-      MAIL_FROM: noreply@localhost
-      # SMTP_URL: smtp://user:pass@smtp:587 # Optional
-
-      # -- Storage (Minio) --
-      STORAGE_ENDPOINT: minio
-      STORAGE_PORT: 9000
-      STORAGE_REGION: us-east-1  # Optional
-      STORAGE_BUCKET: default
-      STORAGE_ACCESS_KEY: minioadmin
-      STORAGE_SECRET_KEY: minioadmin
-      STORAGE_USE_SSL: "false"
-      STORAGE_SKIP_BUCKET_CHECK: "false"
-
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
-    networks:
-      - intranet
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.resume.entrypoints=http"
-      - "traefik.http.routers.resume.rule=Host(`resume.${DOMAIN}`)"
-      - "traefik.http.middlewares.resume-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.resume.middlewares=resume-https-redirect"
-      - "traefik.http.routers.resume-secure.entrypoints=https"
-      - "traefik.http.routers.resume-secure.rule=Host(`resume.${DOMAIN}`)"
-      - "traefik.http.routers.resume-secure.tls=true"
-      - "traefik.http.routers.resume-secure.service=resume"
-      - "traefik.http.services.resume.loadbalancer.server.port=3000"  # port of the service.
-      - "traefik.docker.network=intranet"
-      - "homepage.group=Other"
-      - "homepage.name=resume"
-      - "homepage.icon=/images/reactive-resume.png"
-      - "homepage.href=https://resume.${DOMAIN}/"
-
-networks:
-  intranet:
-    external: true
+volumes:
+  postgres_data:
