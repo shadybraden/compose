@@ -49,7 +49,7 @@ services:
     environment:
      - TZ="Etc/UTC"
      - APP_URL="https://resume.${DOMAIN}"
-     - PRINTER_APP_URL="http://host.docker.internal:4000"
+     - PRINTER_APP_URL="http://localhost:4000"
      - PRINTER_ENDPOINT="ws://printer:4000"
      - DATABASE_URL="postgresql://postgres:postgres@postgres:5432/postgres"
     volumes:
