@@ -77,7 +77,7 @@ services:
       - "traefik.http.routers.resume-secure.rule=Host(`resume.${DOMAIN}`)"
       - "traefik.http.routers.resume-secure.tls=true"
       - "traefik.http.routers.resume-secure.service=resume"
-      - "traefik.http.services.resume.loadbalancer.server.port=80"  # port of the service.
+      - "traefik.http.services.resume.loadbalancer.server.port=3000"  # port of the service.
       - "traefik.docker.network=intranet"
 
 networks:
