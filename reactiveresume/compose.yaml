@@ -29,7 +29,7 @@ services:
       - QUEUED=10
       - TOKEN=${TOKEN}
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/pressure?token=your-secret-token"]
+      test: ["CMD", "curl", "-f", "http://localhost:3000/pressure?token=${TOKEN}"]
       interval: 10s
       timeout: 5s
       retries: 10
