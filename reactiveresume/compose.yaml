@@ -1,3 +1,4 @@
+---
 services:
   postgres:
     image: postgres:15.15
@@ -14,10 +15,6 @@ services:
       interval: 10s
       timeout: 5s
       retries: 10
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
-    networks:
-      - intranet
 
   printer:
     image: ghcr.io/browserless/chromium:v2.39.0
@@ -35,10 +32,6 @@ services:
       interval: 10s
       timeout: 5s
       retries: 10
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
-    networks:
-      - intranet
 
   reactive-resume:
     image: amruthpillai/reactive-resume:v5.0.8
@@ -46,12 +39,8 @@ services:
     restart: unless-stopped
     ports:
       - "3000:3000"
-    environment:
-     - TZ="Etc/UTC"
-     - APP_URL="https://resume.${DOMAIN}"
-     - PRINTER_APP_URL="http://localhost:4000"
-     - PRINTER_ENDPOINT="ws://printer:4000"
-     - DATABASE_URL="postgresql://postgres:postgres@postgres:5432/postgres"
+    env_file:
+      - /etc/komodo/env/reactiveresume.env
     volumes:
       - /data/config_storage/reactiveresume/data:/app/data
     depends_on:
@@ -64,23 +53,3 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
-    networks:
-      - intranet
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.resume.entrypoints=http"
-      - "traefik.http.routers.resume.rule=Host(`resume.${DOMAIN}`)"
-      - "traefik.http.middlewares.resume-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.resume.middlewares=resume-https-redirect"
-      - "traefik.http.routers.resume-secure.entrypoints=https"
-      - "traefik.http.routers.resume-secure.rule=Host(`resume.${DOMAIN}`)"
-      - "traefik.http.routers.resume-secure.tls=true"
-      - "traefik.http.routers.resume-secure.service=resume"
-      - "traefik.http.services.resume.loadbalancer.server.port=3000"  # port of the service.
-      - "traefik.docker.network=intranet"
-
-networks:
-  intranet:
-    external: true
