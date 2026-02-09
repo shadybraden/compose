@@ -14,7 +14,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=America/New_York
-    image: nicolargo/glances:4.4.1
+    image: nicolargo/glances:4.5.0
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
