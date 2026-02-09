@@ -39,6 +39,8 @@ services:
     restart: unless-stopped
     ports:
       - "3000:3000"
+    environment:
+     - APP_URL="http://localhost:3000"
     env_file:
       - /etc/komodo/env/reactiveresume.env
     volumes:
