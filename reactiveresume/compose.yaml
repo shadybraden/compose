@@ -29,7 +29,7 @@ services:
       - QUEUED=10
       - TOKEN=${TOKEN}
     healthcheck:
-      test: ["CMD", "curl", "-f", "https://resume.${DOMAIN}/pressure?token=${TOKEN}"]
+      test: ["CMD", "curl", "-f", "http://localhost:3000/pressure?token=your-secret-token"]
       interval: 10s
       timeout: 5s
       retries: 10
@@ -57,7 +57,7 @@ services:
       printer:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "curl", "-f", "https://resume.${DOMAIN}/api/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
       interval: 30s
       timeout: 10s
       retries: 3
