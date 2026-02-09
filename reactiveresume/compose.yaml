@@ -8,6 +8,7 @@ services:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+      TZ: "America/New_York"
     volumes:
       - /data/config_storage/reactiveresume/postgres_data:/var/lib/postgresql
     healthcheck:
@@ -27,6 +28,7 @@ services:
       - CONCURRENT=20
       - QUEUED=10
       - TOKEN=${TOKEN}
+      - TZ= "America/New_York"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/pressure?token=${TOKEN}"]
       interval: 10s
