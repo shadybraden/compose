@@ -32,7 +32,7 @@ services:
       - CONCURRENT=20
       - QUEUED=10
       - TOKEN=${TOKEN}
-      - TZ= "America/New_York"
+      - TZ="America/New_York"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/pressure?token=${TOKEN}"]
       interval: 10s
