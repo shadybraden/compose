@@ -42,7 +42,7 @@ services:
       - intranet
 
   dawarich_app:
-    image: freikin/dawarich:1.0.4
+    image: freikin/dawarich:1.1.0
     container_name: dawarich_app
     volumes:
       - /data/config_storage/dawarich/dawarich_public:/var/app/public
@@ -120,7 +120,7 @@ services:
       - "homepage.href=https://dawarich.${DOMAIN}/"
 
   dawarich_sidekiq:
-    image: freikin/dawarich:1.0.4
+    image: freikin/dawarich:1.1.0
     container_name: dawarich_sidekiq
     volumes:
       - /data/config_storage/dawarich/dawarich_public:/var/app/public
