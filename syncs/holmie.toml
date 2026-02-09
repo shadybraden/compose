@@ -944,19 +944,6 @@ env_file_path = "/etc/komodo/env/bettershift-holmie.env"
 ##
 
 [[stack]]
-name = "stirlingpdf-holmie"
-tags = ["holmie", "criticality: 1"]
-[stack.config]
-server = "holmie"
-project_name = "stirlingpdf-holmie"
-linked_repo = "compose_main"
-run_directory = "stirlingpdf"
-additional_env_files = ["/etc/komodo/domain.env"]
-env_file_path = "/etc/komodo/env/stirlingpdf-holmie.env"
-
-##
-
-[[stack]]
 name = "mqtt-holmie"
 tags = ["holmie", "criticality: 1"]
 [stack.config]
