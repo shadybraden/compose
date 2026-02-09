@@ -16,6 +16,10 @@ services:
       interval: 10s
       timeout: 5s
       retries: 10
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
 
   printer:
     image: ghcr.io/browserless/chromium:v2.39.0
@@ -34,6 +38,10 @@ services:
       interval: 10s
       timeout: 5s
       retries: 10
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
 
   reactive-resume:
     image: amruthpillai/reactive-resume:v5.0.8
@@ -55,3 +63,23 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.resume.entrypoints=http"
+      - "traefik.http.routers.resume.rule=Host(`resume.${DOMAIN}`)"
+      - "traefik.http.middlewares.resume-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.resume.middlewares=resume-https-redirect"
+      - "traefik.http.routers.resume-secure.entrypoints=https"
+      - "traefik.http.routers.resume-secure.rule=Host(`resume.${DOMAIN}`)"
+      - "traefik.http.routers.resume-secure.tls=true"
+      - "traefik.http.routers.resume-secure.service=resume"
+      - "traefik.http.services.resume.loadbalancer.server.port=80"  # port of the service.
+      - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true
