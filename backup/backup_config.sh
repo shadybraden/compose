@@ -88,7 +88,7 @@ post_size=$(du -sh /data/backups/)
 
 # Prepare the notification message
 if [[ $error_count -eq 0 ]]; then
-    message="✅-$(hostname)!\n$pre_size\n$post_size\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n$sorted_folder_sizes"
+    message="✅-$(hostname)!\n$pre_size\n$post_size\n |--- Folder ---|--- Data size ---|--- Backup size ---|\n$sorted_folder_sizes"
     priority="min"
 else
     message="❌ Backup and pruning completed with errors!\nFolder sizes: ($total_original_human --> $total_backup_human)\n$sorted_folder_sizes\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n$backup_details"
