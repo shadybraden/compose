@@ -18,3 +18,27 @@ services:
       - /data/config_storage/windows:/storage
     restart: unless-stopped
     stop_grace_period: 2m
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.windows.entrypoints=http"
+      - "traefik.http.routers.windows.rule=Host(`windows.${DOMAIN}`)"
+      - "traefik.http.middlewares.windows-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.windows.middlewares=windows-https-redirect"
+      - "traefik.http.routers.windows-secure.entrypoints=https"
+      - "traefik.http.routers.windows-secure.rule=Host(`windows.${DOMAIN}`)"
+      - "traefik.http.routers.windows-secure.tls=true"
+      - "traefik.http.routers.windows-secure.service=windows"
+      - "traefik.http.services.windows.loadbalancer.server.port=8006"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=windows"
+      - "homepage.icon=/images/windows.png"
+      - "homepage.href=https://windows.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true
