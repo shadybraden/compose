@@ -5,7 +5,7 @@ description = "Goal: to get this to trigger on commits to skywatch.py"
 builder = "holmie"
 image_name = "skywatch"
 files_on_host = true
-build_path = "/etc/komodo/stacks/skywatch/skywatch"
+build_path = "/etc/komodo/repos/compose_main/skywatch"
 image_registry = [
   { domain = "git.holmlab.org", account = "shady" }
 ]
