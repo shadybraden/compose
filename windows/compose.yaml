@@ -15,6 +15,6 @@ services:
       - 3389:3389/tcp
       - 3389:3389/udp
     volumes:
-      - ${CONFIG_STORAGE_LOCATION}/windows:/storage
+      - /data/config_storage/windows:/storage
     restart: unless-stopped
     stop_grace_period: 2m
