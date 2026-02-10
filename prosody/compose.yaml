@@ -6,6 +6,7 @@ services:
       - /data/config_storage/prosody/modules:/usr/lib/prosody-modules
       - /data/dont_backup/prosody:/var/log/prosody
       - /data/config_storage/prosody/configuration:/etc/prosody
+      - /data/config_storage/komodo/etc_komodo/repos/compose_main/prosody/prosody.cfg.lua:/etc/prosody/prosody.cfg.lua:ro
     environment:
       - PASSWORD=${PASSWORD}
       - DOMAIN=xmpp.${DOMAIN}
