@@ -84,7 +84,7 @@ total_backup_human=$(numfmt --to=iec-i --from=auto "$total_backup_size")
 
 # Prepare the notification message
 if [[ $error_count -eq 0 ]]; then
-    message="✅-$(hostname)!\nVols: ($total_original_human --> $total_backup_human)\n$sorted_folder_sizes"
+    message="✅-$(hostname)!\nVols: ($total_original_human --> $total_backup_human)\n\n$sorted_folder_sizes"
     priority="min"
 else
     message="❌ Backup and pruning completed with errors!\nFolder sizes: ($total_original_human --> $total_backup_human)\n$sorted_folder_sizes\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n$backup_details"
