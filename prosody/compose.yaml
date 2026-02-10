@@ -11,8 +11,10 @@ services:
       - DOMAIN=xmpp.${DOMAIN}
       - LOCAL=local
     ports:
-      - 5269:5269  # s2s port
-      - 5222:5222  # c2s port - main one
+      - "5222:5222"  # Client-to-server connections
+      - "5269:5269"  # Server-to-server federation
+      - "5280:5280"  # HTTP admin and BOSH
+      - "5281:5281"  # HTTPS admin
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
@@ -27,7 +29,7 @@ services:
       - "traefik.http.routers.xmpp-secure.rule=Host(`xmpp.${DOMAIN}`)"
       - "traefik.http.routers.xmpp-secure.tls=true"
       - "traefik.http.routers.xmpp-secure.service=xmpp"
-      - "traefik.http.services.xmpp.loadbalancer.server.port=5222"  # port of the service.
+      - "traefik.http.services.xmpp.loadbalancer.server.port=5281"  # port of the service.
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=xmpp"
