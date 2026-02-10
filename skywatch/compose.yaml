@@ -4,10 +4,6 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - /data/config_storage/komodo/etc_komodo/repos/compose_main/skywatch/skywatch.py:/app/skywatch.py
-      - /data/config_storage/komodo/etc_komodo/repos/compose_main/skywatch/watchlist.txt:/app/watchlist.txt
-      - /data/config_storage/komodo/etc_komodo/repos/compose_main/skywatch/data.json:/app/data.json
-      - /data/config_storage/komodo/etc_komodo/repos/compose_main/skywatch/ignorelist.txt:/app/ignorelist.txt
-      - /data/config_storage/recents.txt:/app/recents.txt  # note that this is out of the stack folder. this is so we can do a full reclone. see komodo.toml
+      - /data/config_storage/recents.txt:/app/recents.txt
     container_name: skywatch
     image: git.holmlab.org/shady/skywatch:1.3.1
