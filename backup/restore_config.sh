@@ -44,3 +44,8 @@ else
     echo "Restore failed"
     exit 1
 fi
+
+# UNTESTED, USE AS REFERENCE:
+
+# Copy files from RESTORE_PATH to config_storage
+# cp -r "/data/${RESTORE_PATH}/data/config_storage/${FOLDERNAME}/" /data/config_storage/
