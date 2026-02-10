@@ -24,6 +24,8 @@ fi
 # Export the Restic password file
 export RESTIC_PASSWORD_FILE="$PASSWORD_FILE"
 
+pre_size=$(du -sh /data/config_storage/)
+
 # Loop through each folder in the $DATA_STORAGE directory
 for folder in "$DATA_STORAGE"/*; do
     if [[ -d "$folder" ]]; then
@@ -82,9 +84,11 @@ sorted_folder_sizes=$(echo -e "$folder_sizes" | sort -hr -k2)
 total_original_human=$(numfmt --to=iec-i --from=auto "$total_original_size")
 total_backup_human=$(numfmt --to=iec-i --from=auto "$total_backup_size")
 
+post_size=$(du -sh /data/backups/)
+
 # Prepare the notification message
 if [[ $error_count -eq 0 ]]; then
-    message="✅-$(hostname)!\nVols: ($total_original_human --> $total_backup_human)\n$sorted_folder_sizes"
+    message="✅-$(hostname)!\n$pre_size\n$post_size\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n$sorted_folder_sizes"
     priority="min"
 else
     message="❌ Backup and pruning completed with errors!\nFolder sizes: ($total_original_human --> $total_backup_human)\n$sorted_folder_sizes\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n$backup_details"
