@@ -5,10 +5,10 @@ services:
     container_name: ejabberd-xmpp
     restart: unless-stopped
     ports:
-      - "5222:5222"   # XMPP client connections
-      - "5269:5269"   # XMPP server-to-server
-      - "5443:5443"   # HTTPS admin panel and API
-      - "1883:1883"   # MQTT support (optional)
+      - "5222:5222"  # XMPP client connections
+      - "5269:5269"  # XMPP server-to-server
+      - "5443:5443"  # HTTPS admin panel and API
+      #- "1883:1883"  # MQTT support (optional)
     environment:
       - ERLANG_NODE_ARG=ejabberd@localhost
       - CTL_ON_CREATE=register admin chat.${DOMAIN} ${PASSWORD}
