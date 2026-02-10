@@ -59,8 +59,9 @@ for ac in data.get('aircraft', []):
 
     # set vars for message:
     title = "WATCH | " + short_type_value + " | " + desc_value
-    message = r_dst_value + " mi | " + "alt:" + alt_baro + ownOp_value +'\n' + "https://adsb.holmlab.org/?icao=" + hex_value
+    message = r_dst_value + " mi | " + "alt:" + alt_baro + " | " + ownOp_value +'\n' + "https://adsb.holmlab.org/?icao=" + hex_value
     click = "https://adsb.lol/?zoom=11&icao=" + hex_value
+    copy_url = click
 
     if dbFlags == 0: # if not millitary, check watchlist.txt
         with open("watchlist.txt", "r") as file:
@@ -144,18 +145,19 @@ for ac in data.get('aircraft', []):
 
     # check recents.txt for current hex
     # if match, send_message = 0
-    try:
-        with open("recents.txt", "r") as file:
-            #send_message = 1  # default to sending unless a match is found
-            for line in file:
-                if line[:6].lower() == hex_value.lower(): # only check first 6 characters of the line
-                    # Match found
-                    send_message = 0
-                    break
-    except FileNotFoundError:
-        print("Error: recents.txt not found.")
-    except Exception as e:
-        print("An error occurred:", str(e))
+    if do_download == 1:
+        try:
+            with open("recents.txt", "r") as file:
+                #send_message = 1  # default to sending unless a match is found
+                for line in file:
+                    if line[:6].lower() == hex_value.lower(): # only check first 6 characters of the line
+                        # Match found
+                        send_message = 0
+                        break
+        except FileNotFoundError:
+            print("Error: recents.txt not found.")
+        except Exception as e:
+            print("An error occurred:", str(e))
 
     # Current timestamp in the desired format
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -176,6 +178,7 @@ for ac in data.get('aircraft', []):
             data=(message),
                 headers={
                     "Title": title,
-                    "Click": click,
+                    "Click": copy_url,
                     "Priority": priority,
+                    "Actions": f"copy, Copy url, {copy_url}"
         })
