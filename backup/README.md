@@ -1,9 +1,6 @@
 # Backups
 
-- [x] backup_config.sh
-- [x] backup_bulk.sh
-- [x] upload.sh
-- [x] restore.sh
+Set permissions via: https://git.holmlab.org/shady/IaC/src/branch/main/restic_perms.yaml
 
 ## backup_config.sh
 
