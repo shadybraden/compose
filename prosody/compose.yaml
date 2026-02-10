@@ -2,6 +2,7 @@
 services:
   prosody:
     image: prosodyim/prosody:13.0
+    container_name: prosody
     volumes:
       - /data/config_storage/prosody/modules:/usr/lib/prosody-modules
       - /data/dont_backup/prosody:/var/log/prosody
