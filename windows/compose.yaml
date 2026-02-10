@@ -38,6 +38,7 @@ services:
       - "homepage.name=windows"
       - "homepage.icon=/images/windows.png"
       - "homepage.href=https://windows.${DOMAIN}/"
+      - "traefik.http.routers.windows-secure.middlewares=tinyauth"
 
 networks:
   intranet:
