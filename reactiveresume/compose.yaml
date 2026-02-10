@@ -44,7 +44,7 @@ services:
       - intranet
 
   reactive-resume:
-    image: amruthpillai/reactive-resume:v5.0.8
+    image: amruthpillai/reactive-resume:v5.0.9
     container_name: reactive-resume
     restart: unless-stopped
     ports:
