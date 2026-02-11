@@ -2,7 +2,7 @@
 services:
   searxng:
     container_name: searxng
-    image: docker.io/searxng/searxng:2026.2.6-bd69e9c7a
+    image: docker.io/searxng/searxng:2026.2.11-970f2b843
     restart: unless-stopped
     volumes:
       - /data/config_storage/searxng:/etc/searxng:rw
