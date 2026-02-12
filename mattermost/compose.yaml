@@ -39,6 +39,8 @@ services:
       - /data/config_storage/mattermost/plugins:/mattermost/plugins:rw
       - /data/config_storage/mattermost/client_plugins:/mattermost/client/plugins:rw
       - /data/config_storage/mattermost/bleve_indexes:/mattermost/bleve-indexes:rw
+    ports:
+      - "8065:8065"
     environment:
       - TZ=America/New_York
       - APP_PORT=8065
