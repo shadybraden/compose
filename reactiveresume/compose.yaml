@@ -22,7 +22,7 @@ services:
       - intranet
 
   printer:
-    image: ghcr.io/browserless/chromium:v2.39.0
+    image: ghcr.io/browserless/chromium:v2.40.0
     container_name: printer
     restart: unless-stopped
     ports:
