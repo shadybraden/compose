@@ -1,7 +1,7 @@
 ---
 services:
   synapse:
-    image: docker.io/matrixdotorg/synapse:v1.147.0
+    image: docker.io/matrixdotorg/synapse:v1.147.1
     container_name: synapse
     restart: unless-stopped
     environment:  # https://github.com/element-hq/synapse/blob/develop/docker/README.md
