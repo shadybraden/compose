@@ -27,7 +27,7 @@ env_file_path = "/etc/komodo/env/immich.env"
 ##
 
 [[stack]]
-name = "wireguard"
+name = "wireguard-snow"
 tags = ["snow", "env", "criticality: 1"]
 [stack.config]
 server = "snow"
