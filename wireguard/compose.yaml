@@ -5,6 +5,7 @@ services:
     container_name: wg-easy
     environment:
       WG_DEVICE: enp2s0  # https://github.com/wg-easy/wg-easy/issues/1795#issuecomment-2900911182
+      INSECURE: true
     networks:
       wg:
         ipv4_address: 10.42.42.42
