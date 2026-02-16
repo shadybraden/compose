@@ -66,19 +66,6 @@ env_file_path = "/etc/komodo/env/traefik-snow.env"
 ##
 
 [[stack]]
-name = "homepage-snow"
-tags = ["snow", "criticality: 1"]
-[stack.config]
-server = "snow"
-project_name = "homepage-snow"
-linked_repo = "compose_main"
-run_directory = "homepage"
-additional_env_files = ["/etc/komodo/domain.env"]
-env_file_path = "/etc/komodo/env/homepage-snow.env"
-
-##
-
-[[stack]]
 name = "wireguard-snow"
 tags = ["snow", "criticality: 1"]
 [stack.config]
