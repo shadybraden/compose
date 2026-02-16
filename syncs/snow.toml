@@ -31,7 +31,7 @@ name = "wireguard-snow"
 tags = ["snow", "env", "criticality: 1"]
 [stack.config]
 server = "snow"
-project_name = "wireguard"
+project_name = "wireguard-snow"
 linked_repo = "compose_main"
 run_directory = "wireguard"
 additional_env_files = ["/etc/komodo/domain.env"]
