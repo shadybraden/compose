@@ -33,7 +33,7 @@ send_unreachable_alerts = true
 
 [[server]]
 name = "snow"
-description = "192.168.x.x | snow.local | Optiplex 7040"
+description = "192.168.50.203 | snow.local | Optiplex 7040"
 tags = ["snow"]
 [server.config]
 tags = ["snow"]
