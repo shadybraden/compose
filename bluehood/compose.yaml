@@ -1,6 +1,6 @@
 services:
   bluehood:
-    image: ghcr.io/dannymcc/bluehood:0.3.0
+    image: ghcr.io/dannymcc/bluehood:0.2.0
     container_name: bluehood
     restart: no
     # Required for Bluetooth access
