@@ -4,7 +4,7 @@ services:
     volumes:
       - /data/config_storage/ai/open-webui:/app/backend/data
     container_name: open-webui
-    image: ghcr.io/open-webui/open-webui:v0.8.2
+    image: ghcr.io/open-webui/open-webui:v0.8.3
     restart: unless-stopped
 #    environment:
 #      - OLLAMA_BASE_URL=https://ollama.${DOMAIN}
