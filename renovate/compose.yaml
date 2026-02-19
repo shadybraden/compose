@@ -15,7 +15,7 @@ services:
       - timezone=America/New_York
       - schedule="* 8-18 * * 1-5"  # not for auto-running. use cron for that
       - RENOVATE_PR_HOURLY_LIMIT=100
-    image: renovate/renovate:43.25.7
+    image: renovate/renovate:43.25.11
     container_name: renovate
     security_opt:
       - no-new-privileges:true  # helps to increase security
