@@ -1,0 +1,58 @@
+services:
+  semaphore_db:
+    image: postgres:18.2
+    environment:
+      POSTGRES_USER: semaphore
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: semaphore
+    volumes:
+      - /data/config_storage/semaphore/semaphore_postgres:/var/lib/postgresql/data
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+
+  semaphore:
+    ports:
+      - 3000:3000
+    depends_on:
+      - semaphore_db
+    image: public.ecr.aws/semaphore/pro/server:v2.17.0
+    environment:
+      SEMAPHORE_DB_DIALECT: postgres
+      SEMAPHORE_DB_HOST: semaphore_db
+      SEMAPHORE_DB_NAME: semaphore
+      SEMAPHORE_DB_USER: semaphore
+      SEMAPHORE_DB_PASS: ${POSTGRES_PASSWORD}
+      SEMAPHORE_ADMIN: admin
+      SEMAPHORE_ADMIN_PASSWORD: ${SEMAPHORE_ADMIN_PASSWORD}
+      SEMAPHORE_ADMIN_NAME: admin
+      SEMAPHORE_ADMIN_EMAIL: ${SEMAPHORE_ADMIN_EMAIL}
+    volumes:
+      - /data/config_storage/semaphore/semaphore_data:/var/lib/semaphore
+      - /data/config_storage/semaphore/semaphore_config:/etc/semaphore
+      - /data/config_storage/semaphore/semaphore_tmp:/tmp/semaphore
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.semaphore.entrypoints=http"
+      - "traefik.http.routers.semaphore.rule=Host(`semaphore.${DOMAIN}`)"
+      - "traefik.http.middlewares.semaphore-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.semaphore.middlewares=semaphore-https-redirect"
+      - "traefik.http.routers.semaphore-secure.entrypoints=https"
+      - "traefik.http.routers.semaphore-secure.rule=Host(`semaphore.${DOMAIN}`)"
+      - "traefik.http.routers.semaphore-secure.tls=true"
+      - "traefik.http.routers.semaphore-secure.service=semaphore"
+      - "traefik.http.services.semaphore.loadbalancer.server.port=3000"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=semaphore"
+      - "homepage.icon=/images/semaphore.png"
+      - "homepage.href=https://semaphore.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true
