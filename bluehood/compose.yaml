@@ -11,7 +11,7 @@ services:
     # Mount D-Bus socket for BlueZ communication
     volumes:
       - /var/run/dbus:/var/run/dbus:ro
-      - /data/config_storage/bluehood-data:/data
+      - /data/config_storage/bluehood:/data
 
     # Optional: specify Bluetooth adapter (default: auto-detect)
     # environment:
