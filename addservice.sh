@@ -20,4 +20,4 @@ env_file_path = "/etc/komodo/env/$SERVICE-$SERVERNAME.env"
 EOF
 )
 
-echo "$TOML_BLOCK" >> syncs/$SERVERNAME.toml
+echo "$TOML_BLOCK" >> ../IaC/syncs/$SERVERNAME.toml
