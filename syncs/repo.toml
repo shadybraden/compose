@@ -28,3 +28,14 @@ git_provider = "git.holmlab.org"
 git_account = "komodo"
 repo = "shady/JetLagHideAndSeek"
 branch = "master"
+
+##
+
+[[repo]]
+name = "IaC"
+[repo.config]
+server = "holmie"
+git_provider = "git.holmlab.org"
+git_account = "komodo"
+repo = "shady/IaC"
+branch = "master"
