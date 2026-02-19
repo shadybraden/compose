@@ -6,7 +6,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: semaphore
     volumes:
-      - /data/config_storage/semaphore/semaphore_postgres:/var/lib/postgresql/data
+      - /data/config_storage/semaphore/semaphore_postgres:/var/lib/postgresql
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
