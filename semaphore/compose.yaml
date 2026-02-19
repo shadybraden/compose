@@ -18,7 +18,7 @@ services:
       - 3000:3000
     depends_on:
       - semaphore_db
-    image: public.ecr.aws/semaphore/pro/server:v2.17.0
+    image: public.ecr.aws/semaphore/pro/server:v2.17.10
     user: 1000:1000
     environment:
       SEMAPHORE_DB_DIALECT: postgres
