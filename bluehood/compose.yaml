@@ -1,40 +1,33 @@
 services:
   bluehood:
-    image: ghcr.io/dannymcc/bluehood:0.3.4
+    image: ghcr.io/dannymcc/bluehood:latest
     container_name: bluehood
     restart: no
+
     # Required for Bluetooth access
     network_mode: host
     privileged: true
+
     # Mount D-Bus socket for BlueZ communication
     volumes:
       - /var/run/dbus:/var/run/dbus:ro
       - /data/config_storage/bluehood-data:/data
+
     # Optional: specify Bluetooth adapter (default: auto-detect)
     # environment:
     #   - BLUEHOOD_ADAPTER=hci0
-    # Web dashboard available at http://localhost:8080
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
-    #networks:
-    #  - intranet
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.bluehood.entrypoints=http"
-      - "traefik.http.routers.bluehood.rule=Host(`bluehood.${DOMAIN}`)"
-      - "traefik.http.middlewares.bluehood-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.bluehood.middlewares=bluehood-https-redirect"
-      - "traefik.http.routers.bluehood-secure.entrypoints=https"
-      - "traefik.http.routers.bluehood-secure.rule=Host(`bluehood.${DOMAIN}`)"
-      - "traefik.http.routers.bluehood-secure.tls=true"
-      - "traefik.http.routers.bluehood-secure.service=bluehood"
-      - "traefik.http.services.bluehood.loadbalancer.server.port=8080"  # port of the service.
-      - "traefik.docker.network=intranet"
-      - "homepage.group=Other"
-      - "homepage.name=bluehood"
-      - "homepage.icon=/images/bluehood.png"
-      - "homepage.href=https://bluehood.${DOMAIN}/"
 
-networks:
-  intranet:
-    external: true
+    # Web dashboard available at http://localhost:8080
+
+    # Pre-flight check: verify BlueZ is available on the host before starting.
+    # If this fails, install BlueZ: sudo apt install bluez && sudo systemctl enable --now bluetooth
+    healthcheck:
+      test: >
+        sh -c 'dbus-send --system --dest=org.freedesktop.DBus
+        --type=method_call --print-reply /org/freedesktop/DBus
+        org.freedesktop.DBus.ListNames 2>/dev/null | grep -q org.bluez
+        || (echo "ERROR: BlueZ (org.bluez) not found on host. Install it with: sudo apt install bluez && sudo systemctl enable --now bluetooth" && exit 1)'
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
