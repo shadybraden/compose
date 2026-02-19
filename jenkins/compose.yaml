@@ -4,7 +4,7 @@ services:
     container_name: jenkins
     volumes:
       - /data/config_storage/jenkins:/var/jenkins_home
-    image: jenkins/jenkins:2.528.3-lts-jdk17
+    image: jenkins/jenkins:2.541.2-lts-jdk17
     user: 1000:1000
     security_opt:
       - no-new-privileges:true  # helps to increase security
