@@ -14,8 +14,8 @@ services:
       - /data/config_storage/bluehood:/data
 
     # Optional: specify Bluetooth adapter (default: auto-detect)
-    # environment:
-    #   - BLUEHOOD_ADAPTER=hci0
+    environment:
+      - BLUEHOOD_ADAPTER=hci0
 
     # Web dashboard available at http://localhost:8080
 
