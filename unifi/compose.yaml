@@ -1,0 +1,37 @@
+---
+services:
+  unifi:
+    image: ghcr.io/goofball222/unifi:10.1.85
+    container_name: unifi
+    restart: unless-stopped
+    ports:
+      - 3478:3478/udp
+      - 8880:8880
+      - 8843:8843
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /data/config_storage/unifi/cert:/usr/lib/unifi/cert
+      - /data/config_storage/unifi/data:/usr/lib/unifi/data
+      - /data/config_storage/unifi/logs:/usr/lib/unifi/logs
+    environment:
+      - TZ=America/New_York
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.unifi.entrypoints=http"
+      - "traefik.http.routers.unifi.rule=Host(`unifi.${DOMAIN}`)"
+      - "traefik.http.middlewares.unifi-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.unifi.middlewares=unifi-https-redirect"
+      - "traefik.http.routers.unifi-secure.entrypoints=https"
+      - "traefik.http.routers.unifi-secure.rule=Host(`unifi.${DOMAIN}`)"
+      - "traefik.http.routers.unifi-secure.tls=true"
+      - "traefik.http.routers.unifi-secure.service=unifi"
+      - "traefik.http.services.unifi.loadbalancer.server.port=8080"  # port of the service.
+      - "traefik.docker.network=intranet"
+
+networks:
+  intranet:
+    external: true
