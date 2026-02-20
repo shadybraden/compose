@@ -1,0 +1,36 @@
+---
+services:
+  seerr:
+    image: ghcr.io/seerr-team/seerr:v3.0.1
+    init: true
+    container_name: seerr
+    environment:
+      - LOG_LEVEL=debug
+      - TZ=America/New_York
+    volumes:
+      - /data/config_storage/seerr:/app/config
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.seerr.entrypoints=http"
+      - "traefik.http.routers.seerr.rule=Host(`seerr.${DOMAIN}`)"
+      - "traefik.http.middlewares.seerr-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.seerr.middlewares=seerr-https-redirect"
+      - "traefik.http.routers.seerr-secure.entrypoints=https"
+      - "traefik.http.routers.seerr-secure.rule=Host(`seerr.${DOMAIN}`)"
+      - "traefik.http.routers.seerr-secure.tls=true"
+      - "traefik.http.routers.seerr-secure.service=seerr"
+      - "traefik.http.services.seerr.loadbalancer.server.port=5055"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=seerr"
+      - "homepage.icon=/images/seerr.png"
+      - "homepage.href=https://seerr.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true
