@@ -28,7 +28,7 @@ services:
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=bluehood"
-      - "homepage.icon=/images/bluehood.png"
+      - "homepage.icon=/images/bluetooth.png"
       - "homepage.href=https://bluehood.${DOMAIN}/"
 
 networks:
