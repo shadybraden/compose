@@ -29,7 +29,7 @@ services:
       - "traefik.http.routers.unifi-secure.rule=Host(`unifi.${DOMAIN}`)"
       - "traefik.http.routers.unifi-secure.tls=true"
       - "traefik.http.routers.unifi-secure.service=unifi"
-      - "traefik.http.services.unifi.loadbalancer.server.port=8080"  # port of the service.
+      - "traefik.http.services.unifi.loadbalancer.server.port=8443"  # port of the service.
       - "traefik.docker.network=intranet"
 
 networks:
