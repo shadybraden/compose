@@ -4,7 +4,7 @@ services:
     image: ghcr.io/dannymcc/bluehood:0.3.5
     container_name: bluehood
     restart: no
-    network_mode: host
+    #network_mode: host
     privileged: true  # required for bluetooth access
     volumes:
       - /var/run/dbus:/var/run/dbus:ro
