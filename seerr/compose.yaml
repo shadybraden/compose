@@ -18,19 +18,19 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.seerr.entrypoints=http"
-      - "traefik.http.routers.seerr.rule=Host(`seerr.${DOMAIN}`)"
+      - "traefik.http.routers.seerr.rule=Host(`media-request.${DOMAIN}`)"
       - "traefik.http.middlewares.seerr-https-redirect.redirectscheme.scheme=https"
       - "traefik.http.routers.seerr.middlewares=seerr-https-redirect"
       - "traefik.http.routers.seerr-secure.entrypoints=https"
-      - "traefik.http.routers.seerr-secure.rule=Host(`seerr.${DOMAIN}`)"
+      - "traefik.http.routers.seerr-secure.rule=Host(`media-request.${DOMAIN}`)"
       - "traefik.http.routers.seerr-secure.tls=true"
       - "traefik.http.routers.seerr-secure.service=seerr"
       - "traefik.http.services.seerr.loadbalancer.server.port=5055"  # port of the service.
       - "traefik.docker.network=intranet"
       - "homepage.group=Media"
-      - "homepage.name=seerr"
-      - "homepage.icon=/images/seerr.png"
-      - "homepage.href=https://seerr.${DOMAIN}/"
+      - "homepage.name=media-request"
+      - "homepage.icon=/images/media-request.png"
+      - "homepage.href=https://media-request.${DOMAIN}/"
 
 networks:
   intranet:
