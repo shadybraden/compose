@@ -4,11 +4,12 @@ services:
     image: ghcr.io/dannymcc/bluehood:0.3.5
     container_name: bluehood
     restart: no
-    #network_mode: host
     privileged: true  # required for bluetooth access
     volumes:
       - /var/run/dbus:/var/run/dbus:ro
       - bluehood-data:/data
+    environment:
+      - NTFY_BASE_URL="https://ntfy.${DOMAIN}"
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
