@@ -11,11 +11,11 @@ services:
     # Mount D-Bus socket for BlueZ communication
     volumes:
       - /var/run/dbus:/var/run/dbus:ro
-      - /data/config_storage/bluehood:/data
+      - bluehood-data:/data
 
     # Optional: specify Bluetooth adapter (default: auto-detect)
-    environment:
-      - BLUEHOOD_ADAPTER=hci0
+    # environment:
+    #   - BLUEHOOD_ADAPTER=hci0
 
     # Web dashboard available at http://localhost:8080
 
@@ -31,3 +31,6 @@ services:
       timeout: 10s
       retries: 3
       start_period: 10s
+
+volumes:
+  bluehood-data:
