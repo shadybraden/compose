@@ -1,23 +1,37 @@
+---
 services:
   bluehood:
     image: ghcr.io/dannymcc/bluehood:0.3.5
     container_name: bluehood
     restart: no
-
-    # Required for Bluetooth access
     network_mode: host
-    privileged: true
-
-    # Mount D-Bus socket for BlueZ communication
+    privileged: true  # required for bluetooth access
     volumes:
       - /var/run/dbus:/var/run/dbus:ro
       - bluehood-data:/data
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.bluehood.entrypoints=http"
+      - "traefik.http.routers.bluehood.rule=Host(`bluehood.${DOMAIN}`)"
+      - "traefik.http.middlewares.bluehood-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.bluehood.middlewares=bluehood-https-redirect"
+      - "traefik.http.routers.bluehood-secure.entrypoints=https"
+      - "traefik.http.routers.bluehood-secure.rule=Host(`bluehood.${DOMAIN}`)"
+      - "traefik.http.routers.bluehood-secure.tls=true"
+      - "traefik.http.routers.bluehood-secure.service=bluehood"
+      - "traefik.http.services.bluehood.loadbalancer.server.port=8080"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=bluehood"
+      - "homepage.icon=/images/bluehood.png"
+      - "homepage.href=https://bluehood.${DOMAIN}/"
 
-    # Optional: specify Bluetooth adapter (default: auto-detect)
-    # environment:
-    #   - BLUEHOOD_ADAPTER=hci0
-
-    # Web dashboard available at http://localhost:8080
-
+networks:
+  intranet:
+    external: true
 volumes:
   bluehood-data:
