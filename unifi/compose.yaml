@@ -9,7 +9,6 @@ services:
       - 8880:8880
       - 8843:8843
       - 8080:8080
-      - 8443:8443
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /data/config_storage/unifi/cert:/usr/lib/unifi/cert
