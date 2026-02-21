@@ -56,6 +56,8 @@ for ac in data.get('aircraft', []):
     alt_baro = str(alt_baro)
     squawk = ac.get('squawk', 'unknown')
     squawk = str(squawk)
+    callsign = ac.get('flight', 'unknown')
+    callsign = str(callsign)
 
     # set vars for message:
     title = "WATCH | " + short_type_value + " | " + desc_value
@@ -134,6 +136,18 @@ for ac in data.get('aircraft', []):
         send_message = 1
         priority = 'default'
         title = "Emergency | " + short_type_value + " | " + desc_value
+
+    if callsign.startswith("GOLD"):
+        print(callsign)
+        send_message = 1
+        priority = 'default'
+        title = "TANKER WITH FIGHTERS | " + short_type_value + " | " + desc_value
+
+    if callsign.startswith("CAP"):
+        print(callsign)
+        send_message = 1
+        priority = 'default'
+        title = "Civil Air Patrol | " + short_type_value + " | " + desc_value
 
     if send_message == 1: # if we are planning on sending, check ignorelist
         with open("ignorelist.txt", "r") as file:
