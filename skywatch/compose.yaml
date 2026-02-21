@@ -6,4 +6,4 @@ services:
     volumes:
       - /data/config_storage/recents.txt:/app/recents.txt
     container_name: skywatch
-    image: git.holmlab.org/shady/skywatch:1.4.2
+    image: git.holmlab.org/shady/skywatch:1.4.3
