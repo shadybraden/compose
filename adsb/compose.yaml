@@ -1,7 +1,7 @@
 ---
 services:
   ultrafeeder:
-    image: ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder:latest-build-880  # https://github.com/sdr-enthusiasts/docker-adsb-ultrafeeder/pkgs/container/docker-adsb-ultrafeeder
+    image: ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder:latest-build-895  # https://github.com/sdr-enthusiasts/docker-adsb-ultrafeeder/pkgs/container/docker-adsb-ultrafeeder
     tty: true
     container_name: ultrafeeder
     hostname: ultrafeeder
@@ -84,8 +84,6 @@ networks:
   intranet:
     external: true
 
-# | service                                           | check my feeding status url          |
-# | ------------------------------------------------- | ------------------------------------ |
-# | [adsb.lol](https://adsb.lol/)                     | https://my.adsb.lol/                 |
-# | [adsb.fi](https://globe.adsb.fi/)                 | https://adsb.fi/                     |
-# | [theairtraffic](https://globe.theairtraffic.com/) | https://theairtraffic.com/feed/myip/ |
+# https://adsb.fi/
+# https://my.adsb.lol/
+# https://theairtraffic.com/myip
