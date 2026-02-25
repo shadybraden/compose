@@ -3,7 +3,7 @@
   "extends": ["config:base", "docker:enableMajor"],
   "commitMessagePrefix": ":rocket:",
   "prConcurrentLimit": 32,
-  "dockerfile": {
+  "Dockerfile": {
     "enabled": true
   },
   "packageRules": [
