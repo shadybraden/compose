@@ -3,23 +3,6 @@
   "extends": ["config:base", "docker:enableMajor"],
   "commitMessagePrefix": ":rocket:",
   "prConcurrentLimit": 32,
-  "docker": {
-    "enabled": true,
-    "fileMatch": [
-      "Dockerfile",
-      "compose.yaml"
-    ],
-    "packageRules": [
-      {
-        "matchPackageNames": [
-          "python"
-        ],
-        "enabled": true,
-        "updateTypes": ["major", "minor", "patch"],
-        "versioning": "semver"
-      }
-    ]
-  },
   "packageRules": [
     {
       "updateTypes": ["patch"],
