@@ -1,4 +1,4 @@
-FROM python:3.14-slim
+FROM python:3.14.3
 
 ENV TZ="America/New_York"
 
