@@ -1,9 +1,8 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "managerFilePatterns": [
-    "/(^|/|\\.)([Dd]ocker|[Cc]ontainer)file$/",
-    "/(^|/)([Dd]ocker|[Cc]ontainer)file[^/]*$/",
-    "/(^|/)(?:docker-)?compose[^/]*\\.ya?ml$/"
+    "/^compose/.*\\.yaml$/",
+    "/^Dockerfile$/"
   ],
   "extends": ["config:base", "docker:enableMajor"],
   "commitMessagePrefix": ":rocket:",
