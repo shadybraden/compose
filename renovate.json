@@ -5,7 +5,19 @@
   "prConcurrentLimit": 32,
   "docker": {
     "enabled": true,
-    "fileMatch": ["Dockerfile"]
+    "fileMatch": [
+      "Dockerfile"
+    ],
+    "packageRules": [
+      {
+        "matchPackageNames": [
+          "python"
+        ],
+        "enabled": true,
+        "updateTypes": ["major", "minor", "patch"],
+        "versioning": "semver"
+      }
+    ]
   },
   "packageRules": [
     {
