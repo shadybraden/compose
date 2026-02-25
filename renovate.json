@@ -3,6 +3,9 @@
   "extends": ["config:base", "docker:enableMajor"],
   "commitMessagePrefix": ":rocket:",
   "prConcurrentLimit": 32,
+  "dockerfile": {
+    "enabled": true
+  },
   "packageRules": [
     {
       "updateTypes": ["patch"],
