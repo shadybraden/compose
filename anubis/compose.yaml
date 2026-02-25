@@ -11,11 +11,11 @@ services:
       # Telling Anubis to do redirect — ensure there is a space after '='
       - 'TARGET= '
       # Specifies which domains Anubis is allowed to redirect to.
-      - REDIRECT_DOMAINS=holmlab.org
+      - REDIRECT_DOMAINS=${DOMAIN}
       # Should be the full external URL for Anubis (including scheme)
-      - PUBLIC_URL=https://anubis.holmlab.org
+      - 'PUBLIC_URL= '
       # Should match your domain for proper cookie scoping
-      - COOKIE_DOMAIN=holmlab.org
+      - COOKIE_DOMAIN=${DOMAIN}
       - LOG_LEVEL=debug
     volumes:
       - /data/config_storage/komodo/etc_komodo/repos/compose_main/anubis/botPolicy.yaml:/data/cfg/botPolicy.yaml:ro
