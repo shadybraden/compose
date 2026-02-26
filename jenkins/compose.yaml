@@ -4,12 +4,9 @@ services:
     container_name: jenkins
     volumes:
       - /data/config_storage/jenkins:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
     image: git.holmlab.org/shady/jenkins:2.541.2-lts-jdk17
     user: 1000:1000
-    group_add:
-      - 989
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
