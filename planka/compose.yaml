@@ -45,10 +45,10 @@ services:
   postgres_planka:
     container_name: postgres_planka
     user: 1000:1000
-    image: postgres:18.3-alpine
+    image: postgres:16.13-alpine
     restart: unless-stopped
     volumes:
-      - /data/config_storage/planka/db-data:/var/lib/postgresql
+      - /data/config_storage/planka/db-data:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=planka
       - POSTGRES_HOST_AUTH_METHOD=trust
