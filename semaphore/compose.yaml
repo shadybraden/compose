@@ -1,6 +1,6 @@
 services:
   semaphore_db:
-    image: postgres:18.2
+    image: postgres:18.3
     user: 1000:1000
     environment:
       POSTGRES_USER: semaphore
