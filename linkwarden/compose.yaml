@@ -1,7 +1,7 @@
 ---
 services:
   postgres:
-    image: postgres:16-alpine
+    image: postgres:16.13-alpine  # pined to 16-alpine - https://github.com/linkwarden/linkwarden/blob/main/docker-compose.yml
     container_name: linkwarden_postgres
     restart: unless-stopped
     volumes:
