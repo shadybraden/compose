@@ -1,7 +1,7 @@
 ---
 services:
   jackett:
-    image: quay.io/linuxserver.io/jackett:0.24.1226
+    image: quay.io/linuxserver.io/jackett:0.24.1234
     container_name: jackett
     restart: unless-stopped
     volumes:
