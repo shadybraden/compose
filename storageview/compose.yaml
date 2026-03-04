@@ -1,0 +1,33 @@
+services:
+  storageview:
+    container_name: storageview
+    image: git.holmlab.org/shady/storageview:0.0.1
+    environment:
+      - VOLUMES=Configuration Storage:/mnt/config_storage,YouTube:/data/mnt/youtube
+    volumes:
+      - /data/config_storage:/data/config_storage:ro
+      - /data/mnt/youtube:/data/mnt/youtube:ro
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.storage.entrypoints=http"
+      - "traefik.http.routers.storage.rule=Host(`storage.${DOMAIN}`)"
+      - "traefik.http.middlewares.storage-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.storage.middlewares=storage-https-redirect"
+      - "traefik.http.routers.storage-secure.entrypoints=https"
+      - "traefik.http.routers.storage-secure.rule=Host(`storage.${DOMAIN}`)"
+      - "traefik.http.routers.storage-secure.tls=true"
+      - "traefik.http.routers.storage-secure.service=storage"
+      - "traefik.http.services.storage.loadbalancer.server.port=5000"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=storage"
+      - "homepage.icon=/images/files.png"
+      - "homepage.href=https://storage.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true

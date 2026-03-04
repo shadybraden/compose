@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Storage Monitor</title>
+  <style>
+    body { font-family: monospace; background: #0f0f0f; color: #e0e0e0; padding: 40px; }
+    h1 { color: #7fff7f; margin-bottom: 30px; }
+    .vol { margin-bottom: 20px; }
+    .label { font-size: 1.1em; margin-bottom: 6px; }
+    .bar-bg { background: #2a2a2a; border-radius: 4px; height: 12px; width: 400px; }
+    .bar { background: #7fff7f; height: 12px; border-radius: 4px; transition: width 0.4s; }
+    .bar.warn { background: #ffcc00; }
+    .bar.danger { background: #ff4444; }
+    .stats { font-size: 0.85em; color: #888; margin-top: 4px; }
+    .error { color: #ff4444; }
+  </style>
+</head>
+<body>
+  <h1>📦 Storage Monitor</h1>
+  {% for v in volumes %}
+    <div class="vol">
+      {% if v.error is defined %}
+        <div class="label error">{{ v.name }}: ⚠ {{ v.error }}</div>
+      {% else %}
+        <div class="label">{{ v.name }}: using <strong>{{ "%.1f"|format(v.used) }} GB</strong></div>
+        <div class="stats">{{ v.path }}</div>
+      {% endif %}
+    </div>
+  {% endfor %}
+</body>
+</html>
