@@ -3,10 +3,14 @@ services:
     container_name: storageview
     image: git.holmlab.org/shady/storageview:0.0.1
     environment:
-      - VOLUMES=Configuration Storage:/data/config_storage,YouTube:/data/mnt/youtube
+      - VOLUMES=Configuration Storage:/data/config_storage,YouTube:/data/mnt/youtube,Shows:/data/mnt/shows,Movies:/data/mnt/movies,Torrents:/data/mnt/torrents,Autobrr:/mnt
     volumes:
       - /data/config_storage:/data/config_storage:ro
       - /data/mnt/youtube:/data/mnt/youtube:ro
+      - /data/mnt/shows:/data/mnt/shows:ro
+      - /data/mnt/movies:/data/mnt/movies:ro
+      - /data/mnt/torrents:/data/mnt/torrents:ro
+      - /mnt:/mnt:ro
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
