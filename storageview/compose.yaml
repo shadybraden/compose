@@ -1,7 +1,7 @@
 services:
   storageview:
     container_name: storageview
-    image: git.holmlab.org/shady/storageview:0.0.1
+    image: git.holmlab.org/shady/storageview:0.0.2
     environment:
       - VOLUMES=Configuration Storage:/data/config_storage,YouTube:/data/mnt/youtube,Shows:/data/mnt/shows,Movies:/data/mnt/movies,Torrents:/data/mnt/torrents,Autobrr:/mnt
     volumes:
