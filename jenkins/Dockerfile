@@ -1,4 +1,4 @@
-FROM anchore/grype:v0.109.0  AS grype-builder
+FROM anchore/grype:v0.109.1  AS grype-builder
 
 FROM jenkins/jenkins:2.541.2-lts-jdk17
 
