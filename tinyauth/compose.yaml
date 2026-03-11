@@ -6,7 +6,7 @@ services:
     restart: unless-stopped
     environment:
       - TINYAUTH_APPURL=https://tinyauth.${DOMAIN}
-      - TINYAUTH_AUTH_USERS=user=shady:$$2a$$10$$upQKTAAmLYXnH2MlBykiAe6Ondq7PxnvtnOGCjlmuIVund.TMndpO
+      - TINYAUTH_AUTH_USERS=shady:$$2a$$10$$upQKTAAmLYXnH2MlBykiAe6Ondq7PxnvtnOGCjlmuIVund.TMndpO
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
