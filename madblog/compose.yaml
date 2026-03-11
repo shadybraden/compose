@@ -3,7 +3,7 @@ services:
   madblog:
     image: quay.io/blacklight/madblog
     volumes:
-      - /data/config_storage/madblog:/data:ro
+      - /data/config_storage/madblog:/data
     ports:
       - 8000:8000
     user: 1000:1000
