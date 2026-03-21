@@ -8,20 +8,8 @@ services:
       - /data/mnt/youtube:/downloads  # so jellyfin can access
     security_opt:
       - no-new-privileges:true  # helps to increase security
-    networks:
-      - intranet
+    network_mode: container:gluetun
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.metube.entrypoints=http"
-      - "traefik.http.routers.metube.rule=Host(`metube.${DOMAIN}`)"
-      - "traefik.http.middlewares.metube-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.metube.middlewares=metube-https-redirect"
-      - "traefik.http.routers.metube-secure.entrypoints=https"
-      - "traefik.http.routers.metube-secure.rule=Host(`metube.${DOMAIN}`)"
-      - "traefik.http.routers.metube-secure.tls=true"
-      - "traefik.http.routers.metube-secure.service=metube"
-      - "traefik.http.services.metube.loadbalancer.server.port=8081"  # port of the service.
-      - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=metube"
       - "homepage.icon=/images/metube.png"

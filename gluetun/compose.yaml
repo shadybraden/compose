@@ -88,6 +88,15 @@ services:
       - "traefik.http.routers.mullvad-secure.service=mullvad"
       - "traefik.http.services.mullvad.loadbalancer.server.port=3000"  # port of the service.
       - "traefik.http.routers.mullvad-secure.middlewares=tinyauth"
+      - "traefik.http.routers.metube.entrypoints=http"
+      - "traefik.http.routers.metube.rule=Host(`metube.${DOMAIN}`)"
+      - "traefik.http.middlewares.metube-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.metube.middlewares=metube-https-redirect"
+      - "traefik.http.routers.metube-secure.entrypoints=https"
+      - "traefik.http.routers.metube-secure.rule=Host(`metube.${DOMAIN}`)"
+      - "traefik.http.routers.metube-secure.tls=true"
+      - "traefik.http.routers.metube-secure.service=metube"
+      - "traefik.http.services.metube.loadbalancer.server.port=8081"  # port of the service.
   go-socks5-proxy:
     image: serjs/go-socks5-proxy:v0.0.4
     environment:
