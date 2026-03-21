@@ -1,0 +1,34 @@
+---
+services:
+  dozzle:
+    image: amir20/dozzle:10.1.2
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro  # will break actions
+      - /data/config_storage/dozzle:/data
+    environment:
+      - DOZZLE_ENABLE_ACTIONS=true
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dozzle.entrypoints=http"
+      - "traefik.http.routers.dozzle.rule=Host(`dozzle.${DOMAIN}`)"
+      - "traefik.http.middlewares.dozzle-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.dozzle.middlewares=dozzle-https-redirect"
+      - "traefik.http.routers.dozzle-secure.entrypoints=https"
+      - "traefik.http.routers.dozzle-secure.rule=Host(`dozzle.${DOMAIN}`)"
+      - "traefik.http.routers.dozzle-secure.tls=true"
+      - "traefik.http.routers.dozzle-secure.service=dozzle"
+      - "traefik.http.services.dozzle.loadbalancer.server.port=8080"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=dozzle"
+      - "homepage.icon=/images/dozzle.png"
+      - "homepage.href=https://dozzle.${DOMAIN}/"
+      - "traefik.http.routers.dozzle-secure.middlewares=tinyauth"
+
+networks:
+  intranet:
+    external: true
