@@ -1,7 +1,7 @@
 ---
 services:
   dozzle:
-    image: amir20/dozzle:10.1.2
+    image: amir20/dozzle:v10.1.2
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro  # will break actions
       - /data/config_storage/dozzle:/data
