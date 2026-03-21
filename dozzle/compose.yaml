@@ -3,7 +3,7 @@ services:
   dozzle:
     image: amir20/dozzle:v10.1.2
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro  # will break actions
+      - /var/run/docker.sock:/var/run/docker.sock:ro
       - /data/config_storage/dozzle:/data
     environment:
       - DOZZLE_ENABLE_ACTIONS=true
