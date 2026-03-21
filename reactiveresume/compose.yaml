@@ -22,7 +22,7 @@ services:
       - intranet
 
   printer:
-    image: ghcr.io/browserless/chromium:v2.43.0
+    image: ghcr.io/browserless/chromium:v2.44.0
     container_name: printer
     restart: unless-stopped
     ports:
@@ -44,7 +44,7 @@ services:
       - intranet
 
   reactive-resume:
-    image: amruthpillai/reactive-resume:v5.0.12
+    image: amruthpillai/reactive-resume:v5.0.13
     container_name: reactive-resume
     restart: unless-stopped
     ports:
