@@ -30,9 +30,9 @@ services:
       - "traefik.http.routers.teachers-secure.service=teachers"
       - "traefik.http.services.teachers.loadbalancer.server.port=8080"  # port of the service.
       - "traefik.docker.network=intranet"
-      - "homepage.group=Media"
+      - "homepage.group=Other"
       - "homepage.name=teachers"
-      - "homepage.icon=/images/teachers.png"
+      - "homepage.icon=/images/files.png"
       - "homepage.href=https://teachers.${DOMAIN}/"
 
 networks:
