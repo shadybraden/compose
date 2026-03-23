@@ -20,20 +20,20 @@ services:
       - intranet
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.files.entrypoints=http"
-      - "traefik.http.routers.files.rule=Host(`files.${DOMAIN}`)"
-      - "traefik.http.middlewares.files-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.files.middlewares=files-https-redirect"
-      - "traefik.http.routers.files-secure.entrypoints=https"
-      - "traefik.http.routers.files-secure.rule=Host(`files.${DOMAIN}`)"
-      - "traefik.http.routers.files-secure.tls=true"
-      - "traefik.http.routers.files-secure.service=files"
-      - "traefik.http.services.files.loadbalancer.server.port=8080"  # port of the service.
+      - "traefik.http.routers.teachers.entrypoints=http"
+      - "traefik.http.routers.teachers.rule=Host(`teachers.${DOMAIN}`)"
+      - "traefik.http.middlewares.teachers-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.teachers.middlewares=teachers-https-redirect"
+      - "traefik.http.routers.teachers-secure.entrypoints=https"
+      - "traefik.http.routers.teachers-secure.rule=Host(`teachers.${DOMAIN}`)"
+      - "traefik.http.routers.teachers-secure.tls=true"
+      - "traefik.http.routers.teachers-secure.service=teachers"
+      - "traefik.http.services.teachers.loadbalancer.server.port=8080"  # port of the service.
       - "traefik.docker.network=intranet"
       - "homepage.group=Media"
-      - "homepage.name=files"
-      - "homepage.icon=/images/files.png"
-      - "homepage.href=https://files.${DOMAIN}/"
+      - "homepage.name=teachers"
+      - "homepage.icon=/images/teachers.png"
+      - "homepage.href=https://teachers.${DOMAIN}/"
 
 networks:
   intranet:
