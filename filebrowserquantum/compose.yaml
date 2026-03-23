@@ -8,7 +8,7 @@ services:
       - /data/config_storage/filebrowserquantum/database.db:/home/filebrowser/database.db
     user: 1000:1000
     ports:
-      - 8080:80
+      - 12170:80
     image: gtstef/filebrowser:1.2.3-stable
     environment:
       - FILEBROWSER_ADMIN_PASSWORD=${FILEBROWSER_ADMIN_PASSWORD}
@@ -28,7 +28,7 @@ services:
       - "traefik.http.routers.teachers-secure.rule=Host(`teachers.${DOMAIN}`)"
       - "traefik.http.routers.teachers-secure.tls=true"
       - "traefik.http.routers.teachers-secure.service=teachers"
-      - "traefik.http.services.teachers.loadbalancer.server.port=8080"  # port of the service.
+      - "traefik.http.services.teachers.loadbalancer.server.port=12170"  # port of the service.
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=teachers"
