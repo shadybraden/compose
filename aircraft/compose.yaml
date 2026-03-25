@@ -1,7 +1,7 @@
 ---
 services:
   aircraft:
-    image: nginx:1.29.6
+    image: nginx:1.29.7
     container_name: aircraft
     volumes:
       - /data/config_storage/aircraft:/usr/share/nginx/html:ro
