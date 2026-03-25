@@ -17,8 +17,14 @@ services:
       timeout: 10s
       retries: 3
 
+<<<<<<< HEAD
   browserless:
     image: ghcr.io/browserless/chromium:latest
+=======
+  printer:
+    image: ghcr.io/browserless/chromium:v2.45.0
+    container_name: printer
+>>>>>>> 26de098a79d37b89d87540b16889c55a3ee11bac
     restart: unless-stopped
     environment:
       - QUEUED=10
@@ -31,6 +37,7 @@ services:
       timeout: 5s
       retries: 10
 
+<<<<<<< HEAD
   # As an alternative to browserless, you can also use a lightweight image like chromedp/headless-shell:latest
   # See https://docs.rxresu.me/self-hosting/docker#alternative-printer-options for more information.
   # chrome:
@@ -41,6 +48,11 @@ services:
 
   seaweedfs:
     image: chrislusf/seaweedfs:latest
+=======
+  reactive-resume:
+    image: amruthpillai/reactive-resume:v5.0.14
+    container_name: reactive-resume
+>>>>>>> 26de098a79d37b89d87540b16889c55a3ee11bac
     restart: unless-stopped
     command: server -s3 -filer -dir=/data -ip=0.0.0.0
     environment:
