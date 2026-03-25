@@ -7,7 +7,7 @@ services:
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=${TOKEN}
+      - POSTGRES_PASSWORD=postgres
     volumes:
       - postgres_data:/var/lib/postgresql
     healthcheck:
@@ -17,27 +17,20 @@ services:
       timeout: 10s
       retries: 3
 
-<<<<<<< HEAD
   browserless:
     image: ghcr.io/browserless/chromium:latest
-=======
-  printer:
-    image: ghcr.io/browserless/chromium:v2.45.0
-    container_name: printer
->>>>>>> 26de098a79d37b89d87540b16889c55a3ee11bac
     restart: unless-stopped
     environment:
       - QUEUED=10
       - HEALTH=true
       - CONCURRENT=5
-      - TOKEN=${TOKEN}
+      - TOKEN=1234567890
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/pressure?token=${TOKEN}"]
+      test: ["CMD", "curl", "-f", "http://localhost:3000/pressure?token=1234567890"]
       interval: 10s
       timeout: 5s
       retries: 10
 
-<<<<<<< HEAD
   # As an alternative to browserless, you can also use a lightweight image like chromedp/headless-shell:latest
   # See https://docs.rxresu.me/self-hosting/docker#alternative-printer-options for more information.
   # chrome:
@@ -48,16 +41,11 @@ services:
 
   seaweedfs:
     image: chrislusf/seaweedfs:latest
-=======
-  reactive-resume:
-    image: amruthpillai/reactive-resume:v5.0.14
-    container_name: reactive-resume
->>>>>>> 26de098a79d37b89d87540b16889c55a3ee11bac
     restart: unless-stopped
     command: server -s3 -filer -dir=/data -ip=0.0.0.0
     environment:
       - AWS_ACCESS_KEY_ID=seaweedfs
-      - AWS_SECRET_ACCESS_KEY=${TOKEN}
+      - AWS_SECRET_ACCESS_KEY=seaweedfs
     volumes:
       - seaweedfs_data:/data
     healthcheck:
@@ -91,15 +79,15 @@ services:
       - APP_URL=http://localhost:3000
       - PRINTER_APP_URL=http://reactive_resume:3000
       # Printer
-      - PRINTER_ENDPOINT=ws://browserless:3000?token=${TOKEN}
+      - PRINTER_ENDPOINT=ws://browserless:3000?token=1234567890
       # - PRINTER_ENDPOINT=http://chrome:9222 # Or, if you're using chromedp/headless-shell
       # Database
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/postgres
       # Authentication
-      - AUTH_SECRET=${TOKEN}
+      - AUTH_SECRET=change-me-to-a-secure-secret-key-in-production
       # Storage
       - S3_ACCESS_KEY_ID=seaweedfs
-      - S3_SECRET_ACCESS_KEY=${TOKEN}
+      - S3_SECRET_ACCESS_KEY=seaweedfs
       - S3_ENDPOINT=http://seaweedfs:8333
       - S3_BUCKET=reactive-resume
       - S3_FORCE_PATH_STYLE=true
