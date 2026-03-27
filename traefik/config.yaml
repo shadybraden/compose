@@ -19,6 +19,12 @@ http:
         scheme: https
         permanent: true
 
+experimental:
+  plugins:
+    rybbit-feeder:
+      moduleName: github.com/foxxmd/traefik-rybbit-feeder
+      version: v0.13.3
+
   routers:
     portainer:
       entryPoints: ["https"]
