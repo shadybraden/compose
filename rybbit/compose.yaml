@@ -71,8 +71,8 @@ services:
       - POSTGRES_HOST=postgres
       - POSTGRES_PORT=5432
       - POSTGRES_DB=analytics
-      - POSTGRES_USER=frog
-      - POSTGRES_PASSWORD=frog
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET}
       - BASE_URL="https://rybbit.${DOMAIN}"
       - DISABLE_SIGNUP=false
