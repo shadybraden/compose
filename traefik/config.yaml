@@ -22,8 +22,8 @@ http:
       plugin:
         umami-feeder:
           umamiHost: "https://analytics.shadybraden.com/"
-          umamiUsername: "${umamiUsername}"
-          umamiPassword: "${umamiPassword}"
+          umamiUsername: ${umamiUsername}
+          umamiPassword: ${umamiPassword}
           createNewWebsites: true
 
   routers:
