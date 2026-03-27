@@ -111,6 +111,7 @@ services:
       - NODE_ENV=production
       - NEXT_PUBLIC_BACKEND_URL=https://rybbit.${DOMAIN}
       - NEXT_PUBLIC_DISABLE_SIGNUP=false
+      - USE_WEBSERVER=false
     depends_on:
       - backend
     restart: unless-stopped
