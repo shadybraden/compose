@@ -30,6 +30,7 @@ services:
       - "homepage.name=mealie"
       - "homepage.icon=/images/mealie.png"
       - "homepage.href=https://mealie.${DOMAIN}/"
+      - "traefik.http.routers.mealie.middlewares=my-umami-middleware@file"
 
 networks:
   intranet:
