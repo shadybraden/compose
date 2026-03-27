@@ -11,7 +11,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /data/config_storage/traefik/logs:/var/log/traefik  # there are no docker logs, so they will be in this folder
       - /data/config_storage/traefik/acme.json:/acme.json
-      - /data/config_storage/traefik/traefik.yaml:/etc/traefik/traefik.yaml:ro
+      - /data/config_storage/traefik/traefik.yaml:/etc/traefik/traefik.yaml:ro  # "static" config
       - /data/config_storage/komodo/etc_komodo/repos/compose_main/traefik/config.yaml:/etc/traefik/config.yaml:ro  # so this iac can control routers and services
     environment:
       TRAEFIK_DASHBOARD_CREDENTIALS: ${TRAEFIK_DASHBOARD_CREDENTIALS}
