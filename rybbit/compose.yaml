@@ -74,7 +74,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET}
-      - BASE_URL="https://rybbit.${DOMAIN}"
+      - BASE_URL=https://rybbit.${DOMAIN}
       - DISABLE_SIGNUP=false
       - DISABLE_TELEMETRY=true
       - MAPBOX_TOKEN=${MAPBOX_TOKEN}
