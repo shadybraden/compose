@@ -5,7 +5,7 @@ services:
     ports:
       - "3006:3000"
     environment:
-      DATABASE_URL: postgresql://umami:umami@db:5432/umami
+      DATABASE_URL: postgresql://umami:${POSTGRES_PASSWORD}@db:5432/umami
       APP_SECRET: replace-me-with-a-random-string
     depends_on:
       db:
