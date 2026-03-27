@@ -24,20 +24,20 @@ services:
       - intranet
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.umami.entrypoints=http"
-      - "traefik.http.routers.umami.rule=Host(`umami.${DOMAIN}`)"
-      - "traefik.http.middlewares.umami-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.umami.middlewares=umami-https-redirect"
-      - "traefik.http.routers.umami-secure.entrypoints=https"
-      - "traefik.http.routers.umami-secure.rule=Host(`umami.${DOMAIN}`)"
-      - "traefik.http.routers.umami-secure.tls=true"
-      - "traefik.http.routers.umami-secure.service=umami"
-      - "traefik.http.services.umami.loadbalancer.server.port=3000"  # port of the service.
+      - "traefik.http.routers.analytics.entrypoints=http"
+      - "traefik.http.routers.analytics.rule=Host(`analytics.${DOMAIN}`)"
+      - "traefik.http.middlewares.analytics-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.analytics.middlewares=analytics-https-redirect"
+      - "traefik.http.routers.analytics-secure.entrypoints=https"
+      - "traefik.http.routers.analytics-secure.rule=Host(`analytics.${DOMAIN}`)"
+      - "traefik.http.routers.analytics-secure.tls=true"
+      - "traefik.http.routers.analytics-secure.service=analytics"
+      - "traefik.http.services.analytics.loadbalancer.server.port=3000"  # port of the service.
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
-      - "homepage.name=umami"
+      - "homepage.name=analytics"
       - "homepage.icon=/images/umami.png"
-      - "homepage.href=https://umami.${DOMAIN}/"
+      - "homepage.href=https://analytics.${DOMAIN}/"
 
   db:
     image: postgres:15-alpine
