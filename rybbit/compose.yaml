@@ -98,7 +98,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.rybbit-api.rule=Host(`rybbit.${DOMAIN}) && PathPrefix(`/api`)"
-      - "traefik.http.routers.rybbit-api.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.rybbit-api.tls=true"
       - "traefik.http.services.rybbit-api.loadbalancer.server.port=3001"
 
   client:
