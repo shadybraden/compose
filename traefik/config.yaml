@@ -21,7 +21,7 @@ http:
     my-umami-middleware:
       plugin:
         umami-feeder:
-          umamiHost: "https://analytics.holmlab.org/"
+          umamiHost: "https://analytics.shadybraden.com/"
           umamiUsername: "${umamiUsername}"
           umamiPassword: "${umamiPassword}"
           createNewWebsites: true
