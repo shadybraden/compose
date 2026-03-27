@@ -23,7 +23,7 @@ experimental:
   plugins:
     rybbit-feeder:
       moduleName: github.com/foxxmd/traefik-rybbit-feeder
-      version: v0.13.3
+      version: v0.13.4
 
   routers:
     portainer:
