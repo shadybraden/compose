@@ -78,6 +78,7 @@ services:
       - DISABLE_SIGNUP=false
       - DISABLE_TELEMETRY=true
       - MAPBOX_TOKEN=${MAPBOX_TOKEN}
+      - USE_WEBSERVER=false
     depends_on:
       clickhouse:
         condition: service_healthy
