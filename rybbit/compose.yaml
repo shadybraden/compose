@@ -75,7 +75,7 @@ services:
       - POSTGRES_PASSWORD=frog
       - BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET}
       - BASE_URL=rybbit.${DOMAIN}
-      - DISABLE_SIGNUP=true
+      - DISABLE_SIGNUP=false
       - DISABLE_TELEMETRY=true
       - MAPBOX_TOKEN=${MAPBOX_TOKEN}
     depends_on:
@@ -103,13 +103,13 @@ services:
       dockerfile: client/Dockerfile
       args:
         NEXT_PUBLIC_BACKEND_URL: rybbit.${DOMAIN}
-        NEXT_PUBLIC_DISABLE_SIGNUP: true
+        NEXT_PUBLIC_DISABLE_SIGNUP: false
     ports:
       - 3002:3002
     environment:
       - NODE_ENV=production
       - NEXT_PUBLIC_BACKEND_URL=rybbit.${DOMAIN}
-      - NEXT_PUBLIC_DISABLE_SIGNUP=true
+      - NEXT_PUBLIC_DISABLE_SIGNUP=false
     depends_on:
       - backend
     restart: unless-stopped
