@@ -36,13 +36,13 @@ services:
     image: postgres:17.4
     container_name: postgres
     environment:
-      - POSTGRES_USER=frog
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_DB=analytics
     volumes:
       - /data/config_storage/rybbit/postgres-data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U frog -d analytics"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d analytics"]
       interval: 3s
       timeout: 5s
       retries: 5
