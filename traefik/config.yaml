@@ -18,6 +18,13 @@ http:
       redirectScheme:
         scheme: https
         permanent: true
+    my-umami-middleware:
+      plugin:
+        umami-feeder:
+          umamiHost: "https://analytics.holmlab.org/"
+          umamiUsername: "${umamiUsername}"
+          umamiPassword: "${umamiPassword}"
+          createNewWebsites: true
 
 experimental:
   plugins:
