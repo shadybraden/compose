@@ -28,6 +28,7 @@ services:
       - "homepage.name=silverbullet"
       - "homepage.icon=/images/silverbullet.png"
       - "homepage.href=https://notes.${DOMAIN}/"
+      - "traefik.http.routers.notes.middlewares=my-umami-middleware@file"
 
 networks:
   intranet:
