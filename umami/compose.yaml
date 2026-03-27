@@ -1,0 +1,62 @@
+---
+services:
+  umami:
+    image: ghcr.io/umami-software/umami:latest
+    ports:
+      - "3006:3000"
+    environment:
+      DATABASE_URL: postgresql://umami:umami@db:5432/umami
+      APP_SECRET: replace-me-with-a-random-string
+    depends_on:
+      db:
+        condition: service_healthy
+    init: true
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "curl http://localhost:3000/api/heartbeat"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.umami.entrypoints=http"
+      - "traefik.http.routers.umami.rule=Host(`umami.${DOMAIN}`)"
+      - "traefik.http.middlewares.umami-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.umami.middlewares=umami-https-redirect"
+      - "traefik.http.routers.umami-secure.entrypoints=https"
+      - "traefik.http.routers.umami-secure.rule=Host(`umami.${DOMAIN}`)"
+      - "traefik.http.routers.umami-secure.tls=true"
+      - "traefik.http.routers.umami-secure.service=umami"
+      - "traefik.http.services.umami.loadbalancer.server.port=80"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=umami"
+      - "homepage.icon=/images/umami.png"
+      - "homepage.href=https://umami.${DOMAIN}/"
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: umami
+      POSTGRES_USER: umami
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - /data/config_storage/umami:/var/lib/postgresql/data
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+
+networks:
+  intranet:
+    external: true
