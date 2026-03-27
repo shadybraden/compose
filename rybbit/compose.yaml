@@ -129,6 +129,10 @@ services:
       - "traefik.http.routers.rybbit-secure.service=rybbit"
       - "traefik.http.services.rybbit.loadbalancer.server.port=3002"  # port of the service.
       - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=rybbit"
+      - "homepage.icon=/images/rybbit.png"
+      - "homepage.href=https://rybbit.${DOMAIN}/"
 
 networks:
   intranet:
