@@ -5,6 +5,7 @@ services:
     command: tunnel --no-autoupdate run --token ${token}
     networks:
       - intranet
+    restart: unless-stopped
 
 networks:
   intranet:

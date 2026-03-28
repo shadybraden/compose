@@ -8,6 +8,7 @@ services:
       - /data/config_storage/filebrowserquantum/config.yaml:/home/filebrowser/config.yaml
       - /data/config_storage/filebrowserquantum/database.db:/home/filebrowser/database.db
     user: 1000:1000
+    restart: unless-stopped
     ports:
       - 12170:80
     image: gtstef/filebrowser:1.2.3-stable
