@@ -1,0 +1,11 @@
+services:
+  hugo-build:
+    image: hugomods/hugo:0.159.1
+    volumes:
+      - /data/config_storage/komodo/etc_komodo/repos/hugo-demo:/src:ro
+      - /data/hugo-public:/output
+    working_dir: /src
+    command: hugo --destination /output --minify
+    environment:
+      - HUGO_ENVIRONMENT=production
+      - HUGO_ENV=production
