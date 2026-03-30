@@ -13,6 +13,7 @@ services:
     restart: unless-stopped
     hostname: traccar
     container_name: traccar
+    user: 1000:1000
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
