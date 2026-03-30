@@ -15,7 +15,6 @@ services:
       - /var/cache/nginx/uwsgi_temp
       - /var/cache/nginx/scgi_temp
       - /run
-    user: "1000:1000"
     security_opt:
       - no-new-privileges:true
     cap_drop:
