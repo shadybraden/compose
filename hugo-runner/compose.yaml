@@ -9,11 +9,11 @@ services:
     read_only: true
     tmpfs:
       - /tmp
-      - /var/cache/nginx/client_temp
-      - /var/cache/nginx/proxy_temp
-      - /var/cache/nginx/fastcgi_temp
-      - /var/cache/nginx/uwsgi_temp
-      - /var/cache/nginx/scgi_temp
+      - /var/cache/nginx/client_temp:uid=1000,gid=1000
+      - /var/cache/nginx/proxy_temp:uid=1000,gid=1000
+      - /var/cache/nginx/fastcgi_temp:uid=1000,gid=1000
+      - /var/cache/nginx/uwsgi_temp:uid=1000,gid=1000
+      - /var/cache/nginx/scgi_temp:uid=1000,gid=1000
       - /run
     security_opt:
       - no-new-privileges:true
