@@ -4,6 +4,7 @@ services:
     image: traccar/traccar:6.12.2
     volumes:
       - /data/config_storage/traccar/data:/opt/traccar/data:rw
+      - /data/config_storage/traccar/override:/opt/traccar/override:rw
       - /data/config_storage/traccar/traccar.xml:/opt/traccar/conf/traccar.xml:ro
       - /data/config_storage/traccar/logs:/opt/traccar/logs:rw
 #    ports:
