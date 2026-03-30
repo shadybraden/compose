@@ -1,0 +1,51 @@
+services:
+  hugo-serve:
+    image: nginx:1.29.7
+    volumes:
+      - /data/hugo-public:/usr/share/nginx/html:ro
+      - /data/config_storage/komodo/etc_komodo/repos/compose_main/hugo-runner/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - "8089:8080"
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /var/cache/nginx
+      - /var/run
+      - '/tmp:size=64m'
+    user: "101:101"  # nginx user in alpine image
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    cap_add:
+      - NET_BIND_SERVICE
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    networks:
+      - intranet
+    init: true
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.hugo.entrypoints=http"
+      - "traefik.http.routers.hugo.rule=Host(`hugo.${DOMAIN}`)"
+      - "traefik.http.middlewares.hugo-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.hugo.middlewares=hugo-https-redirect"
+      - "traefik.http.routers.hugo-secure.entrypoints=https"
+      - "traefik.http.routers.hugo-secure.rule=Host(`hugo.${DOMAIN}`)"
+      - "traefik.http.routers.hugo-secure.tls=true"
+      - "traefik.http.routers.hugo-secure.service=hugo"
+      - "traefik.http.services.hugo.loadbalancer.server.port=80"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=hugo"
+      - "homepage.icon=/images/hugo.png"
+      - "homepage.href=https://hugo.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true
