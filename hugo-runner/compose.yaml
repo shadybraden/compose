@@ -11,7 +11,7 @@ services:
       - /tmp
       - /var/cache/nginx
       - /var/run
-    user: "101:101"  # nginx user in alpine image
+    user: "1000:1000"
     security_opt:
       - no-new-privileges:true
     cap_drop:

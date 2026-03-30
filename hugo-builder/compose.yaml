@@ -4,6 +4,7 @@ services:
     volumes:
       - /data/config_storage/komodo/etc_komodo/repos/hugo-demo:/src:rw
       - /data/hugo-public:/output
+    user: "1000:1000"
     working_dir: /src
     command: hugo --destination /output --minify
     environment:
