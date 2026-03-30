@@ -11,7 +11,6 @@ services:
       - /tmp
       - /var/cache/nginx
       - /var/run
-      - '/tmp:size=64m'
     user: "101:101"  # nginx user in alpine image
     security_opt:
       - no-new-privileges:true
