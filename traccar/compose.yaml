@@ -1,0 +1,39 @@
+---
+services:
+  traccar:
+    image: traccar/traccar:6.12.2
+    volumes:
+      - /data/config_storage/traccar/data:/opt/traccar/data:rw
+      - /data/config_storage/traccar/tracar.xml:/opt/traccar/conf/traccar.xml:ro
+      - /data/config_storage/traccar/logs:/opt/traccar/logs:rw
+#    ports:
+#      - 5000-5300:5000-5300/udp
+#      - 5000-5300:5000-5300
+#      - 80:8082
+    restart: unless-stopped
+    hostname: traccar
+    container_name: traccar
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traccar.entrypoints=http"
+      - "traefik.http.routers.traccar.rule=Host(`traccar.${DOMAIN}`)"
+      - "traefik.http.middlewares.traccar-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.traccar.middlewares=traccar-https-redirect"
+      - "traefik.http.routers.traccar-secure.entrypoints=https"
+      - "traefik.http.routers.traccar-secure.rule=Host(`traccar.${DOMAIN}`)"
+      - "traefik.http.routers.traccar-secure.tls=true"
+      - "traefik.http.routers.traccar-secure.service=traccar"
+      - "traefik.http.services.traccar.loadbalancer.server.port=8082"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=traccar"
+      - "homepage.icon=/images/traccar.png"
+      - "homepage.href=https://traccar.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true
