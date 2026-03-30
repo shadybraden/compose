@@ -1,28 +1,9 @@
+---
 services:
-  nginx:
-    image: nginx:alpine
-    container_name: hugo-server
-    volumes:
-      - /data/hugo-public:/usr/share/nginx/html:ro
-    ports:
-      - 8089:80
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.hugo.entrypoints=http"
-      - "traefik.http.routers.hugo.rule=Host(`hugo.${DOMAIN}`)"
-      - "traefik.http.middlewares.hugo-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.hugo.middlewares=hugo-https-redirect"
-      - "traefik.http.routers.hugo-secure.entrypoints=https"
-      - "traefik.http.routers.hugo-secure.rule=Host(`hugo.${DOMAIN}`)"
-      - "traefik.http.routers.hugo-secure.tls=true"
-      - "traefik.http.routers.hugo-secure.service=hugo"
-      - "traefik.http.services.hugo.loadbalancer.server.port=80"  # port of the service.
-      - "traefik.docker.network=intranet"
-      - "homepage.group=Other"
-      - "homepage.name=hugo"
-      - "homepage.icon=/images/hugo.png"
-      - "homepage.href=https://hugo.${DOMAIN}/"
-
-networks:
-  intranet:
-    external: true
+    nginx:
+        image: 'nginx:alpine'
+        container_name: hugo-server
+        volumes:
+            - '/data/hugo-public:/usr/share/nginx/html:ro'
+        ports:
+            - '8089:80'
