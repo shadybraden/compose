@@ -4,7 +4,7 @@ services:
     image: traccar/traccar:6.12.2
     volumes:
       - /data/config_storage/traccar/data:/opt/traccar/data:rw
-      - /data/config_storage/traccar/tracar.xml:/opt/traccar/conf/traccar.xml:ro
+      - /data/config_storage/traccar/traccar.xml:/opt/traccar/conf/traccar.xml:ro
       - /data/config_storage/traccar/logs:/opt/traccar/logs:rw
 #    ports:
 #      - 5000-5300:5000-5300/udp
