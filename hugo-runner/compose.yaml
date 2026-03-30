@@ -15,6 +15,7 @@ services:
       start_period: 10s
     networks:
       - intranet
+    command: hugo server --bind 0.0.0.0 --destination /output
     init: true
     labels:
       - "traefik.enable=true"
