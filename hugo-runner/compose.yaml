@@ -14,7 +14,7 @@ services:
       - /var/cache/nginx/fastcgi_temp
       - /var/cache/nginx/uwsgi_temp
       - /var/cache/nginx/scgi_temp
-      - /var/run
+      - /run
     user: "1000:1000"
     security_opt:
       - no-new-privileges:true
