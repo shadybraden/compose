@@ -6,22 +6,6 @@ services:
       - /data/config_storage/komodo/etc_komodo/repos/compose_main/hugo-runner/nginx.conf:/etc/nginx/nginx.conf:ro
     ports:
       - "8089:8080"
-    read_only: true
-    user: "1000:1000"
-    tmpfs:
-      - /tmp
-      - /var/cache/nginx/client_temp:uid=1000,gid=1000
-      - /var/cache/nginx/proxy_temp:uid=1000,gid=1000
-      - /var/cache/nginx/fastcgi_temp:uid=1000,gid=1000
-      - /var/cache/nginx/uwsgi_temp:uid=1000,gid=1000
-      - /var/cache/nginx/scgi_temp:uid=1000,gid=1000
-      - /run
-    security_opt:
-      - no-new-privileges:true
-    cap_drop:
-      - ALL
-    cap_add:
-      - NET_BIND_SERVICE
     restart: no
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://localhost:8080/"]
