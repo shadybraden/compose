@@ -7,6 +7,7 @@ services:
     ports:
       - "8089:8080"
     read_only: true
+    user: "1000:1000"
     tmpfs:
       - /tmp
       - /var/cache/nginx/client_temp:uid=1000,gid=1000
