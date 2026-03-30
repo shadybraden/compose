@@ -18,7 +18,7 @@ services:
       - ALL
     cap_add:
       - NET_BIND_SERVICE
-    restart: unless-stopped
+    restart: no
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://localhost:8080/"]
       interval: 30s
