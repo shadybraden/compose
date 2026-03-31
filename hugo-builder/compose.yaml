@@ -5,7 +5,7 @@ services:
       - /data/config_storage/komodo/etc_komodo/repos/hugo-demo:/src:rw
       - /data/hugo-public:/output
     working_dir: /src
-    command: hugo build --destination /output --minify && chown -r 1000:1000 /output
+    command: hugo build --destination /output --minify && chown -R 1000:1000 /output
     environment:
       - HUGO_ENVIRONMENT=production
       - HUGO_ENV=production
