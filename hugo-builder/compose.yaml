@@ -2,7 +2,7 @@ services:
   hugo-build:
     image: hugomods/hugo:0.159.1
     volumes:
-      - /data/config_storage/komodo/etc_komodo/repos/hugo-demo:/src:rw
+      - /data/config_storage/komodo/etc_komodo/repos/shadybradencom:/src:rw
       - /data/hugo-public:/output
     working_dir: /src
     command: sh -c "hugo build --destination /output --minify && chown -R 1000:1000 /output"
