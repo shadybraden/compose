@@ -7,20 +7,7 @@ services:
       - /data/hugo-public:/usr/share/nginx/html:ro
     security_opt:
       - no-new-privileges:true  # helps to increase security
-    tmpfs:
-      - /tmp
-      - /run
-      - /var/cache/nginx/client_temp
-      - /var/cache/nginx/proxy_temp
-      - /var/cache/nginx/fastcgi_temp
-      - /var/cache/nginx/uwsgi_temp
-      - /var/cache/nginx/scgi_temp
-    read_only: true
-    cap_add:
-      - NET_BIND_SERVICE
-    cap_drop:
-      - ALL
-    init: true
+    user: 1000:1000
     networks:
       - intranet
     labels:
