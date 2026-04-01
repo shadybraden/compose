@@ -1,0 +1,37 @@
+---
+services:
+  grist:
+    image: gristlabs/grist:1.7.12
+    tty: true
+    stdin_open: true
+    environment:
+      - GRIST_DEFAULT_EMAIL=${GRIST_DEFAULT_EMAIL}
+      - GRIST_SESSION_SECRET=${GRIST_SESSION_SECRET}
+    volumes:
+      - /data/config_storage/grist:/persist
+    ports:
+      - 8484:8484
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.grist.entrypoints=http"
+      - "traefik.http.routers.grist.rule=Host(`grist.${DOMAIN}`)"
+      - "traefik.http.middlewares.grist-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.grist.middlewares=grist-https-redirect"
+      - "traefik.http.routers.grist-secure.entrypoints=https"
+      - "traefik.http.routers.grist-secure.rule=Host(`grist.${DOMAIN}`)"
+      - "traefik.http.routers.grist-secure.tls=true"
+      - "traefik.http.routers.grist-secure.service=grist"
+      - "traefik.http.services.grist.loadbalancer.server.port=8484"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=grist"
+      - "homepage.icon=/images/grist.png"
+      - "homepage.href=https://grist.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true
