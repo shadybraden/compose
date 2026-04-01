@@ -1,6 +1,6 @@
 services:
   hugo-build:
-    image: hugomods/hugo:0.159.1
+    image: hugomods/hugo:0.159.2
     volumes:
       - /data/config_storage/komodo/etc_komodo/repos/shadybradencom:/src:rw
       - /data/hugo-public:/output
