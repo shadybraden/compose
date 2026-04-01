@@ -7,10 +7,9 @@ services:
       - /data/config_storage/traccar/override:/opt/traccar/override:rw
       - /data/config_storage/traccar/traccar.xml:/opt/traccar/conf/traccar.xml:ro
       - /data/config_storage/traccar/logs:/opt/traccar/logs:rw
-#    ports:
-#      - 5000-5300:5000-5300/udp
-#      - 5000-5300:5000-5300
-#      - 80:8082
+    ports:
+      - 5027:5027/udp
+      - 5027:5027/tcp
     restart: unless-stopped
     hostname: traccar
     container_name: traccar
