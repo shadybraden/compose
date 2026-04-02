@@ -77,7 +77,8 @@ services:
       - /data/config_storage/komodo/etc_komodo:/etc/komodo
       - /data/config_storage/komodo/periphery-keys:/config/keys
     environment:
-      PERIPHERY_SSL_ENABLED: false
+      PERIPHERY_CONNECT_AS: ${ServerName}
+      PERIPHERY_ONBOARDING_KEY: ${PERIPHERY_ONBOARDING_KEY}
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
