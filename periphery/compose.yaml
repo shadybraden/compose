@@ -11,11 +11,7 @@ services:
       driver: local
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /proc:/proc  # Allow Periphery to see processes outside of container
-      ## Specify the Periphery agent root directory.
-      ## Must be the same inside and outside the container,
-      ## or docker will get confused. See https://github.com/moghtech/komodo/discussions/180.
-      ## Default: /etc/komodo.
+      - /proc:/proc
       - /data/config_storage/komodo/etc_komodo:/etc/komodo
     security_opt:
       - no-new-privileges:true  # helps to increase security
