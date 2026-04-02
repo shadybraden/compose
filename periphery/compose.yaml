@@ -13,6 +13,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /proc:/proc
       - /data/config_storage/komodo/etc_komodo:/etc/komodo
+      - /data/config_storage/komodo/periphery-keys:/config/keys
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
@@ -20,8 +21,13 @@ services:
     ports:
       - 8120:8120
     environment:
-      PERIPHERY_SSL_ENABLED: false
-      PERIPHERY_PASSKEYS: ${PERIPHERY_PASSKEYS}
+      PERIPHERY_CORE_ADDRESS: komodo.holmlab.org
+      PERIPHERY_CONNECT_AS: ${ServerName}
+      PERIPHERY_ONBOARDING_KEY: ${PERIPHERY_ONBOARDING_KEY}
+      PERIPHERY_CORE_PUBLIC_KEYS: file:/config/keys/core.pub
+      PERIPHERY_DISABLE_TERMINALS: false
+      PERIPHERY_DISABLE_CONTAINER_EXEC: false
+      PERIPHERY_INCLUDE_DISK_MOUNTS: /etc/hostname
 
 networks:
   intranet:
