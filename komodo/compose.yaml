@@ -18,8 +18,9 @@ services:
       - intranet
 
   core:
-    image: ghcr.io/moghtech/komodo-core:1.19.5
+    image: ghcr.io/moghtech/komodo-core:2.1.0
     restart: unless-stopped
+    init: true
     depends_on:
       - mongo
     logging:
@@ -41,6 +42,7 @@ services:
       PERIPHERY_PASSKEYS: ${PERIPHERY_PASSKEYS}
     volumes:
       - /data/config_storage/komodo_database_backups:/backups
+      - /data/config_storage/komodo/core-keys:/config/keys
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
@@ -64,14 +66,16 @@ services:
       - "homepage.href=https://komodo.${DOMAIN}/"
 
   periphery:
-    image: ghcr.io/moghtech/komodo-periphery:1.19.5
+    image: ghcr.io/moghtech/komodo-periphery:2.1.0
     restart: unless-stopped
+    init: true
     logging:
       driver: local
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /proc:/proc
       - /data/config_storage/komodo/etc_komodo:/etc/komodo
+      - /data/config_storage/komodo/periphery-keys:/config/keys
     environment:
       PERIPHERY_SSL_ENABLED: false
     security_opt:
