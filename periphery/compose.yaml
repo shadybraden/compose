@@ -1,8 +1,9 @@
 ---
 services:
   periphery:
-    image: ghcr.io/moghtech/komodo-periphery:1.19.5
+    image: ghcr.io/moghtech/komodo-periphery:2.1.0
     container_name: periphery
+    init: true
     labels:
       komodo.skip:
     restart: unless-stopped
