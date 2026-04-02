@@ -77,8 +77,13 @@ services:
       - /data/config_storage/komodo/etc_komodo:/etc/komodo
       - /data/config_storage/komodo/periphery-keys:/config/keys
     environment:
+      PERIPHERY_CORE_ADDRESS: komodo.holmlab.org
       PERIPHERY_CONNECT_AS: ${ServerName}
       PERIPHERY_ONBOARDING_KEY: ${PERIPHERY_ONBOARDING_KEY}
+      PERIPHERY_CORE_PUBLIC_KEYS: file:/config/keys/core.pub
+      PERIPHERY_DISABLE_TERMINALS: false
+      PERIPHERY_DISABLE_CONTAINER_EXEC: false
+      PERIPHERY_INCLUDE_DISK_MOUNTS: /etc/hostname
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
