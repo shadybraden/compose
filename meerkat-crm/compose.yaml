@@ -4,8 +4,6 @@ services:
     image: ghcr.io/fbuchner/meerkat-crm-backend:1.2.0
     container_name: meerkat-backend
     restart: unless-stopped
-    env_file:
-      - .env.docker
     environment:
       - PUID=1000
       - PGID=1000
