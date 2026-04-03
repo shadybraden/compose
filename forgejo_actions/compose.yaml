@@ -19,7 +19,7 @@ services:
       DOCKER_HOST: tcp://docker-in-docker:2375
     user: 1000:1000
     volumes:
-      - /data/dont_backup/forgejo/data:/data  # see commands for setting up this dir: https://forgejo.org/docs/next/admin/actions/runner-installation/#oci-image-installation
+      - /data/dont_backup/forgejo-action/data:/data  # see commands for setting up this dir: https://forgejo.org/docs/next/admin/actions/runner-installation/#oci-image-installation
     restart: 'unless-stopped'
     command: '/bin/sh -c "sleep 5; forgejo-runner daemon"'  # for normal use; post registration
 
