@@ -27,6 +27,8 @@ services:
     image: ghcr.io/fbuchner/meerkat-crm-frontend:1.2.0
     container_name: meerkat-frontend
     restart: unless-stopped
+    environment:
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
     depends_on:
       backend:
         condition: service_healthy
