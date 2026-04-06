@@ -1,7 +1,7 @@
 ---
 services:
   backend:
-    image: ghcr.io/fbuchner/meerkat-crm-backend:1.2.1
+    image: ghcr.io/fbuchner/meerkat-crm-backend:1.2.2
     container_name: meerkat-backend
     restart: unless-stopped
     environment:
@@ -25,7 +25,7 @@ services:
       - intranet
 
   frontend:
-    image: ghcr.io/fbuchner/meerkat-crm-frontend:1.2.1
+    image: ghcr.io/fbuchner/meerkat-crm-frontend:1.2.2
     container_name: meerkat-frontend
     restart: unless-stopped
     environment:
