@@ -38,6 +38,7 @@ services:
       - "homepage.name=analytics"
       - "homepage.icon=/images/umami.png"
       - "homepage.href=https://analytics.${DOMAIN}/"
+      - "traefik.http.routers.SUBDOMAIN-secure.middlewares=tinyauth"
 
   db:
     image: postgres:15-alpine
