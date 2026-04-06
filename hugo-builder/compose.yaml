@@ -5,7 +5,7 @@ services:
       - /data/config_storage/komodo/etc_komodo/repos/shadybradencom:/src:rw
       - /data/hugo-public:/output
     working_dir: /src
-    command: sh -c "rm -r /output/* && sleep 60000 && hugo build --destination /output --minify --baseURL="https://hugo.${DOMAIN}/" && chown -R 1000:1000 /output"
+    command: sh -c "rm -r /output/* && sleep 10 && hugo build --destination /output --minify --baseURL="https://hugo.${DOMAIN}/" && chown -R 1000:1000 /output"
     environment:
       - HUGO_ENVIRONMENT=production
       - HUGO_ENV=production
