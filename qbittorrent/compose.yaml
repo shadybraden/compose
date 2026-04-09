@@ -14,6 +14,11 @@ services:
       - /data/config_storage/arr/qbittorrent/complete:/complete
       - /data/mnt/torrents:/downloads/torrents
       - /data/mnt:/allMedia
+      - /data/mnt/movies:/movies
+      - /data/mnt/shows:/shows
+      - /data/mnt/youtube:/youtube
+      - /data/mnt/music:/music
+      - /data/mnt/torrents:/torrents
       - /mnt/extra:/mnt
       - /data/dont_backup/media:/ssd
     restart: unless-stopped
