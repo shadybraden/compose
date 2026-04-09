@@ -17,7 +17,7 @@ services:
       - /data/mnt/movies:/movies
       - /data/mnt/shows:/shows
       - /data/mnt/youtube:/youtube
-      - /data/mnt/music:/music
+      - /data/music:/music
       - /data/mnt/torrents:/torrents
       - /mnt/extra:/mnt
       - /data/dont_backup/media:/ssd
