@@ -2,7 +2,7 @@
 services:
   speedtest:
     container_name: speedtest
-    image: ghcr.io/librespeed/speedtest:6.0.0
+    image: ghcr.io/librespeed/speedtest:6.0.1
     environment:
       MODE: standalone
       TELEMETRY: "false"
