@@ -1,0 +1,30 @@
+---
+services:
+  ashim:
+    image: ashimhq/ashim:latest
+    volumes:
+      - /data/config_storage/ashim:/data
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.ashim.entrypoints=http"
+      - "traefik.http.routers.ashim.rule=Host(`ashim.${DOMAIN}`)"
+      - "traefik.http.middlewares.ashim-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.ashim.middlewares=ashim-https-redirect"
+      - "traefik.http.routers.ashim-secure.entrypoints=https"
+      - "traefik.http.routers.ashim-secure.rule=Host(`ashim.${DOMAIN}`)"
+      - "traefik.http.routers.ashim-secure.tls=true"
+      - "traefik.http.routers.ashim-secure.service=ashim"
+      - "traefik.http.services.ashim.loadbalancer.server.port=1349"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=ashim"
+      - "homepage.icon=/images/ashim.png"
+      - "homepage.href=https://ashim.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true
