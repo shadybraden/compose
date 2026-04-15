@@ -1,0 +1,35 @@
+services:
+  bookheaven:
+    image: ghcr.io/bookheaven/bookheaven-server:0.17.0
+    container_name: bookheaven
+    volumes:
+      - /data/config_storage/bookheaven/data:/app/data
+    environment:
+      - SERVER_URL=https://bookheaven.${DOMAIN}
+      - TZ=America/New_York
+    user: 1000:1000
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.bookheaven.entrypoints=http"
+      - "traefik.http.routers.bookheaven.rule=Host(`bookheaven.${DOMAIN}`)"
+      - "traefik.http.middlewares.bookheaven-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.bookheaven.middlewares=bookheaven-https-redirect"
+      - "traefik.http.routers.bookheaven-secure.entrypoints=https"
+      - "traefik.http.routers.bookheaven-secure.rule=Host(`bookheaven.${DOMAIN}`)"
+      - "traefik.http.routers.bookheaven-secure.tls=true"
+      - "traefik.http.routers.bookheaven-secure.service=bookheaven"
+      - "traefik.http.services.bookheaven.loadbalancer.server.port=8080"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=bookheaven"
+      - "homepage.icon=/images/bookheaven.png"
+      - "homepage.href=https://bookheaven.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true
