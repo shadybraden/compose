@@ -31,6 +31,10 @@ services:
       - "traefik.http.routers.docmost-secure.service=docmost"
       - "traefik.http.services.docmost.loadbalancer.server.port=3000"  # port of the service.
       - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=docmost"
+      - "homepage.icon=/images/docmost.png"
+      - "homepage.href=https://docmost.${DOMAIN}/"
 
   docmost_postgres:
     image: postgres:18.3
