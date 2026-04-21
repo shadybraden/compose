@@ -10,8 +10,8 @@ services:
       APP_SECRET: ${APP_SECRET}
       DATABASE_URL: "postgresql://docmost:${POSTGRES_PASSWORD}@db:5432/docmost"
       REDIS_URL: "redis://redis:6379"
-    ports:
-      - 3000:3000
+#    ports:
+#      - 3000:3000
     restart: unless-stopped
     volumes:
       - /data/config_storage/docmost/storage:/app/data/storage
