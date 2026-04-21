@@ -1,7 +1,7 @@
 ---
 services:
   docmost:
-    image: docmost/docmost:latest
+    image: docmost/docmost:0.80.0
     depends_on:
       - db
       - redis
@@ -32,8 +32,9 @@ services:
       - "traefik.http.services.docmost.loadbalancer.server.port=3000"  # port of the service.
       - "traefik.docker.network=intranet"
 
-  db:
+  docmost_postgres:
     image: postgres:18.3
+    container_name: docmost_postgres
     environment:
       POSTGRES_DB: docmost
       POSTGRES_USER: docmost
@@ -46,8 +47,9 @@ services:
     networks:
       - intranet
 
-  redis:
+  docmost_redis:
     image: redis:8.4.2
+    container_name: docmost_redis
     command: ["redis-server", "--appendonly", "yes", "--maxmemory-policy", "noeviction"]
     restart: unless-stopped
     volumes:
