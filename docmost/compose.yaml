@@ -1,0 +1,62 @@
+---
+services:
+  docmost:
+    image: docmost/docmost:latest
+    depends_on:
+      - db
+      - redis
+    environment:
+      APP_URL: "https://docmost.${DOMAIN}"
+      APP_SECRET: ${APP_SECRET}
+      DATABASE_URL: "postgresql://docmost:${POSTGRES_PASSWORD}@db:5432/docmost"
+      REDIS_URL: "redis://redis:6379"
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+    volumes:
+      - /data/config_storage/docmost/storage:/app/data/storage
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.docmost.entrypoints=http"
+      - "traefik.http.routers.docmost.rule=Host(`docmost.${DOMAIN}`)"
+      - "traefik.http.middlewares.docmost-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.docmost.middlewares=docmost-https-redirect"
+      - "traefik.http.routers.docmost-secure.entrypoints=https"
+      - "traefik.http.routers.docmost-secure.rule=Host(`docmost.${DOMAIN}`)"
+      - "traefik.http.routers.docmost-secure.tls=true"
+      - "traefik.http.routers.docmost-secure.service=docmost"
+      - "traefik.http.services.docmost.loadbalancer.server.port=3000"  # port of the service.
+      - "traefik.docker.network=intranet"
+
+  db:
+    image: postgres:18.3
+    environment:
+      POSTGRES_DB: docmost
+      POSTGRES_USER: docmost
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    restart: unless-stopped
+    volumes:
+      - /data/config_storage/docmost/db_data:/var/lib/postgresql
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+
+  redis:
+    image: redis:8.4.2
+    command: ["redis-server", "--appendonly", "yes", "--maxmemory-policy", "noeviction"]
+    restart: unless-stopped
+    volumes:
+      - /data/config_storage/docmost/redis_data:/data
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+
+networks:
+  intranet:
+    external: true
