@@ -9,7 +9,7 @@ services:
       APP_URL: "https://docmost.${DOMAIN}"
       APP_SECRET: ${APP_SECRET}
       DATABASE_URL: "postgresql://docmost:${POSTGRES_PASSWORD}@db:5432/docmost"
-      REDIS_URL: "redis://redis:6379"
+      REDIS_URL: "redis://docmost_redis:6379"
 #    ports:
 #      - 3000:3000
     restart: unless-stopped
