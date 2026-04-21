@@ -2,6 +2,7 @@
 services:
   docmost:
     image: docmost/docmost:0.80.0
+    container_name: docmost
     depends_on:
       - docmost_postgres
       - docmost_redis
