@@ -3,8 +3,8 @@ services:
   docmost:
     image: docmost/docmost:0.80.0
     depends_on:
-      - db
-      - redis
+      - docmost_postgres
+      - docmost_redis
     environment:
       APP_URL: "https://docmost.${DOMAIN}"
       APP_SECRET: ${APP_SECRET}
