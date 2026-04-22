@@ -53,7 +53,7 @@ services:
       - intranet
 
   docmost_redis:
-    image: redis:8.4.2
+    image: redis:8.6.2
     container_name: docmost_redis
     command: ["redis-server", "--appendonly", "yes", "--maxmemory-policy", "noeviction"]
     restart: unless-stopped
