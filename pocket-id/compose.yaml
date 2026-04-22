@@ -1,0 +1,36 @@
+---
+services:
+  pocket-id:
+    image: ghcr.io/pocket-id/pocket-id:v2
+    restart: unless-stopped
+    volumes:
+      - /data/config_storage/pocket-id:/app/data
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - APP_URL=https://pocket-id.${DOMAIN}
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY}  # openssl rand -base64 32
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pocket-id.entrypoints=http"
+      - "traefik.http.routers.pocket-id.rule=Host(`pocket-id.${DOMAIN}`)"
+      - "traefik.http.middlewares.pocket-id-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.pocket-id.middlewares=pocket-id-https-redirect"
+      - "traefik.http.routers.pocket-id-secure.entrypoints=https"
+      - "traefik.http.routers.pocket-id-secure.rule=Host(`pocket-id.${DOMAIN}`)"
+      - "traefik.http.routers.pocket-id-secure.tls=true"
+      - "traefik.http.routers.pocket-id-secure.service=pocket-id"
+      - "traefik.http.services.pocket-id.loadbalancer.server.port=1411"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=pocket-id"
+      - "homepage.icon=/images/pocket-id.png"
+      - "homepage.href=https://pocket-id.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true
