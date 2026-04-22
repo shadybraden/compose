@@ -31,7 +31,7 @@ services:
       - "homepage.icon=/images/pinchflat.png"
       - "homepage.href=https://pinchflat.${DOMAIN}/"
       - "traefik.http.routers.pinchflat-secure.middlewares=tinyauth"
-      - "tinyauth.apps.pinchflat-secure.oauth.groups: users"
+      - "tinyauth.apps.pinchflat-secure.oauth.groups=users"
 
 networks:
   intranet:
