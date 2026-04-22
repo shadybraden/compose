@@ -16,6 +16,7 @@ services:
       - TINYAUTH_OAUTH_PROVIDERS_POCKETID_SCOPES=openid email profile groups
       - TINYAUTH_OAUTH_PROVIDERS_POCKETID_NAME=Pocket ID
       - TINYAUTH_OAUTH_AUTOREDIRECT=pocketid
+      - TINYAUTH_OAUTH_WHITELIST=${TINYAUTH_OAUTH_WHITELIST}
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
