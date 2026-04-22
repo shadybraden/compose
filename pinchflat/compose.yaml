@@ -2,6 +2,7 @@
 services:
   pinchflat:
     image: ghcr.io/kieraneglin/pinchflat:v2025.6.6
+    container_name: pinchflat
     environment:
       - TZ=America/New_York
 #    ports:

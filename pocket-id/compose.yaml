@@ -1,7 +1,8 @@
 ---
 services:
   pocket-id:
-    image: ghcr.io/pocket-id/pocket-id:v2
+    image: ghcr.io/pocket-id/pocket-id:v2.6.2
+    container_name: pocket-id
     restart: unless-stopped
     volumes:
       - /data/config_storage/pocket-id:/app/data
