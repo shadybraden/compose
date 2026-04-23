@@ -8,6 +8,8 @@ services:
       TELEMETRY: "false"
       DISTANCE: "mi"
       WEBPORT: 8068
+    ports:
+      - 8068:8068
     security_opt:
       - no-new-privileges:true  # helps to increase security
     restart: unless-stopped
