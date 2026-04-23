@@ -7,7 +7,7 @@ services:
       MODE: standalone
       TELEMETRY: "false"
       DISTANCE: "mi"
-      WEBPORT: 8080
+      WEBPORT: 8068
     security_opt:
       - no-new-privileges:true  # helps to increase security
     restart: unless-stopped
@@ -23,7 +23,7 @@ services:
       - "traefik.http.routers.speedtest-secure.rule=Host(`speedtest.${DOMAIN}`)"
       - "traefik.http.routers.speedtest-secure.tls=true"
       - "traefik.http.routers.speedtest-secure.service=speedtest"
-      - "traefik.http.services.speedtest.loadbalancer.server.port=8080"  # port of the service.
+      - "traefik.http.services.speedtest.loadbalancer.server.port=8068"  # port of the service.
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=speedtest"
