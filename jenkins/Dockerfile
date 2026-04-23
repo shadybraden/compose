@@ -1,6 +1,6 @@
 FROM anchore/grype:v0.111.1  AS grype-builder
 
-FROM jenkins/jenkins:2.555.1-lts-jdk21
+FROM jenkins/jenkins:2.555.1-lts-jdk25
 
 # the path is /grype, per their own dockerfile: https://github.com/anchore/grype/blob/main/Dockerfile
 COPY --from=grype-builder /grype /usr/local/bin/grype
