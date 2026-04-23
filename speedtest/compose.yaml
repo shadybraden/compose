@@ -29,8 +29,7 @@ services:
       - "homepage.name=speedtest"
       - "homepage.icon=/images/librespeed.png"
       - "homepage.href=https://speedtest.${DOMAIN}/"
-      - traefik.http.routers.speedtest.middlewares=anubis@docker
-      - "traefik.http.routers.speedtest-secure.middlewares=tinyauth"
+      - "traefik.http.routers.speedtest.middlewares=anubis@docker"
 
 networks:
   intranet:
