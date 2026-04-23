@@ -17,6 +17,7 @@ services:
       # Should match your domain for proper cookie scoping
       - COOKIE_DOMAIN=${DOMAIN}
       - LOG_LEVEL=debug
+      - JWT_RESTRICTION_HEADER=CF-Connecting-IP
     volumes:
       - /data/config_storage/komodo/etc_komodo/repos/compose_main/anubis/botPolicy.yaml:/data/cfg/botPolicy.yaml:ro
     security_opt:
