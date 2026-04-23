@@ -1,8 +1,8 @@
 ---
 services:
   docker-in-docker:
-    image: docker:29.4.0-dind-rootless
-    container_name: 'docker-in-docker'
+    image: docker:29.4.0-dind
+    container_name: 'docker_dind'
     privileged: 'true'
     command: ['dockerd', '-H', 'tcp://0.0.0.0:2375', '--tls=false']
     restart: 'unless-stopped'
@@ -17,10 +17,8 @@ services:
     container_name: 'runner'
     environment:
       DOCKER_HOST: tcp://docker-in-docker:2375
-    user: 1000:1000
+    user: 1001:1001
     volumes:
-      - /data/config_storage/forgejo-action/data:/data  # see commands for setting up this dir: https://forgejo.org/docs/next/admin/actions/runner-installation/#oci-image-installation
+      - /data/config_storage/forgejo-action/data:/data  # mkdir -p data/.cache && chown -R 1001:1001 data && chmod 775 data/.cache && chmod g+s data/.cache
     restart: 'unless-stopped'
-    command: '/bin/sh -c "sleep 5; forgejo-runner daemon"'  # for normal use; post registration
-
-    # command: '/bin/sh -c "while : ; do sleep 1 ; done ;"'  # FOR REGISTRATION - see just above https://forgejo.org/docs/next/admin/actions/runner-installation/#standard-registration
+    command: 'forgejo-runner daemon --config runner-config.yml'  # for normal use; post registration
