@@ -5,7 +5,7 @@ services:
     container_name: 'docker_dind'
     privileged: 'true'
     command: ['dockerd', '-H', 'tcp://0.0.0.0:2375', '--tls=false']
-    restart: no
+    restart: 'unless-stopped'
 
   runner:
     image: 'data.forgejo.org/forgejo/runner:12.9.0'
@@ -20,7 +20,7 @@ services:
     user: 1001:1001
     volumes:
       - /data/config_storage/forgejo-action/data:/data  # mkdir -p data/.cache && chown -R 1001:1001 data && chmod 775 data/.cache && chmod g+s data/.cache
-    restart: no
+    restart: 'unless-stopped'
     command: 'forgejo-runner daemon --config runner-config.yml'  # for normal use; post registration
 
 # initialize config:
