@@ -1,7 +1,7 @@
 ---
 services:
   mongo:
-    image: mongo:8.2.6  # use latest avalible
+    image: mongo:8.2.6  # use latest image avalible
     labels:
       komodo.skip:  # Prevent Komodo from stopping with StopAllContainers
     command: --quiet --wiredTigerCacheSizeGB 0.25
