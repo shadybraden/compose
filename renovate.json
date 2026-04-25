@@ -1,9 +1,5 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "apk": {
-    "enabled": true,
-    "fileMatch": ["(^|/)Dockerfile$"]
-  },
   "extends": ["config:base", "docker:enableMajor"],
   "commitMessagePrefix": ":rocket:",
   "prConcurrentLimit": 32,
@@ -26,9 +22,6 @@
       "matchDatasources": ["docker"],
       "matchPackageNames": ["quay.io/linuxserver.io/jackett"],
       "automerge": true
-    },
-    {
-      "matchManagers": ["apk"]
     }
   ]
 }
