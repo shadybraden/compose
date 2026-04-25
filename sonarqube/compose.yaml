@@ -1,0 +1,33 @@
+---
+services:
+  sonarqube:
+    image: sonarqube:26.4.0.121862-community
+    container_name: sonarqube
+    volumes:
+      - /data/config_storage/sonarqube/sonarqube_logs:/opt/sonarqube/logs'
+      - /data/config_storage/sonarqube/sonarqube_extensions:/opt/sonarqube/extensions'
+      - /data/config_storage/sonarqube/sonarqube_data:/opt/sonarqube/data'
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.sonarqube.entrypoints=http"
+      - "traefik.http.routers.sonarqube.rule=Host(`sonarqube.${DOMAIN}`)"
+      - "traefik.http.middlewares.sonarqube-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.sonarqube.middlewares=sonarqube-https-redirect"
+      - "traefik.http.routers.sonarqube-secure.entrypoints=https"
+      - "traefik.http.routers.sonarqube-secure.rule=Host(`sonarqube.${DOMAIN}`)"
+      - "traefik.http.routers.sonarqube-secure.tls=true"
+      - "traefik.http.routers.sonarqube-secure.service=sonarqube"
+      - "traefik.http.services.sonarqube.loadbalancer.server.port=9000"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=sonarqube"
+      - "homepage.icon=/images/sonarqube.png"
+      - "homepage.href=https://sonarqube.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true
