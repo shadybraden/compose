@@ -7,16 +7,18 @@ services:
       - 8080:8080
     environment:
       # Telling Anubis, where to listen for Traefik
-      - BIND=:8080
-      # Telling Anubis to do redirect — ensure there is a space after '='
-      - 'TARGET= '
+      BIND: ":8080"
+      TARGET: " "
       # Specifies which domains Anubis is allowed to redirect to.
-      - REDIRECT_DOMAINS=${DOMAIN},anubis.${DOMAIN}
+      REDIRECT_DOMAINS: "${DOMAIN}"
       # Should be the full external URL for Anubis (including scheme)
-      - 'PUBLIC_URL='
+      PUBLIC_URL: "anubis.${DOMAIN}"
+      COOKIE_DYNAMIC_DOMAIN: "true"
+      SERVE_ROBOTS_TXT: "true"
       # Should match your domain for proper cookie scoping
-      - COOKIE_DOMAIN=${DOMAIN}
-      - LOG_LEVEL=debug
+      COOKIE_DOMAIN: ${DOMAIN}
+      LOG_LEVEL: debug
+      POLICY_FNAME: "/data/cfg/botPolicy.yaml"
     volumes:
       - /data/config_storage/komodo/etc_komodo/repos/compose_main/anubis/botPolicy.yaml:/data/cfg/botPolicy.yaml:ro
     security_opt:
