@@ -8,5 +8,3 @@ RUN apk add openssh=10.3_p1-r0
 
 RUN rm -rf /usr/lib/python3.12/EXTERNALLY-MANAGED
 RUN pip3 install ansible==13.6.0
-
-
