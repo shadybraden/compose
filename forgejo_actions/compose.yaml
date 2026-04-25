@@ -23,4 +23,4 @@ services:
       - /data/config_storage/komodo/etc_komodo/repos/compose_main/forgejo_actions/runner-config.yml:/runner-config.yml
       - /data/config_storage/forgejo-action/forgejo_actions_token.txt:/forgejo_actions_token.txt
     restart: 'unless-stopped'
-    command: 'forgejo-runner daemon --config runner-config.yml'  # for normal use; post registration
+    command: 'forgejo-runner daemon --config /runner-config.yml'  # for normal use; post registration
