@@ -15,8 +15,6 @@ services:
       PUBLIC_URL: "anubis.${DOMAIN}"
       COOKIE_DYNAMIC_DOMAIN: "true"
       SERVE_ROBOTS_TXT: "true"
-      # Should match your domain for proper cookie scoping
-      COOKIE_DOMAIN: ${DOMAIN}
       LOG_LEVEL: debug
       POLICY_FNAME: "/data/cfg/botPolicy.yaml"
     volumes:
