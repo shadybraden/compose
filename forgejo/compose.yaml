@@ -34,7 +34,7 @@ services:
       - "homepage.group=Infrastructure"
       - "homepage.name=Forgejo"
       - "homepage.icon=/images/forgejo.png"
-      - "homepage.href=https://git.holmlab.org/shady/compose"
+      - "homepage.href=https://git.holmlab.org/shady?tab=stars"
 
 networks:
   intranet:
