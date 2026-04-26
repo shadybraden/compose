@@ -3,18 +3,6 @@
   "extends": ["config:base", "docker:enableMajor"],
   "commitMessagePrefix": ":rocket:",
   "prConcurrentLimit": 32,
-  "customManagers": [
-    {
-      "customType": "regex",
-      "fileMatch": ["(^|/)Dockerfile$", "(^|/)Dockerfile\\..*$"],
-      "matchStrings": [
-        "apk add (?:[a-z0-9@._+-]+ )*(?<depName>[a-z0-9@._+-]+)=(?<currentValue>[a-z0-9._+-]+)"
-      ],
-      "datasourceTemplate": "repology",
-      "versioningTemplate": "loose",
-      "registryUrlTemplate": "https://repology.org/api/v1/project/{{depName}}"
-    }
-  ],
   "packageRules": [
     {
       "updateTypes": ["patch"],
