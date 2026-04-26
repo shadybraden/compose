@@ -258,11 +258,11 @@ server:
   connections:
     holmie:
       url: https://git.holmlab.org/
-      uuid: f91c29e9-a469-4f00-84ea-c2be6e1ef37f
+      uuid: 34edbbf4-40df-4265-b835-84f586a9d2dc
       token_url: file:/forgejo_actions_token.txt
       fetch_interval: 30s
     shady:
       url: https://git.holmlab.org/
-      uuid: 55322696-b68a-403b-9dcf-afbddb0aed8a
+      uuid: 650c691e-ead3-46c8-a6f8-8635aa0a7d32
       token_url: file:/forgejo_actions_token.txt
       fetch_interval: 30s
