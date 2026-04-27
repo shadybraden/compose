@@ -16,7 +16,7 @@ services:
       - schedule="* 8-18 * * 1-5"  # not for auto-running. use cron for that
       - RENOVATE_PR_HOURLY_LIMIT=100
       - RENOVATE_ASSIGNEES=shady
-    image: renovate/renovate:43.141.6
+    image: renovate/renovate:43.142.1
     container_name: renovate
     security_opt:
       - no-new-privileges:true  # helps to increase security
