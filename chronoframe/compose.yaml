@@ -5,7 +5,7 @@ services:
     container_name: chronoframe
     restart: unless-stopped
     ports:
-      - '3000:3000'
+      - '3008:3000'
     volumes:
       - /data/config_storage/chronoframe:/app/data
     environment:
