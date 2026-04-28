@@ -4,8 +4,9 @@ services:
     image: ghcr.io/hoshinosuzumi/chronoframe:0.14.1
     container_name: chronoframe
     restart: unless-stopped
+    user: 1408:1408
     ports:
-      - '3008:3000'
+      - '8408:3000'
     volumes:
       - /data/config_storage/chronoframe:/app/data
     environment:
