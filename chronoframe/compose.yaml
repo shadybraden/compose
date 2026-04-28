@@ -1,0 +1,45 @@
+---
+services:
+  chronoframe:
+    image: ghcr.io/hoshinosuzumi/chronoframe:latest
+    container_name: chronoframe
+    restart: unless-stopped
+    ports:
+      - '3000:3000'
+    volumes:
+      - /data/config_storage/chronoframe:/app/data
+    environment:
+    - CFRAME_ADMIN_EMAIL=admin@${DOMAIN}
+    - CFRAME_ADMIN_NAME=admin
+    - CFRAME_ADMIN_PASSWORD=${CFRAME_ADMIN_PASSWORD}
+    - NUXT_PUBLIC_APP_TITLE=
+    - NUXT_PUBLIC_APP_SLOGAN=
+    - NUXT_PUBLIC_APP_AUTHOR=
+    - NUXT_PUBLIC_APP_AVATAR_URL=
+    - NUXT_STORAGE_PROVIDER=local
+    - NUXT_PROVIDER_LOCAL_PATH=/app/data/storage
+    - NUXT_SESSION_PASSWORD=${NUXT_SESSION_PASSWORD}
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.chronoframe.entrypoints=http"
+      - "traefik.http.routers.chronoframe.rule=Host(`chronoframe.${DOMAIN}`)"
+      - "traefik.http.middlewares.chronoframe-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.chronoframe.middlewares=chronoframe-https-redirect"
+      - "traefik.http.routers.chronoframe-secure.entrypoints=https"
+      - "traefik.http.routers.chronoframe-secure.rule=Host(`chronoframe.${DOMAIN}`)"
+      - "traefik.http.routers.chronoframe-secure.tls=true"
+      - "traefik.http.routers.chronoframe-secure.service=chronoframe"
+      - "traefik.http.services.chronoframe.loadbalancer.server.port=3000"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=chronoframe"
+      - "homepage.icon=/images/chronoframe.png"
+      - "homepage.href=https://chronoframe.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true
