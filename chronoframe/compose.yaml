@@ -1,7 +1,7 @@
 ---
 services:
   chronoframe:
-    image: ghcr.io/hoshinosuzumi/chronoframe:latest
+    image: ghcr.io/hoshinosuzumi/chronoframe:0.14.1
     container_name: chronoframe
     restart: unless-stopped
     ports:
