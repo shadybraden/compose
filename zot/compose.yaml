@@ -8,6 +8,7 @@ services:
       - /data/config_storage/zot:/tmp/zot
       - /data/config_storage/zot/meta.db:/var/lib/registry/meta.db
       - /data/config_storage/zot/registry:/var/lib/registry
+      - /data/config_storage/komodo/etc_komodo/repos/compose_main/zot/config.json:/config.json
     restart: no
     security_opt:
       - no-new-privileges:true  # helps to increase security
