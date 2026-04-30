@@ -1,39 +1,66 @@
-    {
-      "http": {
-        "address":"0.0.0.0",
-        "port":"5000",
-        "auth":{
-        "htpasswd": {
-          "path": "/secret/htpasswd"
+{
+    "distSpecVersion": "1.0.1",
+    "storage": {
+        "rootDirectory": "/tmp/zot"
+    },
+    "http": {
+        "address": "127.0.0.1",
+        "port": "5000",
+        "accessControl": {
+            "groups": {
+            "group1": {
+                "users": ["bob", "mary"]
+            },
+            "group2": {
+                "users": ["alice", "mallory", "jim"]
+            }
+            },
+            "repositories": {
+            "**": {
+                "policies": [{
+                "users": ["charlie"],
+                "groups": ["group2"],
+                "actions": ["read", "create", "update"]
+                }],
+                "defaultPolicy": ["read", "create"]
+            },
+            "tmp/**": {
+                "anonymousPolicy": ["read"],
+                "defaultPolicy": ["read", "create", "update"]
+            },
+            "infra/*": {
+                "policies": [{
+                    "users": ["alice", "bob"],
+                    "actions": ["create", "read", "update", "delete"]
+                },
+                {
+                    "users": ["mallory"],
+                    "groups": ["group1"],
+                    "actions": ["create", "read"]
+                }
+                ],
+                "defaultPolicy": ["read"]
+            },
+            "repos2/repo": {
+                "policies": [{
+                    "users": ["bob"],
+                    "actions": ["read", "create"]
+                },
+                {
+                    "users": ["mallory"],
+                    "actions": ["create", "read"]
+                }
+                ],
+                "defaultPolicy": ["read"]
+            }
+            },
+            "adminPolicy": {
+            "users": ["admin"],
+            "actions": ["read", "create", "update", "delete"]
+            }
         }
-        }
-      },
-      "log": {
-        "level":"debug"
-      },
-      "extensions": {
-      "search": {
-      "enable": true
-      },
-      "ui": {
-        "enable": true
-      },
-      "mgmt": {
-        "enable": true
-      }
-      },
-      "storage": {
-        "dedupe": false,
-        "rootDirectory": "/tmp/zot",
-        "storageDriver": {
-            "name": "s3",
-            "region": "lon1",
-            "regionendpoint": "https://objectstore.lon1.civo.com",
-            "bucket": "zot",
-            "secure": true,
-            "skipverify": false,
-            "accesskey": "",
-            "secretkey": ""
-        }
-      }
+    },
+    "log": {
+        "level": "debug"
     }
+}
