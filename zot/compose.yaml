@@ -6,6 +6,7 @@ services:
     user: 1000:1000
     volumes:
       - /data/config_storage/zot:/tmp/zot
+      - /data/config_storage/zot/meta.db:/var/lib/registry/meta.db
     restart: no
     security_opt:
       - no-new-privileges:true  # helps to increase security
