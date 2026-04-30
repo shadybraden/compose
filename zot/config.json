@@ -5,7 +5,18 @@
     },
     "http": {
         "address": "127.0.0.1",
-        "port": "5000"
+        "port": "5000",
+        "accessControl": {
+            "groups": {
+            "group1": {
+                "users": ["admin"]
+            }
+            },
+            "adminPolicy": {
+            "users": ["admin"],
+            "actions": ["read", "create", "update", "delete"]
+            }
+        }
     },
     "log": {
         "level": "debug"
