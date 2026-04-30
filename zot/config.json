@@ -1,24 +1,39 @@
-{
-    "distSpecVersion": "1.0.1",
-    "storage": {
-        "rootDirectory": "/tmp/zot"
-    },
-    "http": {
-        "address": "127.0.0.1",
-        "port": "5000",
-        "accessControl": {
-            "groups": {
-            "group1": {
-                "users": ["admin"]
-            }
-            },
-            "adminPolicy": {
-            "users": ["admin"],
-            "actions": ["read", "create", "update", "delete"]
-            }
+    {
+      "http": {
+        "address":"0.0.0.0",
+        "port":"5000",
+        "auth":{
+        "htpasswd": {
+          "path": "/secret/htpasswd"
         }
-    },
-    "log": {
-        "level": "debug"
+        }
+      },
+      "log": {
+        "level":"debug"
+      },
+      "extensions": {
+      "search": {
+      "enable": true
+      },
+      "ui": {
+        "enable": true
+      },
+      "mgmt": {
+        "enable": true
+      }
+      },
+      "storage": {
+        "dedupe": false,
+        "rootDirectory": "/tmp/zot",
+        "storageDriver": {
+            "name": "s3",
+            "region": "lon1",
+            "regionendpoint": "https://objectstore.lon1.civo.com",
+            "bucket": "zot",
+            "secure": true,
+            "skipverify": false,
+            "accesskey": "",
+            "secretkey": ""
+        }
+      }
     }
-}
