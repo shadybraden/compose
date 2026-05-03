@@ -21,6 +21,8 @@ services:
       - /data/mnt/torrents:/torrents
       - /mnt/extra:/mnt
       - /data/dont_backup/media:/ssd
+      - /data/audiobooks:/audiobooks
+      - /data/ebooks:/ebooks
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true  # helps to increase security
