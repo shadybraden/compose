@@ -41,7 +41,7 @@ services:
       - "homepage.href=https://books.${DOMAIN}/"
 
   mariadb_grimmory:
-    image: lscr.io/linuxserver/mariadb:11.4.5  # pinned by grimmory - https://grimmory.org/docs/installation#step-2-create-the-docker-composeyml-file
+    image: lscr.io/linuxserver/mariadb:11.4.10  # pinned by grimmory - https://grimmory.org/docs/installation#step-2-create-the-docker-composeyml-file
     container_name: mariadb_grimmory
     environment:
       - PUID=1000
