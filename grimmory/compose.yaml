@@ -33,7 +33,7 @@ services:
       - "traefik.http.routers.books-secure.rule=Host(`books.${DOMAIN}`)"
       - "traefik.http.routers.books-secure.tls=true"
       - "traefik.http.routers.books-secure.service=books"
-      - "traefik.http.services.books.loadbalancer.server.port=6060"  # port of the service.
+      - "traefik.http.services.books.loadbalancer.server.port=8080"  # port of the service.
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=grimmory"
