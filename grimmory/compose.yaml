@@ -1,0 +1,69 @@
+---
+services:
+  grimmory:
+    image: grimmory/grimmory:v3.0.3
+    container_name: grimmory
+    environment:
+      - USER_ID=1000
+      - GROUP_ID=1000
+      - TZ=America/New_York
+      - DATABASE_URL=jdbc:mariadb://mariadb_grimmory:3306/grimmory
+      - DATABASE_USERNAME=grimmory
+      - DATABASE_PASSWORD=${DB_PASSWORD}
+      - BOOKLORE_PORT=${BOOKLORE_PORT}
+    depends_on:
+      mariadb_grimmory:
+        condition: service_healthy
+    volumes:
+      - /data/config_storage/grimmory/data:/app/data
+      - /data/ebooks:/books
+      - /data/config_storage/grimmory/bookdrop:/bookdrop
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.books.entrypoints=http"
+      - "traefik.http.routers.books.rule=Host(`books.${DOMAIN}`)"
+      - "traefik.http.middlewares.books-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.books.middlewares=books-https-redirect"
+      - "traefik.http.routers.books-secure.entrypoints=https"
+      - "traefik.http.routers.books-secure.rule=Host(`books.${DOMAIN}`)"
+      - "traefik.http.routers.books-secure.tls=true"
+      - "traefik.http.routers.books-secure.service=books"
+      - "traefik.http.services.books.loadbalancer.server.port=80"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=grimmory"
+      - "homepage.icon=/images/grimmory.png"
+      - "homepage.href=https://books.${DOMAIN}/"
+
+  mariadb_grimmory:
+    image: lscr.io/linuxserver/mariadb:11.4.5  # pinned by grimmory - https://grimmory.org/docs/installation#step-2-create-the-docker-composeyml-file
+    container_name: mariadb_grimmory
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=grimmory
+      - MYSQL_USER=grimmory
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - /data/config_storage/grimmory/mariadb:/config
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "mariadb-admin", "ping", "-h", "localhost" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+
+networks:
+  intranet:
+    external: true
