@@ -17,6 +17,7 @@ services:
       - RENOVATE_PR_HOURLY_LIMIT=100
       - RENOVATE_ASSIGNEES=shady
     image: renovate/renovate:43.166.3
+    # image: renovate/renovate:43.166.3
     container_name: renovate
     security_opt:
       - no-new-privileges:true  # helps to increase security
