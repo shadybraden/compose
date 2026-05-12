@@ -30,7 +30,7 @@ services:
       - "homepage.group=Other"
       - "homepage.name=speedtest"
       - "homepage.icon=/images/librespeed.png"
-      - "homepage.href=https://speedtest.${DOMAIN}/"
+      - "homepage.href=https://speedtest.${DOMAIN}/index-modern.html?design=new"
       - "traefik.http.routers.speedtest.middlewares=anubis@docker"
 
 networks:
