@@ -3,8 +3,6 @@ services:
   nginx:
     image: nginx:1.30.0
     container_name: hugo-server
-    ports:
-      - 56204:80
     volumes:
       - /data/hugo-public:/usr/share/nginx/html:ro
     security_opt:
