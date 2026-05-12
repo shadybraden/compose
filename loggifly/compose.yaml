@@ -8,7 +8,7 @@ services:
     environment:  # https://clemcer.github.io/loggifly/guide/environment-variables.html
       NTFY_URL: "https://ntfy.holmlab.org"  # not a variable because logs should all go back to holmlab
       NTFY_TOPIC: ${topic}
-      DISABLE_START_MESSAGE: true
+      SYSTEM_NOTIFICATIONS_START: true
       CONTAINERS: "*"
       CONTAINERS_NEVER_MONITOR: "autobrr,aircraft,mautrix-discord,stirlingpdf,qui,pinchflat-holmie-pinchflat-1,skywatch,chrome,homepage,renovate,freshrss,sonarr,radarr,synapse"
       # CONTAINERS: "olivetin,ntfy,factorio,vaultwarden,actual_server,anubis,wedding-share,audiobookshelf,pihole,wg-easy,forgejo,jellyfin,immich_server,nextcloud,silverbullet,tinyauth"
