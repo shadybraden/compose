@@ -10,7 +10,7 @@ services:
       NTFY_TOPIC: ${topic}
       TITLE_TEMPLATE: "{{ container_name }}, {{ keyword }}"
       SYSTEM_NOTIFICATIONS_START: true
-      CONTAINERS: "*"
+      CONTAINERS: "**"
       CONTAINERS_NEVER_MONITOR: "autobrr,aircraft,mautrix-discord,stirlingpdf,qui,pinchflat-holmie-pinchflat-1,skywatch,chrome,homepage,renovate,freshrss,sonarr,radarr,synapse"
       # CONTAINERS: "olivetin,ntfy,factorio,vaultwarden,actual_server,anubis,wedding-share,audiobookshelf,pihole,wg-easy,forgejo,jellyfin,immich_server,nextcloud,silverbullet,tinyauth"
       GLOBAL_KEYWORDS: "Database: jdbc:mariadb://mariadb_grimmory/grimmory?user=grimmory&password=********,Logging to '/config/log/mysql/mariadb-error.log,ExitOnOutOfMemoryError,HeapDumpOnOutOfMemoryError,login?username=,[JOIN],[LEAVE],error,failed login,password,Authentication failed,Failed authentication attempt,Wrong credentials"
