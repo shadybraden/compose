@@ -15,6 +15,7 @@ services:
       - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
+      - no_internet
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.seerr.entrypoints=http"
