@@ -129,29 +129,3 @@ networks:
 
 ```
 </details>
-
-<details>
-<summary>No internet container</summary>
-
-## Create network:
-
-```shell
-docker network create \
-  --internal \
-  --driver bridge \
-  --subnet 192.168.51.0/24 \
-  no_internet
-```
-
-## Add this to compose.yaml:
-
-```yaml
-    networks:
-      - no_internet
-
-networks:
-  no_internet:
-    external: true
-
-```
-</details>
