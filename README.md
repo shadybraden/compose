@@ -148,5 +148,10 @@ docker network create \
 ```yaml
     networks:
       - no_internet
+
+networks:
+  no_internet:
+    external: true
+
 ```
 </details>

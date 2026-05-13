@@ -36,3 +36,6 @@ services:
 networks:
   intranet:
     external: true
+  no_internet:
+    external: true
+    
