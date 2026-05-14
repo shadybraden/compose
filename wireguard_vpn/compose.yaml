@@ -4,17 +4,12 @@ services:
     image: ghcr.io/wg-easy/wg-easy:15.2.2
     container_name: wg-easy_vpn
     environment:
-      WG_DEVICE: enp2s
+      WG_DEVICE: enp2s0
       INSECURE: true
-    networks:
-      wg_vpn:
-        ipv4_address: 10.22.22.22
+    network_mode: container:gluetun
     volumes:
       - /data/config_storage/wg-easy_vpn:/etc/wireguard
       - /lib/modules:/lib/modules:ro
-    ports:
-      - "51822:51822/udp"
-      - "51821:51821/tcp"
     restart: unless-stopped
     cap_add:
       - NET_ADMIN
@@ -25,12 +20,3 @@ services:
       - net.ipv6.conf.all.disable_ipv6=0
       - net.ipv6.conf.all.forwarding=1
       - net.ipv6.conf.default.forwarding=1
-
-networks:
-  wg_vpn:
-    driver: bridge
-    enable_ipv6: false
-    ipam:
-      driver: default
-      config:
-        - subnet: 10.22.22.0/24

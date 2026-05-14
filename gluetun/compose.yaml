@@ -21,6 +21,7 @@ services:
       - SHADOWSOCKS_LOG=on
       - DOT=off
       - HTTPPROXY=on
+      - FIREWALL_OUTBOUND_SUBNETS=192.168.50.0/24
     ports:
       - 8888:8888/tcp  # HTTP proxy
       - 8388:8388/tcp  # Shadowsocks
