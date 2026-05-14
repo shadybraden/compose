@@ -9,7 +9,6 @@ services:
     networks:
       wg_vpn:
         ipv4_address: 10.22.22.42
-        ipv6_address: fdcc:ad94:bacf:61a3::2a
     volumes:
       - /data/config_storage/wg-easy_vpn:/etc/wireguard
       - /lib/modules:/lib/modules:ro
@@ -30,9 +29,8 @@ services:
 networks:
   wgwg_vpn:
     driver: bridge
-    enable_ipv6: true
+    enable_ipv6: false
     ipam:
       driver: default
       config:
         - subnet: 10.22.22.0/24
-        - subnet: fdcc:ad94:bacf:61a3::/64
