@@ -4,7 +4,7 @@ services:
     image: ghcr.io/wg-easy/wg-easy:15.2.2
     container_name: wg-easy_vpn
     environment:
-      WG_DEVICE: enp2s0  # https://github.com/wg-easy/wg-easy/issues/1795#issuecomment-2900911182
+      WG_DEVICE: enp2s
       INSECURE: true
     networks:
       wg_vpn:
@@ -13,7 +13,7 @@ services:
       - /data/config_storage/wg-easy_vpn:/etc/wireguard
       - /lib/modules:/lib/modules:ro
     ports:
-      - "51822:51822/udp"  # public port. remember to port forward this
+      - "51822:51822/udp"
       - "51821:51821/tcp"
     restart: unless-stopped
     cap_add:
