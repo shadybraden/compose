@@ -18,7 +18,7 @@ services:
       - /lib/modules:/lib/modules:ro
     ports:
       - "51820:51820/udp"  # public port. remember to port forward this
-      - "51821:51821/tcp"
+      #- "51821:51821/tcp"
     restart: unless-stopped
     cap_add:
       - NET_ADMIN
