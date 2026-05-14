@@ -10,6 +10,7 @@ services:
       NTFY_TOPIC: ${topic}
       TITLE_TEMPLATE: "{{ container_name }}, {{ keyword }}"
       SYSTEM_NOTIFICATIONS_START: true
+      SYSTEM_NOTIFICATIONS_SHUTDOWN: false
       CONTAINERS: "*"
       CONTAINERS_NEVER_MONITOR: "autobrr,aircraft,mautrix-discord,stirlingpdf,qui,pinchflat-holmie-pinchflat-1,skywatch,chrome,homepage,renovate,freshrss,sonarr,radarr,synapse"
       # CONTAINERS: "olivetin,ntfy,factorio,vaultwarden,actual_server,anubis,wedding-share,audiobookshelf,pihole,wg-easy,forgejo,jellyfin,immich_server,nextcloud,silverbullet,tinyauth"
