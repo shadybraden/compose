@@ -35,6 +35,11 @@
       "matchPackageNames": ["jgraph/drawio"],
       "automerge": true,
       "matchUpdateTypes": ["minor", "patch"]
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["postgres"],
+      "versioning": "loose"
     }
   ]
 }
