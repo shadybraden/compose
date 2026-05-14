@@ -8,7 +8,7 @@ services:
       INSECURE: true
     networks:
       wg_vpn:
-        ipv4_address: 10.22.22.42
+        ipv4_address: 10.22.22.22
     volumes:
       - /data/config_storage/wg-easy_vpn:/etc/wireguard
       - /lib/modules:/lib/modules:ro
