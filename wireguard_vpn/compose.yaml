@@ -1,15 +1,21 @@
 ---
 services:
-  wireguard_vpn:
+  wg-easy:
     image: ghcr.io/wg-easy/wg-easy:15.2.2
-    container_name: wireguard_vpn
+    container_name: wg-easy
     environment:
       WG_DEVICE: enp2s0  # https://github.com/wg-easy/wg-easy/issues/1795#issuecomment-2900911182
-      PORT: 51821  # web ui
-    network_mode: container:gluetun
+      INSECURE: true
+    networks:
+      wg_vpn:
+        ipv4_address: 10.22.22.42
+        ipv6_address: fdcc:ad94:bacf:61a3::2a
     volumes:
-      - /data/config_storage/wireguard_vpn:/etc/wireguard
+      - /data/config_storage/wg-easy_vpn:/etc/wireguard
       - /lib/modules:/lib/modules:ro
+    ports:
+      - "51822:51820/udp"  # public port. remember to port forward this
+      - "51821:51821/tcp"
     restart: unless-stopped
     cap_add:
       - NET_ADMIN
@@ -20,20 +26,13 @@ services:
       - net.ipv6.conf.all.disable_ipv6=0
       - net.ipv6.conf.all.forwarding=1
       - net.ipv6.conf.default.forwarding=1
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
-    labels:
-      - "homepage.group=Other"
-      - "homepage.name=wireguard_vpn"
-      - "homepage.icon=/images/wireguard.png"
-      - "homepage.href=https://wireguard_vpn.${DOMAIN}/"
 
 networks:
-  wg:
+  wgwg_vpn:
     driver: bridge
     enable_ipv6: true
     ipam:
       driver: default
       config:
-        - subnet: 10.42.42.0/24
+        - subnet: 10.22.22.0/24
         - subnet: fdcc:ad94:bacf:61a3::/64
