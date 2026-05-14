@@ -35,11 +35,18 @@
       "matchPackageNames": ["jgraph/drawio"],
       "automerge": true,
       "matchUpdateTypes": ["minor", "patch"]
-    },
+    }
+  ],
+  "customManagers": [
     {
-      "matchDatasources": ["docker"],
-      "matchPackageNames": ["postgres"],
-      "versioning": "loose"
+      "customType": "regex",
+      "fileMatch": ["(^|/)compose[^/]*\\.ya?ml$"],
+      "matchStrings": [
+        "postgres:(?<currentValue>\\d+\\.\\d+-alpine(?<compatibility>\\d+\\.\\d+))"
+      ],
+      "depNameTemplate": "postgres",
+      "datasourceTemplate": "docker",
+      "versioningTemplate": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)-alpine(?<patch>\\d+)\\.(?<build>\\d+)$"
     }
   ]
 }
