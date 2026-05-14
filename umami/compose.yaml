@@ -41,7 +41,7 @@ services:
       - "homepage.href=https://analytics.${DOMAIN}/"
 
   db:
-    image: postgres:15.17-alpine3.22  #15.17-alpine3.23  # pinned to 15-alpine https://github.com/umami-software/umami/blob/master/docker-compose.yml
+    image: postgres:15.17-alpine3.23  #15.17-alpine3.23  # pinned to 15-alpine https://github.com/umami-software/umami/blob/master/docker-compose.yml
     container_name: umami_db
     environment:
       POSTGRES_DB: umami
