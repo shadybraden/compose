@@ -13,6 +13,7 @@ services:
     ports:
       - 12170:80
     image: gtstef/filebrowser:1.3.2-stable
+    container_name: filebrowserquantum
     environment:
       - FILEBROWSER_ADMIN_PASSWORD=${FILEBROWSER_ADMIN_PASSWORD}
       - FILEBROWSER_DATABASE=/home/filebrowser/database.db

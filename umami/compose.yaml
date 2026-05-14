@@ -2,6 +2,7 @@
 services:
   umami:
     image: ghcr.io/umami-software/umami:latest
+    container_name: umami
     ports:
       - "61074:3000"
     environment:
@@ -41,6 +42,7 @@ services:
 
   db:
     image: postgres:15-alpine
+    container_name: umami_db
     environment:
       POSTGRES_DB: umami
       POSTGRES_USER: umami

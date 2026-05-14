@@ -2,6 +2,7 @@
 services:
   baikal:
     image: ckulka/baikal:0.10.1
+    container_name: baikal
     restart: unless-stopped
     volumes:
       - /data/config_storage/baikal/config:/var/www/baikal/config
