@@ -14,7 +14,7 @@ services:
         driver_opts:
           com.docker.network.endpoint.ifname: enp2s0
     volumes:
-      - /data/config_storage/wg-easy:/etc/wireguard
+      - /data/config_storage/wg-easy:/etc/wireguard_vpn
       - /lib/modules:/lib/modules:ro
     ports:
       - "51820:51820/udp"  # public port. remember to port forward this
@@ -31,20 +31,20 @@ services:
       - net.ipv6.conf.default.forwarding=1
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.wireguard.entrypoints=http"
-      - "traefik.http.routers.wireguard.rule=Host(`wireguard.${DOMAIN}`)"
-      - "traefik.http.middlewares.wireguard-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.wireguard.middlewares=wireguard-https-redirect"
-      - "traefik.http.routers.wireguard-secure.entrypoints=https"
-      - "traefik.http.routers.wireguard-secure.rule=Host(`wireguard.${DOMAIN}`)"
-      - "traefik.http.routers.wireguard-secure.tls=true"
-      - "traefik.http.routers.wireguard-secure.service=wireguard"
-      - "traefik.http.services.wireguard.loadbalancer.server.port=51821"  # port of the service
+      - "traefik.http.routers.wireguard_vpn.entrypoints=http"
+      - "traefik.http.routers.wireguard_vpn.rule=Host(`wireguard_vpn.${DOMAIN}`)"
+      - "traefik.http.middlewares.wireguard_vpn-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.wireguard_vpn.middlewares=wireguard_vpn-https-redirect"
+      - "traefik.http.routers.wireguard_vpn-secure.entrypoints=https"
+      - "traefik.http.routers.wireguard_vpn-secure.rule=Host(`wireguard_vpn.${DOMAIN}`)"
+      - "traefik.http.routers.wireguard_vpn-secure.tls=true"
+      - "traefik.http.routers.wireguard_vpn-secure.service=wireguard_vpn"
+      - "traefik.http.services.wireguard_vpn.loadbalancer.server.port=51821"  # port of the service
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
-      - "homepage.name=wireguard"
+      - "homepage.name=wireguard_vpn"
       - "homepage.icon=/images/wireguard.png"
-      - "homepage.href=https://wireguard.${DOMAIN}/"
+      - "homepage.href=https://wireguard_vpn.${DOMAIN}/"
 
 networks:
   wg:
