@@ -27,7 +27,7 @@ services:
       - net.ipv6.conf.default.forwarding=1
 
 networks:
-  wgwg_vpn:
+  wg_vpn:
     driver: bridge
     enable_ipv6: false
     ipam:
