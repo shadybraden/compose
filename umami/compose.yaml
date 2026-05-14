@@ -1,7 +1,7 @@
 ---
 services:
   umami:
-    image: ghcr.io/umami-software/umami:latest
+    image: ghcr.io/umami-software/umami:3.1.0
     container_name: umami
     ports:
       - "61074:3000"
@@ -41,7 +41,7 @@ services:
       - "homepage.href=https://analytics.${DOMAIN}/"
 
   db:
-    image: postgres:15-alpine
+    image: postgres:15.16-alpine3.22  #15.17-alpine3.23  # pinned to 15-alpine https://github.com/umami-software/umami/blob/master/docker-compose.yml
     container_name: umami_db
     environment:
       POSTGRES_DB: umami
