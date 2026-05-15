@@ -54,6 +54,9 @@ services:
       - "homepage.name=hugo"
       - "homepage.icon=/images/hugo.png"
       - "homepage.href=https://hugo.${DOMAIN}/"
+      - "traefik.http.routers.mirror.rule=Host(`mirror.shadybraden.com`)"
+      - "traefik.http.routers.mirror.entrypoints=websecure"
+      - "traefik.http.routers.mirror.tls=true"
 
 networks:
   intranet:
