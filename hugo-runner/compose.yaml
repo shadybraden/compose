@@ -12,6 +12,7 @@ services:
       - '/var/cache/nginx:size=64m'
       - '/var/run:size=8m'
     read_only: true
+    user: "101:101"
     cap_add:
       - NET_BIND_SERVICE
     cap_drop:
