@@ -31,6 +31,11 @@ services:
       timeout: 5s
       retries: 3
       start_period: 10s
+    ulimits:
+      nofile:
+        soft: 1024
+        hard: 2048
+      nproc: 64
     networks:
       - intranet
     labels:
