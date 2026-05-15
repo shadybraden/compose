@@ -6,7 +6,15 @@ services:
     volumes:
       - /data/hugo-public:/usr/share/nginx/html:ro
     security_opt:
-      - no-new-privileges:true  # helps to increase security
+      - no-new-privileges:true
+    tmpfs:
+      - '/tmp:size=64m'
+    read_only: true
+    cap_add:
+      - NET_BIND_SERVICE
+    cap_drop:
+      - ALL
+    init: true
     networks:
       - intranet
     labels:
