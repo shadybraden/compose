@@ -54,15 +54,6 @@ services:
       - "homepage.name=hugo"
       - "homepage.icon=/images/hugo.png"
       - "homepage.href=https://hugo.${DOMAIN}/"
-      #- "traefik.http.routers.mirror.entrypoints=http"
-      #- "traefik.http.routers.mirror.rule=Host(`mirror.shadybraden.com`)"
-      #- "traefik.http.middlewares.mirror-https-redirect.redirectscheme.scheme=https"
-      #- "traefik.http.routers.mirror.middlewares=mirror-https-redirect"
-      #- "traefik.http.routers.mirror-secure.entrypoints=https"
-      #- "traefik.http.routers.mirror-secure.rule=Host(`mirror.shadybraden.com`)"
-      #- "traefik.http.routers.mirror-secure.tls=true"
-      #- "traefik.http.routers.mirror-secure.service=mirror"
-      #- "traefik.http.services.mirror.loadbalancer.server.port=80"  # port of the service.
 
 networks:
   intranet:
