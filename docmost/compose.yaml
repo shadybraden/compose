@@ -39,7 +39,7 @@ services:
       - "homepage.href=https://docmost.${DOMAIN}/"
 
   docmost_postgres:
-    image: postgres:18.3
+    image: postgres:18.4
     container_name: docmost_postgres
     environment:
       POSTGRES_DB: docmost
