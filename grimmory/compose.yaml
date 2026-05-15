@@ -1,7 +1,7 @@
 ---
 services:
   grimmory:
-    image: grimmory/grimmory:v3.0.3
+    image: grimmory/grimmory:v3.1.0
     container_name: grimmory
     environment:
       - USER_ID=1000
