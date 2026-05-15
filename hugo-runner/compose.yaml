@@ -25,6 +25,12 @@ services:
           memory: 64M
         reservations:
           memory: 16M
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
     networks:
       - intranet
     labels:
