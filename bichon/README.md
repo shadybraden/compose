@@ -14,3 +14,9 @@ docker run -it --rm -v $(pwd):/mnt rustmailer/bichon bichonctl
 - [ ] EML scan recursivly
 - [ ] Enter root: `/mnt`
 - [ ] Profit
+
+## Migrate from 0.3.7 to 1.0.0
+
+`cd /data/config_storage/email_archive`
+
+`docker run -it --rm -v $(pwd):/data rustmailer/bichon bichon-admin`
