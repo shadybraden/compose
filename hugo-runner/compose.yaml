@@ -18,6 +18,13 @@ services:
     cap_drop:
       - ALL
     init: true
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 64M
+        reservations:
+          memory: 16M
     networks:
       - intranet
     labels:
