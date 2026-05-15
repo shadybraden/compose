@@ -8,9 +8,9 @@ services:
     security_opt:
       - no-new-privileges:true
     tmpfs:
-      - '/tmp:size=64m'
-      - '/var/cache/nginx:size=64m'
-      - '/var/run:size=8m'
+      - '/tmp:size=64m,uid=101,gid=101,mode=1777'
+      - '/var/cache/nginx:size=64m,uid=101,gid=101,mode=0755'
+      - '/var/run:size=8m,uid=101,gid=101,mode=0755'
     read_only: true
     user: "101:101"
     cap_add:
