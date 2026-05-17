@@ -16,7 +16,7 @@ services:
       - /data/config_storage/filebrowser/config:/config
     ports:
       - 8060:80
-    image: filebrowser/filebrowser:v2.63.3
+    image: filebrowser/filebrowser:v2.63.4
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
