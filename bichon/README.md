@@ -6,7 +6,7 @@ https://github.com/rustmailer/bichon/wiki/Using-Bichonctl-For-Email-Import
 
 ```
 cd /data/config_storage/email_archive
-docker run -it --rm -v $(pwd):/mnt rustmailer/bichon bichonctl
+docker run -it --rm -v $(pwd):/mnt rustmailer/bichon bichon-cli
 ```
 
 - [ ] Enter url `https://bichon.holmlab.org/`
