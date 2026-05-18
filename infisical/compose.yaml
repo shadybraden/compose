@@ -1,0 +1,66 @@
+---
+services:
+  backend:
+    container_name: infisical-backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    image: infisical/infisical:v0.160.0
+    environment:
+      - NODE_ENV=production
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+      - infisical
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.infisical.entrypoints=http"
+      - "traefik.http.routers.SUBDOMAIN.rule=Host(`SUBDOMAIN.${DOMAIN}`)"
+      - "traefik.http.middlewares.SUBDOMAIN-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.SUBDOMAIN.middlewares=SUBDOMAIN-https-redirect"
+      - "traefik.http.routers.SUBDOMAIN-secure.entrypoints=https"
+      - "traefik.http.routers.SUBDOMAIN-secure.rule=Host(`SUBDOMAIN.${DOMAIN}`)"
+      - "traefik.http.routers.SUBDOMAIN-secure.tls=true"
+      - "traefik.http.routers.SUBDOMAIN-secure.service=SUBDOMAIN"
+      - "traefik.http.services.SUBDOMAIN.loadbalancer.server.port=8080"  # port of the service.
+      - "traefik.docker.network=intranet"
+
+  redis:
+    image: redis:8.6.3  # use latest
+    container_name: infisical-dev-redis
+    restart: unless-stopped
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+      - infisical
+    volumes:
+      - redis_data:/data
+
+  db:
+    container_name: infisical-db
+    image: postgres:14.23-alpine3.23  # pinned to 14-alpine - https://raw.githubusercontent.com/Infisical/infisical/main/docker-compose.prod.yml
+    restart: unless-stopped
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+      - infisical
+    healthcheck:
+      test: "pg_isready --username=${POSTGRES_USER} && psql --username=${POSTGRES_USER} --list"
+      interval: 5s
+      timeout: 10s
+      retries: 10
+
+networks:
+  infisical:
+  intranet:
+    external: true
