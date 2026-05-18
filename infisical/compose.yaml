@@ -2,7 +2,7 @@
 services:
   backend:
     container_name: infisical-backend
-    restart: unless-stopped
+    restart: no
     user: 1000:1000
     depends_on:
       db:
@@ -47,7 +47,7 @@ services:
   redis:
     image: redis:8.6.3  # use latest
     container_name: infisical-dev-redis
-    restart: unless-stopped
+    restart: no
     user: 1000:1000
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
@@ -62,7 +62,7 @@ services:
   db:
     container_name: infisical-db
     image: postgres:14.23-alpine3.23  # pinned to 14-alpine - https://raw.githubusercontent.com/Infisical/infisical/main/docker-compose.prod.yml
-    restart: unless-stopped
+    restart: no
     user: 1000:1000
     environment:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
