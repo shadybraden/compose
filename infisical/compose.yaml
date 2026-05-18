@@ -57,7 +57,7 @@ services:
       - intranet
       - infisical
     volumes:
-      - /data/config_storage/infiscal/redis_data:/data
+      - /data/config_storage/infisical/redis_data:/data
 
   db:
     container_name: infisical-db
