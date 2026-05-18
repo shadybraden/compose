@@ -2,6 +2,8 @@
 
 https://github.com/rustmailer/bichon/wiki/Using-Bichonctl-For-Email-Import
 
+## Import emails to Bichon NoSync account
+
 ```
 cd /data/config_storage/email_archive
 docker run -it --rm -v $(pwd):/mnt rustmailer/bichon bichonctl
