@@ -1,7 +1,7 @@
 ---
 services:
   wg-easy_vpn:
-    image: ghcr.io/wg-easy/wg-easy:15.2.2
+    image: ghcr.io/wg-easy/wg-easy:15.3.0
     container_name: wg-easy_vpn
     environment:
       WG_DEVICE: enp2s0
