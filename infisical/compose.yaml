@@ -11,6 +11,16 @@ services:
     image: infisical/infisical:v0.160.0
     environment:
       - NODE_ENV=production
+      - AUTH_SECRET=${AUTH_SECRET}
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY}
+      - REDIS_URL=redis://redis:6379
+      - SITE_URL=https://infisical.${DOMAIN}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_USER=infisical
+      - POSTGRES_DB=infisical
+      - DB_CONNECTION_URI=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+    ports:
+      - 8080:8080
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
@@ -19,15 +29,19 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.infisical.entrypoints=http"
-      - "traefik.http.routers.SUBDOMAIN.rule=Host(`SUBDOMAIN.${DOMAIN}`)"
-      - "traefik.http.middlewares.SUBDOMAIN-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.SUBDOMAIN.middlewares=SUBDOMAIN-https-redirect"
-      - "traefik.http.routers.SUBDOMAIN-secure.entrypoints=https"
-      - "traefik.http.routers.SUBDOMAIN-secure.rule=Host(`SUBDOMAIN.${DOMAIN}`)"
-      - "traefik.http.routers.SUBDOMAIN-secure.tls=true"
-      - "traefik.http.routers.SUBDOMAIN-secure.service=SUBDOMAIN"
-      - "traefik.http.services.SUBDOMAIN.loadbalancer.server.port=8080"  # port of the service.
+      - "traefik.http.routers.infisical.rule=Host(`infisical.${DOMAIN}`)"
+      - "traefik.http.middlewares.infisical-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.infisical.middlewares=infisical-https-redirect"
+      - "traefik.http.routers.infisical-secure.entrypoints=https"
+      - "traefik.http.routers.infisical-secure.rule=Host(`infisical.${DOMAIN}`)"
+      - "traefik.http.routers.infisical-secure.tls=true"
+      - "traefik.http.routers.infisical-secure.service=infisical"
+      - "traefik.http.services.infisical.loadbalancer.server.port=8080"  # port of the service.
       - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=infisical"
+      - "homepage.icon=/images/infisical.png"
+      - "homepage.href=https://infisical.${DOMAIN}/"
 
   redis:
     image: redis:8.6.3  # use latest
@@ -47,6 +61,10 @@ services:
     container_name: infisical-db
     image: postgres:14.23-alpine3.23  # pinned to 14-alpine - https://raw.githubusercontent.com/Infisical/infisical/main/docker-compose.prod.yml
     restart: unless-stopped
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_USER=infisical
+      - POSTGRES_DB=infisical
     volumes:
       - /data/config_storage/infiscal/pg_data:/var/lib/postgresql/data
     security_opt:
