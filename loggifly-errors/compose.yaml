@@ -11,6 +11,7 @@ services:
       TITLE_TEMPLATE: "{{ container_name }}, {{ keyword }}"
       SYSTEM_NOTIFICATIONS_START: true
       SYSTEM_NOTIFICATIONS_SHUTDOWN: false
+      TRIGGER_COOLDOWN: 5
       CONTAINERS: "*"
       CONTAINERS_NEVER_MONITOR: "loggifly-errors,loggifly,searxng,autobrr,aircraft,mautrix-discord,stirlingpdf,qui,pinchflat-holmie-pinchflat-1,skywatch,chrome,homepage,renovate,freshrss,sonarr,radarr,synapse"
       # CONTAINERS: "olivetin,ntfy,factorio,vaultwarden,actual_server,anubis,wedding-share,audiobookshelf,pihole,wg-easy,forgejo,jellyfin,immich_server,nextcloud,silverbullet,tinyauth"
