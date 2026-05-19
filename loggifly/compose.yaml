@@ -11,6 +11,7 @@ services:
       TITLE_TEMPLATE: "{{ container_name }}, {{ keyword }}"
       SYSTEM_NOTIFICATIONS_START: false
       SYSTEM_NOTIFICATIONS_SHUTDOWN: false
+      SYSTEM_NOTIFICATIONS_MONITOR_EVENT: false
       TRIGGER_COOLDOWN: 5
       #CONTAINERS: "vaultwarden,filebrowserquantum,actual_server,audiobookshelf,autobrr,baikal,beszel,bichon"
       CONTAINERS: "*"
