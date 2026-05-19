@@ -5,6 +5,8 @@ services:
     container_name: hugo-server
     volumes:
       - /data/hugo-public:/usr/share/nginx/html:ro
+    environment:
+      - TZ=${TZ}
     security_opt:
       - no-new-privileges:true
     tmpfs:
