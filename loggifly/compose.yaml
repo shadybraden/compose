@@ -9,7 +9,7 @@ services:
       NTFY_URL: "https://ntfy.holmlab.org"  # not a variable because logs should all go back to holmlab
       NTFY_TOPIC: ${topic}
       TITLE_TEMPLATE: "{{ container_name }}, {{ keyword }}"
-      SYSTEM_NOTIFICATIONS_START: true
+      SYSTEM_NOTIFICATIONS_START: false
       SYSTEM_NOTIFICATIONS_SHUTDOWN: false
       TRIGGER_COOLDOWN: 5
       #CONTAINERS: "vaultwarden,filebrowserquantum,actual_server,audiobookshelf,autobrr,baikal,beszel,bichon"
