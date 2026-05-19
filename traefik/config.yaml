@@ -18,13 +18,6 @@ http:
       redirectScheme:
         scheme: https
         permanent: true
-    my-umami-middleware:
-      plugin:
-        umami-feeder:
-          umamiHost: "https://analytics.shadybraden.com/"
-          umamiUsername: ${umamiUsername}
-          umamiPassword: ${umamiPassword}
-          createNewWebsites: true
 
   routers:
     portainer:
