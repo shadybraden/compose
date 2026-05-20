@@ -68,7 +68,7 @@ services:
       - "homepage.href=https://komodo.${DOMAIN}/"
 
   periphery:
-    image: ghcr.io/moghtech/komodo-periphery:2.2.0
+    image: git.holmlab.org/shady/periphery:0.0.3
     container_name: komodo-periphery
     restart: unless-stopped
     init: true
