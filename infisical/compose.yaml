@@ -9,7 +9,7 @@ services:
         condition: service_healthy
       redis:
         condition: service_started
-    image: infisical/infisical:v0.160.0
+    image: infisical/infisical:v0.160.2
     environment:
       - NODE_ENV=production
       - AUTH_SECRET=${AUTH_SECRET}
