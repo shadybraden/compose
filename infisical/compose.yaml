@@ -41,6 +41,7 @@ services:
       - "homepage.name=infisical"
       - "homepage.icon=/images/infisical.png"
       - "homepage.href=https://infisical.${DOMAIN}/"
+      - "traefik.http.routers.infisical-secure.middlewares=tinyauth"
 
   redis:
     image: redis:8.6.3  # use latest
