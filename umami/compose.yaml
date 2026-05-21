@@ -6,11 +6,11 @@ services:
     ports:
       - "61074:3000"
     environment:
-      DATABASE_URL: postgresql://umami:${POSTGRES_PASSWORD}@db:5432/umami
+      DATABASE_URL: postgresql://umami:${POSTGRES_PASSWORD}@umami_db:5432/umami
       APP_SECRET: replace-me-with-a-random-string
       DISABLE_TELEMETRY: 1
     depends_on:
-      db:
+      umami_db:
         condition: service_healthy
     init: true
     restart: always
@@ -40,7 +40,7 @@ services:
       - "homepage.icon=/images/umami.png"
       - "homepage.href=https://analytics.${DOMAIN}/"
 
-  db:
+  umami_db:
     image: postgres:15.18-alpine3.23  #15.17-alpine3.23  # pinned to 15-alpine https://github.com/umami-software/umami/blob/master/docker-compose.yml
     container_name: umami_db
     environment:
