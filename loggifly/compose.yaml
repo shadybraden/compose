@@ -15,7 +15,7 @@ services:
       TRIGGER_COOLDOWN: 5
       #CONTAINERS: "vaultwarden,filebrowserquantum,actual_server,audiobookshelf,autobrr,baikal,beszel,bichon"
       CONTAINERS: "*"
-      CONTAINERS_NEVER_MONITOR: "loggifly-errors,loggifly,skywatch"
+      CONTAINERS_NEVER_MONITOR: "loggifly-errors,loggifly,skywatch,renovate"
       GLOBAL_KEYWORDS: "login?username=,failed login,password,Authentication failed,Failed authentication attempt,Wrong credentials,Invalid credentials,AuthenticationFailed"
       #GLOBAL_KEYWORDS_WITH_ATTACHMENT: "critical"  # Attaches a log file to the notification
       NTFY_PRIORITY: 2
