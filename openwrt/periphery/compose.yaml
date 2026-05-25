@@ -1,7 +1,7 @@
 ---
 services:
   periphery:
-    image: git.holmlab.org/shady/periphery:2.2.0
+    image: ghcr.io/moghtech/komodo-periphery:2.2.0
     container_name: periphery
     init: true
     labels:
