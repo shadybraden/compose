@@ -1,0 +1,21 @@
+---
+services:
+  pihole:
+    image: pihole/pihole:2026.05.0
+    container_name: pihole
+    environment:
+      - FTLCONF_webserver_api_password=${pihole_password}
+      - TZ=America/New_York
+      - FTLCONF_dns_listeningMode=all
+    volumes:
+      - /opt/config_storage/pihole/etc-pihole:/etc/pihole
+      - /opt/config_storage/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
+    restart: unless-stopped
+    cap_add:
+      - SYS_NICE
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "5353:80/tcp"  # web ui
+    security_opt:
+      - no-new-privileges:true  # helps to increase security

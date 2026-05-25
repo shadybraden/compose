@@ -1,0 +1,32 @@
+---
+services:
+  periphery:
+    image: git.holmlab.org/shady/periphery:2.2.0
+    container_name: periphery
+    init: true
+    labels:
+      komodo.skip:
+    restart: unless-stopped
+    logging:
+      driver: local
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /proc:/proc
+      - /opt/config_storage/komodo/etc_komodo:/etc/komodo
+      - /opt/config_storage/komodo/periphery-keys:/config/keys
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    ports:
+      - 8120:8120
+    environment:
+      PERIPHERY_CORE_ADDRESS: komodo.holmlab.org
+      PERIPHERY_CONNECT_AS: openwrt
+      PERIPHERY_ONBOARDING_KEY: ${PERIPHERY_ONBOARDING_KEY}
+      PERIPHERY_CORE_PUBLIC_KEYS: file:/config/keys/core.pub
+      PERIPHERY_DISABLE_TERMINALS: false
+      PERIPHERY_DISABLE_CONTAINER_EXEC: false
+      PERIPHERY_INCLUDE_DISK_MOUNTS: /etc/hostname
+
+networks:
+  intranet:
+    external: true
