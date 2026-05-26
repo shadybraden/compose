@@ -8,6 +8,7 @@ services:
       - FTLCONF_webserver_api_password=${pihole_password}
       - TZ=America/New_York
       - FTLCONF_dns_listeningMode=all
+      - FTLCONF_webserver_port= '8082'
     volumes:
       - /opt/config_storage/pihole/etc-pihole:/etc/pihole
       - /opt/config_storage/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
