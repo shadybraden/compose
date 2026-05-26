@@ -15,7 +15,7 @@ services:
     volumes:
       - /opt/config_storage/pihole/etc-pihole:/etc/pihole
       - /opt/config_storage/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
-    restart: no
+    restart: always
     cap_add:
       - SYS_NICE
       - NET_BIND_SERVICE

@@ -4,7 +4,7 @@ services:
     image: klutchell/dnscrypt-proxy:2.1.15
     container_name: dnscrypt
     network_mode: host
-    restart: no
+    restart: always
     volumes:
       - /opt/config_storage/dnscrypt/logs:/logs
       - /opt/config_storage/dnscrypt/config:/config

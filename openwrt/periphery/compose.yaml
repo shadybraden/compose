@@ -7,7 +7,7 @@ services:
     init: true
     labels:
       komodo.skip:
-    restart: no
+    restart: always
     logging:
       driver: local
     volumes:
