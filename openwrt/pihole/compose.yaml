@@ -8,23 +8,19 @@ services:
       - FTLCONF_webserver_api_password=${pihole_password}
       - TZ=America/New_York
       - FTLCONF_dns_listeningMode=all
-      - FTLCONF_webserver_port=0.0.0.0:8082
-      - FTLCONF_dns_upstreams="192.168.50.1#5053"  # dnscrypt-proxy
+      - FTLCONF_webserver_port=8082
+      - FTLCONF_dns_upstreams=192.168.50.1#5053  # dnscrypt-proxy
       - PIHOLE_UID=0
       - PIHOLE_GID=0
     volumes:
       - /opt/config_storage/pihole/etc-pihole:/etc/pihole
       - /opt/config_storage/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
-      - /opt/config_storage/pihole/var:/var
-      - /opt/config_storage/pihole/var/run:/var/run
-      - /opt/config_storage/pihole/var/www:/var/www
     restart: no
     cap_add:
       - SYS_NICE
-      - CAP_NET_BIND_SERVICE
-      - CAP_SYS_TIME
-      - CAP_SYS_NICE
+      - NET_BIND_SERVICE
+      - SYS_TIME
       - NET_ADMIN
-      - CAP_CHOWN
+      - CHOWN
     security_opt:
       - no-new-privileges:true  # helps to increase security
