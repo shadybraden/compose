@@ -22,9 +22,5 @@ services:
       - SYS_NICE
       - CAP_NET_BIND_SERVICE
       - CAP_SYS_TIME
-    ports:
-      - "53:53/tcp"
-      - "53:53/udp"
-      - "8082:80/tcp"  # web ui
     security_opt:
       - no-new-privileges:true  # helps to increase security
