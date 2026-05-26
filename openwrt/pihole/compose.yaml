@@ -24,5 +24,6 @@ services:
       - CAP_SYS_TIME
       - CAP_SYS_NICE
       - NET_ADMIN
+      - CAP_CHOWN
     security_opt:
       - no-new-privileges:true  # helps to increase security
