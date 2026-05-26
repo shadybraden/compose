@@ -16,6 +16,7 @@ services:
       - /opt/config_storage/pihole/etc-pihole:/etc/pihole
       - /opt/config_storage/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
       - /opt/config_storage/pihole/var:/var
+      - /opt/config_storage/pihole/var/run/dnsmasq.pid:/var/run/dnsmasq.pid
     restart: no
     cap_add:
       - SYS_NICE
