@@ -13,7 +13,6 @@ services:
       - PIHOLE_UID=0
       - PIHOLE_GID=0
     volumes:
-      - /opt/config_storage/pihole/etc:/etc
       - /opt/config_storage/pihole/etc-pihole:/etc/pihole
       - /opt/config_storage/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
       - /opt/config_storage/pihole/var:/var
