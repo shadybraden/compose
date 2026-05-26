@@ -3,6 +3,7 @@ services:
   periphery:
     image: ghcr.io/moghtech/komodo-periphery:2.2.0
     container_name: periphery
+    network_mode: host
     init: true
     labels:
       komodo.skip:
