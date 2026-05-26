@@ -16,6 +16,7 @@ services:
     restart: no
     cap_add:
       - SYS_NICE
+      - CAP_NET_BIND_SERVICE
     ports:
       - "53:53/tcp"
       - "53:53/udp"
