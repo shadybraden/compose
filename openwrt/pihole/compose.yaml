@@ -11,7 +11,7 @@ services:
     volumes:
       - /opt/config_storage/pihole/etc-pihole:/etc/pihole
       - /opt/config_storage/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
-    restart: unless-stopped
+    restart: no
     cap_add:
       - SYS_NICE
     ports:
