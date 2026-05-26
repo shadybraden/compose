@@ -8,8 +8,8 @@ services:
       - FTLCONF_webserver_api_password=${pihole_password}
       - TZ=America/New_York
       - FTLCONF_dns_listeningMode=all
-      - FTLCONF_webserver_port= "0.0.0.0:8082"
-      - FTLCONF_dns_upstreams= "192.168.50.1#5053"  # dnscrypt-proxy
+      - FTLCONF_webserver_port=0.0.0.0:8082
+      - FTLCONF_dns_upstreams="192.168.50.1#5053"  # dnscrypt-proxy
       - PIHOLE_UID=0
       - PIHOLE_GID=0
     volumes:
