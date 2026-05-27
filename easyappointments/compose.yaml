@@ -1,7 +1,7 @@
 ---
 services:
   easyapointments:
-    image: alextselegidis/easyappointments:1.5.2
+    image: alextselegidis/easyappointments:1.6.0
     restart: unless-stopped
 #    ports:
 #      - '80:80'
