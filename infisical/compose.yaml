@@ -44,7 +44,7 @@ services:
       #- "traefik.http.routers.infisical-secure.middlewares=tinyauth"
 
   redis:
-    image: redis:8.6.3  # use latest
+    image: redis:8.8.0  # use latest
     container_name: infisical-dev-redis
     user: 1000:1000
     restart: unless-stopped
