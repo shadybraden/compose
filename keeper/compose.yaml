@@ -1,6 +1,6 @@
 services:
   keeper:
-    image: ghcr.io/ridafkih/keeper-standalone:2.9.35
+    image: ghcr.io/ridafkih/keeper-standalone:2.10.1
     volumes:
       - /data/config_storage/keeper:/var/lib/postgresql/data
     environment:
