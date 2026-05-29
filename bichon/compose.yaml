@@ -1,6 +1,7 @@
 ---
 services:
   bichon:
+    # renovate: changelogUrl=https://github.com/rustmailer/bichon
     image: rustmailer/bichon:1.4.0
     environment:
       - BICHON_ROOT_DIR=/data
