@@ -1,4 +1,4 @@
-FROM python:3.14.5
+FROM python:3.14.5-alpine3.23
 
 ENV TZ="America/New_York"
 
