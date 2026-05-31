@@ -14,7 +14,8 @@ services:
       - TINYAUTH_OAUTH_PROVIDERS_POCKETID_REDIRECTURL=https://tinyauth.${DOMAIN}/api/oauth/callback/pocketid
       - TINYAUTH_OAUTH_PROVIDERS_POCKETID_SCOPES=openid email profile
       - TINYAUTH_OAUTH_PROVIDERS_POCKETID_NAME=pocket-id
-      - TINYAUTH_OAUTH_AUTOREDIRECT=pocketid
+      #- TINYAUTH_OAUTH_AUTOREDIRECT=pocketid
+      - TINYAUTH_AUTH_USERS=${TINYAUTH_AUTH_USERS}
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
