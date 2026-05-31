@@ -2,7 +2,7 @@
 services:
   bichon:
     # renovate: changelogUrl=https://github.com/rustmailer/bichon
-    image: rustmailer/bichon:1.4.0
+    image: rustmailer/bichon:1.4.3
     environment:
       - BICHON_ROOT_DIR=/data
       - BICHON_LOG_LEVEL=info
