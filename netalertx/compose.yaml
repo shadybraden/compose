@@ -25,7 +25,7 @@ services:
       LISTEN_ADDR: 0.0.0.0
       PORT: 20211
       GRAPHQL_PORT: 20212
-    mem_limit: 2048
+    mem_limit: 2048m
     mem_reservation: 1024m
     cpu_shares: 512
     pids_limit: 512
