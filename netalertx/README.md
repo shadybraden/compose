@@ -1,3 +1,3 @@
 # network monitor
 
-https://github.com/jokob-sk/NetAlertX/tree/main/dockerfiles#-basic-usage
+https://docs.netalertx.com/DOCKER_COMPOSE/#baseline-docker-compose

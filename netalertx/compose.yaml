@@ -1,9 +1,8 @@
----
 services:
   netalertx:
-    volumes:
-      - /data/config_storage/netalertx:/data:rw
-      - /etc/localtime:/etc/localtime:ro
+    container_name: netalertx
+    image: ghcr.io/netalertx/netalertx:26.5.4
+    network_mode: host
     read_only: true
     cap_drop:
       - ALL
@@ -11,46 +10,27 @@ services:
       - NET_ADMIN
       - NET_RAW
       - NET_BIND_SERVICE
-    user: 20211:20211
+      - CHOWN
+      - SETUID
+      - SETGID
+    sysctls:
+      net.ipv4.conf.all.arp_ignore: 1
+      net.ipv4.conf.all.arp_announce: 2
+    volumes:
+      - /data/config_storage/netalertx:/data:rw
+      - /etc/localtime:/etc/localtime:ro
     tmpfs:
-      - "/tmp:uid=20211,gid=20211,mode=1700,rw,noexec,nosuid,nodev,async,noatime,nodiratime"
+      - "/tmp:uid=${NETALERTX_UID:-20211},gid=${NETALERTX_GID:-20211},mode=1700,rw,noexec,nosuid,nodev,async,noatime,nodiratime"
     environment:
-      - PORT=20211
-      - LISTEN_ADDR=0.0.0.0
-      - GRAPHQL_PORT=${GRAPHQL_PORT:-20212}
-    mem_limit: 2048m
+      LISTEN_ADDR: 0.0.0.0
+      PORT: 20211
+      GRAPHQL_PORT: 20212
+    mem_limit: 2048
     mem_reservation: 1024m
     cpu_shares: 512
     pids_limit: 512
     logging:
-      driver: "json-file"
       options:
         max-size: "10m"
         max-file: "3"
-    container_name: netalertx
     restart: unless-stopped
-    image: jokobsk/netalertx:26.5.4
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
-    networks:
-      - intranet
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.netalertx.entrypoints=http"
-      - "traefik.http.routers.netalertx.rule=Host(`netalertx.${DOMAIN}`)"
-      - "traefik.http.middlewares.netalertx-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.netalertx.middlewares=netalertx-https-redirect"
-      - "traefik.http.routers.netalertx-secure.entrypoints=https"
-      - "traefik.http.routers.netalertx-secure.rule=Host(`netalertx.${DOMAIN}`)"
-      - "traefik.http.routers.netalertx-secure.tls=true"
-      - "traefik.http.routers.netalertx-secure.service=netalertx"
-      - "traefik.http.services.netalertx.loadbalancer.server.port=20211"  # port of the service
-      - "traefik.docker.network=intranet"
-      - "homepage.group=Other"
-      - "homepage.name=netalertx"
-      - "homepage.icon=/images/NetAlertX.png"
-      - "homepage.href=https://netalertx.${DOMAIN}/"
-
-networks:
-  intranet:
-    external: true
