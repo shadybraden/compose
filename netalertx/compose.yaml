@@ -38,5 +38,5 @@ services:
     labels:
       - "homepage.group=Other"
       - "homepage.name=netalertx"
-      - "homepage.icon=/images/netalertx.png"
+      - "homepage.icon=/images/NetAlertX.png"
       - "homepage.href=https://netalertx.${DOMAIN}/"
