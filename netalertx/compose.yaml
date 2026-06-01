@@ -33,8 +33,6 @@ services:
         max-size: "10m"
         max-file: "3"
     restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
     labels:
       - "homepage.group=Other"
       - "homepage.name=netalertx"
