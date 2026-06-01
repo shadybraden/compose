@@ -149,6 +149,12 @@ for ac in data.get('aircraft', []):
         priority = 'default'
         title = "Civil Air Patrol | " + short_type_value + " | " + desc_value
 
+    if callsign.startswith("SAM"):
+        print(callsign)
+        send_message = 1
+        priority = 'default'
+        title = "Mill Exec Jet | " + short_type_value + " | " + desc_value
+
     if send_message == 1: # if we are planning on sending, check ignorelist
         with open("ignorelist.txt", "r") as file:
             for line in file:
