@@ -17,7 +17,7 @@ services:
       - /data/config_storage/netalertx:/data:rw
       - /etc/localtime:/etc/localtime:ro
     tmpfs:
-      - "/tmp:uid=${NETALERTX_UID:-20211},gid=${NETALERTX_GID:-20211},mode=1700,rw,noexec,nosuid,nodev,async,noatime,nodiratime"
+      - "/tmp:uid=20211,gid=20211,mode=1700,rw,noexec,nosuid,nodev,async,noatime,nodiratime"
     environment:
       LISTEN_ADDR: 0.0.0.0
       PORT: 20211
