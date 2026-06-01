@@ -1,0 +1,12 @@
+---
+services:
+  matter-server:
+    image: ghcr.io/matter-js/python-matter-server:8.1.2
+    container_name: matter-server
+    restart: unless-stopped
+    network_mode: host  # Required for mDNS to work correctly
+    security_opt:
+      - apparmor:unconfined  # Needed for Bluetooth via dbus
+    volumes:
+      - /data/config_storage/matter/data:/data/
+      - /run/dbus:/run/dbus:ro
