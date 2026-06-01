@@ -40,3 +40,9 @@ services:
       - "homepage.name=netalertx"
       - "homepage.icon=/images/NetAlertX.png"
       - "homepage.href=https://netalertx.${DOMAIN}/"
+    networks:
+      - intranet
+
+networks:
+  intranet:
+    external: true
