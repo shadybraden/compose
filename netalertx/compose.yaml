@@ -13,6 +13,9 @@ services:
       - CHOWN
       - SETUID
       - SETGID
+    sysctls:
+      net.ipv4.conf.all.arp_ignore: 1
+      net.ipv4.conf.all.arp_announce: 2
     volumes:
       - /data/config_storage/netalertx:/data:rw
       - /etc/localtime:/etc/localtime:ro
