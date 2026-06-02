@@ -5,8 +5,8 @@ services:
     container_name: adventurelog-frontend
     restart: unless-stopped
     environment:
-      - PUBLIC_SERVER_URL=http://adventurelog_server:8016
-      - ORIGIN=http://adventurelog_web:8015
+      - PUBLIC_SERVER_URL="http://adventurelog_server:8016"
+      - ORIGIN="http://adventurelog_web:8015"
       - BODY_SIZE_LIMIT=Infinity
       - FRONTEND_PORT=8015
     ports:
@@ -59,10 +59,10 @@ services:
       - DJANGO_ADMIN_USERNAME=admin
       - DJANGO_ADMIN_PASSWORD=${DJANGO_ADMIN_PASSWORD}
       - DJANGO_ADMIN_EMAIL=admin@example.com
-      - PUBLIC_URL=https://adventurelog.${DOMAIN}
-      - CSRF_TRUSTED_ORIGINS=https://adventurelog.${DOMAIN}
+      - PUBLIC_URL="https://adventurelog.${DOMAIN}"
+      - CSRF_TRUSTED_ORIGINS="https://adventurelog.${DOMAIN}"
       - DEBUG=False
-      - FRONTEND_URL=https://adventurelog.${DOMAIN}
+      - FRONTEND_URL="https://adventurelog.${DOMAIN}"
       - BACKEND_PORT=8016
       - DISABLE_REGISTRATION=False
     ports:
