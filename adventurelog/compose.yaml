@@ -65,6 +65,10 @@ services:
       - FRONTEND_URL=https://adventurelog.${DOMAIN}
       - BACKEND_PORT=8016
       - DISABLE_REGISTRATION=False
+      - PGHOST=adventurelog_db
+      - POSTGRES_DB=database
+      - POSTGRES_USER=adventure
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     ports:
       - "8016:80"
     depends_on:
