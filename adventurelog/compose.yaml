@@ -2,7 +2,7 @@
 services:
   adventurelog_web:
     image: ghcr.io/seanmorley15/adventurelog-frontend:v0.12.1
-    container_name: adventurelog-frontend
+    container_name: adventurelog_web
     restart: unless-stopped
     environment:
       - PUBLIC_SERVER_URL=http://adventurelog_server:8016
@@ -36,10 +36,10 @@ services:
 
   adventurelog_db:
     image: postgis/postgis:16-3.5
-    container_name: adventurelog-db
+    container_name: adventurelog_db
     restart: unless-stopped
     environment:
-      - PGHOST=db
+      - PGHOST=adventurelog_db
       - POSTGRES_DB=database
       - POSTGRES_USER=adventure
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
