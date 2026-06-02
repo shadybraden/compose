@@ -52,7 +52,7 @@ services:
 
   adventurelog_server:
     image: ghcr.io/seanmorley15/adventurelog-backend:v0.12.1
-    container_name: adventurelog-backend
+    container_name: adventurelog_server
     restart: unless-stopped
     environment:
       - SECRET_KEY=${SECRET_KEY}
