@@ -1,7 +1,7 @@
 ---
 services:
   traccar:
-    image: traccar/traccar:6.14.1
+    image: traccar/traccar:6.14.2
     volumes:
       - /data/config_storage/traccar/data:/opt/traccar/data:rw
       - /data/config_storage/traccar/override:/opt/traccar/override:rw
