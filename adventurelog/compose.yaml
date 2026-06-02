@@ -1,0 +1,81 @@
+---
+services:
+  adventurelog_web:
+    image: ghcr.io/seanmorley15/adventurelog-frontend:v0.12.1
+    container_name: adventurelog-frontend
+    restart: unless-stopped
+    environment:
+      - PUBLIC_SERVER_URL=http://server:8000
+      - ORIGIN=http://localhost:8015
+      - BODY_SIZE_LIMIT=Infinity
+      - FRONTEND_PORT=8015
+    ports:
+      - "8015:3000"
+    depends_on:
+      - adventurelog_server
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.adventurelog.entrypoints=http"
+      - "traefik.http.routers.adventurelog.rule=Host(`adventurelog.${DOMAIN}`)"
+      - "traefik.http.middlewares.adventurelog-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.adventurelog.middlewares=adventurelog-https-redirect"
+      - "traefik.http.routers.adventurelog-secure.entrypoints=https"
+      - "traefik.http.routers.adventurelog-secure.rule=Host(`adventurelog.${DOMAIN}`)"
+      - "traefik.http.routers.adventurelog-secure.tls=true"
+      - "traefik.http.routers.adventurelog-secure.service=adventurelog"
+      - "traefik.http.services.adventurelog.loadbalancer.server.port=3000"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=adventurelog"
+      - "homepage.icon=/images/adventurelog.png"
+      - "homepage.href=https://adventurelog.${DOMAIN}/"
+
+  adventurelog_db:
+    image: postgis/postgis:16-3.5
+    container_name: adventurelog-db
+    restart: unless-stopped
+    environment:
+      - PGHOST=db
+      - POSTGRES_DB=database
+      - POSTGRES_USER=adventure
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - /data/config_storage/adventurelog/postgres_data:/var/lib/postgresql/data/
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+
+  adventurelog_server:
+    image: ghcr.io/seanmorley15/adventurelog-backend:v0.12.1
+    container_name: adventurelog-backend
+    restart: unless-stopped
+    environment:
+      - SECRET_KEY=changeme123
+      - DJANGO_ADMIN_USERNAME=admin
+      - DJANGO_ADMIN_PASSWORD=${DJANGO_ADMIN_PASSWORD}
+      - DJANGO_ADMIN_EMAIL=admin@example.com
+      - PUBLIC_URL=http://localhost:8016 # Match the outward port, used for the creation of image urls
+      - CSRF_TRUSTED_ORIGINS=http://localhost:8016,http://localhost:8015
+      - DEBUG=False
+      - FRONTEND_URL=http://localhost:8015 # Used for email generation. This should be the url of the frontend
+      - BACKEND_PORT=8016
+      - DISABLE_REGISTRATION=False
+    ports:
+      - "8016:80"
+    depends_on:
+      - adventurelog_db
+    volumes:
+      - /data/config_storage/adventurelog/adventurelog_media:/code/media/
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+
+networks:
+  intranet:
+    external: true
