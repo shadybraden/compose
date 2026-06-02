@@ -6,7 +6,7 @@ services:
     restart: unless-stopped
     environment:
       - PUBLIC_SERVER_URL=http://adventurelog_server:8016
-      - ORIGIN=http://localhost:8015
+      - ORIGIN=http://adventurelog_web:8015
       - BODY_SIZE_LIMIT=Infinity
       - FRONTEND_PORT=8015
     ports:
