@@ -5,7 +5,7 @@ services:
     container_name: adventurelog_web
     restart: unless-stopped
     environment:
-      - PUBLIC_SERVER_URL=http://adventurelog_server:80
+      - PUBLIC_SERVER_URL=http://adventurelog_server:8016
       - ORIGIN=http://adventurelog_web:8015
       - BODY_SIZE_LIMIT=Infinity
       - FRONTEND_PORT=8015
@@ -70,7 +70,7 @@ services:
       - POSTGRES_USER=adventure
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     ports:
-      - "8016:80"
+      - "8016:8016"
     depends_on:
       - adventurelog_db
     volumes:
