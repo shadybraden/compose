@@ -24,6 +24,7 @@ services:
       - LOG_LEVEL=info
       - ALLOWED_ORIGINS=${ALLOWED_ORIGINS:-}
       - APP_URL=https://trek.${DOMAIN}
+      - ALLOW_INTERNAL_NETWORK=true
     volumes:
       - /data/config_storage/trek/data:/app/data
       - /data/config_storage/trek/uploads:/app/uploads
