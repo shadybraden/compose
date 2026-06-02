@@ -55,7 +55,7 @@ services:
     container_name: adventurelog-backend
     restart: unless-stopped
     environment:
-      - SECRET_KEY=changeme123
+      - SECRET_KEY=${SECRET_KEY}
       - DJANGO_ADMIN_USERNAME=admin
       - DJANGO_ADMIN_PASSWORD=${DJANGO_ADMIN_PASSWORD}
       - DJANGO_ADMIN_EMAIL=admin@example.com
