@@ -70,7 +70,7 @@ services:
       - POSTGRES_USER=adventure
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     ports:
-      - "8016:8016"
+      - "8016:80"
     depends_on:
       - adventurelog_db
     volumes:
