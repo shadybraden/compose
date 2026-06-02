@@ -173,6 +173,12 @@ for ac in data.get('aircraft', []):
         priority = 'high'
         title = "📡SIGINT📡 | " + short_type_value + " | " + desc_value
 
+    if callsign.startswith("COBRA"):
+        print(callsign)
+        send_message = 1
+        priority = 'default'
+        title = "📡SIGINT📡 | " + short_type_value + " | " + desc_value
+
     if callsign.startswith("NATO"):
         print(callsign)
         send_message = 1
@@ -184,6 +190,18 @@ for ac in data.get('aircraft', []):
         send_message = 1
         priority = 'default'
         title = "NOAA | " + short_type_value + " | " + desc_value
+
+    if callsign.startswith("NASA"):
+        print(callsign)
+        send_message = 1
+        priority = 'default'
+        title = "NASA | " + short_type_value + " | " + desc_value
+
+    if callsign.startswith("ACES"):
+        print(callsign)
+        send_message = 1
+        priority = 'default'
+        title = "Fighter Jet | " + short_type_value + " | " + desc_value
 
     if send_message == 1: # if we are planning on sending, check ignorelist
         with open("ignorelist.txt", "r") as file:
