@@ -1,0 +1,59 @@
+---
+services:
+  app:
+    image: mauriceboe/trek:3.0.22
+    container_name: trek
+    read_only: true
+    user: 1000:1000
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETUID
+      - SETGID
+    tmpfs:
+      - /tmp:noexec,nosuid,size=64m
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY}
+      - TZ=America/New_York
+      - LOG_LEVEL=info
+      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS:-}
+      - APP_URL=trek.${DOMAIN}
+    volumes:
+      - /data/config_storage/trek/data:/app/data
+      - /data/config_storage/trek/uploads:/app/uploads
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.trek.entrypoints=http"
+      - "traefik.http.routers.trek.rule=Host(`trek.${DOMAIN}`)"
+      - "traefik.http.middlewares.trek-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.trek.middlewares=trek-https-redirect"
+      - "traefik.http.routers.trek-secure.entrypoints=https"
+      - "traefik.http.routers.trek-secure.rule=Host(`trek.${DOMAIN}`)"
+      - "traefik.http.routers.trek-secure.tls=true"
+      - "traefik.http.routers.trek-secure.service=trek"
+      - "traefik.http.services.trek.loadbalancer.server.port=3000"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=trek"
+      - "homepage.icon=/images/trek.png"
+      - "homepage.href=https://trek.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true
