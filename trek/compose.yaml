@@ -4,7 +4,7 @@ services:
     image: mauriceboe/trek:3.0.22
     container_name: trek
     read_only: true
-    user: 1000:1000
+    user: 0:0
     security_opt:
       - no-new-privileges:true
     cap_drop:
