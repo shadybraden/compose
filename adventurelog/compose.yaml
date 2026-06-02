@@ -5,7 +5,7 @@ services:
     container_name: adventurelog-frontend
     restart: unless-stopped
     environment:
-      - PUBLIC_SERVER_URL=http://server:8000
+      - PUBLIC_SERVER_URL=https://adventurelog.${DOMAIN}
       - ORIGIN=http://localhost:8015
       - BODY_SIZE_LIMIT=Infinity
       - FRONTEND_PORT=8015
