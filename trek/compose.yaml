@@ -24,7 +24,7 @@ services:
       - TZ=America/New_York
       - LOG_LEVEL=info
       - ALLOWED_ORIGINS=${ALLOWED_ORIGINS:-}
-      - APP_URL=trek.${DOMAIN}
+      - APP_URL=https://trek.${DOMAIN}
     volumes:
       - /data/config_storage/trek/data:/app/data
       - /data/config_storage/trek/uploads:/app/uploads
