@@ -1,7 +1,7 @@
 ---
 services:
   sonarqube:
-    image: sonarqube:26.5.0.122743-community
+    image: sonarqube:26.6.0.123539-community
     container_name: sonarqube
     volumes:
       - /data/config_storage/sonarqube/sonarqube_logs:/opt/sonarqube/logs'
