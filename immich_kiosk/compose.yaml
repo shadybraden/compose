@@ -16,27 +16,11 @@ services:
       timeout: 5s
       retries: 3
       start_period: 10s
-    networks:
-      - intranet
+    network_mode: host
     ports:
       - 3006:3000
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.immich_kiosk.entrypoints=http"
-      - "traefik.http.routers.immich_kiosk.rule=Host(`immich_kiosk.${DOMAIN}`)"
-      - "traefik.http.middlewares.immich_kiosk-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.immich_kiosk.middlewares=immich_kiosk-https-redirect"
-      - "traefik.http.routers.immich_kiosk-secure.entrypoints=https"
-      - "traefik.http.routers.immich_kiosk-secure.rule=Host(`immich_kiosk.${DOMAIN}`)"
-      - "traefik.http.routers.immich_kiosk-secure.tls=true"
-      - "traefik.http.routers.immich_kiosk-secure.service=immich_kiosk"
-      - "traefik.http.services.immich_kiosk.loadbalancer.server.port=3000"  # port of the service.
-      - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=immich_kiosk"
       - "homepage.icon=/images/immich_kiosk.png"
       - "homepage.href=https://immich_kiosk.${DOMAIN}/"
-
-networks:
-  intranet:
-    external: true
