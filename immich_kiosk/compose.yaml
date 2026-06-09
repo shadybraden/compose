@@ -9,6 +9,13 @@ services:
       KIOSK_IMMICH_API_KEY: "${immich_api_key}"
       KIOSK_IMMICH_URL: "https://immich.${DOMAIN}"
       KIOSK_ALBUMS: "${KIOSK_ALBUMS}"
+      KIOSK_SHOW_TIME: true
+      KIOSK_TIME_FORMAT: 12
+      KIOSK_SHOW_DATE: true
+      KIOSK_DATE_FORMAT: DD/MM/YY
+      KIOSK_CLOCK_SOURCE: client
+      KIOSK_DURATION: 60
+      KIOSK_SHOW_PROGRESS_BAR: true
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "/kiosk", "--healthcheck"]
