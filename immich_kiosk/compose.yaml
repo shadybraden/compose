@@ -17,6 +17,11 @@ services:
       KIOSK_DURATION: 30
       KIOSK_SHOW_PROGRESS_BAR: true
       KIOSK_SHOW_USER: true
+      KIOSK_SHOW_VIDEOS: true
+      KIOSK_LIVE_PHOTOS: true
+      KIOSK_SHOW_ANIMATED_GIFS: true
+      KIOSK_SHOW_OWNER: false
+      KIOSK_SHOW_IMAGE_TIME: true
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "/kiosk", "--healthcheck"]
