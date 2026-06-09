@@ -35,6 +35,11 @@
       "matchPackageNames": ["jgraph/drawio"],
       "automerge": true,
       "matchUpdateTypes": ["minor", "patch"]
+    },
+    {
+      "matchPackageNames": ["rustmailer/bichon"],
+      "matchDatasources": ["docker"],
+      "sourceUrl": "https://github.com/rustmailer/bichon"
     }
   ],
   "customManagers": [
