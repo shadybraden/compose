@@ -7,7 +7,7 @@ services:
       LANG: "en_US"
       TZ: America/New_York
       immich_api_key: ${immich_api_key}
-      immich_url: https://immich.${DOMAIN}
+      immich_url: "https://immich.${DOMAIN}"
     volumes:
       - /data/config_storage/immich_kiosk:/config
       - /data/config_storage/komodo/etc_komodo/repos/compose_main/immich_kiosk/config.yaml:/config/config.yaml
