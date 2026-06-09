@@ -6,7 +6,7 @@ services:
     environment:
       LANG: "en_US"
       TZ: America/New_York
-      immich_api_key: ${immich_api_key}
+      immich_api_key: "${immich_api_key}"
       immich_url: "https://immich.${DOMAIN}"
     volumes:
       - /data/config_storage/immich_kiosk:/config
