@@ -14,7 +14,7 @@ services:
       KIOSK_SHOW_DATE: true
       KIOSK_DATE_FORMAT: DD/MM/YY
       KIOSK_CLOCK_SOURCE: client
-      KIOSK_DURATION: 60
+      KIOSK_DURATION: 30
       KIOSK_SHOW_PROGRESS_BAR: true
     restart: unless-stopped
     healthcheck:
