@@ -16,6 +16,7 @@ services:
       KIOSK_CLOCK_SOURCE: client
       KIOSK_DURATION: 30
       KIOSK_SHOW_PROGRESS_BAR: true
+      KIOSK_SHOW_USER: true
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "/kiosk", "--healthcheck"]
