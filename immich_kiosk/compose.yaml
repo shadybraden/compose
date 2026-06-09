@@ -25,6 +25,7 @@ services:
       KIOSK_IMAGE_TIME_FORMAT: 12
       KIOSK_SHOW_IMAGE_DATE: true
       KIOSK_IMAGE_DATE_FORMAT: DD-MM-YYYY
+      KIOSK_SHOW_IMAGE_LOCATION: true
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "/kiosk", "--healthcheck"]
