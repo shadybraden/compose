@@ -21,7 +21,7 @@ services:
     networks:
       - intranet
     ports:
-      - 3000:3000
+      - 3006:3000
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.immich_kiosk.entrypoints=http"
