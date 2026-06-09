@@ -8,7 +8,7 @@ services:
       TZ: America/New_York
       KIOSK_IMMICH_API_KEY: "${immich_api_key}"
       KIOSK_IMMICH_URL: "https://immich.${DOMAIN}"
-      KIOSK_ALBUMS: fda3df75-a684-4a03-8a83-6aee232897e4
+      KIOSK_ALBUMS: "fda3df75-a684-4a03-8a83-6aee232897e4"
     volumes:
       - /data/config_storage/immich_kiosk:/config
       - /data/config_storage/komodo/etc_komodo/repos/compose_main/immich_kiosk/config.yaml:/config/config.yaml
