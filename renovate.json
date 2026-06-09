@@ -40,6 +40,11 @@
       "matchPackageNames": ["rustmailer/bichon"],
       "matchDatasources": ["docker"],
       "sourceUrl": "https://github.com/rustmailer/bichon"
+    },
+    {
+      "matchPackageNames": ["hugomods/hugo"],
+      "matchDatasources": ["docker"],
+      "sourceUrl": "https://github.com/gohugoio/hugo"
     }
   ],
   "customManagers": [
