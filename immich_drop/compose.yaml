@@ -9,7 +9,7 @@ services:
       IMMICH_BASE_URL: https://immich.${DOMAIN}/api
       IMMICH_API_KEY: ${IMMICH_API_KEY}
       IMMICH_ALBUM_NAME: drop-off
-      PUBLIC_UPLOAD_PAGE_ENABLED: "false"
+      PUBLIC_UPLOAD_PAGE_ENABLED: "true"
       PUBLIC_BASE_URL: https://drop.${DOMAIN}
       CHUNKED_UPLOADS_ENABLED: "true"
       CHUNK_SIZE_MB: "95"  # MB
