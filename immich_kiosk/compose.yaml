@@ -1,0 +1,22 @@
+services:
+  immich_kiosk:
+    image: ghcr.io/damongolding/immich-kiosk:latest
+    container_name: immich_kiosk
+    user: 1000:1000
+    environment:
+      LANG: "en_US"
+      TZ: America/New_York
+      immich_api_key: ${immich_api_key}
+      immich_url: https://immich.${DOMAIN}
+    ports:
+      - 3000:3000
+    volumes:
+      - /data/config_storage/immich_kiosk:/config
+      - /data/config_storage/komodo/etc_komodo/repos/compose_main/immich_kiosk/config.yaml:/config/config.yaml
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "/kiosk", "--healthcheck"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
