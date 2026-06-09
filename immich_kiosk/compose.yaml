@@ -22,6 +22,9 @@ services:
       KIOSK_SHOW_ANIMATED_GIFS: true
       KIOSK_SHOW_OWNER: false
       KIOSK_SHOW_IMAGE_TIME: true
+      KIOSK_IMAGE_TIME_FORMAT: 12
+      KIOSK_SHOW_IMAGE_DATE: true
+      KIOSK_IMAGE_DATE_FORMAT: DD-MM-YYYY
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "/kiosk", "--healthcheck"]
