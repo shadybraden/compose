@@ -1,0 +1,48 @@
+---
+services:
+  immich_drop:
+    image: ghcr.io/nasogaa/immich-drop:v0.5.0
+    container_name: immich_drop
+    user: 1000:1000
+    restart: unless-stopped
+    environment:
+      IMMICH_BASE_URL: https://immich.${DOMAIN}/api
+      IMMICH_API_KEY: ${IMMICH_API_KEY}
+      IMMICH_ALBUM_NAME: drop-off
+      PUBLIC_UPLOAD_PAGE_ENABLED: "false"
+      PUBLIC_BASE_URL: https://drop.${DOMAIN}
+      CHUNKED_UPLOADS_ENABLED: "true"
+      CHUNK_SIZE_MB: "95"  # MB
+      SESSION_SECRET: ${SESSION_SECRET}
+    volumes:
+      - /data/config_storage/immich_drop:/data
+    healthcheck:
+      test: ["CMD-SHELL", "python - <<'PY'\nimport os,urllib.request,sys; url=f\"http://127.0.0.1:{os.getenv('PORT','8080')}/\";\ntry: urllib.request.urlopen(url, timeout=3); sys.exit(0)\nexcept Exception: sys.exit(1)\nPY"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.drop.entrypoints=http"
+      - "traefik.http.routers.drop.rule=Host(`drop.${DOMAIN}`)"
+      - "traefik.http.middlewares.drop-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.drop.middlewares=drop-https-redirect"
+      - "traefik.http.routers.drop-secure.entrypoints=https"
+      - "traefik.http.routers.drop-secure.rule=Host(`drop.${DOMAIN}`)"
+      - "traefik.http.routers.drop-secure.tls=true"
+      - "traefik.http.routers.drop-secure.service=drop"
+      - "traefik.http.services.drop.loadbalancer.server.port=8080"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=drop"
+      - "homepage.icon=/images/drop.png"
+      - "homepage.href=https://drop.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true
