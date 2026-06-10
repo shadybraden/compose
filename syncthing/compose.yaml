@@ -36,7 +36,7 @@ services:
       - "traefik.http.routers.syncthing-holmie-secure.service=syncthing-holmie"
       - "traefik.http.services.syncthing-holmie.loadbalancer.server.port=8384"  # port of the service
       - "traefik.docker.network=intranet"
-      - "homepage.group=Other"
+      - "homepage.group=Background-stuff"
       - "homepage.name=syncthing"
       - "homepage.icon=/images/syncthing.png"
       - "homepage.href=https://syncthing-holmie.${DOMAIN}/"

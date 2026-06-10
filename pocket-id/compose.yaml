@@ -27,7 +27,7 @@ services:
       - "traefik.http.routers.pocket-id-secure.service=pocket-id"
       - "traefik.http.services.pocket-id.loadbalancer.server.port=1411"  # port of the service.
       - "traefik.docker.network=intranet"
-      - "homepage.group=Other"
+      - "homepage.group=Background-stuff"
       - "homepage.name=pocket-id"
       - "homepage.icon=/images/pocket-id.png"
       - "homepage.href=https://pocket-id.${DOMAIN}/"

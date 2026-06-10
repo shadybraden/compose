@@ -26,7 +26,7 @@ services:
       - "traefik.http.routers.ntfy-secure.service=ntfy"
       - "traefik.http.services.ntfy.loadbalancer.server.port=80"  # port of the service
       - "traefik.docker.network=intranet"
-      - "homepage.group=Other"
+      - "homepage.group=Background-stuff"
       - "homepage.name=ntfy"
       - "homepage.icon=/images/ntfy.png"
       - "homepage.href=https://ntfy.${DOMAIN}/"
