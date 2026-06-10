@@ -17,6 +17,7 @@ services:
       CONTAINERS: "*"
       CONTAINERS_NEVER_MONITOR: "loggifly-errors,loggifly,skywatch,renovate"
       GLOBAL_KEYWORDS: "login?username=,failed login,password,Authentication failed,Failed authentication attempt,Wrong credentials,Invalid credentials,AuthenticationFailed"
+      IGNORE_KEYWORDS: "purging password reset tokens"
       #GLOBAL_KEYWORDS_WITH_ATTACHMENT: "critical"  # Attaches a log file to the notification
       NTFY_PRIORITY: 2
     restart: unless-stopped
