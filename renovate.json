@@ -50,6 +50,11 @@
       "matchPackageNames": ["mongo"],
       "matchDatasources": ["docker"],
       "sourceUrl": "https://www.mongodb.com/docs/manual/release-notes/"
+    },
+    {
+      "matchPackageNames": ["nextcloud"],
+      "matchDatasources": ["docker"],
+      "sourceUrl": "https://nextcloud.com/changelog/"
     }
   ],
   "customManagers": [
