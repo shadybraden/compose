@@ -12,8 +12,6 @@ services:
       - RESTART_APP=true
       - HARDEN_DESKTOP=true
       - HARDEN_OPENBOX=true
-    volumes:
-      - /data/config_storage/mullvad-browser/:/config
 #    ports:
 #      - 3000:3000
     shm_size: "1gb"
