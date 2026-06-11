@@ -45,6 +45,11 @@
       "matchPackageNames": ["hugomods/hugo"],
       "matchDatasources": ["docker"],
       "sourceUrl": "https://github.com/gohugoio/hugo"
+    },
+    {
+      "matchPackageNames": ["mongo"],
+      "matchDatasources": ["docker"],
+      "sourceUrl": "https://www.mongodb.com/docs/manual/release-notes/"
     }
   ],
   "customManagers": [
