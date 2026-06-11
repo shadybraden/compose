@@ -55,6 +55,11 @@
       "matchPackageNames": ["nextcloud"],
       "matchDatasources": ["docker"],
       "sourceUrl": "https://nextcloud.com/changelog/"
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["linuxserver/mullvad-browser"],
+      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-ls(?<build>\\d+)$"
     }
   ],
   "customManagers": [
