@@ -29,6 +29,7 @@ services:
       KIOSK_CACHE: true
       KIOSK_PREFETCH: true
       KIOSK_THEME: fade
+      KIOSK_LAYOUT: splitview
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "/kiosk", "--healthcheck"]
