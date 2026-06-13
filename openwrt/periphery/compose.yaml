@@ -20,7 +20,7 @@ services:
     ports:
       - 8120:8120
     environment:
-      PERIPHERY_CORE_ADDRESS: 192.168.50.65:9120
+      PERIPHERY_CORE_ADDRESS: 10.1.1.65:9120
       PERIPHERY_CONNECT_AS: openwrt
       PERIPHERY_ONBOARDING_KEY: ${PERIPHERY_ONBOARDING_KEY}
       PERIPHERY_CORE_PUBLIC_KEYS: file:/config/keys/core.pub
