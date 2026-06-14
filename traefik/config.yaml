@@ -87,45 +87,45 @@ http:
     portainer:
       loadBalancer:
         servers:
-          - url: "http://192.168.50.16:9000"
+          - url: "http://10.1.1.16:9000"
         passHostHeader: true
     imessage:
       loadBalancer:
         servers:
-          - url: "http://192.168.50.20:1234"
+          - url: "http://10.1.1.20:1234"
         passHostHeader: true
     glances:
       loadBalancer:
         servers:
-          - url: "http://192.168.50.16:61208"
+          - url: "http://10.1.1.16:61208"
         passHostHeader: true
     glances-mck:
       loadBalancer:
         servers:
-          - url: "http://192.168.50.45:61208"
+          - url: "http://10.1.1.45:61208"
         passHostHeader: true
     syncthing:
       loadBalancer:
         servers:
-          - url: "http://192.168.50.16:8384"
+          - url: "http://10.1.1.16:8384"
         passHostHeader: true
     crafty:
       loadBalancer:
         servers:
-          - url: "https://192.168.50.16:8443"
+          - url: "https://10.1.1.16:8443"
         passHostHeader: true
     periphery-shady:
       loadBalancer:
         servers:
-          - url: "http://192.168.50.16:8120"
+          - url: "http://10.1.1.16:8120"
         passHostHeader: true
     periphery-mck:
       loadBalancer:
         servers:
-          - url: "http://192.168.50.45:8120"
+          - url: "http://10.1.1.45:8120"
         passHostHeader: true
     immich-ml-shady:
       loadBalancer:
         servers:
-          - url: "http://192.168.50.16:3003"
+          - url: "http://10.1.1.16:3003"
         passHostHeader: true

@@ -3,8 +3,8 @@
 # this sends shutdown when the battery is at 90%
 
 # check ups status and battery %
-BATTERY_LEVEL=$(upsc holmie@192.168.50.65 battery.charge)
-UPS_STATUS=$(upsc holmie@192.168.50.65 ups.status)
+BATTERY_LEVEL=$(upsc holmie@10.1.1.65 battery.charge)
+UPS_STATUS=$(upsc holmie@10.1.1.65 ups.status)
 SHUTDOWN_PERCENT=90
 DEVICE_NAME=$(uname -n)
 
