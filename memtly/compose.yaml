@@ -7,11 +7,11 @@ services:
       - '3306:3306/tcp'
     environment:
       MYSQL_ROOT_HOST: '%'
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD}'
       MYSQL_DATABASE: 'memtly'
       MYSQL_USER: 'memtly'
-      MYSQL_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      TZ: America/New_York
+      MYSQL_PASSWORD: '${MYSQL_ROOT_PASSWORD}'
+      TZ: 'America/New_York'
     volumes:
       - /data/config_storage/memtly/data-volume-mariadb:/var/lib/mysql:rw
     networks:
@@ -30,8 +30,8 @@ services:
       DATABASE_TYPE: 'mariadb'
       DATABASE_CONNECTION_STRING: 'Server=mariadb_memtly;Port=3306;Database=memtly;User=memtly;Password=${MYSQL_ROOT_PASSWORD};'
       ACCOUNT_ADMIN_PASSWORD: 'admin'
-      ENCRYPTION_KEY: ${ENCRYPTION_KEY}
-      ENCRYPTION_SALT: ${ENCRYPTION_SALT}
+      ENCRYPTION_KEY: '${ENCRYPTION_KEY}'
+      ENCRYPTION_SALT: '${ENCRYPTION_SALT}'
     volumes:
       - /data/config_storage/memtly/data-volume-config:/app/config
       - /data/config_storage/memtly/data-volume-thumbnails:/app/thumbnails
