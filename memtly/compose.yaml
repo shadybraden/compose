@@ -11,9 +11,8 @@ services:
       MYSQL_DATABASE: 'memtly'
       MYSQL_USER: 'memtly'
       MYSQL_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      TZ: America/New_York
     volumes:
-      - /etc/timezone:/etc/timezone:ro
-      - /etc/localtime:/etc/localtime:ro
       - /data/config_storage/memtly/data-volume-mariadb:/var/lib/mysql:rw
     networks:
       - memtly-net
