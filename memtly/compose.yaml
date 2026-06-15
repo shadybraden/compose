@@ -67,3 +67,6 @@ services:
 networks:
   intranet:
     external: true
+  memtly-net:
+    name: 'memtly-net'
+    external: false
