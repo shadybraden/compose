@@ -18,7 +18,7 @@ services:
       - memtly-net
       - intranet
     hostname: 'mariadb'
-    restart: unless-stopped
+    restart: no
   memtly:
     container_name: Memtly
     image: memtly/memtly:1.0.3
@@ -41,7 +41,7 @@ services:
       - memtly-net
       - intranet
     hostname: memtly
-    restart: unless-stopped
+    restart: no
     depends_on:
       - mariadb
     security_opt:
