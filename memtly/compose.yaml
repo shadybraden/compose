@@ -1,6 +1,6 @@
 services:
-  mariadb:
-    container_name: 'mariadb'
+  mariadb_memtly:
+    container_name: 'mariadb_memtly'
     image: mariadb:11.4.12  # use latest
     user: 1000:1000
     ports:
@@ -17,7 +17,7 @@ services:
     networks:
       - memtly-net
       - intranet
-    hostname: 'mariadb'
+    hostname: 'mariadb_memtly'
     restart: no
   memtly:
     container_name: Memtly
@@ -28,7 +28,7 @@ services:
     environment:
       TITLE: 'Memories'
       DATABASE_TYPE: 'mariadb'
-      DATABASE_CONNECTION_STRING: 'Server=mariadb;Port=3306;Database=memtly;User=memtly;Password=ChangeMe!;'
+      DATABASE_CONNECTION_STRING: 'Server=mariadb_memtly;Port=3306;Database=memtly;User=memtly;Password=${MYSQL_ROOT_PASSWORD};'
       ACCOUNT_ADMIN_PASSWORD: 'admin'
       ENCRYPTION_KEY: ${ENCRYPTION_KEY}
       ENCRYPTION_SALT: ${ENCRYPTION_SALT}
@@ -43,7 +43,7 @@ services:
     hostname: memtly
     restart: no
     depends_on:
-      - mariadb
+      - mariadb_memtly
     security_opt:
       - no-new-privileges:true  # helps to increase security
     labels:
