@@ -39,7 +39,7 @@ services:
     networks:
       - memtly-net
     hostname: memtly
-    restart: no
+    restart: unless-stopped
     depends_on:
       - mariadb_memtly
     security_opt:
