@@ -2,7 +2,6 @@ services:
   mariadb_memtly:
     container_name: 'mariadb_memtly'
     image: mariadb:11.4.12  # use latest
-    user: 1000:1000
     ports:
       - '3306:3306/tcp'
     environment:
@@ -21,7 +20,6 @@ services:
   memtly:
     container_name: Memtly
     image: memtly/memtly:1.0.3
-    user: 1000:1000
     ports:
       - '8408:5000/tcp'
     environment:
