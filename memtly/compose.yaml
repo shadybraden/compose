@@ -16,7 +16,6 @@ services:
       - /data/config_storage/memtly/data-volume-mariadb:/var/lib/mysql:rw
     networks:
       - memtly-net
-      - intranet
     hostname: 'mariadb_memtly'
     restart: no
   memtly:
@@ -39,7 +38,6 @@ services:
       - /data/config_storage/memtly/data-volume-custom-resources:/app/custom_resources
     networks:
       - memtly-net
-      - intranet
     hostname: memtly
     restart: no
     depends_on:
@@ -47,25 +45,13 @@ services:
     security_opt:
       - no-new-privileges:true  # helps to increase security
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.memtly.entrypoints=http"
-      - "traefik.http.routers.memtly.rule=Host(`memtly.${DOMAIN}`)"
-      - "traefik.http.middlewares.memtly-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.memtly.middlewares=memtly-https-redirect"
-      - "traefik.http.routers.memtly-secure.entrypoints=https"
-      - "traefik.http.routers.memtly-secure.rule=Host(`memtly.${DOMAIN}`)"
-      - "traefik.http.routers.memtly-secure.tls=true"
-      - "traefik.http.routers.memtly-secure.service=memtly"
-      - "traefik.http.services.memtly.loadbalancer.server.port=5000"  # port of the service.
-      - "traefik.docker.network=intranet"
+
       - "homepage.group=Other"
       - "homepage.name=memtly"
       - "homepage.icon=/images/memtly.png"
       - "homepage.href=https://memtly.${DOMAIN}/"
 
 networks:
-  intranet:
-    external: true
   memtly-net:
     name: 'memtly-net'
     external: false
