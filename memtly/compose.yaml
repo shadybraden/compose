@@ -1,0 +1,69 @@
+services:
+  mariadb:
+    container_name: 'mariadb'
+    image: mariadb:11.4.12  # use latest
+    user: 1000:1000
+    ports:
+      - '3306:3306/tcp'
+    environment:
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: 'memtly'
+      MYSQL_USER: 'memtly'
+      MYSQL_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /data/config_storage/memtly/data-volume-mariadb:/var/lib/mysql:rw
+    networks:
+      - memtly-net
+      - intranet
+    hostname: 'mariadb'
+    restart: unless-stopped
+  memtly:
+    container_name: Memtly
+    image: memtly/memtly:1.0.3
+    user: 1000:1000
+    ports:
+      - '8408:5000/tcp'
+    environment:
+      TITLE: 'Memories'
+      DATABASE_TYPE: 'mariadb'
+      DATABASE_CONNECTION_STRING: 'Server=mariadb;Port=3306;Database=memtly;User=memtly;Password=ChangeMe!;'
+      ACCOUNT_ADMIN_PASSWORD: 'admin'
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY}
+      ENCRYPTION_SALT: ${ENCRYPTION_SALT}
+    volumes:
+      - /data/config_storage/memtly/data-volume-config:/app/config
+      - /data/config_storage/memtly/data-volume-thumbnails:/app/thumbnails
+      - /data/config_storage/memtly/data-volume-uploads:/app/uploads
+      - /data/config_storage/memtly/data-volume-custom-resources:/app/custom_resources
+    networks:
+      - memtly-net
+      - intranet
+    hostname: memtly
+    restart: unless-stopped
+    depends_on:
+      - mariadb
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.memtly.entrypoints=http"
+      - "traefik.http.routers.memtly.rule=Host(`memtly.${DOMAIN}`)"
+      - "traefik.http.middlewares.memtly-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.memtly.middlewares=memtly-https-redirect"
+      - "traefik.http.routers.memtly-secure.entrypoints=https"
+      - "traefik.http.routers.memtly-secure.rule=Host(`memtly.${DOMAIN}`)"
+      - "traefik.http.routers.memtly-secure.tls=true"
+      - "traefik.http.routers.memtly-secure.service=memtly"
+      - "traefik.http.services.memtly.loadbalancer.server.port=5000"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=memtly"
+      - "homepage.icon=/images/memtly.png"
+      - "homepage.href=https://memtly.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true
