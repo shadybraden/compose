@@ -15,7 +15,7 @@ services:
     tmpfs:
       - /tmp:noexec,nosuid,size=64m
     ports:
-      - "3000:3000"
+      - "54241:3000"
     environment:
       - NODE_ENV=production
       - PORT=3000
