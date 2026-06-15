@@ -12,7 +12,7 @@ services:
     restart: unless-stopped
     ports:
       - 12170:80
-    image: gtstef/filebrowser:1.3.3-stable
+    image: gtstef/filebrowser:1.5.0-beta@sha256:b553ee7cd20883d2c793d6bfa6e69d5b1a3eb4b0f50ec8ce766ba63d77ed0fca
     container_name: filebrowserquantum
     environment:
       - FILEBROWSER_ADMIN_PASSWORD=${FILEBROWSER_ADMIN_PASSWORD}
