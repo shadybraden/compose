@@ -1,7 +1,7 @@
 ---
 services:
   mullvad-browser:
-    image: linuxserver/mullvad-browser:15.0.14-ls187
+    image: linuxserver/mullvad-browser:15.0.14-ls188
     container_name: mullvad-browser
     cap_add:
       - NET_ADMIN
