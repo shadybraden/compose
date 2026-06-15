@@ -29,7 +29,7 @@ services:
       TITLE: 'Memories'
       DATABASE_TYPE: 'mariadb'
       DATABASE_CONNECTION_STRING: 'Server=mariadb_memtly;Port=3306;Database=memtly;User=memtly;Password=${MYSQL_ROOT_PASSWORD};'
-      ACCOUNT_ADMIN_PASSWORD: 'admin'
+      ACCOUNT_ADMIN_PASSWORD: '${ACCOUNT_ADMIN_PASSWORD}'
       ENCRYPTION_KEY: '${ENCRYPTION_KEY}'
       ENCRYPTION_SALT: '${ENCRYPTION_SALT}'
     volumes:
