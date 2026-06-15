@@ -9,6 +9,7 @@ As the guide says, installing OS's, using Git and using Docker are prerequisites
 
 ### todo:
 
+- Buddy backup system
 - [anubis + traefik](https://anubis.techaro.lol/docs/admin/environments/traefik) --> [wait for middlewares](https://git.holmlab.org/shady/compose/src/branch/main/anubis/README.md) 
 - Orchestrate Talos
 
