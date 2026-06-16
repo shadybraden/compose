@@ -65,6 +65,11 @@
       "matchPackageNames": ["quay.io/linuxserver.io/qbittorrent"],
       "matchDatasources": ["docker"],
       "sourceUrl": "https://github.com/qbittorrent/qBittorrent/"
+    },
+    {
+      "matchPackageNames": ["alpine"],
+      "matchDatasources": ["docker"],
+      "sourceUrl": "https://alpinelinux.org/releases/"
     }
   ],
   "customManagers": [
