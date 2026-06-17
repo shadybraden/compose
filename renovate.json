@@ -80,6 +80,12 @@
       "matchPackageNames": ["postgres"],
       "matchDatasources": ["docker"],
       "sourceUrl": "https://www.postgresql.org/docs/release/"
+    },
+    {
+      "matchPackageNames": ["ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder"],
+      "versioning": "regex:^latest-build-(?<major>\\d+)$",
+      "matchDatasources": ["docker"],
+      "sourceUrl": "https://www.postgresql.org/docs/release/"
     }
   ],
   "customManagers": [
