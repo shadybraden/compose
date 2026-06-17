@@ -75,6 +75,11 @@
       "matchPackageNames": ["mauriceboe/trek"],
       "matchDatasources": ["docker"],
       "sourceUrl": "https://github.com/mauriceboe/TREK"
+    },
+    {
+      "matchPackageNames": ["postgres"],
+      "matchDatasources": ["docker"],
+      "sourceUrl": "https://www.postgresql.org/docs/release/"
     }
   ],
   "customManagers": [
