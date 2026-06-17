@@ -65,6 +65,16 @@
       "matchPackageNames": ["quay.io/linuxserver.io/qbittorrent"],
       "matchDatasources": ["docker"],
       "sourceUrl": "https://github.com/qbittorrent/qBittorrent/"
+    },
+    {
+      "matchPackageNames": ["ghcr.io/alexta69/metube"],
+      "matchDatasources": ["docker"],
+      "sourceUrl": "https://github.com/alexta69/metube"
+    },
+    {
+      "matchPackageNames": ["mauriceboe/trek"],
+      "matchDatasources": ["docker"],
+      "sourceUrl": "https://github.com/mauriceboe/TREK"
     }
   ],
   "customManagers": [
