@@ -70,7 +70,7 @@ services:
   infisical-db:
     container_name: infisical-db
     user: 1000:1000
-    image: postgres:14.23-alpine3.23  # pinned to 14-alpine - https://raw.githubusercontent.com/Infisical/infisical/main/docker-compose.prod.yml
+    image: postgres:14.23-alpine3.24  # pinned to 14-alpine - https://raw.githubusercontent.com/Infisical/infisical/main/docker-compose.prod.yml
     restart: unless-stopped
     environment:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
