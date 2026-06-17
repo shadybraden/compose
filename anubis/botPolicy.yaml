@@ -1,5 +1,0 @@
-bots:
-  # Include all default configuration
-  - import: (data)/meta/default-config.yaml
-  # Explicitly allow Docker clients
-  - import: (data)/clients/docker-client.yaml
