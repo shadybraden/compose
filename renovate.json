@@ -86,6 +86,11 @@
       "versioning": "regex:^latest-build-(?<major>\\d+)$",
       "matchDatasources": ["docker"],
       "sourceUrl": "https://github.com/sdr-enthusiasts/docker-adsb-ultrafeeder"
+    },
+    {
+      "matchPackageNames": ["nginx"],
+      "matchDatasources": ["docker"],
+      "sourceUrl": "https://github.com/nginx/nginx"
     }
   ],
   "customManagers": [
