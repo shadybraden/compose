@@ -91,6 +91,11 @@
       "matchPackageNames": ["nginx"],
       "matchDatasources": ["docker"],
       "sourceUrl": "https://github.com/nginx/nginx"
+    },
+    {
+      "matchPackageNames": ["docker"],
+      "matchDatasources": ["docker"],
+      "sourceUrl": "https://docs.docker.com/engine/release-notes"
     }
   ],
   "customManagers": [
