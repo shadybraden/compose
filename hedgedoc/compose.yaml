@@ -18,7 +18,7 @@ services:
     container_name: hedgedoc_app
     environment:
       - CMD_DB_URL=postgres://hedgedoc:${POSTGRES_PASSWORD}@hedgedoc_database:5432/hedgedoc
-      - CMD_DOMAIN=localhost
+      - CMD_DOMAIN=docs.${DOMAIN}
       - CMD_URL_ADDPORT=true
     volumes:
       - /data/config_storage/hedgedoc/uploads:/hedgedoc/public/uploads
