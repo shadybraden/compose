@@ -20,8 +20,6 @@ services:
       - CMD_URL_ADDPORT=true
     volumes:
       - /data/config_storage/hedgedoc/uploads:/hedgedoc/public/uploads
-    ports:
-      - "3000:3000"
     restart: unless-stopped
     user: 1000:1000
     depends_on:
