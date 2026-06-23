@@ -2,6 +2,7 @@
 services:
   hedgedoc_database:
     image: postgres:17.10-alpine3.24
+    container_name: hedgedoc_database
     environment:
       - POSTGRES_USER=hedgedoc
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
@@ -12,8 +13,9 @@ services:
     user: 1000:1000
     networks:
       - intranet
-  app:
+  hedgedoc_app:
     image: quay.io/hedgedoc/hedgedoc:1.11.0
+    container_name: hedgedoc_app
     environment:
       - CMD_DB_URL=postgres://hedgedoc:${POSTGRES_PASSWORD}@hedgedoc_database:5432/hedgedoc
       - CMD_DOMAIN=localhost
