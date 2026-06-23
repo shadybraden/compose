@@ -9,7 +9,7 @@ services:
       - POSTGRES_DB=hedgedoc
     volumes:
       - /data/config_storage/hedgedoc/hedgedoc_database:/var/lib/postgresql/data
-    restart: unless-stopped
+    restart: no
     user: 1000:1000
     networks:
       - intranet
@@ -22,7 +22,7 @@ services:
       - CMD_URL_ADDPORT=true
     volumes:
       - /data/config_storage/hedgedoc/uploads:/hedgedoc/public/uploads
-    restart: unless-stopped
+    restart: no
     user: 1000:1000
     depends_on:
       - hedgedoc_database
