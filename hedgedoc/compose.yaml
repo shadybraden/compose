@@ -1,0 +1,52 @@
+---
+services:
+  hedgedoc_database:
+    image: postgres:17.10-alpine3.24
+    environment:
+      - POSTGRES_USER=hedgedoc
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=hedgedoc
+    volumes:
+      - /data/config_storage/hedgedoc/hedgedoc_database:/var/lib/postgresql/data
+    restart: unless-stopped
+    user: 1000:1000
+    networks:
+      - intranet
+  app:
+    image: quay.io/hedgedoc/hedgedoc:1.11.0
+    environment:
+      - CMD_DB_URL=postgres://hedgedoc:${POSTGRES_PASSWORD}@hedgedoc_database:5432/hedgedoc
+      - CMD_DOMAIN=localhost
+      - CMD_URL_ADDPORT=true
+    volumes:
+      - /data/config_storage/hedgedoc/uploads:/hedgedoc/public/uploads
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    user: 1000:1000
+    depends_on:
+      - hedgedoc_database
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.docs.entrypoints=http"
+      - "traefik.http.routers.docs.rule=Host(`docs.${DOMAIN}`)"
+      - "traefik.http.middlewares.docs-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.docs.middlewares=docs-https-redirect"
+      - "traefik.http.routers.docs-secure.entrypoints=https"
+      - "traefik.http.routers.docs-secure.rule=Host(`docs.${DOMAIN}`)"
+      - "traefik.http.routers.docs-secure.tls=true"
+      - "traefik.http.routers.docs-secure.service=docs"
+      - "traefik.http.services.docs.loadbalancer.server.port=3000"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=hedgedoc"
+      - "homepage.icon=/images/hedgedoc.png"
+      - "homepage.href=https://docs.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true
