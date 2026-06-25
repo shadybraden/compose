@@ -101,6 +101,11 @@
       "matchPackageNames": ["ghcr.io/umami-software/umami"],
       "matchDatasources": ["docker"],
       "sourceUrl": "https://github.com/umami-software/umami"
+    },
+    {
+      "matchPackageNames": ["quay.io/linuxserver.io/sonarr"],
+      "matchDatasources": ["docker"],
+      "sourceUrl": "https://github.com/Sonarr/Sonarr/"
     }
   ],
   "customManagers": [
