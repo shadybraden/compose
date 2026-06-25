@@ -96,6 +96,11 @@
       "matchPackageNames": ["docker"],
       "matchDatasources": ["docker"],
       "sourceUrl": "https://docs.docker.com/engine/release-notes"
+    },
+    {
+      "matchPackageNames": ["ghcr.io/umami-software/umami"],
+      "matchDatasources": ["docker"],
+      "sourceUrl": "https://github.com/umami-software/umami"
     }
   ],
   "customManagers": [
