@@ -1,7 +1,7 @@
 ---
 services:
   bichon:
-    image: rustmailer/bichon:1.5.1
+    image: rustmailer/bichon:1.6.0
     environment:
       - BICHON_ROOT_DIR=/data
       - BICHON_LOG_LEVEL=info
