@@ -111,6 +111,11 @@
       "matchPackageNames": ["factoriotools/factorio"],
       "matchDatasources": ["docker"],
       "sourceUrl": "https://www.factorio.com/"
+    },
+    {
+      "matchPackageNames": ["ghcr.io/blakeblackshear/frigate"],
+      "matchDatasources": ["docker"],
+      "sourceUrl": "https://github.com/blakeblackshear/frigate"
     }
   ],
   "customManagers": [
