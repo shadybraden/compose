@@ -116,6 +116,11 @@
       "matchPackageNames": ["ghcr.io/blakeblackshear/frigate"],
       "matchDatasources": ["docker"],
       "sourceUrl": "https://github.com/blakeblackshear/frigate"
+    },
+    {
+      "matchPackageNames": ["hudik/hoodik"],
+      "matchDatasources": ["docker"],
+      "sourceUrl": "https://github.com/hudikhq/hoodik"
     }
   ],
   "customManagers": [
