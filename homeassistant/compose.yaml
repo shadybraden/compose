@@ -14,7 +14,7 @@ services:
     restart: unless-stopped
     environment:
       - TZ=America/New_York
-    image: ghcr.io/home-assistant/home-assistant:2026.6.3
+    image: ghcr.io/home-assistant/home-assistant:2026.7.0
     networks:
       - intranet
     labels:
