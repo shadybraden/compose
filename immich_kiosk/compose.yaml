@@ -1,6 +1,6 @@
 services:
   immich_kiosk:
-    image: ghcr.io/damongolding/immich-kiosk:0.39.3
+    image: ghcr.io/damongolding/immich-kiosk:0.40.1
     container_name: immich_kiosk
     user: 1000:1000
     environment:
