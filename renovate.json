@@ -121,6 +121,11 @@
       "matchPackageNames": ["hudik/hoodik"],
       "matchDatasources": ["docker"],
       "sourceUrl": "https://github.com/hudikhq/hoodik"
+    },
+    {
+      "matchPackageNames": ["docker.io/actualbudget/actual-server"],
+      "matchDatasources": ["docker"],
+      "sourceUrl": "https://github.com/actualbudget/actual"
     }
   ],
   "customManagers": [
