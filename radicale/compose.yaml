@@ -1,7 +1,7 @@
 ---
 services:
   radicale:
-    image: ghcr.io/kozea/radicale:3.7.5
+    image: ghcr.io/kozea/radicale:3.7.6
     user: 1000:1000
     volumes:
       - /data/config_storage/radicale/config:/etc/radicale
