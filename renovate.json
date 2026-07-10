@@ -126,6 +126,11 @@
       "matchPackageNames": ["docker.io/actualbudget/actual-server"],
       "matchDatasources": ["docker"],
       "sourceUrl": "https://github.com/actualbudget/actual"
+    },
+    {
+      "matchPackageNames": ["ghcr.io/immich-app/postgres"],
+      "matchDatasources": ["docker"],
+      "versioning": "regex:^(?<compatibility>\\d+)-vectorchord(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-pgvectors\\d+\\.\\d+\\.\\d+$"
     }
   ],
   "customManagers": [
