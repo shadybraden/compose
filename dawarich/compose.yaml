@@ -75,6 +75,7 @@ services:
       RAILS_LOG_TO_STDOUT: true
       SELF_HOSTED: true
       STORE_GEODATA: true
+      WEB_CONCURRENCY=1
     logging:
       driver: "json-file"
       options:
@@ -149,6 +150,7 @@ services:
       RAILS_LOG_TO_STDOUT: true
       SELF_HOSTED: true
       STORE_GEODATA: true
+      BACKGROUND_PROCESSING_CONCURRENCY=3
     logging:
       driver: "json-file"
       options:
