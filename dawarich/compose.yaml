@@ -141,7 +141,7 @@ services:
       DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
       DATABASE_NAME: dawarich_development
       APPLICATION_HOSTS: "dawarich.${DOMAIN}"
-      BACKGROUND_PROCESSING_CONCURRENCY: 10
+      BACKGROUND_PROCESSING_CONCURRENCY: 3
       APPLICATION_PROTOCOL: http
       PROMETHEUS_EXPORTER_ENABLED: false
       PROMETHEUS_EXPORTER_HOST: dawarich_app
@@ -150,7 +150,6 @@ services:
       RAILS_LOG_TO_STDOUT: true
       SELF_HOSTED: true
       STORE_GEODATA: true
-      BACKGROUND_PROCESSING_CONCURRENCY: 3
     logging:
       driver: "json-file"
       options:
