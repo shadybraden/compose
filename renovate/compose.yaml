@@ -18,6 +18,9 @@ services:
       - RENOVATE_ASSIGNEES=shady
     image: renovate/renovate:43.272.2
     container_name: renovate
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
