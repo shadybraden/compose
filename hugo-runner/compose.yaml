@@ -38,6 +38,8 @@ services:
       nproc: 64
     networks:
       - intranet
+    dns:
+      - 0.0.0.0
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.hugo.entrypoints=http"

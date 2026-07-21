@@ -21,3 +21,6 @@ services:
       #GLOBAL_KEYWORDS_WITH_ATTACHMENT: "critical"  # Attaches a log file to the notification
       NTFY_PRIORITY: 2
     restart: unless-stopped
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}

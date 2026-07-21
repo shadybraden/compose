@@ -10,6 +10,9 @@ services:
     restart: unless-stopped
     image: binwiederhier/ntfy:v2.26.0
     command: serve --cache-file /var/cache/ntfy/cache.db
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
