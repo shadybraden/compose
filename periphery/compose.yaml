@@ -14,6 +14,9 @@ services:
       - /proc:/proc
       - /data/config_storage/komodo/etc_komodo:/etc/komodo
       - /data/config_storage/komodo/periphery-keys:/config/keys
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:

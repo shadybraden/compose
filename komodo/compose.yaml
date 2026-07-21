@@ -17,6 +17,9 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: ${KOMODO_DB_PASSWORD}
     networks:
       - intranet
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
 
   core:
     image: ghcr.io/moghtech/komodo-core:2.2.0
@@ -45,6 +48,9 @@ services:
     volumes:
       - /data/config_storage/komodo_database_backups:/backups
       - /data/config_storage/komodo/core-keys:/config/keys
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
@@ -87,6 +93,9 @@ services:
       PERIPHERY_DISABLE_TERMINALS: false
       PERIPHERY_DISABLE_CONTAINER_EXEC: false
       PERIPHERY_INCLUDE_DISK_MOUNTS: /etc/hostname
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
