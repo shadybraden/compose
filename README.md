@@ -27,6 +27,9 @@ As the guide says, installing OS's, using Git and using Docker are prerequisites
 #### Change port and SUBDOMAIN as needed
 
 ```yaml
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
