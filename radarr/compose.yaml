@@ -13,6 +13,9 @@ services:
       - /data/mnt/torrents:/downloads/torrents
       - /data/mnt/movies:/movies
     restart: unless-stopped
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:

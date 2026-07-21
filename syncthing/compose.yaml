@@ -20,6 +20,9 @@ services:
       - 22000:22000/udp
       - 21027:21027/udp
     restart: unless-stopped
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:

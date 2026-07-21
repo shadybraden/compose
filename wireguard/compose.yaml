@@ -20,6 +20,9 @@ services:
       - "51820:51820/udp"  # public port. remember to port forward this
       #- "51821:51821/tcp"
     restart: unless-stopped
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
     cap_add:
       - NET_ADMIN
       - SYS_MODULE

@@ -11,6 +11,9 @@ services:
     volumes:
       - /data/config_storage/seerr:/app/config
     restart: unless-stopped
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
