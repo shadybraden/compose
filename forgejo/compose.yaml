@@ -16,7 +16,8 @@ services:
       - 3333:3000
       - 222:22
     dns:
-      - 10.1.1.1
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
