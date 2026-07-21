@@ -6,6 +6,9 @@ services:
       - /data/config_storage/uptime-kuma:/app/data
     container_name: uptime-kuma
     image: louislam/uptime-kuma:2.4.0
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
