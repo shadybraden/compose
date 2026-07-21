@@ -37,6 +37,9 @@ services:
       timeout: 5s
       retries: 3
       start_period: 10s
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:

@@ -13,6 +13,9 @@ services:
       - /data/config_storage/freshrss/extensions:/var/www/FreshRSS/extensions
     container_name: freshrss
     image: freshrss/freshrss:1.29.1
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
     security_opt:
       - no-new-privileges:true  # helps to increase security
     network_mode: container:gluetun
