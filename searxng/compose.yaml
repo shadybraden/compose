@@ -17,9 +17,6 @@ services:
       options:
         max-size: "1m"
         max-file: "1"
-    dns:
-      - ${DNS_SERVER1}
-      - ${DNS_SERVER2}
     security_opt:
       - no-new-privileges:true  # helps to increase security
     network_mode: container:gluetun
