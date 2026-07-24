@@ -10,5 +10,6 @@ services:
     ports:
       - 445:445
     volumes:
-      - /data/dont_backup/samba:/storage
+      - /data/dont_backup/samba/storage:/storage
+      - /data/dont_backup/samba/config/smb.tmp:/etc/samba/smb.tmp
     restart: no
