@@ -1,0 +1,14 @@
+services:
+  samba:
+    image: ghcr.io/dockur/samba:4.23.8
+    container_name: samba
+    user: 1000:1000
+    environment:
+      NAME: "Files"
+      USER: "samba"
+      PASS: "${PASS}"
+    ports:
+      - 445:445
+    volumes:
+      - /data/dont_backup/samba:/storage
+    restart: unless-stopped
