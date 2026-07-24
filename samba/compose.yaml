@@ -11,5 +11,5 @@ services:
       - 445:445
     volumes:
       - /data/dont_backup/samba/storage:/storage
-      - /data/dont_backup/samba/config/smb.tmp:/etc/samba/smb.tmp
+      - /data/dont_backup/samba/config:/etc/samba
     restart: no
