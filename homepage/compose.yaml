@@ -11,8 +11,7 @@ services:
       - /data/config_storage/komodo/etc_komodo/repos/icons:/app/public/images:ro
     restart: unless-stopped
     dns:
-      - ${DNS_SERVER1}
-      - ${DNS_SERVER2}
+      - ${INTRANET_DNS_SERVER}
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
