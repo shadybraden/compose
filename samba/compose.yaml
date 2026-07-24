@@ -11,4 +11,4 @@ services:
       - 445:445
     volumes:
       - /data/dont_backup/samba:/storage
-    restart: unless-stopped
+    restart: no
