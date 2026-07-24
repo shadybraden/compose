@@ -4,7 +4,7 @@ services:
     container_name: samba
     #user: 1000:1000
     environment:
-      NAME: "Files"
+      NAME: "NetworkShare"
       USER: "samba"
       PASS: "${PASS}"
     ports:
