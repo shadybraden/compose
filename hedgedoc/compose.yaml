@@ -14,7 +14,7 @@ services:
     networks:
       - intranet
   hedgedoc_app:
-    image: quay.io/hedgedoc/hedgedoc:1.11.0
+    image: quay.io/hedgedoc/hedgedoc:1.11.1
     container_name: hedgedoc_app
     environment:
       - CMD_DB_URL=postgres://hedgedoc:${POSTGRES_PASSWORD}@hedgedoc_database:5432/hedgedoc
