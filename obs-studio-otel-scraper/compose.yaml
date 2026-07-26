@@ -9,7 +9,7 @@ services:
       - 'OTEL_EXPORTER_OTLP_ENDPOINT=http://signoz-ingester:4317'
       - OBS_PASSWORD=${OBS_PASSWORD}
       - OBS_PORT=4455
-      - OBS_HOST=host.docker.internal
+      - OBS_HOST=192.168.1.45
     extra_hosts:
       - 'host.docker.internal:host-gateway'
     networks:
