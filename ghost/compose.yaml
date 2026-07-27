@@ -13,6 +13,7 @@ services:
       database__connection__user: ghost
       database__connection__password: ${DATABASE_PASSWORD}
       database__connection__database: ghost
+      TZ: America/New_York
     volumes:
       - /data/config_storage/ghost/content:/var/lib/ghost/content
     depends_on:
@@ -54,6 +55,7 @@ services:
       MYSQL_PASSWORD: ${DATABASE_PASSWORD}
       MYSQL_DATABASE: ghost
       MYSQL_MULTIPLE_DATABASES: activitypub
+      TZ: America/New_York
     volumes:
       - /data/config_storage/ghost/mysql:/var/lib/mysql
       - /data/config_storage/ghost/mysql-init:/docker-entrypoint-initdb.d
