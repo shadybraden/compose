@@ -13,6 +13,7 @@ services:
       database__connection__user: ghost
       database__connection__password: ${DATABASE_PASSWORD}
       database__connection__database: ghost
+      GHOST_PORT: 2368
       TZ: America/New_York
     volumes:
       - /data/config_storage/ghost/content:/var/lib/ghost/content
