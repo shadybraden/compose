@@ -7,7 +7,6 @@ services:
     environment:
       NODE_ENV: production
       url: https://ghost.${DOMAIN}
-      admin__url: https://ghost-admin.${DOMAIN}
       database__client: mysql
       database__connection__host: db
       database__connection__user: ghost
