@@ -1,0 +1,74 @@
+---
+services:
+  ghost:
+    # Do not alter this without updating the Tinybird Sync container as well
+    image: ghost:6.54.0-alpine3.23
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      url: https://ghost.${DOMAIN}
+      admin__url: https://ghost-admin.${DOMAIN}
+      database__client: mysql
+      database__connection__host: db
+      database__connection__user: ghost
+      database__connection__password: ${DATABASE_PASSWORD}
+      database__connection__database: ghost
+    volumes:
+      - /data/config_storage/ghost/content:/var/lib/ghost/content
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - ghost_network
+      - intranet
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.ghost.entrypoints=http"
+      - "traefik.http.routers.ghost.rule=Host(`ghost.${DOMAIN}`)"
+      - "traefik.http.middlewares.ghost-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.ghost.middlewares=ghost-https-redirect"
+      - "traefik.http.routers.ghost-secure.entrypoints=https"
+      - "traefik.http.routers.ghost-secure.rule=Host(`ghost.${DOMAIN}`)"
+      - "traefik.http.routers.ghost-secure.tls=true"
+      - "traefik.http.routers.ghost-secure.service=ghost"
+      - "traefik.http.services.ghost.loadbalancer.server.port=80"  # port of the service.
+      - "traefik.docker.network=intranet"
+
+  db:
+    image: mysql:8.0.44@sha256:f37951fc3753a6a22d6c7bf6978c5e5fefcf6f31814d98c582524f98eae52b21
+    restart: unless-stopped
+    expose:
+      - "3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ghost
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_DATABASE: ghost
+      MYSQL_MULTIPLE_DATABASES: activitypub
+    volumes:
+      - /data/config_storage/ghost/mysql:/var/lib/mysql
+      - /data/config_storage/ghost/mysql-init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: mysqladmin ping -p$$MYSQL_ROOT_PASSWORD -h 127.0.0.1
+      interval: 1s
+      start_period: 30s
+      start_interval: 10s
+      retries: 120
+    networks:
+      - ghost_network
+      - intranet
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+
+networks:
+  ghost_network:
+  intranet:
+    external: true
