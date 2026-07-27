@@ -149,6 +149,12 @@ for ac in data.get('aircraft', []):
         priority = 'default'
         title = "maybe taker with fighters | " + short_type_value + " | " + desc_value
 
+    if callsign.startswith("BLUE"):
+        print(callsign)
+        send_message = 1
+        priority = 'default'
+        title = "maybe taker with fighters | " + short_type_value + " | " + desc_value
+
     if callsign.startswith("CAP"):
         print(callsign)
         send_message = 1
