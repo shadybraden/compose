@@ -10,6 +10,9 @@ services:
     ports:
       - 445:445
     volumes:
+      - /data/mnt/shows:/storage/shows:ro
+      - /data/mnt/movies:/storage/movies:ro
+      - /data/mnt/youtube:/storage/youtube
       - /data/dont_backup/samba/storage:/storage
       - /data/dont_backup/samba/config:/etc/samba
     restart: no
