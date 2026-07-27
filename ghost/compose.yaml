@@ -38,7 +38,7 @@ services:
       - "traefik.http.routers.ghost-secure.rule=Host(`ghost.${DOMAIN}`)"
       - "traefik.http.routers.ghost-secure.tls=true"
       - "traefik.http.routers.ghost-secure.service=ghost"
-      - "traefik.http.services.ghost.loadbalancer.server.port=80"  # port of the service.
+      - "traefik.http.services.ghost.loadbalancer.server.port=2368"  # port of the service.
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=Ghost"
