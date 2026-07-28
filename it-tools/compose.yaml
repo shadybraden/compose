@@ -8,6 +8,8 @@ services:
       - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
+    dns:
+      - 0.0.0.0
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.it-tools.entrypoints=http"
