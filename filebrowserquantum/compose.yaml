@@ -2,6 +2,7 @@
 services:
   filebrowser:
     volumes:
+      - /data:/srv/data/data
       - /data/mnt/shows:/srv/data/shows
       - /data/mnt/movies:/srv/data/movies
       - /data/mnt/youtube:/srv/data/youtube
