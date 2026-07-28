@@ -143,6 +143,16 @@
       "sourceUrl": "https://dev.mysql.com/doc/relnotes/mysql/8.4/en/"
     },
     {
+      "matchPackageNames": ["clickhouse/clickhouse-keeper", "clickhouse/clickhouse-server"],
+      "matchDatasources": ["docker"],
+      "groupName": "clickhouse"
+    },
+    {
+      "matchPackageNames": ["ghcr.io/fbuchner/meerkat-crm-backend", "ghcr.io/fbuchner/meerkat-crm-frontend"],
+      "matchDatasources": ["docker"],
+      "groupName": "meerkat"
+    },
+    {
       "matchPackageNames": ["ghcr.io/immich-app/postgres"],
       "matchDatasources": ["docker"],
       "versioning": "regex:^(?<compatibility>\\d+)-vectorchord(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-pgvectors\\d+\\.\\d+\\.\\d+$"
