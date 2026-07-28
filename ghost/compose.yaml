@@ -52,7 +52,7 @@ services:
       - "homepage.href=https://Ghost.${DOMAIN}/"
 
   db:
-    image: mysql:8.0.44@sha256:f37951fc3753a6a22d6c7bf6978c5e5fefcf6f31814d98c582524f98eae52b21
+    image: mysql:8.4.11@sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb
     restart: no
     expose:
       - "3306"
