@@ -3,6 +3,12 @@ services:
   filebrowser:
     volumes:
       - /data/mnt/shows:/srv/data/shows
+      - /data/mnt/movies:/srv/data/movies
+      - /data/mnt/youtube:/srv/data/youtube
+      - /data/music:/srv/data/music
+      - /data/audiobooks:/srv/data/audiobooks
+      - /data/ebooks:/srv/data/ebooks
+      - /data/mnt/torrents:/srv/data/torrents
       - /data/config_storage/all_mck:/srv/data/shows/all_mck_teacher_files:ro
       - /data/config_storage/all_mck:/srv/data/all_mck:ro
       - /data/dont_backup/:/srv/data/dont_backup
