@@ -13,6 +13,13 @@ services:
       database__connection__password: ${DATABASE_PASSWORD}
       database__connection__database: ghost
       GHOST_PORT: 2368
+      mail__transport: SMTP
+      mail__options__host: ${mail__options__host}
+      mail__options__port: 465
+      mail__options__secure: true
+      mail__options__auth__user: ${mail__options__auth__user}
+      mail__options__auth__pass: ${mail__options__auth__pass}
+      mail__from: "'Support' <${mail__options__auth__user}>"
       TZ: America/New_York
     volumes:
       - /data/config_storage/ghost/content:/var/lib/ghost/content
