@@ -3,6 +3,7 @@ services:
   filebrowser:
     volumes:
       - /data/mnt/shows:/srv/data/plex
+      - /data/mnt/shows:/srv/data/shows
       - /data/config_storage/all_mck:/srv/data/plex/all_mck_teacher_files:ro
       - /data/config_storage/all_mck:/srv/data/all_mck:ro
       - /data/dont_backup/:/srv/data/dont_backup
