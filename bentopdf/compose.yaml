@@ -1,7 +1,7 @@
 ---
 services:
   bentopdf:
-    image: bentopdf/bentopdf-simple:v1.15.4
+    image: ghcr.io/alam00000/bentopdf-simple:2.8.6
     container_name: bentopdf
     restart: unless-stopped
     security_opt:
