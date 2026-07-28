@@ -2,9 +2,8 @@
 services:
   filebrowser:
     volumes:
-      - /data/mnt/shows:/srv/data/plex
       - /data/mnt/shows:/srv/data/shows
-      - /data/config_storage/all_mck:/srv/data/plex/all_mck_teacher_files:ro
+      - /data/config_storage/all_mck:/srv/data/shows/all_mck_teacher_files:ro
       - /data/config_storage/all_mck:/srv/data/all_mck:ro
       - /data/dont_backup/:/srv/data/dont_backup
       - /data/config_storage/filebrowserquantum/config.yaml:/home/filebrowser/config.yaml
