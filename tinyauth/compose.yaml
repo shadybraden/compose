@@ -1,7 +1,7 @@
 ---
 services:
   tinyauth:
-    image: ghcr.io/tinyauthapp/tinyauth:v5.1.2
+    image: ghcr.io/tinyauthapp/tinyauth:v5.1.3
     container_name: tinyauth
     restart: unless-stopped
     environment:
