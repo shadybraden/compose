@@ -6,7 +6,7 @@ services:
     volumes:
       - /data/config_storage/hermes:/opt/data
     environment:
-      - HERMES_DASHBOARD=1
+      - HERMES_DASHBOARD=0
     restart: unless-stopped
     container_name: hermes
     dns:
