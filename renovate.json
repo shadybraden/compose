@@ -143,6 +143,11 @@
       "sourceUrl": "https://dev.mysql.com/doc/relnotes/mysql/8.4/en/"
     },
     {
+      "matchPackageNames": ["louislam/uptime-kuma"],
+      "matchDatasources": ["docker"],
+      "sourceUrl": "https://github.com/louislam/uptime-kuma"
+    },
+    {
       "matchPackageNames": ["clickhouse/clickhouse-keeper", "clickhouse/clickhouse-server"],
       "matchDatasources": ["docker"],
       "groupName": "clickhouse"
