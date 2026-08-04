@@ -14,12 +14,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7.0.1
 
-      - name: Start docker daemon
-        run: |
-          rc-update add docker default
-          rc-service docker start
-          for i in $(seq 1 30); do docker info && break; sleep 1; done
-
       - name: Determine version from Dockerfile
         id: version
         run: |
@@ -36,6 +30,12 @@ jobs:
       - name: Set up QEMU binfmt for multi-arch
         run: |
           docker run --rm --privileged tonistiigi/binfmt:qemu-v10.2.3 --install arm64
+
+      - name: Start docker daemon
+        run: |
+          rc-update add docker default
+          rc-service docker start
+          for i in $(seq 1 30); do docker info && break; sleep 1; done
 
       - name: Build multi-arch image
         run: |
