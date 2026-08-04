@@ -27,20 +27,13 @@ jobs:
           echo "Version: $VERSION"
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
-      - name: Start docker daemon
-        run: |
-          rm -f /run/docker.lock /var/run/docker.lock
-          rc-service docker start
-          for i in $(seq 1 30); do docker info && break; sleep 1; done
-
       - name: Set up QEMU binfmt for multi-arch
         run: |
           docker run --rm --privileged tonistiigi/binfmt:qemu-v10.2.3 --install arm64
 
       - name: Build multi-arch image
         run: |
-          podman --version
-          podman --storage-driver vfs build \
+          buildah --storage-driver vfs build \
             --platform linux/amd64,linux/arm64 \
             -f periphery/Dockerfile \
             -t periphery:${{ steps.version.outputs.version }} .
