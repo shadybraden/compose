@@ -1,0 +1,27 @@
+name: Use buildah to make an image
+
+on:
+  push:
+    paths:
+      - 'periphery/Dockerfile'
+  workflow_dispatch:
+
+jobs:
+  Build-Dockerfile:
+    runs-on: tools_container
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      - name: Build image
+        run: |
+          podman --version
+          podman --storage-driver vfs build -f periphery/Dockerfile -t periphery:${{ steps.version.outputs.version }} .
+
+      - name: Push image version
+        run: |
+          buildah --storage-driver vfs push \
+            --creds "${{ secrets.REGISTRY_USERNAME }}:${{ secrets.REGISTRY_PASSWORD }}" \
+            periphery:${{ steps.version.outputs.version }} \
+            docker://git.holmlab.org/shady/periphery:${{ steps.version.outputs.version }}
