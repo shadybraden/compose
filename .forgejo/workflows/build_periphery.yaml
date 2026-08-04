@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'periphery/Dockerfile'
+      - '.forgejo/workflows/build_periphery.yaml'
   workflow_dispatch:
 
 jobs:
