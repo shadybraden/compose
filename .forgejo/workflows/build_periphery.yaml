@@ -27,6 +27,10 @@ jobs:
           echo "Version: $VERSION"
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
+      - name: Set up QEMU binfmt for multi-arch
+        run: |
+          docker run --rm --privileged tonistiigi/binfmt:qemu-v10.2.3 --install arm64
+
       - name: Build multi-arch image
         run: |
           podman --version
