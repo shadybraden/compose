@@ -30,7 +30,8 @@ jobs:
 
       - name: Set up QEMU binfmt for multi-arch
         run: |
-          qemu-aarch64 --version
+          sudo apt-get install -y qemu-user-static
+          podman run --rm --privileged multiarch/qemu-user-static --reset -p yes
 
       - name: Build multi-arch image
         run: |
