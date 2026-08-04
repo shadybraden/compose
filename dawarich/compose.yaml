@@ -1,7 +1,7 @@
 ---
 services:
   dawarich_redis:
-    image: redis:8.10-alpine  # 7.4 pinned - https://github.com/Freika/dawarich/blob/master/docker/docker-compose.yml
+    image: redis:7.4-alpine  # 7.4 pinned - https://github.com/Freika/dawarich/blob/master/docker/docker-compose.yml
     container_name: dawarich_redis
     command: redis-server
     volumes:
