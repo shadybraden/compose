@@ -1,4 +1,4 @@
-name: Use buildah to make an image
+name: Build periphery image
 
 on:
   push:
@@ -14,14 +14,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7.0.1
 
-      - name: Build image
+      - name: Determine version from Dockerfile
+        id: version
         run: |
-          podman --version
-          podman --storage-driver vfs build -f periphery/Dockerfile -t periphery:${{ steps.version.outputs.version }} .
+          FROM_LINE=$(grep -m1 '^FROM ' periphery/Dockerfile)
+          echo "FROM line: $FROM_LINE"
+          VERSION=$(echo "$FROM_LINE" | sed -E 's/.*:([0-9]+\.[0-9]+\.[0-9]+).*/\1/')
+          if [ -z "$VERSION" ]; then
+            echo "Could not extract version from Dockerfile FROM line"
+            exit 1
+          fi
+          echo "Version: $VERSION"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
 
-      - name: Push image version
+      - name: Build multi-arch image
+        run: |
+          buildah --version
+          buildah --storage-driver vfs bud \
+            --platform linux/amd64,linux/arm64 \
+            -f periphery/Dockerfile \
+            -t periphery:${{ steps.version.outputs.version }} .
+
+      - name: Push multi-arch image
         run: |
           buildah --storage-driver vfs push \
+            --all \
             --creds "${{ secrets.REGISTRY_USERNAME }}:${{ secrets.REGISTRY_PASSWORD }}" \
             periphery:${{ steps.version.outputs.version }} \
             docker://git.holmlab.org/shady/periphery:${{ steps.version.outputs.version }}
