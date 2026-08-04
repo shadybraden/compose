@@ -29,8 +29,8 @@ jobs:
 
       - name: Build multi-arch image
         run: |
-          buildah --version
-          buildah --storage-driver vfs bud \
+          podman --version
+          podman --storage-driver vfs build \
             --platform linux/amd64,linux/arm64 \
             -f periphery/Dockerfile \
             -t periphery:${{ steps.version.outputs.version }} .
