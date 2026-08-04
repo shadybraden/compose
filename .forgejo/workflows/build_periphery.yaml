@@ -29,6 +29,7 @@ jobs:
 
       - name: Start docker daemon
         run: |
+          rm -f /run/docker.lock /var/run/docker.lock
           rc-service docker start
           for i in $(seq 1 30); do docker info && break; sleep 1; done
 
