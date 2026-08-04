@@ -33,7 +33,6 @@ jobs:
 
       - name: Start docker daemon
         run: |
-          rc-update add docker default
           rc-service docker start
           for i in $(seq 1 30); do docker info && break; sleep 1; done
 
