@@ -1,7 +1,7 @@
 services:
   netalertx:
     container_name: netalertx
-    image: ghcr.io/netalertx/netalertx:26.7.1
+    image: ghcr.io/netalertx/netalertx:26.8.5
     network_mode: host
     read_only: true
     cap_drop:
