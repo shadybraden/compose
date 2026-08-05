@@ -110,7 +110,8 @@
     {
       "matchPackageNames": ["factoriotools/factorio"],
       "matchDatasources": ["docker"],
-      "sourceUrl": "https://www.factorio.com/"
+      "sourceUrl": "https://www.factorio.com/",
+      "minimumReleaseAge": "3 days"
     },
     {
       "matchPackageNames": ["ghcr.io/blakeblackshear/frigate"],
