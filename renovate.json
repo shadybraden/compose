@@ -23,19 +23,22 @@
       "matchDatasources": ["docker"],
       "matchPackageNames": ["quay.io/linuxserver.io/jackett"],
       "automerge": true,
-      "matchUpdateTypes": ["minor", "patch"]
+      "matchUpdateTypes": ["minor", "patch"],
+      "minimumReleaseAge": "3 days"
     },
     {
       "matchDatasources": ["docker"],
       "matchPackageNames": ["docker.n8n.io/n8nio/n8n"],
       "automerge": true,
-      "matchUpdateTypes": ["minor", "patch"]
+      "matchUpdateTypes": ["minor", "patch"],
+      "minimumReleaseAge": "3 days"
     },
     {
       "matchDatasources": ["docker"],
       "matchPackageNames": ["jgraph/drawio"],
       "automerge": true,
-      "matchUpdateTypes": ["minor", "patch"]
+      "matchUpdateTypes": ["minor", "patch"],
+      "minimumReleaseAge": "3 days"
     },
     {
       "matchPackageNames": ["rustmailer/bichon"],
