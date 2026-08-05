@@ -2,7 +2,7 @@
 services:
   ghost:
     # Do not alter this without updating the Tinybird Sync container as well
-    image: ghost:6.55.0-alpine3.23
+    image: ghost:6.56.0-alpine3.23
     restart: no
     environment:
       NODE_ENV: production
