@@ -1,6 +1,6 @@
 services:
   samba:
-    image: ghcr.io/dockur/samba:4.23.8
+    image: ghcr.io/dockur/samba:4.23.10
     container_name: samba
     #user: 1000:1000
     environment:
