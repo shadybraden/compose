@@ -38,7 +38,7 @@ services:
       - "homepage.href=https://futonotes.${DOMAIN}/"
 
   futonotes_postgres:
-    image: postgres:16
+    image: postgres:16.14
     container_name: futonotes_postgres
     restart: unless-stopped
     environment:
