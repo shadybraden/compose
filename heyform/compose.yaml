@@ -1,13 +1,13 @@
 ---
 services:
   heyform:
-    image: heyform/community-edition:v3.0.0-rc.10  # assumption: latest release (rc), see docs
+    image: heyform/community-edition:v3.0.0
     container_name: heyform
     restart: unless-stopped
     ports:
       - 9513:8000
     volumes:
-      - /data/config_storage/heyform/assets:/app/static/upload  # persist uploaded images
+      - /data/config_storage/heyform/assets:/app/static/upload
     environment:
       APP_HOMEPAGE_URL: https://heyform.${DOMAIN}
       SESSION_KEY: ${SESSION_KEY}
@@ -44,7 +44,7 @@ services:
     container_name: heyform_mongo
     restart: unless-stopped
     volumes:
-      - /data/config_storage/heyform/mongodb_data:/data/db  # persist database data
+      - /data/config_storage/heyform/mongodb_data:/data/db
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
