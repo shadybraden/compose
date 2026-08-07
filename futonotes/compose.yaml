@@ -11,7 +11,7 @@ services:
       DATABASE_URL: postgres://futo_notes:${POSTGRES_PASSWORD}@futonotes_postgres:5432/futo_notes
       PORT: "3000"
       BLOB_DIR: /data/blobs
-      LOG_LEVEL: ${LOG_LEVEL:-info}
+      LOG_LEVEL: info
       AUTH_MODE: password
       FUTO_NOTES_PASSWORD: ${FUTO_NOTES_PASSWORD}
     volumes:
