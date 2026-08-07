@@ -1,0 +1,62 @@
+---
+services:
+  futonotes:
+    image: gitlab.futo.org:5050/futo-notes/futo-notes-server/server:stable  # assumption: upstream only publishes a `stable` docker tag, no versioned tags
+    container_name: futonotes
+    restart: unless-stopped
+    depends_on:
+      futonotes_postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://futo_notes:${POSTGRES_PASSWORD}@futonotes_postgres:5432/futo_notes
+      PORT: "3000"
+      BLOB_DIR: /data/blobs
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      AUTH_MODE: password
+      FUTO_NOTES_PASSWORD: ${FUTO_NOTES_PASSWORD}
+    volumes:
+      - /data/config_storage/futonotes/blobs:/data/blobs  # encrypted note blobs
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.futonotes.entrypoints=http"
+      - "traefik.http.routers.futonotes.rule=Host(`futonotes.${DOMAIN}`)"
+      - "traefik.http.middlewares.futonotes-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.futonotes.middlewares=futonotes-https-redirect"
+      - "traefik.http.routers.futonotes-secure.entrypoints=https"
+      - "traefik.http.routers.futonotes-secure.rule=Host(`futonotes.${DOMAIN}`)"
+      - "traefik.http.routers.futonotes-secure.tls=true"
+      - "traefik.http.routers.futonotes-secure.service=futonotes"
+      - "traefik.http.services.futonotes.loadbalancer.server.port=3000"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=futonotes"
+      - "homepage.icon=/images/futonotes.png"
+      - "homepage.href=https://futonotes.${DOMAIN}/"
+
+  futonotes_postgres:
+    image: postgres:16
+    container_name: futonotes_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: futo_notes
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: futo_notes
+    volumes:
+      - /data/config_storage/futonotes/postgres:/var/lib/postgresql/data  # sync metadata
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U futo_notes -d futo_notes"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+
+networks:
+  intranet:
+    external: true
