@@ -40,7 +40,7 @@ services:
       - "homepage.href=https://heyform.${DOMAIN}/"
 
   heyform_mongo:
-    image: percona/percona-server-mongodb:4.4
+    image: percona/percona-server-mongodb:8.3
     container_name: heyform_mongo
     restart: unless-stopped
     volumes:
