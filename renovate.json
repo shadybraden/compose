@@ -174,7 +174,7 @@
     },
     {
       "matchDatasources": ["docker"],
-      "matchPackageNames": ["renovate/renovate", "ghcr.io/renovatebot/renovate"],
+      "matchPackageNames": ["renovate/renovate"],
       "minimumReleaseAge": "3 days"
     }
   ],
