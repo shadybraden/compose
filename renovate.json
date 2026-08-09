@@ -171,6 +171,11 @@
       "matchDatasources": ["docker"],
       "matchPackageNames": ["albrechtloh/openwrt-docker"],
       "versioning": "regex:^openwrt-(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-(?<build>[a-f0-9]+)$"
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["renovate/renovate", "ghcr.io/renovatebot/renovate"],
+      "minimumReleaseAge": "3 days"
     }
   ],
   "customManagers": [
