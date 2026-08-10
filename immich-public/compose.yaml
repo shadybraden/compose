@@ -43,7 +43,7 @@ services:
     container_name: immich_machine_learning
     image: ghcr.io/immich-app/immich-machine-learning:v3.1.0
     volumes:
-      - model-cache:/cache
+      - model-cache-public:/cache
     environment:
       - DB_PASSWORD=${DB_PASSWORD}
     restart: unless-stopped
