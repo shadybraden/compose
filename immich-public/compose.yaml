@@ -1,20 +1,19 @@
 ---
-name: immich
+name: immich-public
 services:
-  immich-server:
-    container_name: immich_server
+  immich-server-public:
+    container_name: immich_server-public
     image: ghcr.io/immich-app/immich-server:v3.1.0
     volumes:
-      - /data/immich/UPLOAD_LOCATION/UPLOAD_LOCATION:/usr/src/app/upload
+      - /data/config_storage/immich-public/upload:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
-      - /data/immich/external_libraries:/mnt/4tb/immich/external_libraries
     env_file:
-      - /etc/komodo/env/immich.env
+      - /etc/komodo/env/immich-public-holmie.env
     depends_on:
-      - redis
-      - database
+      - redis-public
+      - database-public
     ports:
-      - '2283:2283'
+      - '8408:2283'
     restart: unless-stopped
     healthcheck:
       disable: false
@@ -26,36 +25,36 @@ services:
       - intranet
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.immich.entrypoints=http"
-      - "traefik.http.routers.immich.rule=Host(`immich.${DOMAIN}`)"
-      - "traefik.http.middlewares.immich-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.immich.middlewares=immich-https-redirect"
-      - "traefik.http.routers.immich-secure.entrypoints=https"
-      - "traefik.http.routers.immich-secure.rule=Host(`immich.${DOMAIN}`)"
-      - "traefik.http.routers.immich-secure.tls=true"
-      - "traefik.http.routers.immich-secure.service=immich"
-      - "traefik.http.services.immich.loadbalancer.server.port=2283"  # port of the service
+      - "traefik.http.routers.immich-public.entrypoints=http"
+      - "traefik.http.routers.immich-public.rule=Host(`immich-public.${DOMAIN}`)"
+      - "traefik.http.middlewares.immich-public-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.immich-public.middlewares=immich-public-https-redirect"
+      - "traefik.http.routers.immich-public-secure.entrypoints=https"
+      - "traefik.http.routers.immich-public-secure.rule=Host(`immich-public.${DOMAIN}`)"
+      - "traefik.http.routers.immich-public-secure.tls=true"
+      - "traefik.http.routers.immich-public-secure.service=immich-public"
+      - "traefik.http.services.immich-public.loadbalancer.server.port=2283"  # port of the service
       - "traefik.docker.network=intranet"
       - "homepage.group=Media"
-      - "homepage.name=immich"
+      - "homepage.name=immich-public"
       - "homepage.icon=/images/immich.png"
-      - "homepage.href=https://immich.${DOMAIN}/"
+      - "homepage.href=https://immich-public.${DOMAIN}/"
 
-  immich-machine-learning:
-    container_name: immich_machine_learning
+  immich-machine-learning-public:
+    container_name: immich_machine_learning-public
     image: ghcr.io/immich-app/immich-machine-learning:v3.1.0
     volumes:
-      - model-cache:/cache
+      - model-cache-public:/cache
     env_file:
-      - /etc/komodo/env/immich.env
+      - /etc/komodo/env/immich-public-holmie.env
     restart: unless-stopped
     networks:
       - intranet
     healthcheck:
       disable: false
 
-  redis:
-    container_name: immich_redis
+  redis-public:
+    container_name: immich_redis-public
     image: docker.io/valkey/valkey:8.1.9  # check: https://github.com/immich-app/immich/releases/latest/download/docker-compose.yml
     restart: unless-stopped
     healthcheck:
@@ -63,8 +62,8 @@ services:
     networks:
       - intranet
 
-  database:
-    container_name: immich_postgres
+  database-public:
+    container_name: immich_postgres-public
     image: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0
     environment:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
@@ -72,13 +71,13 @@ services:
       - POSTGRES_DB=immich
       - POSTGRES_INITDB_ARGS='--data-checksums'
     volumes:
-      - /data/config_storage/immich/postgres:/var/lib/postgresql/data
+      - /data/config_storage/immich-public/postgres:/var/lib/postgresql/data
     restart: unless-stopped
     networks:
       - intranet
 
 volumes:
-  model-cache:
+  model-cache-public:
 
 networks:
   intranet:
