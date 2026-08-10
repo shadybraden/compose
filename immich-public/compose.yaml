@@ -19,6 +19,9 @@ services:
       disable: false
     environment:
       - IMMICH_TRUSTED_PROXIES=172.0.0.0/8
+      - DB_HOSTNAME=database-public
+      - DB_USERNAME=postgres
+      - DB_DATABASE_NAME=immich
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
