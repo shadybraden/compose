@@ -1,7 +1,7 @@
 ---
 services:
   drawio:
-    image: jgraph/drawio:31.1.5
+    image: jgraph/drawio:31.1.8
     container_name: drawio
     security_opt:
       - no-new-privileges:true  # helps to increase security
