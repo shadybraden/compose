@@ -1,0 +1,83 @@
+---
+name: immich-public
+services:
+  immich-public-server:
+    container_name: immich_public_server
+    image: ghcr.io/immich-app/immich-server:v3.1.0
+    volumes:
+      - /data/dont-backup/immich-public/upload:/usr/src/app/upload
+      - /etc/localtime:/etc/localtime:ro
+    depends_on:
+      - redis-immich-public
+      - database-immich-public
+    ports:
+      - '8408:2283'
+    restart: unless-stopped
+    healthcheck:
+      disable: false
+    environment:
+      - IMMICH_TRUSTED_PROXIES=172.0.0.0/8
+      - DB_PASSWORD=${DB_PASSWORD}
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.immich-public.entrypoints=http"
+      - "traefik.http.routers.immich-public.rule=Host(`immich-public.${DOMAIN}`)"
+      - "traefik.http.middlewares.immich-public-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.immich-public.middlewares=immich-public-https-redirect"
+      - "traefik.http.routers.immich-public-secure.entrypoints=https"
+      - "traefik.http.routers.immich-public-secure.rule=Host(`immich-public.${DOMAIN}`)"
+      - "traefik.http.routers.immich-public-secure.tls=true"
+      - "traefik.http.routers.immich-public-secure.service=immich-public"
+      - "traefik.http.services.immich-public.loadbalancer.server.port=2283"  # port of the service
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Media"
+      - "homepage.name=immich-public"
+      - "homepage.icon=/images/immich.png"
+      - "homepage.href=https://immich-public.${DOMAIN}/"
+
+  immich-machine-learning:
+    container_name: immich_machine_learning
+    image: ghcr.io/immich-app/immich-machine-learning:v3.1.0
+    volumes:
+      - model-cache:/cache
+    environment:
+      - DB_PASSWORD=${DB_PASSWORD}
+    restart: unless-stopped
+    networks:
+      - intranet
+    healthcheck:
+      disable: false
+
+  redis-immich-public:
+    container_name: immich_public_redis
+    image: docker.io/valkey/valkey:8.1.9  # check: https://github.com/immich-app/immich/releases/latest/download/docker-compose.yml
+    restart: unless-stopped
+    healthcheck:
+      test: redis-cli ping || exit 1
+    networks:
+      - intranet
+
+  database-immich-public:
+    container_name: immich_public_postgres
+    image: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=immich
+      - POSTGRES_INITDB_ARGS='--data-checksums'
+    volumes:
+      - /data/config_storage/immich-public/postgres:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - intranet
+
+volumes:
+  model-cache-public:
+
+networks:
+  intranet:
+    external: true
