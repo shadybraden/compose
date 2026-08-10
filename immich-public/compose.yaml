@@ -39,7 +39,7 @@ services:
       - "traefik.http.routers.immich-public-secure.service=immich-public"
       - "traefik.http.services.immich-public.loadbalancer.server.port=2283"  # port of the service
       - "traefik.docker.network=intranet"
-      - "homepage.group=Media"
+      - "homepage.group=Other"
       - "homepage.name=immich-public"
       - "homepage.icon=/images/immich.png"
       - "homepage.href=https://immich-public.${DOMAIN}/"
