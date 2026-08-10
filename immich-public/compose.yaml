@@ -18,6 +18,8 @@ services:
     environment:
       - IMMICH_TRUSTED_PROXIES=172.0.0.0/8
       - DB_PASSWORD=${DB_PASSWORD}
+      - DB_USERNAME=postgres-public
+      - DB_DATABASE_NAME=immich-public
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
