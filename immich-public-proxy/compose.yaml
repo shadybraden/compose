@@ -8,6 +8,13 @@ services:
     environment:
       PUBLIC_BASE_URL: https://photos.shadybraden.com
       IMMICH_URL: https://immich.${DOMAIN}
+      CONFIG: |
+        {
+          "ipp": {
+            "showHomePage": false,
+            "allowDownload": true
+          }
+        }
     healthcheck:
       test: curl -s http://localhost:3000/share/healthcheck -o /dev/null || exit 1
       start_period: 10s
