@@ -12,7 +12,7 @@ services:
       - database-immich-public
     ports:
       - '8408:2283'
-    restart: unless-stopped
+    restart: no
     healthcheck:
       disable: false
     environment:
@@ -48,7 +48,7 @@ services:
       - model-cache-public:/cache
     environment:
       - DB_PASSWORD=${DB_PASSWORD}
-    restart: unless-stopped
+    restart: no
     networks:
       - intranet
     healthcheck:
@@ -57,7 +57,7 @@ services:
   redis-immich-public:
     container_name: immich_public_redis
     image: docker.io/valkey/valkey:8.1.9  # check: https://github.com/immich-app/immich/releases/latest/download/docker-compose.yml
-    restart: unless-stopped
+    restart: no
     healthcheck:
       test: redis-cli ping || exit 1
     networks:
@@ -73,7 +73,7 @@ services:
       - POSTGRES_INITDB_ARGS='--data-checksums'
     volumes:
       - /data/config_storage/immich-public/postgres:/var/lib/postgresql/data
-    restart: unless-stopped
+    restart: no
     networks:
       - intranet
 
