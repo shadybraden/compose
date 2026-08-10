@@ -39,8 +39,8 @@ services:
       - "homepage.icon=/images/immich.png"
       - "homepage.href=https://immich-public.${DOMAIN}/"
 
-  immich-machine-learning:
-    container_name: immich_machine_learning
+  immich-machine-learning-public:
+    container_name: immich_public_machine_learning
     image: ghcr.io/immich-app/immich-machine-learning:v3.1.0
     volumes:
       - model-cache-public:/cache
