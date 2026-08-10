@@ -23,6 +23,7 @@ services:
       - DB_USERNAME=postgres-public
       - DB_DATABASE_NAME=immich-public
       - DB_DATA_LOCATION=/var/lib/postgresql/data
+      - UPLOAD_LOCATION=/usr/src/app/upload
     security_opt:
       - no-new-privileges:true  # helps to increase security
     networks:
