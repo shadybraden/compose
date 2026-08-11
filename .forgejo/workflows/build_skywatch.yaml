@@ -39,7 +39,7 @@ jobs:
             # Fetch tags from Forgejo container registry API
             TAGS=$(curl -s \
               "https://git.holmlab.org/api/v1/packages/shady?type=container&limit=50" \
-              | jq -r '.[] | select(.name == "skywatch/Dockerfile") | .version')
+              | jq -r '.[] | select(.name == "skywatch") | .version')
 
             if [ -z "$TAGS" ]; then
               echo "No existing tags found, starting at 0.0.1"
