@@ -47,7 +47,8 @@ services:
         adsb,feed.theairtraffic.com,30004,beast_reduce_plus_out;
         mlat,feed.adsb.fi,31090,39000;
         mlat,in.adsb.lol,31090,39001;
-        mlat,feed.theairtraffic.com,31090,39004
+        mlat,feed.theairtraffic.com,31090,39004;
+        adsb,feed1.adsbexchange.com,30004,beast_reduce_plus_out
     volumes:
       - /data/config_storage/adsb/globe_history:/var/globe_history
       - /data/config_storage/adsb/graphs1090:/var/lib/collectd
