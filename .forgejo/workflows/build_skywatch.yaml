@@ -1,0 +1,52 @@
+name: Build skywatch image
+
+on:
+  push:
+    paths:
+      - 'skywatch/Dockerfile'
+      - 'skywatch/skywatch.py'
+      - 'skywatch/watchlist.txt'
+      - 'skywatch/ignorelist.txt'
+      - 'skywatch/skywatch.py'
+      - '.forgejo/workflows/build_skywatch.yaml'
+  workflow_dispatch:
+
+jobs:
+  Build-Dockerfile:
+    runs-on: tools_container
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      - name: Determine version from Dockerfile
+        id: version
+        run: |
+          FROM_LINE=$(grep -m1 '^FROM ' skywatch/Dockerfile)
+          echo "FROM line: $FROM_LINE"
+          VERSION=$(echo "$FROM_LINE" | sed -E 's/.*:([0-9]+\.[0-9]+\.[0-9]+).*/\1/')
+          if [ -z "$VERSION" ]; then
+            echo "Could not extract version from Dockerfile FROM line"
+            exit 1
+          fi
+          echo "Version: $VERSION"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Set up QEMU binfmt for multi-arch
+        run: |
+          podman --storage-driver vfs run --rm --privileged multiarch/qemu-user-static --reset -p yes
+
+      - name: Build multi-arch image
+        run: |
+          podman --storage-driver vfs build \
+            --platform linux/amd64,linux/arm64 \
+            -f skywatch/Dockerfile \
+            -t skywatch:${{ steps.version.outputs.version }} .
+
+      - name: Push multi-arch image
+        run: |
+          buildah --storage-driver vfs push \
+            --all \
+            --creds "${{ secrets.REGISTRY_USERNAME }}:${{ secrets.REGISTRY_PASSWORD }}" \
+            skywatch:${{ steps.version.outputs.version }} \
+            docker://git.holmlab.org/shady/skywatch:${{ steps.version.outputs.version }}
