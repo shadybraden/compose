@@ -140,7 +140,7 @@
     {
       "matchPackageNames": ["ghost"],
       "matchDatasources": ["docker"],
-      "sourceUrl": "https://github.com/TryGhost/ghost-docker"
+      "sourceUrl": "https://github.com/TryGhost/ghost"
     },
     {
       "matchPackageNames": ["mysql"],
