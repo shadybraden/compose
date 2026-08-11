@@ -10,6 +10,12 @@ on:
       - 'skywatch/skywatch.py'
       - '.forgejo/workflows/build_skywatch.yaml'
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'version to publish'
+        required: true
+        type: string
+        default: '0.0.1'
 
 jobs:
   Build-Dockerfile:
@@ -19,18 +25,45 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7.0.1
 
-      - name: Determine version from Dockerfile
+      - name: Determine version
         id: version
         run: |
-          FROM_LINE=$(grep -m1 '^FROM ' skywatch/Dockerfile)
-          echo "FROM line: $FROM_LINE"
-          VERSION=$(echo "$FROM_LINE" | sed -E 's/.*:([0-9]+\.[0-9]+\.[0-9]+).*/\1/')
-          if [ -z "$VERSION" ]; then
-            echo "Could not extract version from Dockerfile FROM line"
-            exit 1
+          INPUT_VERSION="${{ github.event.inputs.version }}"
+
+          if [ -n "$INPUT_VERSION" ]; then
+            echo "Using manually specified version: $INPUT_VERSION"
+            echo "version=$INPUT_VERSION" >> $GITHUB_OUTPUT
+          else
+            echo "Fetching latest tag from registry..."
+
+            # Fetch tags from Forgejo container registry API
+            TAGS=$(curl -s \
+              "https://git.holmlab.org/api/v1/packages/shady?type=container&limit=50" \
+              | jq -r '.[] | select(.name == "skywatch/Dockerfile") | .version')
+
+            if [ -z "$TAGS" ]; then
+              echo "No existing tags found, starting at 0.0.1"
+              NEW_VERSION="0.0.1"
+            else
+              # Sort tags as semver, pick the highest
+              LATEST=$(echo "$TAGS" \
+                | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' \
+                | sort -t. -k1,1n -k2,2n -k3,3n \
+                | tail -n1)
+
+              echo "Latest version found: $LATEST"
+
+              # Bump patch
+              MAJOR=$(echo "$LATEST" | cut -d. -f1)
+              MINOR=$(echo "$LATEST" | cut -d. -f2)
+              PATCH=$(echo "$LATEST" | cut -d. -f3)
+              NEW_VERSION="$MAJOR.$MINOR.$((PATCH + 1))"
+            fi
+
+            echo "New version: $NEW_VERSION"
+            echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
           fi
-          echo "Version: $VERSION"
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
 
       - name: Set up QEMU binfmt for multi-arch
         run: |
