@@ -1,0 +1,89 @@
+---
+services:
+  invidious-db:
+    image: postgres:14.16-alpine3.21
+    container_name: invidious-db
+    restart: unless-stopped
+    volumes:
+      - /data/config_storage/invidious/db:/var/lib/postgresql/data  # postgres data
+    environment:
+      POSTGRES_DB: invidious
+      POSTGRES_USER: invidious
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 30s
+      timeout: 5s
+      retries: 2
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+
+  companion:
+    # Invidious companion, resolves dynamic signatures/streams for the frontend
+    image: quay.io/invidious/invidious-companion:2026.08.10-16cf10e
+    container_name: invidious-companion
+    restart: unless-stopped
+    volumes:
+      - /data/config_storage/invidious/companion:/var/tmp/youtubei.js:rw  # youtube library cache
+    environment:
+      - SERVER_SECRET_KEY=${INVIDIOUS_COMPANION_KEY}
+    cap_drop:
+      - ALL
+    read_only: true
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    network_mode: container:gluetun
+    labels:
+      - "homepage.group=Other"
+      - "homepage.name=invidious companion"
+      - "homepage.icon=/images/invidious.png"
+      - "homepage.href=https://invidious.${DOMAIN}/"
+
+  invidious:
+    image: quay.io/invidious/invidious:2026.08.09-c2c75d2
+    container_name: invidious
+    restart: unless-stopped
+    depends_on:
+      - invidious-db
+      - companion
+    environment:
+      # db pointing at the postgres service; schema auto-created on first boot
+      INVIDIOUS_CONFIG: |
+        db:
+          dbname: invidious
+          user: invidious
+          password: ${POSTGRES_PASSWORD}
+          host: invidious-db
+          port: 5432
+        check_tables: true
+        invidious_companion:
+          # internal URL used between invidious and invidious companion
+          - private_url: "http://127.0.0.1:8282/companion"
+        # use the 2nd key you generated (different from hmac_key)
+        invidious_companion_key: ${INVIDIOUS_COMPANION_KEY}
+        hmac_key: ${INVIDIOUS_HMAC_KEY}
+        # overview of all config options:
+        # https://github.com/iv-org/invidious/blob/master/config/config.example.yml
+    healthcheck:
+      test: wget -nv --tries=1 --spider http://127.0.0.1:3000/api/v1/stats || exit 1
+      interval: 30s
+      timeout: 5s
+      retries: 2
+    logging:
+      options:
+        max-size: "1G"
+        max-file: "4"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    network_mode: container:gluetun
+    labels:
+      - "homepage.group=Media"
+      - "homepage.name=invidious"
+      - "homepage.icon=/images/invidious.png"
+      - "homepage.href=https://invidious.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true

@@ -98,6 +98,16 @@ services:
       - "traefik.http.routers.metube-secure.service=metube"
       - "traefik.http.services.metube.loadbalancer.server.port=8081"  # port of the service.
       - "traefik.http.routers.metube-secure.middlewares=tinyauth"
+      - "traefik.http.routers.invidious.entrypoints=http"
+      - "traefik.http.routers.invidious.rule=Host(`invidious.${DOMAIN}`)"
+      - "traefik.http.middlewares.invidious-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.invidious.middlewares=invidious-https-redirect"
+      - "traefik.http.routers.invidious-secure.entrypoints=https"
+      - "traefik.http.routers.invidious-secure.rule=Host(`invidious.${DOMAIN}`)"
+      - "traefik.http.routers.invidious-secure.tls=true"
+      - "traefik.http.routers.invidious-secure.service=invidious"
+      - "traefik.http.services.invidious.loadbalancer.server.port=3000"  # port of the service.
+      - "traefik.http.routers.invidious-secure.middlewares=tinyauth"
   go-socks5-proxy:
     image: serjs/go-socks5-proxy:v0.0.4
     environment:
