@@ -1,7 +1,7 @@
 ---
 services:
   periphery:
-    image: git.holmlab.org/shady/periphery:2.3.1
+    image: git.holmlab.org/shady/periphery:2.3.2
     container_name: periphery
     init: true
     labels:
