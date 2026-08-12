@@ -39,8 +39,6 @@ services:
     image: quay.io/invidious/invidious:2026.08.12-fc3c75e
     container_name: invidious
     restart: no
-    expose:
-      - "3005"
     depends_on:
       - invidious-db
       - companion
@@ -54,6 +52,7 @@ services:
           host: invidious-db
           port: 5432
         check_tables: true
+        port: 3005
         invidious_companion:
           # internal URL used between invidious and invidious companion
           - private_url: "http://127.0.0.1:8282/companion"
