@@ -1,15 +1,19 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base", "docker:enableMajor"],
+  "extends": ["config:recommended",  "docker:enableMajor"],
   "commitMessagePrefix": ":rocket:",
   "prConcurrentLimit": 32,
   "packageRules": [
     {
-      "updateTypes": ["patch"],
+      "matchUpdateTypes": [
+        "patch"
+      ],
       "commitMessagePrefix": ":adhesive_bandage:"
     },
     {
-      "updateTypes": ["major"],
+      "matchUpdateTypes": [
+        "major"
+      ],
       "commitMessagePrefix": ":boom:"
     },
     {
@@ -181,7 +185,9 @@
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["(^|/)compose[^/]*\\.ya?ml$"],
+      "managerFilePatterns": [
+        "/(^|/)compose[^/]*\\.ya?ml$/"
+      ],
       "matchStrings": [
         "postgres:(?<currentValue>\\d+\\.\\d+-alpine(?<compatibility>\\d+\\.\\d+))"
       ],
