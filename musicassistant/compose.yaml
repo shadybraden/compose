@@ -1,4 +1,5 @@
 ---
+name: music-assistant
 services:
   music-assistant-server:
     image: ghcr.io/music-assistant/server:2.9.13
