@@ -16,8 +16,6 @@ services:
     restart: unless-stopped
 #    networks:
 #      - intranet
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.music-assistant.entrypoints=http"
@@ -34,6 +32,8 @@ services:
       - "homepage.name=music-assistant"
       - "homepage.icon=/images/music-assistant.png"
       - "homepage.href=http://10.1.1.65:8095/#/home"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 #networks:
 #  intranet:
