@@ -1,11 +1,11 @@
 ---
 services:
   invidious-db:
-    image: postgres:14.16-alpine3.21
+    image: postgres:14.23  # pinned to postgres14 - https://docs.invidious.io/installation/#docker-compose-method-production
     container_name: invidious-db
     restart: unless-stopped
     volumes:
-      - /data/config_storage/invidious/db:/var/lib/postgresql/data  # postgres data
+      - /data/config_storage/invidious/db:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: invidious
       POSTGRES_USER: invidious
@@ -17,8 +17,7 @@ services:
       retries: 2
     security_opt:
       - no-new-privileges:true  # helps to increase security
-    networks:
-      - intranet
+    network_mode: container:gluetun
 
   companion:
     # Invidious companion, resolves dynamic signatures/streams for the frontend
@@ -26,7 +25,7 @@ services:
     container_name: invidious-companion
     restart: unless-stopped
     volumes:
-      - /data/config_storage/invidious/companion:/var/tmp/youtubei.js:rw  # youtube library cache
+      - companioncache:/var/tmp/youtubei.js:rw
     environment:
       - SERVER_SECRET_KEY=${INVIDIOUS_COMPANION_KEY}
     cap_drop:
@@ -35,14 +34,9 @@ services:
     security_opt:
       - no-new-privileges:true  # helps to increase security
     network_mode: container:gluetun
-    labels:
-      - "homepage.group=Other"
-      - "homepage.name=invidious companion"
-      - "homepage.icon=/images/invidious.png"
-      - "homepage.href=https://invidious.${DOMAIN}/"
 
   invidious:
-    image: quay.io/invidious/invidious:2026.08.09-c2c75d2
+    image: quay.io/invidious/invidious:2026.08.12-fc3c75e
     container_name: invidious
     restart: unless-stopped
     depends_on:
@@ -87,3 +81,6 @@ services:
 networks:
   intranet:
     external: true
+
+volumes:
+  companioncache:
