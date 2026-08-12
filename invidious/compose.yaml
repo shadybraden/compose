@@ -84,6 +84,8 @@ services:
 networks:
   intranet:
     external: true
+  gluetun_net:
+    external: true
 
 volumes:
   companioncache:
