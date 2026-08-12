@@ -30,7 +30,7 @@ services:
       - "traefik.http.routers.pinchflat-secure.service=pinchflat"
       - "traefik.http.services.pinchflat.loadbalancer.server.port=8945"  # port of the service.
       - "traefik.docker.network=intranet"
-      - "homepage.group=Media"
+      - "homepage.group=Background-stuff"
       - "homepage.name=pinchflat"
       - "homepage.icon=/images/pinchflat.png"
       - "homepage.href=https://pinchflat.${DOMAIN}/"
