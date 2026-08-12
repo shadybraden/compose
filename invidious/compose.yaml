@@ -40,7 +40,7 @@ services:
     container_name: invidious
     restart: unless-stopped
     volumes:
-      - /data/config_storage/komodo/etc_komodo/repos/compose_main/invidious/config.yml:config.yml:ro
+      - /data/config_storage/komodo/etc_komodo/repos/compose_main/invidious/config.yml:/config.yml:ro
     depends_on:
       - invidious-db
       - companion
