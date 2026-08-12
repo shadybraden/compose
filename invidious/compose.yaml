@@ -17,7 +17,8 @@ services:
       retries: 2
     security_opt:
       - no-new-privileges:true  # helps to increase security
-    network_mode: container:gluetun
+    networks:
+    - intranet
 
   companion:
     # Invidious companion, resolves dynamic signatures/streams for the frontend
