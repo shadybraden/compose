@@ -8,7 +8,7 @@ jobs:
     runs-on: tools_container
     steps:
       - uses: actions/checkout@v7.0.1
-      - uses: docker-compose-linter/dclint-github-action@v3.1.0
+      - uses: https://github.com/docker-compose-linter/dclint-github-action@v3.1.0
         with:
           path: ./
           recursive: true
