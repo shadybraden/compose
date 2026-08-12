@@ -1,11 +1,14 @@
+---
+name: hugo-build
 services:
   hugo-build:
     image: hugomods/hugo:0.165.0
+    container_name: hugo-build
     volumes:
       - /data/config_storage/komodo/etc_komodo/repos/shadybradencom:/src:rw
       - /data/hugo-public:/output
-    working_dir: /src
-    command: sh -c "rm -r /output/* && hugo build --destination /output --minify --baseURL="https://hugo.${DOMAIN}/" && chown -R 1000:1000 /output/*"
     environment:
       - HUGO_ENVIRONMENT=production
       - HUGO_ENV=production
+    command: sh -c "rm -r /output/* && hugo build --destination /output --minify --baseURL="https://hugo.${DOMAIN}/" && chown -R 1000:1000 /output/*"
+    working_dir: /src
