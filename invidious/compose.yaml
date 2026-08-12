@@ -39,8 +39,6 @@ services:
     image: quay.io/invidious/invidious:2026.08.12-fc3c75e
     container_name: invidious
     restart: no
-    volumes:
-      - /data/config_storage/komodo/etc_komodo/repos/compose_main/invidious/config.yml:/config.yml:ro
     depends_on:
       - invidious-db
       - companion
