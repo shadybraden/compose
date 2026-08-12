@@ -18,6 +18,9 @@ services:
     security_opt:
       - no-new-privileges:true  # helps to increase security
     network_mode: container:gluetun
+    networks:
+      gluetun_net:
+        ipv4_address: 172.80.0.22
 
   companion:
     # Invidious companion, resolves dynamic signatures/streams for the frontend
@@ -49,7 +52,7 @@ services:
           dbname: invidious
           user: invidious
           password: ${POSTGRES_PASSWORD}
-          host: invidious-db
+          host: 172.80.0.22
           port: 5432
         check_tables: true
         port: 3005
