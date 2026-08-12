@@ -30,8 +30,6 @@ As the guide says, installing OS's, using Git and using Docker are prerequisites
     dns:
       - ${DNS_SERVER1}
       - ${DNS_SERVER2}
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
@@ -46,6 +44,8 @@ As the guide says, installing OS's, using Git and using Docker are prerequisites
       - "traefik.http.routers.SUBDOMAIN-secure.service=SUBDOMAIN"
       - "traefik.http.services.SUBDOMAIN.loadbalancer.server.port=80"  # port of the service.
       - "traefik.docker.network=intranet"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
