@@ -2,6 +2,7 @@ name: Build periphery image
 
 on:
   push:
+    branches: [main]
     paths:
       - 'periphery/Dockerfile'
       - '.forgejo/workflows/build_periphery.yaml'
