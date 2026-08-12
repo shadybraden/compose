@@ -1,8 +1,9 @@
 ---
+name: renovate
 services:
   renovate:
-    stdin_open: true
-    tty: true
+    image: renovate/renovate:44.17.0
+    container_name: renovate
     environment:
       - LOG_LEVEL=debug
       - RENOVATE_TOKEN=${RENOVATE_TOKEN}
@@ -16,13 +17,6 @@ services:
       - schedule="* 8-18 * * 1-5"  # not for auto-running. use cron for that
       - RENOVATE_PR_HOURLY_LIMIT=100
       - RENOVATE_ASSIGNEES=shady
-    image: renovate/renovate:44.17.0
-    container_name: renovate
-    dns:
-      - ${DNS_SERVER1}
-      - ${DNS_SERVER2}
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
@@ -37,6 +31,13 @@ services:
       - "traefik.http.routers.renovate-secure.service=renovate"
       - "traefik.http.services.renovate.loadbalancer.server.port=80"  # port of the service
       - "traefik.docker.network=intranet"
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    stdin_open: true
+    tty: true
 
 networks:
   intranet:
