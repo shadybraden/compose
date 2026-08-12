@@ -3,7 +3,7 @@ services:
   invidious-db:
     image: postgres:14.23  # pinned to postgres14 - https://docs.invidious.io/installation/#docker-compose-method-production
     container_name: invidious-db
-    restart: unless-stopped
+    restart: no
     volumes:
       - /data/config_storage/invidious/db:/var/lib/postgresql/data
     environment:
@@ -23,7 +23,7 @@ services:
     # Invidious companion, resolves dynamic signatures/streams for the frontend
     image: quay.io/invidious/invidious-companion:2026.08.10-16cf10e
     container_name: invidious-companion
-    restart: unless-stopped
+    restart: no
     volumes:
       - companioncache:/var/tmp/youtubei.js:rw
     environment:
@@ -38,7 +38,7 @@ services:
   invidious:
     image: quay.io/invidious/invidious:2026.08.12-fc3c75e
     container_name: invidious
-    restart: unless-stopped
+    restart: no
     volumes:
       - /data/config_storage/komodo/etc_komodo/repos/compose_main/invidious/config.yml:/config.yml:ro
     depends_on:
