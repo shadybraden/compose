@@ -18,7 +18,7 @@ jobs:
           if [ -n "${{ github.event.pull_request.base.sha }}" ]; then
             FILES=$(git diff --name-only \
               "${{ github.event.pull_request.base.sha }}...${{ github.event.pull_request.head.sha }}" \
-              -- '*.yaml' '*.yml' \
+              -- '**/compose.y*ml' \
               | tr '\n' ' ' | sed 's/ *$//')
           else
             FILES="."
