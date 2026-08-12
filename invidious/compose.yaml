@@ -39,6 +39,8 @@ services:
     image: quay.io/invidious/invidious:2026.08.12-fc3c75e
     container_name: invidious
     restart: no
+    ports:
+      - 3005:3005
     depends_on:
       - invidious-db
       - companion
