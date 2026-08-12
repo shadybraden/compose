@@ -4,9 +4,6 @@ services:
   music-assistant-server:
     image: ghcr.io/music-assistant/server:2.9.13
     container_name: music-assistant-server
-    restart: unless-stopped
-    # host is required to for device discovery (https://www.music-assistant.io/installation/ see "host network mode")
-    network_mode: host
     volumes:
       - /data/config_storage/music-assistant:/data
       - /data/music:/music:ro
@@ -14,8 +11,9 @@ services:
       - /data/podcasts:/podcasts:ro
     environment:
       - LOG_LEVEL=info
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
+    # host is required to for device discovery (https://www.music-assistant.io/installation/ see "host network mode")
+    network_mode: host
+    restart: unless-stopped
 #    networks:
 #      - intranet
     labels:
@@ -34,6 +32,8 @@ services:
       - "homepage.name=music-assistant"
       - "homepage.icon=/images/music-assistant.png"
       - "homepage.href=http://10.1.1.65:8095/#/home"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 #networks:
 #  intranet:
