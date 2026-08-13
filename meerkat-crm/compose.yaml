@@ -1,4 +1,5 @@
 ---
+name: meerkat
 services:
   backend:
     image: ghcr.io/fbuchner/meerkat-crm-backend:1.7.0
