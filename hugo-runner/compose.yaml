@@ -1,4 +1,5 @@
 ---
+name:
 services:
   nginx:
     image: nginx:1.31.3
@@ -7,39 +8,14 @@ services:
       - /data/hugo-public:/usr/share/nginx/html:ro
     environment:
       - TZ=${TZ}
-    security_opt:
-      - no-new-privileges:true
-    tmpfs:
-      - '/tmp:size=64m,uid=101,gid=101,mode=1777'
-      - '/var/cache/nginx:size=64m,uid=101,gid=101,mode=0755'
-      - '/var/run:size=8m,uid=101,gid=101,mode=0755'
-    read_only: true
-    user: "101:101"
-    cap_drop:
-      - ALL
-    init: true
-    deploy:
-      resources:
-        limits:
-          cpus: '0.5'
-          memory: 64M
-        reservations:
-          memory: 16M
+    networks:
+      - intranet
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost/"]
       interval: 30s
       timeout: 5s
       retries: 3
       start_period: 10s
-    ulimits:
-      nofile:
-        soft: 1024
-        hard: 2048
-      nproc: 64
-    networks:
-      - intranet
-    dns:
-      - 0.0.0.0
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.hugo.entrypoints=http"
@@ -56,6 +32,31 @@ services:
       - "homepage.name=hugo"
       - "homepage.icon=/images/hugo.png"
       - "homepage.href=https://hugo.${DOMAIN}/"
+    user: "101:101"
+    dns:
+      - 0.0.0.0
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 64M
+        reservations:
+          memory: 16M
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - '/tmp:size=64m,uid=101,gid=101,mode=1777'
+      - '/var/cache/nginx:size=64m,uid=101,gid=101,mode=0755'
+      - '/var/run:size=8m,uid=101,gid=101,mode=0755'
+    read_only: true
+    cap_drop:
+      - ALL
+    init: true
+    ulimits:
+      nofile:
+        soft: 1024
+        hard: 2048
+      nproc: 64
 
 networks:
   intranet:
