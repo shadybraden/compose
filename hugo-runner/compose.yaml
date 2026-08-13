@@ -1,5 +1,5 @@
 ---
-name:
+name: hugo-server
 services:
   nginx:
     image: nginx:1.31.3
