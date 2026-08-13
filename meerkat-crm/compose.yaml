@@ -20,10 +20,10 @@ services:
       timeout: 10s
       retries: 3
       start_period: 10s
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
     expose:
       - '8080'
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
   frontend:
     image: ghcr.io/fbuchner/meerkat-crm-frontend:1.7.0
