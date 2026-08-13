@@ -44,6 +44,7 @@ KEY_ORDER = [
     "labels",
     "user",
     "isolation",
+    "deploy",
     "expose",
     "security_opt",
 ]
