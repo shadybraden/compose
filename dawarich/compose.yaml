@@ -109,17 +109,17 @@ services:
       - "homepage.name=dawarich"
       - "homepage.icon=/images/dawarich.png"
       - "homepage.href=https://dawarich.${DOMAIN}/"
+    deploy:
+      resources:
+        limits:
+          cpus: 0.50
+          memory: 4G
     security_opt:
       - no-new-privileges:true  # helps to increase security
 #    ports:
 #      - "${DAWARICH_APP_PORT:-3000}:3000"
     stdin_open: true
     tty: true
-    deploy:
-      resources:
-        limits:
-          cpus: 0.50
-          memory: 4G
 
   dawarich_sidekiq:
     image: freikin/dawarich:1.12.1
