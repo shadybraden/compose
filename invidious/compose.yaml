@@ -1,7 +1,7 @@
 ---
 services:
   invidious-db:
-    image: postgres:14.23  # pinned to postgres14 - https://docs.invidious.io/installation/#docker-compose-method-production
+    image: postgres:14.24  # pinned to postgres14 - https://docs.invidious.io/installation/#docker-compose-method-production
     container_name: invidious-db
     restart: no
     volumes:
