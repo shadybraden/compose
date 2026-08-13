@@ -1,8 +1,9 @@
 ---
+name:
 services:
   speedtest:
-    container_name: speedtest
     image: ghcr.io/librespeed/speedtest:6.2.1
+    container_name: speedtest
     environment:
       MODE: standalone
       TELEMETRY: "false"
@@ -10,11 +11,9 @@ services:
       WEBPORT: 8068
     ports:
       - 8068:8068
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
-    restart: unless-stopped
     networks:
       - intranet
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.speedtest.entrypoints=http"
@@ -32,6 +31,8 @@ services:
       - "homepage.icon=/images/librespeed.png"
       - "homepage.href=https://speedtest.${DOMAIN}/index-modern.html?design=new"
       - "traefik.http.routers.speedtest.middlewares=anubis@docker"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
