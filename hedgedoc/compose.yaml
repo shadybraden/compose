@@ -1,7 +1,7 @@
 ---
 services:
   hedgedoc_database:
-    image: postgres:17.10-alpine3.24
+    image: postgres:17.11-alpine3.24
     container_name: hedgedoc_database
     environment:
       - POSTGRES_USER=hedgedoc
