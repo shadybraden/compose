@@ -1,23 +1,17 @@
 ---
+name: seerr
 services:
   seerr:
     image: ghcr.io/seerr-team/seerr:v3.4.1
-    init: true
     container_name: seerr
-    user: 1000:1000
+    volumes:
+      - /data/config_storage/seerr:/app/config
     environment:
       - LOG_LEVEL=debug
       - TZ=America/New_York
-    volumes:
-      - /data/config_storage/seerr:/app/config
-    restart: unless-stopped
-    dns:
-      - ${DNS_SERVER1}
-      - ${DNS_SERVER2}
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.seerr.entrypoints=http"
@@ -34,6 +28,13 @@ services:
       - "homepage.name=media-request"
       - "homepage.icon=/images/seerr.png"
       - "homepage.href=https://media-request.${DOMAIN}/"
+    user: 1000:1000
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    init: true
 
 networks:
   intranet:
