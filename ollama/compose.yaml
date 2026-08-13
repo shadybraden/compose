@@ -1,17 +1,16 @@
 ---
+name: ollama
 services:
   ollama:
+    image: ollama/ollama:0.32.10
+    container_name: ollama
     volumes:
       - /data/config_storage/ai/ollama:/root/.ollama
     ports:
-      - 11434:11434
-    container_name: ollama
-    restart: unless-stopped
-    image: ollama/ollama:0.32.9
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
+      - '0.0.0.0:11434:11434'
     networks:
       - intranet
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.ollama.entrypoints=http"
@@ -24,6 +23,8 @@ services:
       - "traefik.http.routers.ollama-secure.service=ollama"
       - "traefik.http.services.ollama.loadbalancer.server.port=11434"  # port of the service
       - "traefik.docker.network=intranet"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
