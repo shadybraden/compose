@@ -1,9 +1,9 @@
 ---
+name:
 services:
   searxng:
-    container_name: searxng
     image: docker.io/searxng/searxng:2026.8.10-0a118066d
-    restart: unless-stopped
+    container_name: searxng
     volumes:
       - /data/config_storage/searxng:/etc/searxng:rw
     environment:
@@ -12,17 +12,18 @@ services:
       - UWSGI_THREADS=4
       - GRANIAN_HOST=0.0.0.0
       - GRANIAN_PORT=27540
+    network_mode: container:gluetun
+    restart: unless-stopped
     logging:
       driver: "json-file"
       options:
         max-size: "1m"
         max-file: "1"
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
-    network_mode: container:gluetun
     labels:
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=search"
       - "homepage.icon=/images/searxng.png"
       - "homepage.href=https://search.${DOMAIN}/"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
