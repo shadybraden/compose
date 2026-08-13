@@ -37,12 +37,12 @@ services:
       - "homepage.name=wireguard"
       - "homepage.icon=/images/wireguard.png"
       - "homepage.href=https://wireguard.${DOMAIN}/"
-    dns:
-      - ${DNS_SERVER1}
-      - ${DNS_SERVER2}
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
     sysctls:
       - net.ipv4.ip_forward=1
       - net.ipv4.conf.all.src_valid_mark=1
