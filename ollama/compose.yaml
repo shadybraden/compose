@@ -7,7 +7,7 @@ services:
     volumes:
       - /data/config_storage/ai/ollama:/root/.ollama
     ports:
-      - 11434:11434
+      - '0.0.0.0:11434:11434'
     networks:
       - intranet
     restart: unless-stopped
