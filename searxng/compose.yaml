@@ -1,5 +1,5 @@
 ---
-name:
+name: searxng
 services:
   searxng:
     image: docker.io/searxng/searxng:2026.8.10-0a118066d
