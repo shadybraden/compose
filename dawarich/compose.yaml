@@ -125,13 +125,13 @@ services:
     image: freikin/dawarich:1.12.1
     container_name: dawarich_sidekiq
     depends_on:
+      dawarich_app:
+        condition: service_healthy
+        restart: true
       dawarich_db:
         condition: service_healthy
         restart: true
       dawarich_redis:
-        condition: service_healthy
-        restart: true
-      dawarich_app:
         condition: service_healthy
         restart: true
     volumes:
