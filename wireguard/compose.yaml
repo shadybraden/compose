@@ -11,7 +11,7 @@ services:
       WG_DEVICE: enp2s0  # https://github.com/wg-easy/wg-easy/issues/1795#issuecomment-2900911182
       INSECURE: true
     ports:
-      - "51820:51820/udp"  # public port. remember to port forward this
+      - '51820:51820/udp'  # public port. remember to port forward this
     networks:
       wg:
         ipv4_address: 10.42.42.42
