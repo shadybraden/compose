@@ -13,9 +13,9 @@ services:
     restart: no
     security_opt:
       - no-new-privileges:true  # helps to increase security
+    read_only: true
     cap_drop:
       - ALL
-    read_only: true
 
   invidious-db:
     image: postgres:14.24  # pinned to postgres14 - https://docs.invidious.io/installation/#docker-compose-method-production
@@ -42,8 +42,8 @@ services:
     image: quay.io/invidious/invidious:2026.08.12-fc3c75e
     container_name: invidious
     depends_on:
-      - invidious-db
       - companion
+      - invidious-db
     environment:
       # db pointing at the postgres service; schema auto-created on first boot
       INVIDIOUS_CONFIG: |
