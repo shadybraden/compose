@@ -50,6 +50,7 @@ KEY_ORDER = [
     "deploy",
     "expose",
     "security_opt",
+    "cap_drop",
 ]
 _RANK = {k: i for i, k in enumerate(KEY_ORDER)}
 _UNKNOWN_RANK = len(_RANK)
