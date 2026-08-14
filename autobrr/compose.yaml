@@ -1,17 +1,16 @@
 ---
+name: autobrr
 services:
   autobrr:
+    image: ghcr.io/autobrr/autobrr:v1.84.0
     container_name: autobrr
-    image: ghcr.io/autobrr/autobrr:v1.83.0
-    restart: unless-stopped
-    environment:
-      - TZ=America/New_York
     volumes:
       - /data/config_storage/autobrr/config:/config
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
+    environment:
+      - TZ=America/New_York
     networks:
       - intranet
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.autobrr.entrypoints=http"
@@ -28,6 +27,8 @@ services:
       - "homepage.name=autobrr"
       - "homepage.icon=/images/autobrr.png"
       - "homepage.href=https://autobrr.${DOMAIN}/"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
