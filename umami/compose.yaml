@@ -1,28 +1,26 @@
 ---
+name: umami
 services:
   umami:
     image: ghcr.io/umami-software/umami:3.3.0
     container_name: umami
-    ports:
-      - "61074:3000"
+    depends_on:
+      umami_db:
+        condition: service_healthy
     environment:
       DATABASE_URL: postgresql://umami:${POSTGRES_PASSWORD}@umami_db:5432/umami
       APP_SECRET: replace-me-with-a-random-string
       DISABLE_TELEMETRY: 1
-    depends_on:
-      umami_db:
-        condition: service_healthy
-    init: true
+    ports:
+      - '0.0.0.0:61074:3000'
+    networks:
+      - intranet
     restart: always
     healthcheck:
       test: ["CMD-SHELL", "curl http://localhost:3000/api/heartbeat"]
       interval: 5s
       timeout: 5s
       retries: 5
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
-    networks:
-      - intranet
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.analytics.entrypoints=http"
@@ -39,16 +37,21 @@ services:
       - "homepage.name=analytics"
       - "homepage.icon=/images/umami.png"
       - "homepage.href=https://analytics.${DOMAIN}/"
+    init: true
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
   umami_db:
-    image: postgres:15.18-alpine3.24  #15.17-alpine3.23  # pinned to 15-alpine https://github.com/umami-software/umami/blob/master/docker-compose.yml
+    image: postgres:15.19-alpine3.24  #15.17-alpine3.23  # pinned to 15-alpine https://github.com/umami-software/umami/blob/master/docker-compose.yml
     container_name: umami_db
+    volumes:
+      - /data/config_storage/umami:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: umami
       POSTGRES_USER: umami
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-    volumes:
-      - /data/config_storage/umami:/var/lib/postgresql/data
+    networks:
+      - intranet
     restart: always
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
@@ -57,8 +60,6 @@ services:
       retries: 5
     security_opt:
       - no-new-privileges:true  # helps to increase security
-    networks:
-      - intranet
 
 networks:
   intranet:
