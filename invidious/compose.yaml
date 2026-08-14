@@ -1,49 +1,28 @@
 ---
+name: invidious
 services:
-  invidious-db:
-    image: postgres:14.23  # pinned to postgres14 - https://docs.invidious.io/installation/#docker-compose-method-production
-    container_name: invidious-db
-    restart: no
-    volumes:
-      - /data/config_storage/invidious/db:/var/lib/postgresql/data
-    environment:
-      POSTGRES_DB: invidious
-      POSTGRES_USER: invidious
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
-      interval: 30s
-      timeout: 5s
-      retries: 2
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
-    networks:
-      gluetun_net:
-        ipv4_address: 172.19.0.22
-
   companion:
     # Invidious companion, resolves dynamic signatures/streams for the frontend
     image: quay.io/invidious/invidious-companion:2026.08.10-16cf10e
     container_name: invidious-companion
-    restart: no
     volumes:
       - companioncache:/var/tmp/youtubei.js:rw
     environment:
       - SERVER_SECRET_KEY=${INVIDIOUS_COMPANION_KEY}
+    network_mode: container:gluetun
+    restart: no
     cap_drop:
       - ALL
     read_only: true
     security_opt:
       - no-new-privileges:true  # helps to increase security
-    network_mode: container:gluetun
 
   invidious:
     image: quay.io/invidious/invidious:2026.08.12-fc3c75e
     container_name: invidious
-    restart: no
     depends_on:
-      - invidious-db
       - companion
+      - invidious-db
     environment:
       # db pointing at the postgres service; schema auto-created on first boot
       INVIDIOUS_CONFIG: |
@@ -61,6 +40,8 @@ services:
         # use the 2nd key you generated (different from hmac_key)
         invidious_companion_key: ${INVIDIOUS_COMPANION_KEY}
         hmac_key: ${INVIDIOUS_HMAC_KEY}
+    network_mode: container:gluetun
+    restart: no
         # overview of all config options:
         # https://github.com/iv-org/invidious/blob/master/config/config.example.yml
     healthcheck:
@@ -72,14 +53,34 @@ services:
       options:
         max-size: "1G"
         max-file: "4"
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
-    network_mode: container:gluetun
     labels:
       - "homepage.group=Media"
       - "homepage.name=invidious"
       - "homepage.icon=/images/invidious.png"
       - "homepage.href=https://invidious.${DOMAIN}/"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+
+  invidious-db:
+    image: postgres:14.24  # pinned to postgres14 - https://docs.invidious.io/installation/#docker-compose-method-production
+    container_name: invidious-db
+    volumes:
+      - /data/config_storage/invidious/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: invidious
+      POSTGRES_USER: invidious
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    networks:
+      gluetun_net:
+        ipv4_address: 172.19.0.22
+    restart: no
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 30s
+      timeout: 5s
+      retries: 2
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
