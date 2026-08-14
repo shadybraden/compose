@@ -37,9 +37,9 @@ services:
       - "homepage.name=analytics"
       - "homepage.icon=/images/umami.png"
       - "homepage.href=https://analytics.${DOMAIN}/"
+    init: true
     security_opt:
       - no-new-privileges:true  # helps to increase security
-    init: true
 
   umami_db:
     image: postgres:15.19-alpine3.24  #15.17-alpine3.23  # pinned to 15-alpine https://github.com/umami-software/umami/blob/master/docker-compose.yml
