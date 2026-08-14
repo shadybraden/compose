@@ -1,35 +1,20 @@
 ---
+name: hedgedoc
 services:
-  hedgedoc_database:
-    image: postgres:17.10-alpine3.24
-    container_name: hedgedoc_database
-    environment:
-      - POSTGRES_USER=hedgedoc
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=hedgedoc
-    volumes:
-      - /data/config_storage/hedgedoc/hedgedoc_database:/var/lib/postgresql/data
-    restart: no
-    user: 1000:1000
-    networks:
-      - intranet
   hedgedoc_app:
     image: quay.io/hedgedoc/hedgedoc:1.11.1
     container_name: hedgedoc_app
+    depends_on:
+      - hedgedoc_database
+    volumes:
+      - /data/config_storage/hedgedoc/uploads:/hedgedoc/public/uploads
     environment:
       - CMD_DB_URL=postgres://hedgedoc:${POSTGRES_PASSWORD}@hedgedoc_database:5432/hedgedoc
       - CMD_DOMAIN="https://docs.${DOMAIN}"
       - CMD_URL_ADDPORT=true
-    volumes:
-      - /data/config_storage/hedgedoc/uploads:/hedgedoc/public/uploads
-    restart: no
-    user: 1000:1000
-    depends_on:
-      - hedgedoc_database
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
+    restart: no
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.docs.entrypoints=http"
@@ -46,6 +31,23 @@ services:
       - "homepage.name=hedgedoc"
       - "homepage.icon=/images/hedgedoc.png"
       - "homepage.href=https://docs.${DOMAIN}/"
+    user: 1000:1000
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+
+  hedgedoc_database:
+    image: postgres:17.11-alpine3.24
+    container_name: hedgedoc_database
+    volumes:
+      - /data/config_storage/hedgedoc/hedgedoc_database:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=hedgedoc
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=hedgedoc
+    networks:
+      - intranet
+    restart: no
+    user: 1000:1000
 
 networks:
   intranet:
