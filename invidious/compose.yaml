@@ -11,11 +11,11 @@ services:
       - SERVER_SECRET_KEY=${INVIDIOUS_COMPANION_KEY}
     network_mode: container:gluetun
     restart: no
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
-    read_only: true
     cap_drop:
       - ALL
+    read_only: true
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
   invidious:
     image: quay.io/invidious/invidious:2026.08.12-fc3c75e
