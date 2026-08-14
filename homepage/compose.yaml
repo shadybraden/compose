@@ -1,21 +1,18 @@
 ---
+name: homepage
 services:
   homepage:
     image: ghcr.io/gethomepage/homepage:v1.13.2
     container_name: homepage
-    environment:
-      HOMEPAGE_ALLOWED_HOSTS: ${DOMAIN}
     volumes:
       - /data/config_storage/homepage/config:/app/config:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /data/config_storage/komodo/etc_komodo/repos/icons:/app/public/images:ro
-    restart: unless-stopped
-    dns:
-      - ${INTRANET_DNS_SERVER}
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
+    environment:
+      HOMEPAGE_ALLOWED_HOSTS: ${DOMAIN}
     networks:
       - intranet
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.homepage.entrypoints=http"
@@ -29,6 +26,10 @@ services:
       - "traefik.http.services.homepage.loadbalancer.server.port=3000"  # port of the service.
       - "traefik.docker.network=intranet"
       - "traefik.http.routers.homepage.middlewares=anubis@docker"
+    dns:
+      - ${INTRANET_DNS_SERVER}
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
