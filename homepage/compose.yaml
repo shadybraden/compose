@@ -26,6 +26,7 @@ services:
       - "traefik.http.services.homepage.loadbalancer.server.port=3000"  # port of the service.
       - "traefik.docker.network=intranet"
       - "traefik.http.routers.homepage.middlewares=anubis@docker"
+    user: 1000:1000
     dns:
       - ${INTRANET_DNS_SERVER}
     security_opt:
