@@ -49,8 +49,9 @@ KEY_ORDER = [
     "sysctls",
     "deploy",
     "expose",
-    "security_opt",
     "cap_drop",
+    "read_only",
+    "security_opt",
 ]
 _RANK = {k: i for i, k in enumerate(KEY_ORDER)}
 _UNKNOWN_RANK = len(_RANK)
