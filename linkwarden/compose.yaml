@@ -1,17 +1,6 @@
 ---
 name: linkwarden
 services:
-  postgres:
-    image: postgres:16.15-alpine  # pined to 16-alpine - https://github.com/linkwarden/linkwarden/blob/main/docker-compose.yml
-    container_name: linkwarden_postgres
-    volumes:
-      - /data/config_storage/linkwarden/pgdata:/var/lib/postgresql/data
-    networks:
-      - intranet
-    restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
-
   linkwarden:
     image: ghcr.io/linkwarden/linkwarden:v2.16.0
     container_name: linkwarden
@@ -40,6 +29,17 @@ services:
       - "homepage.name=Linkwarden"
       - "homepage.icon=/images/linkwarden.png"
       - "homepage.href=https://links.${DOMAIN}/"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+
+  postgres:
+    image: postgres:16.15-alpine  # pined to 16-alpine - https://github.com/linkwarden/linkwarden/blob/main/docker-compose.yml
+    container_name: linkwarden_postgres
+    volumes:
+      - /data/config_storage/linkwarden/pgdata:/var/lib/postgresql/data
+    networks:
+      - intranet
+    restart: unless-stopped
     security_opt:
       - no-new-privileges:true  # helps to increase security
 
