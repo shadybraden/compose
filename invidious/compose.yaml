@@ -17,27 +17,6 @@ services:
     cap_drop:
       - ALL
 
-  invidious-db:
-    image: postgres:14.24  # pinned to postgres14 - https://docs.invidious.io/installation/#docker-compose-method-production
-    container_name: invidious-db
-    volumes:
-      - /data/config_storage/invidious/db:/var/lib/postgresql/data
-    environment:
-      POSTGRES_DB: invidious
-      POSTGRES_USER: invidious
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-    networks:
-      gluetun_net:
-        ipv4_address: 172.19.0.22
-    restart: no
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
-      interval: 30s
-      timeout: 5s
-      retries: 2
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
-
   invidious:
     image: quay.io/invidious/invidious:2026.08.12-fc3c75e
     container_name: invidious
@@ -79,6 +58,27 @@ services:
       - "homepage.name=invidious"
       - "homepage.icon=/images/invidious.png"
       - "homepage.href=https://invidious.${DOMAIN}/"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+
+  invidious-db:
+    image: postgres:14.24  # pinned to postgres14 - https://docs.invidious.io/installation/#docker-compose-method-production
+    container_name: invidious-db
+    volumes:
+      - /data/config_storage/invidious/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: invidious
+      POSTGRES_USER: invidious
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    networks:
+      gluetun_net:
+        ipv4_address: 172.19.0.22
+    restart: no
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 30s
+      timeout: 5s
+      retries: 2
     security_opt:
       - no-new-privileges:true  # helps to increase security
 
