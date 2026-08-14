@@ -2,7 +2,7 @@
 name: wg-easy
 services:
   wg-easy:
-    image: ghcr.io/wg-easy/wg-easy:15.3.0
+    image: ghcr.io/wg-easy/wg-easy:15.4.0
     container_name: wg-easy
     volumes:
       - /data/config_storage/wg-easy:/etc/wireguard
