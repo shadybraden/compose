@@ -157,6 +157,11 @@
       "sourceUrl": "https://github.com/louislam/uptime-kuma"
     },
     {
+      "matchPackageNames": ["cloudflare/cloudflared"],
+      "matchDatasources": ["docker"],
+      "sourceUrl": "https://github.com/cloudflare/cloudflared/blob/master/RELEASE_NOTES"
+    },
+    {
       "matchPackageNames": ["clickhouse/clickhouse-keeper", "clickhouse/clickhouse-server"],
       "matchDatasources": ["docker"],
       "groupName": "clickhouse"
