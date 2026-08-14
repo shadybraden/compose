@@ -1,29 +1,18 @@
 ---
+name: linkwarden
 services:
-  postgres:
-    image: postgres:16.14-alpine  # pined to 16-alpine - https://github.com/linkwarden/linkwarden/blob/main/docker-compose.yml
-    container_name: linkwarden_postgres
-    restart: unless-stopped
-    volumes:
-      - /data/config_storage/linkwarden/pgdata:/var/lib/postgresql/data
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
-    networks:
-      - intranet
   linkwarden:
-    environment:
-      - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/postgres
-    restart: unless-stopped
     image: ghcr.io/linkwarden/linkwarden:v2.16.0
     container_name: linkwarden
-    volumes:
-      - /data/config_storage/linkwarden/data:/data/data
     depends_on:
       - postgres
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
+    volumes:
+      - /data/config_storage/linkwarden/data:/data/data
+    environment:
+      - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/postgres
     networks:
       - intranet
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.links.entrypoints=http"
@@ -40,6 +29,19 @@ services:
       - "homepage.name=Linkwarden"
       - "homepage.icon=/images/linkwarden.png"
       - "homepage.href=https://links.${DOMAIN}/"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+
+  postgres:
+    image: postgres:16.15-alpine  # pined to 16-alpine - https://github.com/linkwarden/linkwarden/blob/main/docker-compose.yml
+    container_name: linkwarden_postgres
+    volumes:
+      - /data/config_storage/linkwarden/pgdata:/var/lib/postgresql/data
+    networks:
+      - intranet
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
