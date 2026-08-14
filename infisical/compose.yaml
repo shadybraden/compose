@@ -1,15 +1,14 @@
 ---
+name: infisical
 services:
   backend:
+    image: infisical/infisical:v0.162.19
     container_name: infisical-backend
-    user: 1000:1000
-    restart: unless-stopped
     depends_on:
       infisical-db:
         condition: service_healthy
       redis:
         condition: service_started
-    image: infisical/infisical:v0.162.19
     environment:
       - NODE_ENV=production
       - AUTH_SECRET=${AUTH_SECRET}
@@ -20,11 +19,10 @@ services:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_DB=${POSTGRES_DB}
       - DB_CONNECTION_URI=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@infisical-db:5432/${POSTGRES_DB}
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
       - infisical
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.infisical.entrypoints=http"
@@ -41,13 +39,43 @@ services:
       - "homepage.name=infisical"
       - "homepage.icon=/images/infisical.png"
       - "homepage.href=https://infisical.${DOMAIN}/"
+    user: 1000:1000
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
       #- "traefik.http.routers.infisical-secure.middlewares=tinyauth"
+
+  infisical-db:
+    image: postgres:14.24-alpine3.24  # pinned to 14-alpine - https://raw.githubusercontent.com/Infisical/infisical/main/docker-compose.prod.yml
+    container_name: infisical-db
+    volumes:
+      - /data/config_storage/infisical/pg_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - NODE_ENV=production
+      - AUTH_SECRET=${AUTH_SECRET}
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY}
+      - REDIS_URL=redis://redis:6379
+      - SITE_URL=https://infisical.${DOMAIN}
+    networks:
+      - intranet
+      - infisical
+    restart: unless-stopped
+    healthcheck:
+      test: "pg_isready --username=${POSTGRES_USER} && psql --username=${POSTGRES_USER} --list"
+      interval: 5s
+      timeout: 10s
+      retries: 10
+    user: 1000:1000
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
   redis:
     image: redis:8.10.0  # use latest
     container_name: infisical-dev-redis
-    user: 1000:1000
-    restart: unless-stopped
+    volumes:
+      - /data/config_storage/infisical/redis_data:/data
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
       - NODE_ENV=production
@@ -59,40 +87,13 @@ services:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_DB=${POSTGRES_DB}
       - DB_CONNECTION_URI=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
       - infisical
-    volumes:
-      - /data/config_storage/infisical/redis_data:/data
-
-  infisical-db:
-    container_name: infisical-db
-    user: 1000:1000
-    image: postgres:14.24-alpine3.24  # pinned to 14-alpine - https://raw.githubusercontent.com/Infisical/infisical/main/docker-compose.prod.yml
     restart: unless-stopped
-    environment:
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_DB=${POSTGRES_DB}
-      - NODE_ENV=production
-      - AUTH_SECRET=${AUTH_SECRET}
-      - ENCRYPTION_KEY=${ENCRYPTION_KEY}
-      - REDIS_URL=redis://redis:6379
-      - SITE_URL=https://infisical.${DOMAIN}
-    volumes:
-      - /data/config_storage/infisical/pg_data:/var/lib/postgresql/data
+    user: 1000:1000
     security_opt:
       - no-new-privileges:true  # helps to increase security
-    networks:
-      - intranet
-      - infisical
-    healthcheck:
-      test: "pg_isready --username=${POSTGRES_USER} && psql --username=${POSTGRES_USER} --list"
-      interval: 5s
-      timeout: 10s
-      retries: 10
 
 networks:
   infisical:
