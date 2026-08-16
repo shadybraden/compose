@@ -6,6 +6,7 @@ services:
     environment:
       - USER_UID=1000
       - USER_GID=1000
+      - TZ=America/New_York
       - ALLOWED_HOST_LIST="*.${DOMAIN}"
     restart: unless-stopped
     volumes:
