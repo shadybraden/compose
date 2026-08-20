@@ -56,7 +56,7 @@ services:
       - no-new-privileges:true  # helps to increase security
 
   docmost_redis:
-    image: redis:8.10.0
+    image: redis:8.10.1
     container_name: docmost_redis
     volumes:
       - /data/config_storage/docmost/redis_data:/data
