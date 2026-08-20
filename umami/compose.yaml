@@ -2,7 +2,7 @@
 name: umami
 services:
   umami:
-    image: ghcr.io/umami-software/umami:3.3.0
+    image: ghcr.io/umami-software/umami:3.3.1
     container_name: umami
     depends_on:
       umami_db:
