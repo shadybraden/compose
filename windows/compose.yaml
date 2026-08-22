@@ -1,7 +1,7 @@
 ---
 services:
   windows:
-    image: dockurr/windows:6.04
+    image: dockurr/windows:6.05
     container_name: windows
     environment:
       VERSION: "11"
