@@ -1,18 +1,17 @@
 ---
+name: vaultwarden
 services:
   server:
+    image: vaultwarden/server:1.37.2
     container_name: vaultwarden
     volumes:
       - /data/config_storage/vaultwarden:/data
-    restart: unless-stopped
     environment:
       - LOG_FILE=/data/vaultwarden.log
       - LOG_LEVEL=info
-    image: vaultwarden/server:1.37.2
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.bitwarden.entrypoints=http"
@@ -29,6 +28,8 @@ services:
       - "homepage.name=vaultwarden"
       - "homepage.icon=/images/vaultwarden.png"
       - "homepage.href=https://bitwarden.${DOMAIN}/"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
