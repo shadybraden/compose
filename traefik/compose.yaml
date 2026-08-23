@@ -1,5 +1,5 @@
-name: traefik
 ---
+name: traefik
 services:
   traefik:
     image: traefik:v3.7.11
