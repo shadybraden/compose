@@ -10,8 +10,8 @@ services:
       - /data/config_storage/traccar/traccar.xml:/opt/traccar/conf/traccar.xml:ro
       - /data/config_storage/traccar/logs:/opt/traccar/logs:rw
     ports:
-      - 5027:5027/udp
-      - 5027:5027/tcp
+      - '0.0.0.0:5027:5027/udp'
+      - '0.0.0.0:5027:5027/tcp'
     networks:
       - intranet
     restart: unless-stopped
