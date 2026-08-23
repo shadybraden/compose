@@ -72,7 +72,7 @@ services:
       - no-new-privileges:true  # helps to increase security
 
   redis:
-    image: redis:8.10.0  # use latest
+    image: redis:8.10.1  # use latest
     container_name: infisical-dev-redis
     volumes:
       - /data/config_storage/infisical/redis_data:/data
