@@ -24,7 +24,7 @@ services:
       - FILEBROWSER_DATABASE=/home/filebrowser/database.db
       - FILEBROWSER_CONFIG=/home/filebrowser/config.yaml
     ports:
-      - 12170:80
+      - '0.0.0.0:12170:80'
     networks:
       - intranet
     restart: unless-stopped
