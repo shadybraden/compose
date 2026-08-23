@@ -1,14 +1,13 @@
 ---
+name: dozzle
 services:
   dozzle:
-    image: amir20/dozzle:v10.7.3
+    image: amir20/dozzle:v10.7.4
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /data/config_storage/dozzle:/data
     environment:
       - DOZZLE_ENABLE_ACTIONS=true
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
     labels:
@@ -28,6 +27,8 @@ services:
       - "homepage.icon=/images/dozzle.png"
       - "homepage.href=https://dozzle.${DOMAIN}/"
       - "traefik.http.routers.dozzle-secure.middlewares=tinyauth"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
