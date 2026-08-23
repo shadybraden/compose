@@ -1,23 +1,20 @@
 ---
+name: traccar
 services:
   traccar:
-    image: traccar/traccar:6.14.5
+    image: traccar/traccar:6.15.1
+    container_name: traccar
     volumes:
       - /data/config_storage/traccar/data:/opt/traccar/data:rw
       - /data/config_storage/traccar/override:/opt/traccar/override:rw
       - /data/config_storage/traccar/traccar.xml:/opt/traccar/conf/traccar.xml:ro
       - /data/config_storage/traccar/logs:/opt/traccar/logs:rw
     ports:
-      - 5027:5027/udp
-      - 5027:5027/tcp
-    restart: unless-stopped
-    hostname: traccar
-    container_name: traccar
-    user: 1000:1000
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
+      - '0.0.0.0:5027:5027/udp'
+      - '0.0.0.0:5027:5027/tcp'
     networks:
       - intranet
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.traccar.entrypoints=http"
@@ -34,6 +31,10 @@ services:
       - "homepage.name=traccar"
       - "homepage.icon=/images/traccar.png"
       - "homepage.href=https://traccar.${DOMAIN}/"
+    user: 1000:1000
+    hostname: traccar
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
