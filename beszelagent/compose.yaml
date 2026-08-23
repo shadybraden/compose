@@ -1,10 +1,9 @@
 ---
+name: beszel-agent
 services:
   beszel-agent:
-    image: henrygd/beszel-agent:0.18.7
+    image: henrygd/beszel-agent:0.18.8
     container_name: "beszel-agent"
-    restart: unless-stopped
-    network_mode: host
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       # monitor other disks / partitions by mounting a folder in /extra-filesystems
@@ -16,3 +15,5 @@ services:
       KEY: ${KEY}  # format: `KEY="key"`
       TOKEN: ${TOKEN}
       HUB_URL: https://beszel.holmlab.org
+    network_mode: host
+    restart: unless-stopped
