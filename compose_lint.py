@@ -52,6 +52,7 @@ KEY_ORDER = [
     "cap_drop",
     "read_only",
     "init",
+    "hostname",
     "security_opt",
 ]
 _RANK = {k: i for i, k in enumerate(KEY_ORDER)}
