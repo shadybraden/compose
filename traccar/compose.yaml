@@ -2,7 +2,7 @@
 name: traccar
 services:
   traccar:
-    image: traccar/traccar:6.15.1
+    image: traccar/traccar:6.15.2
     container_name: traccar
     volumes:
       - /data/config_storage/traccar/data:/opt/traccar/data:rw
