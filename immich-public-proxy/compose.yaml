@@ -14,7 +14,7 @@ services:
           }
         }
     ports:
-      - "8408:3000"
+      - '0.0.0.0:8408:3000'
     restart: unless-stopped
     healthcheck:
       test: curl -s http://localhost:3000/share/healthcheck -o /dev/null || exit 1
