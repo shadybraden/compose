@@ -167,6 +167,11 @@
       "sourceUrl": "https://mau.dev/mautrix/discord/-/blob/main/CHANGELOG.md"
     },
     {
+      "matchPackageNames": ["traccar/traccar"],
+      "matchDatasources": ["docker"],
+      "sourceUrl": "https://www.traccar.org/blog/category/releases/"
+    },
+    {
       "matchPackageNames": ["clickhouse/clickhouse-keeper", "clickhouse/clickhouse-server"],
       "matchDatasources": ["docker"],
       "groupName": "clickhouse"
