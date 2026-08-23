@@ -162,6 +162,11 @@
       "sourceUrl": "https://github.com/cloudflare/cloudflared/blob/master/RELEASE_NOTES"
     },
     {
+      "matchPackageNames": ["dock.mau.dev/mautrix/discord"],
+      "matchDatasources": ["docker"],
+      "sourceUrl": "https://mau.dev/mautrix/discord/-/blob/main/CHANGELOG.md"
+    },
+    {
       "matchPackageNames": ["clickhouse/clickhouse-keeper", "clickhouse/clickhouse-server"],
       "matchDatasources": ["docker"],
       "groupName": "clickhouse"
