@@ -32,9 +32,9 @@ services:
       - "homepage.icon=/images/traccar.png"
       - "homepage.href=https://traccar.${DOMAIN}/"
     user: 1000:1000
+    hostname: traccar
     security_opt:
       - no-new-privileges:true  # helps to increase security
-    hostname: traccar
 
 networks:
   intranet:
