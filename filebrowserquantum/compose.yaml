@@ -1,6 +1,9 @@
 ---
+name: filebrowserquantum
 services:
   filebrowser:
+    image: gtstef/filebrowser:1.5.3-stable
+    container_name: filebrowserquantum
     volumes:
       - /data:/srv/data/data
       - /data/mnt/shows:/srv/data/shows
@@ -16,20 +19,15 @@ services:
       - /data/dont_backup/:/srv/data/dont_backup
       - /data/config_storage/filebrowserquantum/config.yaml:/home/filebrowser/config.yaml
       - /data/config_storage/filebrowserquantum/database.db:/home/filebrowser/database.db
-    user: 1000:1000
-    restart: unless-stopped
-    ports:
-      - 12170:80
-    image: gtstef/filebrowser:1.5.3-stable
-    container_name: filebrowserquantum
     environment:
       - FILEBROWSER_ADMIN_PASSWORD=${FILEBROWSER_ADMIN_PASSWORD}
       - FILEBROWSER_DATABASE=/home/filebrowser/database.db
       - FILEBROWSER_CONFIG=/home/filebrowser/config.yaml
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
+    ports:
+      - 12170:80
     networks:
       - intranet
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.files2.entrypoints=http"
@@ -46,6 +44,9 @@ services:
       - "homepage.name=files2"
       - "homepage.icon=/images/files.png"
       - "homepage.href=https://files2.${DOMAIN}/"
+    user: 1000:1000
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
