@@ -1,11 +1,10 @@
+name: traefik
 # touch traefik.yml config.yml acme.json
 ---
 services:
   traefik:
-    ports:
-      # - 8080:8080  # ro web ui
-      - 80:80    # http
-      - 443:443  # https
+    image: traefik:v3.7.11
+    container_name: traefik
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -18,13 +17,13 @@ services:
       TRAEFIK_DASHBOARD_CREDENTIALS: ${TRAEFIK_DASHBOARD_CREDENTIALS}
       CF_DNS_API_TOKEN: ${CF_DNS_API_TOKEN}
       CF_API_EMAIL: ${CF_API_EMAIL}
-    image: traefik:v3.7.11
-    container_name: traefik
-    restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
+    ports:
+      # - 8080:8080  # ro web ui
+      - 80:80    # http
+      - 443:443  # https
     networks:
       intranet:
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.traefik.entrypoints=http"
@@ -47,6 +46,8 @@ services:
       - "homepage.href=https://traefik.${DOMAIN}"
       - "traefik.http.middlewares.anubis.forwardauth.address=http://anubis:8080/.within.website/x/cmd/anubis/api/check"
       - "traefik.http.routers.web.rule=PathPrefix(`/`)"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:  # docker network create intranet
