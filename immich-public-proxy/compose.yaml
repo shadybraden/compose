@@ -1,10 +1,8 @@
+name: immich-public-proxy
 services:
   immich-public-proxy:
-    image: alangrainger/immich-public-proxy:3.2.0
+    image: alangrainger/immich-public-proxy:3.2.1
     container_name: immich-public-proxy
-    restart: unless-stopped
-    ports:
-      - "8408:3000"
     environment:
       PUBLIC_BASE_URL: https://photos.shadybraden.com
       IMMICH_URL: https://immich.${DOMAIN}
@@ -15,6 +13,9 @@ services:
             "allowDownload": true
           }
         }
+    ports:
+      - '0.0.0.0:8408:3000'
+    restart: unless-stopped
     healthcheck:
       test: curl -s http://localhost:3000/share/healthcheck -o /dev/null || exit 1
       start_period: 10s
