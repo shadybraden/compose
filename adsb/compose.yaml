@@ -76,11 +76,11 @@ services:
     hostname: ultrafeeder
     security_opt:
       - no-new-privileges:true  # helps to increase security
-    tty: true
     tmpfs:
       - /run:exec,size=256M
       - /tmp:size=128M
       - /var/log:size=32M
+    tty: true
 
 networks:
   intranet:
