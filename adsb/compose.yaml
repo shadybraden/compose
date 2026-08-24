@@ -1,5 +1,5 @@
 ---
-name:
+name: ultrafeeder
 services:
   ultrafeeder:
     image: ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder:latest-build-955  # https://github.com/sdr-enthusiasts/docker-adsb-ultrafeeder/pkgs/container/docker-adsb-ultrafeeder
