@@ -49,7 +49,7 @@ services:
         mlat,feed.theairtraffic.com,31090,39004;
         adsb,feed1.adsbexchange.com,30004,beast_reduce_plus_out
     ports:
-      - 8078:80
+      - '0.0.0.0:8078:80'
     networks:
       - intranet
     restart: unless-stopped

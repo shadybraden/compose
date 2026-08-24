@@ -52,6 +52,7 @@ KEY_ORDER = [
     "cap_drop",
     "read_only",
     "init",
+    "device_cgroup_rules",
     "hostname",
     "security_opt",
 ]
