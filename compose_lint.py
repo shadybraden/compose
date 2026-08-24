@@ -55,6 +55,8 @@ KEY_ORDER = [
     "device_cgroup_rules",
     "hostname",
     "security_opt",
+    "tmpfs",
+    "tty",
 ]
 _RANK = {k: i for i, k in enumerate(KEY_ORDER)}
 _UNKNOWN_RANK = len(_RANK)
