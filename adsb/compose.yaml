@@ -71,12 +71,12 @@ services:
       - "homepage.href=https://adsb.${DOMAIN}/"
     cap_add:
       - NET_BIND_SERVICE
+    device_cgroup_rules:
+      - "c 189:* rwm"
     hostname: ultrafeeder
     security_opt:
       - no-new-privileges:true  # helps to increase security
     tty: true
-    device_cgroup_rules:
-      - "c 189:* rwm"
     tmpfs:
       - /run:exec,size=256M
       - /tmp:size=128M
