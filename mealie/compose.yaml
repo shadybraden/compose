@@ -1,19 +1,18 @@
 ---
+name: mealie
 services:
   mealie:
+    image: ghcr.io/mealie-recipes/mealie:v3.24.0
     container_name: mealie
-    image: ghcr.io/mealie-recipes/mealie:v3.23.1
-    restart: unless-stopped
     volumes:
       - /data/config_storage/mealie:/app/data/
     environment:
       ALLOW_SIGNUP: "false"
       LOG_LEVEL: "DEBUG"
       DB_ENGINE: sqlite
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.mealie.entrypoints=http"
@@ -30,6 +29,8 @@ services:
       - "homepage.name=mealie"
       - "homepage.icon=/images/mealie.png"
       - "homepage.href=https://mealie.${DOMAIN}/"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
