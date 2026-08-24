@@ -1,15 +1,14 @@
 ---
+name: ultrafeeder
 services:
   ultrafeeder:
-    image: ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder:latest-build-953  # https://github.com/sdr-enthusiasts/docker-adsb-ultrafeeder/pkgs/container/docker-adsb-ultrafeeder
-    tty: true
+    image: ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder:latest-build-955  # https://github.com/sdr-enthusiasts/docker-adsb-ultrafeeder/pkgs/container/docker-adsb-ultrafeeder
     container_name: ultrafeeder
-    hostname: ultrafeeder
-    restart: unless-stopped
-    cap_add:
-      - NET_BIND_SERVICE
-    device_cgroup_rules:
-      - "c 189:* rwm"
+    volumes:
+      - /data/config_storage/adsb/globe_history:/var/globe_history
+      - /data/config_storage/adsb/graphs1090:/var/lib/collectd
+      - /proc/diskstats:/proc/diskstats:ro
+      - /dev/bus/usb:/dev/bus/usb
     environment:
       - LOGLEVEL=error
       - TZ=America/New_York
@@ -49,21 +48,11 @@ services:
         mlat,in.adsb.lol,31090,39001;
         mlat,feed.theairtraffic.com,31090,39004;
         adsb,feed1.adsbexchange.com,30004,beast_reduce_plus_out
-    volumes:
-      - /data/config_storage/adsb/globe_history:/var/globe_history
-      - /data/config_storage/adsb/graphs1090:/var/lib/collectd
-      - /proc/diskstats:/proc/diskstats:ro
-      - /dev/bus/usb:/dev/bus/usb
-    tmpfs:
-      - /run:exec,size=256M
-      - /tmp:size=128M
-      - /var/log:size=32M
     ports:
-      - 8078:80
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
+      - '0.0.0.0:8078:80'
     networks:
       - intranet
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.adsb.entrypoints=http"
@@ -80,6 +69,18 @@ services:
       - "homepage.name=ADSB"
       - "homepage.icon=/images/adsb.png"
       - "homepage.href=https://adsb.${DOMAIN}/"
+    cap_add:
+      - NET_BIND_SERVICE
+    device_cgroup_rules:
+      - "c 189:* rwm"
+    hostname: ultrafeeder
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    tmpfs:
+      - /run:exec,size=256M
+      - /tmp:size=128M
+      - /var/log:size=32M
+    tty: true
 
 networks:
   intranet:
