@@ -194,8 +194,7 @@
     {
       "matchDatasources": ["docker"],
       "matchPackageNames": ["renovate/renovate"],
-      "automerge": false,
-      "minimumReleaseAge": "3 days"
+      "automerge": false
     }
   ],
   "customManagers": [
