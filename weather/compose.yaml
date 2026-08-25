@@ -1,0 +1,40 @@
+---
+name: weather
+services:
+  weather:
+    image: git.holmlab.org/shady/weather:0.0.1
+    container_name: weather
+    restart: no
+    volumes:
+      - /data/config_storage/weather.xml:/data/weather.xml:ro
+    environment:
+      - TZ=America/New_York
+      - PORT=8080
+      - WEATHER_FILE=/data/weather.xml
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    networks:
+      - intranet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.weather.entrypoints=http"
+      - "traefik.http.routers.weather.rule=Host(`weather.${DOMAIN}`)"
+      - "traefik.http.middlewares.weather-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.weather.middlewares=weather-https-redirect"
+      - "traefik.http.routers.weather-secure.entrypoints=https"
+      - "traefik.http.routers.weather-secure.rule=Host(`weather.${DOMAIN}`)"
+      - "traefik.http.routers.weather-secure.tls=true"
+      - "traefik.http.routers.weather-secure.service=weather"
+      - "traefik.http.services.weather.loadbalancer.server.port=8080"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=weather"
+      - "homepage.icon=/images/weather.png"
+      - "homepage.href=https://weather.${DOMAIN}/"
+
+networks:
+  intranet:
+    external: true
