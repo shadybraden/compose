@@ -27,7 +27,7 @@ services:
       - ${DNS_SERVER1}
       - ${DNS_SERVER2}
     expose:
-      - '0.0.0.0:3306'
+      - '0.0.0.0:3306:3306'
     security_opt:
       - no-new-privileges:true  # helps to increase security
 
