@@ -1,9 +1,14 @@
 ---
+name: ghost
 services:
   ghost:
     # Do not alter this without updating the Tinybird Sync container as well
     image: ghost:6.60.0-alpine3.23
-    restart: no
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - /data/config_storage/ghost/content:/var/lib/ghost/content
     environment:
       NODE_ENV: production
       url: https://ghost.${DOMAIN}
@@ -21,19 +26,10 @@ services:
       mail__options__auth__pass: ${mail__options__auth__pass}
       mail__from: "'Support' <${mail__options__auth__user}>"
       TZ: America/New_York
-    volumes:
-      - /data/config_storage/ghost/content:/var/lib/ghost/content
-    depends_on:
-      db:
-        condition: service_healthy
     networks:
       - ghost_network
       - intranet
-    dns:
-      - ${DNS_SERVER1}
-      - ${DNS_SERVER2}
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
+    restart: no
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.ghost.entrypoints=http"
@@ -50,12 +46,17 @@ services:
       - "homepage.name=Ghost"
       - "homepage.icon=/images/ghost.png"
       - "homepage.href=https://Ghost.${DOMAIN}/"
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
   db:
     image: mysql:8.4.11@sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb
-    restart: no
-    expose:
-      - "3306"
+    volumes:
+      - /data/config_storage/ghost/mysql:/var/lib/mysql
+      - /data/config_storage/ghost/mysql-init:/docker-entrypoint-initdb.d
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_USER: ghost
@@ -63,21 +64,21 @@ services:
       MYSQL_DATABASE: ghost
       MYSQL_MULTIPLE_DATABASES: activitypub
       TZ: America/New_York
-    volumes:
-      - /data/config_storage/ghost/mysql:/var/lib/mysql
-      - /data/config_storage/ghost/mysql-init:/docker-entrypoint-initdb.d
+    networks:
+      - ghost_network
+      - intranet
+    restart: no
     healthcheck:
       test: mysqladmin ping -p$$MYSQL_ROOT_PASSWORD -h 127.0.0.1
       interval: 1s
       start_period: 30s
       start_interval: 10s
       retries: 120
-    networks:
-      - ghost_network
-      - intranet
     dns:
       - ${DNS_SERVER1}
       - ${DNS_SERVER2}
+    expose:
+      - "3306"
     security_opt:
       - no-new-privileges:true  # helps to increase security
 
