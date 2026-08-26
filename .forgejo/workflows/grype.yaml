@@ -50,7 +50,7 @@ jobs:
           while IFS= read -r image; do
             [ -n "$image" ] || continue
             echo "Scanning $image"
-            grype "registry:$image" --by-cve -o json > "$REPORT"
+            grype "registry:$image" --by-cve --only-fixed -o json > "$REPORT"
 
             jq -r '
               .matches[]
