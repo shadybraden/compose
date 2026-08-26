@@ -2,7 +2,7 @@
 name: weather
 services:
   weather:
-    image: git.holmlab.org/shady/weather:0.0.14
+    image: git.holmlab.org/shady/weather:0.0.15
     container_name: weather
     volumes:
       - /data/config_storage/weather.xml:/data/weather.xml:ro
