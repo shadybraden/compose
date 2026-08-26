@@ -27,4 +27,3 @@ services:
       - "homepage.href=https://search.${DOMAIN}/"
     security_opt:
       - no-new-privileges:true  # helps to increase security
-# dont merge
