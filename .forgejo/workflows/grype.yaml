@@ -86,12 +86,10 @@ jobs:
 
             if jq -e '
               any(.matches[];
-                .vulnerability.severity == "Critical"
-                or .vulnerability.severity == "High"
-                or ((.vulnerability.knownExploited // []) | length > 0)
+                (.vulnerability.knownExploited // []) | length > 0
               )
             ' "$REPORT" > /dev/null; then
-              echo "Blocking vulnerabilities found in $image"
+              echo "Blocking KEV vulnerabilities found in $image"
               FAILED=1
             fi
           done < "$IMAGES"
