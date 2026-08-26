@@ -4,7 +4,6 @@ services:
   weather:
     image: git.holmlab.org/shady/weather:0.0.23
     container_name: weather
-    restart: no
     volumes:
       - /data/config_storage/weather.xml:/data/weather.xml:ro
     environment:
@@ -14,13 +13,9 @@ services:
       - HOME_ASSISTANT_URL=${HOME_ASSISTANT_URL:-}
       - HOME_ASSISTANT_TOKEN=${HOME_ASSISTANT_TOKEN:-}
       - HOME_ASSISTANT_TEMP_ENTITY=${HOME_ASSISTANT_TEMP_ENTITY:-}
-    dns:
-      - ${DNS_SERVER1}
-      - ${DNS_SERVER2}
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
+    restart: no
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.weather.entrypoints=http"
@@ -37,7 +32,13 @@ services:
       - "homepage.name=weather"
       - "homepage.icon=/images/weather.png"
       - "homepage.href=https://weather.${DOMAIN}/"
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
     external: true
+# dont ignore
