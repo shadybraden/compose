@@ -47,10 +47,25 @@ jobs:
           done | sort -u > "$IMAGES"
 
           FAILED=0
+          KEV_COUNT=0
+          CRITICAL_COUNT=0
+          HIGH_COUNT=0
           while IFS= read -r image; do
             [ -n "$image" ] || continue
             echo "Scanning $image"
             grype "registry:$image" --by-cve --only-fixed -o json > "$REPORT"
+
+            set -- $(jq -r '
+              [
+                ([.matches[] | select(((.vulnerability.knownExploited // []) | length > 0))] | length),
+                ([.matches[] | select(.vulnerability.severity == "Critical")] | length),
+                ([.matches[] | select(.vulnerability.severity == "High")] | length)
+              ]
+              | @tsv
+            ' "$REPORT")
+            KEV_COUNT=$((KEV_COUNT + $1))
+            CRITICAL_COUNT=$((CRITICAL_COUNT + $2))
+            HIGH_COUNT=$((HIGH_COUNT + $3))
 
             jq -r '
               .matches[]
@@ -80,5 +95,13 @@ jobs:
               FAILED=1
             fi
           done < "$IMAGES"
+
+          if [ "$FAILED" -ne 0 ]; then
+            echo
+            echo "Grype scan failed"
+            echo "KEV findings:      $KEV_COUNT"
+            echo "Critical findings: $CRITICAL_COUNT"
+            echo "High findings:     $HIGH_COUNT"
+          fi
 
           exit "$FAILED"
