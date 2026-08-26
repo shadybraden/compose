@@ -1,0 +1,84 @@
+name: Grype scan
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  Grype:
+    runs-on: tools_container
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Get changed compose files
+        id: changed
+        run: |
+          if [ -n "${{ github.event.pull_request.base.sha }}" ]; then
+            FILES=$(git diff --name-only \
+              "${{ github.event.pull_request.base.sha }}...${{ github.event.pull_request.head.sha }}" \
+              -- '**/compose.y*ml' \
+              | tr '\n' ' ' | sed 's/ *$//')
+          else
+            FILES=$(find . -name 'compose.yaml' -o -name 'compose.yml' \
+              | tr '\n' ' ' | sed 's/ *$//')
+          fi
+          echo "files=$FILES" >> "$GITHUB_OUTPUT"
+
+      - name: Scan changed compose images
+        if: steps.changed.outputs.files != ''
+        run: |
+          set -eu
+
+          IMAGES=$(mktemp)
+          REPORT=$(mktemp)
+          trap 'rm -f "$IMAGES" "$REPORT"' EXIT
+
+          for file in ${{ steps.changed.outputs.files }}; do
+            awk '
+              /^[[:space:]]*image:[[:space:]]*/ {
+                sub(/^[[:space:]]*image:[[:space:]]*/, "")
+                sub(/[[:space:]]+#.*$/, "")
+                sub(/[[:space:]]+$/, "")
+                print
+              }
+            ' "$file" | tr -d "\"'"
+          done | sort -u > "$IMAGES"
+
+          FAILED=0
+          while IFS= read -r image; do
+            [ -n "$image" ] || continue
+            echo "Scanning $image"
+            grype "registry:$image" --by-cve -o json > "$REPORT"
+
+            jq -r '
+              .matches[]
+              | select(
+                  .vulnerability.severity == "Critical"
+                  or .vulnerability.severity == "High"
+                  or ((.vulnerability.knownExploited // []) | length > 0)
+                )
+              | [
+                  .vulnerability.id,
+                  .vulnerability.severity,
+                  (if ((.vulnerability.knownExploited // []) | length > 0) then "KEV" else "" end),
+                  .artifact.name,
+                  .artifact.version
+                ]
+              | @tsv
+            ' "$REPORT"
+
+            if jq -e '
+              any(.matches[];
+                .vulnerability.severity == "Critical"
+                or .vulnerability.severity == "High"
+                or ((.vulnerability.knownExploited // []) | length > 0)
+              )
+            ' "$REPORT" > /dev/null; then
+              echo "Blocking vulnerabilities found in $image"
+              FAILED=1
+            fi
+          done < "$IMAGES"
+
+          exit "$FAILED"
