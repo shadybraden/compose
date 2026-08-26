@@ -61,4 +61,3 @@ networks:
         - subnet: fdcc:ad94:bacf:61a3::/64
   intranet:
     external: true
-#
