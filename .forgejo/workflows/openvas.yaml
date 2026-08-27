@@ -1,0 +1,97 @@
+name: OpenVAS scan
+
+on:
+  workflow_dispatch:
+    inputs:
+      domains:
+        description: 'Space or comma separated domains/hosts to scan (overrides OPENVAS_DOMAINS)'
+        required: false
+        type: string
+      severity_gate:
+        description: 'Fail when the worst finding severity is >= this (critical/high/medium/low/info). Empty = report-only.'
+        required: false
+        type: string
+        default: ''
+  schedule:
+    # Nightly sweep of the OPENVAS_DOMAINS repo variable. Without it the run
+    # aborts so you know to set the variable.
+    - cron: '0 6 * * *'
+
+jobs:
+  OpenVAS:
+    runs-on: tools_container
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Resolve target domains
+        id: targets
+        run: |
+          DOMAINS="${{ inputs.domains }}"
+          if [ -z "$DOMAINS" ]; then DOMAINS="${{ vars.OPENVAS_DOMAINS }}"; fi
+          # Normalize separators, collapse whitespace, emit comma-separated
+          DOMAINS=$(printf '%s' "$DOMAINS" | tr ',\t\n' ' ' | xargs)
+          if [ -z "$DOMAINS" ]; then
+            echo "No targets: pass the 'domains' input or set OPENVAS_DOMAINS." >&2
+            exit 1
+          fi
+          echo "domains=${DOMAINS// /,}" >> "$GITHUB_OUTPUT"
+
+      - name: Spin up ephemeral Greenbone stack
+        id: spin
+        run: |
+          set -euxo pipefail
+
+          # Compose runtime present on the runner (docker or podman).
+          if docker compose version >/dev/null 2>&1; then
+            CMP="docker compose"
+          elif podman compose version >/dev/null 2>&1; then
+            CMP="podman compose"
+          else
+            echo "No container compose runtime (docker/podman compose) available." >&2
+            exit 1
+          fi
+          echo "compose=$CMP" >> "$GITHUB_OUTPUT"
+
+          mkdir -p /tmp/gvm
+
+          # Pin the official Greenbone Community Compose to a fixed docs revision.
+          # The bundled vulnerability-tests / notus-data / scap-data images ship
+          # the NVT + Notus + SCAP feeds, so no slow on-the-fly feed sync runs.
+          SHA=938a54a5bdb5603fa2c9bd18d62b3d54190b7111
+          curl -fsSL -o /tmp/gvm/compose.yaml \
+            "https://raw.githubusercontent.com/greenbone/docs/${SHA}/src/_static/compose.yaml"
+
+          # Bring up the backend (gvmd + ospd-openvas + feed/data). The
+          # gvm-tools service is ephemeral and invoked via `run` later.
+          $CMP -p gvm -f /tmp/gvm/compose.yaml up -d
+
+          # A fresh DB has no admin user; create one and set a known password.
+          gvmctl() {
+            $CMP -p gvm -f /tmp/gvm/compose.yaml \
+              exec -T -u gvmd gvmd gvmd "$@"
+          }
+          gvmctl --create-user=admin --password=openvas >/dev/null 2>&1 || true
+          gvmctl --modify-user=admin --new-password=openvas >/dev/null 2>&1 || true
+
+      - name: Scan targets
+        env:
+          TARGETS: ${{ steps.targets.outputs.domains }}
+          SEVERITY_GATE: ${{ inputs.severity_gate }}
+        run: |
+          set -euo pipefail
+          CMP="${{ steps.spin.outputs.compose }}"
+
+          # Run the driver in the ephemeral gvm-tools service, mounting the
+          # script read-only over the gvmd socket shared by the stack.
+          $CMP -p gvm -f /tmp/gvm/compose.yaml run --rm \
+            -v "$(pwd)/gvscan/scan.py:/scan.py:ro" \
+            gvm-tools python /scan.py
+
+      - name: Tear down ephemeral stack
+        if: always()
+        run: |
+          CMP="${{ steps.spin.outputs.compose }}"
+          [ -n "$CMP" ] && $CMP -p gvm -f /tmp/gvm/compose.yaml \
+            down -v --remove-orphans || true
