@@ -2,7 +2,7 @@
 name: dawarich
 services:
   dawarich_app:
-    image: freikin/dawarich:1.13.1
+    image: freikin/dawarich:1.14.0
     container_name: dawarich_app
     depends_on:
       dawarich_db:
@@ -122,7 +122,7 @@ services:
       - no-new-privileges:true  # helps to increase security
 
   dawarich_sidekiq:
-    image: freikin/dawarich:1.13.1
+    image: freikin/dawarich:1.14.0
     container_name: dawarich_sidekiq
     depends_on:
       dawarich_app:
