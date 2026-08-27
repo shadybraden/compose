@@ -46,6 +46,16 @@ jobs:
             apk add --no-cache podman-compose >/dev/null 2>&1 || true
           fi
 
+          # This job runs in the tools_container CI image, which is itself a
+          # container on overlayfs. podman's default overlay storage driver
+          # can't nest over that ("overlay is not supported over overlayfs"), so
+          # force the vfs graph driver for every podman invocation. Same fix the
+          # IaC build workflows apply with --storage-driver vfs.
+          if command -v podman >/dev/null 2>&1; then
+            mkdir -p /etc/containers
+            printf '[storage]\ndriver = "vfs"\n' > /etc/containers/storage.conf
+          fi
+
           if docker compose version >/dev/null 2>&1; then
             CMP="docker compose"
           elif podman-compose --version >/dev/null 2>&1; then
