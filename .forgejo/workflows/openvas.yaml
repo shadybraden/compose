@@ -12,10 +12,6 @@ on:
         required: false
         type: string
         default: ''
-  schedule:
-    # Nightly sweep of the OPENVAS_DOMAINS repo variable. Without it the run
-    # aborts so you know to set the variable.
-    - cron: '0 6 * * *'
 
 jobs:
   OpenVAS:
