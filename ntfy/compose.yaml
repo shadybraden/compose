@@ -1,22 +1,18 @@
 ---
+name: ntfy
 services:
   ntfy:
+    image: binwiederhier/ntfy:v2.28.0
+    container_name: ntfy
     volumes:
       - /data/config_storage/ntfy:/var/cache/ntfy
       - /data/config_storage/ntfy/server.yml:/etc/ntfy/server.yml
-    container_name: ntfy
     environment:
       - TZ=EST
-    restart: unless-stopped
-    image: binwiederhier/ntfy:v2.28.0
-    command: serve --cache-file /var/cache/ntfy/cache.db
-    dns:
-      - ${DNS_SERVER1}
-      - ${DNS_SERVER2}
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
+    command: serve --cache-file /var/cache/ntfy/cache.db
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.ntfy.entrypoints=http"
@@ -33,6 +29,11 @@ services:
       - "homepage.name=ntfy"
       - "homepage.icon=/images/ntfy.png"
       - "homepage.href=https://ntfy.${DOMAIN}/"
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
