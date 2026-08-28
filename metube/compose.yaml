@@ -1,19 +1,20 @@
 ---
+name: metube
 services:
   metube:
-    image: ghcr.io/alexta69/metube:2026.08.21
+    image: ghcr.io/alexta69/metube:2026.08.28
     container_name: metube
-    restart: unless-stopped
     volumes:
       - /data/mnt/youtube:/downloads  # so jellyfin can access
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
     network_mode: container:gluetun
+    restart: unless-stopped
     labels:
       - "homepage.group=Other"
       - "homepage.name=metube"
       - "homepage.icon=/images/metube.png"
       - "homepage.href=https://metube.${DOMAIN}/"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
