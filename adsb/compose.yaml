@@ -2,7 +2,7 @@
 name: ultrafeeder
 services:
   ultrafeeder:
-    image: ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder:latest-build-956  # https://github.com/sdr-enthusiasts/docker-adsb-ultrafeeder/pkgs/container/docker-adsb-ultrafeeder
+    image: ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder:latest-build-957  # https://github.com/sdr-enthusiasts/docker-adsb-ultrafeeder/pkgs/container/docker-adsb-ultrafeeder
     container_name: ultrafeeder
     volumes:
       - /data/config_storage/adsb/globe_history:/var/globe_history
