@@ -2,7 +2,7 @@
 name: immich_kiosk
 services:
   immich_kiosk:
-    image: ghcr.io/damongolding/immich-kiosk:0.43.0
+    image: ghcr.io/damongolding/immich-kiosk:0.43.1
     container_name: immich_kiosk
     environment:
       LANG: "en_US"
