@@ -9,7 +9,7 @@ services:
       - SSL_DISABLED=true
     volumes:
       - /data/config_storage/hoodik/data:/data
-    image: hudik/hoodik:v2.4.0
+    image: hudik/hoodik:v2.5.1
     restart: unless-stopped
     dns:
       - ${DNS_SERVER1}
