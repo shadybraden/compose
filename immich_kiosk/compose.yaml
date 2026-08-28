@@ -1,8 +1,9 @@
+---
+name: immich_kiosk
 services:
   immich_kiosk:
     image: ghcr.io/damongolding/immich-kiosk:0.43.0
     container_name: immich_kiosk
-    user: 1000:1000
     environment:
       LANG: "en_US"
       TZ: America/New_York
@@ -30,6 +31,8 @@ services:
       KIOSK_PREFETCH: true
       KIOSK_THEME: fade
       KIOSK_LAYOUT: splitview
+    networks:
+      - intranet
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "/kiosk", "--healthcheck"]
@@ -37,13 +40,6 @@ services:
       timeout: 5s
       retries: 3
       start_period: 10s
-    dns:
-      - ${DNS_SERVER1}
-      - ${DNS_SERVER2}
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
-    networks:
-      - intranet
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.immich_kiosk.entrypoints=http"
@@ -60,6 +56,12 @@ services:
       - "homepage.name=immich_kiosk"
       - "homepage.icon=/images/immich_kiosk.png"
       - "homepage.href=https://immich_kiosk.${DOMAIN}/"
+    user: 1000:1000
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
