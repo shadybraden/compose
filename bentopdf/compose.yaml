@@ -1,13 +1,12 @@
 ---
+name: bentopdf
 services:
   bentopdf:
-    image: ghcr.io/alam00000/bentopdf-simple:2.8.7
+    image: ghcr.io/alam00000/bentopdf-simple:2.8.8
     container_name: bentopdf
-    restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.pdf.entrypoints=http"
@@ -24,13 +23,15 @@ services:
       - "homepage.name=pdf"
       - "homepage.icon=/images/bentopdf.png"
       - "homepage.href=https://pdf.${DOMAIN}/"
-    tmpfs:
-      - '/tmp:size=64m'
     cap_add:
       - NET_BIND_SERVICE
     cap_drop:
       - ALL
     init: true
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    tmpfs:
+      - '/tmp:size=64m'
 
 networks:
   intranet:
