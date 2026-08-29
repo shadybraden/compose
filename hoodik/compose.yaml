@@ -1,23 +1,19 @@
 ---
+name: hudik
 services:
   hoodik:
+    image: hudik/hoodik:v2.5.1
     container_name: hoodik
+    volumes:
+      - /data/config_storage/hoodik/data:/data
     environment:
       - DATA_DIR=/data
       - APP_URL=https://hoodik.${DOMAIN}/
       - APP_CLIENT_URL=https://hoodik.${DOMAIN}/
       - SSL_DISABLED=true
-    volumes:
-      - /data/config_storage/hoodik/data:/data
-    image: hudik/hoodik:v2.5.1
-    restart: unless-stopped
-    dns:
-      - ${DNS_SERVER1}
-      - ${DNS_SERVER2}
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.hoodik.entrypoints=http"
@@ -34,6 +30,11 @@ services:
       - "homepage.name=hoodik"
       - "homepage.icon=/images/hoodik.png"
       - "homepage.href=https://hoodik.${DOMAIN}/"
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
