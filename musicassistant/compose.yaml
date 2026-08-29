@@ -2,7 +2,7 @@
 name: music-assistant
 services:
   music-assistant-server:
-    image: ghcr.io/music-assistant/server:2.10.0
+    image: ghcr.io/music-assistant/server:2.10.1
     container_name: music-assistant-server
     volumes:
       - /data/config_storage/music-assistant:/data
