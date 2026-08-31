@@ -172,6 +172,11 @@
       "sourceUrl": "https://www.traccar.org/blog/category/releases/"
     },
     {
+      "matchPackageNames": ["gtstef/filebrowser"],
+      "matchDatasources": ["docker"],
+      "sourceUrl": "https://github.com/gtsteffaniak/filebrowser"
+    },
+    {
       "matchPackageNames": ["clickhouse/clickhouse-keeper", "clickhouse/clickhouse-server"],
       "matchDatasources": ["docker"],
       "groupName": "clickhouse"
