@@ -107,7 +107,6 @@ services:
       - "traefik.http.routers.invidious-secure.tls=true"
       - "traefik.http.routers.invidious-secure.service=invidious"
       - "traefik.http.services.invidious.loadbalancer.server.port=3005"  # port of the service.
-      - "traefik.http.routers.invidious-secure.middlewares=tinyauth"
   go-socks5-proxy:
     image: serjs/go-socks5-proxy:v0.0.4
     environment:
