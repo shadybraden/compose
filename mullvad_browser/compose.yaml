@@ -1,10 +1,9 @@
 ---
+name: mullvad-browser
 services:
   mullvad-browser:
-    image: linuxserver/mullvad-browser:15.0.20-ls197
+    image: linuxserver/mullvad-browser:15.0.20-ls198
     container_name: mullvad-browser
-    cap_add:
-      - NET_ADMIN
     environment:
       - PUID=1000
       - PGID=1000
@@ -12,18 +11,20 @@ services:
       - RESTART_APP=true
       - HARDEN_DESKTOP=true
       - HARDEN_OPENBOX=true
-#    ports:
-#      - 3000:3000
-    shm_size: "1gb"
-    restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
     network_mode: container:gluetun
+    restart: unless-stopped
     labels:
       - "homepage.group=Other"
       - "homepage.name=mullvad"
       - "homepage.icon=/images/mullvad.png"
       - "homepage.href=https://mullvad.${DOMAIN}/"
+    cap_add:
+      - NET_ADMIN
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+#    ports:
+#      - 3000:3000
+    shm_size: "1gb"
 
 networks:
   intranet:
