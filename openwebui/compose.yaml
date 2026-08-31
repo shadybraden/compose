@@ -2,7 +2,7 @@
 name: open-webui
 services:
   open-webui:
-    image: ghcr.io/open-webui/open-webui:v0.11.1
+    image: ghcr.io/open-webui/open-webui:v0.11.2
     container_name: open-webui
     volumes:
       - /data/config_storage/ai/open-webui:/app/backend/data
