@@ -1,19 +1,18 @@
 ---
+name: qui
 services:
   qui:
     image: ghcr.io/autobrr/qui:v1.28.0
     container_name: qui
-    restart: unless-stopped
-    ports:
-      - "7476:7476"
     volumes:
       - /data/config_storage/qui:/config
     environment:
       QUI__HOST: "0.0.0.0"
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
+    ports:
+      - "7476:7476"
     networks:
       - intranet
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.qui.entrypoints=http"
@@ -30,6 +29,8 @@ services:
       - "homepage.name=qui"
       - "homepage.icon=/images/autobrr.png"
       - "homepage.href=https://qui.${DOMAIN}/"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
