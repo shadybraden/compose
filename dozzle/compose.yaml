@@ -8,6 +8,7 @@ services:
       - /data/config_storage/dozzle:/data
     environment:
       - DOZZLE_ENABLE_ACTIONS=true
+      - DOZZLE_NO_ANALYTICS= "true"
     networks:
       - intranet
     labels:
