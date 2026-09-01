@@ -1,23 +1,19 @@
 ---
+name: actual-budget
 services:
   actual_server:
-    image: docker.io/actualbudget/actual-server:26.8.1
+    image: docker.io/actualbudget/actual-server:26.9.0
     container_name: actual_server
+      # See all options and more details at https://actualbudget.github.io/docs/Installing/Configuration
+    volumes:
+      - /data/config_storage/actual-data:/data
 #    ports:
 #      - '5006:5006'
     environment:
       - ACTUAL_PORT=5006
-      # See all options and more details at https://actualbudget.github.io/docs/Installing/Configuration
-    volumes:
-      - /data/config_storage/actual-data:/data
-    restart: unless-stopped
-    dns:
-      - ${DNS_SERVER1}
-      - ${DNS_SERVER2}
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.actualbudget.entrypoints=http"
@@ -34,6 +30,11 @@ services:
       - "homepage.name=actualbudget"
       - "homepage.icon=/images/actualbudget.png"
       - "homepage.href=https://actualbudget.${DOMAIN}/"
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
