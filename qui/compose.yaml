@@ -9,7 +9,7 @@ services:
     environment:
       QUI__HOST: "0.0.0.0"
     ports:
-      - "7476:7476"
+      - '0.0.0.0:7476:7476'
     networks:
       - intranet
     restart: unless-stopped
