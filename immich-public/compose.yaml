@@ -1,6 +1,24 @@
 ---
 name: immich-public
 services:
+  immich-machine-learning-public:
+    image: ghcr.io/immich-app/immich-machine-learning:v3.1.0
+    container_name: immich_machine_learning-public
+    volumes:
+      - model-cache-public:/cache
+    environment:
+      - DB_HOSTNAME=database-public  # this is the key for multiple immichs on one host
+      - REDIS_HOSTNAME=redis-public  # this is the key for multiple immichs on one host
+      - DB_USERNAME=postgres
+      - DB_DATABASE_NAME=immich
+    env_file:
+      - /etc/komodo/env/immich-public-holmie.env
+    networks:
+      - intranet
+    restart: no
+    healthcheck:
+      disable: false
+
   immich-server-public:
     image: ghcr.io/immich-app/immich-server:v3.1.0
     container_name: immich_server-public
@@ -43,24 +61,6 @@ services:
       - "homepage.href=https://immich-public.${DOMAIN}/"
     security_opt:
       - no-new-privileges:true  # helps to increase security
-
-  immich-machine-learning-public:
-    image: ghcr.io/immich-app/immich-machine-learning:v3.1.0
-    container_name: immich_machine_learning-public
-    volumes:
-      - model-cache-public:/cache
-    environment:
-      - DB_HOSTNAME=database-public  # this is the key for multiple immichs on one host
-      - REDIS_HOSTNAME=redis-public  # this is the key for multiple immichs on one host
-      - DB_USERNAME=postgres
-      - DB_DATABASE_NAME=immich
-    env_file:
-      - /etc/komodo/env/immich-public-holmie.env
-    networks:
-      - intranet
-    restart: no
-    healthcheck:
-      disable: false
 
   redis-public:
     image: docker.io/valkey/valkey:8.1.10  # check: https://github.com/immich-app/immich/releases/latest/download/docker-compose.yml
