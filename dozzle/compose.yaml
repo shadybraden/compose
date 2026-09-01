@@ -9,6 +9,7 @@ services:
     environment:
       - DOZZLE_ENABLE_ACTIONS=true
       - DOZZLE_NO_ANALYTICS=true
+      - DOZZLE_REMOTE_AGENT=${DOZZLE_REMOTE_AGENT}
     networks:
       - intranet
     labels:
