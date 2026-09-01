@@ -1,28 +1,14 @@
 ---
+name: periphery
 services:
   periphery:
     image: git.holmlab.org/shady/periphery:2.3.2
     container_name: periphery
-    init: true
-    labels:
-      komodo.skip:
-    restart: unless-stopped
-    logging:
-      driver: local
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /proc:/proc
       - /data/config_storage/komodo/etc_komodo:/etc/komodo
       - /data/config_storage/komodo/periphery-keys:/config/keys
-    dns:
-      - ${DNS_SERVER1}
-      - ${DNS_SERVER2}
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
-    networks:
-      - intranet
-    ports:
-      - 8120:8120
     environment:
       PERIPHERY_CORE_ADDRESS: komodo.holmlab.org
       PERIPHERY_CONNECT_AS: ${ServerName}
@@ -31,6 +17,21 @@ services:
       PERIPHERY_DISABLE_TERMINALS: false
       PERIPHERY_DISABLE_CONTAINER_EXEC: false
       PERIPHERY_INCLUDE_DISK_MOUNTS: /etc/hostname
+    ports:
+      - 8120:8120
+    networks:
+      - intranet
+    restart: unless-stopped
+    logging:
+      driver: local
+    labels:
+      komodo.skip:
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
+    init: true
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
