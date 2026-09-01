@@ -4,6 +4,8 @@ services:
   database:
     image: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0
     container_name: immich_postgres
+    networks:
+      - intranet
     volumes:
       - /data/config_storage/immich/postgres:/var/lib/postgresql/data
     environment:
@@ -11,19 +13,17 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_DB=immich
       - POSTGRES_INITDB_ARGS='--data-checksums'
-    networks:
-      - intranet
     restart: unless-stopped
 
   immich-machine-learning:
     image: ghcr.io/immich-app/immich-machine-learning:v3.1.0
     container_name: immich_machine_learning
+    networks:
+      - intranet
     volumes:
       - model-cache:/cache
     env_file:
       - /etc/komodo/env/immich.env
-    networks:
-      - intranet
     restart: unless-stopped
     healthcheck:
       disable: false
@@ -34,6 +34,8 @@ services:
     depends_on:
       - database
       - redis
+    networks:
+      - intranet
     volumes:
       - /data/immich/UPLOAD_LOCATION/UPLOAD_LOCATION:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
@@ -44,8 +46,6 @@ services:
       - /etc/komodo/env/immich.env
     ports:
       - '0.0.0.0:2283:2283'
-    networks:
-      - intranet
     restart: unless-stopped
     healthcheck:
       disable: false
