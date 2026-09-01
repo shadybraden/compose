@@ -94,9 +94,9 @@ services:
     healthcheck:
       test: redis-cli ping || exit 1
 
-volumes:
-  model-cache-public:
-
 networks:
   intranet:
     external: true
+
+volumes:
+  model-cache-public:
