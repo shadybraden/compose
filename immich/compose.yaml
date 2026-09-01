@@ -1,6 +1,20 @@
 ---
 name: immich
 services:
+  database:
+    image: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0
+    container_name: immich_postgres
+    volumes:
+      - /data/config_storage/immich/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=immich
+      - POSTGRES_INITDB_ARGS='--data-checksums'
+    networks:
+      - intranet
+    restart: unless-stopped
+
   immich-machine-learning:
     image: ghcr.io/immich-app/immich-machine-learning:v3.1.0
     container_name: immich_machine_learning
@@ -62,20 +76,6 @@ services:
     restart: unless-stopped
     healthcheck:
       test: redis-cli ping || exit 1
-
-  database:
-    image: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0
-    container_name: immich_postgres
-    volumes:
-      - /data/config_storage/immich/postgres:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
-      - POSTGRES_USER=postgres
-      - POSTGRES_DB=immich
-      - POSTGRES_INITDB_ARGS='--data-checksums'
-    networks:
-      - intranet
-    restart: unless-stopped
 
 volumes:
   model-cache:
