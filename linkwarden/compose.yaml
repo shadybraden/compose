@@ -2,7 +2,7 @@
 name: linkwarden
 services:
   linkwarden:
-    image: ghcr.io/linkwarden/linkwarden:v2.16.1
+    image: ghcr.io/linkwarden/linkwarden:v2.16.2
     container_name: linkwarden
     depends_on:
       - postgres
