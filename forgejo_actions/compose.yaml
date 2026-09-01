@@ -1,26 +1,27 @@
 ---
+name: forgejo-runner
 services:
   docker-in-docker:
     image: docker:29.6.2-dind
     container_name: 'docker_dind'
-    privileged: 'true'
     command: ['dockerd', '-H', 'tcp://0.0.0.0:2375', '--tls=false']
     restart: 'unless-stopped'
+    privileged: 'true'
 
   runner:
-    image: 'data.forgejo.org/forgejo/runner:13.0.0'
-    links:
-      - docker-in-docker
+    image: 'data.forgejo.org/forgejo/runner:13.1.0'
+    container_name: 'runner'
     depends_on:
       docker-in-docker:
         condition: service_started
-    container_name: 'runner'
-    environment:
-      DOCKER_HOST: tcp://docker-in-docker:2375
-    user: 1001:1001
     volumes:
       - /data/config_storage/forgejo-action/data:/data  # mkdir -p data/.cache && chown -R 1001:1001 data && chmod 775 data/.cache && chmod g+s data/.cache
       - /data/config_storage/komodo/etc_komodo/repos/IaC/runner-config.yml:/runner-config.yml:ro
       - /data/config_storage/forgejo-action/tokens:/tokens
-    restart: 'unless-stopped'
+    environment:
+      DOCKER_HOST: tcp://docker-in-docker:2375
     command: 'forgejo-runner daemon --config /runner-config.yml'  # for normal use; post registration
+    restart: 'unless-stopped'
+    user: 1001:1001
+    links:
+      - docker-in-docker
