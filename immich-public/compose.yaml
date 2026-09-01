@@ -4,8 +4,6 @@ services:
   database-public:
     image: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0
     container_name: immich_postgres-public
-    networks:
-      - intranet
     volumes:
       - /data/config_storage/immich-public/postgres:/var/lib/postgresql/data
     environment:
@@ -17,13 +15,13 @@ services:
       - REDIS_HOSTNAME=redis-public  # this is the key for multiple immichs on one host
       - DB_USERNAME=postgres
       - DB_DATABASE_NAME=immich
+    networks:
+      - intranet
     restart: no
 
   immich-machine-learning-public:
     image: ghcr.io/immich-app/immich-machine-learning:v3.1.0
     container_name: immich_machine_learning-public
-    networks:
-      - intranet
     volumes:
       - model-cache-public:/cache
     environment:
@@ -33,6 +31,8 @@ services:
       - DB_DATABASE_NAME=immich
     env_file:
       - /etc/komodo/env/immich-public-holmie.env
+    networks:
+      - intranet
     restart: no
     healthcheck:
       disable: false
@@ -43,8 +43,6 @@ services:
     depends_on:
       - database-public
       - redis-public
-    networks:
-      - intranet
     volumes:
       - /data/config_storage/immich-public/upload:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
@@ -58,6 +56,8 @@ services:
       - /etc/komodo/env/immich-public-holmie.env
     ports:
       - '0.0.0.0:8408:2283'
+    networks:
+      - intranet
     restart: no
     healthcheck:
       disable: false
@@ -83,13 +83,13 @@ services:
   redis-public:
     image: docker.io/valkey/valkey:8.1.10  # check: https://github.com/immich-app/immich/releases/latest/download/docker-compose.yml
     container_name: immich_redis-public
-    networks:
-      - intranet
     environment:
       - DB_HOSTNAME=database-public  # this is the key for multiple immichs on one host
       - REDIS_HOSTNAME=redis-public  # this is the key for multiple immichs on one host
       - DB_USERNAME=postgres
       - DB_DATABASE_NAME=immich
+    networks:
+      - intranet
     restart: no
     healthcheck:
       test: redis-cli ping || exit 1
