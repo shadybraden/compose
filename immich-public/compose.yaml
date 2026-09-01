@@ -5,8 +5,8 @@ services:
     image: ghcr.io/immich-app/immich-server:v3.1.0
     container_name: immich_server-public
     depends_on:
-      - redis-public
       - database-public
+      - redis-public
     volumes:
       - /data/config_storage/immich-public/upload:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
