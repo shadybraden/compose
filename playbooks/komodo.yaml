@@ -1,0 +1,19 @@
+---
+- name: Deploy Komodo
+  hosts: holmie@10.1.1.65
+  become: false
+  
+  vars:
+    compose_dir: /data/config_storage/compose/komodo
+  tasks:
+    - name: Git pull latest changes
+      ansible.builtin.shell:
+        cmd: git pull
+        chdir: "{{ compose_dir }}"
+
+    - name: docker compose up -d
+      community.docker.docker_compose_v2:
+        project_src: "{{ compose_dir }}"
+        state: present
+        pull: missing
+      become: true
