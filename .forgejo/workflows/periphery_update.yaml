@@ -1,0 +1,46 @@
+name: Update Komodo core and all Periphery nodes
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'periphery/compose.yaml'
+      - 'openwrt/periphery/compose.yaml'
+  workflow_dispatch:
+
+jobs:
+  Periphery:
+    runs-on: tools_container
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+
+      - name: Run Ansible "periphery"
+        run: |
+          ansible-playbook playbooks/periphery.yaml
+        env:
+          ANSIBLE_HOST_KEY_CHECKING: "False"
+          ANSIBLE_BECOME_PASS: ${{ secrets.SUDO_PASSWORD }}
+          ANSIBLE_FORCE_COLOR: "1"
+
+      - name: Run Ansible periphery_shady
+        run: |
+          ansible-playbook playbooks/periphery_shady.yaml
+        env:
+          ANSIBLE_HOST_KEY_CHECKING: "False"
+          ANSIBLE_BECOME_PASS: ${{ secrets.SHADY_SUDO_PASSWORD }}
+          ANSIBLE_FORCE_COLOR: "1"
+
+      - name: Notify failure
+        if: failure()
+        run: |
+          curl -X POST https://ntfy.holmlab.org/${{ secrets.NTFY_TOPIC }} \
+            -H "Title: ‼️ Actions failed" \
+            -H "Priority: low" \
+            -d "Workflow '${{ github.workflow }}' failed"
