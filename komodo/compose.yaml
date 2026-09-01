@@ -1,36 +1,14 @@
 ---
+name: komodo
 services:
-  mongo:
-    image: mongo:8.3.8  # use latest avalible
-    container_name: komodo-mongo
-    labels:
-      komodo.skip:  # Prevent Komodo from stopping with StopAllContainers
-    command: --quiet --wiredTigerCacheSizeGB 0.25
-    restart: unless-stopped
-    logging:
-      driver: local
-    volumes:
-      - /data/config_storage/komodo/mongo-data:/data/db
-      - /data/config_storage/komodo/mongo-config:/data/configdb
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: ${KOMODO_DB_PASSWORD}
-    networks:
-      - intranet
-    dns:
-      - 10.1.1.1
-
   core:
-    image: ghcr.io/moghtech/komodo-core:2.3.2
+    image: ghcr.io/moghtech/komodo-core:2.3.3
     container_name: komodo-core
-    restart: unless-stopped
-    init: true
     depends_on:
       - mongo
-    logging:
-      driver: local
-    ports:
-      - 9120:9120
+    volumes:
+      - /data/config_storage/komodo_database_backups:/backups
+      - /data/config_storage/komodo/core-keys:/config/keys
     environment:  # https://github.com/moghtech/komodo/blob/main/config/core.config.toml
       KOMODO_DATABASE_ADDRESS: mongo:27017
       KOMODO_DATABASE_USERNAME: admin
@@ -44,15 +22,13 @@ services:
       KOMODO_DISABLE_CONFIRM_DIALOG: true
       KOMODO_PASSKEY: ${KOMODO_PASSKEY}
       PERIPHERY_PASSKEYS: ${PERIPHERY_PASSKEYS}
-    volumes:
-      - /data/config_storage/komodo_database_backups:/backups
-      - /data/config_storage/komodo/core-keys:/config/keys
-    dns:
-      - 10.1.1.1
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
+    ports:
+      - '0.0.0.0:9120:9120'
     networks:
       - intranet
+    restart: unless-stopped
+    logging:
+      driver: local
     labels:
       - "komodo.skip"
       - "traefik.enable=true"
@@ -70,14 +46,35 @@ services:
       - "homepage.name=Komodo"
       - "homepage.icon=/images/komodo.png"
       - "homepage.href=https://komodo.${DOMAIN}/"
+    dns:
+      - 10.1.1.1
+    init: true
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+
+  mongo:
+    image: mongo:8.3.8  # use latest avalible
+    container_name: komodo-mongo
+    volumes:
+      - /data/config_storage/komodo/mongo-data:/data/db
+      - /data/config_storage/komodo/mongo-config:/data/configdb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: ${KOMODO_DB_PASSWORD}
+    networks:
+      - intranet
+    command: --quiet --wiredTigerCacheSizeGB 0.25
+    restart: unless-stopped
+    logging:
+      driver: local
+    labels:
+      komodo.skip:  # Prevent Komodo from stopping with StopAllContainers
+    dns:
+      - 10.1.1.1
 
   periphery:
     image: git.holmlab.org/shady/periphery:2.3.2
     container_name: komodo-periphery
-    restart: unless-stopped
-    init: true
-    logging:
-      driver: local
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /proc:/proc
@@ -91,12 +88,11 @@ services:
       PERIPHERY_DISABLE_TERMINALS: false
       PERIPHERY_DISABLE_CONTAINER_EXEC: false
       PERIPHERY_INCLUDE_DISK_MOUNTS: /etc/hostname
-    dns:
-      - 10.1.1.1
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
+    restart: unless-stopped
+    logging:
+      driver: local
     labels:
       - "komodo.skip"
       - "traefik.enable=true"
@@ -110,11 +106,17 @@ services:
       - "traefik.http.routers.periphery-secure.service=periphery"
       - "traefik.http.services.periphery.loadbalancer.server.port=8120"  # port of the service
       - "traefik.docker.network=intranet"
+    dns:
+      - 10.1.1.1
+    init: true
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+
+networks:
+  intranet:
+    external: true
 
 volumes:
   mongo-data:
   mongo-config:
   repo-cache:
-networks:
-  intranet:
-    external: true
