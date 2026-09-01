@@ -18,7 +18,7 @@ services:
       PERIPHERY_DISABLE_CONTAINER_EXEC: false
       PERIPHERY_INCLUDE_DISK_MOUNTS: /etc/hostname
     ports:
-      - 8120:8120
+      - '0.0.0.0:8120:8120'
     network_mode: host
     restart: always
     logging:
