@@ -1,24 +1,14 @@
 ---
+name: periphery
 services:
   periphery:
-    image: ghcr.io/moghtech/komodo-periphery:2.3.2
+    image: ghcr.io/moghtech/komodo-periphery:2.3.3
     container_name: periphery
-    network_mode: host
-    init: true
-    labels:
-      komodo.skip:
-    restart: always
-    logging:
-      driver: local
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /proc:/proc
       - /opt/config_storage/komodo/etc_komodo:/etc/komodo
       - /opt/config_storage/komodo/periphery-keys:/config/keys
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
-    ports:
-      - 8120:8120
     environment:
       PERIPHERY_CORE_ADDRESS: 10.1.1.65:9120
       PERIPHERY_CONNECT_AS: openwrt
@@ -27,6 +17,17 @@ services:
       PERIPHERY_DISABLE_TERMINALS: false
       PERIPHERY_DISABLE_CONTAINER_EXEC: false
       PERIPHERY_INCLUDE_DISK_MOUNTS: /etc/hostname
+    ports:
+      - '0.0.0.0:8120:8120'
+    network_mode: host
+    restart: always
+    logging:
+      driver: local
+    labels:
+      komodo.skip:
+    init: true
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
