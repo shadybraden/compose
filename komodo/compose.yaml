@@ -73,7 +73,7 @@ services:
       - 10.1.1.1
 
   periphery:
-    image: git.holmlab.org/shady/periphery:2.3.2
+    image: git.holmlab.org/shady/periphery:2.3.3
     container_name: komodo-periphery
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
