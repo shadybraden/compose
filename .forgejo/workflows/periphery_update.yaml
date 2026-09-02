@@ -29,14 +29,6 @@ jobs:
           ANSIBLE_BECOME_PASS: ${{ secrets.SUDO_PASSWORD }}
           ANSIBLE_FORCE_COLOR: "1"
 
-      - name: Run Ansible periphery_shady
-        run: |
-          ansible-playbook playbooks/periphery_shady.yaml
-        env:
-          ANSIBLE_HOST_KEY_CHECKING: "False"
-          ANSIBLE_BECOME_PASS: ${{ secrets.SHADY_SUDO_PASSWORD }}
-          ANSIBLE_FORCE_COLOR: "1"
-
       - name: Notify failure
         if: failure()
         run: |
