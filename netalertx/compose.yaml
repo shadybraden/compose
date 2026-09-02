@@ -32,12 +32,12 @@ services:
       - CHOWN
       - SETUID
       - SETGID
+    mem_limit: 2048m
     cap_drop:
       - ALL
     read_only: true
     tmpfs:
       - "/tmp:uid=20211,gid=20211,mode=1700,rw,noexec,nosuid,nodev,async,noatime,nodiratime"
-    mem_limit: 2048m
     mem_reservation: 1024m
     cpu_shares: 512
     pids_limit: 512

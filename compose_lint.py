@@ -45,6 +45,8 @@ KEY_ORDER = [
     "user",
     "isolation",
     "cap_add",
+    "mem_limit",
+    "mem_limit",
     "dns",
     "sysctls",
     "deploy",
