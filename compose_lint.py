@@ -53,7 +53,7 @@ KEY_ORDER = [
     "sysctls",
     "deploy",
     "expose",
-    "cap_drop",
+    "pids_limit",
     "read_only",
     "init",
     "device_cgroup_rules",
