@@ -1,4 +1,4 @@
-name: Update Komodo core and all Periphery nodes
+name: Update all Periphery nodes
 
 on:
   push:
