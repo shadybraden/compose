@@ -2,7 +2,7 @@
 name: dozzle
 services:
   dozzle:
-    image: amir20/dozzle:v10.8.0
+    image: amir20/dozzle:v10.9.0
     container_name: dozzle-agent
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -10,11 +10,11 @@ services:
     environment:
       - DOZZLE_ENABLE_ACTIONS=true
       - DOZZLE_NO_ANALYTICS=true
-    command: agent
     ports:
-    - '0.0.0.0:7007:7007'
+      - '0.0.0.0:7007:7007'
     networks:
       - intranet
+    command: agent
     security_opt:
       - no-new-privileges:true  # helps to increase security
 
