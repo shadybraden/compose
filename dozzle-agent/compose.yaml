@@ -16,7 +16,7 @@ services:
     command: agent
     security_opt:
       - no-new-privileges:true  # helps to increase security
-    - '0.0.0.0:7007:7007'
+      - '0.0.0.0:7007:7007'
 
 networks:
   intranet:
