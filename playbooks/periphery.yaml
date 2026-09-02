@@ -28,12 +28,12 @@
   vars:
     compose_dir: /opt/config_storage/compose/openwrt/periphery
   tasks:
-    - name: Git pull latest changes
+    - name: OPENWRT - Git pull latest changes
       ansible.builtin.shell:
         cmd: git pull
         chdir: "{{ compose_dir }}"
 
-    - name: docker compose up -d
+    - name: OPENWRT - docker compose up -d
       community.docker.docker_compose_v2:
         project_src: "{{ compose_dir }}"
         state: present
