@@ -1,19 +1,15 @@
 ---
+name: beszel
 services:
   beszel:
     image: henrygd/beszel:0.19.0
     container_name: beszel
     restart: unless-stopped
-#    environment:
-#      LOG_LEVEL: debug
-#    ports:
-#      - 8090:8090
     volumes:
       - /data/config_storage/beszel/beszel_data:/beszel_data
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.beszel.entrypoints=http"
@@ -30,6 +26,8 @@ services:
       - "homepage.name=beszel"
       - "homepage.icon=/images/beszel.png"
       - "homepage.href=https://beszel.${DOMAIN}/"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
