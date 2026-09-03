@@ -1,11 +1,30 @@
+name: netalertx
 services:
   netalertx:
+    image: ghcr.io/netalertx/netalertx:26.9.0
     container_name: netalertx
-    image: ghcr.io/netalertx/netalertx:26.8.5
+    volumes:
+      - /data/config_storage/netalertx:/data:rw
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      LISTEN_ADDR: 0.0.0.0
+      PORT: 20211
+      GRAPHQL_PORT: 20212
+      PUID: 20211
+      PGID: 20211
+    ports:
+       - '0.0.0.0:20211:20211'
     network_mode: host
-    read_only: true
-    cap_drop:
-      - ALL
+    restart: unless-stopped
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+    labels:
+      - "homepage.group=Other"
+      - "homepage.name=netalertx"
+      - "homepage.icon=/images/NetAlertX.png"
+      - "homepage.href=https://netalertx.${DOMAIN}/"
     cap_add:
       - NET_ADMIN
       - NET_RAW
@@ -13,30 +32,12 @@ services:
       - CHOWN
       - SETUID
       - SETGID
-    volumes:
-      - /data/config_storage/netalertx:/data:rw
-      - /etc/localtime:/etc/localtime:ro
-    tmpfs:
-      - "/tmp:uid=20211,gid=20211,mode=1700,rw,noexec,nosuid,nodev,async,noatime,nodiratime"
-    ports:
-       - 20211:20211
-    environment:
-      LISTEN_ADDR: 0.0.0.0
-      PORT: 20211
-      GRAPHQL_PORT: 20212
-      PUID: 20211
-      PGID: 20211
+    cap_drop:
+      - ALL
+    cpu_shares: 512
     mem_limit: 2048m
     mem_reservation: 1024m
-    cpu_shares: 512
     pids_limit: 512
-    logging:
-      options:
-        max-size: "10m"
-        max-file: "3"
-    restart: unless-stopped
-    labels:
-      - "homepage.group=Other"
-      - "homepage.name=netalertx"
-      - "homepage.icon=/images/NetAlertX.png"
-      - "homepage.href=https://netalertx.${DOMAIN}/"
+    read_only: true
+    tmpfs:
+      - "/tmp:uid=20211,gid=20211,mode=1700,rw,noexec,nosuid,nodev,async,noatime,nodiratime"
