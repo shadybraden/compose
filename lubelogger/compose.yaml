@@ -1,15 +1,14 @@
 ---
+name: lubelogger
 services:
   app:
     image: ghcr.io/hargata/lubelogger:v1.7.2
-    restart: unless-stopped
     volumes:
       - /data/config_storage/lubelogger/data:/App/data
       - /data/config_storage/lubelogger/keys:/root/.aspnet/DataProtection-Keys
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.lubelogger.entrypoints=http"
@@ -26,6 +25,8 @@ services:
       - "homepage.name=lubelogger"
       - "homepage.icon=/images/lubelogger.png"
       - "homepage.href=https://lubelogger.${DOMAIN}/"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
