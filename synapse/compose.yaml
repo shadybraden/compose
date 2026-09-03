@@ -1,19 +1,18 @@
 ---
+name: matrix-synapse
 services:
   synapse:
-    image: docker.io/matrixdotorg/synapse:v1.159.0
+    image: docker.io/matrixdotorg/synapse:v1.160.0
     container_name: synapse
-    restart: unless-stopped
-    environment:  # https://github.com/element-hq/synapse/blob/develop/docker/README.md
-      - SYNAPSE_CONFIG_PATH=/data/homeserver.yaml
     volumes:
       - /data/config_storage/synapse/data:/data
+    environment:  # https://github.com/element-hq/synapse/blob/develop/docker/README.md
+      - SYNAPSE_CONFIG_PATH=/data/homeserver.yaml
     ports:
-      - 8008:8008/tcp
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
+      - '0.0.0.0:8008:8008/tcp'
     networks:
       - intranet
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.matrix.entrypoints=http"
@@ -30,6 +29,8 @@ services:
       - "homepage.name=matrix"
       - "homepage.icon=/images/matrix.png"
       - "homepage.href=https://matrix.${DOMAIN}/"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
