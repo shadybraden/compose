@@ -2,7 +2,7 @@
 name: ollama
 services:
   ollama:
-    image: ollama/ollama:0.33.2
+    image: ollama/ollama:0.33.3
     container_name: ollama
     volumes:
       - /data/config_storage/ai/ollama:/root/.ollama
