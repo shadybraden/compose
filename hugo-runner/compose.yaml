@@ -2,7 +2,7 @@
 name: hugo-server
 services:
   nginx:
-    image: nginx:1.31.4
+    image: nginx:1.31.5
     container_name: hugo-server
     volumes:
       - /data/hugo-public:/usr/share/nginx/html:ro
