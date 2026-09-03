@@ -2,7 +2,7 @@
 name: hugo-server
 services:
   nginx:
-    image: nginx:1.31.4
+    image: nginx:1.31.5
     container_name: hugo-server
     volumes:
       - /data/hugo-public:/usr/share/nginx/html:ro
@@ -33,8 +33,8 @@ services:
       - "homepage.icon=/images/hugo.png"
       - "homepage.href=https://hugo.${DOMAIN}/"
     user: "101:101"
-    dns:
-      - 0.0.0.0
+    cap_drop:
+      - ALL
     deploy:
       resources:
         limits:
@@ -42,16 +42,16 @@ services:
           memory: 64M
         reservations:
           memory: 16M
+    dns:
+      - 0.0.0.0
+    init: true
+    read_only: true
     security_opt:
       - no-new-privileges:true
     tmpfs:
       - '/tmp:size=64m,uid=101,gid=101,mode=1777'
       - '/var/cache/nginx:size=64m,uid=101,gid=101,mode=0755'
       - '/var/run:size=8m,uid=101,gid=101,mode=0755'
-    read_only: true
-    cap_drop:
-      - ALL
-    init: true
     ulimits:
       nofile:
         soft: 1024
