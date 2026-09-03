@@ -33,6 +33,8 @@ services:
       - "homepage.icon=/images/hugo.png"
       - "homepage.href=https://hugo.${DOMAIN}/"
     user: "101:101"
+    cap_drop:
+      - ALL
     dns:
       - 0.0.0.0
     deploy:
@@ -42,16 +44,14 @@ services:
           memory: 64M
         reservations:
           memory: 16M
+    read_only: true
+    init: true
     security_opt:
       - no-new-privileges:true
     tmpfs:
       - '/tmp:size=64m,uid=101,gid=101,mode=1777'
       - '/var/cache/nginx:size=64m,uid=101,gid=101,mode=0755'
       - '/var/run:size=8m,uid=101,gid=101,mode=0755'
-    read_only: true
-    cap_drop:
-      - ALL
-    init: true
     ulimits:
       nofile:
         soft: 1024
