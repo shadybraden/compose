@@ -2,7 +2,7 @@
 name: renovate
 services:
   renovate:
-    image: renovate/renovate:44.61.3
+    image: renovate/renovate:44.61.5
     container_name: renovate
     environment:
       - LOG_LEVEL=debug
