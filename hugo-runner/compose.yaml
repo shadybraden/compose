@@ -35,8 +35,6 @@ services:
     user: "101:101"
     cap_drop:
       - ALL
-    dns:
-      - 0.0.0.0
     deploy:
       resources:
         limits:
@@ -44,8 +42,10 @@ services:
           memory: 64M
         reservations:
           memory: 16M
-    read_only: true
+    dns:
+      - 0.0.0.0
     init: true
+    read_only: true
     security_opt:
       - no-new-privileges:true
     tmpfs:
