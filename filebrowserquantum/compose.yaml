@@ -2,7 +2,7 @@
 name: filebrowserquantum
 services:
   filebrowser:
-    image: gtstef/filebrowser:1.5.5-stable
+    image: gtstef/filebrowser:1.5.6-stable
     container_name: filebrowserquantum
     volumes:
       - /data:/srv/data/data
