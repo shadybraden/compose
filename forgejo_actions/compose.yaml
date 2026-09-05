@@ -2,7 +2,7 @@
 name: forgejo-runner
 services:
   docker-in-docker:
-    image: docker:29.6.2-dind
+    image: docker:29.8.0-dind
     container_name: 'docker_dind'
     command: ['dockerd', '-H', 'tcp://0.0.0.0:2375', '--tls=false']
     restart: 'unless-stopped'
