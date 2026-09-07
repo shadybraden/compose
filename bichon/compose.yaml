@@ -1,16 +1,15 @@
 ---
+name: bichon
 services:
   bichon:
     image: rustmailer/bichon:2.0.3
-    environment:
-      - BICHON_ROOT_DIR=/data
-      - BICHON_LOG_LEVEL=info
+    container_name: bichon
     volumes:
       - /data/config_storage/bichon:/data
       - /data/config_storage/email_archive:/email_archive
-    container_name: bichon
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
+    environment:
+      - BICHON_ROOT_DIR=/data
+      - BICHON_LOG_LEVEL=info
     networks:
       - intranet
     labels:
@@ -29,6 +28,8 @@ services:
       - "homepage.name=bichon"
       - "homepage.icon=/images/bichon.png"
       - "homepage.href=https://bichon.${DOMAIN}/"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
