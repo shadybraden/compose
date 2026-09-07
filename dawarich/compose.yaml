@@ -68,6 +68,7 @@ services:
       - "homepage.name=dawarich"
       - "homepage.icon=/images/dawarich.png"
       - "homepage.href=https://dawarich.${DOMAIN}/"
+      - env=production
     deploy:
       resources:
         limits:

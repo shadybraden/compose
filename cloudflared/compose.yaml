@@ -8,6 +8,8 @@ services:
       - intranet
     command: tunnel --no-autoupdate run --token ${token}
     restart: unless-stopped
+    labels:
+      - env=production
 
 networks:
   intranet:

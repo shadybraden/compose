@@ -28,6 +28,7 @@ services:
       - "homepage.name=bichon"
       - "homepage.icon=/images/bichon.png"
       - "homepage.href=https://bichon.${DOMAIN}/"
+      - env=production
     security_opt:
       - no-new-privileges:true  # helps to increase security
 

@@ -35,6 +35,7 @@ services:
       - "homepage.name=docmost"
       - "homepage.icon=/images/docmost.png"
       - "homepage.href=https://docmost.${DOMAIN}/"
+      - env=production
     user: 1000:1000
     security_opt:
       - no-new-privileges:true  # helps to increase security

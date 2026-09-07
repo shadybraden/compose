@@ -56,6 +56,7 @@ services:
       - "traefik.http.routers.plan-secure.tls=true"
       - "traefik.http.routers.plan-secure.service=plan"
       - "traefik.http.services.plan.loadbalancer.server.port=25567"  # port of the service.
+      - env=production
 
 networks:
   intranet:
