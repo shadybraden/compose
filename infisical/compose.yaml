@@ -39,6 +39,7 @@ services:
       - "homepage.name=infisical"
       - "homepage.icon=/images/infisical.png"
       - "homepage.href=https://infisical.${DOMAIN}/"
+      - env=production
     user: 1000:1000
     security_opt:
       - no-new-privileges:true  # helps to increase security
@@ -70,6 +71,8 @@ services:
     user: 1000:1000
     security_opt:
       - no-new-privileges:true  # helps to increase security
+    labels:
+      - env=production
 
   redis:
     image: redis:8.10.1  # use latest
@@ -94,6 +97,8 @@ services:
     user: 1000:1000
     security_opt:
       - no-new-privileges:true  # helps to increase security
+    labels:
+      - env=production
 
 networks:
   infisical:

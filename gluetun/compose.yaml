@@ -32,6 +32,7 @@ services:
       - gluetun_net
       - intranet
     labels:
+      - env=production
       - "traefik.enable=true"
       - "traefik.docker.network=intranet"
       - "traefik.http.routers.qbittorrent.entrypoints=http"

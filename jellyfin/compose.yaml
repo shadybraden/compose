@@ -38,6 +38,7 @@ services:
       - "homepage.name=Jellyfin"
       - "homepage.icon=/images/jellyfin.png"
       - "homepage.href=https://jellyfin.${DOMAIN}/"
+      - env=production
 
 networks:
   intranet:

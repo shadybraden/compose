@@ -46,6 +46,7 @@ services:
       - "homepage.name=Komodo"
       - "homepage.icon=/images/komodo.png"
       - "homepage.href=https://komodo.${DOMAIN}/"
+      - env=production
     dns:
       - 10.1.1.1
     init: true
@@ -69,6 +70,7 @@ services:
       driver: local
     labels:
       komodo.skip:  # Prevent Komodo from stopping with StopAllContainers
+      env: production
     dns:
       - 10.1.1.1
 
@@ -106,6 +108,7 @@ services:
       - "traefik.http.routers.periphery-secure.service=periphery"
       - "traefik.http.services.periphery.loadbalancer.server.port=8120"  # port of the service
       - "traefik.docker.network=intranet"
+      - env=production
     dns:
       - 10.1.1.1
     init: true

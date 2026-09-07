@@ -31,6 +31,7 @@ services:
       - "homepage.name=nextcloud"
       - "homepage.icon=/images/nextcloud.png"
       - "homepage.href=https://nextcloud.${DOMAIN}/"
+      - env=production
 
 networks:
   intranet:

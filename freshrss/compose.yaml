@@ -21,3 +21,4 @@ services:
       - "homepage.name=FreshRSS"
       - "homepage.icon=/images/freshrss.png"
       - "homepage.href=https://rss.${DOMAIN}/"
+      - env=production

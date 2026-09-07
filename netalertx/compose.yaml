@@ -25,6 +25,7 @@ services:
       - "homepage.name=netalertx"
       - "homepage.icon=/images/NetAlertX.png"
       - "homepage.href=https://netalertx.${DOMAIN}/"
+      - env=production
     cap_add:
       - NET_ADMIN
       - NET_RAW

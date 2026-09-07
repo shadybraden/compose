@@ -14,6 +14,8 @@ services:
     networks:
       - intranet
     restart: unless-stopped
+    labels:
+      - env=production
 
   immich-machine-learning:
     image: ghcr.io/immich-app/immich-machine-learning:v3.1.0
@@ -27,6 +29,8 @@ services:
     restart: unless-stopped
     healthcheck:
       disable: false
+    labels:
+      - env=production
 
   immich-server:
     image: ghcr.io/immich-app/immich-server:v3.1.0
@@ -50,6 +54,7 @@ services:
     healthcheck:
       disable: false
     labels:
+      - env=production
       - "traefik.enable=true"
       - "traefik.http.routers.immich.entrypoints=http"
       - "traefik.http.routers.immich.rule=Host(`immich.${DOMAIN}`)"
@@ -76,6 +81,8 @@ services:
     restart: unless-stopped
     healthcheck:
       test: redis-cli ping || exit 1
+    labels:
+      - env=production
 
 networks:
   intranet:

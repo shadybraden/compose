@@ -34,6 +34,7 @@ services:
       - "homepage.name=navidrome"
       - "homepage.icon=/images/navidrome.png"
       - "homepage.href=https://navidrome.${DOMAIN}/"
+      - env=production
 
 networks:
   intranet:

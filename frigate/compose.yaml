@@ -53,6 +53,7 @@ services:
       - "homepage.name=frigate"
       - "homepage.icon=/images/frigate.png"
       - "homepage.href=https://frigate.${DOMAIN}/"
+      - env=production
 
 networks:
   intranet:

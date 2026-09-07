@@ -28,6 +28,7 @@ services:
       - "homepage.name=vaultwarden"
       - "homepage.icon=/images/vaultwarden.png"
       - "homepage.href=https://bitwarden.${DOMAIN}/"
+      - env=production
     security_opt:
       - no-new-privileges:true  # helps to increase security
 

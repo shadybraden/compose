@@ -18,6 +18,8 @@ services:
     networks:
       - intranet
     restart: no
+    labels:
+      - env=production
 
   immich-machine-learning-public:
     image: ghcr.io/immich-app/immich-machine-learning:v3.1.0
@@ -36,6 +38,8 @@ services:
     restart: no
     healthcheck:
       disable: false
+    labels:
+      - env=production
 
   immich-server-public:
     image: ghcr.io/immich-app/immich-server:v3.1.0
@@ -77,6 +81,7 @@ services:
       - "homepage.name=immich-public"
       - "homepage.icon=/images/immich.png"
       - "homepage.href=https://immich-public.${DOMAIN}/"
+      - env=production
     security_opt:
       - no-new-privileges:true  # helps to increase security
 
@@ -93,6 +98,8 @@ services:
     restart: no
     healthcheck:
       test: redis-cli ping || exit 1
+    labels:
+      - env=production
 
 networks:
   intranet:

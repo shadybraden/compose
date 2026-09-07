@@ -39,6 +39,7 @@ services:
       - "homepage.name=grimmory"
       - "homepage.icon=/images/grimmory.png"
       - "homepage.href=https://books.${DOMAIN}/"
+      - env=production
 
   mariadb_grimmory:
     image: lscr.io/linuxserver/mariadb:11.4.12  # pinned by grimmory - https://grimmory.org/docs/installation#step-2-create-the-docker-composeyml-file

@@ -31,6 +31,7 @@ services:
       - "homepage.name=pocket-id"
       - "homepage.icon=/images/pocket-id.png"
       - "homepage.href=https://pocket-id.${DOMAIN}/"
+      - env=production
 
 networks:
   intranet:

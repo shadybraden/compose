@@ -76,6 +76,7 @@ services:
       - "homepage.name=Ghost"
       - "homepage.icon=/images/ghost.png"
       - "homepage.href=https://Ghost.${DOMAIN}/"
+      - env=production
     dns:
       - ${DNS_SERVER1}
       - ${DNS_SERVER2}

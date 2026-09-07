@@ -14,3 +14,4 @@ services:
       - "homepage.name=jackett"
       - "homepage.icon=/images/jackett.png"
       - "homepage.href=https://jackett.${DOMAIN}/"
+      - env=production
