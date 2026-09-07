@@ -1,7 +1,7 @@
 name: immich-public-proxy
 services:
   immich-public-proxy:
-    image: alangrainger/immich-public-proxy:3.2.1
+    image: alangrainger/immich-public-proxy:3.3.1
     container_name: immich-public-proxy
     environment:
       PUBLIC_BASE_URL: https://photos.shadybraden.com
