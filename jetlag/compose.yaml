@@ -1,0 +1,65 @@
+---
+name: jetlag
+services:
+  nginx:
+    image: nginx:1.31.5
+    container_name: jetlag
+    volumes:
+      - /data/dont_backup/jetlag_map/dist:/usr/share/nginx/html:ro
+    environment:
+      - TZ=${TZ}
+    networks:
+      - intranet
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.jetlag.entrypoints=http"
+      - "traefik.http.routers.jetlag.rule=Host(`jetlag.${DOMAIN}`)"
+      - "traefik.http.middlewares.jetlag-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.jetlag.middlewares=jetlag-https-redirect"
+      - "traefik.http.routers.jetlag-secure.entrypoints=https"
+      - "traefik.http.routers.jetlag-secure.rule=Host(`jetlag.${DOMAIN}`)"
+      - "traefik.http.routers.jetlag-secure.tls=true"
+      - "traefik.http.routers.jetlag-secure.service=jetlag"
+      - "traefik.http.services.jetlag.loadbalancer.server.port=80"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=jetlag"
+      - "homepage.icon=/images/jetlag.png"
+      - "homepage.href=https://jetlag.${DOMAIN}/"
+    user: "101:101"
+    cap_drop:
+      - ALL
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 64M
+        reservations:
+          memory: 16M
+    dns:
+      - 0.0.0.0
+    ports:
+      - 38080:80
+    init: true
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - '/tmp:size=64m,uid=101,gid=101,mode=1777'
+      - '/var/cache/nginx:size=64m,uid=101,gid=101,mode=0755'
+      - '/var/run:size=8m,uid=101,gid=101,mode=0755'
+    ulimits:
+      nofile:
+        soft: 1024
+        hard: 2048
+      nproc: 64
+
+networks:
+  intranet:
+    external: true
