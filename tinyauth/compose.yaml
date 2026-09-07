@@ -1,9 +1,9 @@
 ---
+name: tinyauth
 services:
   tinyauth:
     image: ghcr.io/tinyauthapp/tinyauth:v5.2.0
     container_name: tinyauth
-    restart: unless-stopped
     environment:
       - TINYAUTH_APPURL=https://tinyauth.${DOMAIN}
       - TINYAUTH_OAUTH_PROVIDERS_POCKETID_CLIENTID=${TINYAUTH_OAUTH_PROVIDERS_POCKETID_CLIENTID}
@@ -16,10 +16,9 @@ services:
       - TINYAUTH_OAUTH_PROVIDERS_POCKETID_NAME=pocket-id
       #- TINYAUTH_OAUTH_AUTOREDIRECT=pocketid
       - TINYAUTH_AUTH_USERS=${TINYAUTH_AUTH_USERS}
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.tinyauth.entrypoints=http"
@@ -34,6 +33,8 @@ services:
       - "traefik.docker.network=intranet"
       - "traefik.http.middlewares.tinyauth.forwardauth.address=http://tinyauth:3000/api/auth/traefik"
       - env=production
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
