@@ -17,6 +17,8 @@ services:
     command: agent
     security_opt:
       - no-new-privileges:true  # helps to increase security
+    labels:
+      - env=production
 
 networks:
   intranet:
