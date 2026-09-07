@@ -27,6 +27,7 @@ services:
       - "homepage.name=baikal"
       - "homepage.icon=/images/baikal.png"
       - "homepage.href=https://baikal.${DOMAIN}/"
+      - env=production
 
 networks:
   intranet:

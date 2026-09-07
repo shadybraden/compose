@@ -30,6 +30,7 @@ services:
       - "homepage.name=actualbudget"
       - "homepage.icon=/images/actualbudget.png"
       - "homepage.href=https://actualbudget.${DOMAIN}/"
+      - env=production
     dns:
       - ${DNS_SERVER1}
       - ${DNS_SERVER2}

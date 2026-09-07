@@ -27,6 +27,7 @@ services:
       - "homepage.name=autobrr"
       - "homepage.icon=/images/autobrr.png"
       - "homepage.href=https://autobrr.${DOMAIN}/"
+      - env=production
     security_opt:
       - no-new-privileges:true  # helps to increase security
 

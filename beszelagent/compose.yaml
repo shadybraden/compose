@@ -17,3 +17,5 @@ services:
       HUB_URL: https://beszel.holmlab.org
     network_mode: host
     restart: unless-stopped
+    labels:
+      - env=production
