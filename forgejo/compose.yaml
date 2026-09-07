@@ -39,6 +39,7 @@ services:
       - "homepage.name=Forgejo"
       - "homepage.icon=/images/forgejo.png"
       - "homepage.href=https://git.holmlab.org/shady?tab=stars"
+      - env=production
 
 networks:
   intranet:
