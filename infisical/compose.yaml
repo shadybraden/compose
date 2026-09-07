@@ -2,7 +2,7 @@
 name: infisical
 services:
   backend:
-    image: infisical/infisical:v0.165.6
+    image: infisical/infisical:v0.165.7
     container_name: infisical-backend
     depends_on:
       infisical-db:
@@ -68,11 +68,11 @@ services:
       interval: 5s
       timeout: 10s
       retries: 10
+    labels:
+      - env=production
     user: 1000:1000
     security_opt:
       - no-new-privileges:true  # helps to increase security
-    labels:
-      - env=production
 
   redis:
     image: redis:8.10.1  # use latest
@@ -94,11 +94,11 @@ services:
       - intranet
       - infisical
     restart: unless-stopped
+    labels:
+      - env=production
     user: 1000:1000
     security_opt:
       - no-new-privileges:true  # helps to increase security
-    labels:
-      - env=production
 
 networks:
   infisical:
