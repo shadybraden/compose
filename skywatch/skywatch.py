@@ -157,8 +157,6 @@ for ac in data.get('aircraft', []):
 
     if callsign.startswith("PAT"):
         print(callsign)
-        send_message = 1
-        priority = 'default'
         title = "Mill - Private Air Transport | " + short_type_value + " | " + desc_value
 
     if callsign.startswith("SAM"):
