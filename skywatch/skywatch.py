@@ -155,11 +155,11 @@ for ac in data.get('aircraft', []):
         priority = 'default'
         title = "maybe taker with fighters | " + short_type_value + " | " + desc_value
 
-    if callsign.startswith("CAP"):
+    if callsign.startswith("PAT"):
         print(callsign)
         send_message = 1
-        priority = 'low'
-        title = "Civil Air Patrol | " + short_type_value + " | " + desc_value
+        priority = 'default'
+        title = "Mill - Private Air Transport | " + short_type_value + " | " + desc_value
 
     if callsign.startswith("SAM"):
         print(callsign)
