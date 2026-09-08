@@ -2,7 +2,7 @@
 name: pto-tracker
 services:
   pto-tracker:
-    image: git.holmlab.org/shady/pto-tracker:0.0.3
+    image: git.holmlab.org/shady/pto-tracker:0.0.4
     container_name: pto-tracker
     volumes:
       - /data/config_storage/pto:/data
