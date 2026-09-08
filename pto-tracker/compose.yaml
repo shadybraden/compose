@@ -1,0 +1,40 @@
+---
+name: pto-tracker
+services:
+  pto-tracker:
+    image: git.holmlab.org/shady/pto-tracker:0.0.1
+    container_name: pto-tracker
+    volumes:
+      - /data/config_storage/pto:/data
+    environment:
+      - TZ=America/New_York
+      - PORT=5000
+      - DATA_FILE=/data/pto.json
+    networks:
+      - intranet
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pto.entrypoints=http"
+      - "traefik.http.routers.pto.rule=Host(`pto.${DOMAIN}`)"
+      - "traefik.http.middlewares.pto-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.pto.middlewares=pto-https-redirect"
+      - "traefik.http.routers.pto-secure.entrypoints=https"
+      - "traefik.http.routers.pto-secure.rule=Host(`pto.${DOMAIN}`)"
+      - "traefik.http.routers.pto-secure.tls=true"
+      - "traefik.http.routers.pto-secure.service=pto"
+      - "traefik.http.services.pto.loadbalancer.server.port=5000"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=pto"
+      - "homepage.icon=/images/pto.png"
+      - "homepage.href=https://pto.${DOMAIN}/"
+      - "traefik.http.routers.pto-secure.middlewares=tinyauth"
+    dns:
+      - 0.0.0.0
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+
+networks:
+  intranet:
+    external: true
