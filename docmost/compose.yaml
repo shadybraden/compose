@@ -2,7 +2,7 @@
 name: docmost
 services:
   docmost:
-    image: docmost/docmost:0.90.1
+    image: docmost/docmost:0.96.0
     container_name: docmost
     depends_on:
       - docmost_postgres
