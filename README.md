@@ -42,6 +42,7 @@ As the guide says, installing OS's, using Git and using Docker are prerequisites
       - "traefik.http.routers.SUBDOMAIN.middlewares=SUBDOMAIN-https-redirect"
       - "traefik.http.routers.SUBDOMAIN-secure.entrypoints=https"
       - "traefik.http.routers.SUBDOMAIN-secure.rule=Host(`SUBDOMAIN.${DOMAIN}`)"
+      - "traefik.http.routers.SUBDOMAIN-secure.middlewares=internal-only"
       - "traefik.http.routers.SUBDOMAIN-secure.tls=true"
       - "traefik.http.routers.SUBDOMAIN-secure.service=SUBDOMAIN"
       - "traefik.http.services.SUBDOMAIN.loadbalancer.server.port=80"  # port of the service.
@@ -52,6 +53,35 @@ networks:
     external: true
 
 ```
+
+`internal-only` is defined by the Traefik stack. Its allowlist includes the
+`10.1.1.0/24` LAN, Tailscale address ranges, loopback, and Docker bridge
+networks. Adjust its `ipallowlist.sourcerange` label in
+`traefik/compose.yaml` if those networks change.
+</details>
+
+<details>
+<summary>To expose a service publicly:</summary>
+
+Set `PUBLIC_DOMAIN` in the service's Komodo variables or `.env` file, then add
+these labels alongside its existing internal Traefik labels. The public router
+must not use the `internal-only` middleware.
+
+```yaml
+      - "traefik.http.routers.SUBDOMAIN-public.entrypoints=http"
+      - "traefik.http.routers.SUBDOMAIN-public.rule=Host(`SUBDOMAIN.${PUBLIC_DOMAIN}`)"
+      - "traefik.http.routers.SUBDOMAIN-public.middlewares=SUBDOMAIN-https-redirect"
+      - "traefik.http.routers.SUBDOMAIN-public-secure.entrypoints=https"
+      - "traefik.http.routers.SUBDOMAIN-public-secure.rule=Host(`SUBDOMAIN.${PUBLIC_DOMAIN}`)"
+      - "traefik.http.routers.SUBDOMAIN-public-secure.tls=true"
+      - "traefik.http.routers.SUBDOMAIN-public-secure.service=SUBDOMAIN"
+```
+
+The Traefik stack requests `${PUBLIC_DOMAIN}` and `*.${PUBLIC_DOMAIN}` using the
+Cloudflare DNS challenge. Its API token must have DNS edit access to both domain
+zones. Point the public hostname (or a wildcard DNS record) at the WAN address
+and forward TCP ports 80 and 443 to Traefik. Some applications also need their
+external URL or allowed-host setting changed to the public hostname.
 </details>
 
 <details>
@@ -73,7 +103,7 @@ networks:
 <summary>To include something to TinyAuth:</summary>
 
 ```yaml
-      - "traefik.http.routers.SUBDOMAIN-secure.middlewares=tinyauth"
+      - "traefik.http.routers.SUBDOMAIN-secure.middlewares=tinyauth,internal-only"
 ```
 </details>
 

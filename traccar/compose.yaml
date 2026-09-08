@@ -23,6 +23,7 @@ services:
       - "traefik.http.routers.traccar.middlewares=traccar-https-redirect"
       - "traefik.http.routers.traccar-secure.entrypoints=https"
       - "traefik.http.routers.traccar-secure.rule=Host(`traccar.${DOMAIN}`)"
+      - "traefik.http.routers.traccar-secure.middlewares=internal-only"
       - "traefik.http.routers.traccar-secure.tls=true"
       - "traefik.http.routers.traccar-secure.service=traccar"
       - "traefik.http.services.traccar.loadbalancer.server.port=8082"  # port of the service.

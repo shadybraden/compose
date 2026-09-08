@@ -17,6 +17,7 @@ services:
       - "traefik.http.routers.aircraft.middlewares=aircraft-https-redirect"
       - "traefik.http.routers.aircraft-secure.entrypoints=https"
       - "traefik.http.routers.aircraft-secure.rule=Host(`aircraft.${DOMAIN}`)"
+      - "traefik.http.routers.aircraft-secure.middlewares=internal-only"
       - "traefik.http.routers.aircraft-secure.tls=true"
       - "traefik.http.routers.aircraft-secure.service=aircraft"
       - "traefik.http.services.aircraft.loadbalancer.server.port=80"  # port of the service.

@@ -41,6 +41,7 @@ services:
       - "traefik.http.routers.qbittorrent.middlewares=qbittorrent-https-redirect"
       - "traefik.http.routers.qbittorrent-secure.entrypoints=https"
       - "traefik.http.routers.qbittorrent-secure.rule=Host(`qbittorrent.${DOMAIN}`)"
+      - "traefik.http.routers.qbittorrent-secure.middlewares=internal-only"
       - "traefik.http.routers.qbittorrent-secure.tls=true"
       - "traefik.http.routers.qbittorrent-secure.service=qbittorrent"
       - "traefik.http.services.qbittorrent.loadbalancer.server.port=8080"  # port of the service.
@@ -50,6 +51,7 @@ services:
       - "traefik.http.routers.jackett.middlewares=jackett-https-redirect"
       - "traefik.http.routers.jackett-secure.entrypoints=https"
       - "traefik.http.routers.jackett-secure.rule=Host(`jackett.${DOMAIN}`)"
+      - "traefik.http.routers.jackett-secure.middlewares=internal-only"
       - "traefik.http.routers.jackett-secure.tls=true"
       - "traefik.http.routers.jackett-secure.service=jackett"
       - "traefik.http.services.jackett.loadbalancer.server.port=9117"  # port of the service.
@@ -58,6 +60,7 @@ services:
       - "traefik.http.routers.search.middlewares=search-https-redirect"
       - "traefik.http.routers.search-secure.entrypoints=https"
       - "traefik.http.routers.search-secure.rule=Host(`search.${DOMAIN}`)"
+      - "traefik.http.routers.search-secure.middlewares=internal-only"
       - "traefik.http.routers.search-secure.tls=true"
       - "traefik.http.routers.search-secure.service=search"
       - "traefik.http.services.search.loadbalancer.server.port=27540"  # port of the service.
@@ -67,6 +70,7 @@ services:
       - "traefik.http.routers.rss.middlewares=rss-https-redirect"
       - "traefik.http.routers.rss-secure.entrypoints=https"
       - "traefik.http.routers.rss-secure.rule=Host(`rss.${DOMAIN}`)"
+      - "traefik.http.routers.rss-secure.middlewares=internal-only"
       - "traefik.http.routers.rss-secure.tls=true"
       - "traefik.http.routers.rss-secure.service=rss"
       - "traefik.http.services.rss.loadbalancer.server.port=80"  # port of the service
@@ -76,6 +80,7 @@ services:
       - "traefik.http.routers.wireguard_vpn.middlewares=wireguard_vpn-https-redirect"
       - "traefik.http.routers.wireguard_vpn-secure.entrypoints=https"
       - "traefik.http.routers.wireguard_vpn-secure.rule=Host(`wireguard_vpn.${DOMAIN}`)"
+      - "traefik.http.routers.wireguard_vpn-secure.middlewares=internal-only"
       - "traefik.http.routers.wireguard_vpn-secure.tls=true"
       - "traefik.http.routers.wireguard_vpn-secure.service=wireguard_vpn"
       - "traefik.http.services.wireguard_vpn.loadbalancer.server.port=51821"  # port of the service
@@ -88,7 +93,7 @@ services:
       - "traefik.http.routers.mullvad-secure.tls=true"
       - "traefik.http.routers.mullvad-secure.service=mullvad"
       - "traefik.http.services.mullvad.loadbalancer.server.port=3000"  # port of the service.
-      - "traefik.http.routers.mullvad-secure.middlewares=tinyauth"
+      - "traefik.http.routers.mullvad-secure.middlewares=tinyauth,internal-only"
       - "traefik.http.routers.metube.entrypoints=http"
       - "traefik.http.routers.metube.rule=Host(`metube.${DOMAIN}`)"
       - "traefik.http.middlewares.metube-https-redirect.redirectscheme.scheme=https"
@@ -98,13 +103,14 @@ services:
       - "traefik.http.routers.metube-secure.tls=true"
       - "traefik.http.routers.metube-secure.service=metube"
       - "traefik.http.services.metube.loadbalancer.server.port=8081"  # port of the service.
-      - "traefik.http.routers.metube-secure.middlewares=tinyauth"
+      - "traefik.http.routers.metube-secure.middlewares=tinyauth,internal-only"
       - "traefik.http.routers.invidious.entrypoints=http"
       - "traefik.http.routers.invidious.rule=Host(`invidious.${DOMAIN}`)"
       - "traefik.http.middlewares.invidious-https-redirect.redirectscheme.scheme=https"
       - "traefik.http.routers.invidious.middlewares=invidious-https-redirect"
       - "traefik.http.routers.invidious-secure.entrypoints=https"
       - "traefik.http.routers.invidious-secure.rule=Host(`invidious.${DOMAIN}`)"
+      - "traefik.http.routers.invidious-secure.middlewares=internal-only"
       - "traefik.http.routers.invidious-secure.tls=true"
       - "traefik.http.routers.invidious-secure.service=invidious"
       - "traefik.http.services.invidious.loadbalancer.server.port=3005"  # port of the service.

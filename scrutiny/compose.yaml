@@ -27,6 +27,7 @@ services:
       - "traefik.http.routers.scrutiny.middlewares=scrutiny-https-redirect"
       - "traefik.http.routers.scrutiny-secure.entrypoints=https"
       - "traefik.http.routers.scrutiny-secure.rule=Host(`scrutiny.${DOMAIN}`)"
+      - "traefik.http.routers.scrutiny-secure.middlewares=internal-only"
       - "traefik.http.routers.scrutiny-secure.tls=true"
       - "traefik.http.routers.scrutiny-secure.service=scrutiny"
       - "traefik.http.services.scrutiny.loadbalancer.server.port=8080"  # port of the service

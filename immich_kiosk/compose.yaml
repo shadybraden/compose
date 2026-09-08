@@ -48,6 +48,7 @@ services:
       - "traefik.http.routers.immich_kiosk.middlewares=immich_kiosk-https-redirect"
       - "traefik.http.routers.immich_kiosk-secure.entrypoints=https"
       - "traefik.http.routers.immich_kiosk-secure.rule=Host(`immich_kiosk.${DOMAIN}`)"
+      - "traefik.http.routers.immich_kiosk-secure.middlewares=internal-only"
       - "traefik.http.routers.immich_kiosk-secure.tls=true"
       - "traefik.http.routers.immich_kiosk-secure.service=immich_kiosk"
       - "traefik.http.services.immich_kiosk.loadbalancer.server.port=3000"  # port of the service.

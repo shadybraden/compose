@@ -31,6 +31,7 @@ services:
       - "traefik.http.routers.books.middlewares=books-https-redirect"
       - "traefik.http.routers.books-secure.entrypoints=https"
       - "traefik.http.routers.books-secure.rule=Host(`books.${DOMAIN}`)"
+      - "traefik.http.routers.books-secure.middlewares=internal-only"
       - "traefik.http.routers.books-secure.tls=true"
       - "traefik.http.routers.books-secure.service=books"
       - "traefik.http.services.books.loadbalancer.server.port=6060"  # port of the service.

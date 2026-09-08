@@ -73,6 +73,7 @@ services:
       - "traefik.http.routers.immich-public.middlewares=immich-public-https-redirect"
       - "traefik.http.routers.immich-public-secure.entrypoints=https"
       - "traefik.http.routers.immich-public-secure.rule=Host(`immich-public.${DOMAIN}`)"
+      - "traefik.http.routers.immich-public-secure.middlewares=internal-only"
       - "traefik.http.routers.immich-public-secure.tls=true"
       - "traefik.http.routers.immich-public-secure.service=immich-public"
       - "traefik.http.services.immich-public.loadbalancer.server.port=2283"  # port of the service

@@ -24,6 +24,7 @@ services:
       - "traefik.http.routers.stirlingpdf.middlewares=stirlingpdf-https-redirect"
       - "traefik.http.routers.stirlingpdf-secure.entrypoints=https"
       - "traefik.http.routers.stirlingpdf-secure.rule=Host(`stirlingpdf.${DOMAIN}`)"
+      - "traefik.http.routers.stirlingpdf-secure.middlewares=internal-only"
       - "traefik.http.routers.stirlingpdf-secure.tls=true"
       - "traefik.http.routers.stirlingpdf-secure.service=stirlingpdf"
       - "traefik.http.services.stirlingpdf.loadbalancer.server.port=8080"  # port of the service

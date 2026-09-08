@@ -36,6 +36,7 @@ services:
       - "traefik.http.routers.files2.middlewares=files2-https-redirect"
       - "traefik.http.routers.files2-secure.entrypoints=https"
       - "traefik.http.routers.files2-secure.rule=Host(`files2.${DOMAIN}`)"
+      - "traefik.http.routers.files2-secure.middlewares=internal-only"
       - "traefik.http.routers.files2-secure.tls=true"
       - "traefik.http.routers.files2-secure.service=files2"
       - "traefik.http.services.files2.loadbalancer.server.port=80"  # port of the service.

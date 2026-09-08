@@ -26,6 +26,7 @@ services:
       - "traefik.http.routers.navidrome.middlewares=navidrome-https-redirect"
       - "traefik.http.routers.navidrome-secure.entrypoints=https"
       - "traefik.http.routers.navidrome-secure.rule=Host(`navidrome.${DOMAIN}`)"
+      - "traefik.http.routers.navidrome-secure.middlewares=internal-only"
       - "traefik.http.routers.navidrome-secure.tls=true"
       - "traefik.http.routers.navidrome-secure.service=navidrome"
       - "traefik.http.services.navidrome.loadbalancer.server.port=4533"  # port of the service

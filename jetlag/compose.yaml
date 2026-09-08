@@ -24,6 +24,7 @@ services:
       - "traefik.http.routers.jetlag.middlewares=jetlag-https-redirect"
       - "traefik.http.routers.jetlag-secure.entrypoints=https"
       - "traefik.http.routers.jetlag-secure.rule=Host(`jetlag.${DOMAIN}`)"
+      - "traefik.http.routers.jetlag-secure.middlewares=internal-only"
       - "traefik.http.routers.jetlag-secure.tls=true"
       - "traefik.http.routers.jetlag-secure.service=jetlag"
       - "traefik.http.services.jetlag.loadbalancer.server.port=80"  # port of the service.

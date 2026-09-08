@@ -27,6 +27,7 @@ services:
       - "traefik.http.routers.docmost.middlewares=docmost-https-redirect"
       - "traefik.http.routers.docmost-secure.entrypoints=https"
       - "traefik.http.routers.docmost-secure.rule=Host(`docmost.${DOMAIN}`)"
+      - "traefik.http.routers.docmost-secure.middlewares=internal-only"
       - "traefik.http.routers.docmost-secure.tls=true"
       - "traefik.http.routers.docmost-secure.service=docmost"
       - "traefik.http.services.docmost.loadbalancer.server.port=3000"  # port of the service.

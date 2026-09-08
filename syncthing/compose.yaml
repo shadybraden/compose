@@ -35,6 +35,7 @@ services:
       - "traefik.http.routers.syncthing-holmie.middlewares=syncthing-holmie-https-redirect"
       - "traefik.http.routers.syncthing-holmie-secure.entrypoints=https"
       - "traefik.http.routers.syncthing-holmie-secure.rule=Host(`syncthing-holmie.${DOMAIN}`)"
+      - "traefik.http.routers.syncthing-holmie-secure.middlewares=internal-only"
       - "traefik.http.routers.syncthing-holmie-secure.tls=true"
       - "traefik.http.routers.syncthing-holmie-secure.service=syncthing-holmie"
       - "traefik.http.services.syncthing-holmie.loadbalancer.server.port=8384"  # port of the service

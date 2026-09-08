@@ -22,6 +22,7 @@ services:
       - "traefik.http.routers.speedtest.middlewares=speedtest-https-redirect"
       - "traefik.http.routers.speedtest-secure.entrypoints=https"
       - "traefik.http.routers.speedtest-secure.rule=Host(`speedtest.${DOMAIN}`)"
+      - "traefik.http.routers.speedtest-secure.middlewares=internal-only"
       - "traefik.http.routers.speedtest-secure.tls=true"
       - "traefik.http.routers.speedtest-secure.service=speedtest"
       - "traefik.http.services.speedtest.loadbalancer.server.port=8068"  # port of the service.

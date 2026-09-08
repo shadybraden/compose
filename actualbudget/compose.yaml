@@ -22,6 +22,7 @@ services:
       - "traefik.http.routers.actualbudget.middlewares=actualbudget-https-redirect"
       - "traefik.http.routers.actualbudget-secure.entrypoints=https"
       - "traefik.http.routers.actualbudget-secure.rule=Host(`actualbudget.${DOMAIN}`)"
+      - "traefik.http.routers.actualbudget-secure.middlewares=internal-only"
       - "traefik.http.routers.actualbudget-secure.tls=true"
       - "traefik.http.routers.actualbudget-secure.service=actualbudget"
       - "traefik.http.services.actualbudget.loadbalancer.server.port=5006"  # port of the service.

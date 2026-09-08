@@ -38,6 +38,7 @@ services:
       - "traefik.http.routers.komodo.middlewares=komodo-https-redirect"
       - "traefik.http.routers.komodo-secure.entrypoints=https"
       - "traefik.http.routers.komodo-secure.rule=Host(`komodo.holmlab.org`)"
+      - "traefik.http.routers.komodo-secure.middlewares=internal-only"
       - "traefik.http.routers.komodo-secure.tls=true"
       - "traefik.http.routers.komodo-secure.service=komodo"
       - "traefik.http.services.komodo.loadbalancer.server.port=9120"  # port of the service
@@ -104,6 +105,7 @@ services:
       - "traefik.http.routers.periphery.middlewares=periphery-https-redirect"
       - "traefik.http.routers.periphery-secure.entrypoints=https"
       - "traefik.http.routers.periphery-secure.rule=Host(`periphery.holmlab.org`)"
+      - "traefik.http.routers.periphery-secure.middlewares=internal-only"
       - "traefik.http.routers.periphery-secure.tls=true"
       - "traefik.http.routers.periphery-secure.service=periphery"
       - "traefik.http.services.periphery.loadbalancer.server.port=8120"  # port of the service

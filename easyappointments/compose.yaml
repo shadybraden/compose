@@ -37,6 +37,7 @@ services:
       - "traefik.http.routers.appointments.middlewares=appointments-https-redirect"
       - "traefik.http.routers.appointments-secure.entrypoints=https"
       - "traefik.http.routers.appointments-secure.rule=Host(`appointments.${DOMAIN}`)"
+      - "traefik.http.routers.appointments-secure.middlewares=internal-only"
       - "traefik.http.routers.appointments-secure.tls=true"
       - "traefik.http.routers.appointments-secure.service=appointments"
       - "traefik.http.services.appointments.loadbalancer.server.port=80"  # port of the service.

@@ -23,6 +23,7 @@ services:
       - "traefik.http.routers.factorio.middlewares=factorio-https-redirect"
       - "traefik.http.routers.factorio-secure.entrypoints=https"
       - "traefik.http.routers.factorio-secure.rule=Host(`factorio.${DOMAIN}`)"
+      - "traefik.http.routers.factorio-secure.middlewares=internal-only"
       - "traefik.http.routers.factorio-secure.tls=true"
       - "traefik.http.routers.factorio-secure.service=factorio"
       - "traefik.http.services.factorio.loadbalancer.server.port=34197"  # port of the service.

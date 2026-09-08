@@ -22,6 +22,7 @@ services:
       - "traefik.http.routers.hoodik.middlewares=hoodik-https-redirect"
       - "traefik.http.routers.hoodik-secure.entrypoints=https"
       - "traefik.http.routers.hoodik-secure.rule=Host(`hoodik.${DOMAIN}`)"
+      - "traefik.http.routers.hoodik-secure.middlewares=internal-only"
       - "traefik.http.routers.hoodik-secure.tls=true"
       - "traefik.http.routers.hoodik-secure.service=hoodik"
       - "traefik.http.services.hoodik.loadbalancer.server.port=5443"  # port of the service

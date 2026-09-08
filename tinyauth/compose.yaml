@@ -27,6 +27,7 @@ services:
       - "traefik.http.routers.tinyauth.middlewares=tinyauth-https-redirect"
       - "traefik.http.routers.tinyauth-secure.entrypoints=https"
       - "traefik.http.routers.tinyauth-secure.rule=Host(`tinyauth.${DOMAIN}`)"
+      - "traefik.http.routers.tinyauth-secure.middlewares=internal-only"
       - "traefik.http.routers.tinyauth-secure.tls=true"
       - "traefik.http.routers.tinyauth-secure.service=tinyauth"
       - "traefik.http.services.tinyauth.loadbalancer.server.port=3000"  # port of the service.

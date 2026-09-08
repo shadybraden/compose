@@ -20,6 +20,7 @@ services:
       - "traefik.http.routers.seerr.middlewares=seerr-https-redirect"
       - "traefik.http.routers.seerr-secure.entrypoints=https"
       - "traefik.http.routers.seerr-secure.rule=Host(`media-request.${DOMAIN}`)"
+      - "traefik.http.routers.seerr-secure.middlewares=internal-only"
       - "traefik.http.routers.seerr-secure.tls=true"
       - "traefik.http.routers.seerr-secure.service=seerr"
       - "traefik.http.services.seerr.loadbalancer.server.port=5055"  # port of the service.

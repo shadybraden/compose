@@ -19,6 +19,7 @@ services:
       - "traefik.http.routers.ollama.middlewares=ollama-https-redirect"
       - "traefik.http.routers.ollama-secure.entrypoints=https"
       - "traefik.http.routers.ollama-secure.rule=Host(`ollama.${DOMAIN}`)"
+      - "traefik.http.routers.ollama-secure.middlewares=internal-only"
       - "traefik.http.routers.ollama-secure.tls=true"
       - "traefik.http.routers.ollama-secure.service=ollama"
       - "traefik.http.services.ollama.loadbalancer.server.port=11434"  # port of the service

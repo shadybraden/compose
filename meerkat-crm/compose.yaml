@@ -44,6 +44,7 @@ services:
       - "traefik.http.routers.meerkat.middlewares=meerkat-https-redirect"
       - "traefik.http.routers.meerkat-secure.entrypoints=https"
       - "traefik.http.routers.meerkat-secure.rule=Host(`meerkat.${DOMAIN}`)"
+      - "traefik.http.routers.meerkat-secure.middlewares=internal-only"
       - "traefik.http.routers.meerkat-secure.tls=true"
       - "traefik.http.routers.meerkat-secure.service=meerkat"
       - "traefik.http.services.meerkat.loadbalancer.server.port=8080"  # port of the service.

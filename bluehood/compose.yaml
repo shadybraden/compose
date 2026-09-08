@@ -22,6 +22,7 @@ services:
       - "traefik.http.routers.bluehood.middlewares=bluehood-https-redirect"
       - "traefik.http.routers.bluehood-secure.entrypoints=https"
       - "traefik.http.routers.bluehood-secure.rule=Host(`bluehood.${DOMAIN}`)"
+      - "traefik.http.routers.bluehood-secure.middlewares=internal-only"
       - "traefik.http.routers.bluehood-secure.tls=true"
       - "traefik.http.routers.bluehood-secure.service=bluehood"
       - "traefik.http.services.bluehood.loadbalancer.server.port=8080"  # port of the service.

@@ -68,6 +68,7 @@ services:
       - "traefik.http.routers.ghost.middlewares=ghost-https-redirect"
       - "traefik.http.routers.ghost-secure.entrypoints=https"
       - "traefik.http.routers.ghost-secure.rule=Host(`ghost.${DOMAIN}`)"
+      - "traefik.http.routers.ghost-secure.middlewares=internal-only"
       - "traefik.http.routers.ghost-secure.tls=true"
       - "traefik.http.routers.ghost-secure.service=ghost"
       - "traefik.http.services.ghost.loadbalancer.server.port=2368"  # port of the service.

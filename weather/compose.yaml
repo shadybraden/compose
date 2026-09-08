@@ -24,6 +24,7 @@ services:
       - "traefik.http.routers.weather.middlewares=weather-https-redirect"
       - "traefik.http.routers.weather-secure.entrypoints=https"
       - "traefik.http.routers.weather-secure.rule=Host(`weather.${DOMAIN}`)"
+      - "traefik.http.routers.weather-secure.middlewares=internal-only"
       - "traefik.http.routers.weather-secure.tls=true"
       - "traefik.http.routers.weather-secure.service=weather"
       - "traefik.http.services.weather.loadbalancer.server.port=8080"  # port of the service.

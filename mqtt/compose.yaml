@@ -22,6 +22,7 @@ services:
       - "traefik.http.routers.mqtt.middlewares=mqtt-https-redirect"
       - "traefik.http.routers.mqtt-secure.entrypoints=https"
       - "traefik.http.routers.mqtt-secure.rule=Host(`mqtt.${DOMAIN}`)"
+      - "traefik.http.routers.mqtt-secure.middlewares=internal-only"
       - "traefik.http.routers.mqtt-secure.tls=true"
       - "traefik.http.routers.mqtt-secure.service=mqtt"
       - "traefik.http.services.mqtt.loadbalancer.server.port=443"  # port of the service.

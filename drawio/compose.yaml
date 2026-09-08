@@ -15,6 +15,7 @@ services:
       - "traefik.http.routers.drawio.middlewares=drawio-https-redirect"
       - "traefik.http.routers.drawio-secure.entrypoints=https"
       - "traefik.http.routers.drawio-secure.rule=Host(`drawio.${DOMAIN}`)"
+      - "traefik.http.routers.drawio-secure.middlewares=internal-only"
       - "traefik.http.routers.drawio-secure.tls=true"
       - "traefik.http.routers.drawio-secure.service=drawio"
       - "traefik.http.services.drawio.loadbalancer.server.port=8080"  # port of the service.

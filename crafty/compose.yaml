@@ -29,6 +29,7 @@ services:
       - "traefik.http.routers.crafty.middlewares=crafty-https-redirect"
       - "traefik.http.routers.crafty-secure.entrypoints=https"
       - "traefik.http.routers.crafty-secure.rule=Host(`crafty.${DOMAIN}`)"
+      - "traefik.http.routers.crafty-secure.middlewares=internal-only"
       - "traefik.http.routers.crafty-secure.tls=true"
       - "traefik.http.routers.crafty-secure.service=crafty"
       - "traefik.http.services.crafty.loadbalancer.server.port=8443"  # port of the service.
@@ -44,6 +45,7 @@ services:
       - "traefik.http.routers.mcmap.middlewares=mcmap-https-redirect"
       - "traefik.http.routers.mcmap-secure.entrypoints=https"
       - "traefik.http.routers.mcmap-secure.rule=Host(`mcmap.${DOMAIN}`)"
+      - "traefik.http.routers.mcmap-secure.middlewares=internal-only"
       - "traefik.http.routers.mcmap-secure.tls=true"
       - "traefik.http.routers.mcmap-secure.service=mcmap"
       - "traefik.http.services.mcmap.loadbalancer.server.port=25566"  # port of the service.
@@ -53,6 +55,7 @@ services:
       - "traefik.http.routers.plan.middlewares=plan-https-redirect"
       - "traefik.http.routers.plan-secure.entrypoints=https"
       - "traefik.http.routers.plan-secure.rule=Host(`plan.${DOMAIN}`)"
+      - "traefik.http.routers.plan-secure.middlewares=internal-only"
       - "traefik.http.routers.plan-secure.tls=true"
       - "traefik.http.routers.plan-secure.service=plan"
       - "traefik.http.services.plan.loadbalancer.server.port=25567"  # port of the service.

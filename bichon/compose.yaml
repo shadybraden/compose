@@ -20,6 +20,7 @@ services:
       - "traefik.http.routers.bichon.middlewares=bichon-https-redirect"
       - "traefik.http.routers.bichon-secure.entrypoints=https"
       - "traefik.http.routers.bichon-secure.rule=Host(`bichon.${DOMAIN}`)"
+      - "traefik.http.routers.bichon-secure.middlewares=internal-only"
       - "traefik.http.routers.bichon-secure.tls=true"
       - "traefik.http.routers.bichon-secure.service=bichon"
       - "traefik.http.services.bichon.loadbalancer.server.port=15630"  # port of the service.

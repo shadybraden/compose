@@ -21,6 +21,7 @@ services:
       - "traefik.http.routers.homepage.middlewares=homepage-https-redirect"
       - "traefik.http.routers.homepage-secure.entrypoints=https"
       - "traefik.http.routers.homepage-secure.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.homepage-secure.middlewares=internal-only"
       - "traefik.http.routers.homepage-secure.tls=true"
       - "traefik.http.routers.homepage-secure.service=homepage"
       - "traefik.http.services.homepage.loadbalancer.server.port=3000"  # port of the service.

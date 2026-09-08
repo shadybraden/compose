@@ -27,6 +27,7 @@ services:
       - "traefik.http.routers.sonarr.middlewares=sonarr-https-redirect"
       - "traefik.http.routers.sonarr-secure.entrypoints=https"
       - "traefik.http.routers.sonarr-secure.rule=Host(`sonarr.${DOMAIN}`)"
+      - "traefik.http.routers.sonarr-secure.middlewares=internal-only"
       - "traefik.http.routers.sonarr-secure.tls=true"
       - "traefik.http.routers.sonarr-secure.service=sonarr"
       - "traefik.http.services.sonarr.loadbalancer.server.port=8989"  # port of the service

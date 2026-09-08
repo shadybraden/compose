@@ -29,7 +29,7 @@ services:
       - "homepage.name=dozzle"
       - "homepage.icon=/images/dozzle.png"
       - "homepage.href=https://dozzle.${DOMAIN}/"
-      - "traefik.http.routers.dozzle-secure.middlewares=tinyauth"
+      - "traefik.http.routers.dozzle-secure.middlewares=tinyauth,internal-only"
       - env="production"
     security_opt:
       - no-new-privileges:true  # helps to increase security

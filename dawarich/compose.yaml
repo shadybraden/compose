@@ -60,6 +60,7 @@ services:
       - "traefik.http.routers.dawarich.middlewares=dawarich-https-redirect"
       - "traefik.http.routers.dawarich-secure.entrypoints=https"
       - "traefik.http.routers.dawarich-secure.rule=Host(`dawarich.${DOMAIN}`)"
+      - "traefik.http.routers.dawarich-secure.middlewares=internal-only"
       - "traefik.http.routers.dawarich-secure.tls=true"
       - "traefik.http.routers.dawarich-secure.service=dawarich"
       - "traefik.http.services.dawarich.loadbalancer.server.port=3000"  # port of the service.

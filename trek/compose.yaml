@@ -45,6 +45,7 @@ services:
       - "traefik.http.routers.trek.middlewares=trek-https-redirect"
       - "traefik.http.routers.trek-secure.entrypoints=https"
       - "traefik.http.routers.trek-secure.rule=Host(`trek.${DOMAIN}`)"
+      - "traefik.http.routers.trek-secure.middlewares=internal-only"
       - "traefik.http.routers.trek-secure.tls=true"
       - "traefik.http.routers.trek-secure.service=trek"
       - "traefik.http.services.trek.loadbalancer.server.port=3000"  # port of the service.

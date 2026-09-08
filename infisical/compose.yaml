@@ -31,6 +31,7 @@ services:
       - "traefik.http.routers.infisical.middlewares=infisical-https-redirect"
       - "traefik.http.routers.infisical-secure.entrypoints=https"
       - "traefik.http.routers.infisical-secure.rule=Host(`infisical.${DOMAIN}`)"
+      - "traefik.http.routers.infisical-secure.middlewares=internal-only"
       - "traefik.http.routers.infisical-secure.tls=true"
       - "traefik.http.routers.infisical-secure.service=infisical"
       - "traefik.http.services.infisical.loadbalancer.server.port=8080"  # port of the service.

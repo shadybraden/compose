@@ -44,6 +44,7 @@ services:
       - "traefik.http.routers.frigate.middlewares=frigate-https-redirect"
       - "traefik.http.routers.frigate-secure.entrypoints=https"
       - "traefik.http.routers.frigate-secure.rule=Host(`frigate.${DOMAIN}`)"
+      - "traefik.http.routers.frigate-secure.middlewares=internal-only"
       - "traefik.http.routers.frigate-secure.tls=true"
       - "traefik.http.routers.frigate-secure.service=frigate"
       - "traefik.http.services.frigate.loadbalancer.server.port=8971"  # port of the service.

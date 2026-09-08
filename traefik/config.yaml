@@ -23,6 +23,8 @@ http:
     portainer:
       entryPoints: ["https"]
       rule: "Host(`portainer-shady.holmlab.org`)"
+      middlewares:
+        - internal-only@docker
 #      middlewares:
 #        - default-security-headers
       tls: {}
@@ -30,6 +32,8 @@ http:
     imessage:
       entryPoints: ["https"]
       rule: "Host(`imessage.holmlab.org`)"
+      middlewares:
+        - internal-only@docker
 #      middlewares:
 #        - default-security-headers
       tls: {}
@@ -37,6 +41,8 @@ http:
     glances:
       entryPoints: ["https"]
       rule: "Host(`glances-shady.holmlab.org`)"
+      middlewares:
+        - internal-only@docker
 #      middlewares:
 #        - default-security-headers
       tls: {}
@@ -44,6 +50,8 @@ http:
     glances-mck:
       entryPoints: ["https"]
       rule: "Host(`glances-mck.holmlab.org`)"
+      middlewares:
+        - internal-only@docker
 #      middlewares:
 #        - default-security-headers
       tls: {}
@@ -53,11 +61,14 @@ http:
       rule: "Host(`syncthing-shady.holmlab.org`)"
       middlewares:
         - default-security-headers
+        - internal-only@docker
       tls: {}
       service: syncthing
     crafty:
       entryPoints: ["https"]
       rule: "Host(`crafty-shady.holmlab.org`)"
+      middlewares:
+        - internal-only@docker
 #      middlewares:
 #        - default-security-headers
       tls: {}
@@ -67,6 +78,7 @@ http:
       rule: "Host(`periphery-shady.holmlab.org`)"
       middlewares:
         - default-security-headers
+        - internal-only@docker
       tls: {}
       service: periphery-shady
     periphery-mck:
@@ -74,6 +86,7 @@ http:
       rule: "Host(`periphery-mck.holmlab.org`)"
       middlewares:
         - default-security-headers
+        - internal-only@docker
       tls: {}
       service: periphery-mck
     immich-ml-shady:
@@ -81,6 +94,7 @@ http:
       rule: "Host(`immich-ml-shady.holmlab.org`)"
       middlewares:
         - default-security-headers
+        - internal-only@docker
       tls: {}
       service: immich-ml-shady
   services:

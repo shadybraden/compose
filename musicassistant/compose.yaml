@@ -24,6 +24,7 @@ services:
       - "traefik.http.routers.music-assistant.middlewares=music-assistant-https-redirect"
       - "traefik.http.routers.music-assistant-secure.entrypoints=https"
       - "traefik.http.routers.music-assistant-secure.rule=Host(`music-assistant.${DOMAIN}`)"
+      - "traefik.http.routers.music-assistant-secure.middlewares=internal-only"
       - "traefik.http.routers.music-assistant-secure.tls=true"
       - "traefik.http.routers.music-assistant-secure.service=music-assistant"
       - "traefik.http.services.music-assistant.loadbalancer.server.port=8095"  # port of the service.

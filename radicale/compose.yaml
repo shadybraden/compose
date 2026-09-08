@@ -17,6 +17,7 @@ services:
       - "traefik.http.routers.radicale.middlewares=radicale-https-redirect"
       - "traefik.http.routers.radicale-secure.entrypoints=https"
       - "traefik.http.routers.radicale-secure.rule=Host(`radicale.${DOMAIN}`)"
+      - "traefik.http.routers.radicale-secure.middlewares=internal-only"
       - "traefik.http.routers.radicale-secure.tls=true"
       - "traefik.http.routers.radicale-secure.service=radicale"
       - "traefik.http.services.radicale.loadbalancer.server.port=5232"  # port of the service.

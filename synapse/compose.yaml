@@ -21,6 +21,7 @@ services:
       - "traefik.http.routers.matrix.middlewares=matrix-https-redirect"
       - "traefik.http.routers.matrix-secure.entrypoints=https"
       - "traefik.http.routers.matrix-secure.rule=Host(`matrix.${DOMAIN}`)"
+      - "traefik.http.routers.matrix-secure.middlewares=internal-only"
       - "traefik.http.routers.matrix-secure.tls=true"
       - "traefik.http.routers.matrix-secure.service=matrix"
       - "traefik.http.services.matrix.loadbalancer.server.port=8008"  # port of the service.

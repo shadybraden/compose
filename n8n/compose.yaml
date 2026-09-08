@@ -26,6 +26,7 @@ services:
       - "traefik.http.routers.n8n.middlewares=n8n-https-redirect"
       - "traefik.http.routers.n8n-secure.entrypoints=https"
       - "traefik.http.routers.n8n-secure.rule=Host(`n8n.${DOMAIN}`)"
+      - "traefik.http.routers.n8n-secure.middlewares=internal-only"
       - "traefik.http.routers.n8n-secure.tls=true"
       - "traefik.http.routers.n8n-secure.service=n8n"
       - "traefik.http.services.n8n.loadbalancer.server.port=5678"  # port of the service.

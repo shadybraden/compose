@@ -23,6 +23,7 @@ services:
       - "traefik.http.routers.storage.middlewares=storage-https-redirect"
       - "traefik.http.routers.storage-secure.entrypoints=https"
       - "traefik.http.routers.storage-secure.rule=Host(`storage.${DOMAIN}`)"
+      - "traefik.http.routers.storage-secure.middlewares=internal-only"
       - "traefik.http.routers.storage-secure.tls=true"
       - "traefik.http.routers.storage-secure.service=storage"
       - "traefik.http.services.storage.loadbalancer.server.port=5000"  # port of the service.
