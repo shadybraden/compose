@@ -10,5 +10,5 @@ services:
     environment:
       - HUGO_ENVIRONMENT=production
       - HUGO_ENV=production
-    command: sh -c "rm -r /output/* && hugo build --destination /output --minify --baseURL="https://s8di.com" && chown -R 1000:1000 /output/*"
+    command: sh -c "rm -r /output/* && hugo build --destination /output --minify --baseURL="https://hugo.${DOMAIN}/" && chown -R 1000:1000 /output/*"
     working_dir: /src
