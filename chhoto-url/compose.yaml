@@ -8,7 +8,7 @@ services:
       - /data/config_stortage/chhoto-url:/data
     environment:
       - CHHOTO_DB_URL=/data/urls.sqlite
-      - CHHOTO_SQLITE_USE_WAL_MODE = True
+      - CHHOTO_SQLITE_USE_WAL_MODE=True
       - CHHOTO_SITE_URL=https://l.s8di.com
       - CHHOTO_REDIRECT_METHOD=TEMPORARY
       - CHHOTO_SLUG_STYLE=Pair
