@@ -31,7 +31,7 @@ services:
       - "traefik.http.services.chhoto.loadbalancer.server.port=4567"  # port of the service.
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
-      - "homepage.name=chhoto"
+      - "homepage.name=URL Shortener"
       - "homepage.icon=/images/chhoto.png"
       - "homepage.href=https://chhoto.${DOMAIN}/"
       - "traefik.http.routers.chhoto-secure.middlewares=tinyauth"
