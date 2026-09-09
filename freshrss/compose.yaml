@@ -1,24 +1,25 @@
 ---
+name: freshrss
 services:
   freshrss:
+    image: freshrss/freshrss:1.30.0
+    container_name: freshrss
+    volumes:
+      - /data/config_storage/freshrss/data:/var/www/FreshRSS/data
+      - /data/config_storage/freshrss/extensions:/var/www/FreshRSS/extensions
+    environment:
+      - TZ=America/New_York
+      - CRON_MIN=1,31  # this is minute 1 and 31
+    network_mode: container:gluetun
     restart: unless-stopped
     logging:
       options:
         max-size: 10m
-    environment:
-      - TZ=America/New_York
-      - CRON_MIN=1,31  # this is minute 1 and 31
-    volumes:
-      - /data/config_storage/freshrss/data:/var/www/FreshRSS/data
-      - /data/config_storage/freshrss/extensions:/var/www/FreshRSS/extensions
-    container_name: freshrss
-    image: freshrss/freshrss:1.29.1
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
-    network_mode: container:gluetun
     labels:
       - "homepage.group=Media"
       - "homepage.name=FreshRSS"
       - "homepage.icon=/images/freshrss.png"
       - "homepage.href=https://rss.${DOMAIN}/"
       - env=production
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
