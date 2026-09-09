@@ -8,8 +8,6 @@ services:
       - /data/hugo-public:/usr/share/nginx/html:ro
     environment:
       - TZ=${TZ}
-    ports:
-      - '0.0.0.0:34789:80'
     networks:
       - intranet
     healthcheck:
