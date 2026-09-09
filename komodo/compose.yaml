@@ -54,7 +54,7 @@ services:
       - no-new-privileges:true  # helps to increase security
 
   mongo:
-    image: mongo:8.3.8  # use latest avalible
+    image: mongo:8.3.9  # use latest avalible
     container_name: komodo-mongo
     volumes:
       - /data/config_storage/komodo/mongo-data:/data/db
