@@ -53,6 +53,7 @@ services:
       - "homepage.name=trek"
       - "homepage.icon=/images/trek.png"
       - "homepage.href=https://trek.${DOMAIN}/"
+      - env="production"
 
 networks:
   intranet:
