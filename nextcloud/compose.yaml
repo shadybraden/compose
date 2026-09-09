@@ -1,20 +1,19 @@
 ---
+name: nextcloud
 services:
   nextcloud:
+    image: nextcloud:34.0.3
     container_name: nextcloud
-    restart: unless-stopped
     volumes:
       - /data/config_storage/nextcloud/html:/var/www/html
       - /data/config_storage/nextcloud/apps:/var/www/html/custom_apps
       - /data/config_storage/nextcloud/config:/var/www/html/config
       - /data/config_storage/nextcloud/data:/var/www/html/data
-    image: nextcloud:34.0.3
     ports:
-      - 28800:80
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
+      - '0.0.0.0:28800:80'
     networks:
       - intranet
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.nextcloud.entrypoints=http"
@@ -32,6 +31,8 @@ services:
       - "homepage.icon=/images/nextcloud.png"
       - "homepage.href=https://nextcloud.${DOMAIN}/"
       - env=production
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
