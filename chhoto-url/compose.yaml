@@ -11,7 +11,7 @@ services:
       - CHHOTO_SQLITE_USE_WAL_MODE=True
       - CHHOTO_SITE_URL=https://l.s8di.com
       - CHHOTO_REDIRECT_METHOD=TEMPORARY
-      - CHHOTO_SLUG_STYLE=Pair
+      - CHHOTO_SLUG_STYLE=UID
       - CHHOTO_SLUG_LENGTH=8
     ports:
       - '0.0.0.0:34789:4567'
@@ -34,6 +34,7 @@ services:
       - "homepage.name=chhoto"
       - "homepage.icon=/images/chhoto.png"
       - "homepage.href=https://chhoto.${DOMAIN}/"
+      - "traefik.http.routers.chhoto-secure.middlewares=tinyauth"
     user: 1000:1000
     cap_drop:
       - ALL
