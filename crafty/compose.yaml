@@ -1,26 +1,25 @@
 ---
+name: crafty_container
 services:
   crafty:
-    container_name: crafty_container
     image: registry.gitlab.com/crafty-controller/crafty-4:4.10.8
-    restart: unless-stopped
-    environment:
-      - TZ=America/New_York
-    ports:
-      - "8443:8443"  # HTTPS web u
-#      - "8123:8123"  # DYNMAP
-      - "19132:19132/udp"  # BEDROCK
-      - "25500-25600:25500-25600"  # MC SERV PORT RANGE
+    container_name: crafty_container
     volumes:
       - /data/dont_backup/crafty/backups:/crafty/backups
       - /data/config_storage/crafty/logs:/crafty/logs
       - /data/config_storage/crafty/servers:/crafty/servers
       - /data/config_storage/crafty/config:/crafty/app/config
       - /data/config_storage/crafty/import:/crafty/import
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
+    environment:
+      - TZ=America/New_York
+    ports:
+      - '0.0.0.0:8443:8443'  # HTTPS web u
+#      - "8123:8123"  # DYNMAP
+      - '0.0.0.0:19132:19132/udp'  # BEDROCK
+      - '0.0.0.0:25500-25600:25500-25600'  # MC SERV PORT RANGE
     networks:
       - intranet
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.crafty.entrypoints=http"
@@ -57,6 +56,8 @@ services:
       - "traefik.http.routers.plan-secure.service=plan"
       - "traefik.http.services.plan.loadbalancer.server.port=25567"  # port of the service.
       - env=production
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
