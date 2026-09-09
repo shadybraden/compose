@@ -13,6 +13,16 @@ services:
       - CHHOTO_REDIRECT_METHOD=TEMPORARY
       - CHHOTO_SLUG_STYLE=UID
       - CHHOTO_SLUG_LENGTH=8
+      # If you want to provided hashed password and API Key, uncomment the next line. Read the README
+      # for instructions for the hashing. Make sure to escape $ by $$.
+      - CHHOTO_HASH_ALGORITHM=Argon2
+      - password=$$argon2id$$v=19$$m=65536,t=3,p=1$$Ym9oc2F4NG5pOGs4NzJ1dw$$9BH1GtM1+2U4yF15t9sHJsqOlyu5dVPmt1tOaOsFIk4
+
+      # This needs to be set in order to use programs that use the JSON interface of Chhoto URL.
+      # You will get a warning if this is insecure, and a generated value will be output
+      # You may use that value if you can't think of a secure key
+      # - CHHOTO_API_KEY=SECURE_API_KEY
+
     ports:
       - '0.0.0.0:34789:4567'
     networks:
