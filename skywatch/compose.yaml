@@ -1,9 +1,10 @@
 ---
+name: skywatch
 services:
   skywatch:
-    stdin_open: true
-    tty: true
+    image: git.holmlab.org/shady/skywatch:1.5.6
+    container_name: skywatch
     volumes:
       - /data/config_storage/recents.txt:/app/recents.txt
-    container_name: skywatch
-    image: git.holmlab.org/shady/skywatch:1.5.6
+    stdin_open: true
+    tty: true
