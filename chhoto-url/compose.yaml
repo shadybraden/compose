@@ -1,0 +1,48 @@
+---
+name: chhoto-url
+services:
+  chhoto-url:
+    image: sintan1729/chhoto-url:7.5.3
+    container_name: chhoto-url
+    volumes:
+      - /data/config_stortage/chhoto-url:/data
+    environment:
+      - CHHOTO_DB_URL=/data/urls.sqlite
+      - CHHOTO_SQLITE_USE_WAL_MODE = True
+      - CHHOTO_SITE_URL=https://l.s8di.com
+      - CHHOTO_REDIRECT_METHOD=TEMPORARY
+      - CHHOTO_SLUG_STYLE=Pair
+      - CHHOTO_SLUG_LENGTH=8
+    ports:
+      - '0.0.0.0:34789:4567'
+    networks:
+      - intranet
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.chhoto.entrypoints=http"
+      - "traefik.http.routers.chhoto.rule=Host(`chhoto.${DOMAIN}`)"
+      - "traefik.http.middlewares.chhoto-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.chhoto.middlewares=chhoto-https-redirect"
+      - "traefik.http.routers.chhoto-secure.entrypoints=https"
+      - "traefik.http.routers.chhoto-secure.rule=Host(`chhoto.${DOMAIN}`)"
+      - "traefik.http.routers.chhoto-secure.tls=true"
+      - "traefik.http.routers.chhoto-secure.service=chhoto"
+      - "traefik.http.services.chhoto.loadbalancer.server.port=80"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=chhoto"
+      - "homepage.icon=/images/chhoto.png"
+      - "homepage.href=https://chhoto.${DOMAIN}/"
+    user: 1000:1000
+    cap_drop:
+      - ALL
+    dns:
+      - 0.0.0.0
+    read_only: true
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+
+networks:
+  intranet:
+    external: true
