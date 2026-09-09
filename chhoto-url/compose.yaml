@@ -28,7 +28,7 @@ services:
       - "traefik.http.routers.chhoto-secure.rule=Host(`chhoto.${DOMAIN}`)"
       - "traefik.http.routers.chhoto-secure.tls=true"
       - "traefik.http.routers.chhoto-secure.service=chhoto"
-      - "traefik.http.services.chhoto.loadbalancer.server.port=80"  # port of the service.
+      - "traefik.http.services.chhoto.loadbalancer.server.port=4567"  # port of the service.
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=chhoto"
