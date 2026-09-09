@@ -1,9 +1,9 @@
 ---
+name: navidrome
 services:
   navidrome:
+    image: deluan/navidrome:0.63.2
     container_name: navidrome
-    restart: unless-stopped
-    user: 1000:1000
     volumes:
       - /data/music:/music:ro
       - /data/config_storage/navidrome:/data
@@ -11,13 +11,11 @@ services:
       - ND_LOGLEVEL=info
       - ND_SCANSCHEDULE=100m
       - ND_ENABLEINSIGHTSCOLLECTOR=false  # turn off telemetry
-    image: deluan/navidrome:0.63.0
     ports:
-      - 4533:4533
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
+      - '0.0.0.0:4533:4533'
     networks:
       - intranet
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.navidrome.entrypoints=http"
@@ -35,6 +33,9 @@ services:
       - "homepage.icon=/images/navidrome.png"
       - "homepage.href=https://navidrome.${DOMAIN}/"
       - env=production
+    user: 1000:1000
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
