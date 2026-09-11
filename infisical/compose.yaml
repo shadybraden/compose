@@ -2,7 +2,7 @@
 name: infisical
 services:
   backend:
-    image: infisical/infisical:v0.165.9
+    image: infisical/infisical:v0.165.10
     container_name: infisical-backend
     depends_on:
       infisical-db:
