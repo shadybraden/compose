@@ -1,10 +1,11 @@
 ---
+name: mmich-machine-learning
 services:
   immich-machine-learning:
-    container_name: immich_machine_learning
     image: ghcr.io/immich-app/immich-machine-learning:v3.2.0
+    container_name: immich_machine_learning
     volumes:
       - /data/dont_backup/immich_machine_learning:/cache
-    restart: unless-stopped
     ports:
-      - 3003:3003
+      - '0.0.0.0:3003:3003'
+    restart: unless-stopped
