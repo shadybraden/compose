@@ -90,6 +90,11 @@
       "sourceUrl": "https://www.postgresql.org/docs/release/"
     },
     {
+      "matchPackageNames": ["quay.io/linuxserver.io/plex"],
+      "matchDatasources": ["docker"],
+      "sourceUrl": "https://forums.plex.tv/t/plex-media-server/30447/10000"
+    },
+    {
       "matchPackageNames": ["ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder"],
       "versioning": "regex:^latest-build-(?<major>\\d+)$",
       "matchDatasources": ["docker"],
