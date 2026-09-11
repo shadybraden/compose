@@ -15,10 +15,10 @@ services:
     networks:
       - intranet
     command: agent
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
     labels:
       - env=production
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
