@@ -14,8 +14,8 @@ services:
       - TZ=America/New_York
       - ALLOWED_HOST_LIST="*.${DOMAIN}"
     ports:
-      - '0.0.0.0:3333:3000'
       - '0.0.0.0:222:22'
+      - '0.0.0.0:3333:3000'
     networks:
       - intranet
     restart: unless-stopped
