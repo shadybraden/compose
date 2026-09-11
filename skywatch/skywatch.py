@@ -171,6 +171,12 @@ for ac in data.get('aircraft', []):
         priority = 'high'
         title = "AWACS | " + short_type_value + " | " + desc_value
 
+    if callsign.startswith("SHUCK"):
+        print(callsign)
+        send_message = 1
+        priority = 'high'
+        title = "AWACS | " + short_type_value + " | " + desc_value
+
     if callsign.startswith("OLIVE"):
         print(callsign)
         send_message = 1
