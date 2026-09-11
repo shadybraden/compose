@@ -1,19 +1,20 @@
 ---
+name: plex
 services:
   plex:
-    image: quay.io/linuxserver.io/plex:1.43.3
+    image: quay.io/linuxserver.io/plex:1.43.4
     container_name: plex
-    network_mode: host
+    volumes:
+      - /data/config_storage/plex/config:/config
+      - /data/mnt/shows:/shows:ro
+      - /data/mnt/movies:/movies:ro
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=America/New_York
       - VERSION=docker
       - PLEX_CLAIM=${PLEX_CLAIM}
-    volumes:
-      - /data/config_storage/plex/config:/config
-      - /data/mnt/shows:/shows:ro
-      - /data/mnt/movies:/movies:ro
+    network_mode: host
+    restart: unless-stopped
     security_opt:
       - no-new-privileges:true  # helps to increase security
-    restart: unless-stopped
