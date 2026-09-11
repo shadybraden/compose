@@ -2,7 +2,7 @@
 name: dozzle
 services:
   dozzle:
-    image: amir20/dozzle:v10.10.0
+    image: amir20/dozzle:v11.0.0
     container_name: dozzle-agent
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -15,10 +15,10 @@ services:
     networks:
       - intranet
     command: agent
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
     labels:
       - env=production
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
