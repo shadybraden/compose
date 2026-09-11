@@ -42,7 +42,7 @@ services:
     image: postgres:18.6
     container_name: kener_postgres
     volumes:
-      - /data/config_storage/kener/postgres_data:/var/lib/postgresql/data
+      - /data/config_storage/kener/postgres_data:/var/lib/postgresql
     environment:
       POSTGRES_DB: kener
       POSTGRES_USER: kener
