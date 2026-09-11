@@ -1,0 +1,47 @@
+---
+name: kener
+services:
+  kener:
+    image: rajnandan1/kener:v4.1.5  # current stable release; docs show v4.0.16 example, this is the latest
+    container_name: kener
+    # SQLite database lives in /app/database; set DATABASE_URL to use PG/MySQL instead
+    volumes:
+      - /data/config_storage/kener/database:/app/database
+    environment:
+      KENER_SECRET_KEY: ${KENER_SECRET_KEY}  # required; generate with: openssl rand -base64 32
+      ORIGIN: "https://kener.${DOMAIN}"      # required; public URL, no trailing slash
+      REDIS_URL: ${REDIS_URL}                # required; point at an existing Redis (redis:// or rediss://)
+      # DATABASE_URL: sqlite://./database/kener.sqlite.db  # optional; defaults to SQLite
+      # KENER_BASE_PATH: /status             # optional; for subpath deployments
+      # SMTP_HOST/SMTP_PORT/SMTP_USER/SMTP_PASS/SMTP_FROM_EMAIL or RESEND_API_KEY  # optional; email alerting
+    ports:
+      - '0.0.0.0:3000:3000'
+    networks:
+      - intranet
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.kener.entrypoints=http"
+      - "traefik.http.routers.kener.rule=Host(`kener.${DOMAIN}`)"
+      - "traefik.http.middlewares.kener-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.kener.middlewares=kener-https-redirect"
+      - "traefik.http.routers.kener-secure.entrypoints=https"
+      - "traefik.http.routers.kener-secure.rule=Host(`kener.${DOMAIN}`)"
+      - "traefik.http.routers.kener-secure.tls=true"
+      - "traefik.http.routers.kener-secure.service=kener"
+      - "traefik.http.services.kener.loadbalancer.server.port=3000"  # port of the service
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Infrastructure"
+      - "homepage.name=Kener"
+      - "homepage.icon=/images/kener.png"
+      - "homepage.href=https://kener.${DOMAIN}/"
+      - env=production
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+
+networks:
+  intranet:
+    external: true
