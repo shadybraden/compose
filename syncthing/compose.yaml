@@ -16,9 +16,9 @@ services:
       - TZ=Etc/UTC
     ports:
       - '0.0.0.0:8384:8384'  # web ui
+      - '0.0.0.0:21027:21027/udp'
       - '0.0.0.0:22000:22000/tcp'
       - '0.0.0.0:22000:22000/udp'
-      - '0.0.0.0:21027:21027/udp'
     networks:
       - intranet
     restart: unless-stopped
