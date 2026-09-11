@@ -4,11 +4,14 @@ services:
   kener:
     image: rajnandan1/kener:v4.1.5
     container_name: kener
-    volumes:
-      - /data/config_storage/kener/database:/app/database
+    depends_on:
+      - kener_postgres
+      - kener_redis
     environment:
       KENER_SECRET_KEY: ${KENER_SECRET_KEY}
       ORIGIN: "https://kener.${DOMAIN}"
+      DATABASE_URL: "postgresql://kener:${POSTGRES_PASSWORD}@kener_postgres:5432/kener"
+      REDIS_URL: "redis://kener_redis:6379"
     networks:
       - intranet
     restart: unless-stopped
@@ -32,6 +35,33 @@ services:
     dns:
       - ${DNS_SERVER1}
       - ${DNS_SERVER2}
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+
+  kener_postgres:
+    image: postgres:18.6
+    container_name: kener_postgres
+    volumes:
+      - /data/config_storage/kener/postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: kener
+      POSTGRES_USER: kener
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    networks:
+      - intranet
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+
+  kener_redis:
+    image: redis:7.4.10-alpine
+    container_name: kener_redis
+    volumes:
+      - /data/config_storage/kener/redis_data:/data
+    networks:
+      - intranet
+    command: ["redis-server", "--appendonly", "yes"]
+    restart: unless-stopped
     security_opt:
       - no-new-privileges:true  # helps to increase security
 
