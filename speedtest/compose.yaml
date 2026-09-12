@@ -2,7 +2,7 @@
 name: speedtest
 services:
   speedtest:
-    image: ghcr.io/librespeed/speedtest:6.2.1
+    image: ghcr.io/librespeed/speedtest:6.3.0
     container_name: speedtest
     environment:
       MODE: standalone
