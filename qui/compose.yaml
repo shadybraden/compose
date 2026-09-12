@@ -2,7 +2,7 @@
 name: qui
 services:
   qui:
-    image: ghcr.io/autobrr/qui:v1.28.0
+    image: ghcr.io/autobrr/qui:v1.29.0
     container_name: qui
     volumes:
       - /data/config_storage/qui:/config
