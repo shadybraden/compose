@@ -54,7 +54,7 @@ services:
       - no-new-privileges:true  # helps to increase security
 
   kener_redis:
-    image: redis:7.4.10-alpine
+    image: redis:7.4.11-alpine
     container_name: kener_redis
     volumes:
       - /data/config_storage/kener/redis_data:/data
