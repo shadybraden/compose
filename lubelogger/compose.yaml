@@ -2,7 +2,7 @@
 name: lubelogger
 services:
   app:
-    image: ghcr.io/hargata/lubelogger:v1.7.2
+    image: ghcr.io/hargata/lubelogger:v1.7.3
     volumes:
       - /data/config_storage/lubelogger/data:/App/data
       - /data/config_storage/lubelogger/keys:/root/.aspnet/DataProtection-Keys
