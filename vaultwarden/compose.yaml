@@ -2,7 +2,7 @@
 name: vaultwarden
 services:
   server:
-    image: vaultwarden/server:1.37.2
+    image: vaultwarden/server:1.37.3
     container_name: vaultwarden
     volumes:
       - /data/config_storage/vaultwarden:/data
