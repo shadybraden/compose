@@ -1,20 +1,9 @@
 ---
+name: frigate
 services:
   frigate:
-    container_name: frigate
-    privileged: true  # this may not be necessary for all setups
-    restart: unless-stopped
-    stop_grace_period: 30s  # allow enough time to shut down the various services
     image: ghcr.io/blakeblackshear/frigate:0.18.0
-    shm_size: "512mb"  # update for your cameras based on calculation above
-    devices:
-#      - /dev/bus/usb:/dev/bus/usb  # Passes the USB Coral, needs to be modified for other versions
-#      - /dev/apex_0:/dev/apex_0  # Passes a PCIe Coral, follow driver instructions here https://coral.ai/docs/m2/get-started/#2a-on-linux
-#      - /dev/video11:/dev/video11  # For Raspberry Pi 4B
-      - /dev/dri/renderD128:/dev/dri/renderD128  # For intel hwaccel, needs to be updated for your hardware
-      - /dev/video0:/dev/video0  # usb webcam
-    group_add:
-      - "44"  # video GID (getent group video | cut -d: -f3)
+    container_name: frigate
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /data/config_storage/frigate:/config
@@ -24,18 +13,17 @@ services:
         target: /tmp/cache
         tmpfs:
           size: 1000000000
+    environment:
+      FRIGATE_RTSP_PASSWORD: ${FRIGATE_RTSP_PASSWORD}
     ports:
 #      - "8971:8971"  # web ui
       # - "5000:5000" # Internal unauthenticated access. Expose carefully.
-      - "8554:8554"  # RTSP feeds
-      - "8555:8555/tcp"  # WebRTC over tcp
-      - "8555:8555/udp"  # WebRTC over udp
-    environment:
-      FRIGATE_RTSP_PASSWORD: ${FRIGATE_RTSP_PASSWORD}
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
+      - '0.0.0.0:8554:8554'  # RTSP feeds
+      - '0.0.0.0:8555:8555/tcp'  # WebRTC over tcp
+      - '0.0.0.0:8555:8555/udp'  # WebRTC over udp
     networks:
       - intranet
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.frigate.entrypoints=http"
@@ -54,6 +42,19 @@ services:
       - "homepage.icon=/images/frigate.png"
       - "homepage.href=https://frigate.${DOMAIN}/"
       - env=production
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    privileged: true  # this may not be necessary for all setups
+    stop_grace_period: 30s  # allow enough time to shut down the various services
+    shm_size: "512mb"  # update for your cameras based on calculation above
+    devices:
+#      - /dev/bus/usb:/dev/bus/usb  # Passes the USB Coral, needs to be modified for other versions
+#      - /dev/apex_0:/dev/apex_0  # Passes a PCIe Coral, follow driver instructions here https://coral.ai/docs/m2/get-started/#2a-on-linux
+#      - /dev/video11:/dev/video11  # For Raspberry Pi 4B
+      - /dev/dri/renderD128:/dev/dri/renderD128  # For intel hwaccel, needs to be updated for your hardware
+      - /dev/video0:/dev/video0  # usb webcam
+    group_add:
+      - "44"  # video GID (getent group video | cut -d: -f3)
 
 networks:
   intranet:
