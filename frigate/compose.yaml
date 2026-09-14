@@ -48,13 +48,13 @@ services:
 #      - /dev/video11:/dev/video11  # For Raspberry Pi 4B
       - /dev/dri/renderD128:/dev/dri/renderD128  # For intel hwaccel, needs to be updated for your hardware
       - /dev/video0:/dev/video0  # usb webcam
+    group_add:
+      - "44"  # video GID (getent group video | cut -d: -f3)
     privileged: true  # this may not be necessary for all setups
     security_opt:
       - no-new-privileges:true  # helps to increase security
     shm_size: "512mb"  # update for your cameras based on calculation above
     stop_grace_period: 30s  # allow enough time to shut down the various services
-    group_add:
-      - "44"  # video GID (getent group video | cut -d: -f3)
 
 networks:
   intranet:

@@ -60,6 +60,7 @@ KEY_ORDER = [
     "device_cgroup_rules",
     "hostname",
     "devices",
+    "group_add",
     "privileged",
     "security_opt",
     "shm_size",
