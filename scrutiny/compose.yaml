@@ -33,7 +33,6 @@ services:
       - SYS_RAWIO
     devices:
       - "/dev/sda"
-      - "/dev/sdb"
     security_opt:
       - no-new-privileges:true  # helps to increase security
 
