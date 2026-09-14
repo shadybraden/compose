@@ -1,9 +1,12 @@
 ---
+name: bettershift
 services:
   bettershift:
-    image: ghcr.io/pantelx/bettershift:v2.2.1
+    image: ghcr.io/pantelx/bettershift:v3.0.0
     container_name: bettershift
-    restart: unless-stopped
+    volumes:
+      - /data/config_storage/bettershift/data:/app/data
+      - /data/config_storage/bettershift/uploads:/app/public/uploads
     environment:
       - AUTH_ENABLED=true
       - BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET}
@@ -13,12 +16,9 @@ services:
       - DATABASE_URL=file:./data/sqlite.db
       - NODE_ENV=production
       - HOSTNAME=0.0.0.0
-    volumes:
-      - /data/config_storage/bettershift/data:/app/data
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.shift.entrypoints=http"
@@ -35,6 +35,8 @@ services:
       - "homepage.name=shift"
       - "homepage.icon=/images/bettershift.png"
       - "homepage.href=https://shift.${DOMAIN}/"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
