@@ -31,11 +31,11 @@ services:
       - "homepage.href=https://scrutiny.${DOMAIN}/"
     cap_add:
       - SYS_RAWIO
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
     devices:
       - "/dev/sda"
       - "/dev/sdb"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
