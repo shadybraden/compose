@@ -59,7 +59,11 @@ KEY_ORDER = [
     "read_only",
     "device_cgroup_rules",
     "hostname",
+    "devices",
+    "group_add",
+    "privileged",
     "security_opt",
+    "shm_size",
     "tmpfs",
     "tty",
 ]
