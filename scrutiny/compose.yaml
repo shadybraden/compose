@@ -1,22 +1,16 @@
 ---
+name: scrutiny
 services:
   scrutiny:
-    container_name: scrutiny
     image: ghcr.io/analogj/scrutiny:v0.9.4-omnibus
-    cap_add:
-      - SYS_RAWIO
-    ports:
-#      - "8181:8080"  # webapp
-      - "8085:8086"  # influxDB admin
+    container_name: scrutiny
     volumes:
       - /run/udev:/run/udev:ro
       - /data/config_storage/scrutiny/config:/opt/scrutiny/config
       - /data/config_storage/scrutiny/influxdb:/opt/scrutiny/influxdb
-    devices:
-      - "/dev/sda"
-      - "/dev/sdb"
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
+    ports:
+#      - "8181:8080"  # webapp
+      - '0.0.0.0:8085:8086'  # influxDB admin
     networks:
       - intranet
     labels:
@@ -35,6 +29,13 @@ services:
       - "homepage.name=scrutiny"
       - "homepage.icon=/images/scrutiny.png"
       - "homepage.href=https://scrutiny.${DOMAIN}/"
+    cap_add:
+      - SYS_RAWIO
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    devices:
+      - "/dev/sda"
+      - "/dev/sdb"
 
 networks:
   intranet:
