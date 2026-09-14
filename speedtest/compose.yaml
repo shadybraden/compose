@@ -2,7 +2,7 @@
 name: speedtest
 services:
   speedtest:
-    image: ghcr.io/librespeed/speedtest:6.2.1
+    image: ghcr.io/librespeed/speedtest:6.3.0
     container_name: speedtest
     environment:
       MODE: standalone
@@ -10,7 +10,7 @@ services:
       DISTANCE: "mi"
       WEBPORT: 8068
     ports:
-      - 8068:8068
+      - '0.0.0.0:8068:8068'
     networks:
       - intranet
     restart: unless-stopped
