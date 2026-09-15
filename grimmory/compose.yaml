@@ -1,8 +1,16 @@
 ---
+name: grimmory
 services:
   grimmory:
-    image: grimmory/grimmory:v3.3.3
+    image: grimmory/grimmory:v3.4.0
     container_name: grimmory
+    depends_on:
+      mariadb_grimmory:
+        condition: service_healthy
+    volumes:
+      - /data/config_storage/grimmory/data:/app/data
+      - /data/ebooks:/books
+      - /data/config_storage/grimmory/bookdrop:/bookdrop
     environment:
       - USER_ID=1000
       - GROUP_ID=1000
@@ -11,18 +19,9 @@ services:
       - DATABASE_USERNAME=grimmory
       - DATABASE_PASSWORD=${DB_PASSWORD}
       - BOOKLORE_PORT=${BOOKLORE_PORT}
-    depends_on:
-      mariadb_grimmory:
-        condition: service_healthy
-    volumes:
-      - /data/config_storage/grimmory/data:/app/data
-      - /data/ebooks:/books
-      - /data/config_storage/grimmory/bookdrop:/bookdrop
-    restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.books.entrypoints=http"
@@ -40,10 +39,14 @@ services:
       - "homepage.icon=/images/grimmory.png"
       - "homepage.href=https://books.${DOMAIN}/"
       - env=production
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
   mariadb_grimmory:
     image: lscr.io/linuxserver/mariadb:11.4.12  # pinned by grimmory - https://grimmory.org/docs/installation#step-2-create-the-docker-composeyml-file
     container_name: mariadb_grimmory
+    volumes:
+      - /data/config_storage/grimmory/mariadb:/config
     environment:
       - PUID=1000
       - PGID=1000
@@ -52,8 +55,8 @@ services:
       - MYSQL_DATABASE=grimmory
       - MYSQL_USER=grimmory
       - MYSQL_PASSWORD=${DB_PASSWORD}
-    volumes:
-      - /data/config_storage/grimmory/mariadb:/config
+    networks:
+      - intranet
     restart: unless-stopped
     healthcheck:
       test: [ "CMD", "mariadb-admin", "ping", "-h", "localhost" ]
@@ -62,8 +65,6 @@ services:
       retries: 10
     security_opt:
       - no-new-privileges:true  # helps to increase security
-    networks:
-      - intranet
 
 networks:
   intranet:
