@@ -8,6 +8,8 @@ services:
       - /data/dont_backup/jetlag_map/dist:/usr/share/nginx/html:ro
     environment:
       - TZ=${TZ}
+    ports:
+      - '0.0.0.0:38080:80'
     networks:
       - intranet
     healthcheck:
@@ -44,8 +46,6 @@ services:
           memory: 16M
     dns:
       - 0.0.0.0
-    ports:
-      - 38080:80
     init: true
     read_only: true
     security_opt:
