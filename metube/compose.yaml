@@ -2,7 +2,7 @@
 name: metube
 services:
   metube:
-    image: ghcr.io/alexta69/metube:2026.08.28
+    image: ghcr.io/alexta69/metube:2026.09.15
     container_name: metube
     volumes:
       - /data/mnt/youtube:/downloads  # so jellyfin can access
