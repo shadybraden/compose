@@ -64,12 +64,14 @@ jobs:
 
       - name: Build image
         run: |
+          cd storageview/
           podman --storage-driver vfs build \
-            -f storageview/Dockerfile \
+            -f Dockerfile \
             -t storageview:${{ steps.version.outputs.version }} .
 
       - name: Push image
         run: |
+          cd storageview/
           buildah --storage-driver vfs push \
             --all \
             --creds "${{ secrets.REGISTRY_USERNAME }}:${{ secrets.REGISTRY_PASSWORD }}" \
