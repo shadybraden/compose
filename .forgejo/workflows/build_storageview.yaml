@@ -65,7 +65,7 @@ jobs:
       - name: Build image
         run: |
           podman --storage-driver vfs build \
-            -f Dockerfile \
+            -f storageview/Dockerfile \
             -t storageview:${{ steps.version.outputs.version }} .
 
       - name: Push image
