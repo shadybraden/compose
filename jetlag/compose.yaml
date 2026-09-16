@@ -2,7 +2,7 @@
 name: jetlag
 services:
   nginx:
-    image: nginx:1.31.5
+    image: nginx:1.31.6
     container_name: jetlag
     volumes:
       - /data/dont_backup/jetlag_map/dist:/usr/share/nginx/html:ro
