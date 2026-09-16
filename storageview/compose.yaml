@@ -1,9 +1,9 @@
+---
+name: storageview
 services:
   storageview:
-    container_name: storageview
     image: git.holmlab.org/shady/storageview:0.1.0
-    environment:
-      - VOLUMES=Configuration Storage:/data/config_storage,YouTube:/data/mnt/youtube,Shows:/data/mnt/shows,Movies:/data/mnt/movies,Torrents:/data/mnt/torrents,Autobrr:/mnt
+    container_name: storageview
     volumes:
       - /data/config_storage:/data/config_storage:ro
       - /data/mnt/youtube:/data/mnt/youtube:ro
@@ -11,8 +11,8 @@ services:
       - /data/mnt/movies:/data/mnt/movies:ro
       - /data/mnt/torrents:/data/mnt/torrents:ro
       - /mnt:/mnt:ro
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
+    environment:
+      - VOLUMES=Configuration Storage:/data/config_storage,YouTube:/data/mnt/youtube,Shows:/data/mnt/shows,Movies:/data/mnt/movies,Torrents:/data/mnt/torrents,Autobrr:/mnt
     networks:
       - intranet
     labels:
@@ -31,6 +31,8 @@ services:
       - "homepage.name=storage"
       - "homepage.icon=/images/files.png"
       - "homepage.href=https://storage.${DOMAIN}/"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
