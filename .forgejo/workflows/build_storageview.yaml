@@ -7,7 +7,6 @@ on:
       - 'storageview/Dockerfile'
       - 'storageview/templates/index.html'
       - 'storageview/app.py'
-      - 'storageview/compose.yaml'
   workflow_dispatch:
     inputs:
       version:
