@@ -2,7 +2,7 @@
 name: crafty_container
 services:
   crafty:
-    image: registry.gitlab.com/crafty-controller/crafty-4:4.10.8
+    image: registry.gitlab.com/crafty-controller/crafty-4:4.11.0
     container_name: crafty_container
     volumes:
       - /data/dont_backup/crafty/backups:/crafty/backups
