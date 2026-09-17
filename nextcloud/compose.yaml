@@ -2,7 +2,7 @@
 name: nextcloud
 services:
   nextcloud:
-    image: nextcloud:34.0.4
+    image: nextcloud:35.0.0
     container_name: nextcloud
     volumes:
       - /data/config_storage/nextcloud/html:/var/www/html
