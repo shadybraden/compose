@@ -1,24 +1,20 @@
 ---
+name: sonarr
 services:
   sonarr:
     image: quay.io/linuxserver.io/sonarr:4.0.20
     container_name: sonarr
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=America/New_York
     volumes:
       - /data/config_storage/arr/sonarr:/config
       - /data/mnt/torrents:/downloads/torrents
       - /data/mnt/shows:/shows
-    restart: unless-stopped
-    dns:
-      - ${DNS_SERVER1}
-      - ${DNS_SERVER2}
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
     networks:
       - intranet
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.sonarr.entrypoints=http"
@@ -35,6 +31,11 @@ services:
       - "homepage.name=sonarr"
       - "homepage.icon=/images/sonarr.png"
       - "homepage.href=https://sonarr.${DOMAIN}/"
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
