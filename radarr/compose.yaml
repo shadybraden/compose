@@ -1,25 +1,21 @@
 ---
+name: radarr
 services:
   radarr:
-    image: quay.io/linuxserver.io/radarr:6.3.0
+    image: quay.io/linuxserver.io/radarr:6.4.4
     container_name: radarr
+    volumes:
+      - /data/config_storage/arr/radarr:/config
+      - /data/mnt/torrents:/downloads/torrents
+      - /data/mnt/movies:/movies
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=America/New_York
       - PORT=7878
-    volumes:
-      - /data/config_storage/arr/radarr:/config
-      - /data/mnt/torrents:/downloads/torrents
-      - /data/mnt/movies:/movies
-    restart: unless-stopped
-    dns:
-      - ${DNS_SERVER1}
-      - ${DNS_SERVER2}
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.radarr.entrypoints=http"
@@ -36,6 +32,11 @@ services:
       - "homepage.name=radarr"
       - "homepage.icon=/images/radarr.png"
       - "homepage.href=https://radarr.${DOMAIN}/"
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
