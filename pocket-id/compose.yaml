@@ -1,9 +1,9 @@
 ---
+name: pocket-id
 services:
   pocket-id:
-    image: ghcr.io/pocket-id/pocket-id:v2.14.0
+    image: ghcr.io/pocket-id/pocket-id:v2.15.0
     container_name: pocket-id
-    restart: unless-stopped
     volumes:
       - /data/config_storage/pocket-id:/app/data
     environment:
@@ -11,10 +11,9 @@ services:
       - PGID=1000
       - APP_URL=https://pocket-id.${DOMAIN}
       - ENCRYPTION_KEY=${ENCRYPTION_KEY}  # openssl rand -base64 32
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.pocket-id.entrypoints=http"
@@ -32,6 +31,8 @@ services:
       - "homepage.icon=/images/pocket-id.png"
       - "homepage.href=https://pocket-id.${DOMAIN}/"
       - env=production
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
