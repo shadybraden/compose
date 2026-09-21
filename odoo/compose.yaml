@@ -1,0 +1,58 @@
+---
+name: odoo
+services:
+  odoo:
+    # pinned to the tag from the official docs' compose example (17.0) - https://hub.docker.com/_/odoo
+    image: odoo:17.0
+    container_name: odoo
+    depends_on:
+      - odoo_postgres
+    volumes:
+      - /data/config_storage/odoo/filestore:/var/lib/odoo  # filestore (attachments), must match data_dir
+    environment:
+      - HOST=odoo_postgres  # postgres server address, defaults to db
+      - USER=odoo
+      - PASSWORD=${POSTGRES_PASSWORD}  # must match POSTGRES_PASSWORD on odoo_postgres
+    ports:
+      - "8069:8069"
+    networks:
+      - intranet
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.odoo.entrypoints=http"
+      - "traefik.http.routers.odoo.rule=Host(`odoo.${DOMAIN}`)"
+      - "traefik.http.middlewares.odoo-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.odoo.middlewares=odoo-https-redirect"
+      - "traefik.http.routers.odoo-secure.entrypoints=https"
+      - "traefik.http.routers.odoo-secure.rule=Host(`odoo.${DOMAIN}`)"
+      - "traefik.http.routers.odoo-secure.tls=true"
+      - "traefik.http.routers.odoo-secure.service=odoo"
+      - "traefik.http.services.odoo.loadbalancer.server.port=8069"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=odoo"
+      - "homepage.icon=/images/odoo.png"
+      - "homepage.href=https://odoo.${DOMAIN}/"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+
+  odoo_postgres:
+    # pinned to the postgres 15 line the odoo docs' examples use
+    image: postgres:15.19
+    container_name: odoo_postgres
+    volumes:
+      - /data/config_storage/odoo/postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    networks:
+      - intranet
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+
+networks:
+  intranet:
+    external: true
