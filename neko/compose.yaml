@@ -2,11 +2,10 @@
 name: neko
 services:
   neko:
-    # pinned to latest stable release (v3.1.5) - docs default to :latest
     image: ghcr.io/m1k1o/neko/firefox:3.1.5
     container_name: neko
     volumes:
-      - /data/config_storage/neko/firefox:/home/neko/.mozilla/firefox  # persist firefox settings
+      - /data/config_storage/neko:/home/neko/.mozilla/firefox  # persist firefox settings
     environment:
       NEKO_WEBRTC_EPR: "56000-56100"  # webrtc ephemeral port range, must match the udp ports below
       # set NEKO_WEBRTC_NAT1TO1 to the host's private/public ip, or omit for public deployments
@@ -14,8 +13,7 @@ services:
       NEKO_MEMBER_MULTIUSER_USER_PASSWORD: "${NEKO_USER_PASSWORD}"
       NEKO_MEMBER_MULTIUSER_ADMIN_PASSWORD: "${NEKO_ADMIN_PASSWORD}"
     ports:
-      - "8080:8080"
-      - "56000-56100:56000-56100/udp"  # webrtc media, exposed directly (not via traefik)
+      - '0.0.0.0:56000-56100:56000-56100/udp'  # webrtc media, exposed directly (not via traefik)
     networks:
       - intranet
     restart: unless-stopped
