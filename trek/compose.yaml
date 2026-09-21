@@ -1,21 +1,12 @@
 ---
+name: trek
 services:
   app:
     image: mauriceboe/trek:4.3.0
     container_name: trek
-    read_only: true
-    security_opt:
-      - no-new-privileges:true
-    cap_drop:
-      - ALL
-    cap_add:
-      - CHOWN
-      - SETUID
-      - SETGID
-    tmpfs:
-      - /tmp:noexec,nosuid,size=64m
-    ports:
-      - "54241:3000"
+    volumes:
+      - /data/config_storage/trek/data:/app/data
+      - /data/config_storage/trek/uploads:/app/uploads
     environment:
       - NODE_ENV=production
       - PORT=3000
@@ -25,9 +16,10 @@ services:
       - ALLOWED_ORIGINS=${ALLOWED_ORIGINS:-}
       - APP_URL=https://trek.${DOMAIN}
       - ALLOW_INTERNAL_NETWORK=true
-    volumes:
-      - /data/config_storage/trek/data:/app/data
-      - /data/config_storage/trek/uploads:/app/uploads
+    ports:
+      - '0.0.0.0:54241:3000'
+    networks:
+      - intranet
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://localhost:3000/api/health"]
@@ -35,8 +27,6 @@ services:
       timeout: 10s
       retries: 3
       start_period: 15s
-    networks:
-      - intranet
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.trek.entrypoints=http"
@@ -54,6 +44,17 @@ services:
       - "homepage.icon=/images/trek.png"
       - "homepage.href=https://trek.${DOMAIN}/"
       - env="production"
+    cap_add:
+      - CHOWN
+      - SETUID
+      - SETGID
+    cap_drop:
+      - ALL
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp:noexec,nosuid,size=64m
 
 networks:
   intranet:
