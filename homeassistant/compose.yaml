@@ -36,7 +36,7 @@ services:
       - ${DNS_SERVER1}
       - ${DNS_SERVER2}
     expose:
-      - 8123
+      - '8123'
     privileged: true
 
 networks:
