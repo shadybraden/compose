@@ -2,7 +2,7 @@
 name: mullvad-browser
 services:
   mullvad-browser:
-    image: linuxserver/mullvad-browser:15.0.21-ls201
+    image: linuxserver/mullvad-browser:15.0.23-ls201
     container_name: mullvad-browser
     environment:
       - PUID=1000
