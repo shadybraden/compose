@@ -1,25 +1,20 @@
 ---
+name: home-assistant
 services:
   home-assistant:
-    ports:
-      - "8123:8123"
-    expose:
-      - 8123
+    image: ghcr.io/home-assistant/home-assistant:2026.9.3
     container_name: homeassistant
-    privileged: true
     volumes:
       - /data/config_storage/homeassistant:/config
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus
-    restart: unless-stopped
     environment:
       - TZ=America/New_York
-    image: ghcr.io/home-assistant/home-assistant:2026.9.3
-    dns:
-      - ${DNS_SERVER1}
-      - ${DNS_SERVER2}
+    ports:
+      - '0.0.0.0:8123:8123'
     networks:
       - intranet
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - traefik.docker.network=web  # https://www.reddit.com/r/Traefik/comments/190ps04/502_bad_gateway_connection_refused/
@@ -37,6 +32,12 @@ services:
       - "homepage.name=homeassistant"
       - "homepage.icon=/images/home-assistant.png"
       - "homepage.href=https://homeassistant.${DOMAIN}/"
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
+    expose:
+      - 8123
+    privileged: true
 
 networks:
   intranet:
