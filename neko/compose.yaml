@@ -1,0 +1,46 @@
+---
+name: neko
+services:
+  neko:
+    # pinned to latest stable release (v3.1.5) - docs default to :latest
+    image: ghcr.io/m1k1o/neko/firefox:3.1.5
+    container_name: neko
+    volumes:
+      - /data/config_storage/neko/firefox:/home/neko/.mozilla/firefox  # persist firefox settings
+    environment:
+      NEKO_WEBRTC_EPR: "56000-56100"  # webrtc ephemeral port range, must match the udp ports below
+      # set NEKO_WEBRTC_NAT1TO1 to the host's private/public ip, or omit for public deployments
+      NEKO_WEBRTC_NAT1TO1: "${NEKO_WEBRTC_NAT1TO1}"
+      NEKO_MEMBER_MULTIUSER_USER_PASSWORD: "${NEKO_USER_PASSWORD}"
+      NEKO_MEMBER_MULTIUSER_ADMIN_PASSWORD: "${NEKO_ADMIN_PASSWORD}"
+    ports:
+      - "8080:8080"
+      - "56000-56100:56000-56100/udp"  # webrtc media, exposed directly (not via traefik)
+    networks:
+      - intranet
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.neko.entrypoints=http"
+      - "traefik.http.routers.neko.rule=Host(`neko.${DOMAIN}`)"
+      - "traefik.http.middlewares.neko-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.neko.middlewares=neko-https-redirect"
+      - "traefik.http.routers.neko-secure.entrypoints=https"
+      - "traefik.http.routers.neko-secure.rule=Host(`neko.${DOMAIN}`)"
+      - "traefik.http.routers.neko-secure.tls=true"
+      - "traefik.http.routers.neko-secure.service=neko"
+      - "traefik.http.services.neko.loadbalancer.server.port=8080"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.name=neko"
+      - "homepage.icon=/images/neko.png"
+      - "homepage.href=https://neko.${DOMAIN}/"
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+
+networks:
+  intranet:
+    external: true
