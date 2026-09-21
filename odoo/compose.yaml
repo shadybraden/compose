@@ -2,19 +2,16 @@
 name: odoo
 services:
   odoo:
-    # pinned to the tag from the official docs' compose example (17.0) - https://hub.docker.com/_/odoo
-    image: odoo:17.0
+    image: odoo:19.0
     container_name: odoo
     depends_on:
       - odoo_postgres
     volumes:
-      - /data/config_storage/odoo/filestore:/var/lib/odoo  # filestore (attachments), must match data_dir
+      - /data/config_storage/odoo:/var/lib/odoo
     environment:
-      - HOST=odoo_postgres  # postgres server address, defaults to db
+      - HOST=odoo_postgres
       - USER=odoo
-      - PASSWORD=${POSTGRES_PASSWORD}  # must match POSTGRES_PASSWORD on odoo_postgres
-    ports:
-      - "8069:8069"
+      - PASSWORD=${POSTGRES_PASSWORD}
     networks:
       - intranet
     restart: unless-stopped
@@ -38,7 +35,6 @@ services:
       - no-new-privileges:true  # helps to increase security
 
   odoo_postgres:
-    # pinned to the postgres 15 line the odoo docs' examples use
     image: postgres:15.19
     container_name: odoo_postgres
     volumes:
