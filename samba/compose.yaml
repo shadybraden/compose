@@ -15,4 +15,4 @@ services:
       - /data/mnt/youtube:/storage/youtube
       - /data/dont_backup/samba/storage:/storage
       - /data/dont_backup/samba/config:/etc/samba
-    restart: no
+    restart: unless-stopped
