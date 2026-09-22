@@ -2,7 +2,7 @@
 name: trek
 services:
   app:
-    image: mauriceboe/trek:4.3.0
+    image: mauriceboe/trek:4.3.1
     container_name: trek
     volumes:
       - /data/config_storage/trek/data:/app/data
