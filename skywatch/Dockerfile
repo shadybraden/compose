@@ -1,4 +1,6 @@
-FROM python:3.14.7-alpine3.23
+ARG PYTHON_VERSION=3.14.7
+ARG ALPINE_VERSION=3.23
+FROM python:${PYTHON_VERSION}-alpine${ALPINE_VERSION}
 
 ENV TZ="America/New_York"
 
