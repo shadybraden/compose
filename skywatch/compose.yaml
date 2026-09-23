@@ -2,7 +2,7 @@
 name: skywatch
 services:
   skywatch:
-    image: git.holmlab.org/shady/skywatch:1.5.10
+    image: git.holmlab.org/shady/skywatch:1.5.11
     container_name: skywatch
     volumes:
       - /data/config_storage/recents.txt:/app/recents.txt
