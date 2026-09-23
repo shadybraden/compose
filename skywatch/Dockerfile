@@ -1,7 +1,7 @@
 # renovate: datasource=docker depName=python versioning=semver
 ARG PYTHON_VERSION=3.14.7
 # renovate: datasource=docker depName=alpine
-ARG ALPINE_VERSION=3.23
+ARG ALPINE_VERSION=3.24.1
 FROM python:${PYTHON_VERSION}-alpine${ALPINE_VERSION}
 
 ENV TZ="America/New_York"
