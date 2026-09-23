@@ -225,7 +225,7 @@
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": [
+      "managerFilePatterns": [
         "(^|/)Dockerfile$"
       ],
       "matchStrings": [
@@ -243,6 +243,15 @@
       "depNameTemplate": "postgres",
       "datasourceTemplate": "docker",
       "versioningTemplate": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)-alpine(?<patch>\\d+)\\.(?<build>\\d+)$"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/(^|/)compose[^/]*\\.ya?ml$/"
+      ],
+      "matchStrings": [
+        "#\\s*renovate:\\s*datasource=(?<datasource>\\S+)\\s+depName=(?<depName>\\S+)(?:\\s+versioning=(?<versioning>\\S+))?\\s*\\n\\s*image:\\s*\\S+:(?<currentValue>[^\\s'\"\\n]+)"
+      ]
     }
   ]
 }
