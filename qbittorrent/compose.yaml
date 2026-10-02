@@ -1,14 +1,9 @@
 ---
+name: qbittorrent
 services:
   qbittorrent:
     image: quay.io/linuxserver.io/qbittorrent:5.2.4
     container_name: qbittorrent
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=America/New_York
-      - TORRENTING_PORT=${TORRENTING_PORT}
-      - WEBUI_PORT=8080
     volumes:
       - /data/config_storage/arr/qbittorrent:/config
       - /data/config_storage/arr/qbittorrent/complete:/complete
@@ -23,12 +18,18 @@ services:
       - /data/dont_backup/media:/ssd
       - /data/audiobooks:/audiobooks
       - /data/ebooks:/ebooks
-    restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+      - TORRENTING_PORT=${TORRENTING_PORT}
+      - WEBUI_PORT=8080
     network_mode: container:gluetun
+    restart: unless-stopped
     labels:
       - "homepage.group=Media"
       - "homepage.name=qbittorrent"
       - "homepage.icon=/images/qbittorrent.png"
       - "homepage.href=https://qbittorrent.${DOMAIN}/"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
