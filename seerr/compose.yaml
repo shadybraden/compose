@@ -2,7 +2,7 @@
 name: seerr
 services:
   seerr:
-    image: ghcr.io/seerr-team/seerr:v3.4.1
+    image: ghcr.io/seerr-team/seerr:v3.5.0
     container_name: seerr
     volumes:
       - /data/config_storage/seerr:/app/config
@@ -32,9 +32,9 @@ services:
     dns:
       - ${DNS_SERVER1}
       - ${DNS_SERVER2}
+    init: true
     security_opt:
       - no-new-privileges:true  # helps to increase security
-    init: true
 
 networks:
   intranet:
