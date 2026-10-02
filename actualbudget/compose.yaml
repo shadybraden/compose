@@ -2,7 +2,7 @@
 name: actual-budget
 services:
   actual_server:
-    image: docker.io/actualbudget/actual-server:26.9.0
+    image: docker.io/actualbudget/actual-server:26.10.0
     container_name: actual_server
       # See all options and more details at https://actualbudget.github.io/docs/Installing/Configuration
     volumes:
