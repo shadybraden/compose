@@ -35,7 +35,7 @@ services:
       - no-new-privileges:true  # helps to increase security
 
   odoo_postgres:
-    image: postgres:16.15
+    image: postgres:15.19
     container_name: odoo_postgres
     volumes:
       - /data/config_storage/odoo/postgres_data:/var/lib/postgresql/data
