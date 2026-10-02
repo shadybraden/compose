@@ -32,9 +32,9 @@ services:
     dns:
       - ${DNS_SERVER1}
       - ${DNS_SERVER2}
+    init: true
     security_opt:
       - no-new-privileges:true  # helps to increase security
-    init: true
 
 networks:
   intranet:
