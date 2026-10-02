@@ -197,6 +197,11 @@
       "sourceUrl": "https://github.com/gtsteffaniak/filebrowser"
     },
     {
+      "matchPackageNames": ["docker.io/actualbudget/actual-server"],
+      "matchDatasources": ["docker"],
+      "sourceUrl": "https://actualbudget.org/blog"
+    },
+    {
       "matchPackageNames": ["clickhouse/clickhouse-keeper", "clickhouse/clickhouse-server"],
       "matchDatasources": ["docker"],
       "groupName": "clickhouse"
