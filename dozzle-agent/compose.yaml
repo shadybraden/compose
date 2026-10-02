@@ -14,8 +14,8 @@ services:
       - '0.0.0.0:7007:7007'
     networks:
       - intranet
-    restart: unless-stopped
     command: agent
+    restart: unless-stopped
     labels:
       - env=production
     security_opt:
