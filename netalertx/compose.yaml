@@ -1,7 +1,7 @@
 name: netalertx
 services:
   netalertx:
-    image: ghcr.io/netalertx/netalertx:26.9.0
+    image: ghcr.io/netalertx/netalertx:26.10.0
     container_name: netalertx
     volumes:
       - /data/config_storage/netalertx:/data:rw
