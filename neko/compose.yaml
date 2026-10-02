@@ -2,7 +2,7 @@
 name: neko
 services:
   neko:
-    image: ghcr.io/m1k1o/neko/firefox:3.1.5
+    image: ghcr.io/m1k1o/neko/firefox:3.1.6
     container_name: neko
     volumes:
       - /data/config_storage/neko:/home/neko/.mozilla/firefox  # persist firefox settings
