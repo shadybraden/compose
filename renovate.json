@@ -212,6 +212,11 @@
       "groupName": "meerkat"
     },
     {
+      "matchPackageNames": ["henrygd/beszel","henrygd/beszel-agent"],
+      "matchDatasources": ["docker"],
+      "groupName": "beszel"
+    },
+    {
       "matchPackageNames": ["ghcr.io/immich-app/postgres"],
       "matchDatasources": ["docker"],
       "versioning": "regex:^(?<compatibility>\\d+)-vectorchord(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-pgvectors\\d+\\.\\d+\\.\\d+$"
