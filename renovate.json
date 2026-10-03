@@ -38,13 +38,6 @@
       "minimumReleaseAge": "3 days"
     },
     {
-      "matchDatasources": ["docker"],
-      "matchPackageNames": ["jgraph/drawio"],
-      "automerge": true,
-      "matchUpdateTypes": ["minor", "patch"],
-      "minimumReleaseAge": "3 days"
-    },
-    {
       "matchPackageNames": ["rustmailer/bichon"],
       "matchDatasources": ["docker"],
       "sourceUrl": "https://github.com/rustmailer/bichon"
