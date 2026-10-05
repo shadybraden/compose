@@ -4,15 +4,32 @@
   become: false
 
   tasks:
-    - name: Update apt cache
-      ansible.builtin.apt:
-        update_cache: true
-      become: true
-      when: ansible_os_family == "Debian"
+    - name: Setup
+      block:
+      - name: Update apt cache
+        ansible.builtin.apt:
+          update_cache: true
+        become: true
+        when: ansible_os_family == "Debian"
 
-    - name: Install podman
-      ansible.builtin.apt:
-        name: podman
-        state: present
-      become: true
-      when: ansible_os_family == "Debian"
+      - name: Install podman
+        ansible.builtin.apt:
+          name: podman
+          state: present
+        become: true
+        when: ansible_os_family == "Debian"
+
+      - name: Create intranet network
+        containers.podman.podman_network:
+          name: intranet
+          state: present
+
+      - name: Clone podman repo
+        ansible.builtin.git:
+          repo: https://git.holmlab.org/shady/compose
+          dest: ~/config_storage/compose
+          version: main
+          update: true
+
+    - name: Deploy OpenWebUI
+      ansible.builtin.command: podman compose up -f ~/config_storage/compose/openwebui/podman.yaml -d

@@ -1,0 +1,36 @@
+---
+name: open-webui
+services:
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:v0.11.4
+    container_name: open-webui
+    volumes:
+      - ${HOME}/config_storage/ai/open-webui:/app/backend/data
+    networks:
+      - intranet
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.ai.entrypoints=http"
+      - "traefik.http.routers.ai.rule=Host(`ai.${DOMAIN}`)"
+      - "traefik.http.middlewares.ai-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.ai.middlewares=ai-https-redirect"
+      - "traefik.http.routers.ai-secure.entrypoints=https"
+      - "traefik.http.routers.ai-secure.rule=Host(`ai.${DOMAIN}`)"
+      - "traefik.http.routers.ai-secure.tls=true"
+      - "traefik.http.routers.ai-secure.service=ai"
+      - "traefik.http.services.ai.loadbalancer.server.port=8080"  # port of the service
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Other"
+      - "homepage.weight=2"
+      - "homepage.name=AI"
+      - "homepage.icon=/images/open-webui-light.png"
+      - "homepage.href=https://ai.${DOMAIN}"
+#    environment:
+#      - OLLAMA_BASE_URL=https://ollama.${DOMAIN}
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+
+networks:
+  intranet:
+    external: true
