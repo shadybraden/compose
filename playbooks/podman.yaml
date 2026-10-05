@@ -10,6 +10,7 @@
     INFISICAL_PROJECT_ID: "{{ lookup('ansible.builtin.env', 'INFISICAL_PROJECT_ID') }}"
     INFISICAL_API_URL: "{{ lookup('ansible.builtin.env', 'INFISICAL_API_URL') }}"
     INFISICAL_DOMAIN: "{{ lookup('ansible.builtin.env', 'INFISICAL_DOMAIN') }}"
+    INFISICAL_ENVIRONMENT: "{{ lookup('ansible.builtin.env', 'INFISICAL_ENVIRONMENT', default='dev') }}"
     INFISICAL_API_STATUS_URL: "{{ (INFISICAL_DOMAIN | trim) | regex_replace('/+$', '') }}/api/status"
     INFISICAL_RUN: |
       INFISICAL_TOKEN="$(timeout 300s \
@@ -24,7 +25,7 @@
       test -n "$INFISICAL_TOKEN"
       export INFISICAL_TOKEN
       infisical run \
-        --env=dev \
+        --env={{ INFISICAL_ENVIRONMENT }} \
         --projectId={{ INFISICAL_PROJECT_ID }} \
         --domain="{{ INFISICAL_DOMAIN }}" \
         --path=/ \
