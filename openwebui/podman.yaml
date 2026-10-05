@@ -9,6 +9,8 @@ services:
     networks:
       - intranet
     restart: unless-stopped
+    ports:
+      - 8080:8080
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.ai.entrypoints=http"
