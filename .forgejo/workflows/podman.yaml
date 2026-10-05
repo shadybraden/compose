@@ -6,6 +6,16 @@ on:
     paths:
       - 'playbooks/podman.yaml'
   workflow_dispatch:
+    inputs:
+      command:
+        description: 'podman compose command to run'
+        required: true
+        type: choice
+        options:
+          - up
+          - down
+          - restart
+        default: up
 
 jobs:
   Podman:
@@ -22,7 +32,8 @@ jobs:
 
       - name: Run Ansible "podman"
         run: |
-          ansible-playbook playbooks/podman.yaml
+          ansible-playbook playbooks/podman.yaml \
+            -e command="${{ github.event.inputs.command }}"
         env:
           ANSIBLE_HOST_KEY_CHECKING: "False"
           ANSIBLE_BECOME_PASS: ${{ secrets.SUDO_PASSWORD }}

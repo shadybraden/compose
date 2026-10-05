@@ -4,6 +4,7 @@
   become: false
 
   vars:
+    COMPOSE_CMD: "{{ 'up -d' if (command | default('up')) == 'up' else (command | default('up')) }}"
     INFISICAL_CLIENTID: "{{ lookup('ansible.builtin.env', 'INFISICAL_CLIENTID') }}"
     INFISICAL_CLIENTSECRET: "{{ lookup('ansible.builtin.env', 'INFISICAL_CLIENTSECRET') }}"
     INFISICAL_PROJECT_ID: "{{ lookup('ansible.builtin.env', 'INFISICAL_PROJECT_ID') }}"
@@ -97,9 +98,9 @@
     - name: Deploy Open WebUI
       ansible.builtin.shell: |
         {{ INFISICAL_RUN }}
-        podman compose -f ~/config_storage/compose/openwebui/podman.yaml up -d
+        podman compose -f ~/config_storage/compose/openwebui/podman.yaml {{ COMPOSE_CMD }}
 
     - name: Deploy Immich Public
       ansible.builtin.shell: |
         {{ INFISICAL_RUN }}
-        podman compose -f ~/config_storage/compose/immich-public/podman.yaml up -d
+        podman compose -f ~/config_storage/compose/immich-public/podman.yaml {{ COMPOSE_CMD }}
