@@ -4,7 +4,7 @@
   become: false
 
   vars:
-    COMPOSE_CMD: "{{ 'up -d' if (command | default('up')) == 'up' else (command | default('up')) }}"
+    COMPOSE_CMD: "{{ 'up -d' if (command | default('up', true)) == 'up' else command }}"
     INFISICAL_CLIENTID: "{{ lookup('ansible.builtin.env', 'INFISICAL_CLIENTID') }}"
     INFISICAL_CLIENTSECRET: "{{ lookup('ansible.builtin.env', 'INFISICAL_CLIENTSECRET') }}"
     INFISICAL_PROJECT_ID: "{{ lookup('ansible.builtin.env', 'INFISICAL_PROJECT_ID') }}"
