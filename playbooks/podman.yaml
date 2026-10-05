@@ -19,6 +19,13 @@
         become: true
         when: ansible_os_family == "Debian"
 
+      - name: Start podman.socket
+        ansible.builtin.systemd:
+          name: podman.socket
+          enabled: true
+          state: started
+          scope: user
+
       - name: Create intranet network
         containers.podman.podman_network:
           name: intranet
