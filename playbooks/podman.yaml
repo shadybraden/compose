@@ -16,28 +16,3 @@
         state: present
       become: true
       when: ansible_os_family == "Debian"
-
-    - name: Get remote user
-      ansible.builtin.command: id -un
-      register: remote_user
-      changed_when: false
-      when: ansible_os_family == "Debian"
-
-    - name: Check linger status
-      ansible.builtin.command: loginctl show-user {{ remote_user.stdout }} --property=Linger
-      become: true
-      register: linger_check
-      changed_when: false
-      when: ansible_os_family == "Debian"
-
-    - name: Enable linger
-      ansible.builtin.command: loginctl enable-linger {{ remote_user.stdout }}
-      become: true
-      when: ansible_os_family == "Debian" and 'Linger=no' in linger_check.stdout
-
-    - name: Enable podman-restart user service
-      ansible.builtin.systemd:
-        name: podman-restart.service
-        scope: user
-        enabled: true
-      when: ansible_os_family == "Debian"
