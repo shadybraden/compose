@@ -1,0 +1,29 @@
+name: Podman Install and config
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'playbooks/podman.yaml'
+  workflow_dispatch:
+
+jobs:
+  Periphery:
+    runs-on: tools_container
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+
+      - name: Run Ansible "podman"
+        run: |
+          ansible-playbook playbooks/podman.yaml
+        env:
+          ANSIBLE_HOST_KEY_CHECKING: "False"
+          ANSIBLE_BECOME_PASS: ${{ secrets.SUDO_PASSWORD }}
+          ANSIBLE_FORCE_COLOR: "1"
