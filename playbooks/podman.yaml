@@ -25,7 +25,7 @@
       test -n "$INFISICAL_TOKEN"
       export INFISICAL_TOKEN
       infisical run \
-        --env=prod \
+        --env={{ INFISICAL_ENVIRONMENT }} \
         --projectId={{ INFISICAL_PROJECT_ID }} \
         --domain="{{ INFISICAL_DOMAIN }}" \
         --path=/ \
