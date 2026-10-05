@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       command:
-        description: 'podman compose command to run'
+        description: 'podman compose command to run AGAINST ALL'
         required: true
         type: choice
         options:
