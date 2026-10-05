@@ -10,6 +10,24 @@
     INFISICAL_API_URL: "{{ lookup('ansible.builtin.env', 'INFISICAL_API_URL') }}"
     INFISICAL_DOMAIN: "{{ lookup('ansible.builtin.env', 'INFISICAL_DOMAIN') }}"
     INFISICAL_API_STATUS_URL: "{{ (INFISICAL_DOMAIN | trim) | regex_replace('/+$', '') }}/api/status"
+    INFISICAL_RUN: |
+      INFISICAL_TOKEN="$(timeout 300s \
+        infisical login --domain="{{ INFISICAL_DOMAIN }}" \
+        --method=universal-auth \
+        --client-id="{{ INFISICAL_CLIENTID }}" \
+        --client-secret="{{ INFISICAL_CLIENTSECRET }}" \
+        --silent \
+        --plain \
+        </dev/null \
+      )"
+      test -n "$INFISICAL_TOKEN"
+      export INFISICAL_TOKEN
+      infisical run \
+        --env=dev \
+        --projectId={{ INFISICAL_PROJECT_ID }} \
+        --domain="{{ INFISICAL_DOMAIN }}" \
+        --path=/ \
+        -- \
 
   tasks:
     - name: Setup
@@ -78,21 +96,5 @@
 
     - name: Deploy Open WebUI
       ansible.builtin.shell: |
-        INFISICAL_TOKEN="$(timeout 300s \
-          infisical login --domain="{{ INFISICAL_DOMAIN }}" \
-          --method=universal-auth \
-          --client-id="{{ INFISICAL_CLIENTID }}" \
-          --client-secret="{{ INFISICAL_CLIENTSECRET }}" \
-          --silent \
-          --plain \
-          </dev/null \
-        )"
-        test -n "$INFISICAL_TOKEN"
-        export INFISICAL_TOKEN
-        infisical run \
-          --env=dev \
-          --projectId={{ INFISICAL_PROJECT_ID }} \
-          --domain="{{ INFISICAL_DOMAIN }}" \
-          --path=/ \
-          -- \
-          podman compose -f ~/config_storage/compose/openwebui/podman.yaml up -d
+        {{ INFISICAL_RUN }}
+        podman compose -f ~/config_storage/compose/openwebui/podman.yaml up -d
