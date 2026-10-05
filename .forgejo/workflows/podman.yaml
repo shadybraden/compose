@@ -27,3 +27,9 @@ jobs:
           ANSIBLE_HOST_KEY_CHECKING: "False"
           ANSIBLE_BECOME_PASS: ${{ secrets.SUDO_PASSWORD }}
           ANSIBLE_FORCE_COLOR: "1"
+          INFISICAL_CLIENTID: ${{ secrets.INFISICAL_CLIENTID }}
+          INFISICAL_PROJECT_ID: ${{ secrets.INFISICAL_PROJECT_ID }}
+          INFISICAL_CLIENTSECRET: ${{ secrets.INFISICAL_CLIENTSECRET }}
+          INFISICAL_ENVIRONMENT: "prod"
+          INFISICAL_DOMAIN: "https://infisical.holmlab.org/"
+          INFISICAL_API_URL: "${{ env.INFISICAL_DOMAIN }}api"

@@ -3,6 +3,14 @@
   hosts: podman
   become: false
 
+  vars:
+    INFISICAL_CLIENTID: "{{ lookup('ansible.builtin.env', 'INFISICAL_CLIENTID') }}"
+    INFISICAL_CLIENTSECRET: "{{ lookup('ansible.builtin.env', 'INFISICAL_CLIENTSECRET') }}"
+    INFISICAL_PROJECT_ID: "{{ lookup('ansible.builtin.env', 'INFISICAL_PROJECT_ID') }}"
+    INFISICAL_API_URL: "{{ lookup('ansible.builtin.env', 'INFISICAL_API_URL') }}"
+    INFISICAL_DOMAIN: "{{ lookup('ansible.builtin.env', 'INFISICAL_DOMAIN') }}"
+    INFISICAL_API_STATUS_URL: "{{ (INFISICAL_DOMAIN | trim) | regex_replace('/+$', '') }}/api/status"
+
   tasks:
     - name: Setup
       block:
@@ -38,5 +46,55 @@
           version: main
           update: true
 
+    - name: Validate Infisical is ready
+      block:
+      - name: Validate Infisical vars
+        ansible.builtin.assert:
+          that:
+            - INFISICAL_CLIENTID | length > 0
+            - INFISICAL_CLIENTSECRET | length > 0
+            - INFISICAL_PROJECT_ID | length > 0
+            - INFISICAL_DOMAIN | length > 0
+          fail_msg: >-
+            Infisical environment variables must be set on the deploy host:
+            INFISICAL_CLIENTID, INFISICAL_CLIENTSECRET, INFISICAL_PROJECT_ID, INFISICAL_DOMAIN.
+
+      - name: Check Infisical API is reachable from the target host
+        ansible.builtin.uri:
+          url: "{{ INFISICAL_API_STATUS_URL }}"
+          method: GET
+          status_code: 200
+          timeout: 10
+        register: infisical_api_status
+        ignore_errors: true
+
+      - name: Fail if Infisical API is unreachable
+        ansible.builtin.fail:
+          msg: >-
+            Infisical API at {{ INFISICAL_API_STATUS_URL }} is not reachable from the target host.
+            Check DNS resolution, routing/firewall and that the instance is running. Raw error:
+            {{ infisical_api_status.msg }}
+        when: infisical_api_status is failed
+
     - name: Deploy Open WebUI
-      ansible.builtin.command: podman compose -f ~/config_storage/compose/openwebui/podman.yaml up -d
+      ansible.builtin.shell: |
+        INFISICAL_TOKEN="$(timeout 300s \
+          infisical login --domain="{{ INFISICAL_DOMAIN }}" \
+          --method=universal-auth \
+          --client-id="{{ INFISICAL_CLIENTID }}" \
+          --client-secret="{{ INFISICAL_CLIENTSECRET }}" \
+          --silent \
+          --plain \
+          </dev/null \
+        )"
+        test -n "$INFISICAL_TOKEN"
+        export INFISICAL_TOKEN
+        for stack in {{ deploy_stacks | join(' ') }}; do
+          timeout 300s \
+          infisical run \
+            --env=dev \
+            --projectId={{ INFISICAL_PROJECT_ID }} \
+            --domain="{{ INFISICAL_DOMAIN }}" \
+            --path=/ \
+            -- \
+            podman compose -f ~/config_storage/compose/openwebui/podman.yaml up -d
