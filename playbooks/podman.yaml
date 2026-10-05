@@ -36,14 +36,14 @@
         ansible.builtin.apt:
           update_cache: true
         become: true
-        when: ansible_os_family == "Debian"
+        when: ansible_facts["os_family"] == "Debian"
 
       - name: Install podman
         ansible.builtin.apt:
           name: podman
           state: present
         become: true
-        when: ansible_os_family == "Debian"
+        when: ansible_facts["os_family"] == "Debian"
 
       - name: Start podman.socket
         ansible.builtin.systemd:
