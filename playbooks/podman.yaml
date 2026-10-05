@@ -102,4 +102,4 @@
     - name: Deploy Immich
       ansible.builtin.shell: |
         {{ INFISICAL_RUN }}
-        podman compose -f ~/config_storage/compose/immich/podman.yaml up -d
+        podman compose -f ~/config_storage/compose/immich-public/podman.yaml up -d
