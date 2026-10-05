@@ -12,7 +12,7 @@
     INFISICAL_DOMAIN: "{{ lookup('ansible.builtin.env', 'INFISICAL_DOMAIN') }}"
     INFISICAL_ENVIRONMENT: "{{ lookup('ansible.builtin.env', 'INFISICAL_ENVIRONMENT', default='dev') }}"
     INFISICAL_API_STATUS_URL: "{{ (INFISICAL_DOMAIN | trim) | regex_replace('/+$', '') }}/api/status"
-    INFISICAL_RUN: |
+    INFISICAL_RUN: |-
       INFISICAL_TOKEN="$(timeout 300s \
         infisical login --domain="{{ INFISICAL_DOMAIN }}" \
         --method=universal-auth \
