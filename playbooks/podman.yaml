@@ -29,7 +29,7 @@
         --projectId={{ INFISICAL_PROJECT_ID }} \
         --domain="{{ INFISICAL_DOMAIN }}" \
         --path=/ \
-        -- \
+        --
 
   tasks:
     - name: Setup
@@ -103,5 +103,5 @@
 
     - name: Deploy Immich Public
       ansible.builtin.shell: |
-        {{ INFISICAL_RUN }}
+        {{ INFISICAL_RUN }} \
         podman compose -f ~/config_storage/compose/immich-public/podman.yaml {{ COMPOSE_CMD }}
