@@ -89,12 +89,10 @@
         )"
         test -n "$INFISICAL_TOKEN"
         export INFISICAL_TOKEN
-        for stack in {{ deploy_stacks | join(' ') }}; do
-          timeout 300s \
-          infisical run \
-            --env=dev \
-            --projectId={{ INFISICAL_PROJECT_ID }} \
-            --domain="{{ INFISICAL_DOMAIN }}" \
-            --path=/ \
-            -- \
-            podman compose -f ~/config_storage/compose/openwebui/podman.yaml up -d
+        infisical run \
+          --env=dev \
+          --projectId={{ INFISICAL_PROJECT_ID }} \
+          --domain="{{ INFISICAL_DOMAIN }}" \
+          --path=/ \
+          -- \
+          podman compose -f ~/config_storage/compose/openwebui/podman.yaml up -d
