@@ -98,3 +98,8 @@
       ansible.builtin.shell: |
         {{ INFISICAL_RUN }}
         podman compose -f ~/config_storage/compose/openwebui/podman.yaml up -d
+
+    - name: Deploy Immich
+      ansible.builtin.shell: |
+        {{ INFISICAL_RUN }}
+        podman compose -f ~/config_storage/compose/immich/podman.yaml up -d
