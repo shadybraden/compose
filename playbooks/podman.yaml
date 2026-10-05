@@ -32,4 +32,4 @@
           update: true
 
     - name: Deploy OpenWebUI
-      ansible.builtin.command: podman compose up -f ~/config_storage/compose/openwebui/podman.yaml -d
+      ansible.builtin.command: podman compose -f ~/config_storage/compose/openwebui/podman.yaml up -d
