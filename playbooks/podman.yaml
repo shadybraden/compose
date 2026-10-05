@@ -98,7 +98,7 @@
 
     - name: Deploy Open WebUI
       ansible.builtin.shell: |
-        {{ INFISICAL_RUN }}
+        {{ INFISICAL_RUN }} \
         podman compose -f ~/config_storage/compose/openwebui/podman.yaml {{ COMPOSE_CMD }}
 
     - name: Deploy Immich Public
