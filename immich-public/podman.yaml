@@ -31,6 +31,7 @@ services:
       - REDIS_HOSTNAME=redis-public
       - DB_USERNAME=postgres
       - DB_DATABASE_NAME=immich
+      - POSTGRES_PASSWORD=${IMMICH_DB_PASSWORD}
     networks:
       - intranet
     restart: no
@@ -54,6 +55,7 @@ services:
       - REDIS_HOSTNAME=redis-public
       - DB_USERNAME=postgres
       - DB_DATABASE_NAME=immich
+      - POSTGRES_PASSWORD=${IMMICH_DB_PASSWORD}
     ports:
       - '0.0.0.0:48408:2283'
     networks:
@@ -74,6 +76,7 @@ services:
       - REDIS_HOSTNAME=redis-public
       - DB_USERNAME=postgres
       - DB_DATABASE_NAME=immich
+      - POSTGRES_PASSWORD=${IMMICH_DB_PASSWORD}
     networks:
       - intranet
     restart: no
