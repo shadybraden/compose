@@ -99,7 +99,7 @@
         {{ INFISICAL_RUN }}
         podman compose -f ~/config_storage/compose/openwebui/podman.yaml up -d
 
-    - name: Deploy Immich
+    - name: Deploy Immich Public
       ansible.builtin.shell: |
         {{ INFISICAL_RUN }}
         podman compose -f ~/config_storage/compose/immich-public/podman.yaml up -d
