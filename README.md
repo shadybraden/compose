@@ -128,3 +128,9 @@ networks:
 
 ```
 </details>
+
+# Podman usage
+
+Podman is used here for rootless deployments. They do not use Komodo for deployments, but stay here in Forgejo.
+
+See the podman workflow and playbook for more.
