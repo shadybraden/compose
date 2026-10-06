@@ -2,7 +2,7 @@
 name: jellyfin
 services:
   jellyfin:
-    image: jellyfin/jellyfin:12.1
+    image: jellyfin/jellyfin:12.2
     container_name: jellyfin
     volumes:
       - /data/config_storage/jellyfin/config:/config
