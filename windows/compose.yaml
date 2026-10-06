@@ -10,8 +10,8 @@ services:
       VERSION: "11"
     ports:
       #- 8006:8006  # webui
-      - 3389:3389/tcp
-      - 3389:3389/udp
+      - '0.0.0.0:3389:3389/tcp'
+      - '0.0.0.0:3389:3389/udp'
     networks:
       - intranet
     restart: unless-stopped
