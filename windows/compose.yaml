@@ -1,27 +1,20 @@
 ---
+name: windows
 services:
   windows:
-    image: dockurr/windows:6.05
+    image: dockurr/windows:6.06
     container_name: windows
-    environment:
-      VERSION: "11"
-    devices:
-      - /dev/kvm
-      - /dev/net/tun
-    cap_add:
-      - NET_ADMIN
-    ports:
-      #- 8006:8006  # webui
-      - 3389:3389/tcp
-      - 3389:3389/udp
     volumes:
       - /data/config_storage/windows:/storage
-    restart: unless-stopped
-    stop_grace_period: 2m
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
+    environment:
+      VERSION: "11"
+    ports:
+      #- 8006:8006  # webui
+      - '0.0.0.0:3389:3389/tcp'
+      - '0.0.0.0:3389:3389/udp'
     networks:
       - intranet
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.windows.entrypoints=http"
@@ -39,6 +32,14 @@ services:
       - "homepage.icon=/images/windows.png"
       - "homepage.href=https://windows.${DOMAIN}/"
       - "traefik.http.routers.windows-secure.middlewares=tinyauth"
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/kvm
+      - /dev/net/tun
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+    stop_grace_period: 2m
 
 networks:
   intranet:
