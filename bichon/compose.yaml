@@ -2,7 +2,7 @@
 name: bichon
 services:
   bichon:
-    image: rustmailer/bichon:2.1.0
+    image: rustmailer/bichon:2.1.1
     container_name: bichon
     volumes:
       - /data/config_storage/bichon:/data
