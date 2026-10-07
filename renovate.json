@@ -112,7 +112,9 @@
       "matchPackageNames": ["ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder"],
       "versioning": "regex:^latest-build-(?<major>\\d+)$",
       "matchDatasources": ["docker"],
-      "sourceUrl": "https://github.com/sdr-enthusiasts/docker-adsb-ultrafeeder"
+      "sourceUrl": "https://github.com/sdr-enthusiasts/docker-adsb-ultrafeeder",
+      "minimumReleaseAge": "3 days",
+      "commitMessagePrefix": "✈️"
     },
     {
       "matchPackageNames": ["nginx"],
