@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: Download and zip ${{ github.event.inputs.image }}
         run: |
-          podman pull ${{ github.event.inputs.image }} | gzip > image.tar.gz
+          podman --storage-driver vfs pull ${{ github.event.inputs.image }} | gzip > image.tar.gz
 
       - name: Update ClamAV signatures if stale
         shell: bash
