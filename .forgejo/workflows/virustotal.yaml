@@ -14,9 +14,9 @@ jobs:
     runs-on: tools_container
 
     steps:
-      - name: Download and zip ${{ github.event.inputs.image }}
+      - name: Download and zip "${{ github.event.inputs.image }}"
         run: |
-          podman --storage-driver vfs pull ${{ github.event.inputs.image }} | gzip > image.tar.gz
+          podman --storage-driver vfs pull "${{ github.event.inputs.image }}" | gzip > image.tar.gz
 
       - name: Update ClamAV signatures if stale
         shell: bash
@@ -35,7 +35,7 @@ jobs:
             echo "Signatures are fresh — skipping update"
           fi
 
-      - name: clamscan ${{ github.event.inputs.image }}
+      - name: clamscan "${{ github.event.inputs.image }}"
         shell: bash
         run: |
           if clamscan --infected --recursive image.tar.gz; then
@@ -50,7 +50,7 @@ jobs:
             exit "$status"      # 2+ = scan error (not malware), still fails
           fi
 
-      - name: VirusTotal scan ${{ github.event.inputs.image }}
+      - name: VirusTotal scan "${{ github.event.inputs.image }}"
         env:
           VT_API_KEY: ${{ secrets.VIRUSTOTAL_API_KEY }}
         run: |          
