@@ -17,7 +17,8 @@ jobs:
       - name: Download and zip
         run: |
           echo "zipping: ${{ github.event.inputs.image }}"
-          podman --storage-driver vfs pull "${{ github.event.inputs.image }}" | gzip > image.tar.gz
+          podman --storage-driver vfs pull "${{ github.event.inputs.image }}"
+          podman --storage-driver vfs save "${{ github.event.inputs.image }}" | gzip > image.tar.gz
 
       - name: Update ClamAV signatures if stale
         shell: bash
@@ -60,8 +61,8 @@ jobs:
           vt scan file image.tar.gz --wait
           HASH=$(sha256sum image.tar.gz | cut -d' ' -f1)
           
-          MALICIOUS=$(vt file "$HASH" --format json | jq '.data.attributes.last_analysis_stats.malicious')
-          SUSPICIOUS=$(vt file "$HASH" --format json | jq '.data.attributes.last_analysis_stats.suspicious')
+          MALICIOUS=$(vt file "$HASH" --format json | jq '.[0].last_analysis_stats.malicious // 0')
+          SUSPICIOUS=$(vt file "$HASH" --format json | jq '.[0].last_analysis_stats.suspicious // 0')
           
           if [ "$MALICIOUS" -gt 0 ] || [ "$SUSPICIOUS" -gt 2 ]; then
             echo "::error::Security issues detected in container image"
