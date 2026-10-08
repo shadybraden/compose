@@ -1,0 +1,66 @@
+name: Scan an image with VirusTotal
+
+on:
+  workflow_dispatch:
+    inputs:
+      image:
+        description: 'image to scan'
+        required: true
+        type: string
+        default: 'git.holmlab.org/shady/skywatch:1.5.11'
+
+jobs:
+  Scan:
+    runs-on: tools_container
+
+    steps:
+      - name: Download and zip ${{ github.event.inputs.image }}
+        run: |
+          podman pull ${{ github.event.inputs.image }} | gzip > image.tar.gz
+
+      - name: Update ClamAV signatures if stale
+        shell: bash
+        env:
+          MAX_DB_AGE_DAYS: "1"   # ClamAV pushes signature updates several times a day
+        run: |
+          DB="/var/lib/clamav/daily.cvd"   # Debian/Ubuntu default; adjust if needed
+
+          if [ ! -f "$DB" ]; then
+            echo "No local signatures found — downloading..."
+            freshclam --quiet || echo "::warning::Signature update failed — continuing with what exists"
+          elif [ $(( ($(date +%s) - $(stat -c %Y "$DB")) / 86400 )) -ge "$MAX_DB_AGE_DAYS" ]; then
+            echo "Signatures older than ${MAX_DB_AGE_DAYS} day(s) — updating..."
+            freshclam --quiet || echo "::warning::Signature update failed — continuing with what exists"
+          else
+            echo "Signatures are fresh — skipping update"
+          fi
+
+      - name: clamscan ${{ github.event.inputs.image }}
+        shell: bash
+        run: |
+          if clamscan --infected --recursive image.tar.gz; then
+            echo "✅ No malware detected in image.tar.gz"
+          else
+            status=$?
+            if [ "$status" -eq 1 ]; then
+              echo "::error::🚨 MALWARE DETECTED in image.tar.gz"
+              exit 1            # non-zero exit → job fails
+            fi
+            echo "::error::clamscan errored (exit code $status)"
+            exit "$status"      # 2+ = scan error (not malware), still fails
+          fi
+
+      - name: VirusTotal scan ${{ github.event.inputs.image }}
+        env:
+          VT_API_KEY: ${{ secrets.VIRUSTOTAL_API_KEY }}
+        run: |          
+          vt scan file image.tar.gz --wait
+          HASH=$(sha256sum image.tar.gz | cut -d' ' -f1)
+          
+          MALICIOUS=$(vt file "$HASH" --format json | jq '.data.attributes.last_analysis_stats.malicious')
+          SUSPICIOUS=$(vt file "$HASH" --format json | jq '.data.attributes.last_analysis_stats.suspicious')
+          
+          if [ "$MALICIOUS" -gt 0 ] || [ "$SUSPICIOUS" -gt 2 ]; then
+            echo "::error::Security issues detected in container image"
+            exit 1
+          fi
