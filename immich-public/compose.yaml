@@ -22,7 +22,7 @@ services:
       - env=production
 
   immich-machine-learning-public:
-    image: ghcr.io/immich-app/immich-machine-learning:v3.3.0
+    image: ghcr.io/immich-app/immich-machine-learning:v3.3.1
     container_name: immich_machine_learning-public
     volumes:
       - model-cache-public:/cache
