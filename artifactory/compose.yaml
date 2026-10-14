@@ -1,0 +1,44 @@
+---
+name: artifactory
+services:
+  artifactory:
+    # OSS edition, tag = current stable (7.161.26) per releases.jfrog.io index
+    image: releases-docker.jfrog.io/jfrog/artifactory-oss:7.161.26
+    container_name: artifactory
+    # full $JFROG_HOME (config + data); must be chowned to 1030:1030 (container user)
+    volumes:
+      - /data/config_storage/artifactory:/var/opt/jfrog/artifactory
+    environment:
+      - TZ=America/New_York
+    ports:
+      - '0.0.0.0:8081:8081'  # artifactory service (docker/maven/npm clients)
+      - '0.0.0.0:8082:8082'  # router/web UI, http://<host>:8082/ui
+    networks:
+      - intranet
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.artifactory.entrypoints=http"
+      - "traefik.http.routers.artifactory.rule=Host(`artifactory.${DOMAIN}`)"
+      - "traefik.http.middlewares.artifactory-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.artifactory.middlewares=artifactory-https-redirect"
+      - "traefik.http.routers.artifactory-secure.entrypoints=https"
+      - "traefik.http.routers.artifactory-secure.rule=Host(`artifactory.${DOMAIN}`)"
+      - "traefik.http.routers.artifactory-secure.tls=true"
+      - "traefik.http.routers.artifactory-secure.service=artifactory"
+      - "traefik.http.services.artifactory.loadbalancer.server.port=8082"  # port of the service
+      - "traefik.docker.network=intranet"
+      - "homepage.group=Infrastructure"
+      - "homepage.name=artifactory"
+      - "homepage.icon=/images/artifactory.png"
+      - "homepage.href=https://artifactory.${DOMAIN}/"
+      - env=production
+    dns:
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+
+networks:
+  intranet:
+    external: true
