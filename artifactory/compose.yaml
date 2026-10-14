@@ -15,7 +15,7 @@ services:
       - '0.0.0.0:8082:8082'  # router/web UI, http://<host>:8082/ui
     networks:
       - intranet
-    restart: unless-stopped
+    restart: no
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.artifactory.entrypoints=http"
