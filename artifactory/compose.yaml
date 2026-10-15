@@ -48,11 +48,10 @@ services:
       - "traefik.http.routers.artifactory-secure.service=artifactory"
       - "traefik.http.services.artifactory.loadbalancer.server.port=8082"  # port of the service
       - "traefik.docker.network=intranet"
-      - "homepage.group=Infrastructure"
+      - "homepage.group=Other"
       - "homepage.name=artifactory"
       - "homepage.icon=/images/artifactory.png"
       - "homepage.href=https://artifactory.${DOMAIN}/"
-      - env=production
     dns:
       - ${DNS_SERVER1}
       - ${DNS_SERVER2}
