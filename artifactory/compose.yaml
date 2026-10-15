@@ -50,7 +50,7 @@ services:
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
       - "homepage.name=artifactory"
-      - "homepage.icon=/images/artifactory.png"
+      - "homepage.icon=/images/artifactory.jpg"
       - "homepage.href=https://artifactory.${DOMAIN}/"
     dns:
       - ${DNS_SERVER1}
