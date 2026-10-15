@@ -1,15 +1,35 @@
 ---
 name: artifactory
 services:
+  postgres:
+    image: postgres:16.15
+    container_name: artifactory-postgres
+    environment:
+      - POSTGRES_DB=artifactory
+      - POSTGRES_USER=artifactory
+      - POSTGRES_PASSWORD=${ARTIFACTORY_DB_PASSWORD}
+    volumes:
+      - /data/config_storage/artifactory-postgres:/var/lib/postgresql/data
+    networks:
+      - intranet
+    restart: unless-stopped
+
   artifactory:
     # OSS edition, tag = current stable (7.161.26) per releases.jfrog.io index
     image: releases-docker.jfrog.io/jfrog/artifactory-oss:7.161.26
     container_name: artifactory
+    depends_on:
+      - postgres
     # full $JFROG_HOME (config + data); must be chowned to 1030:1030 (container user)
     volumes:
       - /data/config_storage/artifactory:/var/opt/jfrog/artifactory
     environment:
       - TZ=America/New_York
+      - JF_SHARED_DATABASE_TYPE=postgresql
+      - JF_SHARED_DATABASE_DRIVER=org.postgresql.Driver
+      - JF_SHARED_DATABASE_URL=jdbc:postgresql://postgres:5432/artifactory
+      - JF_SHARED_DATABASE_USERNAME=artifactory
+      - JF_SHARED_DATABASE_PASSWORD=${ARTIFACTORY_DB_PASSWORD}
     ports:
       - '0.0.0.0:8081:8081'  # artifactory service (docker/maven/npm clients)
       - '0.0.0.0:8082:8082'  # router/web UI, http://<host>:8082/ui

@@ -1,0 +1,81 @@
+---
+- name: Prepare Artifactory host
+  hosts: artifactory
+  become: false
+
+  vars:
+    artifactory_uid: 1030
+    artifactory_gid: 1030
+    artifactory_data_dir: /data/config_storage/artifactory
+    artifactory_postgres_dir: /data/config_storage/artifactory-postgres
+    artifactory_security_dir: "{{ artifactory_data_dir }}/etc/security"
+    artifactory_master_key: "{{ artifactory_security_dir }}/master.key"
+    artifactory_join_key: "{{ artifactory_security_dir }}/join.key"
+
+  tasks:
+    - name: Create Artifactory data directories
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: "{{ artifactory_uid }}"
+        group: "{{ artifactory_gid }}"
+        mode: "0750"
+      loop:
+        - "{{ artifactory_data_dir }}"
+        - "{{ artifactory_security_dir }}"
+      become: true
+
+    - name: Create Postgres data directory
+      ansible.builtin.file:
+        path: "{{ artifactory_postgres_dir }}"
+        state: directory
+        mode: "0755"
+      become: true
+
+    - name: Check for existing master key
+      ansible.builtin.stat:
+        path: "{{ artifactory_master_key }}"
+      register: master_key_stat
+      become: true
+
+    - name: Check for existing join key
+      ansible.builtin.stat:
+        path: "{{ artifactory_join_key }}"
+      register: join_key_stat
+      become: true
+
+    - name: Generate master key (only if missing)
+      ansible.builtin.shell: |
+        umask 077
+        openssl rand -hex 32 > "{{ artifactory_master_key }}"
+      args:
+        creates: "{{ artifactory_master_key }}"
+      when: not master_key_stat.stat.exists
+      become: true
+      no_log: true
+
+    - name: Generate join key (only if missing)
+      ansible.builtin.shell: |
+        umask 077
+        openssl rand -hex 32 > "{{ artifactory_join_key }}"
+      args:
+        creates: "{{ artifactory_join_key }}"
+      when: not join_key_stat.stat.exists
+      become: true
+      no_log: true
+
+    - name: Set ownership and permissions on master key
+      ansible.builtin.file:
+        path: "{{ artifactory_master_key }}"
+        owner: "{{ artifactory_uid }}"
+        group: "{{ artifactory_gid }}"
+        mode: "0600"
+      become: true
+
+    - name: Set ownership and permissions on join key
+      ansible.builtin.file:
+        path: "{{ artifactory_join_key }}"
+        owner: "{{ artifactory_uid }}"
+        group: "{{ artifactory_gid }}"
+        mode: "0600"
+      become: true
