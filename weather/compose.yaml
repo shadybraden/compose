@@ -6,10 +6,15 @@ services:
     container_name: weather
     volumes:
       - /data/config_storage/weather.xml:/data/weather.xml:ro
+      - /data/config_storage/Discussion.html:/data/Discussion.html:ro
+      - /data/config_storage/openmeteo_gfs.json:/data/openmeteo_gfs.json:ro
+      - /data/config_storage/openmeteo_ecmwf.json:/data/openmeteo_ecmwf.json:ro
     environment:
       - TZ=America/New_York
       - PORT=8080
       - WEATHER_FILE=/data/weather.xml
+      - DISCUSSION_FILE=/data/Discussion.html
+      - OPEN_METEO_DIR=/data
       - HOME_ASSISTANT_URL=${HOME_ASSISTANT_URL:-}
       - HOME_ASSISTANT_TOKEN=${HOME_ASSISTANT_TOKEN:-}
       - HOME_ASSISTANT_TEMP_ENTITY=${HOME_ASSISTANT_TEMP_ENTITY:-}
