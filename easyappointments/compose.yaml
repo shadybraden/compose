@@ -44,7 +44,7 @@ services:
     volumes:
       - /data/config_storage/easyappointments/mysql:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
       - MYSQL_DATABASE=easyappointments
     networks:
       - intranet
