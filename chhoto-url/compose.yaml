@@ -37,7 +37,6 @@ services:
       - "homepage.icon=/images/chhoto.png"
       - "homepage.href=https://chhoto.${DOMAIN}/"
       - "traefik.http.routers.chhoto-secure.middlewares=tinyauth"
-    user: 1000:1000
     cap_drop:
       - ALL
     dns:
