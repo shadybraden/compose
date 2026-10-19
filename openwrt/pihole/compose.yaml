@@ -1,9 +1,12 @@
 ---
+name: pihole
 services:
   pihole:
     image: pihole/pihole:2026.10.0
     container_name: pihole
-    network_mode: host
+    volumes:
+      - /opt/config_storage/pihole/etc-pihole:/etc/pihole
+      - /opt/config_storage/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
     environment:
       - FTLCONF_webserver_api_password=${pihole_password}
       - TZ=America/New_York
@@ -12,9 +15,7 @@ services:
       - FTLCONF_dns_upstreams=10.1.1.1#5053  # dnscrypt-proxy
       - PIHOLE_UID=0
       - PIHOLE_GID=0
-    volumes:
-      - /opt/config_storage/pihole/etc-pihole:/etc/pihole
-      - /opt/config_storage/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
+    network_mode: host
     restart: always
     cap_add:
       - SYS_NICE
