@@ -3,10 +3,6 @@ name: easyappointments
 services:
   easyapointments:
     image: alextselegidis/easyappointments:1.6.1
-    volumes:
-      - /data/config_storage/easyappointments/html:/var/www/html
-#    ports:
-#      - '80:80'
     environment:
       - BASE_URL=https://appointments.${DOMAIN}
       - DEBUG_MODE=TRUE
