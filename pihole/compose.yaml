@@ -12,9 +12,9 @@ services:
       - TZ=America/New_York
       - FTLCONF_dns_listeningMode=all
     ports:
-      - "53:53/tcp"
-      - "53:53/udp"
-      - "5353:80/tcp"  # web ui
+      - '0.0.0.0:53:53/tcp'
+      - '0.0.0.0:53:53/udp'
+      - '0.0.0.0:5353:80/tcp'  # web ui
     networks:
       - intranet
     restart: unless-stopped
