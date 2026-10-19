@@ -109,6 +109,11 @@
       "sourceUrl": "https://github.com/Radarr/Radarr"
     },
     {
+      "matchPackageNames": ["alextselegidis/easyappointments"],
+      "matchDatasources": ["docker"],
+      "sourceUrl": "https://github.com/alextselegidis/easyappointments"
+    },
+    {
       "matchPackageNames": ["ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder"],
       "versioning": "regex:^latest-build-(?<major>\\d+)$",
       "matchDatasources": ["docker"],
