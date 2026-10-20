@@ -85,15 +85,18 @@
         - name: Run the setup script (adds GPG key + apt repo)
           ansible.builtin.command: bash /tmp/setup_infisical.deb.sh
           changed_when: false
+          become: true
 
         - name: Update apt cache
           ansible.builtin.apt:
             update_cache: true
+          become: true
 
         - name: Install the infisical package
           ansible.builtin.apt:
             name: infisical
             state: present
+          become: true
 
         - name: Clean up the installer script
           ansible.builtin.file:
