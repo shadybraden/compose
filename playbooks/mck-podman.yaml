@@ -1,6 +1,6 @@
 ---
 - name: Install Podman
-  hosts: podman
+  hosts: mck
   become: false
 
   vars:
