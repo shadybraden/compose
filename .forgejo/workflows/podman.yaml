@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'playbooks/podman.yaml'
+      - 'weather/compose.yaml'
   workflow_dispatch:
     inputs:
       command:
