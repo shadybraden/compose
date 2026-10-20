@@ -12,4 +12,4 @@ services:
       - /data/mnt/shows/Kids:/storage/Kids:ro
       - /data/mnt/shows/Preschool:/storage/PreK:ro
       - /data/dont_backup/samba/config:/etc/samba
-    restart: unless-stopped
+    restart: no
