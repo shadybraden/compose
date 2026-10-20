@@ -11,7 +11,7 @@ services:
       - /data/config_storage/openmeteo_ecmwf.json:/data/openmeteo_ecmwf.json:ro
     environment:
       - TZ=America/New_York
-      - PORT=8080
+      - PORT=9986
       - WEATHER_FILE=/data/weather.xml
       - DISCUSSION_FILE=/data/Discussion.html
       - OPEN_METEO_DIR=/data
@@ -19,15 +19,27 @@ services:
       - HOME_ASSISTANT_TOKEN=${HOME_ASSISTANT_TOKEN:-}
       - HOME_ASSISTANT_TEMP_ENTITY=${HOME_ASSISTANT_TEMP_ENTITY:-}
     ports:
-      - '0.0.0.0:8080:8080'
-    networks:
-      - intranet
-    restart: no
+      - '127.0.0.1:9986:9986'
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:9986/api/weather', timeout=2)"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+    logging:
+      options:
+        max-size: 10m
+    cap_drop:
+      - ALL
+    mem_limit: 256m
     dns:
-      - 0.0.0.0
+      - ${DNS_SERVER1}
+      - ${DNS_SERVER2}
+    expose:
+      - '9986'
+    pids_limit: 64
+    read_only: true
     security_opt:
       - no-new-privileges:true  # helps to increase security
-
-networks:
-  intranet:
-    external: true
+    tmpfs:
+      - '/tmp:size=64m'
