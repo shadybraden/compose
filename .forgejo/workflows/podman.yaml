@@ -19,7 +19,7 @@ on:
         default: up
 
 jobs:
-  Podman:
+  Holmie-Podman:
     runs-on: tools_container
     steps:
       - name: Checkout
@@ -33,7 +33,34 @@ jobs:
 
       - name: Run Ansible "podman"
         run: |
-          ansible-playbook playbooks/podman.yaml \
+          ansible-playbook playbooks/holmie-podman.yaml \
+            -e command="${{ github.event.inputs.command }}"
+        env:
+          ANSIBLE_HOST_KEY_CHECKING: "False"
+          ANSIBLE_BECOME_PASS: ${{ secrets.SUDO_PASSWORD }}
+          ANSIBLE_FORCE_COLOR: "1"
+          INFISICAL_CLIENTID: ${{ secrets.INFISICAL_CLIENTID }}
+          INFISICAL_PROJECT_ID: ${{ secrets.INFISICAL_PROJECT_ID }}
+          INFISICAL_CLIENTSECRET: ${{ secrets.INFISICAL_CLIENTSECRET }}
+          INFISICAL_ENVIRONMENT: "prod"
+          INFISICAL_DOMAIN: "https://infisical.holmlab.org/"
+          INFISICAL_API_URL: "${{ env.INFISICAL_DOMAIN }}api"
+
+  MCK-Podman:
+    runs-on: tools_container
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+
+      - name: Run Ansible "podman"
+        run: |
+          ansible-playbook playbooks/mck-podman.yaml \
             -e command="${{ github.event.inputs.command }}"
         env:
           ANSIBLE_HOST_KEY_CHECKING: "False"

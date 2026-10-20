@@ -1,0 +1,102 @@
+---
+- name: Install Podman
+  hosts: podman
+  become: false
+
+  vars:
+    COMPOSE_CMD: "{{ 'up -d' if (command | default('up', true)) == 'up' else command }}"
+    INFISICAL_CLIENTID: "{{ lookup('ansible.builtin.env', 'INFISICAL_CLIENTID') }}"
+    INFISICAL_CLIENTSECRET: "{{ lookup('ansible.builtin.env', 'INFISICAL_CLIENTSECRET') }}"
+    INFISICAL_PROJECT_ID: "{{ lookup('ansible.builtin.env', 'INFISICAL_PROJECT_ID') }}"
+    INFISICAL_API_URL: "{{ lookup('ansible.builtin.env', 'INFISICAL_API_URL') }}"
+    INFISICAL_DOMAIN: "{{ lookup('ansible.builtin.env', 'INFISICAL_DOMAIN') }}"
+    INFISICAL_ENVIRONMENT: "{{ lookup('ansible.builtin.env', 'INFISICAL_ENVIRONMENT', default='dev') }}"
+    INFISICAL_API_STATUS_URL: "{{ (INFISICAL_DOMAIN | trim) | regex_replace('/+$', '') }}/api/status"
+    INFISICAL_RUN: |-
+      INFISICAL_TOKEN="$(timeout 300s \
+        infisical login --domain="{{ INFISICAL_DOMAIN }}" \
+        --method=universal-auth \
+        --client-id="{{ INFISICAL_CLIENTID }}" \
+        --client-secret="{{ INFISICAL_CLIENTSECRET }}" \
+        --silent \
+        --plain \
+        </dev/null \
+      )"
+      test -n "$INFISICAL_TOKEN"
+      export INFISICAL_TOKEN
+      infisical run \
+        --env={{ INFISICAL_ENVIRONMENT }} \
+        --projectId={{ INFISICAL_PROJECT_ID }} \
+        --domain="{{ INFISICAL_DOMAIN }}" \
+        --path=/ \
+        --
+
+  tasks:
+    - name: Setup
+      block:
+      - name: Update apt cache
+        ansible.builtin.apt:
+          update_cache: true
+        become: true
+        when: ansible_facts["os_family"] == "Debian"
+
+      - name: Install podman
+        ansible.builtin.apt:
+          name: podman
+          state: present
+        become: true
+        when: ansible_facts["os_family"] == "Debian"
+
+      - name: Start podman.socket
+        ansible.builtin.systemd:
+          name: podman.socket
+          enabled: true
+          state: started
+          scope: user
+
+      - name: Create intranet network
+        containers.podman.podman_network:
+          name: intranet
+          state: present
+
+      - name: Clone podman repo
+        ansible.builtin.git:
+          repo: https://git.holmlab.org/shady/compose
+          dest: ~/config_storage/compose
+          version: main
+          update: true
+
+    - name: Validate Infisical is ready
+      block:
+      - name: Validate Infisical vars
+        ansible.builtin.assert:
+          that:
+            - INFISICAL_CLIENTID | length > 0
+            - INFISICAL_CLIENTSECRET | length > 0
+            - INFISICAL_PROJECT_ID | length > 0
+            - INFISICAL_DOMAIN | length > 0
+          fail_msg: >-
+            Infisical environment variables must be set on the deploy host:
+            INFISICAL_CLIENTID, INFISICAL_CLIENTSECRET, INFISICAL_PROJECT_ID, INFISICAL_DOMAIN.
+
+      - name: Check Infisical API is reachable from the target host
+        ansible.builtin.uri:
+          url: "{{ INFISICAL_API_STATUS_URL }}"
+          method: GET
+          status_code: 200
+          timeout: 10
+        register: infisical_api_status
+        ignore_errors: true
+
+      - name: Fail if Infisical API is unreachable
+        ansible.builtin.fail:
+          msg: >-
+            Infisical API at {{ INFISICAL_API_STATUS_URL }} is not reachable from the target host.
+            Check DNS resolution, routing/firewall and that the instance is running. Raw error:
+            {{ infisical_api_status.msg }}
+        when: infisical_api_status is failed
+
+    - name: Deploy samba-mck
+      ansible.builtin.shell: |
+        {{ INFISICAL_RUN }} \
+        podman compose -f ~/config_storage/compose/samba-mck/compose.yaml {{ COMPOSE_CMD }}
