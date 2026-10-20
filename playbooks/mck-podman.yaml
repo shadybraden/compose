@@ -133,6 +133,14 @@
             {{ infisical_api_status.msg }}
         when: infisical_api_status is failed
 
+    - name: Set net.ipv4.ip_unprivileged_port_start persistently
+      ansible.posix.sysctl:
+        name: net.ipv4.ip_unprivileged_port_start
+        value: "445"
+        sysctl_file: /etc/sysctl.d/99-unpriv-ports.conf
+        state: present
+        reload: true
+
     - name: Deploy samba-mck
       ansible.builtin.shell: |
         {{ INFISICAL_RUN }} \
