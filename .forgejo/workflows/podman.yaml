@@ -4,7 +4,8 @@ on:
   push:
     branches: [main]
     paths:
-      - 'playbooks/podman.yaml'
+      - 'playbooks/holmie-podman.yaml'
+      - 'playbooks/mck-podman.yaml'
       - 'weather/compose.yaml'
   workflow_dispatch:
     inputs:
