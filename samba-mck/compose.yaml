@@ -11,5 +11,5 @@ services:
     volumes:
       - /data/mnt/shows/Kids:/storage/Kids:ro
       - /data/mnt/shows/Preschool:/storage/PreK:ro
-      - /data/dont_backup/samba/config:/etc/samba
+      - /home/mck/config_storage/compose/samba-mck/smb.conf:/etc/samba/smb.conf:ro
     restart: no
