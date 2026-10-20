@@ -66,6 +66,40 @@
           version: main
           update: true
 
+    - name: Check if infisical is installed
+      ansible.builtin.command: command -v infisical
+      register: infisical_check
+      changed_when: false
+      failed_when: false
+
+    - name: Install Infisical CLI
+      when:
+        - infisical_check.rc != 0
+      block:
+        - name: Download the Infisical repo setup script
+          ansible.builtin.get_url:
+            url: https://artifacts-cli.infisical.com/setup.deb.sh
+            dest: /tmp/setup_infisical.deb.sh
+            mode: "0755"
+
+        - name: Run the setup script (adds GPG key + apt repo)
+          ansible.builtin.command: bash /tmp/setup_infisical.deb.sh
+          changed_when: false
+
+        - name: Update apt cache
+          ansible.builtin.apt:
+            update_cache: true
+
+        - name: Install the infisical package
+          ansible.builtin.apt:
+            name: infisical
+            state: present
+
+        - name: Clean up the installer script
+          ansible.builtin.file:
+            path: /tmp/setup_infisical.deb.sh
+            state: absent
+
     - name: Validate Infisical is ready
       block:
       - name: Validate Infisical vars
