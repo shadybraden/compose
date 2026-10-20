@@ -22,7 +22,7 @@ services:
       - '127.0.0.1:9986:9986'
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "python", "-c", "__import__('urllib.request').request.urlopen('http://127.0.0.1:9986/api/weather', timeout=2)"]
+      test: ["CMD", "python", "-c", "__import__('urllib.request').request.urlopen('http://127.0.0.1:9986/api/weather',timeout=2)"]
       interval: 30s
       timeout: 3s
       retries: 3
