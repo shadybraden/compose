@@ -1,6 +1,6 @@
 ---
 - name: Install Podman
-  hosts: holmie
+  hosts: holmie@10.1.1.65
   become: false
 
   vars:

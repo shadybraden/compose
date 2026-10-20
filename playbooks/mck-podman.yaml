@@ -1,6 +1,6 @@
 ---
 - name: Install Podman
-  hosts: mck
+  hosts: mck@100.117.173.46
   become: false
 
   vars:
