@@ -7,7 +7,7 @@ services:
       USER: "samba"
       PASS: "${SAMBA_PASS}"
     ports:
-      - 445:445
+      - 4445:445
     volumes:
       - /data/mnt/shows/Kids:/storage/Kids:ro
       - /data/mnt/shows/Preschool:/storage/PreK:ro
