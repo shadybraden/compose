@@ -114,6 +114,11 @@
       "sourceUrl": "https://github.com/alextselegidis/easyappointments"
     },
     {
+      "matchPackageNames": ["klutchell/dnscrypt-proxy"],
+      "matchDatasources": ["docker"],
+      "sourceUrl": "https://github.com/DNSCrypt/dnscrypt-proxy/releases"
+    },
+    {
       "matchPackageNames": ["ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder"],
       "versioning": "regex:^latest-build-(?<major>\\d+)$",
       "matchDatasources": ["docker"],
