@@ -20,6 +20,8 @@ services:
       - HOME_ASSISTANT_TEMP_ENTITY=${HOME_ASSISTANT_TEMP_ENTITY:-}
     ports:
       - '0.0.0.0:9986:9986'
+    networks:
+      - intranet
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "python", "-c", "__import__('urllib.request').request.urlopen('http://127.0.0.1:9986/api/weather',timeout=2)"]
@@ -42,3 +44,7 @@ services:
       - no-new-privileges:true  # helps to increase security
     tmpfs:
       - '/tmp:size=64m'
+
+networks:
+  intranet:
+    external: true
