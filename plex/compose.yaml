@@ -2,7 +2,7 @@
 name: plex
 services:
   plex:
-    image: quay.io/linuxserver.io/plex:1.43.4
+    image: quay.io/linuxserver.io/plex:1.43.5
     container_name: plex
     volumes:
       - /data/config_storage/plex/config:/config
