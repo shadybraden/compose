@@ -2,7 +2,7 @@
 name: weather
 services:
   weather:
-    image: git.holmlab.org/shady/weather:0.1.27
+    image: git.holmlab.org/shady/weather:0.1.28
     container_name: weather
     volumes:
       - /data/config_storage/weather.xml:/data/weather.xml:ro
@@ -33,11 +33,11 @@ services:
         max-size: 10m
     cap_drop:
       - ALL
-    mem_limit: 256m
     dns:
       - 10.1.1.1
     expose:
       - '9986'
+    mem_limit: 256m
     pids_limit: 64
     read_only: true
     security_opt:
