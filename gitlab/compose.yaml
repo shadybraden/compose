@@ -18,7 +18,7 @@ services:
         gitlab_rails['gitlab_shell_ssh_port'] = 2224
       TZ: America/New_York
     ports:
-      - "2224:22"  # git over SSH; host port 22 is used by the host sshd
+      - '0.0.0.0:2224:22'  # git over SSH; host port 22 is used by the host sshd
     networks:
       - intranet
     restart: unless-stopped
