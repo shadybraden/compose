@@ -238,6 +238,12 @@
       "versioning": "regex:^openwrt-(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-(?<build>[a-f0-9]+)$"
     },
     {
+      "matchPackageNames": ["gitlab/gitlab-ce"],
+      "matchDatasources": ["docker"],
+      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-ce\\.(?<build>\\d+)$",
+      "sourceUrl": "https://gitlab.com/gitlab-org/gitlab/-/releases"
+    },
+    {
       "matchDatasources": ["docker"],
       "matchPackageNames": ["renovate/renovate"],
       "automerge": false
