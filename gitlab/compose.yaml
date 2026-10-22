@@ -1,0 +1,42 @@
+---
+name: gitlab
+services:
+  gitlab:
+    # Pinned to latest GitLab CE release (19.5.1) per Docker Hub tags; docs use <version>-ce.0
+    image: gitlab/gitlab-ce:19.5.1-ce.0
+    container_name: gitlab
+    volumes:
+      - /data/config_storage/gitlab/config:/etc/gitlab
+      - /data/config_storage/gitlab/logs:/var/log/gitlab
+      - /data/config_storage/gitlab/data:/var/opt/gitlab
+    environment:
+      # TLS is terminated by Traefik, so GitLab serves plain HTTP on port 80
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'https://gitlab.${DOMAIN}'
+        nginx['listen_https'] = false
+        nginx['listen_port'] = 80
+        gitlab_rails['gitlab_shell_ssh_port'] = 2224
+      TZ: America/New_York
+    ports:
+      - "2224:22"  # git over SSH; host port 22 is used by the host sshd
+    networks:
+      - intranet
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.gitlab.entrypoints=http"
+      - "traefik.http.routers.gitlab.rule=Host(`gitlab.${DOMAIN}`)"
+      - "traefik.http.middlewares.gitlab-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.gitlab.middlewares=gitlab-https-redirect"
+      - "traefik.http.routers.gitlab-secure.entrypoints=https"
+      - "traefik.http.routers.gitlab-secure.rule=Host(`gitlab.${DOMAIN}`)"
+      - "traefik.http.routers.gitlab-secure.tls=true"
+      - "traefik.http.routers.gitlab-secure.service=gitlab"
+      - "traefik.http.services.gitlab.loadbalancer.server.port=80"  # port of the service
+      - "traefik.docker.network=intranet"
+    hostname: gitlab.${DOMAIN}
+    shm_size: "256m"  # required by GitLab
+
+networks:
+  intranet:
+    external: true
