@@ -12,12 +12,12 @@
 
     - name: Pi-hole `docker compose up -d`
       community.docker.docker_compose_v2:
-        project_src: "{{ compose_dir }}/openwrt/pihole/compose.yaml"
+        project_src: "{{ compose_dir }}/openwrt/pihole"
         state: present
         pull: missing
 
     - name: dnscrypt-proxy `docker compose up -d`
       community.docker.docker_compose_v2:
-        project_src: "{{ compose_dir }}/openwrt/dnscrypt/compose.yaml"
+        project_src: "{{ compose_dir }}/openwrt/dnscrypt"
         state: present
         pull: missing
