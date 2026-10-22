@@ -1,0 +1,38 @@
+name: Configure and update OpenWRT dnscrypt-proxy and pihole
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'openwrt/pihole/compose.yaml'
+      - 'openwrt/dnscrypt/compose.yaml'
+
+jobs:
+  OpenWRT:
+    runs-on: tools_container
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+
+      - name: Run Ansible "openwrt"
+        run: |
+          ansible-playbook playbooks/openwrt.yaml
+        env:
+          ANSIBLE_HOST_KEY_CHECKING: "False"
+          ANSIBLE_FORCE_COLOR: "1"
+
+      - name: Notify failure
+        if: failure()
+        run: |
+          curl -X POST https://ntfy.holmlab.org/${{ secrets.NTFY_TOPIC }} \
+            -H "Title: ‼️ Actions failed" \
+            -H "Priority: low" \
+            -d "Workflow '${{ github.workflow }}' failed"
+
