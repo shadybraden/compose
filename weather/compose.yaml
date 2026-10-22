@@ -33,11 +33,11 @@ services:
         max-size: 10m
     cap_drop:
       - ALL
-    mem_limit: 256m
     dns:
       - 10.1.1.1
     expose:
       - '9986'
+    mem_limit: 256m
     pids_limit: 64
     read_only: true
     security_opt:
