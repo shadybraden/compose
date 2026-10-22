@@ -34,6 +34,10 @@ services:
       - "traefik.http.routers.gitlab-secure.service=gitlab"
       - "traefik.http.services.gitlab.loadbalancer.server.port=80"  # port of the service
       - "traefik.docker.network=intranet"
+      - "homepage.group=Infrastructure"
+      - "homepage.name=GitLab"
+      - "homepage.icon=/images/gitlab.png"
+      - "homepage.href=https://gitlab.${DOMAIN}/"
     hostname: gitlab.${DOMAIN}
     shm_size: "256m"  # required by GitLab
 
