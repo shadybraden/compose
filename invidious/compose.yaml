@@ -3,7 +3,7 @@ name: invidious
 services:
   companion:
     # Invidious companion, resolves dynamic signatures/streams for the frontend
-    image: quay.io/invidious/invidious-companion:2026.08.10-16cf10e
+    image: quay.io/invidious/invidious-companion:2026.10.18-fcb0456
     container_name: invidious-companion
     volumes:
       - companioncache:/var/tmp/youtubei.js:rw
@@ -18,7 +18,7 @@ services:
       - no-new-privileges:true  # helps to increase security
 
   invidious:
-    image: quay.io/invidious/invidious:2026.08.12-fc3c75e
+    image: quay.io/invidious/invidious:2026.10.23-4a271da
     container_name: invidious
     depends_on:
       - companion
