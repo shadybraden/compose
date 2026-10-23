@@ -1,20 +1,19 @@
 ---
+name: factorio
 services:
   factorio:
+    image: factoriotools/factorio:2.1.23  # https://www.factorio.com/
+    container_name: factorio
+    volumes:
+      - /data/config_storage/factorio:/factorio  # chown 845:845
+    environment:
+      - INSTANCE_NAME="shadyserver"
     ports:
       - 34197:34197/udp
       - 27015:27015/tcp
-    volumes:
-      - /data/config_storage/factorio:/factorio  # chown 845:845
-    container_name: factorio
-    restart: unless-stopped
-    image: factoriotools/factorio:2.1.23  # https://www.factorio.com/
-    environment:
-      - INSTANCE_NAME="shadyserver"
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
     networks:
       - intranet
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.factorio.entrypoints=http"
@@ -31,6 +30,8 @@ services:
       - "homepage.name=factorio"
       - "homepage.icon=/images/electronks.png"
       - "homepage.href=https://factorio.${DOMAIN}/"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
 
 networks:
   intranet:
