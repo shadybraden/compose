@@ -9,8 +9,8 @@ services:
     environment:
       - INSTANCE_NAME="shadyserver"
     ports:
-      - '0.0.0.0:34197:34197/udp'
       - '0.0.0.0:27015:27015/tcp'
+      - '0.0.0.0:34197:34197/udp'
     networks:
       - intranet
     restart: unless-stopped
