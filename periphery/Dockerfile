@@ -1,4 +1,4 @@
-FROM ghcr.io/moghtech/komodo-periphery:2.3.3
+FROM ghcr.io/moghtech/komodo-periphery:2.3.4
 
 # Install infisical
 RUN curl -L 'https://artifacts-cli.infisical.com/setup.deb.sh' -o setup.deb.sh
