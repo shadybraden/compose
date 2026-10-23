@@ -239,6 +239,12 @@
       "sourceUrl": "https://gitlab.com/gitlab-org/gitlab/-/releases"
     },
     {
+      "matchPackageNames": ["quay.io/invidious/invidious", "quay.io/invidious/invidious-companion"],
+      "matchDatasources": ["docker"],
+      "versioning": "regex:^(?<major>\\d{4})\\.(?<minor>\\d{1,2})\\.(?<patch>\\d{1,2})(?:-[\\w]+)?$",
+      "sourceUrl": "https://github.com/iv-org/invidious"
+    },
+    {
       "matchDatasources": ["docker"],
       "matchPackageNames": ["renovate/renovate"],
       "automerge": false
