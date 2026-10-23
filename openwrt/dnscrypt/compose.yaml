@@ -2,7 +2,7 @@
 name: dnscrypt-proxy
 services:
   dnscrypt-proxy:
-    image: klutchell/dnscrypt-proxy:v2.1.19
+    image: klutchell/dnscrypt-proxy:v2.1.20
     container_name: dnscrypt
     volumes:
       - /opt/config_storage/dnscrypt/logs:/logs
