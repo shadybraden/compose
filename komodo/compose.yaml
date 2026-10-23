@@ -2,7 +2,7 @@
 name: komodo
 services:
   core:
-    image: ghcr.io/moghtech/komodo-core:2.3.3
+    image: ghcr.io/moghtech/komodo-core:2.3.4
     container_name: komodo-core
     depends_on:
       - mongo
