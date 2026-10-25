@@ -2,7 +2,7 @@
 name: dawarich
 services:
   dawarich_app:
-    image: freikin/dawarich:1.16.0
+    image: freikin/dawarich:1.17.0
     container_name: dawarich_app
     depends_on:
       dawarich_db:
@@ -35,12 +35,15 @@ services:
       RAILS_LOG_TO_STDOUT: true
       SELF_HOSTED: true
       STORE_GEODATA: true
-      WEB_CONCURRENCY: 1
+      SIDEKIQ_EMBEDDED: 'true'
+      WEB_CONCURRENCY: '0'
+      BACKGROUND_PROCESSING_CONCURRENCY: 2
     networks:
       - intranet
     command: ['bin/rails', 'server', '-p', '3000', '-b', '::']
     entrypoint: web-entrypoint.sh
     restart: unless-stopped
+    stop_grace_period: 60s
     healthcheck:
       test: [ "CMD-SHELL", "wget -qO - http://127.0.0.1:3000/api/v1/health | grep -q '\"status\"\\s*:\\s*\"ok\"'" ]
       interval: 10s
@@ -76,8 +79,6 @@ services:
           memory: 4G
     security_opt:
       - no-new-privileges:true  # helps to increase security
-#    ports:
-#      - "${DAWARICH_APP_PORT:-3000}:3000"
     stdin_open: true
     tty: true
 
@@ -111,7 +112,11 @@ services:
       - /data/config_storage/dawarich/dawarich_shared:/data
     networks:
       - intranet
-    command: redis-server
+    command: >
+      redis-server
+      --save 900 1
+      --save 300 10
+      --appendonly no
     restart: unless-stopped
     healthcheck:
       test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
@@ -121,62 +126,6 @@ services:
       timeout: 10s
     security_opt:
       - no-new-privileges:true  # helps to increase security
-
-  dawarich_sidekiq:
-    image: freikin/dawarich:1.16.0
-    container_name: dawarich_sidekiq
-    depends_on:
-      dawarich_app:
-        condition: service_healthy
-        restart: true
-      dawarich_db:
-        condition: service_healthy
-        restart: true
-      dawarich_redis:
-        condition: service_healthy
-        restart: true
-    volumes:
-      - /data/config_storage/dawarich/dawarich_public:/var/app/public
-      - /data/config_storage/dawarich/dawarich_watched:/var/app/tmp/imports/watched
-      - /data/config_storage/dawarich/dawarich_storage:/var/app/storage
-    environment:
-      RAILS_ENV: development
-      REDIS_URL: redis://dawarich_redis:6379
-      DATABASE_HOST: dawarich_db
-      DATABASE_PORT: 5432
-      DATABASE_USERNAME: postgres
-      DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
-      DATABASE_NAME: dawarich_development
-      APPLICATION_HOSTS: "dawarich.${DOMAIN}"
-      BACKGROUND_PROCESSING_CONCURRENCY: 3
-      APPLICATION_PROTOCOL: http
-      PROMETHEUS_EXPORTER_ENABLED: false
-      PROMETHEUS_EXPORTER_HOST: dawarich_app
-      PROMETHEUS_EXPORTER_PORT: 9394
-      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
-      RAILS_LOG_TO_STDOUT: true
-      SELF_HOSTED: true
-      STORE_GEODATA: true
-    networks:
-      - intranet
-    command: ['sidekiq']
-    entrypoint: sidekiq-entrypoint.sh
-    restart: unless-stopped
-    healthcheck:
-      test: [ "CMD-SHELL", "pgrep -f sidekiq" ]
-      interval: 10s
-      retries: 30
-      start_period: 30s
-      timeout: 10s
-    logging:
-      driver: "json-file"
-      options:
-        max-size: 100m
-        max-file: 5
-    security_opt:
-      - no-new-privileges:true  # helps to increase security
-    stdin_open: true
-    tty: true
 
 networks:
   intranet:
