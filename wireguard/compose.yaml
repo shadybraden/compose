@@ -10,6 +10,7 @@ services:
     environment:
       WG_DEVICE: enp2s0  # https://github.com/wg-easy/wg-easy/issues/1795#issuecomment-2900911182
       INSECURE: true
+      EXPERIMENTAL_AWG: trueamnesia
     ports:
       - '0.0.0.0:51820:51820/udp'  # public port. remember to port forward this
     networks:
