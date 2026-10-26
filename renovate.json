@@ -233,6 +233,11 @@
       "versioning": "regex:^(?<compatibility>\\d+)-vectorchord(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-pgvectors\\d+\\.\\d+\\.\\d+$"
     },
     {
+      "matchPackageNames": ["ghcr.io/wg-easy/wg-easy"],
+      "matchDatasources": ["docker"],
+      "sourceUrl": "https://github.com/wg-easy/wg-easy"
+    },
+    {
       "matchPackageNames": ["gitlab/gitlab-ce"],
       "matchDatasources": ["docker"],
       "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-ce\\.(?<build>\\d+)$",
