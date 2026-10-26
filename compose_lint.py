@@ -65,6 +65,8 @@ KEY_ORDER = [
     "security_opt",
     "shm_size",
     "tmpfs",
+    "stdin_open",
+    "stop_grace_period",
     "tty",
 ]
 _RANK = {k: i for i, k in enumerate(KEY_ORDER)}

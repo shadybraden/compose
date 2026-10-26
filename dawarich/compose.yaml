@@ -2,7 +2,7 @@
 name: dawarich
 services:
   dawarich_app:
-    image: freikin/dawarich:1.17.0
+    image: freikin/dawarich:1.18.0
     container_name: dawarich_app
     depends_on:
       dawarich_db:
@@ -43,7 +43,6 @@ services:
     command: ['bin/rails', 'server', '-p', '3000', '-b', '::']
     entrypoint: web-entrypoint.sh
     restart: unless-stopped
-    stop_grace_period: 60s
     healthcheck:
       test: [ "CMD-SHELL", "wget -qO - http://127.0.0.1:3000/api/v1/health | grep -q '\"status\"\\s*:\\s*\"ok\"'" ]
       interval: 10s
@@ -80,6 +79,7 @@ services:
     security_opt:
       - no-new-privileges:true  # helps to increase security
     stdin_open: true
+    stop_grace_period: 60s
     tty: true
 
   dawarich_db:
