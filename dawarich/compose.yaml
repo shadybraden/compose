@@ -78,8 +78,8 @@ services:
           memory: 4G
     security_opt:
       - no-new-privileges:true  # helps to increase security
-    stop_grace_period: 60s
     stdin_open: true
+    stop_grace_period: 60s
     tty: true
 
   dawarich_db:
