@@ -22,6 +22,7 @@ services:
       - '0.0.0.0:443:443'  # https
     networks:
       intranet:
+      intranet-backend:  # shared with no-egress services
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
@@ -51,3 +52,5 @@ services:
 networks:
   intranet:  # docker network create intranet
     external: true  # or comment this line to auto create the network
+  intranet-backend:  # docker network create --internal intranet-backend (no egress)
+    external: true
