@@ -9,7 +9,6 @@ services:
       - /lib/modules:/lib/modules:ro
     environment:
       WG_DEVICE: enp2s0  # https://github.com/wg-easy/wg-easy/issues/1795#issuecomment-2900911182
-      INSECURE: true
     ports:
       - '0.0.0.0:51820:51820/udp'  # public port. remember to port forward this
     networks:
@@ -19,7 +18,6 @@ services:
       intranet:
         driver_opts:
           com.docker.network.endpoint.ifname: enp2s0
-      #- "51821:51821/tcp"
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
