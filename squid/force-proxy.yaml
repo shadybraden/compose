@@ -1,0 +1,149 @@
+---
+
+## UNTESTED
+
+# Force 10.1.2.69 (FCOS) to egress only through the squid proxy on 10.1.1.65.
+#
+# Enforcement is on the OpenWrt router ("router"): the 10.1.2.0/24 VLAN zone
+# may only forward TCP 3128 to 10.1.1.65. Everything else (WAN, LAN, router
+# itself, DNS, DHCP) is rejected. The host-side config just makes the FCOS
+# services use the proxy and gives the host a static IP, since DHCP is blocked.
+#
+# Assumptions (cicd creates the VLAN/logical interface before this runs):
+#   - logical network "proxyonly" exists in /etc/config/network on "router"
+#     and is on the 10.1.2.0/24 VLAN with router address 10.1.2.1
+#   - inventory group "router" (OpenWrt, SSH as root)
+#   - inventory group "proxy_only" containing 10.1.2.69 (Fedora CoreOS)
+#   - python3 exists on the FCOS host for the copy/systemd modules; if it
+#     does not, move the host tasks into Butane/Ignition instead
+
+- name: Enforce proxy-only egress on OpenWrt router
+  hosts: router
+  gather_facts: false
+  vars:
+    proxy_net: proxyonly
+    proxy_zone: proxyonly
+    proxy_server_ip: 10.1.1.65
+    proxy_port: 3128
+  tasks:
+    - name: Apply proxy-only zone, forwarding, and squid-only rule
+      ansible.builtin.raw: |
+        set -e
+        before=$(uci export firewall | md5sum)
+
+        uci -q delete firewall.{{ proxy_zone }}
+        uci -q delete firewall.{{ proxy_zone }}_to_lan
+        uci -q delete firewall.{{ proxy_zone }}_squid
+
+        uci set firewall.{{ proxy_zone }}=zone
+        uci set firewall.{{ proxy_zone }}.name='{{ proxy_zone }}'
+        uci add_list firewall.{{ proxy_zone }}.network='{{ proxy_net }}'
+        uci set firewall.{{ proxy_zone }}.input='REJECT'
+        uci set firewall.{{ proxy_zone }}.output='ACCEPT'
+        uci set firewall.{{ proxy_zone }}.forward='REJECT'
+        uci set firewall.{{ proxy_zone }}.masq='0'
+
+        uci set firewall.{{ proxy_zone }}_to_lan=forwarding
+        uci set firewall.{{ proxy_zone }}_to_lan.src='{{ proxy_zone }}'
+        uci set firewall.{{ proxy_zone }}_to_lan.dest='lan'
+
+        uci set firewall.{{ proxy_zone }}_squid=rule
+        uci set firewall.{{ proxy_zone }}_squid.name='Allow-proxyonly-to-squid'
+        uci set firewall.{{ proxy_zone }}_squid.src='{{ proxy_zone }}'
+        uci set firewall.{{ proxy_zone }}_squid.dest='lan'
+        uci set firewall.{{ proxy_zone }}_squid.dest_ip='{{ proxy_server_ip }}'
+        uci set firewall.{{ proxy_zone }}_squid.proto='tcp'
+        uci set firewall.{{ proxy_zone }}_squid.dest_port='{{ proxy_port }}'
+        uci set firewall.{{ proxy_zone }}_squid.target='ACCEPT'
+
+        after=$(uci export firewall | md5sum)
+        if [ "$before" != "$after" ]; then
+          uci commit firewall
+          /etc/init.d/firewall reload
+          echo CHANGED
+        else
+          echo UNCHANGED
+        fi
+      register: router_fw
+      changed_when: "'CHANGED' in router_fw.stdout"
+
+
+- name: Force proxy use on the proxy-only host
+  hosts: proxy_only
+  become: true
+  vars:
+    proxy_url: "http://10.1.1.65:3128"
+    host_iface: eth0
+    host_ip: 10.1.2.69
+    host_gateway: 10.1.2.1
+  tasks:
+    - name: Static IPv4 config (DHCP and DNS are blocked on this VLAN)
+      ansible.builtin.copy:
+        dest: /etc/NetworkManager/system-connections/proxy-only.nmconnection
+        owner: root
+        group: root
+        mode: "0600"
+        content: |
+          [connection]
+          id=proxy-only
+          type=ethernet
+          interface-name={{ host_iface }}
+          autoconnect=true
+
+          [ethernet]
+
+          [ipv4]
+          method=manual
+          address1={{ host_ip }}/24,{{ host_gateway }}
+          ignore-auto-dns=true
+
+          [ipv6]
+          method=disabled
+      notify: Reload NetworkManager
+
+    - name: Set proxy environment for all systemd units (rpm-ostreed, zincati, etc.)
+      ansible.builtin.copy:
+        dest: /etc/systemd/system.conf.d/10-proxy.conf
+        owner: root
+        group: root
+        mode: "0644"
+        content: |
+          [Manager]
+          DefaultEnvironment="http_proxy={{ proxy_url }}" "https_proxy={{ proxy_url }}" "HTTP_PROXY={{ proxy_url }}" "HTTPS_PROXY={{ proxy_url }}"
+      notify: Re-exec systemd
+
+    - name: Flush handlers so the new environment is active before verifying
+      ansible.builtin.meta: flush_handlers
+
+    - name: Verify allowed FCOS update host is reachable through the proxy
+      ansible.builtin.command: >-
+        curl -sS -o /dev/null --max-time 20
+        --proxy {{ proxy_url }}
+        https://updates.coreos.fedoraproject.org/
+      changed_when: false
+
+    - name: Verify a non-allowed site is refused by squid
+      ansible.builtin.command: >-
+        curl -s -o /dev/null -w '%{http_code}' --max-time 20
+        --proxy {{ proxy_url }}
+        https://example.com/
+      register: denied_via_proxy
+      changed_when: false
+      failed_when: denied_via_proxy.stdout != '403'
+
+    - name: Verify direct egress (bypassing the proxy) is blocked by the router
+      ansible.builtin.command: >-
+        curl -s -o /dev/null --max-time 8 --noproxy '*'
+        https://example.com/
+      register: direct_egress
+      changed_when: false
+      failed_when: direct_egress.rc == 0
+
+  handlers:
+    - name: Reload NetworkManager
+      ansible.builtin.command: nmcli connection reload
+      changed_when: true
+
+    - name: Re-exec systemd
+      ansible.builtin.systemd:
+        daemon_reexec: true
