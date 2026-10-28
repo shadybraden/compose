@@ -10,6 +10,13 @@ services:
       - TZ=America/New_York
     ports:
       - '0.0.0.0:3128:3128/tcp'
+    networks:
+      - squid
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
+
+networks:
+  squid:  # dedicated network, not shared with intranet/intranet-backend
+    driver: bridge
+    name: squid
