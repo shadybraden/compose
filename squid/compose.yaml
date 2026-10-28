@@ -2,20 +2,14 @@
 name: squid
 services:
   squid:
-    image: docker.io/ubuntu/squid:7.2-26.04_edge@sha256:d11db6479501aa4618b3253f95a88b2547229e2d081726b6fb20dc75a98cc61b  # newest Squid 7.2; ubuntu/squid only publishes _edge/_beta suffixed tags
+    image: docker.io/ubuntu/squid:7.2-26.04_edge@sha256:d11db6479501aa4618b3253f95a88b2547229e2d081726b6fb20dc75a98cc61b
     container_name: squid
     volumes:
-      - ./squid.conf:/etc/squid/squid.conf:ro  # allowlist of Fedora CoreOS update hosts
+      - /data/config_storage/komodo/etc_komodo/repos/compose_main/squid/squid.conf:/etc/squid/squid.conf:ro
     environment:
       - TZ=America/New_York
     ports:
-      - '0.0.0.0:3128:3128/tcp'  # default Squid proxy port from the docs
-    networks:
-      - intranet
+      - '0.0.0.0:3128:3128/tcp'
     restart: unless-stopped
     security_opt:
-      - no-new-privileges:true  # helps to increase security
-
-networks:
-  intranet:
-    external: true
+      - no-new-privileges:true
