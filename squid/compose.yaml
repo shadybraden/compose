@@ -1,0 +1,22 @@
+---
+name: squid
+services:
+  squid:
+    image: ubuntu/squid:7.2-26.04_edge  # newest Squid 7.2; ubuntu/squid only publishes _edge/_beta suffixed tags
+    container_name: squid
+    volumes:
+      - /data/config_storage/squid/config:/etc/squid  # squid.conf and ACLs; copy the image default in before first start
+      - /data/config_storage/squid/cache:/var/spool/squid  # disk cache (cache_dir ufs in squid.conf)
+    environment:
+      - TZ=America/New_York
+    ports:
+      - '0.0.0.0:3128:3128/tcp'  # default Squid proxy port from the docs
+    networks:
+      - intranet
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+
+networks:
+  intranet:
+    external: true
