@@ -48,6 +48,7 @@ services:
       - CHOWN
       - SETUID
       - SETGID
+      - KILL
     cap_drop:
       - ALL
     read_only: true
