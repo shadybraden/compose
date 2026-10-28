@@ -2,7 +2,7 @@
 name: matrix-synapse
 services:
   synapse:
-    image: docker.io/matrixdotorg/synapse:v1.163.2
+    image: docker.io/matrixdotorg/synapse:v1.164.0
     container_name: synapse
     volumes:
       - /data/config_storage/synapse/data:/data
