@@ -251,6 +251,13 @@
       "sourceUrl": "https://github.com/iv-org/invidious"
     },
     {
+      "matchPackageNames": ["ubuntu/squid"],
+      "matchDatasources": ["docker"],
+      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)-(?<ubuntuYear>\\d{2})\\.(?<ubuntuMonth>\\d{2})_edge$",
+      "sourceUrl": "https://github.com/squid-cache/squid/releases",
+      "minimumReleaseAge": "3 days"
+    },
+    {
       "matchDatasources": ["docker"],
       "matchPackageNames": ["renovate/renovate"],
       "automerge": false
