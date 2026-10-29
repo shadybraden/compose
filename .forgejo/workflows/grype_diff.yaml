@@ -1,0 +1,135 @@
+name: Grype CVE diff
+
+# Optional, on-demand. Compares the CVEs of each container image changed by a
+# PR against the image it replaces (e.g. a Renovate bump) and posts the result
+# as a PR comment.
+#
+# Runs only when the `grype-diff` label is added to a pull request. Adding the
+# label from the PR sidebar is the on-demand button. To re-run, remove and
+# re-add the label.
+
+on:
+  pull_request:
+    types: [labeled]
+
+jobs:
+  Grype-Diff:
+    if: github.event.label.name == 'grype-diff'
+    runs-on: grype
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Diff CVEs for changed compose images
+        shell: bash
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+          TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          WORK=$(mktemp -d)
+          trap 'rm -rf "$WORK"' EXIT
+          PAIRS="$WORK/pairs.txt"
+          BODY="$WORK/body.md"
+          : > "$PAIRS"
+
+          img_value() {
+            sed -E 's/^[+-][[:space:]]*image:[[:space:]]*//; s/[[:space:]]+#.*$//; s/[[:space:]]+$//; s/["'\'']//g'
+          }
+
+          # Pair each removed `image:` line with the added line at the same
+          # position in the same file. Lines containing shell variables are skipped.
+          mapfile -t FILES < <(git diff --name-only "$BASE_SHA...$HEAD_SHA" -- '**/compose.y*ml')
+          for file in "${FILES[@]}"; do
+            git diff -U0 "$BASE_SHA...$HEAD_SHA" -- "$file" > "$WORK/diff.txt"
+            mapfile -t OLDS < <(awk '/^-[[:space:]]*image:/' "$WORK/diff.txt" | img_value)
+            mapfile -t NEWS < <(awk '/^\+[[:space:]]*image:/' "$WORK/diff.txt" | img_value)
+            for i in "${!NEWS[@]}"; do
+              new=${NEWS[$i]}
+              old=${OLDS[$i]:-}
+              case "$new" in ''|*'$'*) continue ;; esac
+              case "$old" in *'$'*) old= ;; esac
+              printf '%s|%s|%s\n' "$file" "$old" "$new" >> "$PAIRS"
+            done
+          done
+
+          # One line per CVE: id, package, severity. Empty ref means no baseline.
+          scan() {
+            if [ -z "$1" ]; then
+              : > "$2"
+              return 0
+            fi
+            echo "Scanning $1" >&2
+            grype "registry:$1" -o json \
+              | jq -r '.matches[] | [.vulnerability.id, .artifact.name, .vulnerability.severity] | @tsv' \
+              | sort -u > "$2"
+          }
+
+          RANK='BEGIN { r["Critical"]=0; r["High"]=1; r["Medium"]=2; r["Low"]=3 }
+            { print ((($3 in r) ? r[$3] : 9) "\t" $0) }'
+
+          {
+            echo "## Grype CVE diff"
+            echo
+            if [ ! -s "$PAIRS" ]; then
+              echo "No container image changes found in compose files."
+            fi
+          } > "$BODY"
+
+          n=0
+          while IFS='|' read -r file old new; do
+            n=$((n + 1))
+            scan "$old" "$WORK/old$n.tsv"
+            scan "$new" "$WORK/new$n.tsv"
+
+            added=$(comm -13 "$WORK/old$n.tsv" "$WORK/new$n.tsv")
+            resolved=$(comm -23 "$WORK/old$n.tsv" "$WORK/new$n.tsv")
+            added_count=$(comm -13 "$WORK/old$n.tsv" "$WORK/new$n.tsv" | wc -l)
+            resolved_count=$(comm -23 "$WORK/old$n.tsv" "$WORK/new$n.tsv" | wc -l)
+            same_count=$(comm -12 "$WORK/old$n.tsv" "$WORK/new$n.tsv" | wc -l)
+
+            {
+              echo "### \`${old:-none}\` → \`$new\`"
+              echo
+              echo "\`$file\`"
+              echo
+              echo "**Added:** $added_count · **Resolved:** $resolved_count · **Unchanged:** $same_count"
+              echo
+            } >> "$BODY"
+
+            if [ -n "$added" ]; then
+              {
+                echo "| CVE | Severity | Package |"
+                echo "|---|---|---|"
+                printf '%s\n' "$added" \
+                  | awk -F'\t' "$RANK" | sort -t$'\t' -k1,1n | cut -f2- \
+                  | head -n 50 \
+                  | awk -F'\t' '{ printf "| %s | %s | %s |\n", $1, $3, $2 }'
+                echo
+              } >> "$BODY"
+            fi
+
+            if [ -n "$resolved" ]; then
+              {
+                echo "<details><summary>Resolved CVEs ($resolved_count)</summary>"
+                echo
+                printf '%s\n' "$resolved" | cut -f1 | sort -u | sed 's/^/- /'
+                echo
+                echo "</details>"
+                echo
+              } >> "$BODY"
+            fi
+          done < "$PAIRS"
+
+          cat "$BODY"
+
+          jq -Rs '{body: .}' "$BODY" > "$WORK/payload.json"
+          curl -fsS -X POST \
+            "https://git.holmlab.org/api/v1/repos/$REPO/issues/$PR_NUMBER/comments" \
+            -H "Authorization: token $TOKEN" \
+            -H "Content-Type: application/json" \
+            --data-binary @"$WORK/payload.json" > /dev/null
