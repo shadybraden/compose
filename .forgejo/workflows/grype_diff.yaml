@@ -15,7 +15,7 @@ on:
 jobs:
   Grype-Diff:
     if: github.event.label.name == 'grype-diff'
-    runs-on: grype
+    runs-on: tools_container
     steps:
       - uses: actions/checkout@v7.0.1
         with:
