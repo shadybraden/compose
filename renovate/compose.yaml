@@ -5,7 +5,7 @@ services:
     image: renovate/renovate:44.191.0
     container_name: renovate
     environment:
-      - LOG_LEVEL=debug
+      - LOG_LEVEL=INFO
       - RENOVATE_TOKEN=${RENOVATE_TOKEN}
       - RENOVATE_GITHUB_COM_TOKEN=${RENOVATE_GITHUB_COM_TOKEN}  # optional, for release notes # make minimum permission PAT
       - RENOVATE_PLATFORM=gitea
