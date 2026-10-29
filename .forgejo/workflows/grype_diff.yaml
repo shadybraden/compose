@@ -28,7 +28,7 @@ jobs:
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           REPO: ${{ github.repository }}
-          TOKEN: ${{ github.token }}
+          TOKEN: ${{ secrets.MR_COMMENT_TOKEN }}
         run: |
           set -euo pipefail
           WORK=$(mktemp -d)
