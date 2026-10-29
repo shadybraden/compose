@@ -57,15 +57,15 @@ jobs:
             done
           done
 
-          # One line per CVE: id, package, severity. Empty ref means no baseline.
+          # One line per CVE: id, package, severity, KEV flag. Empty ref means no baseline.
           scan() {
             if [ -z "$1" ]; then
               : > "$2"
               return 0
             fi
             echo "Scanning $1" >&2
-            grype "registry:$1" -o json \
-              | jq -r '.matches[] | [.vulnerability.id, .artifact.name, .vulnerability.severity] | @tsv' \
+            grype "registry:$1" --only-fixed -o json \
+              | jq -r '.matches[] | [.vulnerability.id, .artifact.name, .vulnerability.severity, (if ((.vulnerability.knownExploited // []) | length > 0) then "KEV" else "" end)] | @tsv' \
               | sort -u > "$2"
           }
 
@@ -80,6 +80,7 @@ jobs:
             fi
           } > "$BODY"
 
+          KEV_FOUND=0
           n=0
           while IFS='|' read -r file old new; do
             n=$((n + 1))
@@ -101,6 +102,32 @@ jobs:
               echo
             } >> "$BODY"
 
+            kev_count=$(awk -F'\t' '$4 == "KEV"' "$WORK/new$n.tsv" | wc -l)
+            if [ "$kev_count" -gt 0 ]; then
+              KEV_FOUND=$((KEV_FOUND + kev_count))
+              {
+                echo "> ⛔ **$kev_count KEV vulnerabilit$([ "$kev_count" -eq 1 ] && echo y || echo ies) in \`$new\`**"
+                echo
+                echo "| CVE | Severity | Package |"
+                echo "|---|---|---|"
+                awk -F'\t' '$4 == "KEV" { printf "| %s | %s | %s |\n", $1, $3, $2 }' "$WORK/new$n.tsv"
+                echo
+              } >> "$BODY"
+            fi
+
+            fixed_kev=$(comm -23 "$WORK/old$n.tsv" "$WORK/new$n.tsv" | awk -F'\t' '$4 == "KEV"')
+            if [ -n "$fixed_kev" ]; then
+              fixed_kev_count=$(printf '%s\n' "$fixed_kev" | wc -l)
+              {
+                echo "> ✅ **Fixed $fixed_kev_count KEV vulnerabilit$([ "$fixed_kev_count" -eq 1 ] && echo y || echo ies) from \`${old}\`**"
+                echo
+                echo "| CVE | Severity | Package |"
+                echo "|---|---|---|"
+                printf '%s\n' "$fixed_kev" | awk -F'\t' '{ printf "| %s | %s | %s |\n", $1, $3, $2 }'
+                echo
+              } >> "$BODY"
+            fi
+
             if [ -n "$added" ]; then
               {
                 echo "| CVE | Severity | Package |"
@@ -108,7 +135,7 @@ jobs:
                 printf '%s\n' "$added" \
                   | awk -F'\t' "$RANK" | sort -t$'\t' -k1,1n | cut -f2- \
                   | head -n 50 \
-                  | awk -F'\t' '{ printf "| %s | %s | %s |\n", $1, $3, $2 }'
+                  | awk -F'\t' '{ printf "| %s | %s%s | %s |\n", $1, $3, ($4 == "KEV" ? " **KEV**" : ""), $2 }'
                 echo
               } >> "$BODY"
             fi
@@ -125,6 +152,16 @@ jobs:
             fi
           done < "$PAIRS"
 
+          if [ "$KEV_FOUND" -gt 0 ]; then
+            {
+              head -n 2 "$BODY"
+              echo "> ❌ **Job failed: $KEV_FOUND KEV vulnerabilit$([ "$KEV_FOUND" -eq 1 ] && echo y || echo ies) in the new image(s).**"
+              echo
+              tail -n +3 "$BODY"
+            } > "$WORK/body2.md"
+            mv "$WORK/body2.md" "$BODY"
+          fi
+
           cat "$BODY"
 
           jq -Rs '{body: .}' "$BODY" > "$WORK/payload.json"
@@ -133,3 +170,8 @@ jobs:
             -H "Authorization: token $TOKEN" \
             -H "Content-Type: application/json" \
             --data-binary @"$WORK/payload.json" > /dev/null
+
+          if [ "$KEV_FOUND" -gt 0 ]; then
+            echo "KEV vulnerabilities found in new image(s): $KEV_FOUND"
+            exit 1
+          fi
