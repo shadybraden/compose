@@ -2,7 +2,7 @@
 name: nextcloud
 services:
   nextcloud:
-    image: nextcloud:35.0.2
+    image: nextcloud:35.0.2@sha256:d6198cead254f5531b83bd42193b383825f152d20a8355eb0d31e612d38d1ec4
     container_name: nextcloud
     volumes:
       - /data/config_storage/nextcloud/html:/var/www/html
