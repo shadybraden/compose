@@ -1,0 +1,52 @@
+name: Build squid image
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'squid/Dockerfile'
+      - '.forgejo/workflows/build_squid.yaml'
+  workflow_dispatch:
+
+jobs:
+  Build-Dockerfile:
+    runs-on: tools_container
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      - name: Determine version from Dockerfile
+        id: version
+        run: |
+          FROM_LINE=$(grep -m1 '^FROM ' squid/Dockerfile)
+          echo "FROM line: $FROM_LINE"
+          VERSION=$(echo "$FROM_LINE" | sed -E 's/^FROM [^:]+:([^@ ]+).*/\1/')
+          if [ -z "$VERSION" ]; then
+            echo "Could not extract version from Dockerfile FROM line"
+            exit 1
+          fi
+          echo "Version: $VERSION"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Build image
+        run: |
+          podman --storage-driver vfs build \
+            -f squid/Dockerfile \
+            -t squid:${{ steps.version.outputs.version }} squid/
+
+      - name: Push image
+        run: |
+          buildah --storage-driver vfs push \
+            --all \
+            --creds "${{ secrets.REGISTRY_USERNAME }}:${{ secrets.REGISTRY_PASSWORD }}" \
+            squid:${{ steps.version.outputs.version }} \
+            docker://git.holmlab.org/shady/squid:${{ steps.version.outputs.version }}
+
+      - name: Notify failure
+        if: failure()
+        run: |
+          curl -X POST https://ntfy.holmlab.org/${{ secrets.NTFY_TOPIC }} \
+            -H "Title: ‼️ Actions failed" \
+            -H "Priority: low" \
+            -d "Workflow '${{ github.workflow }}' failed"

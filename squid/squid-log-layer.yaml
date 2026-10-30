@@ -1,0 +1,8 @@
+services:
+  squid-access-log:
+    override: replace
+    summary: Forward squid access log to docker logs
+    command: sh -c 'tail -F /var/log/squid/access.log > /proc/1/fd/1'
+    startup: enabled
+    after:
+      - squid
