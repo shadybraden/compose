@@ -2,7 +2,7 @@
 name: ntfy
 services:
   ntfy:
-    image: binwiederhier/ntfy:v2.34.0
+    image: binwiederhier/ntfy:v2.35.0
     container_name: ntfy
     volumes:
       - /data/config_storage/ntfy:/var/cache/ntfy
