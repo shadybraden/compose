@@ -38,20 +38,21 @@ jobs:
           : > "$PAIRS"
 
           img_value() {
-            sed -E 's/^[+-][[:space:]]*image:[[:space:]]*//; s/[[:space:]]+#.*$//; s/[[:space:]]+$//; s/["'\'']//g'
+            sed -E 's/^[+-][[:space:]]*(image:|[Ff][Rr][Oo][Mm][[:space:]])[[:space:]]*//; s/^--platform=[^[:space:]]+[[:space:]]+//; s/[[:space:]]+[Aa][Ss][[:space:]].*$//; s/[[:space:]]+#.*$//; s/[[:space:]]+$//; s/["'\'']//g'
           }
 
-          # Pair each removed `image:` line with the added line at the same
+          # Pair each removed `image:` / `FROM` line with the added line at the same
           # position in the same file. Lines containing shell variables are skipped.
-          mapfile -t FILES < <(git diff --name-only "$BASE_SHA...$HEAD_SHA" -- '**/compose.y*ml')
+          mapfile -t FILES < <(git diff --name-only "$BASE_SHA...$HEAD_SHA" -- '**/compose.y*ml' '**/Dockerfile*')
           for file in "${FILES[@]}"; do
             git diff -U0 "$BASE_SHA...$HEAD_SHA" -- "$file" > "$WORK/diff.txt"
-            mapfile -t OLDS < <(awk '/^-[[:space:]]*image:/' "$WORK/diff.txt" | img_value)
-            mapfile -t NEWS < <(awk '/^\+[[:space:]]*image:/' "$WORK/diff.txt" | img_value)
+            mapfile -t OLDS < <(awk 'tolower($0) ~ /^-[[:space:]]*(image:|from[[:space:]])/' "$WORK/diff.txt" | img_value)
+            mapfile -t NEWS < <(awk 'tolower($0) ~ /^\+[[:space:]]*(image:|from[[:space:]])/' "$WORK/diff.txt" | img_value)
             for i in "${!NEWS[@]}"; do
               new=${NEWS[$i]}
               old=${OLDS[$i]:-}
-              case "$new" in ''|*'$'*) continue ;; esac
+              case "$new" in ''|scratch|*'$'*) continue ;; esac
+              case "$old" in scratch) old= ;; esac
               case "$old" in *'$'*) old= ;; esac
               printf '%s|%s|%s\n' "$file" "$old" "$new" >> "$PAIRS"
             done
