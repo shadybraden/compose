@@ -18,7 +18,7 @@ services:
       - no-new-privileges:true  # helps to increase security
 
   invidious:
-    image: quay.io/invidious/invidious:2026.10.26-1c4b41f
+    image: quay.io/invidious/invidious:2026.10.31-9f0b4c8
     container_name: invidious
     depends_on:
       - companion
