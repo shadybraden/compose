@@ -2,7 +2,7 @@
 name: dawarich
 services:
   dawarich_app:
-    image: freikin/dawarich:1.19.0
+    image: freikin/dawarich:1.20.0
     container_name: dawarich_app
     depends_on:
       dawarich_db:
