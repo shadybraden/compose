@@ -2,7 +2,7 @@
 name: factorio
 services:
   factorio:
-    image: factoriotools/factorio:2.1.23  # https://www.factorio.com/
+    image: factoriotools/factorio:2.1.24  # https://www.factorio.com/
     container_name: factorio
     volumes:
       - /data/config_storage/factorio:/factorio  # chown 845:845
