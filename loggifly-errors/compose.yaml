@@ -1,4 +1,5 @@
 ---
+name: loggifly-errors
 services:
   loggifly-errors:
     image: ghcr.io/clemcer/loggifly:v2.2.0

@@ -1,4 +1,5 @@
 ---
+name: loggifly
 services:
   loggifly:
     image: ghcr.io/clemcer/loggifly:v2.2.0
