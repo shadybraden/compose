@@ -133,6 +133,20 @@ storage:
           Environment="HTTP_PROXY=http://10.1.1.65:3128"
           Environment="HTTPS_PROXY=http://10.1.1.65:3128"
 
+    - path: /etc/audit/rules.d/hardening.rules
+      mode: 0640
+      contents:
+        inline: |
+          -w /etc/ssh/sshd_config -p wa -k sshd
+          -w /etc/ssh/sshd_config.d/ -p wa -k sshd
+          -w /etc/sudoers.d/ -p wa -k sudoers
+          -w /etc/passwd -p wa -k identity
+          -w /etc/shadow -p wa -k identity
+          -w /etc/selinux/ -p wa -k selinux
+          -w /etc/firewalld/ -p wa -k firewall
+          -w /etc/containers/ -p wa -k containers
+          -w /etc/systemd/system/ -p wa -k systemd
+
     - path: /etc/systemd/system/rpm-ostreed.service.d/proxy.conf
       mode: 0644
       contents:
@@ -151,3 +165,39 @@ kernel_arguments:
   should_exist:
     - selinux=1
     - enforcing=1
+
+systemd:
+  units:
+    - name: layer-hardening.service
+      enabled: true
+      contents: |
+        [Unit]
+        Description=Layer auditd and fapolicyd, then reboot once
+        Wants=network-online.target
+        After=network-online.target
+        ConditionPathExists=!/var/lib/layer-hardening.done
+
+        [Service]
+        Type=oneshot
+        ExecStart=/usr/bin/rpm-ostree install --idempotent audit fapolicyd
+        ExecStart=/usr/bin/touch /var/lib/layer-hardening.done
+        ExecStart=/usr/bin/systemctl --no-block reboot
+
+        [Install]
+        WantedBy=multi-user.target
+    - name: enable-hardening.service
+      enabled: true
+      contents: |
+        [Unit]
+        Description=Enable fapolicyd and auditd after layering
+        ConditionPathExists=/var/lib/layer-hardening.done
+        ConditionPathExists=/usr/lib/systemd/system/fapolicyd.service
+
+        [Service]
+        Type=oneshot
+        ExecStart=/usr/bin/systemctl enable --now fapolicyd.service auditd.service
+        ExecStart=/usr/bin/touch /var/lib/enable-hardening.done
+        RemainAfterExit=yes
+
+        [Install]
+        WantedBy=multi-user.target
