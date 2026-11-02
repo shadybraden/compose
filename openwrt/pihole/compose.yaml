@@ -13,8 +13,7 @@ services:
       - FTLCONF_dns_listeningMode=all
       - FTLCONF_webserver_port=8082
       - FTLCONF_dns_upstreams=10.1.1.1#5053  # dnscrypt-proxy
-      - PIHOLE_UID=0
-      - PIHOLE_GID=0
+      - DNSMASQ_USER=root
     network_mode: host
     restart: always
     cap_add:
