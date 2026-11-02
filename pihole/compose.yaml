@@ -2,7 +2,7 @@
 name: pihole
 services:
   pihole:
-    image: pihole/pihole:2026.10.0
+    image: pihole/pihole:2026.10.1
     container_name: pihole
     volumes:
       - /data/config_storage/pihole/etc-pihole:/etc/pihole
