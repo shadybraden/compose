@@ -11,6 +11,9 @@
   "passwd": {
     "users": [
       {
+        "groups": [
+          "maul"
+        ],
         "name": "admin",
         "passwordHash": "$y$j9T$ZlxpSw28xTChKvEZECVqA0$G/7CuOuAjcFsnUlZnAi3nlM6YtxY/HlqY1pLIpObvP4",
         "sshAuthorizedKeys": [
@@ -27,6 +30,18 @@
     ]
   },
   "storage": {
+    "directories": [
+      {
+        "group": {
+          "name": "maul"
+        },
+        "path": "/data/config_storage",
+        "user": {
+          "name": "maul"
+        },
+        "mode": 488
+      }
+    ],
     "files": [
       {
         "path": "/etc/sudoers.d/admin",
