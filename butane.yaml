@@ -40,6 +40,14 @@ storage:
           ClientAliveInterval 300
           ClientAliveCountMax 2
 
+    - path: /etc/selinux/config
+      mode: 0644
+      overwrite: true
+      contents:
+        inline: |
+          SELINUX=enforcing
+          SELINUXTYPE=targeted
+
     # Rootless podman linger
     - path: /var/lib/systemd/linger/maul
       mode: 0644
@@ -81,3 +89,8 @@ storage:
   links:
     - path: /etc/localtime
       target: ../usr/share/zoneinfo/America/New_York
+
+kernel_arguments:
+  should_exist:
+    - selinux=1
+    - enforcing=1
