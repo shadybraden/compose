@@ -1,7 +1,8 @@
 ---
+name: loggifly-errors
 services:
   loggifly-errors:
-    image: ghcr.io/clemcer/loggifly:v2.1.1
+    image: ghcr.io/clemcer/loggifly:v2.2.0
     container_name: loggifly-errors
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
