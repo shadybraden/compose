@@ -86,6 +86,63 @@ storage:
           start_time = "01:00"
           length_minutes = 360
 
+    - path: /etc/firewalld/zones/public.xml
+      mode: 0644
+      overwrite: true
+      contents:
+        inline: |
+          <?xml version="1.0" encoding="utf-8"?>
+          <zone>
+            <short>Public</short>
+            <description>SSH from LAN only, HTTPS from anywhere.</description>
+            <rule family="ipv4">
+              <source address="10.1.1.0/24"/>
+              <service name="ssh"/>
+              <accept/>
+            </rule>
+            <service name="https"/>
+          </zone>
+
+    - path: /etc/firewalld/direct.xml
+      mode: 0644
+      overwrite: true
+      contents:
+        inline: |
+          <?xml version="1.0" encoding="utf-8"?>
+          <direct>
+            <rule ipv="ipv4" table="filter" chain="OUTPUT" priority="0">-o lo -j ACCEPT</rule>
+            <rule ipv="ipv4" table="filter" chain="OUTPUT" priority="1">-m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT</rule>
+            <rule ipv="ipv4" table="filter" chain="OUTPUT" priority="2">-d 10.1.1.65/32 -p tcp --dport 3128 -j ACCEPT</rule>
+            <rule ipv="ipv4" table="filter" chain="OUTPUT" priority="3">-p udp --dport 53 -j ACCEPT</rule>
+            <rule ipv="ipv4" table="filter" chain="OUTPUT" priority="4">-p tcp --dport 53 -j ACCEPT</rule>
+            <rule ipv="ipv4" table="filter" chain="OUTPUT" priority="5">-p udp --dport 67:68 -j ACCEPT</rule>
+            <rule ipv="ipv4" table="filter" chain="OUTPUT" priority="6">-p udp --dport 123 -j ACCEPT</rule>
+            <rule ipv="ipv4" table="filter" chain="OUTPUT" priority="99">-j DROP</rule>
+            <rule ipv="ipv4" table="filter" chain="FORWARD" priority="0">-s 10.88.0.0/16 -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT</rule>
+            <rule ipv="ipv4" table="filter" chain="FORWARD" priority="1">-s 10.88.0.0/16 -d 10.1.1.65/32 -p tcp --dport 3128 -j ACCEPT</rule>
+            <rule ipv="ipv4" table="filter" chain="FORWARD" priority="99">-s 10.88.0.0/16 -j DROP</rule>
+          </direct>
+
+    - path: /etc/systemd/system/zincati.service.d/proxy.conf
+      mode: 0644
+      contents:
+        inline: |
+          [Service]
+          Environment="http_proxy=http://10.1.1.65:3128"
+          Environment="https_proxy=http://10.1.1.65:3128"
+          Environment="HTTP_PROXY=http://10.1.1.65:3128"
+          Environment="HTTPS_PROXY=http://10.1.1.65:3128"
+
+    - path: /etc/systemd/system/rpm-ostreed.service.d/proxy.conf
+      mode: 0644
+      contents:
+        inline: |
+          [Service]
+          Environment="http_proxy=http://10.1.1.65:3128"
+          Environment="https_proxy=http://10.1.1.65:3128"
+          Environment="HTTP_PROXY=http://10.1.1.65:3128"
+          Environment="HTTPS_PROXY=http://10.1.1.65:3128"
+
   links:
     - path: /etc/localtime
       target: ../usr/share/zoneinfo/America/New_York
