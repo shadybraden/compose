@@ -2,7 +2,7 @@
 name: squid
 services:
   squid:
-    image: git.holmlab.org/shady/squid:7.2-26.04_edge@sha256:edec25a587676a9bf063eb8191dd57f017406d3070bb1afb9f6c82343016d1d3
+    image: git.holmlab.org/shady/squid:7.2-26.04_edge@sha256:24424600e7ea23e8552aac67a8b8e2394fea484bb2b34632e0ac222c891a1829
     container_name: squid
     volumes:
       - /data/config_storage/komodo/etc_komodo/repos/compose_main/squid/squid.conf:/etc/squid/squid.conf:ro
