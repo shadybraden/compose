@@ -2,17 +2,15 @@
   "ignition": {
     "version": "3.6.0"
   },
-  "kernelArguments": {
-    "shouldExist": [
-      "selinux=1",
-      "enforcing=1"
-    ]
-  },
   "passwd": {
     "users": [
       {
         "groups": [
-          "maul"
+          "maul",
+          "adm",
+          "wheel",
+          "sudo",
+          "systemd-journal"
         ],
         "name": "admin",
         "passwordHash": "$y$j9T$ZlxpSw28xTChKvEZECVqA0$G/7CuOuAjcFsnUlZnAi3nlM6YtxY/HlqY1pLIpObvP4",
@@ -30,69 +28,7 @@
     ]
   },
   "storage": {
-    "directories": [
-      {
-        "group": {
-          "name": "maul"
-        },
-        "path": "/data/config_storage",
-        "user": {
-          "name": "maul"
-        },
-        "mode": 488
-      }
-    ],
     "files": [
-      {
-        "path": "/etc/sudoers.d/admin",
-        "contents": {
-          "compression": "",
-          "source": "data:,admin%20ALL%3D(ALL)%20ALL%0A"
-        },
-        "mode": 288
-      },
-      {
-        "path": "/etc/ssh/sshd_config.d/10-hardening.conf",
-        "contents": {
-          "compression": "gzip",
-          "source": "data:;base64,H4sIAAAAAAAC/2yP3UrEQAyF7/MU8wi79gnKoiK6UKSCt9k21OBMsmQy7fbtpSNeVL39zsnP15El9ldVf9GJJYhChzkvamNb/IPEeUBnrcnzZXwSJ8PBeaa/eVcun7T+4itl+L5yn66+/mzP2wC0MerylslywDGxhIQlArwfjw9qC9rIMm3F2msnEv+H98N1T894257ojSmHBqrZo+FAPScKzQFOkUm8jTxTFZoxhuaw4yct4me8hTv4CgAA//96sS4iJAEAAA=="
-        },
-        "mode": 420
-      },
-      {
-        "overwrite": true,
-        "path": "/etc/selinux/config",
-        "contents": {
-          "compression": "",
-          "source": "data:,SELINUX%3Denforcing%0ASELINUXTYPE%3Dtargeted%0A"
-        },
-        "mode": 420
-      },
-      {
-        "path": "/var/lib/systemd/linger/maul",
-        "contents": {
-          "compression": "",
-          "source": "data:,"
-        },
-        "mode": 420
-      },
-      {
-        "path": "/etc/example-proxy.env",
-        "contents": {
-          "compression": "gzip",
-          "source": "data:;base64,H4sIAAAAAAAC/8ooKSkoji8oyq+otFUCcaz09Q0N9Az1DPXMTK2MDY0slLgSc3IIqAAJE1DiERISEB8Q5B8RiVdJMAE1gAAAAP//cuhCHrAAAAA="
-        },
-        "mode": 420
-      },
-      {
-        "overwrite": true,
-        "path": "/etc/hostname",
-        "contents": {
-          "compression": "",
-          "source": "data:,maul"
-        },
-        "mode": 420
-      },
       {
         "path": "/etc/zincati/config.d/51-rollout-wariness.toml",
         "contents": {
@@ -106,54 +42,6 @@
           "compression": "gzip",
           "source": "data:;base64,H4sIAAAAAAAC/zTNwQrCMAyA4XufIuQsoyJ4EHb15mmCh1JGsWELuHa0KWNvLxns9JEQ8ru2xiBUvalSgtC0Qw+4UuEc+YvGnQfdues2TjFv3psY9go9OMAhCF4Ah5aUVz54N1I+FI9pbsqzMILGQpFReCHN2evDWjQ/SpPM48KpCenn292afwAAAP//jNBSAKEAAAA="
         }
-      },
-      {
-        "overwrite": true,
-        "path": "/etc/firewalld/zones/public.xml",
-        "contents": {
-          "compression": "gzip",
-          "source": "data:;base64,H4sIAAAAAAAC/1SPsU7EMBBE+/uK1dZgJ+gKCjsnuisQOin5AeNsiCXHjtZOIHw9MhYIynk7s6NRl4/Fw06cXAwaW9EgULBxdOFN45an+0e8dCf1GQN1JwCV5si5u22v3lklqyp8pGTZrdnF0PX9FSaOCzw/vUAM/riD6zDc+gpNON5nYhJK/g2VJ7x5gskszh8a3bqfseDSGje2BGYcmVLS2DaiFa1o5MMZ5Y+HeHeWIJiFNKY0/16MtbTmb6Vk6ahL/vnnnNdUEkrWrV8BAAD//2mz05AaAQAA"
-        },
-        "mode": 420
-      },
-      {
-        "overwrite": true,
-        "path": "/etc/firewalld/direct.xml",
-        "contents": {
-          "compression": "gzip",
-          "source": "data:;base64,H4sIAAAAAAAC/7yU0U7yQBSE73mKk3P9b9ttoX8x7ZJKazQhgZQSr+t20cXS3SwL0bc3kBgVemOsvsB8M5M5J568bBs4CLOTqk2QOh6CaLmqZfuY4N6uSYQTNohraQS3bAAQm30jQOpDglIfhgi2emhEgmvZWGEQ+FMl2wTnq3KxKhG0kcpI+5qgh4woaBSQDaTTab4oY/eo9SNRioxsgau2tabiz0AItztbWQH5skyvZ3fL2zz7V+SztMyzXsk+MlID9RzqUCccuYEPRIPlGgiptTIWAupHvSIDZETDvv5AjIJeAcMT4HOGngGjiwTh/6uw35bCCwb1+00xHiMjG8iK+eLbajfz4j4tsvPD2B2XFEWO53guDeFPNt1hhXZY+dWRd3g4tXtu4mvbsfv+j94CAAD//yIJxc3ABAAA"
-        },
-        "mode": 420
-      },
-      {
-        "path": "/etc/systemd/system/zincati.service.d/proxy.conf",
-        "contents": {
-          "compression": "gzip",
-          "source": "data:;base64,H4sIAAAAAAAC/4oOTi0qy0xOjeVyzSvLLMrPy03NK7FVyigpKYgvKMqvqLQFMa309Q0N9Az1DPXMTK2MDY0slDCVF5Og3iMkJCA+IMg/IpJo5cH41QMCAAD//4zzpafIAAAA"
-        },
-        "mode": 420
-      },
-      {
-        "path": "/etc/audit/rules.d/hardening.rules",
-        "contents": {
-          "compression": "gzip",
-          "source": "data:;base64,H4sIAAAAAAAC/3yOUQrDIAyG33sKL+A80hCTrmFOi0nJevtR3NQ9tA8h8P0f+WPVOJTgmJdj4B5ymulh7GrUG/s0B5xOrBu4M3GDjIX/hcqas3pmhZ4TYBKSvR9ZPGS9EjBS2t5jRyXNmKmg+hjHP36sSSEn8ZSw8GB12Ot2FnzBd4+tNZg+AQAA//9ONBy4TQEAAA=="
-        },
-        "mode": 416
-      },
-      {
-        "path": "/etc/systemd/system/rpm-ostreed.service.d/proxy.conf",
-        "contents": {
-          "compression": "gzip",
-          "source": "data:;base64,H4sIAAAAAAAC/4oOTi0qy0xOjeVyzSvLLMrPy03NK7FVyigpKYgvKMqvqLQFMa309Q0N9Az1DPXMTK2MDY0slDCVF5Og3iMkJCA+IMg/IpJo5cH41QMCAAD//4zzpafIAAAA"
-        },
-        "mode": 420
-      }
-    ],
-    "links": [
-      {
-        "path": "/etc/localtime",
-        "target": "../usr/share/zoneinfo/America/New_York"
       }
     ]
   }
