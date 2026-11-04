@@ -156,19 +156,5 @@
         "target": "../usr/share/zoneinfo/America/New_York"
       }
     ]
-  },
-  "systemd": {
-    "units": [
-      {
-        "contents": "[Unit]\nDescription=Layer auditd and fapolicyd, then reboot once\nWants=network-online.target\nAfter=network-online.target\nConditionPathExists=!/var/lib/layer-hardening.done\n\n[Service]\nType=oneshot\nExecStart=/usr/bin/rpm-ostree install --idempotent audit fapolicyd\nExecStart=/usr/bin/touch /var/lib/layer-hardening.done\nExecStart=/usr/bin/systemctl --no-block reboot\n\n[Install]\nWantedBy=multi-user.target\n",
-        "enabled": true,
-        "name": "layer-hardening.service"
-      },
-      {
-        "contents": "[Unit]\nDescription=Enable fapolicyd and auditd after layering\nConditionPathExists=/var/lib/layer-hardening.done\nConditionPathExists=/usr/lib/systemd/system/fapolicyd.service\n\n[Service]\nType=oneshot\nExecStart=/usr/bin/systemctl enable --now fapolicyd.service auditd.service\nExecStart=/usr/bin/touch /var/lib/enable-hardening.done\nRemainAfterExit=yes\n\n[Install]\nWantedBy=multi-user.target\n",
-        "enabled": true,
-        "name": "enable-hardening.service"
-      }
-    ]
   }
 }
