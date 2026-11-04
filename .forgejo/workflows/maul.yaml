@@ -1,0 +1,36 @@
+name: Configure Core
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'playbooks/core.yaml'
+
+jobs:
+  Core:
+    runs-on: tools_container
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.CORE_SSH_PRIVATE_KEY }}" > ~/.ssh/core_ed25519
+          chmod 600 ~/.ssh/core_ed25519
+
+      - name: Run Ansible "core"
+        run: |
+          ansible-playbook playbooks/core.yaml
+        env:
+          ANSIBLE_HOST_KEY_CHECKING: "False"
+          ANSIBLE_FORCE_COLOR: "1"
+
+      - name: Notify failure
+        if: failure()
+        run: |
+          curl -X POST https://ntfy.holmlab.org/${{ secrets.NTFY_TOPIC }} \
+            -H "Title: ‼️ Actions failed" \
+            -H "Priority: low" \
+            -d "Workflow '${{ github.workflow }}' failed"
