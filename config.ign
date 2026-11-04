@@ -18,6 +18,7 @@
       },
       {
         "name": "core",
+        "passwordHash": "$y$j9T$ZlxpSw28xTChKvEZECVqA0$G/7CuOuAjcFsnUlZnAi3nlM6YtxY/HlqY1pLIpObvP4",
         "sshAuthorizedKeys": [
           "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCx5qjmmki7dLHfGd+n/XXvp/B1lG5Grbs2TCzFWTOAlXgujGuDarUapLzOkBjg88z7bNss98EkZqxA4S0Zg1JvVJeI6dI4bOe5ZZ3ofDZdIK9Q0+aYieC6QNwRqwL8SCn2F2rWldd3Nqp9Bpio3GrpTyWhDaM9KqKGOf9rvtdxE9dOxlQmp+a8UFCK54HHKh8R8rMqTOqjdWDyzNwqLfr88npwWDeHd9XHKSWy8EZbAL/IKptbB60uRQPrEjVQ9B6yJJ34Y6JeR32kc/1NNMHT7r4PG9ODFThYHQFRqBTtRG1lsNQ9MQ5bYeenH6E4qItBkaBUTwqJjL3C4unqiv5MiyZxkZZs24S1eC/G0PUY49Rlqzt0XqF7Ti9cPXCTtOv8xL8jlOhNHOvjQ0Hl9xm2t1jDYPh9Dm7WEJzd06q9u5d/vaJJVhIwkjETqzM1eSXtk0kfRBVxdO99+Z0eXABzarF9EzKycP+JRABdQcjbKNknv5YAWUNnH4f1eqHPSuywPAjzKiVe5qQ9Q6UcJNLnskU+yKuhsXLREc9BinTe4PlgtFBlzzOODZa/KmjNieqwUvci5sv5TB1kAmRLi5nQF2re+PKmv3IoniZYPGqSRa2FMuAjEqeE3OsRrDbvAfNB/5JoOZd2TRWJon6nndU5qN0m/1XJQMTWVWc71r6L9w== maul@holmmade.org"
         ]
