@@ -5,15 +5,13 @@ passwd:
     - name: admin
       shell: /bin/bash
       groups:
-        - maul
         - adm
         - wheel
-        - sudo
         - systemd-journal
       ssh_authorized_keys:
         - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCVkfz/BB6kngmv81mCGrt1Q1cB2j3PmTKkv4MAbInK2e4dBzMLvdHpuxY/R9JoreWtrRDBppyLH+e33rizp/fbTgj8Z12iyqfKymmQcYPrwcLa5+BBsRVEIFxVYmmpz6EC4WVc+N9m5u4IlULaNKv7POscAIMK9JU2kbCHrfvO6gLWAoV8kKUx3KPxYgESroDM8IezmiX3jC+rINNez/IS6J6aAyxyCTElwCre/xhdO9vBiglahxYJ91btadU1+BN71UNgHp493l0D0NQepeauwbBVM3wRFHOmTgXVYEpG4jo09YlIS3Nrju6c91ZFr3diZo0Q3y4u9VdsFaHWorH0eBGkzS28FwjqgjbigyFDIySBCSjM/OrVX+7V8lVyEcGxRgk17kuh/2g021/d7+ns4e6EWVYnTiovf2GWo8zl/Rd0N+bYhLHkATQDCW9BL5PpdHb7ulpwGfsZL/Pw+s42UVXuPhuIavfGQ5mgZveA8SqEzojqzmNUxn51Mvg+czSK4sI7BOpDweD7Gyjp4IWqZ9OlZnbtIf/x50iQfqTvVHC99DPI9PFqdw2e38++BXMjqJCIMLf7BAW8QHsYsa5ntMEJ04xXZhxccf8EFqtlqlKtLy5A5EHDY3Rzlm2cDmVnVay0b0l4PC8iFiuB3gMNkyJ6RExLV2F3EBTFbtNRSQ== admin@holmmade.org"
 
-    - name: maul
+    - name: core
       ssh_authorized_keys:
         - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCx5qjmmki7dLHfGd+n/XXvp/B1lG5Grbs2TCzFWTOAlXgujGuDarUapLzOkBjg88z7bNss98EkZqxA4S0Zg1JvVJeI6dI4bOe5ZZ3ofDZdIK9Q0+aYieC6QNwRqwL8SCn2F2rWldd3Nqp9Bpio3GrpTyWhDaM9KqKGOf9rvtdxE9dOxlQmp+a8UFCK54HHKh8R8rMqTOqjdWDyzNwqLfr88npwWDeHd9XHKSWy8EZbAL/IKptbB60uRQPrEjVQ9B6yJJ34Y6JeR32kc/1NNMHT7r4PG9ODFThYHQFRqBTtRG1lsNQ9MQ5bYeenH6E4qItBkaBUTwqJjL3C4unqiv5MiyZxkZZs24S1eC/G0PUY49Rlqzt0XqF7Ti9cPXCTtOv8xL8jlOhNHOvjQ0Hl9xm2t1jDYPh9Dm7WEJzd06q9u5d/vaJJVhIwkjETqzM1eSXtk0kfRBVxdO99+Z0eXABzarF9EzKycP+JRABdQcjbKNknv5YAWUNnH4f1eqHPSuywPAjzKiVe5qQ9Q6UcJNLnskU+yKuhsXLREc9BinTe4PlgtFBlzzOODZa/KmjNieqwUvci5sv5TB1kAmRLi5nQF2re+PKmv3IoniZYPGqSRa2FMuAjEqeE3OsRrDbvAfNB/5JoOZd2TRWJon6nndU5qN0m/1XJQMTWVWc71r6L9w== maul@holmmade.org"
 
