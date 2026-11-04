@@ -2,7 +2,7 @@
 name: chhoto-url
 services:
   chhoto-url:
-    image: sintan1729/chhoto-url:7.10.7
+    image: docker.io/sintan1729/chhoto-url:7.10.7
     container_name: chhoto-url
     volumes:
       - ${HOME}/config_storage/chhoto-url:/data
