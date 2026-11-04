@@ -96,7 +96,25 @@
         "path": "/etc/profile.d/proxy.sh",
         "contents": {
           "compression": "gzip",
-          "source": "data:;base64,H4sIAAAAAAAC/0qtKMgvKlHIKCkpiC8oyq+otFUCsa309Q0N9Az1DPXMTK2MDY0slLiQVBYTp9QjJCQgPiDIPyKSGJXBxCnNy4dZnpOfnJiTkV9comNoZK5noGegZwhX5ecPMw2bKkAAAAD///ZRwZb1AAAA"
+          "source": "data:;base64,H4sIAAAAAAAC/0qtKMgvKlHIKCkpiC8oyq+otFUCsa309Q0N9Az1DPXMTK2MDY0slLiQVBYTp9QjJCQgPiDIPyKSGJXBxCnNy4dZnpOfnJiTkV9comNoZK5noGegZwhX5ecPMw2rKkAAAAD//+uQn2b2AAAA"
+        },
+        "mode": 420
+      },
+      {
+        "overwrite": true,
+        "path": "/etc/firewalld/zones/public.xml",
+        "contents": {
+          "compression": "gzip",
+          "source": "data:;base64,H4sIAAAAAAAC/1SPsU7EMBBE+/uK1dZgJ+gKCjsnuisQOin5AeNsiCXHjtZOIHw9MhYIynk7s6NRl4/Fw06cXAwaW9EgULBxdOFN45an+0e8dCf1GQN1JwCV5si5u22v3lklqyp8pGTZrdnF0PX9FSaOCzw/vUAM/riD6zDc+gpNON5nYhJK/g2VJ7x5gskszh8a3bqfseDSGje2BGYcmVLS2DaiFa1o5MMZ5Y+HeHeWIJiFNKY0/16MtbTmb6Vk6ahL/vnnnNdUEkrWrV8BAAD//2mz05AaAQAA"
+        },
+        "mode": 420
+      },
+      {
+        "overwrite": true,
+        "path": "/etc/firewalld/direct.xml",
+        "contents": {
+          "compression": "gzip",
+          "source": "data:;base64,H4sIAAAAAAAC/7yT0WrCMBiF732Kn/96f9tUJwpNpLMdGwhKrey6S+MWV5MQo2xvPxyDMfFmzO0FzvdxDiebvG47OCi/09ZwZFGCoIy0rTZPHPdhTSOciF7Waq9kED2AzO87BdodOGp3GCCE5rFTHNe6C8ojyOdGG47zVb1Y1QjOa+t1eOOYoCALnQXaQD6dlos6i49ZvwplKGgL0hoTfCNfgEiGXWiCgnJZ5zez++VdWVxV5Syvy+Ki5BQFtcCSiEUsGl7H/RTIQZAOiFpnfYA+S0cXRQ5RkIN9+4Vgaf+ihPEYBW2gqOaLH6fdzquHvCpOJ98dOxqNoyRK4nQA/7LWGRV2RuVP5zvj8NHuqcT3trP482nvAQAA//86zJ5umQMAAA=="
         },
         "mode": 420
       }
