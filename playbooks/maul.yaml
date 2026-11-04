@@ -1,5 +1,13 @@
 - name: Prepare maul
   hosts: maul
+  become: true
   tasks:
-    - name: pwd
-      ansible.builtin.command: pwd
+    - name: Check if intranet network exists
+      ansible.builtin.command: podman network exists intranet
+      register: intranet_check
+      changed_when: false
+      failed_when: false
+
+    - name: Create intranet network
+      ansible.builtin.command: podman network create --subnet 10.89.0.0/24 intranet
+      when: intranet_check.rc != 0
