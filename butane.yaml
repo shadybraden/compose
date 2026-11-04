@@ -12,7 +12,6 @@ passwd:
         - systemd-journal
       ssh_authorized_keys:
         - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCVkfz/BB6kngmv81mCGrt1Q1cB2j3PmTKkv4MAbInK2e4dBzMLvdHpuxY/R9JoreWtrRDBppyLH+e33rizp/fbTgj8Z12iyqfKymmQcYPrwcLa5+BBsRVEIFxVYmmpz6EC4WVc+N9m5u4IlULaNKv7POscAIMK9JU2kbCHrfvO6gLWAoV8kKUx3KPxYgESroDM8IezmiX3jC+rINNez/IS6J6aAyxyCTElwCre/xhdO9vBiglahxYJ91btadU1+BN71UNgHp493l0D0NQepeauwbBVM3wRFHOmTgXVYEpG4jo09YlIS3Nrju6c91ZFr3diZo0Q3y4u9VdsFaHWorH0eBGkzS28FwjqgjbigyFDIySBCSjM/OrVX+7V8lVyEcGxRgk17kuh/2g021/d7+ns4e6EWVYnTiovf2GWo8zl/Rd0N+bYhLHkATQDCW9BL5PpdHb7ulpwGfsZL/Pw+s42UVXuPhuIavfGQ5mgZveA8SqEzojqzmNUxn51Mvg+czSK4sI7BOpDweD7Gyjp4IWqZ9OlZnbtIf/x50iQfqTvVHC99DPI9PFqdw2e38++BXMjqJCIMLf7BAW8QHsYsa5ntMEJ04xXZhxccf8EFqtlqlKtLy5A5EHDY3Rzlm2cDmVnVay0b0l4PC8iFiuB3gMNkyJ6RExLV2F3EBTFbtNRSQ== admin@holmmade.org"
-      password_hash: "$y$j9T$ZlxpSw28xTChKvEZECVqA0$G/7CuOuAjcFsnUlZnAi3nlM6YtxY/HlqY1pLIpObvP4" # mkpasswd -m yescrypt
 
     - name: maul
       ssh_authorized_keys:
