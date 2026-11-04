@@ -2,12 +2,8 @@
   hosts: maul
   become: true
   tasks:
-    - name: Check if intranet network exists
-      ansible.builtin.command: podman network exists intranet
-      register: intranet_check
-      changed_when: false
-      failed_when: false
-
     - name: Create intranet network
-      ansible.builtin.command: podman network create --subnet 10.89.0.0/24 intranet
-      when: intranet_check.rc != 0
+      containers.podman.podman_network:
+        name: intranet
+        subnet: 10.89.0.0/24
+        state: present

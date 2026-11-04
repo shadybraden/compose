@@ -48,6 +48,10 @@ jobs:
           echo "${{ secrets.MAUL_SSH_PRIVATE_KEY }}" > ~/.ssh/maul_ed25519
           chmod 600 ~/.ssh/maul_ed25519
 
+      - name: Install Ansible collections
+        run: |
+          ansible-galaxy collection install -r requirements.yml
+
       - name: Run Ansible "maul"
         run: |
           ansible-playbook playbooks/maul.yaml
