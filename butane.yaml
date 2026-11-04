@@ -86,3 +86,24 @@ storage:
           Environment="https_proxy=http://10.1.1.65:3128"
           Environment="HTTP_PROXY=http://10.1.1.65:3128"
           Environment="HTTPS_PROXY=http://10.1.1.65:3128"
+
+    - path: /etc/systemd/system/fedora-coreos-pinger.service.d/proxy.conf
+      mode: 0644
+      contents:
+        inline: |
+          [Service]
+          Environment="http_proxy=http://10.1.1.65:3128"
+          Environment="https_proxy=http://10.1.1.65:3128"
+          Environment="HTTP_PROXY=http://10.1.1.65:3128"
+          Environment="HTTPS_PROXY=http://10.1.1.65:3128"
+
+    - path: /etc/profile.d/proxy.sh
+      mode: 0644
+      contents:
+        inline: |
+          export http_proxy="http://10.1.1.65:3128"
+          export https_proxy="http://10.1.1.65:3128"
+          export HTTP_PROXY="http://10.1.1.65:3128"
+          export HTTPS_PROXY="http://10.1.1.65:3128"
+          export no_proxy="localhost,127.0.0.1"
+          export NO_PROXY="localhost,127.0.0.1"
