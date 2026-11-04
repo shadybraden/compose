@@ -36,6 +36,7 @@ jobs:
             -d "Workflow '${{ github.workflow }}' failed"
 
   Maul:
+    needs: Core
     runs-on: tools_container
     steps:
       - name: Checkout
