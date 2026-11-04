@@ -27,3 +27,52 @@ storage:
           days = [ "Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri" ]
           start_time = "01:00"
           length_minutes = 360
+
+    - path: /etc/ssh/sshd_config.d/10-hardening.conf
+      mode: 0644
+      contents:
+        inline: |
+          PermitRootLogin no
+          PasswordAuthentication no
+          KbdInteractiveAuthentication no
+          PubkeyAuthentication yes
+          PermitEmptyPasswords no
+
+          AllowUsers core maul
+
+          X11Forwarding no
+          AllowAgentForwarding no
+          AllowTcpForwarding no
+          MaxAuthTries 3
+          LoginGraceTime 30
+          ClientAliveInterval 300
+          ClientAliveCountMax 2
+
+    - path: /etc/selinux/config
+      mode: 0644
+      overwrite: true
+      contents:
+        inline: |
+          SELINUX=enforcing
+          SELINUXTYPE=targeted
+
+    - path: /etc/hostname
+      mode: 0644
+      overwrite: true
+      contents:
+        inline: maul
+
+    - path: /var/lib/systemd/linger/maul
+      mode: 0644
+      contents:
+        inline: ""
+
+    - path: /etc/example-proxy.env
+      mode: 0644
+      contents:
+        inline: |
+          https_proxy="http://10.1.1.65:3128"
+          all_proxy="http://10.1.1.65:3128"
+          http_proxy="http://10.1.1.65:3128"
+          HTTP_PROXY="http://10.1.1.65:3128"
+          HTTPS_PROXY="http://10.1.1.65:3128"
