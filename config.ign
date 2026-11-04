@@ -33,6 +33,72 @@
           "compression": "gzip",
           "source": "data:;base64,H4sIAAAAAAAC/zTNwQrCMAyA4XufIuQsoyJ4EHb15mmCh1JGsWELuHa0KWNvLxns9JEQ8ru2xiBUvalSgtC0Qw+4UuEc+YvGnQfdues2TjFv3psY9go9OMAhCF4Ah5aUVz54N1I+FI9pbsqzMILGQpFReCHN2evDWjQ/SpPM48KpCenn292afwAAAP//jNBSAKEAAAA="
         }
+      },
+      {
+        "path": "/etc/ssh/sshd_config.d/10-hardening.conf",
+        "contents": {
+          "compression": "gzip",
+          "source": "data:;base64,H4sIAAAAAAAC/2yP3UrEQAyF7/MU8wi79gnKoiK6UKSCt9lpqMFpsmQy7fbtpSNeVL39zsnP15FN7K+q/qIjSxCFDnNe1Ia2+AeJc0RnrcnzZXgSJ8PoPNPfvCuXT1p/8ZUyfF+5n66+/mzP2wC0KenylslyiGoUJiwJ4P14fFBb0AaWcevVWjuS+D+8j9c9PeNt+6E3phwaqGKPhpF6nig0BzglJvE28UzVZ8YUmsOOn7SIn/EW7uArAAD//6YLddcjAQAA"
+        },
+        "mode": 420
+      },
+      {
+        "overwrite": true,
+        "path": "/etc/selinux/config",
+        "contents": {
+          "compression": "",
+          "source": "data:,SELINUX%3Denforcing%0ASELINUXTYPE%3Dtargeted%0A"
+        },
+        "mode": 420
+      },
+      {
+        "overwrite": true,
+        "path": "/etc/hostname",
+        "contents": {
+          "compression": "",
+          "source": "data:,maul"
+        },
+        "mode": 420
+      },
+      {
+        "path": "/var/lib/systemd/linger/maul",
+        "contents": {
+          "compression": "",
+          "source": "data:,"
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/systemd/system/zincati.service.d/proxy.conf",
+        "contents": {
+          "compression": "gzip",
+          "source": "data:;base64,H4sIAAAAAAAC/4oOTi0qy0xOjeVyzSvLLMrPy03NK7FVyigpKYgvKMqvqLQFMa309Q0N9Az1DPXMTK2MDY0slDCVF5Og3iMkJCA+IMg/IpJo5cH41QMCAAD//4zzpafIAAAA"
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/systemd/system/rpm-ostreed.service.d/proxy.conf",
+        "contents": {
+          "compression": "gzip",
+          "source": "data:;base64,H4sIAAAAAAAC/4oOTi0qy0xOjeVyzSvLLMrPy03NK7FVyigpKYgvKMqvqLQFMa309Q0N9Az1DPXMTK2MDY0slDCVF5Og3iMkJCA+IMg/IpJo5cH41QMCAAD//4zzpafIAAAA"
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/systemd/system/fedora-coreos-pinger.service.d/proxy.conf",
+        "contents": {
+          "compression": "gzip",
+          "source": "data:;base64,H4sIAAAAAAAC/4oOTi0qy0xOjeVyzSvLLMrPy03NK7FVyigpKYgvKMqvqLQFMa309Q0N9Az1DPXMTK2MDY0slDCVF5Og3iMkJCA+IMg/IpJo5cH41QMCAAD//4zzpafIAAAA"
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/profile.d/proxy.sh",
+        "contents": {
+          "compression": "gzip",
+          "source": "data:;base64,H4sIAAAAAAAC/0qtKMgvKlHIKCkpiC8oyq+otFUCsa309Q0N9Az1DPXMTK2MDY0slLiQVBYTp9QjJCQgPiDIPyKSGJXBxCnNy4dZnpOfnJiTkV9comNoZK5noGegZwhX5ecPMw2bKkAAAAD///ZRwZb1AAAA"
+        },
+        "mode": 420
       }
     ]
   }
