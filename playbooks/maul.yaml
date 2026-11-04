@@ -1,0 +1,18 @@
+- name: Prepare maul
+  hosts: maul
+  become: true
+  tasks:
+    - name: Check if podman-compose is installed
+      ansible.builtin.command: rpm -q podman-compose
+      register: podman_compose_check
+      changed_when: false
+      failed_when: false
+
+    - name: Install podman-compose
+      ansible.builtin.command: rpm-ostree install podman-compose
+      when: podman_compose_check.rc != 0
+      register: podman_compose_install
+
+    - name: Reboot if needed
+      ansible.builtin.reboot:
+      when: podman_compose_install is changed
