@@ -1,0 +1,5 @@
+- name: Prepare maul
+  hosts: maul
+  tasks:
+    - name: pwd
+      ansible.builtin.command: pwd

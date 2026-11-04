@@ -1,5 +1,5 @@
-- name: Prepare maul
-  hosts: maul
+- name: Prepare Core
+  hosts: core
   become: true
   tasks:
     - name: Check if podman-compose is installed
