@@ -60,13 +60,13 @@
       changed_when: true
 
     - name: Pull images on the runner
-      ansible.builtin.command: podman pull {{ item }}
+      ansible.builtin.command: podman --storage-driver vfs pull {{ item }}
       loop: "{{ images }}"
       delegate_to: localhost
       changed_when: true
 
     - name: Save images to archives on the runner
-      ansible.builtin.command: podman save -o "{{ local_archive_dir }}/{{ item | regex_replace('[/:]', '_') }}.tar" {{ item }}
+      ansible.builtin.command: podman --storage-driver vfs save -o "{{ local_archive_dir }}/{{ item | regex_replace('[/:]', '_') }}.tar" {{ item }}
       loop: "{{ images }}"
       delegate_to: localhost
       changed_when: true
@@ -116,7 +116,7 @@
       loop: "{{ images }}"
 
     - name: Load images
-      ansible.builtin.shell: podman load -i {{ remote_images_dir }}/{{ item | regex_replace('[/:]', '_') }}.tar
+      ansible.builtin.shell: podman --storage-driver vfs load -i {{ remote_images_dir }}/{{ item | regex_replace('[/:]', '_') }}.tar
       loop: "{{ images }}"
       changed_when: true
 
@@ -127,4 +127,4 @@
       loop: "{{ images }}"
 
     - name: Deploy with podman compose
-      ansible.builtin.shell: podman compose -f {{ remote_dir }}/compose.yaml up -d
+      ansible.builtin.shell: podman --storage-driver vfs compose -f {{ remote_dir }}/compose.yaml up -d
