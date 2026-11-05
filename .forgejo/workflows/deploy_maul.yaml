@@ -10,7 +10,9 @@ on:
       service:
         description: 'Service directory to deploy (must be listed in MAUL_SERVICES)'
         required: true
-        type: string
+        type: choice
+        options:
+          - chhoto-url
 
 jobs:
   Maul-Services:
