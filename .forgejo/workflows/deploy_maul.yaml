@@ -56,7 +56,7 @@ jobs:
         if: steps.services.outputs.services != ''
         run: |
           for s in ${{ steps.services.outputs.services }}; do
-            ansible-playbook playbooks/maul_service.yaml -e service="$s"
+            ansible-playbook playbooks/maul_service.yaml -e service="$s" -v
           done
         env:
           ANSIBLE_HOST_KEY_CHECKING: "False"
