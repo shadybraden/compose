@@ -1,0 +1,130 @@
+---
+# Deploys one service directory (e.g. chhoto-url) to maul.
+# Maul cannot reach git.holmlab.org, docker.io or Infisical, so the runner pulls
+# the images, saves them as archives, exports secrets to a .env file, and copies
+# everything to maul.
+# Usage: ansible-playbook playbooks/maul_service.yaml -e service=chhoto-url
+- name: Deploy {{ service }} to maul
+  hosts: maul
+  become: false
+
+  vars:
+    service_dir: "{{ playbook_dir }}/../{{ service }}"
+    remote_dir: "~/config_storage/{{ service }}"
+    remote_images_dir: "~/config_storage/image-archives"
+    local_archive_dir: "{{ lookup('ansible.builtin.env', 'RUNNER_TEMP', default='/tmp') }}"
+    local_env_file: "{{ local_archive_dir }}/{{ service }}.env"
+    compose: "{{ lookup('ansible.builtin.file', service_dir ~ '/compose.yaml') | from_yaml }}"
+    images: "{{ compose.services | dict2items | map(attribute='value.image') | select('defined') | unique | list }}"
+    INFISICAL_MAUL_CLIENTID: "{{ lookup('ansible.builtin.env', 'INFISICAL_MAUL_CLIENTID') }}"
+    INFISICAL_MAUL_CLIENTSECRET: "{{ lookup('ansible.builtin.env', 'INFISICAL_MAUL_CLIENTSECRET') }}"
+    INFISICAL_MAUL_PROJECT_ID: "{{ lookup('ansible.builtin.env', 'INFISICAL_MAUL_PROJECT_ID') }}"
+    INFISICAL_DOMAIN: "{{ lookup('ansible.builtin.env', 'INFISICAL_DOMAIN') }}"
+    INFISICAL_ENVIRONMENT: "{{ lookup('ansible.builtin.env', 'INFISICAL_ENVIRONMENT', default='prod') }}"
+    infisical_shared_path: "/"
+    infisical_path: "/{{ service }}"
+
+  tasks:
+    - name: Export service secrets from Infisical on the runner
+      ansible.builtin.shell: |
+        set -eo pipefail
+        INFISICAL_TOKEN="$(timeout 300s \
+          infisical login --domain="{{ INFISICAL_DOMAIN }}" \
+          --method=universal-auth \
+          --client-id="{{ INFISICAL_MAUL_CLIENTID }}" \
+          --client-secret="{{ INFISICAL_MAUL_CLIENTSECRET }}" \
+          --silent \
+          --plain \
+          </dev/null \
+        )"
+        export INFISICAL_TOKEN
+        infisical export \
+          --env={{ INFISICAL_ENVIRONMENT }} \
+          --projectId={{ INFISICAL_MAUL_PROJECT_ID }} \
+          --domain="{{ INFISICAL_DOMAIN }}" \
+          --path={{ infisical_path }} \
+          --format=dotenv \
+          > {{ local_env_file }}.service
+        infisical export \
+          --env={{ INFISICAL_ENVIRONMENT }} \
+          --projectId={{ INFISICAL_MAUL_PROJECT_ID }} \
+          --domain="{{ INFISICAL_DOMAIN }}" \
+          --path={{ infisical_shared_path }} \
+          --format=dotenv \
+          > {{ local_env_file }}.shared
+        awk -F= 'NR==FNR {seen[$1]=1; print; next} !($1 in seen)' \
+          {{ local_env_file }}.service {{ local_env_file }}.shared > {{ local_env_file }}
+        rm -f {{ local_env_file }}.service {{ local_env_file }}.shared
+      delegate_to: localhost
+      no_log: true
+      changed_when: true
+
+    - name: Pull images on the runner
+      ansible.builtin.command: podman pull {{ item }}
+      loop: "{{ images }}"
+      delegate_to: localhost
+      changed_when: true
+
+    - name: Save images to archives on the runner
+      ansible.builtin.command: podman save -o "{{ local_archive_dir }}/{{ item | regex_replace('[/:]', '_') }}.tar" {{ item }}
+      loop: "{{ images }}"
+      delegate_to: localhost
+      changed_when: true
+
+    - name: Ensure intranet network exists
+      containers.podman.podman_network:
+        name: intranet
+        state: present
+
+    - name: Create service directory
+      ansible.builtin.file:
+        path: "{{ remote_dir }}"
+        state: directory
+        mode: "0755"
+
+    - name: Copy service config files
+      ansible.builtin.copy:
+        src: "{{ service_dir }}/"
+        dest: "{{ remote_dir }}/"
+        mode: preserve
+
+    - name: Copy Infisical secrets to maul as .env
+      ansible.builtin.copy:
+        src: "{{ local_env_file }}"
+        dest: "{{ remote_dir }}/.env"
+        mode: "0600"
+      no_log: true
+
+    - name: Remove local secrets file
+      ansible.builtin.file:
+        path: "{{ local_env_file }}"
+        state: absent
+      delegate_to: localhost
+      changed_when: false
+
+    - name: Create image archive directory
+      ansible.builtin.file:
+        path: "{{ remote_images_dir }}"
+        state: directory
+        mode: "0755"
+
+    - name: Copy image archives
+      ansible.builtin.copy:
+        src: "{{ local_archive_dir }}/{{ item | regex_replace('[/:]', '_') }}.tar"
+        dest: "{{ remote_images_dir }}/"
+        mode: "0644"
+      loop: "{{ images }}"
+
+    - name: Load images
+      ansible.builtin.shell: podman load -i {{ remote_images_dir }}/{{ item | regex_replace('[/:]', '_') }}.tar
+      loop: "{{ images }}"
+      changed_when: true
+
+    - name: Remove image archives
+      ansible.builtin.file:
+        path: "{{ remote_images_dir }}/{{ item | regex_replace('[/:]', '_') }}.tar"
+        state: absent
+      loop: "{{ images }}"
+
+    - name: Deploy with podman compose
+      ansible.builtin.shell: podman compose -f {{ remote_dir }}/compose.yaml up -d
