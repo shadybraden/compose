@@ -1,5 +1,9 @@
 name: Configure Core and Deploy services on Maul
 
+concurrency:
+  group: maul-deploy
+  cancel-in-progress: false
+
 on:
   workflow_dispatch:
     inputs:
