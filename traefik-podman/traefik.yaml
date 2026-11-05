@@ -1,10 +1,12 @@
 # the ACME email comes from CF_API_EMAIL in .env (TRAEFIK_CERTIFICATESRESOLVERS_CLOUDFLARE_ACME_EMAIL)
 api:
   dashboard: true
-  debug: true
+  debug: false
 entryPoints:
   https:
     address: ":443"
+    forwardedHeaders:
+      insecure: false
     # http:
     #  middlewares: # uncomment if using CrowdSec - see my video
     #    - crowdsec-bouncer@file
@@ -20,8 +22,6 @@ entryPoints:
 #        readTimeout: 600s
 #        idleTimeout: 600s
 #        writeTimeout: 600s
-serversTransport:
-  insecureSkipVerify: true
 providers:
   docker:
     endpoint: "unix:///var/run/docker.sock"
