@@ -39,6 +39,7 @@ services:
       - "homepage.href=https://traefik.${DOMAIN}"
     security_opt:
       - no-new-privileges:true  # helps to increase security
+      - label=disable  # SELinux otherwise blocks access to the podman socket
 
 networks:
   intranet:  # docker network create intranet
