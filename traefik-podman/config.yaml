@@ -1,0 +1,131 @@
+---
+http:
+  middlewares:
+    default-security-headers:
+      headers:
+        customBrowserXSSValue: 0                            # X-XSS-Protection=1; mode=block
+        contentTypeNosniff: true                          # X-Content-Type-Options=nosniff
+        forceSTSHeader: true                              # Add the Strict-Transport-Security header even whe>
+        frameDeny: false                                   # X-Frame-Options=deny
+        referrerPolicy: "strict-origin-when-cross-origin"
+        stsIncludeSubdomains: true                        # Add includeSubdomains to the Strict-Transport-Sec>
+        stsPreload: true                                  # Add preload flag appended to the Strict-Transport>
+        stsSeconds: 3153600                              # Set the max-age of the Strict-Transport-Security h>
+        contentSecurityPolicy: "default-src 'self'"
+        customRequestHeaders:
+          X-Forwarded-Proto: https
+    https-redirectscheme:
+      redirectScheme:
+        scheme: https
+        permanent: true
+
+  routers:
+    portainer:
+      entryPoints: ["https"]
+      rule: "Host(`portainer-shady.holmlab.org`)"
+#      middlewares:
+#        - default-security-headers
+      tls: {}
+      service: portainer
+    imessage:
+      entryPoints: ["https"]
+      rule: "Host(`imessage.holmlab.org`)"
+#      middlewares:
+#        - default-security-headers
+      tls: {}
+      service: imessage
+    glances:
+      entryPoints: ["https"]
+      rule: "Host(`glances-shady.holmlab.org`)"
+#      middlewares:
+#        - default-security-headers
+      tls: {}
+      service: glances
+    glances-mck:
+      entryPoints: ["https"]
+      rule: "Host(`glances-mck.holmlab.org`)"
+#      middlewares:
+#        - default-security-headers
+      tls: {}
+      service: glances
+    syncthing:
+      entryPoints: ["https"]
+      rule: "Host(`syncthing-shady.holmlab.org`)"
+      middlewares:
+        - default-security-headers
+      tls: {}
+      service: syncthing
+    crafty:
+      entryPoints: ["https"]
+      rule: "Host(`crafty-shady.holmlab.org`)"
+#      middlewares:
+#        - default-security-headers
+      tls: {}
+      service: crafty
+    periphery-shady:
+      entryPoints: ["https"]
+      rule: "Host(`periphery-shady.holmlab.org`)"
+      middlewares:
+        - default-security-headers
+      tls: {}
+      service: periphery-shady
+    periphery-mck:
+      entryPoints: ["https"]
+      rule: "Host(`periphery-mck.holmlab.org`)"
+      middlewares:
+        - default-security-headers
+      tls: {}
+      service: periphery-mck
+    immich-ml-shady:
+      entryPoints: ["https"]
+      rule: "Host(`immich-ml-shady.holmlab.org`)"
+      middlewares:
+        - default-security-headers
+      tls: {}
+      service: immich-ml-shady
+  services:
+    portainer:
+      loadBalancer:
+        servers:
+          - url: "http://10.1.1.16:9000"
+        passHostHeader: true
+    imessage:
+      loadBalancer:
+        servers:
+          - url: "http://10.1.1.20:1234"
+        passHostHeader: true
+    glances:
+      loadBalancer:
+        servers:
+          - url: "http://10.1.1.16:61208"
+        passHostHeader: true
+    glances-mck:
+      loadBalancer:
+        servers:
+          - url: "http://10.1.1.45:61208"
+        passHostHeader: true
+    syncthing:
+      loadBalancer:
+        servers:
+          - url: "http://10.1.1.16:8384"
+        passHostHeader: true
+    crafty:
+      loadBalancer:
+        servers:
+          - url: "https://10.1.1.16:8443"
+        passHostHeader: true
+    periphery-shady:
+      loadBalancer:
+        servers:
+          - url: "http://10.1.1.16:8120"
+        passHostHeader: true
+    periphery-mck:
+      loadBalancer:
+        servers:
+          - url: "http://10.1.1.45:8120"
+        passHostHeader: true
+    immich-ml-shady:
+      loadBalancer:
+        servers:
+          - url: "http://10.1.1.16:3003"
+        passHostHeader: true

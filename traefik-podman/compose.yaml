@@ -1,0 +1,52 @@
+---
+name: traefik
+services:
+  traefik:
+    image: docker.io/traefik:v3.7.17
+    container_name: traefik
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ${HOME}/config_storage/traefik/logs:/var/log/traefik  # there are no podman logs, so they will be in this folder
+      - ${HOME}/config_storage/traefik/acme.json:/acme.json
+      - ${HOME}/config_storage/traefik/traefik.yaml:/etc/traefik/traefik.yaml:ro  # "static" config
+      - ${HOME}/config_storage/traefik/config.yaml:/etc/traefik/config.yaml:ro  # "dynamic" config
+    environment:
+      TRAEFIK_DASHBOARD_CREDENTIALS: ${TRAEFIK_DASHBOARD_CREDENTIALS}
+      CF_DNS_API_TOKEN: ${CF_DNS_API_TOKEN}
+      CF_API_EMAIL: ${CF_API_EMAIL}
+    ports:
+      - '0.0.0.0:443:443'
+    networks:
+      intranet:
+      intranet-backend:  # shared with no-egress services
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.entrypoints=http"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.${DOMAIN}`)"
+      - "traefik.http.middlewares.traefik-auth.basicauth.users=${TRAEFIK_DASHBOARD_CREDENTIALS}"
+      - "traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https"
+      - "traefik.http.routers.traefik.middlewares=traefik-https-redirect"
+      - "traefik.http.routers.traefik-secure.entrypoints=https"
+      - "traefik.http.routers.traefik-secure.rule=Host(`traefik.${DOMAIN}`)"
+      - "traefik.http.routers.traefik-secure.middlewares=traefik-auth"
+      - "traefik.http.routers.traefik-secure.tls=true"
+      - "traefik.http.routers.traefik-secure.tls.certresolver=cloudflare"
+      - "traefik.http.routers.traefik-secure.tls.domains[0].main=${DOMAIN}"
+      - "traefik.http.routers.traefik-secure.tls.domains[0].sans=*.${DOMAIN}"
+      - "traefik.http.routers.traefik-secure.service=api@internal"
+      - "homepage.group=Other"
+      - "homepage.name=Traefik"
+      - "homepage.icon=/images/traefik.png"
+      - "homepage.href=https://traefik.${DOMAIN}"
+      - "traefik.http.routers.web.rule=PathPrefix(`/`)"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+
+networks:
+  intranet:  # docker network create intranet
+    external: true  # or comment this line to auto create the network
+  intranet-backend:  # docker network create --internal intranet-backend (no egress)
+    external: true
