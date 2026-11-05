@@ -1,6 +1,5 @@
 - name: Prepare maul
   hosts: maul
-  become: true
   tasks:
     - name: Create intranet network
       containers.podman.podman_network:

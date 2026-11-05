@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - 'playbooks/core.yaml'
+      - 'playbooks/maul.yaml'
 
 jobs:
   Core:
