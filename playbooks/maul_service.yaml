@@ -38,13 +38,15 @@
           </dev/null \
         )"
         export INFISICAL_TOKEN
-        infisical export \
+        if ! infisical export \
           --env={{ INFISICAL_ENVIRONMENT }} \
           --projectId={{ INFISICAL_MAUL_PROJECT_ID }} \
           --domain="{{ INFISICAL_DOMAIN }}" \
           --path={{ infisical_path }} \
           --format=dotenv \
-          > {{ local_env_file }}.service
+          > {{ local_env_file }}.service; then
+          : > {{ local_env_file }}.service
+        fi
         infisical export \
           --env={{ INFISICAL_ENVIRONMENT }} \
           --projectId={{ INFISICAL_MAUL_PROJECT_ID }} \
