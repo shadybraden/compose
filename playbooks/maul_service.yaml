@@ -139,4 +139,4 @@
       loop: "{{ images }}"
 
     - name: Deploy with podman compose
-      ansible.builtin.shell: podman compose -f {{ remote_dir }}/compose.yaml up -d
+      ansible.builtin.shell: XDG_RUNTIME_DIR=/run/user/$(id -u) podman compose -f {{ remote_dir }}/compose.yaml up -d
