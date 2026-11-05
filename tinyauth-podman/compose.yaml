@@ -8,7 +8,7 @@ services:
       - TINYAUTH_APPURL=https://tinyauth.${DOMAIN}
       - TINYAUTH_AUTH_USERS=${TINYAUTH_AUTH_USERS}
     networks:
-      - intranet
+      - intranet-backend
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
@@ -21,12 +21,12 @@ services:
       - "traefik.http.routers.tinyauth-secure.tls=true"
       - "traefik.http.routers.tinyauth-secure.service=tinyauth"
       - "traefik.http.services.tinyauth.loadbalancer.server.port=3000"  # port of the service.
-      - "traefik.docker.network=intranet"
+      - "traefik.docker.network=intranet-backend"
       - "traefik.http.middlewares.tinyauth.forwardauth.address=http://tinyauth:3000/api/auth/traefik"
       - env=production
     security_opt:
       - no-new-privileges:true  # helps to increase security
 
 networks:
-  intranet:
+  intranet-backend:
     external: true
