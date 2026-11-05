@@ -20,14 +20,18 @@
       when: layer_install is changed
       failed_when: false
 
+    - name: Give the host time to go down
+      ansible.builtin.pause:
+        seconds: 60
+      when: layer_install is changed
+
     - name: Wait for host to come back
-      ansible.builtin.wait_for:
-        host: "{{ ansible_host | default(inventory_hostname) }}"
-        port: 22
-        delay: 60
-        timeout: 600
-      delegate_to: localhost
-      become: false
+      ansible.builtin.raw: echo up
+      register: host_up
+      until: host_up is success
+      retries: 30
+      delay: 20
+      changed_when: false
       when: layer_install is changed
 
 - name: Prepare Core
