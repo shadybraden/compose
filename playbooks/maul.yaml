@@ -38,3 +38,16 @@
       loop: "{{ shared_repos }}"
       loop_control:
         loop_var: repo
+
+- name: Show maul OS version
+  hosts: maul
+  gather_facts: false
+  tasks:
+    - name: Read VERSION from os-release
+      ansible.builtin.command: grep '^VERSION=' /etc/os-release
+      register: os_version
+      changed_when: false
+
+    - name: Print VERSION
+      ansible.builtin.debug:
+        msg: "{{ os_version.stdout }}"
