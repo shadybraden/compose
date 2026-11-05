@@ -22,6 +22,7 @@
     - name: Create intranet-backend network (no egress)
       containers.podman.podman_network:
         name: intranet-backend
+        subnet: 10.90.0.0/24
         internal: true
         state: present
 
