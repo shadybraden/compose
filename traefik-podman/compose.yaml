@@ -6,10 +6,10 @@ services:
     container_name: traefik
     volumes:
       - ${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock:ro  # rootless podman socket
-      - ./logs:/var/log/traefik  # there are no podman logs, so they will be in this folder
-      - ./acme.json:/acme.json
-      - ./traefik.yaml:/etc/traefik/traefik.yaml:ro  # "static" config
-      - ./config.yaml:/etc/traefik/config.yaml:ro  # "dynamic" config
+      - ./logs:/var/log/traefik:z  # there are no podman logs, so they will be in this folder
+      - ./acme.json:/acme.json:z
+      - ./traefik.yaml:/etc/traefik/traefik.yaml:ro,z  # "static" config
+      - ./config.yaml:/etc/traefik/config.yaml:ro,z  # "dynamic" config
     environment:
       TZ: America/New_York
       TRAEFIK_DASHBOARD_CREDENTIALS: ${TRAEFIK_DASHBOARD_CREDENTIALS}
