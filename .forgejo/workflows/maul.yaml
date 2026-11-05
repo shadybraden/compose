@@ -129,7 +129,7 @@ jobs:
       - name: Deploy services to Maul via Ansible
         run: |
           for s in ${{ needs.Detect.outputs.services }}; do
-            ansible-playbook playbooks/maul_service.yaml -e service="$s" -v
+            ansible-playbook playbooks/maul_service.yaml -e service="$s"
           done
         env:
           ANSIBLE_HOST_KEY_CHECKING: "False"
