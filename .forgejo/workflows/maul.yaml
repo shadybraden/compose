@@ -17,8 +17,8 @@ jobs:
       - name: Set up SSH
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.CORE_SSH_PRIVATE_KEY }}" > ~/.ssh/core_ed25519
-          chmod 600 ~/.ssh/core_ed25519
+          echo "${{ secrets.CORE_SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
 
       - name: Run Ansible "core"
         run: |
@@ -45,8 +45,8 @@ jobs:
       - name: Set up SSH
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.MAUL_SSH_PRIVATE_KEY }}" > ~/.ssh/maul_ed25519
-          chmod 600 ~/.ssh/maul_ed25519
+          echo "${{ secrets.MAUL_SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
 
       - name: Install Ansible collections
         run: |
