@@ -1,0 +1,32 @@
+---
+name: tinyauth
+services:
+  tinyauth:
+    image: ghcr.io/tinyauthapp/tinyauth:v5.2.0
+    container_name: tinyauth
+    environment:
+      - TINYAUTH_APPURL=https://tinyauth.${DOMAIN}
+      - TINYAUTH_AUTH_USERS=${TINYAUTH_AUTH_USERS}
+    networks:
+      - intranet
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.tinyauth.entrypoints=http"
+      - "traefik.http.routers.tinyauth.rule=Host(`tinyauth.${DOMAIN}`)"
+      - "traefik.http.middlewares.tinyauth-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.tinyauth.middlewares=tinyauth-https-redirect"
+      - "traefik.http.routers.tinyauth-secure.entrypoints=https"
+      - "traefik.http.routers.tinyauth-secure.rule=Host(`tinyauth.${DOMAIN}`)"
+      - "traefik.http.routers.tinyauth-secure.tls=true"
+      - "traefik.http.routers.tinyauth-secure.service=tinyauth"
+      - "traefik.http.services.tinyauth.loadbalancer.server.port=3000"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "traefik.http.middlewares.tinyauth.forwardauth.address=http://tinyauth:3000/api/auth/traefik"
+      - env=production
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+
+networks:
+  intranet:
+    external: true
