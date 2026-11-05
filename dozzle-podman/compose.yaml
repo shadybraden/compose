@@ -11,7 +11,7 @@ services:
       - DOZZLE_ENABLE_ACTIONS=true
       - DOZZLE_NO_ANALYTICS=true
     networks:
-      - intranet
+      - intranet-backend
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
@@ -20,7 +20,7 @@ services:
       - "traefik.http.routers.dozzle-secure.tls=true"
       - "traefik.http.routers.dozzle-secure.service=dozzle"
       - "traefik.http.services.dozzle.loadbalancer.server.port=8080"  # port of the service.
-      - "traefik.docker.network=intranet"
+      - "traefik.docker.network=intranet-backend"
       - "traefik.http.middlewares.dozzle-tinyauth.forwardauth.address=http://tinyauth:3000/api/auth/traefik"
       - "traefik.http.middlewares.dozzle-tinyauth.forwardauth.trustforwardheader=false"
       - "traefik.http.middlewares.dozzle-tinyauth.forwardauth.maxresponsebodysize=1048576"  # 1 MiB
@@ -35,5 +35,5 @@ services:
       - label=disable  # SELinux otherwise blocks access to the podman socket
 
 networks:
-  intranet:
+  intranet-backend:
     external: true
