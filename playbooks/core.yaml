@@ -60,9 +60,20 @@
       when: sysbench_check.rc != 0
       register: sysbench_install
 
+    - name: Check if btop is installed
+      ansible.builtin.command: rpm -q btop
+      register: btop_check
+      changed_when: false
+      failed_when: false
+
+    - name: Install btop
+      ansible.builtin.command: rpm-ostree install btop
+      when: btop_check.rc != 0
+      register: btop_install
+
     - name: Reboot if needed
       ansible.builtin.reboot:
-      when: podman_compose_install is changed or sysbench_install is changed
+      when: podman_compose_install is changed or sysbench_install is changed or btop_install is changed
 
     - name: Allow rootless containers to bind ports 443 and up
       ansible.builtin.copy:
