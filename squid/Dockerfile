@@ -1,3 +1,3 @@
-FROM docker.io/ubuntu/squid:7.2-26.04_edge@sha256:aefdba10d1b7dc8f35d71a40ed3b106504154b4b5532f4d920ff3b66ada5441d
+FROM docker.io/ubuntu/squid:7.2-26.04_edge@sha256:9134914972b6119a2265fd96f694a627c68070a2a6d905d1383cd87f9c2e5cdd
 
 COPY squid-log-layer.yaml /var/lib/pebble/default/layers/002-squid-log.yaml
