@@ -15,7 +15,19 @@
       register: layer_install
 
     - name: Reboot to apply layered packages
-      ansible.builtin.reboot:
+      ansible.builtin.raw: systemctl reboot
+      become: true
+      when: layer_install is changed
+      failed_when: false
+
+    - name: Wait for host to come back
+      ansible.builtin.wait_for:
+        host: "{{ ansible_host | default(inventory_hostname) }}"
+        port: 22
+        delay: 60
+        timeout: 600
+      delegate_to: localhost
+      become: false
       when: layer_install is changed
 
 - name: Prepare Core
