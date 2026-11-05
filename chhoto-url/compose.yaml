@@ -36,7 +36,10 @@ services:
       - "homepage.name=URL Shortener"
       - "homepage.icon=/images/chhoto.png"
       - "homepage.href=https://chhoto.${DOMAIN}/"
-      - "traefik.http.routers.chhoto-secure.middlewares=tinyauth"
+      - "traefik.http.middlewares.chhoto-tinyauth.forwardauth.address=http://tinyauth:3000/api/auth/traefik"
+      - "traefik.http.middlewares.chhoto-tinyauth.forwardauth.trustforwardheader=false"
+      - "traefik.http.middlewares.chhoto-tinyauth.forwardauth.maxresponsebodysize=1048576"  # 1 MiB
+      - "traefik.http.routers.chhoto-secure.middlewares=chhoto-tinyauth"
     cap_drop:
       - ALL
     dns:

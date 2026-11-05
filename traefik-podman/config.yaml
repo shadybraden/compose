@@ -14,8 +14,3 @@ http:
         contentSecurityPolicy: "default-src 'self'"
         customRequestHeaders:
           X-Forwarded-Proto: https
-    tinyauth:
-      forwardAuth:
-        address: "http://tinyauth:3000/api/auth/traefik"
-        trustForwardHeader: false
-        maxResponseBodySize: 1048576  # 1 MiB
