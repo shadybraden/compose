@@ -127,4 +127,4 @@
       loop: "{{ images }}"
 
     - name: Deploy with podman compose
-      ansible.builtin.shell: podman --storage-driver vfs compose -f {{ remote_dir }}/compose.yaml up -d
+      ansible.builtin.shell: podman compose -f {{ remote_dir }}/compose.yaml up -d
