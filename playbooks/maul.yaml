@@ -1,5 +1,10 @@
 - name: Prepare maul
   hosts: maul
+  vars:
+    shared_repos:
+      - name: icons
+        repo: https://git.holmlab.org/shady/icons
+        dest: ~/icons
   tasks:
     - name: Create intranet network
       containers.podman.podman_network:
@@ -19,3 +24,9 @@
         name: intranet-backend
         internal: true
         state: present
+
+    - name: Refresh shared repos
+      ansible.builtin.include_tasks: tasks/maul_repo.yaml
+      loop: "{{ shared_repos }}"
+      loop_control:
+        loop_var: repo

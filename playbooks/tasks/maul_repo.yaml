@@ -1,0 +1,46 @@
+---
+- name: Get latest commit of {{ repo.repo }}
+  ansible.builtin.command: git ls-remote {{ repo.repo }} refs/heads/main
+  register: remote_head
+  delegate_to: localhost
+  changed_when: false
+
+- name: Read commit deployed to maul for {{ repo.name }}
+  ansible.builtin.shell: cat ~/.revisions/{{ repo.name }} 2>/dev/null || true
+  register: deployed_head
+  changed_when: false
+
+- name: Refresh {{ repo.name }} when maul is behind main
+  when: deployed_head.stdout | trim != remote_head.stdout.split()[0]
+  block:
+    - name: Clone {{ repo.repo }} on the runner
+      ansible.builtin.git:
+        repo: "{{ repo.repo }}"
+        dest: "{{ lookup('ansible.builtin.env', 'RUNNER_TEMP', default='/tmp') }}/{{ repo.name }}"
+        version: "{{ remote_head.stdout.split()[0] }}"
+        force: true
+      delegate_to: localhost
+
+    - name: Remove git metadata from {{ repo.name }}
+      ansible.builtin.file:
+        path: "{{ lookup('ansible.builtin.env', 'RUNNER_TEMP', default='/tmp') }}/{{ repo.name }}/.git"
+        state: absent
+      delegate_to: localhost
+
+    - name: Copy {{ repo.name }} to maul
+      ansible.builtin.copy:
+        src: "{{ lookup('ansible.builtin.env', 'RUNNER_TEMP', default='/tmp') }}/{{ repo.name }}/"
+        dest: "{{ repo.dest }}/"
+        mode: preserve
+
+    - name: Create revision directory on maul
+      ansible.builtin.file:
+        path: ~/.revisions
+        state: directory
+        mode: "0755"
+
+    - name: Record deployed commit for {{ repo.name }}
+      ansible.builtin.copy:
+        content: "{{ remote_head.stdout.split()[0] }}\n"
+        dest: ~/.revisions/{{ repo.name }}
+        mode: "0644"
