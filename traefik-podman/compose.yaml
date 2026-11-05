@@ -20,7 +20,7 @@ services:
     networks:
       intranet:
       intranet-backend:  # shared with no-egress services
-    restart: no
+    restart: "no"
     labels:
       - "traefik.enable=true"
       - "traefik.http.middlewares.traefik-auth.basicauth.users=${TRAEFIK_DASHBOARD_CREDENTIALS}"
