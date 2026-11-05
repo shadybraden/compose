@@ -7,6 +7,13 @@
         subnet: 10.89.0.0/24
         state: present
 
+    - name: Enable podman.socket for the rootless API
+      ansible.builtin.systemd:
+        name: podman.socket
+        enabled: true
+        state: started
+        scope: user
+
     - name: Create intranet-backend network (no egress)
       containers.podman.podman_network:
         name: intranet-backend
