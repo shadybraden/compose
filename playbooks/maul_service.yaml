@@ -4,7 +4,7 @@
 # the images, saves them as archives, exports secrets to a .env file, and copies
 # everything to maul.
 # Usage: ansible-playbook playbooks/maul_service.yaml -e service=chhoto-url
-- name: Deploy {{ service }} to maul
+- name: Deploy {{ service }} to Maul
   hosts: maul
   become: false
 

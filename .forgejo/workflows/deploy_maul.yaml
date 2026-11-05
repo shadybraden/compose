@@ -1,4 +1,4 @@
-name: Deploy maul services
+name: Deploy Maul services
 
 on:
   push:
