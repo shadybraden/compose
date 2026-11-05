@@ -94,8 +94,6 @@ jobs:
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             CHANGED="${{ github.event.inputs.service }}"
             [ "$CHANGED" = "none" ] && CHANGED=""
-          elif [ -n "$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" -- 'playbooks/*')" ]; then
-            CHANGED=""
           else
             CHANGED=$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" -- '*/compose.yaml' | cut -d/ -f1)
           fi
