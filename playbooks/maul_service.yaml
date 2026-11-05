@@ -116,7 +116,7 @@
       loop: "{{ images }}"
 
     - name: Load images
-      ansible.builtin.shell: podman --storage-driver vfs load -i {{ remote_images_dir }}/{{ item | regex_replace('[/:]', '_') }}.tar
+      ansible.builtin.shell: podman load -i {{ remote_images_dir }}/{{ item | regex_replace('[/:]', '_') }}.tar
       loop: "{{ images }}"
       changed_when: true
 
