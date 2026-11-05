@@ -50,7 +50,6 @@ services:
       nofile:
         soft: 1024
         hard: 2048
-      nproc: 64
 
 networks:
   intranet-backend:
