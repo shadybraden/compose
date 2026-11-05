@@ -4,18 +4,15 @@ on:
   workflow_dispatch:
     inputs:
       service:
-        description: 'Service directory to deploy (must be listed in MAUL_SERVICES)'
+        description: 'Service directory to deploy to Maul (none skips the Maul-Services job)'
         required: true
         type: choice
+        default: none
         options:
+          - none
           - chhoto-url
   push:
     branches: [main]
-    paths:
-      - 'playbooks/core.yaml'
-      - 'playbooks/maul.yaml'
-      - 'playbooks/maul_service.yaml'
-      - '*/compose.yaml'
 
 jobs:
   Core:
@@ -77,9 +74,11 @@ jobs:
             -H "Priority: low" \
             -d "Workflow '${{ github.workflow }}' failed"
 
-  Maul-Services:
+  Detect:
     needs: Maul
     runs-on: tools_container
+    outputs:
+      services: ${{ steps.services.outputs.services }}
     env:
       # Service directories that deploy to maul. Add a name here to enable it.
       MAUL_SERVICES: "chhoto-url"
@@ -89,11 +88,14 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Find changed services
+      - name: Find services to deploy
         id: services
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             CHANGED="${{ github.event.inputs.service }}"
+            [ "$CHANGED" = "none" ] && CHANGED=""
+          elif [ -n "$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" -- 'playbooks/*')" ]; then
+            CHANGED=""
           else
             CHANGED=$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" -- '*/compose.yaml' | cut -d/ -f1)
           fi
@@ -105,22 +107,27 @@ jobs:
           done
           echo "services=$(echo $SELECTED | xargs)" >> "$GITHUB_OUTPUT"
 
+  Maul-Services:
+    needs: [Detect]
+    if: needs.Detect.outputs.services != ''
+    runs-on: tools_container
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
       - name: Set up SSH
-        if: steps.services.outputs.services != ''
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.MAUL_SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
 
       - name: Install Ansible collections
-        if: steps.services.outputs.services != ''
         run: |
           ansible-galaxy collection install -r requirements.yml
 
       - name: Deploy services to Maul via Ansible
-        if: steps.services.outputs.services != ''
         run: |
-          for s in ${{ steps.services.outputs.services }}; do
+          for s in ${{ needs.Detect.outputs.services }}; do
             ansible-playbook playbooks/maul_service.yaml -e service="$s" -v
           done
         env:
