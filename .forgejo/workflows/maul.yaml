@@ -104,7 +104,9 @@ jobs:
               *" $s "*) SELECTED="$SELECTED $s" ;;
             esac
           done
-          echo "services=$(echo $SELECTED | xargs)" >> "$GITHUB_OUTPUT"
+          SELECTED=$(echo $SELECTED | xargs)
+          echo "Services to deploy: ${SELECTED:-none}"
+          echo "services=$SELECTED" >> "$GITHUB_OUTPUT"
 
   Maul-Services:
     needs: [Detect]
