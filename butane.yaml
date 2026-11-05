@@ -105,8 +105,8 @@ storage:
           export https_proxy="http://10.1.1.65:3128"
           export HTTP_PROXY="http://10.1.1.65:3128"
           export HTTPS_PROXY="http://10.1.1.65:3128"
-          export no_proxy="localhost,127.0.0.1"
-          export NO_PROXY="localhost,127.0.0.1"
+          export no_proxy="localhost,127.0.0.1,.maul.shadybraden.com"
+          export NO_PROXY="localhost,127.0.0.1,.maul.shadybraden.com"
 
     - path: /etc/firewalld/zones/public.xml
       mode: 0644
