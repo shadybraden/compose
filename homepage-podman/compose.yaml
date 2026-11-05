@@ -1,0 +1,32 @@
+---
+name: homepage
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:v2.7.0
+    container_name: homepage
+    volumes:
+      - ./:/app/config:ro,z  # settings, services, bookmarks, widgets, css, js
+      - ./log:/app/config/log:z  # homepage.log is written here
+      - ${HOME}/icons:/app/public/images:ro,z  # shady/icons, refreshed by playbooks/maul.yaml
+      - ${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock:ro  # rootless podman socket
+    environment:
+      HOMEPAGE_ALLOWED_HOSTS: ${DOMAIN}
+      TZ: America/New_York
+    networks:
+      - intranet-backend
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.homepage-secure.entrypoints=https"
+      - "traefik.http.routers.homepage-secure.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.homepage-secure.tls=true"
+      - "traefik.http.routers.homepage-secure.service=homepage"
+      - "traefik.http.services.homepage.loadbalancer.server.port=3000"  # port of the service.
+      - "traefik.docker.network=intranet-backend"
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+      - label=disable  # SELinux otherwise blocks access to the podman socket
+
+networks:
+  intranet-backend:
+    external: true

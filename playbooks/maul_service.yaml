@@ -114,6 +114,13 @@
         - { path: logs, state: directory, mode: "0755" }
       when: service == 'traefik-podman'
 
+    - name: Prepare homepage log directory
+      ansible.builtin.file:
+        path: "{{ remote_dir }}/log"
+        state: directory
+        mode: "0777"  # homepage writes as its container user, which is not maul
+      when: service == 'homepage-podman'
+
     - name: Create image archive directory
       ansible.builtin.file:
         path: "{{ remote_images_dir }}"

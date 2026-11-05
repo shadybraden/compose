@@ -1,0 +1,22 @@
+title: Maul
+providers:
+background: /images/background.png
+fullWidth: true
+favicon: /images/favicon.ico
+headerStyle: clean
+disableUpdateCheck: true
+showStats: false
+statusStyle: "dot"
+layout:
+  Infrastructure:
+    style: row
+    columns: 5
+    tab: main
+  Media:
+    style: row
+    columns: 5
+    tab: main
+  Other:
+    style: row
+    columns: 7
+    tab: main
