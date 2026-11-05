@@ -12,6 +12,8 @@ services:
       - ./config.yaml:/etc/traefik/config.yaml:ro,z  # "dynamic" config
     environment:
       TZ: America/New_York
+      NO_PROXY: "localhost,127.0.0.1,tinyauth,.maul.shadybraden.com"
+      no_proxy: "localhost,127.0.0.1,tinyauth,.maul.shadybraden.com"
       TRAEFIK_DASHBOARD_CREDENTIALS: ${TRAEFIK_DASHBOARD_CREDENTIALS}
       CF_DNS_API_TOKEN: ${CF_DNS_API_TOKEN}
       TRAEFIK_CERTIFICATESRESOLVERS_CLOUDFLARE_ACME_EMAIL: ${CF_API_EMAIL}
