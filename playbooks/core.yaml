@@ -1,3 +1,23 @@
+- name: Bootstrap Core (no Python yet)
+  hosts: core
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Check for python3
+      ansible.builtin.raw: test -x /usr/bin/python3
+      register: python_check
+      changed_when: false
+      failed_when: false
+
+    - name: Layer python3 and podman-compose
+      ansible.builtin.raw: rpm-ostree install --idempotent python3 podman-compose
+      when: python_check.rc != 0
+      register: layer_install
+
+    - name: Reboot to apply layered packages
+      ansible.builtin.reboot:
+      when: layer_install is changed
+
 - name: Prepare Core
   hosts: core
   become: true
