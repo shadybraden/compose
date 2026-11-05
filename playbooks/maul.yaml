@@ -19,6 +19,13 @@
         state: started
         scope: user
 
+    - name: Enable podman-restart so containers start at boot
+      ansible.builtin.systemd:
+        name: podman-restart.service
+        enabled: true
+        state: started
+        scope: user
+
     - name: Create intranet-backend network (no egress)
       containers.podman.podman_network:
         name: intranet-backend
