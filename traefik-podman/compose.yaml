@@ -5,13 +5,13 @@ services:
     image: docker.io/traefik:v3.7.17
     container_name: traefik
     volumes:
-      - /etc/localtime:/etc/localtime:ro
       - ${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock:ro  # rootless podman socket
       - ./logs:/var/log/traefik  # there are no podman logs, so they will be in this folder
       - ./acme.json:/acme.json
       - ./traefik.yaml:/etc/traefik/traefik.yaml:ro  # "static" config
       - ./config.yaml:/etc/traefik/config.yaml:ro  # "dynamic" config
     environment:
+      TZ: America/New_York
       TRAEFIK_DASHBOARD_CREDENTIALS: ${TRAEFIK_DASHBOARD_CREDENTIALS}
       CF_DNS_API_TOKEN: ${CF_DNS_API_TOKEN}
       TRAEFIK_CERTIFICATESRESOLVERS_CLOUDFLARE_ACME_EMAIL: ${CF_API_EMAIL}
