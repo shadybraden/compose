@@ -5,6 +5,11 @@
       - name: icons
         repo: https://git.holmlab.org/shady/icons
         dest: ~/icons
+      - name: shadybradencom
+        repo: https://git.holmlab.org/shady/shadybradencom
+        dest: ~/shadybradencom
+    hugo_image: docker.io/hugomods/hugo:0.165.0
+    hugo_base_url: https://hugo.maul.shadybraden.com/
   tasks:
     - name: Create intranet network
       containers.podman.podman_network:
@@ -38,6 +43,57 @@
       loop: "{{ shared_repos }}"
       loop_control:
         loop_var: repo
+
+    - name: Check if hugo image is on maul
+      ansible.builtin.command: podman image exists {{ hugo_image }}
+      register: hugo_image_check
+      failed_when: false
+      changed_when: false
+
+    - name: Transfer hugo image from the runner
+      block:
+        - name: Pull hugo image on the runner
+          ansible.builtin.command: podman pull {{ hugo_image }}
+          delegate_to: localhost
+          changed_when: true
+
+        - name: Save hugo image on the runner
+          ansible.builtin.command: podman save -o {{ lookup('ansible.builtin.env', 'RUNNER_TEMP', default='/tmp') }}/hugo.tar {{ hugo_image }}
+          delegate_to: localhost
+          changed_when: true
+
+        - name: Copy hugo image to maul
+          ansible.builtin.copy:
+            src: "{{ lookup('ansible.builtin.env', 'RUNNER_TEMP', default='/tmp') }}/hugo.tar"
+            dest: ~/hugo.tar
+            mode: "0600"
+
+        - name: Load hugo image on maul
+          ansible.builtin.shell: podman load -i ~/hugo.tar
+          changed_when: true
+
+        - name: Remove hugo archive from maul
+          ansible.builtin.file:
+            path: ~/hugo.tar
+            state: absent
+      when: hugo_image_check.rc != 0
+
+    - name: Create shadybradencom public directory
+      ansible.builtin.file:
+        path: ~/config_storage/shadybradencom/public
+        state: directory
+        mode: "0755"
+
+    - name: Build shadybradencom with hugo
+      ansible.builtin.command: >-
+        podman run --rm
+        -v {{ ansible_env.HOME }}/shadybradencom:/src:z
+        -v {{ ansible_env.HOME }}/config_storage/shadybradencom/public:/output:z
+        -w /src
+        --entrypoint hugo
+        {{ hugo_image }}
+        --destination /output --cleanDestinationDir --minify --baseURL={{ hugo_base_url }}
+      changed_when: true
 
 - name: Show maul OS version
   hosts: maul

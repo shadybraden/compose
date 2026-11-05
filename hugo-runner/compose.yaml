@@ -5,9 +5,9 @@ services:
     image: nginx:1.31.8
     container_name: hugo-server
     volumes:
-      - /data/hugo-public:/usr/share/nginx/html:ro
+      - ${HOME}/config_storage/shadybradencom/public:/usr/share/nginx/html:ro,z
     environment:
-      - TZ=${TZ}
+      - TZ=America/New_York
     networks:
       - intranet-backend
     healthcheck:
@@ -18,10 +18,6 @@ services:
       start_period: 10s
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.hugo.entrypoints=http"
-      - "traefik.http.routers.hugo.rule=Host(`hugo.${DOMAIN}`)"
-      - "traefik.http.middlewares.hugo-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.hugo.middlewares=hugo-https-redirect"
       - "traefik.http.routers.hugo-secure.entrypoints=https"
       - "traefik.http.routers.hugo-secure.rule=Host(`hugo.${DOMAIN}`)"
       - "traefik.http.routers.hugo-secure.tls=true"
@@ -42,8 +38,6 @@ services:
           memory: 64M
         reservations:
           memory: 16M
-    dns:
-      - 0.0.0.0
     init: true
     read_only: true
     security_opt:
