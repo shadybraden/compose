@@ -53,12 +53,12 @@
     - name: Transfer hugo image from the runner
       block:
         - name: Pull hugo image on the runner
-          ansible.builtin.command: podman pull {{ hugo_image }}
+          ansible.builtin.command: podman --storage-driver vfs pull {{ hugo_image }}
           delegate_to: localhost
           changed_when: true
 
         - name: Save hugo image on the runner
-          ansible.builtin.command: podman save -o {{ lookup('ansible.builtin.env', 'RUNNER_TEMP', default='/tmp') }}/hugo.tar {{ hugo_image }}
+          ansible.builtin.command: podman --storage-driver vfs save -o {{ lookup('ansible.builtin.env', 'RUNNER_TEMP', default='/tmp') }}/hugo.tar {{ hugo_image }}
           delegate_to: localhost
           changed_when: true
 
