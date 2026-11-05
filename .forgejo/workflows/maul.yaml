@@ -13,6 +13,7 @@ on:
           - chhoto-url
           - traefik-podman
           - homepage-podman
+          - dozzle-podman
           - tinyauth-podman
   push:
     branches: [main]
@@ -84,7 +85,7 @@ jobs:
       services: ${{ steps.services.outputs.services }}
     env:
       # Service directories that deploy to maul. Add a name here to enable it.
-      MAUL_SERVICES: "chhoto-url traefik-podman tinyauth-podman homepage-podman"
+      MAUL_SERVICES: "chhoto-url traefik-podman tinyauth-podman homepage-podman dozzle-podman"
     steps:
       - name: Checkout
         uses: actions/checkout@v7.0.1

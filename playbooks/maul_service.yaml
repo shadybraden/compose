@@ -121,6 +121,13 @@
         mode: "0777"  # homepage writes as its container user, which is not maul
       when: service == 'homepage-podman'
 
+    - name: Prepare dozzle data directory
+      ansible.builtin.file:
+        path: "{{ remote_dir }}/data"
+        state: directory
+        mode: "0777"  # dozzle writes as its container user, which is not maul
+      when: service == 'dozzle-podman'
+
     - name: Create image archive directory
       ansible.builtin.file:
         path: "{{ remote_images_dir }}"

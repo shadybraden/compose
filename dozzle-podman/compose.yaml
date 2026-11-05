@@ -1,0 +1,40 @@
+---
+name: dozzle
+services:
+  dozzle:
+    image: amir20/dozzle:v11.4.0
+    container_name: dozzle
+    volumes:
+      - ${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock:ro  # rootless podman socket
+      - ./data:/data:z
+    environment:
+      - DOZZLE_ENABLE_ACTIONS=true
+      - DOZZLE_NO_ANALYTICS=true
+      - DOZZLE_REMOTE_AGENT=${DOZZLE_REMOTE_AGENT}
+    networks:
+      - intranet
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dozzle-secure.entrypoints=https"
+      - "traefik.http.routers.dozzle-secure.rule=Host(`dozzle.${DOMAIN}`)"
+      - "traefik.http.routers.dozzle-secure.tls=true"
+      - "traefik.http.routers.dozzle-secure.service=dozzle"
+      - "traefik.http.services.dozzle.loadbalancer.server.port=8080"  # port of the service.
+      - "traefik.docker.network=intranet"
+      - "traefik.http.middlewares.dozzle-tinyauth.forwardauth.address=http://tinyauth:3000/api/auth/traefik"
+      - "traefik.http.middlewares.dozzle-tinyauth.forwardauth.trustforwardheader=false"
+      - "traefik.http.middlewares.dozzle-tinyauth.forwardauth.maxresponsebodysize=1048576"  # 1 MiB
+      - "traefik.http.routers.dozzle-secure.middlewares=dozzle-tinyauth"
+      - "homepage.group=Other"
+      - "homepage.name=dozzle"
+      - "homepage.icon=/images/dozzle.png"
+      - "homepage.href=https://dozzle.${DOMAIN}/"
+      - env=production
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+      - label=disable  # SELinux otherwise blocks access to the podman socket
+
+networks:
+  intranet:
+    external: true
