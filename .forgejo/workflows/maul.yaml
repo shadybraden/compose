@@ -22,8 +22,6 @@ jobs:
 
       - name: Run Ansible "core"
         run: |
-          whoami
-          nc -zv 10.1.1.69 22
           ansible-playbook playbooks/core.yaml
         env:
           ANSIBLE_HOST_KEY_CHECKING: "False"
