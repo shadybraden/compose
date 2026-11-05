@@ -96,7 +96,7 @@
         "path": "/etc/profile.d/proxy.sh",
         "contents": {
           "compression": "gzip",
-          "source": "data:;base64,H4sIAAAAAAAC/0qtKMgvKlHIKCkpiC8oyq+otFUCsa309Q0N9Az1DPXMTK2MDY0slLiQVBYTp9QjJCQgPiDIPyKSGJXBxCnNy4dZnpOfnJiTkV9comNoZK5noGegZ6ijl5tYmqNXnJGYUplUlJiSmqeXnJ8L1+vnD7ODBL2AAAAA//+uuBjjIgEAAA=="
+          "source": "data:;base64,H4sIAAAAAAAC/0qtKMgvKlHIKCkpiC8oyq+otFUCsa309Q0N9Az1DPXMTK2MDY0slLiQVBYTp9QjJCQgPiDIPyKSGJXBxCnNy4dZnpOfnJiTkV9comNoZK5noGegZ6iTm1iao1eckZhSmVSUmJKap5ecn6ujh00UbqCfP8xiSg0EBAAA///9Tt5wTAEAAA=="
         },
         "mode": 420
       },
