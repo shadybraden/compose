@@ -18,7 +18,7 @@ services:
     ports:
       - '0.0.0.0:34789:4567'
     networks:
-      - intranet
+      - intranet-backend
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
@@ -31,7 +31,7 @@ services:
       - "traefik.http.routers.chhoto-secure.tls=true"
       - "traefik.http.routers.chhoto-secure.service=chhoto"
       - "traefik.http.services.chhoto.loadbalancer.server.port=4567"  # port of the service.
-      - "traefik.docker.network=intranet"
+      - "traefik.docker.network=intranet-backend"
       - "homepage.group=Other"
       - "homepage.name=URL Shortener"
       - "homepage.icon=/images/chhoto.png"
@@ -49,5 +49,5 @@ services:
       - no-new-privileges:true  # helps to increase security
 
 networks:
-  intranet:
+  intranet-backend:
     external: true
