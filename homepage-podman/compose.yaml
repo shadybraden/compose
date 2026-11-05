@@ -6,7 +6,7 @@ services:
     container_name: homepage
     volumes:
       - ./:/app/config:ro,z  # settings, services, bookmarks, widgets, css, js
-      - ./log:/app/config/log:z  # homepage.log is written here
+      - ./logs:/app/config/logs:z  # homepage writes its logs here
       - ${HOME}/icons:/app/public/images:ro,z  # shady/icons, refreshed by playbooks/maul.yaml
       - ${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock:ro  # rootless podman socket
     environment:

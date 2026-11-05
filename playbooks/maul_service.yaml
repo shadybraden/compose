@@ -116,7 +116,7 @@
 
     - name: Prepare homepage log directory
       ansible.builtin.file:
-        path: "{{ remote_dir }}/log"
+        path: "{{ remote_dir }}/logs"
         state: directory
         mode: "0777"  # homepage writes as its container user, which is not maul
       when: service == 'homepage-podman'
