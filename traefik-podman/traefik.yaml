@@ -1,18 +1,8 @@
-# move to folder specifide in compose.yaml (without .sample)
-# change email
+# the ACME email comes from CF_API_EMAIL in .env (TRAEFIK_CERTIFICATESRESOLVERS_CLOUDFLARE_ACME_EMAIL)
 api:
   dashboard: true
   debug: true
 entryPoints:
-  http:
-    address: ":80"
-    http:
-    #  middlewares: # uncomment if using CrowdSec - see my video
-    #    - crowdsec-bouncer@file
-      redirections:
-        entrypoint:
-          to: https
-          scheme: https
   https:
     address: ":443"
     # http:
@@ -43,7 +33,6 @@ certificatesResolvers:
     acme:
       # caServer: https://acme-v02.api.letsencrypt.org/directory # production (default)
       # caServer: https://acme-staging-v02.api.letsencrypt.org/directory # staging (testing)
-      email: email@domain.tld # Cloudflare email (or other provider)
       storage: acme.json
       dnsChallenge:
         provider: cloudflare # change as required

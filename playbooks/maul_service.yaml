@@ -102,6 +102,18 @@
       delegate_to: localhost
       changed_when: false
 
+    - name: Prepare traefik state files
+      ansible.builtin.file:
+        path: "{{ remote_dir }}/{{ item.path }}"
+        state: "{{ item.state }}"
+        mode: "{{ item.mode }}"
+        modification_time: preserve
+        access_time: preserve
+      loop:
+        - { path: acme.json, state: touch, mode: "0600" }
+        - { path: logs, state: directory, mode: "0755" }
+      when: service == 'traefik-podman'
+
     - name: Create image archive directory
       ansible.builtin.file:
         path: "{{ remote_images_dir }}"

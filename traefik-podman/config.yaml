@@ -14,10 +14,6 @@ http:
         contentSecurityPolicy: "default-src 'self'"
         customRequestHeaders:
           X-Forwarded-Proto: https
-    https-redirectscheme:
-      redirectScheme:
-        scheme: https
-        permanent: true
 
   routers:
     portainer:

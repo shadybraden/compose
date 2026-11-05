@@ -52,3 +52,14 @@
     - name: Reboot if needed
       ansible.builtin.reboot:
       when: podman_compose_install is changed
+
+    - name: Allow rootless containers to bind ports 443 and up
+      ansible.builtin.copy:
+        dest: /etc/sysctl.d/90-unprivileged-ports.conf
+        content: "net.ipv4.ip_unprivileged_port_start=443\n"
+        mode: "0644"
+      register: unprivileged_ports
+
+    - name: Apply sysctl settings
+      ansible.builtin.command: sysctl --system
+      when: unprivileged_ports is changed
