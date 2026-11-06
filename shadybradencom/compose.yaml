@@ -1,9 +1,9 @@
 ---
-name: hugo-server
+name: shadybradencom
 services:
   nginx:
     image: docker.io/nginx:1.31.8
-    container_name: hugo-server
+    container_name: shadybradencom
     volumes:
       - ${HOME}/config_storage/shadybradencom/public:/usr/share/nginx/html:ro,z
       - ./default.conf:/etc/nginx/conf.d/default.conf:ro,z  # listen on 8088, non-root cannot bind 80
@@ -21,16 +21,16 @@ services:
       start_period: 10s
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.hugo-secure.entrypoints=https"
-      - "traefik.http.routers.hugo-secure.rule=Host(`hugo.${DOMAIN}`)"
-      - "traefik.http.routers.hugo-secure.tls=true"
-      - "traefik.http.routers.hugo-secure.service=hugo"
-      - "traefik.http.services.hugo.loadbalancer.server.port=8088"  # port of the service.
+      - "traefik.http.routers.shadybradencom-secure.entrypoints=https"
+      - "traefik.http.routers.shadybradencom-secure.rule=Host(`shadybradencom.${DOMAIN}`)"
+      - "traefik.http.routers.shadybradencom-secure.tls=true"
+      - "traefik.http.routers.shadybradencom-secure.service=shadybradencom"
+      - "traefik.http.services.shadybradencom.loadbalancer.server.port=8088"  # port of the service.
       - "traefik.docker.network=intranet-backend"
       - "homepage.group=Other"
-      - "homepage.name=hugo"
-      - "homepage.icon=/images/hugo.png"
-      - "homepage.href=https://hugo.${DOMAIN}/"
+      - "homepage.name=shadybradencom"
+      - "homepage.icon=/images/shadybradencom.png"
+      - "homepage.href=https://shadybradencom.${DOMAIN}/"
 
 networks:
   intranet-backend:
