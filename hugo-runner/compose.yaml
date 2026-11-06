@@ -31,7 +31,6 @@ services:
       - "homepage.name=hugo"
       - "homepage.icon=/images/hugo.png"
       - "homepage.href=https://hugo.${DOMAIN}/"
-    user: "101:101"
 
 networks:
   intranet-backend:
