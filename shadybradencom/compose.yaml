@@ -10,7 +10,7 @@ services:
     environment:
       - TZ=America/New_York
     networks:
-      - intranet
+      - intranet-backend
     restart: unless-stopped
     ports:
       - 34788:8088
@@ -27,12 +27,12 @@ services:
       - "traefik.http.routers.shadybradencom-secure.tls=true"
       - "traefik.http.routers.shadybradencom-secure.service=shadybradencom"
       - "traefik.http.services.shadybradencom.loadbalancer.server.port=8088"  # port of the service.
-      - "traefik.docker.network=intranet"
+      - "traefik.docker.network=intranet-backend"
       - "homepage.group=Other"
       - "homepage.name=shadybradencom"
       - "homepage.icon=/images/shadybradencom.png"
       - "homepage.href=https://shadybradencom.${DOMAIN}/"
 
 networks:
-  intranet:
+  intranet-backend:
     external: true
