@@ -11,6 +11,7 @@ services:
       - TZ=America/New_York
     networks:
       - intranet-backend
+    restart: unless-stopped
     ports:
       - 34788:8088
     healthcheck:
