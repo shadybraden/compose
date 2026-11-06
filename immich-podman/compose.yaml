@@ -6,7 +6,7 @@ services:
     container_name: immich_postgres-podman
     userns_mode: keep-id:uid=999,gid=999
     volumes:
-      - ${HOME}/config_storage/immich-podman/postgres:/var/lib/postgresql/data
+      - ${HOME}/config_storage/immich-podman/postgres:/var/lib/postgresql/data:z
     environment:
       - TZ=America/New_York
       - POSTGRES_PASSWORD=${IMMICH_DB_PASSWORD}
@@ -53,7 +53,7 @@ services:
       - database-podman
       - redis-podman
     volumes:
-      - ${HOME}/config_storage/immich-podman/upload:/usr/src/app/upload
+      - ${HOME}/config_storage/immich-podman/upload:/usr/src/app/upload:z
     environment:
       - TZ=America/New_York
       - IMMICH_TRUSTED_PROXIES=172.0.0.0/8
