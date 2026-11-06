@@ -41,6 +41,9 @@ certificatesResolvers:
           - "1.1.1.1:53"
           - "1.0.0.1:53"
 
+global:
+  checkNewVersion: false
+
 log:
   level: "INFO"
   filePath: "/var/log/traefik/traefik.log"
