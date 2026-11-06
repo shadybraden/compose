@@ -128,6 +128,7 @@ Tinyauth itself is not behind ForwardAuth. If tinyauth is down, every protected 
 - Traefik does not post its logs to `podman logs`. Read them from the files on maul: `~/config_storage/traefik-podman/logs/traefik.log` (service log) and `~/config_storage/traefik-podman/logs/access.log` (access log).
 - Times in `ls -l` and logs differ between host (UTC) and containers (`America/New_York`). Compare timestamps in the same timezone.
 - The squid proxy denies everything outside its allowlist with a plain `403` and `x-squid-error: ERR_ACCESS_DENIED`. If a service gets that response, a process is going through the proxy instead of connecting directly.
+- Healthchecks that call `localhost` fail on maul unless the container sets `NO_PROXY=localhost` and `no_proxy=localhost`. The host's proxy variables send the check through squid, the check fails, and Traefik skips the container, so its router never appears. Any container with a `curl` healthcheck needs these vars.
 
 ## Editing this file
 
