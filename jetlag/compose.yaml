@@ -43,8 +43,6 @@ services:
           memory: 64M
         reservations:
           memory: 16M
-    dns:
-      - 0.0.0.0
     init: true
     read_only: true
     security_opt:
@@ -57,7 +55,6 @@ services:
       nofile:
         soft: 1024
         hard: 2048
-      nproc: 64
 
 networks:
   intranet-backend:
