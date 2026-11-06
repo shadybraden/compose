@@ -5,7 +5,7 @@ services:
     image: ghcr.io/mealie-recipes/mealie:v3.30.0
     container_name: mealie
     volumes:
-      - ${HOME}/config_storage/mealie-podman:/app/data/:z
+      - ${HOME}/config_storage/mealie-podman:/app/data/:z,U
     environment:
       ALLOW_SIGNUP: "false"
       LOG_LEVEL: "INFO"
