@@ -10,6 +10,7 @@
     sites:
       - name: shadybradencom
         repo: https://git.holmlab.org/shady/shadybradencom
+        pull_image: "{{ hugo_image }}"
         build: >-
           podman --storage-driver vfs run --rm
           -v $PWD:/src:z
@@ -56,11 +57,6 @@
       loop: "{{ shared_repos }}"
       loop_control:
         loop_var: repo
-
-    - name: Pull hugo image on the runner
-      ansible.builtin.command: podman --storage-driver vfs pull {{ hugo_image }}
-      delegate_to: localhost
-      changed_when: true
 
     - name: Build and deploy sites
       ansible.builtin.include_tasks: tasks/maul_site.yaml

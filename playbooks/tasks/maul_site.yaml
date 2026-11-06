@@ -29,6 +29,12 @@
       when: site.npm | default(false)
       changed_when: true
 
+    - name: Pull {{ site.pull_image }} on the runner
+      ansible.builtin.command: podman --storage-driver vfs pull {{ site.pull_image }}
+      delegate_to: localhost
+      when: site.pull_image is defined
+      changed_when: true
+
     - name: Build {{ site.name }} on the runner
       ansible.builtin.shell: "{{ site.build }}"
       args:
