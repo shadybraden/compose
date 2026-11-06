@@ -2,11 +2,11 @@
 name: jetlag
 services:
   nginx:
-    image: nginx:1.31.8
+    image: docker.io/nginx:1.31.8
     container_name: jetlag
     volumes:
       - ${HOME}/config_storage/jetlag_map/dist:/usr/share/nginx/html:ro,z
-      - ./default.conf:/etc/nginx/conf.d/default.conf:ro,z  # listen on 8089, non-root cannot bind 80
+      - ./default.conf:/etc/nginx/conf.d/default.conf:ro,z  # listen on 8089, non-root cannot bind 80\
     environment:
       - TZ=${TZ}
       - NO_PROXY=localhost
@@ -14,7 +14,7 @@ services:
     networks:
       - intranet-backend
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost/"]
+      test: ["CMD", "curl", "-f", "http://localhost:8089/"]
       interval: 30s
       timeout: 5s
       retries: 3
