@@ -11,6 +11,8 @@ services:
       - TZ=America/New_York
     networks:
       - intranet-backend
+    ports:
+      - 34788:8088
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8088/"]
       interval: 30s
