@@ -31,7 +31,7 @@ services:
       - "traefik.http.services.shadybradencom.loadbalancer.server.port=8088"  # port of the service.
       - "traefik.docker.network=intranet-backend"
       - "homepage.group=Other"
-      - "homepage.name=shadybradencom"
+      - "homepage.name=shadybraden.com"
       - "homepage.icon=/images/llama_clippy_130D07.png"
       - "homepage.href=https://${DOMAIN}/"
     user: "101:101"
