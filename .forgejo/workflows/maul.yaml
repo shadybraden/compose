@@ -84,7 +84,6 @@ jobs:
             -d "Workflow '${{ github.workflow }}' failed"
 
   Detect:
-    needs: Maul
     runs-on: tools_container
     outputs:
       services: ${{ steps.services.outputs.services }}
@@ -117,7 +116,7 @@ jobs:
           echo "services=$SELECTED" >> "$GITHUB_OUTPUT"
 
   Maul-Services:
-    needs: [Detect]
+    needs: [Maul, Detect]
     if: needs.Detect.outputs.services != ''
     runs-on: tools_container
     steps:
