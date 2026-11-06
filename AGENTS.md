@@ -124,6 +124,7 @@ Tinyauth itself is not behind ForwardAuth. If tinyauth is down, every protected 
 - Repos cloned on the runner must be copied, not moved. `.git` is stripped before copying.
 - Running `podman restart` doesn't pick up a changed compose file. Redeploy through the workflow or `podman compose up -d`.
 - Traefik's docker provider can miss containers that start after it's running. If a router doesn't appear in the dashboard, restart the affected container, then check `/api/http/routers`.
+- Traefik does not post its logs to `podman logs`. Read them from the files on maul: `~/config_storage/traefik-podman/logs/traefik.log` (service log) and `~/config_storage/traefik-podman/logs/access.log` (access log).
 - Times in `ls -l` and logs differ between host (UTC) and containers (`America/New_York`). Compare timestamps in the same timezone.
 - The squid proxy denies everything outside its allowlist with a plain `403` and `x-squid-error: ERR_ACCESS_DENIED`. If a service gets that response, a process is going through the proxy instead of connecting directly.
 
