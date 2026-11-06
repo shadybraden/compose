@@ -16,6 +16,7 @@ services:
     networks:
       - intranet-backend
     restart: unless-stopped
+    user: maul:maul
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.mealie-secure.entrypoints=https"
