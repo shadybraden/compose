@@ -1,11 +1,11 @@
 ---
-name: imich-podman
+name: immich-podman
 services:
   database-public:
     image: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0
     container_name: immich_postgres-public
     volumes:
-      - ${HOME}/config_storage/imich-podman/postgres:/var/lib/postgresql/data
+      - ${HOME}/config_storage/immich-podman/postgres:/var/lib/postgresql/data
     environment:
       - TZ=America/New_York
       - POSTGRES_PASSWORD=${IMMICH_DB_PASSWORD}
@@ -49,7 +49,7 @@ services:
       - database-public
       - redis-public
     volumes:
-      - ${HOME}/config_storage/imich-podman/upload:/usr/src/app/upload
+      - ${HOME}/config_storage/immich-podman/upload:/usr/src/app/upload
     environment:
       - TZ=America/New_York
       - IMMICH_TRUSTED_PROXIES=172.0.0.0/8
@@ -67,20 +67,20 @@ services:
       disable: true
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.imich-podman.entrypoints=http"
-      - "traefik.http.routers.imich-podman.rule=Host(`imich-podman.${DOMAIN}`)"
-      - "traefik.http.middlewares.imich-podman-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.imich-podman.middlewares=imich-podman-https-redirect"
-      - "traefik.http.routers.imich-podman-secure.entrypoints=https"
-      - "traefik.http.routers.imich-podman-secure.rule=Host(`imich-podman.${DOMAIN}`)"
-      - "traefik.http.routers.imich-podman-secure.tls=true"
-      - "traefik.http.routers.imich-podman-secure.service=imich-podman"
-      - "traefik.http.services.imich-podman.loadbalancer.server.port=2283"  # port of the service
+      - "traefik.http.routers.immich-podman.entrypoints=http"
+      - "traefik.http.routers.immich-podman.rule=Host(`immich-podman.${DOMAIN}`)"
+      - "traefik.http.middlewares.immich-podman-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.immich-podman.middlewares=immich-podman-https-redirect"
+      - "traefik.http.routers.immich-podman-secure.entrypoints=https"
+      - "traefik.http.routers.immich-podman-secure.rule=Host(`immich-podman.${DOMAIN}`)"
+      - "traefik.http.routers.immich-podman-secure.tls=true"
+      - "traefik.http.routers.immich-podman-secure.service=immich-podman"
+      - "traefik.http.services.immich-podman.loadbalancer.server.port=2283"  # port of the service
       - "traefik.docker.network=intranet"
       - "homepage.group=Other"
-      - "homepage.name=imich-podman"
+      - "homepage.name=immich-podman"
       - "homepage.icon=/images/immich.png"
-      - "homepage.href=https://imich-podman.${DOMAIN}/"
+      - "homepage.href=https://immich-podman.${DOMAIN}/"
       - env=production
     security_opt:
       - no-new-privileges:true  # helps to increase security
