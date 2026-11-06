@@ -1,7 +1,7 @@
 ---
 name: shadybradencom
 services:
-  nginx:
+  shadybradencom:
     image: docker.io/nginx:1.31.8
     container_name: shadybradencom
     volumes:
