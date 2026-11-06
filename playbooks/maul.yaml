@@ -9,7 +9,7 @@
         repo: https://git.holmlab.org/shady/shadybradencom
         dest: ~/shadybradencom
     hugo_image: docker.io/hugomods/hugo:0.165.0
-    hugo_base_url: https://hugo.maul.shadybraden.com/
+    hugo_base_url: https://shadybradencom.maul.shadybraden.com/
   tasks:
     - name: Create intranet network
       containers.podman.podman_network:
