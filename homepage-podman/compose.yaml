@@ -10,7 +10,7 @@ services:
       - ${HOME}/icons:/app/public/images:ro,z  # shady/icons, refreshed by playbooks/maul.yaml
       - ${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock:ro  # rootless podman socket
     environment:
-      HOMEPAGE_ALLOWED_HOSTS: ${DOMAIN}
+      HOMEPAGE_ALLOWED_HOSTS: services.${DOMAIN}
       TZ: America/New_York
     networks:
       - intranet-backend
@@ -18,7 +18,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.homepage-secure.entrypoints=https"
-      - "traefik.http.routers.homepage-secure.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.homepage-secure.rule=Host(`services.${DOMAIN}`)"
       - "traefik.http.routers.homepage-secure.tls=true"
       - "traefik.http.routers.homepage-secure.service=homepage"
       - "traefik.http.services.homepage.loadbalancer.server.port=3000"  # port of the service.
