@@ -1,0 +1,35 @@
+---
+name: mealie
+services:
+  mealie:
+    image: ghcr.io/mealie-recipes/mealie:v3.30.0
+    container_name: mealie
+    volumes:
+      - ${HOME}/config_storage/mealie-podman:/app/data/:z
+    environment:
+      ALLOW_SIGNUP: "false"
+      LOG_LEVEL: "INFO"
+      DB_ENGINE: sqlite
+      TZ: America/New_York
+    networks:
+      - intranet-backend
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.mealie-secure.entrypoints=https"
+      - "traefik.http.routers.mealie-secure.rule=Host(`mealie.${DOMAIN}`)"
+      - "traefik.http.routers.mealie-secure.tls=true"
+      - "traefik.http.routers.mealie-secure.service=mealie"
+      - "traefik.http.services.mealie.loadbalancer.server.port=9000"  # port of the service.
+      - "traefik.docker.network=intranet-backend"
+      - "homepage.group=Other"
+      - "homepage.name=mealie"
+      - "homepage.icon=/images/mealie.png"
+      - "homepage.href=https://mealie.${DOMAIN}/"
+      - env=production
+    security_opt:
+      - no-new-privileges:true  # helps to increase security
+
+networks:
+  intranet-backend:
+    external: true
