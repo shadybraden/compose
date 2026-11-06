@@ -16,6 +16,7 @@ services:
     networks:
       - intranet-backend
     restart: unless-stopped
+    userns_mode: keep-id
     user: 1001:1001
     labels:
       - "traefik.enable=true"
