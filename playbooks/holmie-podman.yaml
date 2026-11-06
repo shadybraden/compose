@@ -101,22 +101,7 @@
         {{ INFISICAL_RUN }} \
         podman compose -f ~/config_storage/compose/openwebui/podman.yaml {{ COMPOSE_CMD }}
 
-    - name: Deploy Immich Public
-      ansible.builtin.shell: |
-        {{ INFISICAL_RUN }} \
-        podman compose -f ~/config_storage/compose/immich-public/podman.yaml {{ COMPOSE_CMD }}
-
-    - name: Deploy chhoto-url
-      ansible.builtin.shell: |
-        {{ INFISICAL_RUN }} \
-        podman compose -f ~/config_storage/compose/chhoto-url/compose.yaml {{ COMPOSE_CMD }}
-
     - name: Deploy weather
       ansible.builtin.shell: |
         {{ INFISICAL_RUN }} \
         podman compose -f ~/config_storage/compose/weather/compose.yaml {{ COMPOSE_CMD }}
-
-    - name: Deploy jetlag
-      ansible.builtin.shell: |
-        {{ INFISICAL_RUN }} \
-        podman compose -f ~/config_storage/compose/jetlag/compose.yaml {{ COMPOSE_CMD }}
