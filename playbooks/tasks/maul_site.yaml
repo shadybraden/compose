@@ -1,0 +1,58 @@
+---
+- name: Get latest commit of {{ site.repo }}
+  ansible.builtin.command: git ls-remote {{ site.repo }} refs/heads/main
+  register: site_remote_head
+  delegate_to: localhost
+  changed_when: false
+
+- name: Read commit deployed to maul for {{ site.name }}
+  ansible.builtin.shell: cat ~/.revisions/{{ site.name }} 2>/dev/null || true
+  register: site_deployed_head
+  changed_when: false
+
+- name: Rebuild {{ site.name }} when maul is behind main
+  when: site_deployed_head.stdout | trim != site_remote_head.stdout.split()[0]
+  block:
+    - name: Clone {{ site.repo }} on the runner
+      ansible.builtin.git:
+        repo: "{{ site.repo }}"
+        dest: "{{ lookup('ansible.builtin.env', 'RUNNER_TEMP', default='/tmp') }}/{{ site.name }}"
+        version: "{{ site_remote_head.stdout.split()[0] }}"
+        force: true
+      delegate_to: localhost
+
+    - name: Install {{ site.name }} dependencies on the runner
+      ansible.builtin.command: npm install
+      args:
+        chdir: "{{ lookup('ansible.builtin.env', 'RUNNER_TEMP', default='/tmp') }}/{{ site.name }}"
+      delegate_to: localhost
+      when: site.npm | default(false)
+      changed_when: true
+
+    - name: Build {{ site.name }} on the runner
+      ansible.builtin.shell: "{{ site.build }}"
+      args:
+        chdir: "{{ lookup('ansible.builtin.env', 'RUNNER_TEMP', default='/tmp') }}/{{ site.name }}"
+      delegate_to: localhost
+      changed_when: true
+
+    - name: Clear old build output in {{ site.dest }}
+      ansible.builtin.shell: mkdir -p {{ site.dest }} && find {{ site.dest }} -mindepth 1 -delete
+
+    - name: Copy {{ site.name }} build output to maul
+      ansible.builtin.copy:
+        src: "{{ lookup('ansible.builtin.env', 'RUNNER_TEMP', default='/tmp') }}/{{ site.name }}/{{ site.output }}/"
+        dest: "{{ site.dest }}/"
+        mode: preserve
+
+    - name: Create revision directory on maul
+      ansible.builtin.file:
+        path: ~/.revisions
+        state: directory
+        mode: "0755"
+
+    - name: Record deployed commit for {{ site.name }}
+      ansible.builtin.copy:
+        content: "{{ site_remote_head.stdout.split()[0] }}\n"
+        dest: ~/.revisions/{{ site.name }}
+        mode: "0644"

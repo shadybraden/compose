@@ -47,7 +47,7 @@ See IaC repo (typically at .,/IaC) for `tools_container` Dockerfile and build. T
 Jobs, in order:
 
 1. **Core**: runs `playbooks/core.yaml` with `CORE_SSH_PRIVATE_KEY`. Bootstraps python3 and podman-compose with `rpm-ostree`, reboots if needed, and installs sysbench and btop. Reboots the host when packages change.
-2. **Maul**: needs Core. Runs `playbooks/maul.yaml` with `MAUL_SSH_PRIVATE_KEY`. Creates the networks, enables the podman socket and `podman-restart`, refreshes the shared repos (`icons` → `~/icons`, `shadybradencom` → `~/shadybradencom`), transfers and builds the hugo site, and prints the OS version.
+2. **Maul**: needs Core. Runs `playbooks/maul.yaml` with `MAUL_SSH_PRIVATE_KEY`. Creates the networks, enables the podman socket and `podman-restart`, refreshes the shared repo `icons` (→ `~/icons`), builds the sites on the runner and copies only their output to maul, and prints the OS version.
 3. **Detect**: needs Maul. Works out which services to deploy.
    - Manual dispatch: the `service` input.
    - Push: every changed `*/compose.yaml` whose directory name is in `MAUL_SERVICES`.
@@ -77,11 +77,11 @@ Notes:
 
 `playbooks/maul.yaml` defines `shared_repos`. `playbooks/tasks/maul_repo.yaml` clones each repo on the runner when `main`'s commit differs from the one recorded in `~/.revisions/<name>`, clears the destination, and copies the files to maul. `.git` is not copied.
 
-## Hugo site
+## Sites (built on the runner)
 
-- The hugo source is `~/shadybradencom` (repo `shadybradencom`).
-- `playbooks/maul.yaml` transfers `hugomods/hugo:0.165.0` if it isn't on maul, then builds with `podman run` into `~/config_storage/shadybradencom/public`.
-- `shadybradencom/compose.yaml` is nginx serving that `public` folder on `intranet-backend` (listening on 8088). Traefik routes `${DOMAIN}` (the bare domain, `maul.shadybraden.com` on maul) to it.
+- `playbooks/maul.yaml` defines `sites`. `playbooks/tasks/maul_site.yaml` clones each repo on the runner when `main`'s commit differs from the one recorded in `~/.revisions/<name>`, runs `build`, and copies only the `output` folder to `dest` on maul. The source repo is never copied to maul.
+- `shadybradencom`: hugo image `hugomods/hugo:0.165.0` (pulled on the runner) builds into `public`, copied to `~/config_storage/shadybradencom/public`. `shadybradencom/compose.yaml` is nginx serving that folder on `intranet-backend` (listening on 8088). Traefik routes `${DOMAIN}` (the bare domain, `maul.shadybraden.com` on maul) to it.
+- `jetlag_map` (repo `JetLagHideAndSeek`): `npm install` then `BASE=/ npm run build` on the runner, copies `dist` to `~/config_storage/jetlag_map/dist`. `jetlag/compose.yaml` serves that folder.
 - `hugo-builder/` is a leftover from the Komodo setup. Not used on maul.
 
 ## Traefik on maul (`traefik-podman/`)
