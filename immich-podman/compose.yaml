@@ -4,6 +4,7 @@ services:
   database-podman:
     image: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0
     container_name: immich_postgres-podman
+    userns_mode: keep-id:uid=999,gid=999
     volumes:
       - ${HOME}/config_storage/immich-podman/postgres:/var/lib/postgresql/data
     environment:
