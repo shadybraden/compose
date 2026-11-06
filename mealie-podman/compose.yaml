@@ -11,6 +11,8 @@ services:
       LOG_LEVEL: "INFO"
       DB_ENGINE: sqlite
       TZ: America/New_York
+      NO_PROXY: 127.0.0.1
+      no_proxy: 127.0.0.1
     networks:
       - intranet-backend
     restart: unless-stopped
