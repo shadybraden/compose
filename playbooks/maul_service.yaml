@@ -61,15 +61,26 @@
       no_log: true
       changed_when: true
 
-    - name: Pull images on the runner
-      ansible.builtin.command: podman --storage-driver vfs pull {{ item }}
+    - name: Check which images are already on maul
+      ansible.builtin.command: podman image exists {{ item }}
       loop: "{{ images }}"
+      register: maul_image_check
+      failed_when: false
+      changed_when: false
+
+    - name: Set images missing from maul
+      ansible.builtin.set_fact:
+        missing_images: "{{ maul_image_check.results | selectattr('rc', 'ne', 0) | map(attribute='item') | list }}"
+
+    - name: Pull missing images on the runner
+      ansible.builtin.command: podman --storage-driver vfs pull {{ item }}
+      loop: "{{ missing_images }}"
       delegate_to: localhost
       changed_when: true
 
-    - name: Save images to archives on the runner
+    - name: Save missing images to archives on the runner
       ansible.builtin.command: podman --storage-driver vfs save -o "{{ local_archive_dir }}/{{ item | regex_replace('[/:]', '_') }}.tar" {{ item }}
-      loop: "{{ images }}"
+      loop: "{{ missing_images }}"
       delegate_to: localhost
       changed_when: true
 
@@ -141,18 +152,18 @@
         src: "{{ local_archive_dir }}/{{ item | regex_replace('[/:]', '_') }}.tar"
         dest: "{{ remote_images_dir }}/"
         mode: "0644"
-      loop: "{{ images }}"
+      loop: "{{ missing_images }}"
 
     - name: Load images
       ansible.builtin.shell: podman load -i {{ remote_images_dir }}/{{ item | regex_replace('[/:]', '_') }}.tar
-      loop: "{{ images }}"
+      loop: "{{ missing_images }}"
       changed_when: true
 
     - name: Remove image archives
       ansible.builtin.file:
         path: "{{ remote_images_dir }}/{{ item | regex_replace('[/:]', '_') }}.tar"
         state: absent
-      loop: "{{ images }}"
+      loop: "{{ missing_images }}"
 
     - name: Deploy with podman compose
       ansible.builtin.shell: XDG_RUNTIME_DIR=/run/user/$(id -u) podman compose -f {{ remote_dir }}/compose.yaml up -d
