@@ -25,15 +25,15 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.shadybradencom-secure.entrypoints=https"
-      - "traefik.http.routers.shadybradencom-secure.rule=Host(`shadybradencom.${DOMAIN}`)"
+      - "traefik.http.routers.shadybradencom-secure.rule=Host(`${DOMAIN}`)"
       - "traefik.http.routers.shadybradencom-secure.tls=true"
       - "traefik.http.routers.shadybradencom-secure.service=shadybradencom"
       - "traefik.http.services.shadybradencom.loadbalancer.server.port=8088"  # port of the service.
       - "traefik.docker.network=intranet-backend"
       - "homepage.group=Other"
       - "homepage.name=shadybradencom"
-      - "homepage.icon=/images/llama_clippy.png"
-      - "homepage.href=https://shadybradencom.${DOMAIN}/"
+      - "homepage.icon=/images/llama_clippy_130D07.png"
+      - "homepage.href=https://${DOMAIN}/"
     user: "101:101"
     cap_drop:
       - ALL

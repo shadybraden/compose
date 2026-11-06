@@ -81,7 +81,7 @@ Notes:
 
 - The hugo source is `~/shadybradencom` (repo `shadybradencom`).
 - `playbooks/maul.yaml` transfers `hugomods/hugo:0.165.0` if it isn't on maul, then builds with `podman run` into `~/config_storage/shadybradencom/public`.
-- `shadybradencom/compose.yaml` is nginx serving that `public` folder on `intranet-backend` (listening on 8088). Traefik routes `shadybradencom.maul.shadybraden.com` to it.
+- `shadybradencom/compose.yaml` is nginx serving that `public` folder on `intranet-backend` (listening on 8088). Traefik routes `${DOMAIN}` (the bare domain, `maul.shadybraden.com` on maul) to it.
 - `hugo-builder/` is a leftover from the Komodo setup. Not used on maul.
 
 ## Traefik on maul (`traefik-podman/`)
