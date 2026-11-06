@@ -32,7 +32,7 @@ services:
       - "traefik.docker.network=intranet-backend"
       - "homepage.group=Other"
       - "homepage.name=shadybradencom"
-      - "homepage.icon=/images/shadybradencom.png"
+      - "homepage.icon=/images/llama_clippy.png"
       - "homepage.href=https://shadybradencom.${DOMAIN}/"
     user: "101:101"
     cap_drop:
