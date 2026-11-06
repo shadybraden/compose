@@ -32,27 +32,6 @@ services:
       - "homepage.icon=/images/hugo.png"
       - "homepage.href=https://hugo.${DOMAIN}/"
     user: "101:101"
-    cap_drop:
-      - ALL
-    deploy:
-      resources:
-        limits:
-          cpus: '0.5'
-          memory: 64M
-        reservations:
-          memory: 16M
-    init: true
-    read_only: true
-    security_opt:
-      - no-new-privileges:true
-    tmpfs:
-      - '/tmp:size=64m,mode=1777'
-      - '/var/cache/nginx:size=64m,mode=1777'
-      - '/var/run:size=8m,mode=1777'
-    ulimits:
-      nofile:
-        soft: 1024
-        hard: 2048
 
 networks:
   intranet-backend:
