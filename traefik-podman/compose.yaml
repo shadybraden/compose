@@ -35,10 +35,6 @@ services:
       - "traefik.http.routers.traefik-secure.tls.domains[0].main=${DOMAIN}"
       - "traefik.http.routers.traefik-secure.tls.domains[0].sans=*.${DOMAIN}"
       - "traefik.http.routers.traefik-secure.service=api@internal"
-      - "homepage.group=Other"
-      - "homepage.name=Traefik"
-      - "homepage.icon=/images/traefik.png"
-      - "homepage.href=https://traefik.${DOMAIN}"
     security_opt:
       - no-new-privileges:true  # helps to increase security
       - label=disable  # SELinux otherwise blocks access to the podman socket
